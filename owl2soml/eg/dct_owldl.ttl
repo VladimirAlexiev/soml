@@ -8,7 +8,7 @@
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 
-dcterms: a owl:Ontology ;  # was <http://purl.org/NET/dc_owl2dl/terms_od>
+<http://purl.org/NET/dc_owl2dl/terms_od> a owl:Ontology ;
         rdfs:comment      "OWL 2 DL ontology for Dublin Core metadata terms from the http://purl.org/dc/terms/ namespace; this version uses object and datatype properties instead of annotation properties where possible. Note that, because of this, when using this ontology you are restricted to using literals and non-literals in certain cases and especially you cannot use DCMI's DCSV."@en ;
         rdfs:label        "DCMI metadata terms"@en ;
         dcterms:creator   <http://simon-reinhardt.de/#me> ;

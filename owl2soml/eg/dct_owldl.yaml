@@ -51,7 +51,7 @@ objects:
     kind: abstract
   MediaType:
     descr: A file format or physical medium
-    inherits: MediaTypeOrExtentCommon
+    inherits: MediaTypeCommon
     label: Media Type
     type: dcterms:MediaType
   MediaTypeCommon:
@@ -521,7 +521,7 @@ properties:
     range: string
     rdfProp: dcterms:valid
 specialPrefixes:
-  ontology_iri: http://purl.org/dc/terms/
+  ontology_iri: http://purl.org/NET/dc_owl2dl/terms_od
   vocab_iri: http://purl.org/dc/terms/
   vocab_prefix: dcterms
 updated: 2009-09-07
