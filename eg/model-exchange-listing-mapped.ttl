@@ -1,0 +1,109 @@
+<WD/Q82059> a cg:StockExchange;
+  skos:notation "Q82059";
+  skos:prefLabel "NASDAQ";
+  dct:description "American stock exchange";
+  schema:foundingDate "1971-02-04"^^xsd:date;
+  cg:orgType <WD/Q11691>;
+  cg:industry <WD/Q837171>;
+  adms:identifier <WD/Q82059/WD>, <WD/Q82059/website>, <WD/Q82059/MIC>, <WD/Q82059/CB/exch>.
+<WD/Q82059/WD>      a adms:Identifier; dct:isPartOf <identifier/WD>;      skos:notation "Q82059".
+<WD/Q82059/website> a adms:Identifier; dct:isPartOf <identifier/website>; cg:identRaw "http://nasdaq.com/"; skos:notation "nasdaq.com"; cg:domain "nasdaq.com".
+<WD/Q82059/MIC>     a adms:Identifier; dct:isPartOf <identifier/MIC>;     skos:notation "XNAS".
+<WD/Q82059/CB/exch> a adms:Identifier; dct:isPartOf <identifier/CB/exch>; cg:identRaw "nasdaq"; skos:notation "NASDAQ".
+
+<WD/Q217475> a cg:StockExchange;
+  skos:notation "Q217475";
+  skos:prefLabel "Tokyo Stock Exchange";
+  cg:orgType <WD/Q11691>;
+  adms:identifier <WD/Q217475/WD>.
+<WD/Q217475/WD>     a adms:Identifier; dct:isPartOf <identifier/WD>;      skos:notation "Q217475".
+  
+<WD/Q1472929> a rov:RegisteredOrganization;
+  skos:notation "Q1472929";
+  skos:prefLabel "Nasdaq, Inc";
+  dct:description "American multinational financial services corporation";
+  schema:foundingDate "1971"^^xsd:xYear;
+  cg:orgType <WD/Q6881511>;
+  ebg:isPubliclyTraded true;
+  adms:identifier <WD/Q1472929/WD>, <WD/Q1472929/website>.
+<WD/Q1472929/WD>      a adms:Identifier; dct:isPartOf <identifier/WD>;      skos:notation "Q1472929".
+<WD/Q1472929/website> a adms:Identifier; dct:isPartOf <identifier/website>; cg:identRaw "http://business.nasdaq.com/"; skos:notation "business.nasdaq.com"; cg:domain "nasdaq.com".
+
+<WD/Q312> a rov:RegisteredOrganization;
+  skos:notation "Q312";
+  skos:prefLabel "Apple Inc";
+  dct:description "American producer of computers, smartphones and software";
+  cg:orgType <WD/Q6881511>;
+  cg:industry <WD/Q56598901>, <WD/Q880371>, <WD/Q269415>;
+  schema:foundingDate "1976-04-01"^^xsd:date;
+  ebg:isPubliclyTraded true;
+  adms:identifier <WD/Q312/WD>, <WD/Q312/website>.
+<WD/Q312/WD>      a adms:Identifier; dct:isPartOf <identifier/WD>;      skos:notation "Q312".
+<WD/Q312/website> a adms:Identifier; dct:isPartOf <identifier/website>; cg:identRaw "http://apple.com/"; skos:notation "apple.com"; cg:domain "apple.com".
+
+<WD/relation/Q82059/parent/Q1472929> a cg:OrganizationRelation;
+  puml:label "NASDAQ is subsidiary of Nasdaq Inc";
+  cg:relationType <relation/parent>;
+  cg:organization1 <WD/Q82059>;
+  cg:organization2 <WD/Q1472929>.
+
+<WD/Q312/exchangeListing/Q82059> a cg:ExchangeListing;
+  puml:label "NASDAQ:AAPL listing of Apple";
+  cg:transactionType <transaction/exchangeListing>;
+  cg:agent <WD/Q312>;
+  cg:exchange <WD/Q82059>;
+  cg:stockSymbol "AAPL";
+  cg:date "1980-12-19"^^xsd:date;
+  cg:valuation 1200.0;
+  cg:amount 101.2;
+  dct:source <dataset/CB>. # <http://www.wikidata.org/entity/statement/q312$3413cbde-45b5-c7a6-095f-a0c0ab5f1eb1>. # https://www.wikidata.org/wiki/Q312#q312$3413cbde-45b5-c7a6-095f-a0c0ab5f1eb1
+
+<WD/Q312/observation/sharePrice/1980-12-19> a qb:Observation;
+  qb:dataSet <WD/Q312>;
+  cg:date "1980-12-19"^^xsd:date;
+  cg:valueDecimal 22.00.
+
+<WD/Q312/exchangeListing/Q217475> a cg:ExchangeListing;
+  puml:label "TOK:6689 listing of Apple";
+  cg:transactionType <transaction/exchangeListing>;
+  cg:agent <WD/Q312>;
+  cg:exchange <WD/Q217475>;
+  cg:stockSymbol "6689";
+  cg:dateEnd "2004-12-25"^^xsd:date;
+  dct:source <http://www.wikidata.org/entity/statement/Q312$2DACB52B-A0DF-4FF3-B852-1CE2CE88C5C5>. # https://www.wikidata.org/wiki/Q312#Q312$2DACB52B-A0DF-4FF3-B852-1CE2CE88C5C5
+
+<WD/Q1472929/exchangeListing/Q82059> a cg:ExchangeListing;
+  puml:label "NASDAQ:NDAQ listing of Nasdaq Inc";
+  cg:transactionType <transaction/exchangeListing>;
+  cg:agent <WD/Q1472929>;
+  cg:exchange <WD/Q82059>;
+  cg:stockSymbol "NDAQ";
+  cg:date "1975"^^xsd:gYear;
+  dct:source <http://www.wikidata.org/entity/statement/q1472929$912024fc-439c-7e71-5d7f-d6ee7306f3d4>.
+
+<http://www.wikidata.org/entity/statement/q312$3413cbde-45b5-c7a6-095f-a0c0ab5f1eb1>     a :SourceStatement; :partOf <dataset/WD>.
+<http://www.wikidata.org/entity/statement/Q312$2DACB52B-A0DF-4FF3-B852-1CE2CE88C5C5>     a :SourceStatement; :partOf <dataset/WD>.
+<http://www.wikidata.org/entity/statement/q1472929$912024fc-439c-7e71-5d7f-d6ee7306f3d4> a :SourceStatement; :partOf <dataset/WD>.
+
+<WD/Q6881511> a puml:Inline, skos:Concept; skos:prefLabel "enterprise # TODO harmonize".
+<WD/Q11691>   a puml:Inline, skos:Concept; skos:prefLabel "stock exchange # TODO harmonize".
+<WD/Q837171>  a puml:Inline, skos:Concept; skos:prefLabel "financial services # TODO harmonize".
+<WD/Q56598901>a puml:Inline, skos:Concept; skos:prefLabel "mobile phone industry # TODO harmonize".
+<WD/Q880371>  a puml:Inline, skos:Concept; skos:prefLabel "software industry # TODO harmonize".
+<WD/Q269415>  a puml:Inline, skos:Concept; skos:prefLabel "digital distribution # TODO harmonize".
+
+####################
+
+cg:StockExchange        puml:stereotype "(E,pink)".
+rov:RegisteredOrganization         puml:stereotype "(O,lightblue)".
+dct:source               puml:arrow puml:up.
+cg:ExchangeListing      puml:stereotype "(L,red)".
+cg:transactionType    a puml:InlineProperty.
+cg:OrganizationRelation puml:stereotype "(R,red)".
+cg:relationType       a puml:InlineProperty.
+adms:Identifier           puml:stereotype "(I,lightgray)".
+dct:isPartOf   a puml:InlineProperty.
+:SourceStatement      puml:stereotype "(S,lightgray)".
+:partOf             a puml:InlineProperty.
+qb:Observation          puml:stereotype "(O,red)".
+qb:dataSet               puml:arrow puml:up.

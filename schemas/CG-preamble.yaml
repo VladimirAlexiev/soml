@@ -1,0 +1,48 @@
+id:          /soml/company-graph
+label:       Ontotext Company Graph
+created:     2019-10-03
+creator:     http://ontotext.com
+versionInfo: 1.0
+
+specialPrefixes:
+  base_iri:     https://company-graph.ontotext.com/resource/
+  ontology_iri: https://company-graph.ontotext.com/resource/CG/ontology
+  vocab_iri:    https://company-graph.ontotext.com/resource/CG/ontology/
+  vocab_prefix: cg
+  shape_iri:    https://company-graph.ontotext.com/resource/shape/
+
+prefixes:
+
+  # Individuals
+  CG:      https://company-graph.ontotext.com/resource/CG/  # Company Graph
+  PDL:     https://company-graph.ontotext.com/resource/PDL/ # People Data Labs
+  CB:      https://company-graph.ontotext.com/resource/CB/  # CrunchBase
+  WD:      https://company-graph.ontotext.com/resource/WD/  # WikiData
+  DBP:     http://dbpedia.org/resource/                     # DBpedia
+  GN:      http://sws.geonames.org/                         # Geonames
+
+  # Ontologies
+  #cg:     https://company-graph.ontotext.com/resource/CG/ontology/
+  adms:    http://www.w3.org/ns/adms#
+  bo:      http://www.ontotext.com/business-object/
+  dbo:     http://dbpedia.org/ontology/
+  dc:      http://purl.org/dc/elements/1.1/
+  dcat:    http://www.w3.org/ns/dcat#
+  dct:     http://purl.org/dc/terms/
+  ebg:     http://data.businessgraph.io/ontology#
+  gn:      http://www.geonames.org/ontology#
+  locn:    http://www.w3.org/ns/locn#
+  org:     http://www.w3.org/ns/org#
+  owl:     http://www.w3.org/2002/07/owl#
+  person:  http://www.w3.org/ns/person#
+  puml:    http://plantuml.com/ontology#
+  qb:      http://purl.org/linked-data/cube#
+  rdf:     http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs:    http://www.w3.org/2000/01/rdf-schema#
+  rov:     http://www.w3.org/ns/regorg#
+  schema:  http://schema.org/
+  skos:    http://www.w3.org/2004/02/skos/core#
+  time:    http://www.w3.org/2006/time#
+  void:    http://rdfs.org/ns/void#
+  wgs84:   http://www.w3.org/2003/01/geo/wgs84_pos#
+  xsd:     http://www.w3.org/2001/XMLSchema#

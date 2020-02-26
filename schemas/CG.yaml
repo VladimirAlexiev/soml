@@ -1,0 +1,1176 @@
+id:          /soml/company-graph
+label:       Ontotext Company Graph
+created:     2019-10-03
+creator:     http://ontotext.com
+versionInfo: 1.0
+
+specialPrefixes:
+  base_iri:     https://company-graph.ontotext.com/resource/
+  ontology_iri: https://company-graph.ontotext.com/resource/CG/ontology
+  vocab_iri:    https://company-graph.ontotext.com/resource/CG/ontology/
+  vocab_prefix: cg
+  shape_iri:    https://company-graph.ontotext.com/resource/shape/
+
+prefixes:
+
+  # Individuals
+  CG:      https://company-graph.ontotext.com/resource/CG/  # Company Graph
+  PDL:     https://company-graph.ontotext.com/resource/PDL/ # People Data Labs
+  CB:      https://company-graph.ontotext.com/resource/CB/  # CrunchBase
+  WD:      https://company-graph.ontotext.com/resource/WD/  # WikiData
+  DBP:     http://dbpedia.org/resource/                     # DBpedia
+  GN:      http://sws.geonames.org/                         # Geonames
+
+  # Ontologies
+  #cg:     https://company-graph.ontotext.com/resource/CG/ontology/
+  adms:    http://www.w3.org/ns/adms#
+  bo:      http://www.ontotext.com/business-object/
+  dbo:     http://dbpedia.org/ontology/
+  dc:      http://purl.org/dc/elements/1.1/
+  dcat:    http://www.w3.org/ns/dcat#
+  dct:     http://purl.org/dc/terms/
+  ebg:     http://data.businessgraph.io/ontology#
+  gn:      http://www.geonames.org/ontology#
+  locn:    http://www.w3.org/ns/locn#
+  org:     http://www.w3.org/ns/org#
+  owl:     http://www.w3.org/2002/07/owl#
+  person:  http://www.w3.org/ns/person#
+  puml:    http://plantuml.com/ontology#
+  qb:      http://purl.org/linked-data/cube#
+  rdf:     http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs:    http://www.w3.org/2000/01/rdf-schema#
+  rov:     http://www.w3.org/ns/regorg#
+  schema:  http://schema.org/
+  skos:    http://www.w3.org/2004/02/skos/core#
+  time:    http://www.w3.org/2006/time#
+  void:    http://rdfs.org/ns/void#
+  wgs84:   http://www.w3.org/2003/01/geo/wgs84_pos#
+  xsd:     http://www.w3.org/2001/XMLSchema#
+
+objects:
+
+# Base objects
+  BusinessObject:
+    label: "BusinessObject"
+    kind: abstract
+    descr: "Business object that has source, identifiers, description created/updated timestamp"
+    props:
+      identifier:
+        label: "identifier/contact"
+        range: Identifier
+        max: inf
+        rdfProp: adms:identifier
+        descr: "Identifying information, such as contact (website, email, phone, blog/news, image), social network (profile/URL, identifier), identifier (in some database or register)"
+      ident:
+        label: "identifier value"
+        range: string
+        min: 1
+        rdfProp: skos:notation
+        descr: "Code or identifier value in the object's own dataset, shortcut also used in the IRI. For a BusinessObject, also record it as Identifier; for a simpler object you don't need to do that."
+      description: {label: "description", range: string, rdfProp: dct:description}
+      descriptionLong: {label: "description (long)", range: string, rdfProp: cg:descriptionLong}
+      country:
+        label: "country"
+        range: Country
+        rdfProp: cg:country
+        descr: "Residence country of person, incorporation country of organization"
+      address:
+        label: "address"
+        range: Address
+        rdfProp: cg:address
+        descr: "Address of person, organization or event"
+      observation:
+        label: "observation"
+        range: Observation
+        max: inf
+        inverseAlias: object
+        descr: "Statistical observations about the object"
+      language:
+        label: "language"
+        range: string
+        max: inf
+        rdfProp: schema:availableLanguage
+        descr: "Language(s) used by person, organization or event: language on its website, or language used in customer service"
+      source:
+        label: "source"
+        range: Source
+        max: inf
+        rdfProp: dct:source
+        descr: "Information source (dataset, matching, manual curation, etc) of an object. Most have exactly 1 but some Concepts have several"
+      isCluster:
+        label: "high-level cluster entity"
+        range: boolean
+        rdfProp: cg:isCluster
+        descr: "True if the object is a high-level entity representing a cluster of matched low-level entities, has i.e. has SourceMatch"
+      created:
+        label: "created"
+        range: dateTime
+        rdfProp: dct:created
+        descr: "Timestamp when record was created (only for some datasets)"
+      modified:
+        label: "modified"
+        range: dateTime
+        rdfProp: dct:modified
+        descr: "Timestamp when record was last updated (only for some datasets)"
+  Agent:
+    label: "Agent"
+    inherits: BusinessObject
+    name: prefLabel
+    kind: abstract
+    pattern: 'agent/([\w-]+)'
+    descr: "Person or Organization. We need this super-class because Organizations, but also Persons may participate in Transactions: as investors (rich people often invest on their own), and as recipients (eg Olympic athletes get funding against endorsements)."
+    props:
+      prefLabel:
+        label: "pref label"
+        range: stringOrLangString
+        min: 1
+        rdfProp: skos:prefLabel
+        descr: "For organizations, this is one of the legal names. For persons, it's the full name"
+  OrganizationCommon:
+    label: "Organization (common)"
+    inherits: Agent
+    kind: abstract
+    descr: "Organization, corporation or business that pays salaries and/or engages in commercial transactions"
+    props:
+      legalName:
+        label: "legal name"
+        range: stringOrLangString
+        max: inf
+        rdfProp: rov:legalName
+        descr: "Some jurisdictions allow multiple legal names in multiple official languages: in that case one will be picked as prefName"
+      altLabel:
+        label: "alt name"
+        range: stringOrLangString
+        max: inf
+        rdfProp: skos:altLabel
+        descr: "Former/trade name(s)"
+      orgType:
+        label: "type"
+        range: OrganizationType
+        rdfProp: cg:orgType
+        descr: "Business-oriented company type, eg School (university)"
+      orgTypeOther:
+        label: "type (other)"
+        range: OrganizationType
+        max: inf
+        rdfProp: cg:orgTypeOther
+        descr: "Secondary company types"
+      investorType:
+        label: "investor type"
+        range: InvestorType
+        rdfProp: cg:investorType
+        descr: "Investor type such as Angel, Venture Fund, Pension Fund. Filled only if orgType is <organization/type/investor>"
+      legalForm:
+        label: "legal form"
+        range: LegalForm
+        rdfProp: rov:orgType
+        descr: "Legal-oriented organization type, eg Ltd, LLC"
+      legalFormText: {label: "legal form (text)", range: langString, rdfProp: ebg:orgTypeText}
+      address:
+        label: "address"
+        range: Address
+        rdfProp: org:hasRegisteredSite
+        pattern: 'agent/([\w-]+)/address'
+        descr: "Sole, official or registration (incorporation) address"
+      addressOther:
+        label: "address (other)"
+        range: Address
+        max: inf
+        rdfProp: org:hasSite
+        pattern: 'agent/([\w-]+)/address/(\d+)'
+        descr: "Additional address, such as headquarters, mailing, operating, domiciled"
+      status: {label: "status", range: OrganizationStatus, rdfProp: rov:orgStatus}
+      statusText: {label: "status (text)", range: langString, rdfProp: ebg:orgStatusText}
+      industry:
+        label: "industry (primary)"
+        range: Industry
+        rdfProp: cg:industry
+        descr: "Primary or sole industry in some industry classification or taxonomy (single)"
+      industryAll:
+        label: "industry (all)"
+        range: Industry
+        max: inf
+        rdfProp: rov:orgActivity
+        descr: "All industries (including secondary) in some industry classification or taxonomy"
+      industryText: {label: "industry activity (text)", range: langString, rdfProp: ebg:orgActivityText}
+      dateFounded: {label: "date founded", range: dateOrYearOrMonth, rdfProp: schema:foundingDate}
+      dateDissolved: {label: "date dissolved", range: dateOrYearOrMonth, rdfProp: schema:dissolutionDate}
+      isStateOwned: {label: "is state owned?", range: boolean, rdfProp: ebg:isStateOwned}
+      isPubliclyTraded: {label: "is publicly traded?", range: boolean, rdfProp: ebg:isPubliclyTraded}
+      position: {label: "position", range: Position, inverseAlias: organization}
+  Organization:
+    label: "Organization"
+    inherits: OrganizationCommon
+    type: [rov:RegisteredOrganization]
+    descr: "Organization, corporation or business that pays salaries and/or engages in commercial transactions"
+    props:
+      isStartup: {label: "is startup?", range: boolean, rdfProp: ebg:isStartup}
+      isReseach: {label: "is it research organization", range: boolean, rdfProp: cg:isResearch}
+  StockExchange:
+    label: "Stock Exchange"
+    inherits: OrganizationCommon
+    type: [cg:StockExchange]
+    pattern: 'exchange/([A-Z]+)'
+    descr: "Stock exchange where companies can offer shares or other securities. Record MIC and TR exchange code as identifiers"
+    props:
+  PersonCommon:
+    label: "Person Common"
+    inherits: Agent
+    kind: abstract
+    descr: "Business person"
+    props:
+      givenName:
+        label: "given name"
+        range: string
+        rdfProp: schema:givenName
+        descr: "Given (first) name or initial"
+      familyName:
+        label: "family name"
+        range: string
+        rdfProp: schema:familyName
+        descr: "Family (last) name"
+      birthDate: {label: "birth date", range: dateOrYearOrMonth, rdfProp: schema:birthDate}
+      deathDate: {label: "death date", range: dateOrYearOrMonth, rdfProp: schema:deathDate}
+      gender:
+        label: "gender"
+        range: Gender
+        rdfProp: schema:gender
+        descr: "Male/female"
+      genderText:
+        label: "gender (text)"
+        range: string
+        rdfProp: cg:genderText
+        descr: "Male, female or other (non-binary) gender. Skip missing or 'not_provided'. May be dataset-specific"
+      position: {label: "position", range: Position, inverseAlias: person}
+  Person:
+    label: "Person"
+    inherits: PersonCommon
+    type: [schema:Person]
+    props:
+  Event:
+    label: "Event"
+    inherits: BusinessObject
+    type: [cg:Event]
+    pattern: 'event/([\w-]+)'
+    descr: "Conference, workshop, meetup where the work of a certain person or company may be highlighted."
+    props:
+      title: {label: "title", range: string, rdfProp: dct:title}
+      eventType: {label: "event type", range: EventType, rdfProp: cg:eventType}
+      dateStart: {label: "dateStart", range: dateOrYearOrMonth, rdfProp: cg:date}
+      dateEnd: {label: "dateCompleted", range: dateOrYearOrMonth, rdfProp: cg:dateEnd}
+      address: {label: "address", range: Address, rdfProp: cg:address, pattern: 'event/([\w-]+)/address'}
+
+# geography and address
+  Geoname:
+    label: "Geoname"
+    name: gn:name
+    kind: abstract
+    type: [gn:Feature]
+    pattern: 'http://sws\.geonames\.org/(\d+)/'
+    descr: "Geonames location (we are interested in Country, Region, City)"
+    props:
+      featureClass: {label: "feature class", range: iri, min: 1, rdfProp: gn:featureClass}
+      featureCode: {label: "feature code", range: iri, min: 1, rdfProp: gn:featureCode}
+      gn:name: {label: "name", range: string, min: 1, rdfProp: gn:name}
+      altName: {label: "alt name", range: langString, max: inf, rdfProp: gn:alternateName}
+      countryCode:
+        label: "country code"
+        range: string
+        min: 1
+        rdfProp: gn:countryCode
+        descr: "All features of interest have countryCode (while eg oceans and mountains don't always do)"
+      parentCountry: {label: "parent country", range: Geoname, rdfProp: gn:parentCountry}
+      parentRegion: {label: "parent region", range: Geoname, min: 1, rdfProp: gn:parentADM1}
+      ancestorPlace:
+        label: "ancestor place"
+        range: Geoname
+        min: 1
+        max: inf
+        rdfProp: gn:parentFeature
+        descr: "Includes all ancestors"
+      population: {label: "population", range: integer, rdfProp: gn:population}
+      lat: {label: "latitude", range: decimal, rdfProp: wgs84:lat}
+      long: {label: "longitude", range: decimal, rdfProp: wgs84:long}
+  Country:
+    label: "Country"
+    inherits: Geoname
+    typeProp: gn:featureCode
+    type: [gn:A.PCLI, gn:A.PCLD, gn:A.PCLIX, gn:A.PCLS, gn:A.PCL, gn:A.TERR, gn:A.PCLF]
+    props:
+      city: {label: "cities in country", range: City, rangeCheck: true, max: inf, inverseAlias: parentCountry}
+      region: {label: "regions in country", range: Region, rangeCheck: true, max: inf, inverseAlias: parentCountry}
+      address: {label: "addresses in country", range: Address, rangeCheck: true, max: inf, inverseAlias: country}
+      agent: {label: "agents in country", range: Agent, rangeCheck: true, max: inf, inverseAlias: country}
+      organization: {label: "organizations in country", range: Organization, rangeCheck: true, max: inf, inverseAlias: country}
+  Region:
+    label: "Region"
+    inherits: Geoname
+    typeProp: gn:featureCode
+    type: [gn:A.ADM1]
+    descr: "First-order admininstrative division, eg State, Province, Oblast, Region"
+    props:
+      parentCountry: {min: 1}
+      city: {label: "cities in region", range: City, rangeCheck: true, max: inf, inverseAlias: parentRegion}
+      address: {label: "addresses in region", range: Address, rangeCheck: true, max: inf, inverseAlias: region}
+  City:
+    label: "City"
+    inherits: Geoname
+    typeProp: gn:featureCode
+    type: [gn:P.PPL, gn:P.PPLC, gn:P.PPLA, gn:P.PPLA2, gn:P.PPLA3, gn:P.PPLA4, gn:A.ADM2, gn:A.ADM3, gn:A.ADM4, gn:A.ADMD, gn:S.RSTN, gn:S.INSM, gn:L.AREA]
+    props:
+      parentRegion: {min: 1}
+      parentCountry: {min: 1}
+      address: {label: "addresses in city", range: Address, rangeCheck: true, max: inf, inverseAlias: city}
+  Address:
+    label: "Address"
+    type: [locn:Address]
+    descr: "Address of person or organization"
+    props:
+      agent:
+        label: "agent"
+        range: Agent
+        rangeCheck: true
+        inverseAlias: address
+        descr: "Agent at this address. TODO: secondary addresses are linked by addressOther, so they don't have this inverse"
+      organization:
+        label: "organizations in country"
+        range: Organization
+        rangeCheck: true
+        inverseAlias: address
+        descr: "Organization at this address (if it's indeed an organization's address)"
+      addressType:
+        label: "address type"
+        range: AddressType
+        max: inf
+        rdfProp: cg:addressType
+        descr: "Address type such as headquarters, mailing, operating, domiciled... "
+      fullAddress: {label: "full address (text)", range: string, rdfProp: locn:fullAddress}
+      country:
+        label: "country"
+        range: Country
+        rdfProp: locn:adminUnitL1
+        descr: "Geoname corresponding to country"
+      countryText: {label: "country (text)", range: string, rdfProp: cg:countryText}
+      region:
+        label: "region"
+        range: Region
+        rdfProp: ebg:adminUnitL4
+        descr: "Geoname corresponding to first-order admininstrative division (region)"
+      regionText: {label: "region (text)", range: string, rdfProp: cg:regionText}
+      municipality:
+        label: "municipality"
+        range: City
+        rdfProp: ebg:adminUnitL5
+        descr: "TODO: mapping both to `City` is confusing. I should remove it and not worry that one is ebg:adminUnitL5 and the other is ebg:adminUnitL6"
+      city:
+        label: "city/settlement"
+        range: City
+        rdfProp: ebg:adminUnitL6
+        descr: "Geoname corresponding to city"
+      cityText: {label: "locality/city/settlement (text)", range: string, rdfProp: locn:postName}
+      neighborhood: {label: "neighbourhood/quarter", range: string, rdfProp: locn:addressArea}
+      street: {label: "street address", range: string, rdfProp: locn:thoroughfare}
+      streetNumber: {label: "street number", range: string, rdfProp: locn:locatorDesignator}
+      postCode: {label: "post code", range: string, rdfProp: locn:postCode}
+      postOfficeBox: {label: "post office box", range: string, rdfProp: locn:poBox}
+      geo: {label: "geo coordinates", range: GeoCoordinates, rdfProp: schema:geo}
+  GeoCoordinates:
+    label: "Geo Coordinates"
+    type: [schema:GeoCoordinates]
+    pattern: 'agent/([\w-]+)/address(/\d+)?/geo'
+    descr: "Geo coordinates of a specific address (which may degenerate to a city or even country)"
+    props:
+      lat: {label: "latitude", range: decimal, rdfProp: schema:latitude}
+      long: {label: "longitude", range: decimal, rdfProp: schema:longitude}
+      precision:
+        label: "precision"
+        range: decimal
+        rdfProp: cg:geoPrecision
+        descr: "Precision of the coordinates in meters (eg street address or building -> 30.8)"
+      resolution:
+        label: "geo resolution"
+        range: GeoResolution
+        rdfProp: ebg:geoResolution
+        descr: "Resolution of the coordinates as a categorial value (eg building -> <resolution/L9>)"
+
+# Secondary Objects
+  Position:
+    label: "Position"
+    inherits: BusinessObject
+    type: [org:Membership]
+    descr: "Position of a person in an organization, former or current"
+    props:
+      person: {label: "person", range: PersonCommon, min: 1, rdfProp: org:member}
+      organization: {label: "organization", range: OrganizationCommon, min: 1, rdfProp: org:organization}
+      dateStart:
+        label: "date start"
+        range: dateOrYearOrMonth
+        rdfProp: time:hasBeginning
+        descr: "These rdf props come from org:Membership, but we skip the node time:Interval and prop time:inXSDDateTime"
+      dateEnd:
+        label: "date end"
+        range: dateOrYearOrMonth
+        rdfProp: time:hasEnd
+        descr: "These rdf props come from org:Membership, but we skip the node time:Interval and prop time:inXSDDateTime"
+      isCurrent:
+        label: "is current"
+        range: boolean
+        rdfProp: cg:isCurrent
+        descr: "Whether the position is a current engagement of the person"
+      isPrimary:
+        label: "is primary"
+        range: boolean
+        rdfProp: cg:isPrimary
+        descr: "Whether that's the main position/job of the person"
+      positionType: {label: "position (type)", range: PositionType, rdfProp: org:role}
+      positionText: {label: "position (text)", range: string, rdfProp: dct:description}
+  AcademicQualification:
+    label: "AcademicQualification"
+    inherits: BusinessObject
+    type: [cg:AcademicQualification]
+    props:
+      person: {label: "person", range: Person, min: 1, rdfProp: cg:person}
+      organization:
+        label: "organization"
+        range: Organization
+        rdfProp: cg:organization
+        descr: "Institution/school/university"
+      degreeText: {label: "degree (ext)", range: string, rdfProp: cg:degreeText}
+      majorText:
+        label: "major (ext)"
+        range: string
+        rdfProp: cg:majorText
+        descr: "Academic subject"
+      dateStart: {label: "date start", range: dateOrYearOrMonth, rdfProp: cg:dateStart}
+      dateEnd: {label: "date end", range: dateOrYearOrMonth, rdfProp: cg:dateEnd}
+      isCompleted: {label: "is completed?", range: boolean, rdfProp: cg:isCompleted}
+  EventAppearance:
+    label: "Event Appearance"
+    inherits: BusinessObject
+    type: [cg:EventAppearance]
+    props:
+      event: {label: "event", range: Event, min: 1, rdfProp: cg:event}
+      participant: {label: "participant", range: Agent, min: 1, rdfProp: cg:participant}
+      appearanceType: {label: "appearance type", range: EventAppearanceType, rdfProp: cg:appearanceType}
+  ObservationCommon:
+    label: "Observation Common"
+    kind: abstract
+    type: [qb:Observation]
+    pattern: '$object/$observationType/$date?'
+    descr: "Statistical observation about an object (agent). The IRI should be <object>/observation/<observationType>/<date>"
+    props:
+      object:
+        label: "object"
+        range: BusinessObject
+        min: 1
+        rdfProp: qb:dataSet
+        descr: "Object of the observation. Since we have only casual observations, we put them all in one dataset and equate that to the object"
+      observationType:
+        label: "observation type"
+        range: ObservationType
+        min: 1
+        rdfProp: cg:observationType
+        descr: "What is the observed property"
+      date:
+        label: "date"
+        range: dateOrYearOrMonth
+        rdfProp: cg:date
+        descr: "'date' for momentary props (eg marketCapitalization, employees), 'year' for annual (eg netProfit, totalRevenue), missing for current/last year"
+      currency:
+        label: "currency"
+        range: string
+        rdfProp: cg:currency
+        descr: "If cg:valueDecimal is used, you can specify a currency"
+      valueInteger:
+        label: "value (integer)"
+        range: integer
+        rdfProp: cg:valueInteger
+        descr: "One of the 'value' props must be present"
+      valueDecimal:
+        label: "value (decimal)"
+        range: decimal
+        rdfProp: cg:valueDecimal
+        descr: "Divide by Millions (except for sharePrice) and specify 'currency'. Exactly one of the 'value' props must be present"
+      valueDate:
+        label: "value (date)"
+        range: date
+        rdfProp: cg:valueDate
+        descr: "Exactly one of the 'value' props must be present"
+      valueConcept:
+        label: "value (categorial)"
+        range: Concept
+        rdfProp: cg:valueConcept
+        descr: "Exactly one of the 'value' props must be present"
+  Observation:
+    label: "Observation"
+    inherits: ObservationCommon
+    props:
+  Transaction:
+    label: "Transaction"
+    inherits: BusinessObject
+    kind: abstract
+    type: [cg:Transaction]
+    descr: "Financial transaction that gives money to a company in return for shares or other consideration"
+    props:
+      agent:
+        label: "agent"
+        range: Agent
+        min: 1
+        rdfProp: cg:agent
+        descr: "Agent receiving the money (target). Most often that's a Company, but eg olympic athletes may receive funding in consideration for endorsements"
+      date:
+        label: "date"
+        range: date
+        rdfProp: cg:date
+        descr: "Date when transaction was concluded or announced. At least one of 'date' or 'amount' should be present, preferably both"
+      amount:
+        label: "amount (MUSD)"
+        range: decimal
+        rdfProp: cg:amount
+        descr: "Amount received/raised in MUSD. At least one of 'date' or 'amount' should be present, preferably both"
+      transactionType:
+        label: "transaction type"
+        range: TransactionType
+        min: 1
+        rdfProp: cg:transactionType
+        descr: "Transaction type. 3 root concepts matching the subclass (Funding, Acquisition, ExchangeListing), further elaborated into a hierarchy"
+      typeText:
+        label: "type (text)"
+        range: string
+        rdfProp: cg:typeText
+        descr: "Dataset-specific type (eg for Funding: seed, series A,B,C,D... debt, post-IPO; for Acquisition: merger, acquisition, acquihire, etc)"
+  Funding:
+    label: "Funding"
+    inherits: Transaction
+    type: [cg:Funding]
+    descr: "Typically an early-stage transaction where the investors get a minority stake. Sometimes part of a series (rounds)"
+    props:
+      investor:
+        label: "investor"
+        range: Agent
+        max: inf
+        rdfProp: cg:investor
+        descr: "All investors who participated in the funding round"
+      investorCount:
+        label: "investor count"
+        range: integer
+        rdfProp: cg:investorCount
+        descr: "Number of investors"
+      amountLocal:
+        label: "amount (M local currency)"
+        range: decimal
+        rdfProp: cg:amountLocal
+        descr: "Amount raised in Millions of local currency"
+      amountCurrency:
+        label: "amount currency"
+        range: string
+        rdfProp: cg:amountCurrency
+        descr: "Currency code. TODO maybe make a lookup?"
+      postMoneyValuation:
+        label: "post money valuation (MUSD)"
+        range: decimal
+        rdfProp: cg:postMoneyValuation
+        descr: "Company valuation after the funding round in MUSD"
+      postMoneyValuationLocal:
+        label: "post money valuation (M local currency)"
+        range: decimal
+        rdfProp: cg:postMoneyValuationLocal
+        descr: "Company valuation after the funding round in millions of local currency"
+      postMoneyValuationCurrency:
+        label: "post money valuation currency"
+        range: string
+        rdfProp: cg:postMoneyValuationCurrency
+        descr: "Currency code of the valuation"
+  FundingParticipation:
+    label: "Funding Participation"
+    type: [cg:FundingParticipation]
+    descr: "Details about the participation of one investor in a funding round"
+    props:
+      funding: {label: "funding", range: Funding, min: 1, rdfProp: cg:funding}
+      investor: {label: "investor", range: Agent, min: 1, rdfProp: cg:investor}
+      investorNumber:
+        label: "investor number"
+        range: integer
+        rdfProp: cg:investorNumber
+        descr: "Sequential number of the investor, in case this matters. Sometimes the first one is the leading investor, without being marked explicitly"
+      isLead:
+        label: "is lead"
+        range: boolean
+        rdfProp: cg:isLead
+        descr: "Whether the investor is leading the funding round"
+      person:
+        label: "person"
+        range: Person
+        rdfProp: cg:person
+        descr: "Partner who placed the investor in the funding round"
+  Acquisition:
+    label: "Acquisition"
+    inherits: Transaction
+    type: [cg:Acquisition]
+    descr: "Merger/Acquisition"
+    props:
+      investor:
+        label: "investor"
+        range: Agent
+        min: 1
+        rdfProp: cg:investor
+        descr: "The single acquirer"
+      amountLocal:
+        label: "amount (M local currency)"
+        range: decimal
+        rdfProp: cg:amountLocal
+        descr: "Amount paid in Millions of local currency"
+      amountCurrency:
+        label: "amount currency"
+        range: string
+        rdfProp: cg:amountCurrency
+        descr: "Currency code. TODO maybe make a lookup?"
+  ExchangeListing:
+    label: "Exchange Listing"
+    inherits: Transaction
+    type: [cg:ExchangeListing]
+    descr: "Public offering (IPO, SPO etc) wheres the company receives money from the wide public, and as a result is listed for trading on an exchange"
+    props:
+      exchange:
+        label: "exchange"
+        range: StockExchange
+        min: 1
+        rdfProp: cg:exchange
+        descr: "Stock exchange"
+      stockSymbol:
+        label: "stock symbol"
+        range: string
+        rdfProp: cg:stockSymbol
+        descr: "Stock symbol (ticker). TODO: this should also be represented as an Identifier?"
+      valuation:
+        label: "valuation (MUSD)"
+        range: decimal
+        rdfProp: cg:valuation
+        descr: "Company valuation at IPO in MUSD"
+      valuationLocal:
+        label: "valuation (M local currency)"
+        range: decimal
+        rdfProp: cg:valuationLocal
+        descr: "Company valuation at IPO in millions of local currency"
+      valuationCurrency:
+        label: "valuation currency"
+        range: string
+        rdfProp: cg:valuationCurrency
+        descr: "Currency code of the valuation"
+      dateEnd:
+        descr: "Date delisted or left this exchange"
+      isCurrent:
+        rdfProp: cg:isCurrent
+        descr: "Whether the listing is still effective"
+  Fund:
+    label: "Fund"
+    inherits: Agent
+    type: [cg:Fund]
+    descr: "A venture or mutual fund"
+    props:
+      founder:
+        label: "founder"
+        range: Agent
+        rdfProp: cg:founder
+        descr: "Entity (venture capitalist, investor or bank) that founded the fund"
+      dateFounded: {label: "date founded", range: dateOrYearOrMonth, rdfProp: schema:foundingDate}
+      amountLocal: {label: "amount (M local currency)", range: decimal, rdfProp: cg:amountLocal}
+      amountCurrency: {label: "amount currency", range: string, rdfProp: cg:amountCurrency}
+  OrganizationRelation:
+    label: "Organization Relation"
+    inherits: BusinessObject
+    type: [cg:OrganizationRelation]
+    descr: "Relation between two agents: for asymmetric relations agentMinor (eg subsidiary, owned, supplier) and agentMajor (eg parent, owner, customer); for symmetric relations we use agent twice. Usually these are Organizations, but for 'owner' could be Persons"
+    props:
+      relationType:
+        label: "relation type"
+        range: RelationType
+        min: 1
+        rdfProp: cg:relationType
+        descr: "Relation type: for asymmetric relations, indicates the role of agentMajor"
+      agentMinor:
+        label: "minor agent"
+        range: Agent
+        rdfProp: cg:agentMinor
+        descr: "Minor agent (eg subsidiary, owned, supplier, successor): must be provided for asymmetric relations"
+      agentMajor:
+        label: "major agent"
+        range: Agent
+        rdfProp: cg:agentMajor
+        descr: "Major agent (eg parent, owner, customer, predecessor): must be provided for asymmetric relations"
+      agent:
+        label: "agent"
+        range: Agent
+        min: 2
+        rdfProp: cg:agent
+        descr: "Agent: must be provided twice for symmetric relations (and is inferred twice for asymmetric relations)"
+      date:
+        label: "date"
+        range: date
+        rdfProp: cg:date
+        descr: "Start of relation, or effective date of 'proportion' (if available)"
+      dateEnd:
+        label: "end date"
+        range: date
+        rdfProp: cg:dateEnd
+        descr: "End of relation (if available)"
+      proportion:
+        label: "proportion"
+        range: decimal
+        rdfProp: cg:proportion
+        descr: "Percentage (between 0 and 1). Usually used for relations such as 'owner' or 'joint venture'"
+      isCurrent:
+        rdfProp: cg:isCurrent
+        descr: "Whether the relation still holds"
+
+# Identifiers
+  Identifier:
+    label: "Identifier"
+    type: [adms:Identifier]
+    pattern: 'agent/([\w-]+)/id(/\w+)?'
+    descr: "Identifier/Contact"
+    props:
+      ident:
+        label: "identifier value"
+        range: string
+        max: inf
+        rdfProp: skos:notation
+        descr: "Cleaned up and normalized identifier value, use for matching. If the raw value is junk (void), leave this null"
+      identRaw:
+        label: "identifier (raw value)"
+        range: string
+        min: 1
+        max: inf
+        rdfProp: cg:identRaw
+        descr: "Raw value (as provided). Don't use for matching. One identRaw may produce several ident (eg multiple emails provided in one field)"
+      domain: {label: "domain", range: string, max: inf, rdfProp: cg:domain}
+      identifierSystem: {label: "identifier system", range: IdentifierSystem, min: 1, rdfProp: dct:isPartOf}
+      date:
+        label: "date issued"
+        range: date
+        rdfProp: dct:issued
+        descr: "Date when the identifier was issued (applies to official company registration or exchange listing)"
+      source:
+        label: "source"
+        range: SourceDataset
+        rdfProp: dct:source
+        descr: "An identifier may come from a dataset that's different from the one of its parent object"
+  IdentifierSystem:
+    label: "Identifier System"
+    name: schema:name
+    type: [ebg:IdentifierSystem]
+    pattern: 'identifier/(\w+)'
+    descr: "A system comprising a set of identifiers, with validation regex and URL template (pattern)"
+    props:
+      ident:
+        label: "identifier value"
+        range: string
+        min: 1
+        rdfProp: skos:notation
+        descr: "Code or identifier value in the object's own dataset, also used in the IRI. For a BusinessObject, also record it as Identifier; for a simpler object you don't need to do that."
+      country:
+        label: "country"
+        range: Country
+        rdfProp: cg:country
+        descr: "If this is an official register identifier, which country it applies to"
+      dataset:
+        label: "dataset"
+        range: SourceDataset
+        rdfProp: cg:dataset
+        descr: "Which dataset is the identifier associated with, if any"
+      schema:name: {label: "name", range: string, min: 1, rdfProp: schema:name}
+      urlTemplate:
+        label: "URL template"
+        range: string
+        max: inf
+        rdfProp: ebg:urlTemplate
+        descr: "Substitute {} in the URL template with the ident value to get an agent-specific web link. Might have several, eg DBP idents have templates http://dbpedia.org/resource/{} and https://en.wikipedia.org/wiki/{}"
+      validationRegex: {label: "validation regex", range: string, rdfProp: ebg:validationRegex}
+
+# sources, datasets
+  Source:
+    label: "Source"
+    kind: abstract
+    descr: "Source of some information (dataset, matching, manual curation, etc); abstract class"
+    props:
+  Dataset:
+    label: "Dataset"
+    inherits: Source
+    name: title
+    kind: abstract
+    pattern: 'dataset/(.+)'
+    descr: "Dataset as source of entities or linkset as source of identifiers (links). We use VOID props even for non-RDF datasets, which would apply to an appropriate RDF representation"
+    props:
+      ident: {}
+      title: {label: "title", range: string, min: 1, rdfProp: dct:title}
+      date:
+        label: "date"
+        range: date
+        min: 1
+        rdfProp: dct:date
+        descr: "Last modified, published or created date (if we don't know the exact modification date)"
+      properties:
+        label: "properties"
+        range: integer
+        rdfProp: void:properties
+        descr: "Number of unique properties"
+      entities:
+        label: "entities"
+        range: integer
+        rdfProp: void:entities
+        descr: "Number of (most important) entities, eg companies in a company dataset, concepts in a thesaurus"
+      byteSize:
+        label: "byteSize"
+        range: integer
+        rdfProp: dcat:byteSize
+        descr: "Total size in bytes, uncompressed "
+      triples:
+        label: "triples"
+        range: integer
+        rdfProp: void:triples
+        descr: "Total number of triples or filled column * row cells (excluding the PK column)"
+      mediaType:
+        label: "mediaType"
+        range: string
+        rdfProp: dcat:mediaType
+        descr: "MIME type / file format, excluding any compression formats/suffixes"
+      downloadURL:
+        label: "download URL"
+        range: iri
+        rdfProp: dcat:downloadURL
+        descr: "Distribution download URL"
+      fileName:
+        label: "file name"
+        range: string
+        rdfProp: cg:fileName
+        descr: "Local file name, may be relative"
+      task:
+        label: "task"
+        range: iri
+        rdfProp: cg:task
+        descr: "Task that describes further details"
+  SourceDataset:
+    label: "Source Dataset"
+    inherits: Dataset
+    type: [void:Dataset]
+    descr: "Dataset as source of entities"
+    props:
+      classes:
+        label: "classes"
+        range: integer
+        rdfProp: void:classes
+        descr: "Distinct classes/tables"
+      predicates:
+        label: "predicates"
+        range: integer
+        rdfProp: void:predicates
+        descr: "Distinct properties/columns"
+  SourceLinkset:
+    label: "Source Linkset"
+    inherits: Dataset
+    type: [void:Linkset]
+    descr: "Linkset as source of identifiers (links)"
+    props:
+      linkPredicate:
+        label: "linkPredicate"
+        range: iri
+        min: 1
+        rdfProp: void:linkPredicate
+        descr: "Linking predicate of a Linkset"
+      target:
+        label: "target dataset"
+        range: SourceDataset
+        min: 1
+        max: inf
+        rdfProp: void:target
+        descr: "Dataset(s) that are targeted (linked) by this Linkset"
+      identifierSystem:
+        label: "target identifier system"
+        range: IdentifierSystem
+        min: 1
+        max: inf
+        rdfProp: cg:identifierSystem
+        descr: "Identifier system(s) that are targeted by this Linkset"
+  SourceMatch:
+    label: "Source Match"
+    inherits: Source
+    type: [cg:SourceMatch]
+    descr: "Cluster of matched entities as the source of a higher-level entity"
+    props:
+      match:
+        label: "match"
+        range: BusinessObject
+        min: 1
+        max: inf
+        rdfProp: cg:match
+        descr: "The set of matched entities"
+      description:
+        min: 1
+        descr: "Text explanation, eg 'ident match: WD', 'prefLabel match, alg Levenshtein, score 0.95'. Should list all mtch criteria separated by newlines"
+      confidence: {label: "confidence", range: decimal, rdfProp: cg:confidence}
+
+# Nomenclatures
+  ConceptCommon:
+    label: "Concept Common"
+    inherits: BusinessObject
+    name: prefLabel
+    kind: abstract
+    type: [skos:Concept]
+    descr: "Lookup value (thesaurus entry)"
+    props:
+      inScheme:
+        label: "in scheme"
+        range: iri
+        min: 1
+        rdfProp: skos:inScheme
+        descr: "Thesaurus. Most thesauri are expressed as specific SOML classes, so usually you don't need to use this in GraphQL"
+      ident:
+        label: "ident"
+        range: string
+        rdfProp: skos:notation
+        descr: "Code/ident"
+      prefLabel:
+        label: "pref label"
+        range: string
+        min: 1
+        rdfProp: skos:prefLabel
+        descr: "Preferred label"
+      altLabel:
+        label: "alt label"
+        range: string
+        max: inf
+        rdfProp: skos:altLabel
+        descr: "Alternative label"
+      description: {label: "description", range: string, rdfProp: skos:description}
+      order:
+        label: "order"
+        range: integer
+        rdfProp: cg:order
+        descr: "Use for sorting"
+      broader:
+        label: "broader"
+        range: ConceptCommon
+        rdfProp: skos:broader
+        descr: "Broader concept to make a concept hierarchy"
+      source:
+        max: inf
+        descr: "For thesauri that are merged from several datasets"
+  Concept:
+    label: "Concept"
+    inherits: ConceptCommon
+    type: [skos:Concept]
+    descr: "Generic thesaurus. Use only for targets of Observation.valueConcept (eg employeesRange), for others define a specific SOML class"
+    props:
+  OrganizationType:
+    label: "Organization Type"
+    inherits: ConceptCommon
+    typeProp: inScheme
+    type: [organization/type, WD/organization/type]
+    pattern: 'organization/type/(\w+)'
+    props:
+  LegalForm:
+    label: "Legal Form"
+    inherits: ConceptCommon
+    typeProp: inScheme
+    type: [organization/legalForm, WD/organization/legalForm]
+    pattern: 'organization/legalForm/([A-Z]+)/(\w+)'
+    descr: "Legal form consisting of a country code and country-specific legal form code"
+    props:
+  OrganizationStatus:
+    label: "Organization Status"
+    inherits: ConceptCommon
+    typeProp: inScheme
+    type: [organization/status]
+    pattern: 'organization/status/(\w+)'
+    descr: "operating, closed; or more specific statuses such as acquired, IPO, in liquidation"
+    props:
+  Industry:
+    label: "Industry"
+    inherits: ConceptCommon
+    typeProp: inScheme
+    type: [industry, WD/industry]
+    pattern: 'industry(\w+)'
+    descr: "TODO: how about per-dataset (CB/industry) vs harmonized (industry) URLs and ConceptSchemes?"
+    props:
+  InvestorType:
+    label: "Investor Type"
+    inherits: ConceptCommon
+    typeProp: inScheme
+    type: [investor]
+    pattern: 'investor/(\w+)'
+    props:
+  GeoResolution:
+    label: "Geo Coordinate Resolution"
+    inherits: ConceptCommon
+    typeProp: inScheme
+    type: [resolution]
+    pattern: 'resolution/L(\d+)'
+    descr: "Resolution of a geographic coordinate location: from continent (least precise) to individual house number (most precise)"
+    props:
+  AddressType:
+    label: "Address Type"
+    inherits: ConceptCommon
+    typeProp: inScheme
+    type: [address]
+    pattern: 'address/(\w+)'
+    props:
+  ObservationType:
+    label: "Observation Type"
+    inherits: ConceptCommon
+    typeProp: inScheme
+    type: [observation, INN/assessment]
+    pattern: '$inScheme/$ident'
+    props:
+      kind:
+        label: "kind"
+        rdfProp: inn:kind
+        descr: "Reflects the 'level' of data: avg, quick/deep (indicator), question, answer"
+      perspective:
+        label: "perspective"
+        rdfProp: inn:perspective
+        descr: "Management, Technology Competency, Marketability, Business Feasibility"
+  Gender:
+    label: "Gender"
+    type: [schema:Gender]
+    pattern: 'schema:(Male|Female)'
+    descr: "Male/female"
+    props:
+  EventType:
+    label: "Event Type"
+    inherits: ConceptCommon
+    typeProp: inScheme
+    type: [event/type]
+    pattern: 'event/type/([\w-]+)'
+    props:
+  EventAppearanceType:
+    label: "Event Appearance Type"
+    inherits: ConceptCommon
+    typeProp: inScheme
+    type: [event/appearance]
+    pattern: 'event/appearance/(\w+)'
+    props:
+  PositionType:
+    label: "Position Type"
+    inherits: ConceptCommon
+    typeProp: inScheme
+    type: [position]
+    pattern: 'position/([\w_]+)'
+    props:
+  TransactionType:
+    label: "Transaction Type"
+    inherits: ConceptCommon
+    typeProp: inScheme
+    type: [transaction]
+    pattern: 'transaction/([w+])([/w+])*'
+    descr: "3 root concepts matching the subclass (Funding, Acquisition, ExchangeListing), further elaborated into a hierarchy"
+    props:
+  RelationType:
+    label: "Relation Type"
+    inherits: ConceptCommon
+    typeProp: inScheme
+    type: [relation]
+    pattern: 'relation/(\w+)'
+    props:
+      prefLabel:
+        label: "pref label"
+        range: string
+        min: 1
+        rdfProp: skos:prefLabel
+        descr: "role of 'agentMinor' (or 'agent' if the relation is symmetric)"
+      invLabel:
+        label: "inverse label"
+        range: string
+        rdfProp: cg:invLabel
+        descr: "role of 'agentMajor' (missing if the relation is symmetric)"
+      isSymmetric:
+        label: "is symmetric"
+        range: boolean
+        min: 1
+        rdfProp: cg:isSymmetric
+        descr: "whether the relation is symmetric"
+      hasInverse:
+        label: "has inverse"
+        range: boolean
+        min: 1
+        rdfProp: cg:hasInverse
+        descr: "whether the relation is symmetric"
+
+properties: # reused props
+  address:
+    label: "address"
+    range: Address
+    rdfProp: cg:address
+    descr: "Address of person, organization or event"
+  agent: {label: "agents in country", range: Agent, rangeCheck: true, max: inf, inverseAlias: country}
+  altLabel:
+    label: "alt name"
+    range: stringOrLangString
+    max: inf
+    rdfProp: skos:altLabel
+    descr: "Former/trade name(s)"
+  amountCurrency:
+    label: "amount currency"
+    range: string
+    rdfProp: cg:amountCurrency
+    descr: "Currency code. TODO maybe make a lookup?"
+  amountLocal:
+    label: "amount (M local currency)"
+    range: decimal
+    rdfProp: cg:amountLocal
+    descr: "Amount raised in Millions of local currency"
+  city: {label: "cities in country", range: City, rangeCheck: true, max: inf, inverseAlias: parentCountry}
+  country:
+    label: "country"
+    range: Country
+    rdfProp: cg:country
+    descr: "Residence country of person, incorporation country of organization"
+  date:
+    label: "date"
+    range: dateOrYearOrMonth
+    rdfProp: cg:date
+    descr: "'date' for momentary props (eg marketCapitalization, employees), 'year' for annual (eg netProfit, totalRevenue), missing for current/last year"
+  dateEnd: {label: "dateCompleted", range: dateOrYearOrMonth, rdfProp: cg:dateEnd}
+  dateFounded: {label: "date founded", range: dateOrYearOrMonth, rdfProp: schema:foundingDate}
+  dateStart: {label: "dateStart", range: dateOrYearOrMonth, rdfProp: cg:date}
+  description: {label: "description", range: string, rdfProp: dct:description}
+  ident:
+    label: "identifier value"
+    range: string
+    min: 1
+    rdfProp: skos:notation
+    descr: "Code or identifier value in the object's own dataset, shortcut also used in the IRI. For a BusinessObject, also record it as Identifier; for a simpler object you don't need to do that."
+  identifierSystem: {label: "identifier system", range: IdentifierSystem, min: 1, rdfProp: dct:isPartOf}
+  investor:
+    label: "investor"
+    range: Agent
+    max: inf
+    rdfProp: cg:investor
+    descr: "All investors who participated in the funding round"
+  isCurrent:
+    label: "is current"
+    range: boolean
+    rdfProp: cg:isCurrent
+    descr: "Whether the position is a current engagement of the person"
+  lat: {label: "latitude", range: decimal, rdfProp: wgs84:lat}
+  long: {label: "longitude", range: decimal, rdfProp: wgs84:long}
+  organization: {label: "organizations in country", range: Organization, rangeCheck: true, max: inf, inverseAlias: country}
+  parentCountry: {label: "parent country", range: Geoname, rdfProp: gn:parentCountry}
+  parentRegion: {label: "parent region", range: Geoname, min: 1, rdfProp: gn:parentADM1}
+  person: {label: "person", range: PersonCommon, min: 1, rdfProp: org:member}
+  position: {label: "position", range: Position, inverseAlias: organization}
+  prefLabel:
+    label: "pref label"
+    range: stringOrLangString
+    min: 1
+    rdfProp: skos:prefLabel
+    descr: "For organizations, this is one of the legal names. For persons, it's the full name"
+  region: {label: "regions in country", range: Region, rangeCheck: true, max: inf, inverseAlias: parentCountry}
+  source:
+    label: "source"
+    range: Source
+    max: inf
+    rdfProp: dct:source
+    descr: "Information source (dataset, matching, manual curation, etc) of an object. Most have exactly 1 but some Concepts have several"
+  title: {label: "title", range: string, rdfProp: dct:title}
+
+updated:     2020-01-28

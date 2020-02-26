@@ -1,0 +1,583 @@
+@prefix dcam:  <http://purl.org/dc/dcam/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+dcterms: a owl:Ontology ;  # was <http://purl.org/NET/dc_owl2dl/terms_od>
+        rdfs:comment      "OWL 2 DL ontology for Dublin Core metadata terms from the http://purl.org/dc/terms/ namespace; this version uses object and datatype properties instead of annotation properties where possible. Note that, because of this, when using this ontology you are restricted to using literals and non-literals in certain cases and especially you cannot use DCMI's DCSV."@en ;
+        rdfs:label        "DCMI metadata terms"@en ;
+        dcterms:creator   <http://simon-reinhardt.de/#me> ;
+        dcterms:license   <http://creativecommons.org/licenses/by-sa/3.0/> ;
+        dcterms:modified  "2009-09-07" ;
+        owl:imports       <http://purl.org/NET/dc_owl2dl/dcmitype> , <http://purl.org/NET/dc_owl2dl/dcam> .
+
+dcterms:Agent  a         dcterms:AgentClass , owl:Class ;
+        rdfs:comment     "Examples of Agent include person, organization, and software agent."@en-us ;
+        rdfs:label       "Agent"@en-us ;
+        skos:definition  "A resource that acts or has the power to act."@en-us .
+
+dcterms:AgentClass  a    owl:Class ;
+        rdfs:comment     "Examples of Agent Class include groups seen as classes, such as students, women, charities, lecturers."@en-us ;
+        rdfs:label       "Agent Class"@en-us ;
+        skos:definition  "A group of agents."@en-us .
+
+dcterms:BibliographicResource
+        a                owl:Class ;
+        rdfs:label       "Bibliographic Resource"@en-us ;
+        skos:definition  "A book, article, or other documentary resource."@en-us .
+
+dcterms:Box  a            rdfs:Datatype ;
+        rdfs:isDefinedBy  <http://dublincore.org/documents/dcmi-box/> ;
+        rdfs:label        "DCMI Box"@en-us ;
+        skos:definition   "The set of regions in space defined by their geographic coordinates according to the DCMI Box Encoding Scheme."@en-us .
+
+dcterms:DCMIType  a       dcam:VocabularyEncodingScheme ;
+        rdfs:isDefinedBy  <http://dublincore.org/documents/dcmi-type-vocabulary/> ;
+        rdfs:label        "DCMI Type Vocabulary"@en-us ;
+        skos:definition   "The set of classes specified by the DCMI Type Vocabulary, used to categorize the nature or genre of the resource."@en-us .
+
+dcterms:DDC  a            dcam:VocabularyEncodingScheme ;
+        rdfs:isDefinedBy  <http://www.oclc.org/dewey/> ;
+        rdfs:label        "DDC"@en-us ;
+        skos:definition   "The set of conceptual resources specified by the Dewey Decimal Classification."@en-us .
+
+dcterms:FileFormat  a    owl:Class ;
+        rdfs:comment     "Examples include the formats defined by the list of Internet Media Types."@en-us ;
+        rdfs:label       "File Format"@en-us ;
+        rdfs:subClassOf  dcterms:MediaType ;
+        skos:definition  "A digital resource format."@en-us .
+
+dcterms:Frequency  a     owl:Class ;
+        rdfs:label       "Frequency"@en-us ;
+        skos:definition  "A rate at which something recurs."@en-us .
+
+dcterms:IMT  a            dcam:VocabularyEncodingScheme ;
+        rdfs:isDefinedBy  <http://www.iana.org/assignments/media-types/> ;
+        rdfs:label        "IMT"@en-us ;
+        skos:definition   "The set of media types specified by the Internet Assigned Numbers Authority."@en-us .
+
+dcterms:ISO3166  a        rdfs:Datatype ;
+        rdfs:isDefinedBy  <http://www.iso.org/iso/en/prods-services/iso3166ma/02iso-3166-code-lists/list-en1.html> ;
+        rdfs:label        "ISO 3166"@en-us ;
+        skos:definition   "The set of codes listed in ISO 3166-1 for the representation of names of countries."@en-us .
+
+dcterms:ISO639-2  a       rdfs:Datatype ;
+        rdfs:isDefinedBy  <http://lcweb.loc.gov/standards/iso639-2/langhome.html> ;
+        rdfs:label        "ISO 639-2"@en-us ;
+        skos:definition   "The three-letter alphabetic codes listed in ISO639-2 for the representation of names of languages."@en-us .
+
+dcterms:ISO639-3  a       rdfs:Datatype ;
+        rdfs:isDefinedBy  <http://www.sil.org/iso639-3/> ;
+        rdfs:label        "ISO 639-3"@en-us ;
+        skos:definition   "The set of three-letter codes listed in ISO 639-3 for the representation of names of languages."@en-us .
+
+dcterms:Jurisdiction  a  owl:Class ;
+        rdfs:label       "Jurisdiction"@en-us ;
+        rdfs:subClassOf  dcterms:LocationPeriodOrJurisdiction ;
+        skos:definition  "The extent or range of judicial, law enforcement, or other authority."@en-us .
+
+dcterms:LCC  a            dcam:VocabularyEncodingScheme ;
+        rdfs:isDefinedBy  <http://lcweb.loc.gov/catdir/cpso/lcco/lcco.html> ;
+        rdfs:label        "LCC"@en-us ;
+        skos:definition   "The set of conceptual resources specified by the Library of Congress Classification."@en-us .
+
+dcterms:LCSH  a          dcam:VocabularyEncodingScheme ;
+        rdfs:label       "LCSH"@en-us ;
+        skos:definition  "The set of labeled concepts specified by the Library of Congress Subject Headings."@en-us .
+
+dcterms:LicenseDocument
+        a                owl:Class ;
+        rdfs:label       "License Document"@en-us ;
+        rdfs:subClassOf  dcterms:RightsStatement ;
+        skos:definition  "A legal document giving official permission to do something with a Resource."@en-us .
+
+dcterms:LinguisticSystem
+        a                owl:Class ;
+        rdfs:comment     "Examples include written, spoken, sign, and computer languages."@en-us ;
+        rdfs:label       "Linguistic System"@en-us ;
+        skos:definition  "A system of signs, symbols, sounds, gestures, or rules used in communication."@en-us .
+
+dcterms:Location  a      owl:Class ;
+        rdfs:label       "Location"@en-us ;
+        rdfs:subClassOf  dcterms:LocationPeriodOrJurisdiction ;
+        skos:definition  "A spatial region or named place."@en-us .
+
+dcterms:LocationPeriodOrJurisdiction
+        a                owl:Class ;
+        rdfs:label       "Location, Period, or Jurisdiction"@en-us ;
+        skos:definition  "A location, period of time, or jurisdiction."@en-us .
+
+dcterms:MESH  a           dcam:VocabularyEncodingScheme ;
+        rdfs:isDefinedBy  <http://www.nlm.nih.gov/mesh/meshhome.html> ;
+        rdfs:label        "MeSH"@en-us ;
+        skos:definition   "The set of labeled concepts specified by the Medical Subject Headings."@en-us .
+
+dcterms:MediaType  a     owl:Class ;
+        rdfs:label       "Media Type"@en-us ;
+        rdfs:subClassOf  dcterms:MediaTypeOrExtent ;
+        skos:definition  "A file format or physical medium."@en-us .
+
+dcterms:MediaTypeOrExtent
+        a                owl:Class ;
+        rdfs:label       "Media Type or Extent"@en-us ;
+        skos:definition  "A media type or extent."@en-us .
+
+dcterms:MethodOfAccrual
+        a                owl:Class ;
+        rdfs:label       "Method of Accrual"@en-us ;
+        skos:definition  "A method by which resources are added to a collection."@en-us .
+
+dcterms:MethodOfInstruction
+        a                owl:Class ;
+        rdfs:label       "Method of Instruction"@en-us ;
+        skos:definition  "A process that is used to engender knowledge, attitudes, and skills."@en-us .
+
+dcterms:NLM  a            dcam:VocabularyEncodingScheme ;
+        rdfs:isDefinedBy  <http://wwwcf.nlm.nih.gov/class/> ;
+        rdfs:label        "NLM"@en-us ;
+        skos:definition   "The set of conceptual resources specified by the National Library of Medicine Classification."@en-us .
+
+dcterms:Period  a         rdfs:Datatype ;
+        rdfs:isDefinedBy  <http://dublincore.org/documents/dcmi-period/> ;
+        rdfs:label        "DCMI Period"@en-us ;
+        skos:definition   "The set of time intervals defined by their limits according to the DCMI Period Encoding Scheme."@en-us .
+
+dcterms:PeriodOfTime  a  owl:Class ;
+        rdfs:label       "Period of Time"@en-us ;
+        rdfs:subClassOf  dcterms:LocationPeriodOrJurisdiction ;
+        skos:definition  "An interval of time that is named or defined by its start and end dates."@en-us .
+
+dcterms:PhysicalMedium
+        a                owl:Class ;
+        rdfs:comment     "Examples include paper, canvas, or DVD."@en-us ;
+        rdfs:label       "Physical Medium"@en-us ;
+        rdfs:subClassOf  dcterms:MediaType ;
+        skos:definition  "A physical material or carrier."@en-us .
+
+dcterms:PhysicalResource
+        a                owl:Class ;
+        rdfs:label       "Physical Resource"@en-us ;
+        skos:definition  "A material thing."@en-us .
+
+dcterms:Point  a          rdfs:Datatype ;
+        rdfs:isDefinedBy  <http://dublincore.org/documents/dcmi-point/> ;
+        rdfs:label        "DCMI Point"@en-us ;
+        skos:definition   "The set of points in space defined by their geographic coordinates according to the DCMI Point Encoding Scheme."@en-us .
+
+dcterms:Policy  a        owl:Class ;
+        rdfs:label       "Policy"@en-us ;
+        skos:definition  "A plan or course of action by an authority, intended to influence and determine decisions, actions, and other matters."@en-us .
+
+dcterms:ProvenanceStatement
+        a                owl:Class ;
+        rdfs:label       "Provenance Statement"@en-us ;
+        skos:definition  "A statement of any changes in ownership and custody of a resource since its creation that are significant for its authenticity, integrity, and interpretation."@en-us .
+
+dcterms:RFC1766  a        rdfs:Datatype ;
+        rdfs:isDefinedBy  <http://www.ietf.org/rfc/rfc1766.txt> ;
+        rdfs:label        "RFC 1766"@en-us ;
+        skos:definition   "The set of tags, constructed according to RFC 1766, for the identification of languages."@en-us .
+
+dcterms:RFC3066  a        rdfs:Datatype ;
+        rdfs:comment      "RFC 3066 has been obsoleted by RFC 4646."@en-us ;
+        rdfs:isDefinedBy  <http://www.ietf.org/rfc/rfc3066.txt> ;
+        rdfs:label        "RFC 3066"@en-us ;
+        skos:definition   "The set of tags constructed according to RFC 3066 for the identification of languages."@en-us .
+
+dcterms:RFC4646  a        rdfs:Datatype ;
+        rdfs:comment      "RFC 4646 obsoletes RFC 3066."@en-us ;
+        rdfs:isDefinedBy  <http://www.ietf.org/rfc/rfc4646.txt> ;
+        rdfs:label        "RFC 4646"@en-us ;
+        skos:definition   "The set of tags constructed according to RFC 4646 for the identification of languages."@en-us .
+
+dcterms:RightsStatement
+        a                owl:Class ;
+        rdfs:label       "Rights Statement"@en-us ;
+        skos:definition  "A statement about the intellectual property rights (IPR) held in or over a Resource, a legal document giving official permission to do something with a resource, or a statement about access rights."@en-us .
+
+dcterms:SizeOrDuration
+        a                owl:Class ;
+        rdfs:comment     "Examples include a number of pages, a specification of length, width, and breadth, or a period in hours, minutes, and seconds."@en-us ;
+        rdfs:label       "Size or Duration"@en-us ;
+        rdfs:subClassOf  dcterms:MediaTypeOrExtent ;
+        skos:definition  "A dimension or extent, or a time taken to play or execute."@en-us .
+
+dcterms:Standard  a      owl:Class ;
+        rdfs:label       "Standard"@en-us ;
+        skos:definition  "A basis for comparison; a reference point against which other things can be evaluated."@en-us .
+
+dcterms:TGN  a            dcam:VocabularyEncodingScheme ;
+        rdfs:isDefinedBy  <http://www.getty.edu/research/tools/vocabulary/tgn/index.html> ;
+        rdfs:label        "TGN"@en-us ;
+        skos:definition   "The set of places specified by the Getty Thesaurus of Geographic Names."@en-us .
+
+dcterms:UDC  a            dcam:VocabularyEncodingScheme ;
+        rdfs:isDefinedBy  <http://www.udcc.org/> ;
+        rdfs:label        "UDC"@en-us ;
+        skos:definition   "The set of conceptual resources specified by the Universal Decimal Classification."@en-us .
+
+dcterms:URI  a            rdfs:Datatype ;
+        rdfs:isDefinedBy  <http://www.ietf.org/rfc/rfc3986.txt> ;
+        rdfs:label        "URI"@en-us ;
+        skos:definition   "The set of identifiers constructed according to the generic syntax for Uniform Resource Identifiers as specified by the Internet Engineering Task Force."@en-us .
+
+dcterms:W3CDTF  a         rdfs:Datatype ;
+        rdfs:isDefinedBy  <http://www.w3.org/TR/NOTE-datetime> ;
+        rdfs:label        "W3C-DTF"@en-us ;
+        skos:definition   "The set of dates and times constructed according to the W3C Date and Time Formats Specification."@en-us .
+
+dcterms:abstract  a         owl:AnnotationProperty ;
+        rdfs:label          "Abstract"@en-us ;
+        rdfs:subPropertyOf  dcterms:description ;
+        skos:definition     "A summary of the resource."@en-us .
+
+dcterms:accessRights  a     owl:ObjectProperty ;
+        rdfs:comment        "Access Rights may include information regarding access or restrictions based on privacy, security, or other policies."@en-us ;
+        rdfs:label          "Access Rights"@en-us ;
+        rdfs:range          dcterms:RightsStatement ;
+        rdfs:subPropertyOf  dcterms:rights ;
+        skos:definition     "Information about who can access the resource or an indication of its security status."@en-us .
+
+dcterms:accrualMethod
+        a                owl:ObjectProperty ;
+        rdfs:domain      dcmitype:Collection ;
+        rdfs:label       "Accrual Method"@en-us ;
+        rdfs:range       dcterms:MethodOfAccrual ;
+        skos:definition  "The method by which items are added to a collection."@en-us .
+
+dcterms:accrualPeriodicity
+        a                owl:ObjectProperty ;
+        rdfs:domain      dcmitype:Collection ;
+        rdfs:label       "Accrual Periodicity"@en-us ;
+        rdfs:range       dcterms:Frequency ;
+        skos:definition  "The frequency with which items are added to a collection."@en-us .
+
+dcterms:accrualPolicy
+        a                owl:ObjectProperty ;
+        rdfs:domain      dcmitype:Collection ;
+        rdfs:label       "Accrual Policy"@en-us ;
+        rdfs:range       dcterms:Policy ;
+        skos:definition  "The policy governing the addition of items to a collection."@en-us .
+
+dcterms:alternative  a      owl:AnnotationProperty ;
+        rdfs:comment        "The distinction between titles and alternative titles is application-specific."@en-us ;
+        rdfs:label          "Alternative Title"@en-us ;
+        rdfs:subPropertyOf  dcterms:title ;
+        skos:definition     "An alternative name for the resource."@en-us ;
+        skos:note           "In current practice, this term is used primarily with literal values; however, there are important uses with non-literal values as well. As of December 2007, the DCMI Usage Board is leaving this range unspecified pending an investigation of options."@en-us .
+
+dcterms:audience  a      owl:ObjectProperty ;
+        rdfs:label       "Audience"@en-us ;
+        rdfs:range       dcterms:AgentClass ;
+        skos:definition  "A class of entity for whom the resource is intended or useful."@en-us .
+
+dcterms:available  a        owl:DatatypeProperty ;
+        rdfs:label          "Date Available"@en-us ;
+        rdfs:range          rdfs:Literal ;
+        rdfs:subPropertyOf  dcterms:date ;
+        skos:definition     "Date (often a range) that the resource became or will become available."@en-us .
+
+dcterms:bibliographicCitation
+        a                   owl:DatatypeProperty ;
+        rdfs:comment        "Recommended practice is to include sufficient bibliographic detail to identify the resource as unambiguously as possible."@en-us ;
+        rdfs:label          "Bibliographic Citation"@en-us ;
+        rdfs:range          rdfs:Literal ;
+        rdfs:subPropertyOf  dcterms:identifier ;
+        skos:definition     "A bibliographic reference for the resource."@en-us .
+
+dcterms:conformsTo  a       owl:ObjectProperty ;
+        rdfs:label          "Conforms To"@en-us ;
+        rdfs:range          dcterms:Standard ;
+        rdfs:subPropertyOf  dcterms:relation ;
+        skos:definition     "An established standard to which the described resource conforms."@en-us .
+
+dcterms:contributor  a   owl:ObjectProperty ;
+        rdfs:comment     "Examples of a Contributor include a person, an organization, or a service. Typically, the name of a Contributor should be used to indicate the entity."@en-us ;
+        rdfs:label       "Contributor"@en-us ;
+        rdfs:range       dcterms:Agent ;
+        skos:definition  "An entity responsible for making contributions to the resource."@en-us .
+
+dcterms:coverage  a                    owl:ObjectProperty ;
+        rdfs:comment                   "Spatial topic and spatial applicability may be a named place or a location specified by its geographic coordinates. Temporal topic may be a named period, date, or date range. A jurisdiction may be a named administrative entity or a geographic place to which the resource applies. Recommended best practice is to use a controlled vocabulary such as the Thesaurus of Geographic Names [TGN]. Where appropriate, named places or time periods can be used in preference to numeric identifiers such as sets of coordinates or date ranges."@en-us ;
+        rdfs:label                     "Coverage"@en-us ;
+        rdfs:range                     dcterms:LocationPeriodOrJurisdiction ;
+        rdfs:seeAlso                   <http://www.getty.edu/research/tools/vocabulary/tgn/index.html> ;
+        dcterms:bibliographicCitation  "[TGN] http://www.getty.edu/research/tools/vocabulary/tgn/index.html" ;
+        skos:definition                "The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant."@en-us ;
+        skos:note                      "In this ontology this property has been defined as an object property, meaning when using this ontology you cannot encode its value as a literal (e.g. by using DCMI's DCSV) but only as a related description."@en .
+
+dcterms:created  a          owl:DatatypeProperty ;
+        rdfs:label          "Date Created"@en-us ;
+        rdfs:range          rdfs:Literal ;
+        rdfs:subPropertyOf  dcterms:date ;
+        skos:definition     "Date of creation of the resource."@en-us .
+
+dcterms:creator  a          owl:ObjectProperty ;
+        rdfs:comment        "Examples of a Creator include a person, an organization, or a service. Typically, the name of a Creator should be used to indicate the entity."@en-us ;
+        rdfs:label          "Creator"@en-us ;
+        rdfs:range          dcterms:Agent ;
+        rdfs:subPropertyOf  dcterms:contributor ;
+        skos:definition     "An entity primarily responsible for making the resource."@en-us .
+
+dcterms:date  a                        owl:DatatypeProperty ;
+        rdfs:comment                   "Date may be used to express temporal information at any level of granularity. Recommended best practice is to use an encoding scheme, such as the W3CDTF profile of ISO 8601 [W3CDTF]."@en-us ;
+        rdfs:label                     "Date"@en-us ;
+        rdfs:range                     rdfs:Literal ;
+        rdfs:seeAlso                   <http://www.w3.org/TR/NOTE-datetime> ;
+        dcterms:bibliographicCitation  "[W3CDTF] http://www.w3.org/TR/NOTE-datetime" ;
+        skos:definition                "A point or period of time associated with an event in the lifecycle of the resource."@en-us .
+
+dcterms:dateAccepted  a     owl:DatatypeProperty ;
+        rdfs:comment        "Examples of resources to which a Date Accepted may be relevant are a thesis (accepted by a university department) or an article (accepted by a journal)."@en-us ;
+        rdfs:label          "Date Accepted"@en-us ;
+        rdfs:range          rdfs:Literal ;
+        rdfs:subPropertyOf  dcterms:date ;
+        skos:definition     "Date of acceptance of the resource."@en-us .
+
+dcterms:dateCopyrighted
+        a                   owl:DatatypeProperty ;
+        rdfs:label          "Date Copyrighted"@en-us ;
+        rdfs:range          rdfs:Literal ;
+        rdfs:subPropertyOf  dcterms:date ;
+        skos:definition     "Date of copyright."@en-us .
+
+dcterms:dateSubmitted
+        a                   owl:DatatypeProperty ;
+        rdfs:comment        "Examples of resources to which a Date Submitted may be relevant are a thesis (submitted to a university department) or an article (submitted to a journal)."@en-us ;
+        rdfs:label          "Date Submitted"@en-us ;
+        rdfs:range          rdfs:Literal ;
+        rdfs:subPropertyOf  dcterms:date ;
+        skos:definition     "Date of submission of the resource."@en-us .
+
+dcterms:description  a   owl:AnnotationProperty ;
+        rdfs:comment     "Description may include but is not limited to: an abstract, a table of contents, a graphical representation, or a free-text account of the resource."@en-us ;
+        rdfs:label       "Description"@en-us ;
+        skos:definition  "An account of the resource."@en-us .
+
+dcterms:educationLevel
+        a                   owl:ObjectProperty ;
+        rdfs:label          "Audience Education Level"@en-us ;
+        rdfs:range          dcterms:AgentClass ;
+        rdfs:subPropertyOf  dcterms:audience ;
+        skos:definition     "A class of entity, defined in terms of progression through an educational or training context, for which the described resource is intended."@en-us .
+
+dcterms:extent  a           owl:ObjectProperty ;
+        rdfs:label          "Extent"@en-us ;
+        rdfs:range          dcterms:SizeOrDuration ;
+        rdfs:subPropertyOf  dcterms:format ;
+        skos:definition     "The size or duration of the resource."@en-us ;
+        skos:note           "In this ontology this property has been defined as an object property, meaning when using this ontology you cannot encode its value as a literal (e.g. by using DCMI's DCSV) but only as a related description."@en .
+
+dcterms:format  a                      owl:ObjectProperty ;
+        rdfs:comment                   "Examples of dimensions include size and duration. Recommended best practice is to use a controlled vocabulary such as the list of Internet Media Types [MIME]."@en-us ;
+        rdfs:label                     "Format"@en-us ;
+        rdfs:range                     dcterms:MediaTypeOrExtent ;
+        rdfs:seeAlso                   <http://www.iana.org/assignments/media-types/> ;
+        dcterms:bibliographicCitation  "[MIME] http://www.iana.org/assignments/media-types/" ;
+        skos:definition                "The file format, physical medium, or dimensions of the resource."@en-us ;
+        skos:note                      "In this ontology this property has been defined as an object property, meaning when using this ontology you cannot encode its value as a literal (e.g. by using DCMI's DCSV) but only as a related description."@en .
+
+dcterms:hasFormat  a        owl:ObjectProperty ;
+        rdfs:label          "Has Format"@en-us ;
+        rdfs:subPropertyOf  dcterms:relation ;
+        skos:definition     "A related resource that is substantially the same as the pre-existing described resource, but in another format."@en-us .
+
+dcterms:hasPart  a          owl:ObjectProperty ;
+        rdfs:label          "Has Part"@en-us ;
+        rdfs:subPropertyOf  dcterms:relation ;
+        skos:definition     "A related resource that is included either physically or logically in the described resource."@en-us .
+
+dcterms:hasVersion  a       owl:ObjectProperty ;
+        rdfs:label          "Has Version"@en-us ;
+        rdfs:subPropertyOf  dcterms:relation ;
+        skos:definition     "A related resource that is a version, edition, or adaptation of the described resource."@en-us .
+
+dcterms:identifier  a    owl:DatatypeProperty ;
+        rdfs:comment     "Recommended best practice is to identify the resource by means of a string conforming to a formal identification system."@en-us ;
+        rdfs:label       "Identifier"@en-us ;
+        rdfs:range       rdfs:Literal ;
+        skos:definition  "An unambiguous reference to the resource within a given context."@en-us .
+
+dcterms:instructionalMethod
+        a                owl:ObjectProperty ;
+        rdfs:comment     "Instructional Method will typically include ways of presenting instructional materials or conducting instructional activities, patterns of learner-to-learner and learner-to-instructor interactions, and mechanisms by which group and individual levels of learning are measured. Instructional methods include all aspects of the instruction and learning processes from planning and implementation through evaluation and feedback."@en-us ;
+        rdfs:label       "Instructional Method"@en-us ;
+        rdfs:range       dcterms:MethodOfInstruction ;
+        skos:definition  "A process, used to engender knowledge, attitudes and skills, that the described resource is designed to support."@en-us .
+
+dcterms:isFormatOf  a       owl:ObjectProperty ;
+        rdfs:label          "Is Format Of"@en-us ;
+        rdfs:subPropertyOf  dcterms:relation ;
+        owl:inverseOf       dcterms:hasFormat ;
+        skos:definition     "A related resource that is substantially the same as the described resource, but in another format."@en-us .
+
+dcterms:isPartOf  a         owl:ObjectProperty ;
+        rdfs:label          "Is Part Of"@en-us ;
+        rdfs:subPropertyOf  dcterms:relation ;
+        owl:inverseOf       dcterms:hasPart ;
+        skos:definition     "A related resource in which the described resource is physically or logically included."@en-us .
+
+dcterms:isReferencedBy
+        a                   owl:ObjectProperty ;
+        rdfs:label          "Is Referenced By"@en-us ;
+        rdfs:subPropertyOf  dcterms:relation ;
+        owl:inverseOf       dcterms:references ;
+        skos:definition     "A related resource that references, cites, or otherwise points to the described resource."@en-us .
+
+dcterms:isReplacedBy  a     owl:ObjectProperty ;
+        rdfs:label          "Is Replaced By"@en-us ;
+        rdfs:subPropertyOf  dcterms:relation ;
+        owl:inverseOf       dcterms:replaces ;
+        skos:definition     "A related resource that supplants, displaces, or supersedes the described resource."@en-us .
+
+dcterms:isRequiredBy  a     owl:ObjectProperty ;
+        rdfs:label          "Is Required By"@en-us ;
+        rdfs:subPropertyOf  dcterms:relation ;
+        owl:inverseOf       dcterms:requires ;
+        skos:definition     "A related resource that requires the described resource to support its function, delivery, or coherence."@en-us .
+
+dcterms:isVersionOf  a      owl:ObjectProperty ;
+        rdfs:comment        "Changes in version imply substantive changes in content rather than differences in format."@en-us ;
+        rdfs:label          "Is Version Of"@en-us ;
+        rdfs:subPropertyOf  dcterms:relation ;
+        owl:inverseOf       dcterms:hasVersion ;
+        skos:definition     "A related resource of which the described resource is a version, edition, or adaptation."@en-us .
+
+dcterms:issued  a           owl:DatatypeProperty ;
+        rdfs:label          "Date Issued"@en-us ;
+        rdfs:range          rdfs:Literal ;
+        rdfs:subPropertyOf  dcterms:date ;
+        skos:definition     "Date of formal issuance (e.g., publication) of the resource."@en-us .
+
+dcterms:language  a                    owl:ObjectProperty ;
+        rdfs:comment                   "Recommended best practice is to use a controlled vocabulary such as RFC 4646 [RFC4646]."@en-us ;
+        rdfs:label                     "Language"@en-us ;
+        rdfs:range                     dcterms:LinguisticSystem ;
+        rdfs:seeAlso                   <http://www.ietf.org/rfc/rfc4646.txt> ;
+        dcterms:bibliographicCitation  "[RFC4646] http://www.ietf.org/rfc/rfc4646.txt" ;
+        skos:definition                "A language of the resource."@en-us ;
+        skos:note                      "In this ontology this property has been defined as an object property, meaning when using this ontology you cannot encode its value as a literal (e.g. as a language code or tag) but only as a non-literal value."@en .
+
+dcterms:license  a          owl:ObjectProperty ;
+        rdfs:label          "License"@en-us ;
+        rdfs:range          dcterms:LicenseDocument ;
+        rdfs:subPropertyOf  dcterms:rights ;
+        skos:definition     "A legal document giving official permission to do something with the resource."@en-us .
+
+dcterms:mediator  a         owl:ObjectProperty ;
+        rdfs:comment        "In an educational context, a mediator might be a parent, teacher, teaching assistant, or care-giver."@en-us ;
+        rdfs:label          "Mediator"@en-us ;
+        rdfs:range          dcterms:AgentClass ;
+        rdfs:subPropertyOf  dcterms:audience ;
+        skos:definition     "An entity that mediates access to the resource and for whom the resource is intended or useful."@en-us .
+
+dcterms:medium  a           owl:ObjectProperty ;
+        rdfs:domain         dcterms:PhysicalResource ;
+        rdfs:label          "Medium"@en-us ;
+        rdfs:range          dcterms:PhysicalMedium ;
+        rdfs:subPropertyOf  dcterms:format ;
+        skos:definition     "The material or physical carrier of the resource."@en-us ;
+        skos:note           "In this ontology this property has been defined as an object property, meaning when using this ontology you cannot encode its value as a literal but only as a related description."@en .
+
+dcterms:modified  a         owl:DatatypeProperty ;
+        rdfs:label          "Date Modified"@en-us ;
+        rdfs:range          rdfs:Literal ;
+        rdfs:subPropertyOf  dcterms:date ;
+        skos:definition     "Date on which the resource was changed."@en-us .
+
+dcterms:provenance  a    owl:ObjectProperty ;
+        rdfs:comment     "The statement may include a description of any changes successive custodians made to the resource."@en-us ;
+        rdfs:label       "Provenance"@en-us ;
+        rdfs:range       dcterms:ProvenanceStatement ;
+        skos:definition  "A statement of any changes in ownership and custody of the resource since its creation that are significant for its authenticity, integrity, and interpretation."@en-us .
+
+dcterms:publisher  a     owl:ObjectProperty ;
+        rdfs:comment     "Examples of a Publisher include a person, an organization, or a service. Typically, the name of a Publisher should be used to indicate the entity."@en-us ;
+        rdfs:label       "Publisher"@en-us ;
+        rdfs:range       dcterms:Agent ;
+        skos:definition  "An entity responsible for making the resource available."@en-us .
+
+dcterms:references  a       owl:ObjectProperty ;
+        rdfs:label          "References"@en-us ;
+        rdfs:subPropertyOf  dcterms:relation ;
+        skos:definition     "A related resource that is referenced, cited, or otherwise pointed to by the described resource."@en-us .
+
+dcterms:relation  a      owl:SymmetricProperty , owl:ObjectProperty ;
+        rdfs:comment     "Recommended best practice is to identify the related resource by means of a string conforming to a formal identification system."@en-us ;
+        rdfs:label       "Relation"@en-us ;
+        skos:definition  "A related resource."@en-us .
+
+dcterms:replaces  a         owl:ObjectProperty ;
+        rdfs:label          "Replaces"@en-us ;
+        rdfs:subPropertyOf  dcterms:relation ;
+        skos:definition     "A related resource that is supplanted, displaced, or superseded by the described resource."@en-us .
+
+dcterms:requires  a         owl:ObjectProperty ;
+        rdfs:label          "Requires"@en-us ;
+        rdfs:subPropertyOf  dcterms:relation ;
+        skos:definition     "A related resource that is required by the described resource to support its function, delivery, or coherence."@en-us .
+
+dcterms:rights  a        owl:ObjectProperty ;
+        rdfs:comment     "Typically, rights information includes a statement about various property rights associated with the resource, including intellectual property rights."@en-us ;
+        rdfs:label       "Rights"@en-us ;
+        rdfs:range       dcterms:RightsStatement ;
+        skos:definition  "Information about rights held in and over the resource."@en-us .
+
+dcterms:rightsHolder  a  owl:ObjectProperty ;
+        rdfs:label       "Rights Holder"@en-us ;
+        rdfs:range       dcterms:Agent ;
+        skos:definition  "A person or organization owning or managing rights over the resource."@en-us .
+
+dcterms:source  a           owl:ObjectProperty ;
+        rdfs:comment        "The described resource may be derived from the related resource in whole or in part. Recommended best practice is to identify the related resource by means of a string conforming to a formal identification system."@en-us ;
+        rdfs:label          "Source"@en-us ;
+        rdfs:subPropertyOf  dcterms:relation ;
+        skos:definition     "A related resource from which the described resource is derived."@en-us .
+
+dcterms:spatial  a          owl:ObjectProperty ;
+        rdfs:label          "Spatial Coverage"@en-us ;
+        rdfs:range          dcterms:Location ;
+        rdfs:subPropertyOf  dcterms:coverage ;
+        skos:definition     "Spatial characteristics of the resource."@en-us ;
+        skos:note           "In this ontology this property has been defined as an object property, meaning when using this ontology you cannot encode its value as a literal (e.g. by using DCMI's DCSV) but only as a related description."@en .
+
+dcterms:subject  a       owl:ObjectProperty ;
+        rdfs:comment     "Typically, the subject will be represented using keywords, key phrases, or classification codes. Recommended best practice is to use a controlled vocabulary. To describe the spatial or temporal topic of the resource, use the Coverage element."@en-us ;
+        rdfs:label       "Subject"@en-us ;
+        skos:definition  "The topic of the resource."@en-us .
+
+dcterms:tableOfContents
+        a                   owl:AnnotationProperty ;
+        rdfs:label          "Table Of Contents"@en-us ;
+        rdfs:subPropertyOf  dcterms:description ;
+        skos:definition     "A list of subunits of the resource."@en-us .
+
+dcterms:temporal  a         owl:ObjectProperty ;
+        rdfs:label          "Temporal Coverage"@en-us ;
+        rdfs:range          dcterms:PeriodOfTime ;
+        rdfs:subPropertyOf  dcterms:coverage ;
+        skos:definition     "Temporal characteristics of the resource."@en-us ;
+        skos:note           "In this ontology this property has been defined as an object property, meaning when using this ontology you cannot encode its value as a literal (e.g. by using DCMI's DCSV) but only as a related description."@en .
+
+dcterms:title  a         owl:AnnotationProperty ;
+        rdfs:label       "Title"@en-us ;
+        skos:definition  "A name given to the resource."@en-us ;
+        skos:note        "In current practice, this term is used primarily with literal values; however, there are important uses with non-literal values as well. As of December 2007, the DCMI Usage Board is leaving this range unspecified pending an investigation of options."@en-us .
+
+dcterms:type  a                        owl:ObjectProperty ;
+        rdfs:comment                   "Recommended best practice is to use a controlled vocabulary such as the DCMI Type Vocabulary [DCMITYPE]. To describe the file format, physical medium, or dimensions of the resource, use the Format element."@en-us ;
+        rdfs:label                     "Type"@en-us ;
+        rdfs:seeAlso                   <http://dublincore.org/documents/dcmi-type-vocabulary/> ;
+        dcterms:bibliographicCitation  "[DCMITYPE] http://dublincore.org/documents/dcmi-type-vocabulary/" ;
+        skos:definition                "The nature or genre of the resource."@en-us .
+
+dcterms:valid  a            owl:DatatypeProperty ;
+        rdfs:label          "Date Valid"@en-us ;
+        rdfs:range          rdfs:Literal ;
+        rdfs:subPropertyOf  dcterms:date ;
+        skos:definition     "Date (often a range) of validity of a resource."@en-us .

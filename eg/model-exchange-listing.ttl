@@ -1,0 +1,109 @@
+<WD/Q82059> a :StockExchange;
+  :ident "Q82059";
+  :prefLabel "NASDAQ";
+  :description "American stock exchange";
+  :dateFounded "1971-02-04"^^xsd:date;
+  :orgType <WD/Q11691>;
+  :industry <WD/Q837171>;
+  :identifier <WD/Q82059/WD>, <WD/Q82059/website>, <WD/Q82059/MIC>, <WD/Q82059/CB/exch>.
+<WD/Q82059/WD>      a :Identifier; :identifierSystem <identifier/WD>;      :ident "Q82059".
+<WD/Q82059/website> a :Identifier; :identifierSystem <identifier/website>; :identRaw "http://nasdaq.com/"; :ident "nasdaq.com"; :domain "nasdaq.com".
+<WD/Q82059/MIC>     a :Identifier; :identifierSystem <identifier/MIC>;     :ident "XNAS".
+<WD/Q82059/CB/exch> a :Identifier; :identifierSystem <identifier/CB/exch>; :identRaw "nasdaq"; :ident "NASDAQ".
+
+<WD/Q217475> a :StockExchange;
+  :ident "Q217475";
+  :prefLabel "Tokyo Stock Exchange";
+  :orgType <WD/Q11691>;
+  :identifier <WD/Q217475/WD>.
+<WD/Q217475/WD>     a :Identifier; :identifierSystem <identifier/WD>;      :ident "Q217475".
+  
+<WD/Q1472929> a :Organization;
+  :ident "Q1472929";
+  :prefLabel "Nasdaq, Inc";
+  :description "American multinational financial services corporation";
+  :dateFounded "1971"^^xsd:xYear;
+  :orgType <WD/Q6881511>;
+  :isPubliclyTraded true;
+  :identifier <WD/Q1472929/WD>, <WD/Q1472929/website>.
+<WD/Q1472929/WD>      a :Identifier; :identifierSystem <identifier/WD>;      :ident "Q1472929".
+<WD/Q1472929/website> a :Identifier; :identifierSystem <identifier/website>; :identRaw "http://business.nasdaq.com/"; :ident "business.nasdaq.com"; :domain "nasdaq.com".
+
+<WD/Q312> a :Organization;
+  :ident "Q312";
+  :prefLabel "Apple Inc";
+  :description "American producer of computers, smartphones and software";
+  :orgType <WD/Q6881511>;
+  :industry <WD/Q56598901>, <WD/Q880371>, <WD/Q269415>;
+  :dateFounded "1976-04-01"^^xsd:date;
+  :isPubliclyTraded true;
+  :identifier <WD/Q312/WD>, <WD/Q312/website>.
+<WD/Q312/WD>      a :Identifier; :identifierSystem <identifier/WD>;      :ident "Q312".
+<WD/Q312/website> a :Identifier; :identifierSystem <identifier/website>; :identRaw "http://apple.com/"; :ident "apple.com"; :domain "apple.com".
+
+<WD/relation/Q82059/parent/Q1472929> a :OrganizationRelation;
+  puml:label "NASDAQ is subsidiary of Nasdaq Inc";
+  :relationType <relation/parent>;
+  :organization1 <WD/Q82059>;
+  :organization2 <WD/Q1472929>.
+
+<WD/Q312/exchangeListing/Q82059> a :ExchangeListing;
+  puml:label "NASDAQ:AAPL listing of Apple";
+  :transactionType <transaction/exchangeListing>;
+  :agent <WD/Q312>;
+  :exchange <WD/Q82059>;
+  :stockSymbol "AAPL";
+  :date "1980-12-19"^^xsd:date;
+  :valuation 1200.0;
+  :amount 101.2;
+  :source <dataset/CB>. # <http://www.wikidata.org/entity/statement/q312$3413cbde-45b5-c7a6-095f-a0c0ab5f1eb1>. # https://www.wikidata.org/wiki/Q312#q312$3413cbde-45b5-c7a6-095f-a0c0ab5f1eb1
+
+<WD/Q312/observation/sharePrice/1980-12-19> a :Observation;
+  :object <WD/Q312>;
+  :date "1980-12-19"^^xsd:date;
+  :valueDecimal 22.00.
+
+<WD/Q312/exchangeListing/Q217475> a :ExchangeListing;
+  puml:label "TOK:6689 listing of Apple";
+  :transactionType <transaction/exchangeListing>;
+  :agent <WD/Q312>;
+  :exchange <WD/Q217475>;
+  :stockSymbol "6689";
+  :dateEnd "2004-12-25"^^xsd:date;
+  :source <http://www.wikidata.org/entity/statement/Q312$2DACB52B-A0DF-4FF3-B852-1CE2CE88C5C5>. # https://www.wikidata.org/wiki/Q312#Q312$2DACB52B-A0DF-4FF3-B852-1CE2CE88C5C5
+
+<WD/Q1472929/exchangeListing/Q82059> a :ExchangeListing;
+  puml:label "NASDAQ:NDAQ listing of Nasdaq Inc";
+  :transactionType <transaction/exchangeListing>;
+  :agent <WD/Q1472929>;
+  :exchange <WD/Q82059>;
+  :stockSymbol "NDAQ";
+  :date "1975"^^xsd:gYear;
+  :source <http://www.wikidata.org/entity/statement/q1472929$912024fc-439c-7e71-5d7f-d6ee7306f3d4>.
+
+<http://www.wikidata.org/entity/statement/q312$3413cbde-45b5-c7a6-095f-a0c0ab5f1eb1>     a :SourceStatement; :partOf <dataset/WD>.
+<http://www.wikidata.org/entity/statement/Q312$2DACB52B-A0DF-4FF3-B852-1CE2CE88C5C5>     a :SourceStatement; :partOf <dataset/WD>.
+<http://www.wikidata.org/entity/statement/q1472929$912024fc-439c-7e71-5d7f-d6ee7306f3d4> a :SourceStatement; :partOf <dataset/WD>.
+
+<WD/Q6881511> a puml:Inline, :Concept; skos:prefLabel "enterprise # TODO harmonize".
+<WD/Q11691>   a puml:Inline, :Concept; skos:prefLabel "stock exchange # TODO harmonize".
+<WD/Q837171>  a puml:Inline, :Concept; skos:prefLabel "financial services # TODO harmonize".
+<WD/Q56598901>a puml:Inline, :Concept; skos:prefLabel "mobile phone industry # TODO harmonize".
+<WD/Q880371>  a puml:Inline, :Concept; skos:prefLabel "software industry # TODO harmonize".
+<WD/Q269415>  a puml:Inline, :Concept; skos:prefLabel "digital distribution # TODO harmonize".
+
+####################
+
+:StockExchange        puml:stereotype "(E,pink)".
+:Organization         puml:stereotype "(O,lightblue)".
+:source               puml:arrow puml:up.
+:ExchangeListing      puml:stereotype "(L,red)".
+:transactionType    a puml:InlineProperty.
+:OrganizationRelation puml:stereotype "(R,red)".
+:relationType       a puml:InlineProperty.
+:Identifier           puml:stereotype "(I,lightgray)".
+:identifierSystem   a puml:InlineProperty.
+:SourceStatement      puml:stereotype "(S,lightgray)".
+:partOf             a puml:InlineProperty.
+:Observation          puml:stereotype "(O,red)".
+:object               puml:arrow puml:up.

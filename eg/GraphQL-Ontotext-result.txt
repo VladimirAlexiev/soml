@@ -1,0 +1,59 @@
+{
+  "data": {
+    "innovator": [
+      {
+        "id": "https://company-graph.ontotext.com/resource/INN/company/WD/Q7095072",
+        "prefLabel": "Ontotext",
+        "industry": {
+          "id": "https://company-graph.ontotext.com/resource/WD/Q54837",
+          "name": "Semantic Web"
+        },
+        "innovationIndustry": {
+          "id": "https://company-graph.ontotext.com/resource/INN/industry/AI",
+          "name": "AI"
+        },
+        "website": [
+          {
+            "ident": [
+              "https://ontotext.com"
+            ],
+            "domain": [
+              "ontotext.com"
+            ]
+          }
+        ],
+        "phone": [
+          {
+            "ident": [
+              "+35929711234"
+            ],
+            "identRaw": [
+              "359 (2) 971 1234"
+            ]
+          }
+        ],
+        "address": {
+          "street": "Studentski grad 1234",
+          "country": {
+            "id": "http://sws.geonames.org/732800/"
+          },
+          "countryText": "Bulgaria",
+          "geo": {
+            "lat": "42.123",
+            "long": "15.234"
+          }
+        },
+        "status": {
+          "name": "Operating"
+        },
+        "employees": [
+          {
+            "valueConcept": {
+              "name": "51-100"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

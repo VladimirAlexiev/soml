@@ -1,0 +1,527 @@
+creator: http://simon-reinhardt.de/#me
+id: /soml/dcterms
+label: DCMI metadata terms
+objects:
+  Agent:
+    descr: 'Examples of Agent include person, organization, and software agent. A resource that acts or has the power to act'
+    label: Agent
+    type: dcterms:Agent
+  AgentClass:
+    descr: 'Examples of Agent Class include groups seen as classes, such as students, women, charities, lecturers. A group of agents'
+    label: Agent Class
+    type: dcterms:AgentClass
+  BibliographicResource:
+    descr: 'A book, article, or other documentary resource'
+    label: Bibliographic Resource
+    type: dcterms:BibliographicResource
+  FileFormat:
+    descr: Examples include the formats defined by the list of Internet Media Types. A digital resource format
+    inherits: MediaTypeCommon
+    label: File Format
+    type: dcterms:FileFormat
+  Frequency:
+    descr: A rate at which something recurs
+    label: Frequency
+    type: dcterms:Frequency
+  Jurisdiction:
+    descr: 'The extent or range of judicial, law enforcement, or other authority'
+    inherits: LocationPeriodOrJurisdictionCommon
+    label: Jurisdiction
+    type: dcterms:Jurisdiction
+  LicenseDocument:
+    descr: A legal document giving official permission to do something with a Resource
+    inherits: RightsStatementCommon
+    label: License Document
+    type: dcterms:LicenseDocument
+  LinguisticSystem:
+    descr: 'Examples include written, spoken, sign, and computer languages. A system of signs, symbols, sounds, gestures, or rules used in communication'
+    label: Linguistic System
+    type: dcterms:LinguisticSystem
+  Location:
+    descr: A spatial region or named place
+    inherits: LocationPeriodOrJurisdictionCommon
+    label: Location
+    type: dcterms:Location
+  LocationPeriodOrJurisdiction:
+    descr: 'A location, period of time, or jurisdiction'
+    inherits: LocationPeriodOrJurisdictionCommon
+    label: 'Location, Period, or Jurisdiction'
+    type: dcterms:LocationPeriodOrJurisdiction
+  LocationPeriodOrJurisdictionCommon:
+    kind: abstract
+  MediaType:
+    descr: A file format or physical medium
+    inherits: MediaTypeOrExtentCommon
+    label: Media Type
+    type: dcterms:MediaType
+  MediaTypeCommon:
+    kind: abstract
+  MediaTypeOrExtent:
+    descr: A media type or extent
+    inherits: MediaTypeOrExtentCommon
+    label: Media Type or Extent
+    type: dcterms:MediaTypeOrExtent
+  MediaTypeOrExtentCommon:
+    kind: abstract
+  MethodOfAccrual:
+    descr: A method by which resources are added to a collection
+    label: Method of Accrual
+    type: dcterms:MethodOfAccrual
+  MethodOfInstruction:
+    descr: 'A process that is used to engender knowledge, attitudes, and skills'
+    label: Method of Instruction
+    type: dcterms:MethodOfInstruction
+  PeriodOfTime:
+    descr: An interval of time that is named or defined by its start and end dates
+    inherits: LocationPeriodOrJurisdictionCommon
+    label: Period of Time
+    type: dcterms:PeriodOfTime
+  PhysicalMedium:
+    descr: 'Examples include paper, canvas, or DVD. A physical material or carrier'
+    inherits: MediaTypeCommon
+    label: Physical Medium
+    type: dcterms:PhysicalMedium
+  PhysicalResource:
+    descr: A material thing
+    label: Physical Resource
+    props:
+      medium: {}
+    type: dcterms:PhysicalResource
+  Policy:
+    descr: 'A plan or course of action by an authority, intended to influence and determine decisions, actions, and other matters'
+    label: Policy
+    type: dcterms:Policy
+  ProvenanceStatement:
+    descr: 'A statement of any changes in ownership and custody of a resource since its creation that are significant for its authenticity, integrity, and interpretation'
+    label: Provenance Statement
+    type: dcterms:ProvenanceStatement
+  RightsStatement:
+    descr: 'A statement about the intellectual property rights (IPR) held in or over a Resource, a legal document giving official permission to do something with a resource, or a statement about access rights'
+    inherits: RightsStatementCommon
+    label: Rights Statement
+    type: dcterms:RightsStatement
+  RightsStatementCommon:
+    kind: abstract
+  SizeOrDuration:
+    descr: 'Examples include a number of pages, a specification of length, width, and breadth, or a period in hours, minutes, and seconds. A dimension or extent, or a time taken to play or execute'
+    inherits: MediaTypeOrExtentCommon
+    label: Size or Duration
+    type: dcterms:SizeOrDuration
+  Standard:
+    descr: A basis for comparison; a reference point against which other things can be evaluated
+    label: Standard
+    type: dcterms:Standard
+  dcmitype:Collection:
+    props:
+      accrualMethod: {}
+      accrualPeriodicity: {}
+      accrualPolicy: {}
+    type: dcmitype:Collection
+prefixes:
+  dc: http://purl.org/dc/elements/1.1/
+  dcam: http://purl.org/dc/dcam/
+  dcmitype: http://purl.org/dc/dcmitype/
+  dcterms: http://purl.org/dc/terms/
+  owl: http://www.w3.org/2002/07/owl#
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  skos: http://www.w3.org/2004/02/skos/core#
+  xsd: http://www.w3.org/2001/XMLSchema#
+properties:
+  abstract:
+    descr: A summary of the resource
+    kind: literal
+    label: Abstract
+    max: inf
+    range: string
+    rdfProp: dcterms:abstract
+  accessRights:
+    descr: 'Access Rights may include information regarding access or restrictions based on privacy, security, or other policies. Information about who can access the resource or an indication of its security status'
+    kind: object
+    label: Access Rights
+    max: inf
+    range: RightsStatement
+    rdfProp: dcterms:accessRights
+  accrualMethod:
+    descr: The method by which items are added to a collection
+    kind: object
+    label: Accrual Method
+    max: inf
+    range: MethodOfAccrual
+    rdfProp: dcterms:accrualMethod
+  accrualPeriodicity:
+    descr: The frequency with which items are added to a collection
+    kind: object
+    label: Accrual Periodicity
+    max: inf
+    range: Frequency
+    rdfProp: dcterms:accrualPeriodicity
+  accrualPolicy:
+    descr: The policy governing the addition of items to a collection
+    kind: object
+    label: Accrual Policy
+    max: inf
+    range: Policy
+    rdfProp: dcterms:accrualPolicy
+  alternative:
+    descr: The distinction between titles and alternative titles is application-specific. An alternative name for the resource
+    kind: literal
+    label: Alternative Title
+    max: inf
+    range: string
+    rdfProp: dcterms:alternative
+  audience:
+    descr: A class of entity for whom the resource is intended or useful
+    kind: object
+    label: Audience
+    max: inf
+    range: AgentClass
+    rdfProp: dcterms:audience
+  available:
+    descr: Date (often a range) that the resource became or will become available
+    kind: literal
+    label: Date Available
+    max: inf
+    range: string
+    rdfProp: dcterms:available
+  bibliographicCitation:
+    descr: Recommended practice is to include sufficient bibliographic detail to identify the resource as unambiguously as possible. A bibliographic reference for the resource
+    kind: literal
+    label: Bibliographic Citation
+    max: inf
+    range: string
+    rdfProp: dcterms:bibliographicCitation
+  conformsTo:
+    descr: An established standard to which the described resource conforms
+    kind: object
+    label: Conforms To
+    max: inf
+    range: Standard
+    rdfProp: dcterms:conformsTo
+  contributor:
+    descr: 'Examples of a Contributor include a person, an organization, or a service. Typically, the name of a Contributor should be used to indicate the entity. An entity responsible for making contributions to the resource'
+    kind: object
+    label: Contributor
+    max: inf
+    range: Agent
+    rdfProp: dcterms:contributor
+  coverage:
+    descr: 'Spatial topic and spatial applicability may be a named place or a location specified by its geographic coordinates. Temporal topic may be a named period, date, or date range. A jurisdiction may be a named administrative entity or a geographic place to which the resource applies. Recommended best practice is to use a controlled vocabulary such as the Thesaurus of Geographic Names [TGN]. Where appropriate, named places or time periods can be used in preference to numeric identifiers such as sets of coordinates or date ranges. The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant'
+    kind: object
+    label: Coverage
+    max: inf
+    range: LocationPeriodOrJurisdiction
+    rdfProp: dcterms:coverage
+  created:
+    descr: Date of creation of the resource
+    kind: literal
+    label: Date Created
+    max: inf
+    range: string
+    rdfProp: dcterms:created
+  creator:
+    descr: 'Examples of a Creator include a person, an organization, or a service. Typically, the name of a Creator should be used to indicate the entity. An entity primarily responsible for making the resource'
+    kind: object
+    label: Creator
+    max: inf
+    range: Agent
+    rdfProp: dcterms:creator
+  date:
+    descr: 'Date may be used to express temporal information at any level of granularity. Recommended best practice is to use an encoding scheme, such as the W3CDTF profile of ISO 8601 [W3CDTF]. A point or period of time associated with an event in the lifecycle of the resource'
+    kind: literal
+    label: Date
+    max: inf
+    range: string
+    rdfProp: dcterms:date
+  dateAccepted:
+    descr: Examples of resources to which a Date Accepted may be relevant are a thesis (accepted by a university department) or an article (accepted by a journal). Date of acceptance of the resource
+    kind: literal
+    label: Date Accepted
+    max: inf
+    range: string
+    rdfProp: dcterms:dateAccepted
+  dateCopyrighted:
+    descr: Date of copyright
+    kind: literal
+    label: Date Copyrighted
+    max: inf
+    range: string
+    rdfProp: dcterms:dateCopyrighted
+  dateSubmitted:
+    descr: Examples of resources to which a Date Submitted may be relevant are a thesis (submitted to a university department) or an article (submitted to a journal). Date of submission of the resource
+    kind: literal
+    label: Date Submitted
+    max: inf
+    range: string
+    rdfProp: dcterms:dateSubmitted
+  description:
+    descr: 'Description may include but is not limited to: an abstract, a table of contents, a graphical representation, or a free-text account of the resource. An account of the resource'
+    kind: literal
+    label: Description
+    max: inf
+    range: string
+    rdfProp: dcterms:description
+  educationLevel:
+    descr: 'A class of entity, defined in terms of progression through an educational or training context, for which the described resource is intended'
+    kind: object
+    label: Audience Education Level
+    max: inf
+    range: AgentClass
+    rdfProp: dcterms:educationLevel
+  extent:
+    descr: The size or duration of the resource
+    kind: object
+    label: Extent
+    max: inf
+    range: SizeOrDuration
+    rdfProp: dcterms:extent
+  format:
+    descr: 'Examples of dimensions include size and duration. Recommended best practice is to use a controlled vocabulary such as the list of Internet Media Types [MIME]. The file format, physical medium, or dimensions of the resource'
+    kind: object
+    label: Format
+    max: inf
+    range: MediaTypeOrExtent
+    rdfProp: dcterms:format
+  hasFormat:
+    descr: 'A related resource that is substantially the same as the pre-existing described resource, but in another format'
+    kind: object
+    label: Has Format
+    max: inf
+    range: iri
+    rdfProp: dcterms:hasFormat
+  hasPart:
+    descr: A related resource that is included either physically or logically in the described resource
+    kind: object
+    label: Has Part
+    max: inf
+    range: iri
+    rdfProp: dcterms:hasPart
+  hasVersion:
+    descr: 'A related resource that is a version, edition, or adaptation of the described resource'
+    kind: object
+    label: Has Version
+    max: inf
+    range: iri
+    rdfProp: dcterms:hasVersion
+  identifier:
+    descr: Recommended best practice is to identify the resource by means of a string conforming to a formal identification system. An unambiguous reference to the resource within a given context
+    kind: literal
+    label: Identifier
+    max: inf
+    range: string
+    rdfProp: dcterms:identifier
+  instructionalMethod:
+    descr: 'Instructional Method will typically include ways of presenting instructional materials or conducting instructional activities, patterns of learner-to-learner and learner-to-instructor interactions, and mechanisms by which group and individual levels of learning are measured. Instructional methods include all aspects of the instruction and learning processes from planning and implementation through evaluation and feedback. A process, used to engender knowledge, attitudes and skills, that the described resource is designed to support'
+    kind: object
+    label: Instructional Method
+    max: inf
+    range: MethodOfInstruction
+    rdfProp: dcterms:instructionalMethod
+  isFormatOf:
+    descr: 'A related resource that is substantially the same as the described resource, but in another format'
+    inverseOf: hasFormat
+    kind: object
+    label: Is Format Of
+    max: inf
+    range: iri
+    rdfProp: dcterms:isFormatOf
+  isPartOf:
+    descr: A related resource in which the described resource is physically or logically included
+    inverseOf: hasPart
+    kind: object
+    label: Is Part Of
+    max: inf
+    range: iri
+    rdfProp: dcterms:isPartOf
+  isReferencedBy:
+    descr: 'A related resource that references, cites, or otherwise points to the described resource'
+    inverseOf: references
+    kind: object
+    label: Is Referenced By
+    max: inf
+    range: iri
+    rdfProp: dcterms:isReferencedBy
+  isReplacedBy:
+    descr: 'A related resource that supplants, displaces, or supersedes the described resource'
+    inverseOf: replaces
+    kind: object
+    label: Is Replaced By
+    max: inf
+    range: iri
+    rdfProp: dcterms:isReplacedBy
+  isRequiredBy:
+    descr: 'A related resource that requires the described resource to support its function, delivery, or coherence'
+    inverseOf: requires
+    kind: object
+    label: Is Required By
+    max: inf
+    range: iri
+    rdfProp: dcterms:isRequiredBy
+  isVersionOf:
+    descr: 'Changes in version imply substantive changes in content rather than differences in format. A related resource of which the described resource is a version, edition, or adaptation'
+    inverseOf: hasVersion
+    kind: object
+    label: Is Version Of
+    max: inf
+    range: iri
+    rdfProp: dcterms:isVersionOf
+  issued:
+    descr: 'Date of formal issuance (e.g., publication) of the resource'
+    kind: literal
+    label: Date Issued
+    max: inf
+    range: string
+    rdfProp: dcterms:issued
+  language:
+    descr: 'Recommended best practice is to use a controlled vocabulary such as RFC 4646 [RFC4646]. A language of the resource'
+    kind: object
+    label: Language
+    max: inf
+    range: LinguisticSystem
+    rdfProp: dcterms:language
+  license:
+    descr: A legal document giving official permission to do something with the resource
+    kind: object
+    label: License
+    max: inf
+    range: LicenseDocument
+    rdfProp: dcterms:license
+  mediator:
+    descr: 'In an educational context, a mediator might be a parent, teacher, teaching assistant, or care-giver. An entity that mediates access to the resource and for whom the resource is intended or useful'
+    kind: object
+    label: Mediator
+    max: inf
+    range: AgentClass
+    rdfProp: dcterms:mediator
+  medium:
+    descr: The material or physical carrier of the resource
+    kind: object
+    label: Medium
+    max: inf
+    range: PhysicalMedium
+    rdfProp: dcterms:medium
+  modified:
+    descr: Date on which the resource was changed
+    kind: literal
+    label: Date Modified
+    max: inf
+    range: string
+    rdfProp: dcterms:modified
+  provenance:
+    descr: 'The statement may include a description of any changes successive custodians made to the resource. A statement of any changes in ownership and custody of the resource since its creation that are significant for its authenticity, integrity, and interpretation'
+    kind: object
+    label: Provenance
+    max: inf
+    range: ProvenanceStatement
+    rdfProp: dcterms:provenance
+  publisher:
+    descr: 'Examples of a Publisher include a person, an organization, or a service. Typically, the name of a Publisher should be used to indicate the entity. An entity responsible for making the resource available'
+    kind: object
+    label: Publisher
+    max: inf
+    range: Agent
+    rdfProp: dcterms:publisher
+  references:
+    descr: 'A related resource that is referenced, cited, or otherwise pointed to by the described resource'
+    kind: object
+    label: References
+    max: inf
+    range: iri
+    rdfProp: dcterms:references
+  relation:
+    descr: Recommended best practice is to identify the related resource by means of a string conforming to a formal identification system. A related resource
+    kind: object
+    label: Relation
+    max: inf
+    range: iri
+    rdfProp: dcterms:relation
+    symmetric: 1
+  replaces:
+    descr: 'A related resource that is supplanted, displaced, or superseded by the described resource'
+    kind: object
+    label: Replaces
+    max: inf
+    range: iri
+    rdfProp: dcterms:replaces
+  requires:
+    descr: 'A related resource that is required by the described resource to support its function, delivery, or coherence'
+    kind: object
+    label: Requires
+    max: inf
+    range: iri
+    rdfProp: dcterms:requires
+  rights:
+    descr: 'Typically, rights information includes a statement about various property rights associated with the resource, including intellectual property rights. Information about rights held in and over the resource'
+    kind: object
+    label: Rights
+    max: inf
+    range: RightsStatement
+    rdfProp: dcterms:rights
+  rightsHolder:
+    descr: A person or organization owning or managing rights over the resource
+    kind: object
+    label: Rights Holder
+    max: inf
+    range: Agent
+    rdfProp: dcterms:rightsHolder
+  source:
+    descr: The described resource may be derived from the related resource in whole or in part. Recommended best practice is to identify the related resource by means of a string conforming to a formal identification system. A related resource from which the described resource is derived
+    kind: object
+    label: Source
+    max: inf
+    range: iri
+    rdfProp: dcterms:source
+  spatial:
+    descr: Spatial characteristics of the resource
+    kind: object
+    label: Spatial Coverage
+    max: inf
+    range: Location
+    rdfProp: dcterms:spatial
+  subject:
+    descr: 'Typically, the subject will be represented using keywords, key phrases, or classification codes. Recommended best practice is to use a controlled vocabulary. To describe the spatial or temporal topic of the resource, use the Coverage element. The topic of the resource'
+    kind: object
+    label: Subject
+    max: inf
+    range: iri
+    rdfProp: dcterms:subject
+  tableOfContents:
+    descr: A list of subunits of the resource
+    kind: literal
+    label: Table Of Contents
+    max: inf
+    range: string
+    rdfProp: dcterms:tableOfContents
+  temporal:
+    descr: Temporal characteristics of the resource
+    kind: object
+    label: Temporal Coverage
+    max: inf
+    range: PeriodOfTime
+    rdfProp: dcterms:temporal
+  title:
+    descr: A name given to the resource
+    kind: literal
+    label: Title
+    max: inf
+    range: string
+    rdfProp: dcterms:title
+  type:
+    descr: 'Recommended best practice is to use a controlled vocabulary such as the DCMI Type Vocabulary [DCMITYPE]. To describe the file format, physical medium, or dimensions of the resource, use the Format element. The nature or genre of the resource'
+    kind: object
+    label: Type
+    max: inf
+    range: iri
+    rdfProp: dcterms:type
+  valid:
+    descr: Date (often a range) of validity of a resource
+    kind: literal
+    label: Date Valid
+    max: inf
+    range: string
+    rdfProp: dcterms:valid
+specialPrefixes:
+  ontology_iri: http://purl.org/dc/terms/
+  vocab_iri: http://purl.org/dc/terms/
+  vocab_prefix: dcterms
+updated: 2009-09-07

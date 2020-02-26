@@ -1,0 +1,41 @@
+{
+  innovator(ID: "https://company-graph.ontotext.com/resource/INN/company/WD/Q7095072") {
+    id
+    prefLabel
+    industry {
+      id
+      name
+    }
+    innovationIndustry {
+      id
+      name
+    }
+    website: identifier(where: {identifierSystem: {ident: {EQ: "website"}}}) {
+      ident
+      domain
+    }
+    phone: identifier(where: {identifierSystem: {ident: {EQ: "phone"}}}) {
+      ident
+      identRaw
+    }
+    address {
+      street
+      country {
+        id
+      }
+      countryText
+      geo {
+        lat
+        long
+      }
+    }
+    status {
+      name
+    }
+    employees: observation(where: {observationType: {name: {EQ: "employees range"}}}) {
+      valueConcept {
+        name
+      }
+    }
+  }
+}
