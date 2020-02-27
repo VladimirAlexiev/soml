@@ -1,0 +1,339 @@
+cpanm (App::cpanminus) 1.7044 on perl 5.028000 built for MSWin32-x64-multi-thread
+Work directory is c:\my/.cpanm/work/1582732993.17876
+You have make C:\Strawberry\c\bin\gmake.exe
+You have LWP 6.34
+You have C:\cygwin64\bin\tar.exe, C:\cygwin64\bin\gzip.exe and C:\cygwin64\bin\bzip2.exe
+You have C:\cygwin64\bin\unzip.exe
+Searching XML::LibXML () on cpanmetadb ...
+--> Working on XML::LibXML
+Fetching http://www.cpan.org/authors/id/S/SH/SHLOMIF/XML-LibXML-2.0202.tar.gz
+-> OK
+Unpacking XML-LibXML-2.0202.tar.gz
+Entering XML-LibXML-2.0202
+Checking configure dependencies from META.json
+Checking if you have Config 0 ... Yes (5.028000)
+Checking if you have ExtUtils::MakeMaker 6.58 ... Yes (7.34)
+Checking if you have Alien::Libxml2 0 ... No
+==> Found dependencies: Alien::Libxml2
+Searching Alien::Libxml2 (0) on cpanmetadb ...
+--> Working on Alien::Libxml2
+Fetching http://www.cpan.org/authors/id/P/PL/PLICEASE/Alien-Libxml2-0.12.tar.gz
+-> OK
+Unpacking Alien-Libxml2-0.12.tar.gz
+Entering Alien-Libxml2-0.12
+Checking configure dependencies from META.json
+Checking if you have ExtUtils::MakeMaker 6.58 ... Yes (7.34)
+Checking if you have Alien::Build::MM 1.60 ... No (1.43 < 1.60)
+Checking if you have Alien::Build::Plugin::Build::SearchDep 0.35 ... Yes (1.43)
+Checking if you have Alien::Build::Plugin::Prefer::BadVersion 1.05 ... Yes (1.43)
+Checking if you have Alien::Build 1.60 ... No (1.43 < 1.60)
+Checking if you have ExtUtils::CBuilder 0 ... Yes (0.280230)
+==> Found dependencies: Alien::Build::MM, Alien::Build
+Searching Alien::Build::MM (1.60) on cpanmetadb ...
+--> Working on Alien::Build::MM
+Fetching http://www.cpan.org/authors/id/P/PL/PLICEASE/Alien-Build-2.08.tar.gz
+-> OK
+Unpacking Alien-Build-2.08.tar.gz
+Entering Alien-Build-2.08
+Checking configure dependencies from META.json
+Checking if you have ExtUtils::MakeMaker 6.64 ... Yes (7.34)
+Checking if you have ExtUtils::ParseXS 3.30 ... Yes (3.39)
+Checking if you have ExtUtils::CBuilder 0 ... Yes (0.280230)
+Checking if you have File::Which 0 ... Yes (1.22)
+Configuring Alien-Build-2.08
+Running Makefile.PL
+Checking if your kit is complete...
+Looks good
+Generating a gmake-style Makefile
+Writing Makefile for Alien::Build
+Writing MYMETA.yml and MYMETA.json
+-> OK
+Checking dependencies from MYMETA.json ...
+Checking if you have Capture::Tiny 0.17 ... Yes (0.48)
+Checking if you have File::chdir 0 ... Yes (0.1010)
+Checking if you have ExtUtils::MakeMaker 6.64 ... Yes (7.34)
+Checking if you have Text::ParseWords 3.26 ... Yes (3.30)
+Checking if you have Test2::V0 0.000060 ... Yes (0.000114)
+Checking if you have List::Util 1.33 ... Yes (1.50)
+Checking if you have PkgConfig 0.14026 ... Yes (0.19026)
+Checking if you have Test2::API 1.302096 ... Yes (1.302136)
+Checking if you have JSON::PP 0 ... Yes (2.97001)
+Checking if you have ExtUtils::ParseXS 3.30 ... Yes (3.39)
+Checking if you have FFI::CheckLib 0.11 ... Yes (0.20)
+Checking if you have Path::Tiny 0.077 ... Yes (0.104)
+Checking if you have ExtUtils::CBuilder 0 ... Yes (0.280230)
+Checking if you have File::Which 1.10 ... Yes (1.22)
+Building and testing Alien-Build-2.08
+cp lib/Alien/Build/Manual/FAQ.pod blib\lib/Alien/Build/Manual/FAQ.pod
+cp lib/Alien/Build/MM.pm blib\lib/Alien/Build/MM.pm
+cp lib/Alien/Build/Manual/Alien.pod blib\lib/Alien/Build/Manual/Alien.pod
+cp lib/Alien/Base/FAQ.pod blib\lib/Alien/Base/FAQ.pod
+cp lib/Alien/Build/Log/Abbreviate.pm blib\lib/Alien/Build/Log/Abbreviate.pm
+cp lib/Alien/Build/Manual/Contributing.pod blib\lib/Alien/Build/Manual/Contributing.pod
+cp lib/Alien/Build/Log/Default.pm blib\lib/Alien/Build/Log/Default.pm
+cp lib/Alien/Build/Interpolate/Default.pm blib\lib/Alien/Build/Interpolate/Default.pm
+cp lib/Alien/Base/Wrapper.pm blib\lib/Alien/Base/Wrapper.pm
+cp lib/Alien/Base.pm blib\lib/Alien/Base.pm
+cp lib/Alien/Build/Log.pm blib\lib/Alien/Build/Log.pm
+cp lib/Alien/Build/Manual/AlienAuthor.pod blib\lib/Alien/Build/Manual/AlienAuthor.pod
+cp lib/Alien/Build/CommandSequence.pm blib\lib/Alien/Build/CommandSequence.pm
+cp lib/Alien/Base/PkgConfig.pm blib\lib/Alien/Base/PkgConfig.pm
+cp lib/Alien/Base/Authoring.pod blib\lib/Alien/Base/Authoring.pod
+cp lib/Alien/Build.pm blib\lib/Alien/Build.pm
+cp lib/Alien/Build/Interpolate.pm blib\lib/Alien/Build/Interpolate.pm
+cp lib/Alien/Build/Manual/AlienUser.pod blib\lib/Alien/Build/Manual/AlienUser.pod
+cp lib/Alien/Build/Plugin/Core/Download.pm blib\lib/Alien/Build/Plugin/Core/Download.pm
+cp lib/Alien/Build/Plugin/Core/Gather.pm blib\lib/Alien/Build/Plugin/Core/Gather.pm
+cp lib/Alien/Build/Plugin/Core/CleanInstall.pm blib\lib/Alien/Build/Plugin/Core/CleanInstall.pm
+cp lib/Alien/Build/Plugin/Core.pod blib\lib/Alien/Build/Plugin/Core.pod
+cp lib/Alien/Build/Plugin/Build/Autoconf.pm blib\lib/Alien/Build/Plugin/Build/Autoconf.pm
+cp lib/Alien/Build/Plugin/Build/Make.pm blib\lib/Alien/Build/Plugin/Build/Make.pm
+cp lib/Alien/Build/Plugin/Core/Override.pm blib\lib/Alien/Build/Plugin/Core/Override.pm
+cp lib/Alien/Build/Plugin/Build/SearchDep.pm blib\lib/Alien/Build/Plugin/Build/SearchDep.pm
+cp lib/Alien/Build/Manual/PluginAuthor.pod blib\lib/Alien/Build/Manual/PluginAuthor.pod
+cp lib/Alien/Build/Plugin/Build/MSYS.pm blib\lib/Alien/Build/Plugin/Build/MSYS.pm
+cp lib/Alien/Build/Plugin.pm blib\lib/Alien/Build/Plugin.pm
+cp lib/Alien/Build/Plugin/Build.pod blib\lib/Alien/Build/Plugin/Build.pod
+cp lib/Alien/Build/Plugin/Core/FFI.pm blib\lib/Alien/Build/Plugin/Core/FFI.pm
+cp lib/Alien/Build/Plugin/Build/CMake.pm blib\lib/Alien/Build/Plugin/Build/CMake.pm
+cp lib/Alien/Build/Plugin/Core/Legacy.pm blib\lib/Alien/Build/Plugin/Core/Legacy.pm
+cp lib/Alien/Build/Plugin/Extract/ArchiveZip.pm blib\lib/Alien/Build/Plugin/Extract/ArchiveZip.pm
+cp lib/Alien/Build/Plugin/Decode/HTML.pm blib\lib/Alien/Build/Plugin/Decode/HTML.pm
+cp lib/Alien/Build/Plugin/Core/Setup.pm blib\lib/Alien/Build/Plugin/Core/Setup.pm
+cp lib/Alien/Build/Plugin/Download.pod blib\lib/Alien/Build/Plugin/Download.pod
+cp lib/Alien/Build/Plugin/Extract/ArchiveTar.pm blib\lib/Alien/Build/Plugin/Extract/ArchiveTar.pm
+cp lib/Alien/Build/Plugin/Core/Tail.pm blib\lib/Alien/Build/Plugin/Core/Tail.pm
+cp lib/Alien/Build/Plugin/Extract/CommandLine.pm blib\lib/Alien/Build/Plugin/Extract/CommandLine.pm
+cp lib/Alien/Build/Plugin/Decode/Mojo.pm blib\lib/Alien/Build/Plugin/Decode/Mojo.pm
+cp lib/Alien/Build/Plugin/Decode.pod blib\lib/Alien/Build/Plugin/Decode.pod
+cp lib/Alien/Build/Plugin/Decode/DirListingFtpcopy.pm blib\lib/Alien/Build/Plugin/Decode/DirListingFtpcopy.pm
+cp lib/Alien/Build/Plugin/Download/Negotiate.pm blib\lib/Alien/Build/Plugin/Download/Negotiate.pm
+cp lib/Alien/Build/Plugin/Extract/Directory.pm blib\lib/Alien/Build/Plugin/Extract/Directory.pm
+cp lib/Alien/Build/Plugin/Decode/DirListing.pm blib\lib/Alien/Build/Plugin/Decode/DirListing.pm
+cp lib/Alien/Build/Plugin/Extract.pod blib\lib/Alien/Build/Plugin/Extract.pod
+cp lib/Alien/Build/Plugin/Extract/Negotiate.pm blib\lib/Alien/Build/Plugin/Extract/Negotiate.pm
+cp lib/Alien/Build/Plugin/Fetch/Wget.pm blib\lib/Alien/Build/Plugin/Fetch/Wget.pm
+cp lib/Alien/Build/Plugin/Fetch.pod blib\lib/Alien/Build/Plugin/Fetch.pod
+cp lib/Alien/Build/Plugin/Fetch/Local.pm blib\lib/Alien/Build/Plugin/Fetch/Local.pm
+cp lib/Alien/Build/Plugin/Gather/IsolateDynamic.pm blib\lib/Alien/Build/Plugin/Gather/IsolateDynamic.pm
+cp lib/Alien/Build/Plugin/PkgConfig/LibPkgConf.pm blib\lib/Alien/Build/Plugin/PkgConfig/LibPkgConf.pm
+cp lib/Alien/Build/Plugin/Fetch/NetFTP.pm blib\lib/Alien/Build/Plugin/Fetch/NetFTP.pm
+cp lib/Alien/Build/Plugin/Fetch/LWP.pm blib\lib/Alien/Build/Plugin/Fetch/LWP.pm
+cp lib/Alien/Build/Plugin/PkgConfig/CommandLine.pm blib\lib/Alien/Build/Plugin/PkgConfig/CommandLine.pm
+cp lib/Alien/Build/Plugin/Fetch/CurlCommand.pm blib\lib/Alien/Build/Plugin/Fetch/CurlCommand.pm
+cp lib/Alien/Build/Plugin/PkgConfig/MakeStatic.pm blib\lib/Alien/Build/Plugin/PkgConfig/MakeStatic.pm
+cp lib/Alien/Build/Plugin/Fetch/HTTPTiny.pm blib\lib/Alien/Build/Plugin/Fetch/HTTPTiny.pm
+cp lib/Alien/Build/Plugin/Fetch/LocalDir.pm blib\lib/Alien/Build/Plugin/Fetch/LocalDir.pm
+cp lib/Alien/Build/rc.pm blib\lib/Alien/Build/rc.pm
+cp lib/Alien/Role.pm blib\lib/Alien/Role.pm
+cp lib/Alien/Build/Plugin/Prefer.pod blib\lib/Alien/Build/Plugin/Prefer.pod
+cp lib/Alien/Build/Version/Basic.pm blib\lib/Alien/Build/Version/Basic.pm
+cp lib/Alien/Build/Plugin/Probe/CBuilder.pm blib\lib/Alien/Build/Plugin/Probe/CBuilder.pm
+cp lib/Alien/Build/Plugin/Probe/CommandLine.pm blib\lib/Alien/Build/Plugin/Probe/CommandLine.pm
+cp lib/Alien/Build/Plugin/Prefer/BadVersion.pm blib\lib/Alien/Build/Plugin/Prefer/BadVersion.pm
+cp lib/Test/Alien.pm blib\lib/Test/Alien.pm
+cp lib/Alien/Build/Plugin/PkgConfig/PP.pm blib\lib/Alien/Build/Plugin/PkgConfig/PP.pm
+cp lib/Alien/Build/Util.pm blib\lib/Alien/Build/Util.pm
+cp lib/Alien/Build/Plugin/Test/Mock.pm blib\lib/Alien/Build/Plugin/Test/Mock.pm
+cp lib/Alien/Build/Plugin/Probe.pod blib\lib/Alien/Build/Plugin/Probe.pod
+cp lib/Alien/Build/Plugin/Prefer/GoodVersion.pm blib\lib/Alien/Build/Plugin/Prefer/GoodVersion.pm
+cp lib/Alien/Build/Temp.pm blib\lib/Alien/Build/Temp.pm
+cp lib/Alien/Build/Plugin/Prefer/SortVersions.pm blib\lib/Alien/Build/Plugin/Prefer/SortVersions.pm
+cp lib/Alien/Build/Plugin/PkgConfig/Negotiate.pm blib\lib/Alien/Build/Plugin/PkgConfig/Negotiate.pm
+cp lib/Test/Alien/CanCompile.pm blib\lib/Test/Alien/CanCompile.pm
+cp lib/Test/Alien/CanPlatypus.pm blib\lib/Test/Alien/CanPlatypus.pm
+cp lib/Test/Alien/Build.pm blib\lib/Test/Alien/Build.pm
+cp lib/alienfile.pm blib\lib/alienfile.pm
+cp lib/Test/Alien/Diag.pm blib\lib/Test/Alien/Diag.pm
+cp lib/Test/Alien/Synthetic.pm blib\lib/Test/Alien/Synthetic.pm
+cp lib/Test/Alien/Run.pm blib\lib/Test/Alien/Run.pm
+"C:\Strawberry\perl\bin\perl.exe" "-MExtUtils::Command::MM" "-MTest::Harness" "-e" "undef *Test::Harness::Switches; test_harness(0, 'blib\lib', 'blib\arch')" t/*.t
+# 
+# 
+# 
+# HARNESS_ACTIVE=1
+# HARNESS_VERSION=3.42
+# LANG=en_US.UTF-8
+# PERL5LIB=C:\my\.cpanm\work\1582732993.17876\Alien-Build-2.08\blib\lib;C:\my\.cpanm\work\1582732993.17876\Alien-Build-2.08\blib\arch
+# PERL_MM_USE_DEFAULT=1
+# PERL_UNICODE=31
+# PERL_USE_UNSAFE_INC=1
+# 
+# 
+# 
+# PERL5LIB path
+# C:\my\.cpanm\work\1582732993.17876\Alien-Build-2.08\blib\lib
+# C:\my\.cpanm\work\1582732993.17876\Alien-Build-2.08\blib\arch
+# 
+# 
+# 
+# perl                     5.028000
+# Acme::Alien::DontPanic   -
+# Alien::Base::ModuleBuild -
+# Alien::Libbz2            -
+# Alien::cmake3            -
+# Alien::gzip              -
+# Alien::xz                -
+# Archive::Tar             2.30
+# Archive::Zip             1.60
+# Capture::Tiny            0.48
+# Devel::Hide              0.0010
+# Env::ShellWords          -
+# ExtUtils::CBuilder       0.280230
+# ExtUtils::MakeMaker      7.34
+# ExtUtils::ParseXS        3.39
+# FFI::CheckLib            0.20
+# FFI::Platypus            -
+# File::Listing            6.04
+# File::Listing::Ftpcopy   -
+# File::Which              1.22
+# File::chdir              0.1010
+# HTML::Parser             3.72
+# HTTP::Tiny               0.070
+# IO::Compress::Bzip2      2.081
+# IO::Socket::SSL          2.056
+# IO::Uncompress::Bunzip2  2.081
+# IO::Zlib                 1.10
+# JSON::PP                 2.97001
+# LWP                      6.34
+# LWP::Protocol::https     6.07
+# List::Util               1.5
+# Mojo::DOM58              -
+# Mojolicious              7.85
+# Net::FTP                 3.11
+# Net::SSLeay              1.85
+# Path::Tiny               0.104
+# PkgConfig                0.19026
+# PkgConfig::LibPkgConf    -
+# Readonly                 -
+# Sort::Versions           1.62
+# Test2::API               1.302136
+# Test2::V0                0.000114
+# Text::ParseWords         3.30
+# URI                      1.74
+# YAML                     1.26
+# 
+# 
+# 
+# ---
+# cmake_generator: MinGW Makefiles
+# compiler_type: unix
+# pkg-config:
+#   pkg-config: C:\Strawberry\perl\bin\pkg-config.BAT
+#   pkgconf: C:\cygwin64\bin\pkgconf.EXE
+# system_type: windows-strawberry
+# pkg-config negotiate pick = PkgConfig::PP
+# 
+# 
+# [config.site]
+# # file automatically generated by C:\my\.cpanm\work\1582732993.17876\Alien-Build-2.08\blib\lib/Alien/Build/Plugin/Build/Autoconf.pm
+# libdir='${prefix}/lib'
+# 
+# 
+# 
+t/00_diag.t .......................................... ok
+t/01_use.t ........................................... ok
+t/alien_base.t ....................................... ok
+t/alien_base__system_installed.t ..................... skipped: test requires Alien::Base::ModuleBuild
+t/alien_base_pkgconfig.t ............................. ok
+t/alien_base_wrapper.t ............................... ok
+t/alien_build.t ...................................... ok
+t/alien_build_commandsequence.t ...................... ok
+t/alien_build_commandsequence__cd.t .................. ok
+t/alien_build_interpolate.t .......................... ok
+t/alien_build_interpolate_default.t .................. ok
+t/alien_build_log.t .................................. ok
+t/alien_build_log_abbreviate.t ....................... ok
+t/alien_build_log_default.t .......................... ok
+t/alien_build_meta.t ................................. ok
+t/alien_build_mm.t ................................... ok
+t/alien_build_plugin.t ............................... ok
+t/alien_build_plugin_build_autoconf.t ................ ok
+t/alien_build_plugin_build_cmake.t ................... skipped: test requires Alien::cmake3
+t/alien_build_plugin_build_make.t .................... ok
+t/alien_build_plugin_build_msys.t .................... ok
+t/alien_build_plugin_build_searchdep.t ............... skipped: test requires Env::ShellWords
+t/alien_build_plugin_core_cleaninstall.t ............. ok
+t/alien_build_plugin_core_download.t ................. ok
+t/alien_build_plugin_core_ffi.t ...................... ok
+t/alien_build_plugin_core_gather.t ................... ok
+t/alien_build_plugin_core_legacy.t ................... ok
+t/alien_build_plugin_core_override.t ................. ok
+t/alien_build_plugin_core_setup.t .................... ok
+t/alien_build_plugin_core_tail.t ..................... ok
+t/alien_build_plugin_decode_dirlisting.t ............. ok
+t/alien_build_plugin_decode_dirlistingftpcopy.t ...... ok
+t/alien_build_plugin_decode_html.t ................... ok
+t/alien_build_plugin_decode_mojo.t ................... ok
+utf8 "\x8B" does not map to Unicode at C:/Strawberry/perl/vendor/lib/Path/Tiny.pm line 1783, <$fh> chunk 1.
+utf8 "\x8B" does not map to Unicode at C:/Strawberry/perl/vendor/lib/Path/Tiny.pm line 1783, <$fh> chunk 1.
+t/alien_build_plugin_download_negotiate.t ............ ok
+t/alien_build_plugin_extract_archivetar.t ............ ok
+t/alien_build_plugin_extract_archivezip.t ............ ok
+t/alien_build_plugin_extract_commandline.t ........... ok
+t/alien_build_plugin_extract_commandline__tar_can.t .. skipped: test requires Readonly 1.60
+t/alien_build_plugin_extract_directory.t ............. ok
+t/alien_build_plugin_extract_negotiate.t ............. ok
+t/alien_build_plugin_fetch_curlcommand.t ............. ok
+t/alien_build_plugin_fetch_httptiny.t ................ ok
+t/alien_build_plugin_fetch_local.t ................... ok
+t/alien_build_plugin_fetch_localdir.t ................ ok
+t/alien_build_plugin_fetch_lwp.t ..................... ok
+t/alien_build_plugin_fetch_netftp.t .................. ok
+t/alien_build_plugin_fetch_wget.t .................... ok
+t/alien_build_plugin_gather_isolatedynamic.t ......... ok
+t/alien_build_plugin_meta.t .......................... ok
+t/alien_build_plugin_pkgconfig_commandline.t ......... skipped: use PkgConfig::PP on windows
+t/alien_build_plugin_pkgconfig_libpkgconf.t .......... skipped: Test requires PkgConfig::LibPkgConf
+t/alien_build_plugin_pkgconfig_makestatic.t .......... ok
+t/alien_build_plugin_pkgconfig_negotiate.t ........... ok
+t/alien_build_plugin_pkgconfig_negotiate__pick.t ..... ok
+t/alien_build_plugin_pkgconfig_pp.t .................. ok
+t/alien_build_plugin_prefer_badversion.t ............. ok
+t/alien_build_plugin_prefer_goodversion.t ............ ok
+t/alien_build_plugin_prefer_sortversions.t ........... ok
+t/alien_build_plugin_probe_cbuilder.t ................ ok
+t/alien_build_plugin_probe_cbuilder__live.t .......... skipped: CI only
+t/alien_build_plugin_probe_commandline.t ............. ok
+utf8 "\x8B" does not map to Unicode at C:/Strawberry/perl/vendor/lib/Path/Tiny.pm line 1783, <$fh> chunk 1.
+Malformed UTF-8 character: \x8b (unexpected continuation byte 0x8b, with no preceding start byte) in substitution iterator at C:/Strawberry/perl/vendor/lib/Term/Table/Cell.pm line 49.
+    # Failed test 'default'
+    # at t/alien_build_plugin_test_mock.t line 75.
+    # Caught exception in subtest: Malformed UTF-8 character (fatal) at C:/Strawberry/perl/vendor/lib/Term/Table/Cell.pm line 49.
+
+# Failed test 'download'
+# at t/alien_build_plugin_test_mock.t line 95.
+t/alien_build_plugin_test_mock.t ..................... 
+Dubious, test returned 1 (wstat 256, 0x100)
+Failed 1/6 subtests 
+t/alien_build_rc.t ................................... ok
+t/alien_build_temp.t ................................. ok
+t/alien_build_tempdir.t .............................. ok
+t/alien_build_util.t ................................. ok
+t/alien_build_version_basic.t ........................ ok
+t/alien_role.t ....................................... ok
+t/alienfile.t ........................................ ok
+t/test_alien.t ....................................... ok
+t/test_alien_build.t ................................. ok
+t/test_alien_cancompile.t ............................ ok
+t/test_alien_canplatypus.t ........................... ok
+t/test_alien_diag.t .................................. ok
+t/test_alien_run.t ................................... ok
+t/test_alien_synthetic.t ............................. ok
+
+Test Summary Report
+-------------------
+t/alien_build_plugin_test_mock.t                   (Wstat: 256 Tests: 6 Failed: 1)
+  Failed test:  3
+  Non-zero exit status: 1
+Files=77, Tests=388, 182 wallclock secs ( 1.20 usr +  0.42 sys =  1.62 CPU)
+Result: FAIL
+Failed 1/77 test programs. 1/388 subtests failed.
+gmake: *** [Makefile:971: test_dynamic] Error 255
+-> FAIL Installing Alien::Build::MM failed. See C:\my\.cpanm\work\1582732993.17876\build.log for details. Retry with --force to force install it.
+Searching Alien::Build (1.60) on cpanmetadb ...
+Already tried Alien-Build-2.08. Skipping.
+-> FAIL Installing the dependencies failed: Installed version (1.43) of Alien::Build::MM is not in range '1.60', Installed version (1.43) of Alien::Build is not in range '1.60'
+-> FAIL Bailing out the installation for Alien-Libxml2-0.12.
+-> FAIL Installing the dependencies failed: Module 'Alien::Libxml2' is not installed
+-> FAIL Bailing out the installation for XML-LibXML-2.0202.

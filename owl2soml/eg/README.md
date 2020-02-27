@@ -57,30 +57,44 @@ but SOML wants to check that they are defined on a pair of classes (issue PLATFO
 ## Schema.org
 
 https://schema.org/docs/developers.html
-- Downloaded jsonld, rdf and tll from 
-- schema.nt is not appropriate because it doesn't define prefixes, so we can't obtain GraphQL (developer-friendly) class and prop names.
-
-We have to specify the vocab prefix because schema.org doesn't define an `owl:Ontology`.
-This is the largest ontology I've tested (508k ttl, 730k rdf, 808k jsonld; results in 428k yaml) so it takes substantial time to process.
-- Install `cpanm AtteanX::Parser::JSONLD` (or use `cpan`) for the `.jsonld` file.
-  It causes error `Subroutine spacepad redefined at Debug/ShowStuff.pm` (see https://github.com/kasei/attean/issues/153)
-- The `.rdf` file causes error `Read more bytes than requested` (see [LibXML-schema.rdf.err](LibXML-schema.rdf.err)). This happens with `XML::LibXML` version 2.0132. I tried to upgrade to the latest version 2.0202 but got `Installing Alien::Build::MM failed` (see [Alien-Build-MM_build.log](Alien-Build-MM_build.log)) (see https://rt.cpan.org/Ticket/Display.html?id=131982)
+We have to specify the `--vocab` prefix because schema.org doesn't define an `owl:Ontology`.
+- Downloaded `jsonld`, `rdf` and `ttl`
+- `schema.nt` is not appropriate because it doesn't define prefixes, so we can't obtain GraphQL (developer-friendly) class and prop names.
+- `schemaorg.owl`: that file is missing, see next section.
+- `schema.ttl`: worked fine, see [schema1.yaml](schema1.yaml). 
+  This is the largest ontology I've tested (508k ttl, 730k rdf, 808k jsonld; results in 428k yaml) so it takes substantial time to process.
 
 ```sh
 time perl ../owl2soml.pl -voc schema schema.ttl    > schema1.yaml
 real    4m9.203s
 user    0m0.000s
 sys     0m0.094s
+```
 
+- `schema.jsonld`: install `cpanm AtteanX::Parser::JSONLD` (or use `cpan`).
+  - Caused warning `Subroutine spacepad redefined at Debug/ShowStuff.pm`. See [attean#153](https://github.com/kasei/attean/issues/153) and [rt.cpan.org#131983](https://rt.cpan.org/Ticket/Display.html?id=131983)
+  - Furthermore, this file uses a very poor context and doesn't define the `schema:` namespace, so is not usable by the tool. See [schemaorg#2477](https://github.com/schemaorg/schemaorg/issues/2477)
+
+```sh
 time perl ../owl2soml.pl -voc schema schema.jsonld > schema2.yaml
 Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm line 1635.
         require Debug/ShowStuff.pm called at C:/Strawberry/perl/site/lib/JSONLD.pm line 57
         JSONLD::BEGIN() called at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm line 1635
-...
+        ...
+can't find vocab_iri of --vocab prefix schema
+real    1m51.283s
+user    0m0.015s
+sys     0m0.031s
+```
+  
+- `schema.rdf`:
+  - Caused error `Read more bytes than requested` (see [LibXML-schema.rdf.err](LibXML-schema.rdf.err)). This happens with `XML::LibXML` version 2.0132. 
+  - I tried to upgrade to the latest version 2.0202 but got `Installing Alien::Build::MM failed` (see [Alien-Build-MM_build.log](Alien-Build-MM_build.log)). Posted as [rt.cpan.org#131982](https://rt.cpan.org/Ticket/Display.html?id=131982)
 
+```sh
 time perl ../owl2soml.pl -voc schema schema.rdf    > schema3.yaml
 Read more bytes than requested. Do you use an encoding-related PerlIO layer? at C:/Strawberry/perl/vendor/lib/XML/LibXML.pm line 882.
-...
+      ...
 ```
 
 SOML does not yet support multiple inheritance (issue PLATFORM-360), so we get a bunch of warnings:
@@ -265,8 +279,9 @@ Multiple ranges found for prop dateModified, using only the first one: date
 
 ### Schema OWL (Experimental)
 
-"Experimental/Unsupported"
-schema:domainIncludes and schema:rangeIncludes values are converted into rdfs:domain and rdfs:range values using owl:unionOf to capture the multiplicity of values. Included in the range values are the, implicit within the vocabulary, default values of Text, URL, and Role.
-As an experimental feature, there are no expectations as to its interpretation by any third party tools.
-
-https://schema.org/docs/schemaorg.owl gives error 404 Not Found. Posted https://github.com/schemaorg/schemaorg/issues/2472
+schemaorg.owl
+"Experimental/Unsupported: "schema:domainIncludes and schema:rangeIncludes values are converted into rdfs:domain and rdfs:range values using owl:unionOf to capture the multiplicity of values. Included in the range values are the, implicit within the vocabulary, default values of Text, URL, and Role.
+As an experimental feature, there are no expectations as to its interpretation by any third party tools."
+- https://schema.org/docs/schemaorg.owl gives error 404 Not Found. 
+- https://webschemas.org/docs/schemaorg.owl also gives error 404 Not Found
+- See [schemaorg#2472](https://github.com/schemaorg/schemaorg/issues/2472)

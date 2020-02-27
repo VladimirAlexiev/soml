@@ -5,6 +5,7 @@
 
 use v5.14;
 use warnings;
+use strict;
 use Carp::Always; # use Carp "verbose"
 use Attean;
 use URI::NamespaceMap;
@@ -319,17 +320,18 @@ while (my ($pfx,$iri) = $map->each_map) {
 };
 
 # ontology metadata
-
-my $label = get_label ($ontology_iri,"ontology");
-$soml{label} = $label if $label;
-my @creators = uniq_en_strings($model->objects($ontology_iri, [map IRI($_), @CREATOR_PROPS]));
-$soml{creator} = join ", ", @creators;
-my $created = date_part (one_value($model->objects($ontology_iri, IRI("dct:created"))));
-$soml{created} = $created if $created;
-my $updated = date_part (one_value($model->objects($ontology_iri, IRI("dct:modified"))));
-$soml{updated} = $updated if $updated;
-my $versionInfo = one_value($model->objects($ontology_iri, IRI("owl:versionInfo")));
-$soml{versionInfo} = $versionInfo if $versionInfo;
+if ($ontology_iri) {
+  my $label = get_label ($ontology_iri,"ontology");
+  $soml{label} = $label if $label;
+  my @creators = uniq_en_strings($model->objects($ontology_iri, [map IRI($_), @CREATOR_PROPS]));
+  $soml{creator} = join ", ", @creators;
+  my $created = date_part (one_value($model->objects($ontology_iri, IRI("dct:created"))));
+  $soml{created} = $created if $created;
+  my $updated = date_part (one_value($model->objects($ontology_iri, IRI("dct:modified"))));
+  $soml{updated} = $updated if $updated;
+  my $versionInfo = one_value($model->objects($ontology_iri, IRI("owl:versionInfo")));
+  $soml{versionInfo} = $versionInfo if $versionInfo;
+}
 
 # classes (objects)
 
