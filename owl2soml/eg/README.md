@@ -62,7 +62,7 @@ We have to specify the `--vocab` prefix because schema.org doesn't define an `ow
 - `schema.nt` is not appropriate because it doesn't define prefixes, so we can't obtain GraphQL (developer-friendly) class and prop names.
 - `schemaorg.owl`: that file is missing, see next section.
 - `schema.ttl`: worked fine, see [schema1.yaml](schema1.yaml). 
-  This is the largest ontology I've tested (508k ttl, 730k rdf, 808k jsonld; results in 428k yaml) so it takes substantial time to process.
+  This is the largest ontology I've tested (508k ttl, 730k rdf, 808k jsonld; results in 428k yaml) so it takes substantial time to process: [attean#154](https://github.com/kasei/attean/issues/154)
 
 ```sh
 time perl ../owl2soml.pl -voc schema schema.ttl    > schema1.yaml
@@ -72,7 +72,7 @@ sys     0m0.094s
 ```
 
 - `schema.jsonld`: install `cpanm AtteanX::Parser::JSONLD` (or use `cpan`).
-  - Caused warning `Subroutine spacepad redefined at Debug/ShowStuff.pm`. See [attean#153](https://github.com/kasei/attean/issues/153) and [rt.cpan.org#131983](https://rt.cpan.org/Ticket/Display.html?id=131983)
+  - Installing this now causes warning `Subroutine spacepad redefined at Debug/ShowStuff.pm` on every execution of my script. See [attean#153](https://github.com/kasei/attean/issues/153) and [rt.cpan.org#131983](https://rt.cpan.org/Ticket/Display.html?id=131983)
   - Furthermore, this file uses a very poor context and doesn't define the `schema:` namespace, so is not usable by the tool. See [schemaorg#2477](https://github.com/schemaorg/schemaorg/issues/2477)
 
 ```sh
@@ -88,8 +88,10 @@ sys     0m0.031s
 ```
   
 - `schema.rdf`:
-  - Caused error `Read more bytes than requested` (see [LibXML-schema.rdf.err](LibXML-schema.rdf.err)). This happens with `XML::LibXML` version 2.0132. 
-  - I tried to upgrade to the latest version 2.0202 but got `Installing Alien::Build::MM failed` (see [Alien-Build-MM_build.log](Alien-Build-MM_build.log)). Posted as [rt.cpan.org#131982](https://rt.cpan.org/Ticket/Display.html?id=131982)
+  - Caused error `Read more bytes than requested`. This happens with `XML::LibXML` version 2.0132. 
+  - Upgrading to the latest `XML::LibXML` version 2.0202 causes `Installing Alien::Build::MM failed`, posted [Alien-Build#173](https://github.com/Perl5-Alien/Alien-Build/issues/173), see [Alien-Build-MM_build.log](Alien-Build-MM_build.log).
+    Unsetting `PERL_UNICODE` fixes this problem.
+  - But the prev error still remains, posted [rt.cpan.org#131982](https://rt.cpan.org/Ticket/Display.html?id=131982), see [LibXML-schema.rdf.err](LibXML-schema.rdf.err).
 
 ```sh
 time perl ../owl2soml.pl -voc schema schema.rdf    > schema3.yaml

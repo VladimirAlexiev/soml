@@ -5,6 +5,7 @@
 
 use v5.14;
 use warnings;
+no warnings 'redefine'; # quash https://github.com/kasei/attean/issues/153 "Subroutine spacepad redefined"
 use strict;
 use Carp::Always; # use Carp "verbose"
 use Attean;
@@ -19,12 +20,12 @@ use Getopt::Long;
 our $store = Attean->get_store('Memory')->new();
 our $model = Attean::MutableQuadModel->new(store => $store);
 our $graph = Attean::IRI->new('http://example.org/');
-our $ontology_iri;
-our $ontology;
-our $vocab_iri;
-our $vocab_prefix;
+our $ontology_iri;                     # as Attean::IRI
+our $ontology;                         # $ontology_iri as string
+our $vocab_iri;                        # vocab namespace as Attean::IRI
+our $vocab_prefix;                     # vocab prefix as string
 our $map   = URI::NamespaceMap->new(); # prefixes in loaded ontologies
-our $MAP   = URI::NamespaceMap->new # fixed prefixes used in mapping
+our $MAP   = URI::NamespaceMap->new    # fixed prefixes used in mapping ("service" namespace)
   ({so     => "http://www.ontotext.com/semantic-object/",
     dc     => "http://purl.org/dc/elements/1.1/",
     dct    => "http://purl.org/dc/terms/",
@@ -37,8 +38,11 @@ our $MAP   = URI::NamespaceMap->new # fixed prefixes used in mapping
     vann   => "http://purl.org/vocab/vann/preferredNamespaceUri",
     xsd    => "http://www.w3.org/2001/XMLSchema#",
    });
-our %iri_name;
-our %soml;
+our %iri_name;                  # Mapping (hash, dict) from IRI to GrapQL name
+our %soml;                      # The total SOML as hash (dict), see YAML::Dump at the end
+
+# TODO: document how it searches for vocab_iri and vocab_prefix, in particular swc: props
+# TODO: document rdfs:subClassOf
 
 our @LABEL_PROPS = qw(rdfs:label skos:prefLabel dc:title dct:title);
 our @DESCR_PROPS = qw(rdfs:comment skos:definition skos:description skos:scopeNote dc:description dct:description);
@@ -138,6 +142,8 @@ END
 GetOptions ("vocab=s" => \$vocab_prefix) or usage();
 
 sub first_ontology() {
+  # get ontology metadata, and try to figure out vocab_iri and vocab_prefix
+
   my $base;
   my $iter = $model->subjects(IRI("rdf:type"), IRI("owl:Ontology"));
   if ($ontology_iri = $iter->next) {
@@ -159,6 +165,7 @@ sub first_ontology() {
   } elsif ($ontology_iri and $vocab_iri = one_value($model->objects($ontology_iri, IRI("vann:preferredNamespaceUri")))) {
     $vocab_prefix = $map->prefix_for($vocab_iri)
       or my_die "can't find vocab_prefix for vann:preferredNamespaceUri $vocab_iri";
+       # TODO: handle vann:preferredNamespacePrefix
       # my_die "iri ".$vocab_iri->as_string." from --vocab prefix does not agree with vann:preferredNamespaceUri $vocab_iri1"
     $vocab_iri = iri ($vocab_iri);
   } elsif ($ontology_iri) { # look for it amongst defined prefixes
@@ -197,6 +204,7 @@ sub load_ontologies(@) {
 }
 
 sub query_select ($) {
+  # NOT USED yet
   my $q = shift;
   my $algebra = Attean->get_parser('SPARQL')->new(namespaces => $map)->parse($q); # base => $base,
   my $default_graphs = [$graph];
@@ -208,7 +216,7 @@ sub query_select ($) {
 
 sub uniq_en_strings ($) {
   # in: iterator of Attean::API::Term
-  # out: array of IRIs, or strings that have no lang or lang is "en", skipping duplicates
+  # out: array of IRIs, or strings (have no lang), or langString "@en", skipping duplicates
   my $iter = shift;
   uniq (map $_->value,
         grep !$_->can("has_language") || !$_->has_language || $_->language =~ "^en",
@@ -216,16 +224,18 @@ sub uniq_en_strings ($) {
 }
 
 sub get_label ($$) {
-  my $iri = shift;
-  my $message = shift;
+  # get one label for a node
+  my $iri = shift;     # the node whose labels we're fetching: ontology, class or property
+  my $message = shift; # error message for the user
   my @labels = uniq_en_strings($model->objects($iri, [map IRI($_), @LABEL_PROPS]));
   my_warn "Found multiple labels for $message, using the first one: ".(join", ",@labels)
-    if @labels>1;
-  @labels ? $labels[0] : undef
+    if @labels > 1;
+  @labels ? $labels[0] : undef # if any labels, return the 0-th one, else undef
 }
 
 sub get_descr ($) {
-  my $iri = shift;
+  # get all descriptions for a node
+  my $iri = shift;  # the node whose descriptions we're fetching: ontology, class or property
   my @descr = uniq_en_strings($model->objects($iri, [map IRI($_), @DESCR_PROPS]));
   map {s{\. *$}{}} @descr; # remove trailing dot...
   join ". ", @descr; # ...because we add dot between values
@@ -239,7 +249,7 @@ sub one_value ($) {
 
 sub date_part ($) {
   my $dateTime = shift or return;
-  $dateTime =~ s{T\d.*$}{};
+  $dateTime =~ s{T\d.*$}{}; # substitute: T followed by a digit and any chars; with empty
   $dateTime
 }
 
@@ -258,26 +268,36 @@ sub uri ($) {
 }
 
 sub IRI ($) {
-  # Return Attean::IRI from prefixed name resolved through $MAP.
+  # Return Attean::IRI from prefixed name resolved through $MAP (the "service" namespace).
   my $pname = shift;
   my $iri = iri($MAP->uri($pname));
   $iri
 }
 
 sub iri_name($) {
-  # return hash of "gql" (GraphQL), "rdf" (RDF prefixed name), eventually "super" (gql+"Common")
+  # given an IRI, return hash of 3 names:
+  #  "gql" (GraphQL), "rdf" (RDF prefixed name), eventually "super" (gql+"Common")
   my $iri = shift;
-  return $iri_name{$iri} if $iri_name{$iri};
+  return $iri_name{$iri} if $iri_name{$iri}; # memoization
   my $rdf = $map->abbreviate(uri($iri))
     or my_die("No suitable prefix for IRI ".$iri->as_string);
   my $gql = $rdf;
   $gql =~ s{^$vocab_prefix:}{};
-  $gql =~ s{[-_]}{}g;
+  $gql =~ s{[-_.]}{}g;  # FIXME: this is not very comprehensive
   return $iri_name{$iri} = {gql=>$gql, rdf=>$rdf}
 }
 
 sub make_superClass ($) {
+  # given $iri of a superclass (eg skos:Collection), produce the following configuration:
+  #  skos:Collection:
+  #    inherits: skos:CollectionCommon
+  #    props:
+  #      skos:member: {}
+  #    type: skos:Collection
+  #  skos:CollectionCommon:
+  #    kind: abstract
   # TODO: once we implement concrete superclass, simplify this code
+
   my $iri = shift;
   my $iri_name = iri_name($iri);
   return $iri_name->{super} if $iri_name->{super};
@@ -288,7 +308,7 @@ sub make_superClass ($) {
   ($super, $concrete)
 }
 
-sub expand_union($); # quash "called too early to check prototype"
+sub expand_union($); # quash "called too early to check prototype" because of recursive call
 sub expand_union($) {
   # collect direct objects and union members, eg: schema:domainIncludes :x, :y, [owl:unionOf (:z :t)]
   my $iter = shift;
@@ -311,7 +331,7 @@ sub map_datatype ($) {
 
 ##### main
 
-scalar(@ARGV) < 1 and usage();
+scalar(@ARGV) < 1 and usage(); # if there are no args, print usage() and die
 load_ontologies(@ARGV);
 
 # prefixes
