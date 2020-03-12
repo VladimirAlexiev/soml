@@ -1,11 +1,17 @@
 #!perl -w
 
-# copied from https://github.com/kasei/attean/blob/master/bin/attean_query
-# https://github.com/kasei/attean/issues/149 asks for an easier way
+# DONE: ignore rdfs:subClassOf owl:Thing
+# DONE: Use *Interface instead of *Common for the abstract super-class.
+# DONE: fix_superClasses: Migrate props from concrete subclass to its corresponding abstract superclass
+# DONE: Wide character in print at ..\owl2soml.pl line 445: use open ':std', ':encoding(utf8)'
+# TODO: handle vann:preferredNamespacePrefix
+# TODO: document how it searches for vocab_iri and vocab_prefix, in particular swc: props
+# TODO: document rdfs:subClassOf
 
 use v5.14;
 use warnings;
-no warnings 'redefine'; # quash https://github.com/kasei/attean/issues/153 "Subroutine spacepad redefined"
+use open ':std', ':encoding(utf8)';
+no warnings 'redefine'; # try to quash https://github.com/kasei/attean/issues/153 "Subroutine spacepad redefined" but it's still here :-(
 use strict;
 use Carp::Always; # use Carp "verbose"
 use Attean;
@@ -13,7 +19,6 @@ use URI::NamespaceMap;
 use List::MoreUtils qw(uniq);
 use Array::Utils qw(array_minus);
 #use autodie; # https://perldoc.perl.org/5.30.0/autodie.html
-#use open ':std', ':encoding(utf8)';
 #use Data::Dumper;
 use Getopt::Long;
 
@@ -38,11 +43,9 @@ our $MAP   = URI::NamespaceMap->new    # fixed prefixes used in mapping ("servic
     vann   => "http://purl.org/vocab/vann/preferredNamespaceUri",
     xsd    => "http://www.w3.org/2001/XMLSchema#",
    });
-our %iri_name;                  # Mapping (hash, dict) from IRI to GrapQL name
+our %iri_name;                  # Mapping (hash, dict) from IRI->as_string to GrapQL name
 our %soml;                      # The total SOML as hash (dict), see YAML::Dump at the end
 
-# TODO: document how it searches for vocab_iri and vocab_prefix, in particular swc: props
-# TODO: document rdfs:subClassOf
 
 our @LABEL_PROPS = qw(rdfs:label skos:prefLabel dc:title dct:title);
 our @DESCR_PROPS = qw(rdfs:comment skos:definition skos:description skos:scopeNote dc:description dct:description);
@@ -193,7 +196,7 @@ sub load_ontologies(@) {
   my $count = 0;
   while (my $data = shift) {
     # my $base  = Attean::IRI->new('http://example.org/');
-    open(my $fh, '<:encoding(UTF-8)', $data) or my_die "can't open $data: $!";
+    open(my $fh, '<:encoding(utf-8)', $data) or my_die "can't open $data: $!";
     my $pclass  = Attean->get_parser(filename => $data) // 'AtteanX::Parser::Turtle';
     my $parser  = $pclass->new(namespaces => $map); # base => $base
     my $iter    = $parser->parse_iter_from_io($fh);
@@ -204,7 +207,10 @@ sub load_ontologies(@) {
 }
 
 sub query_select ($) {
-  # NOT USED yet
+  # NOT USED yet.
+  # From https://github.com/kasei/attean/blob/master/bin/attean_query
+  # https://github.com/kasei/attean/issues/149 asks for an easier way
+
   my $q = shift;
   my $algebra = Attean->get_parser('SPARQL')->new(namespaces => $map)->parse($q); # base => $base,
   my $default_graphs = [$graph];
@@ -276,36 +282,56 @@ sub IRI ($) {
 
 sub iri_name($) {
   # given an IRI, return hash of 3 names:
-  #  "gql" (GraphQL), "rdf" (RDF prefixed name), eventually "super" (gql+"Common")
+  #  "gql" (GraphQL), "rdf" (RDF prefixed name), eventually "super" (gql+"Interface")
   my $iri = shift;
+  $iri = $iri->as_string if ref($iri);
   return $iri_name{$iri} if $iri_name{$iri}; # memoization
   my $rdf = $map->abbreviate(uri($iri))
-    or my_die("No suitable prefix for IRI ".$iri->as_string);
+    or my_die("No suitable prefix for IRI $iri");
   my $gql = $rdf;
   $gql =~ s{^$vocab_prefix:}{};
   $gql =~ s{[-_.]}{}g;  # FIXME: this is not very comprehensive
   return $iri_name{$iri} = {gql=>$gql, rdf=>$rdf}
 }
 
-sub make_superClass ($) {
-  # given $iri of a superclass (eg skos:Collection), produce the following configuration:
-  #  skos:Collection:
-  #    inherits: skos:CollectionCommon
-  #    props:
-  #      skos:member: {}
-  #    type: skos:Collection
-  #  skos:CollectionCommon:
-  #    kind: abstract
-  # TODO: once we implement concrete superclass, simplify this code
+# given $iri of a superclass (eg skos:Collection), produce the following configuration:
+#  skos:Collection:
+#    inherits: skos:CollectionInterface
+#    type: skos:Collection
+#  skos:CollectionInterface:
+#    kind: abstract
+#    props:
+#      skos:member: {}
+# TODO: once we implement concrete superclass, simplify this code
 
+sub make_superClass ($) {
   my $iri = shift;
   my $iri_name = iri_name($iri);
   return $iri_name->{super} if $iri_name->{super};
   my $concrete = $iri_name->{gql};
-  my $super = $iri_name->{super} = $concrete."Common";
+  my $super = $iri_name->{super} = $concrete."Interface";
   $soml{objects}{$super}{kind} = "abstract";
   $soml{objects}{$concrete}{inherits} = $super;
   ($super, $concrete)
+}
+
+sub fix_superClasses () {
+  # migrate props from concrete to abstract superclass
+  my %migrate;
+  map {
+    $migrate{$iri_name{$_}{gql}} = $iri_name{$_}{super}
+  } grep $iri_name{$_}{super}, keys %iri_name;
+  # migrate domains
+  map {
+    $soml{objects}{$migrate{$_}}{props} = $soml{objects}{$_}{props};
+    delete $soml{objects}{$_}{props};
+  } grep $soml{objects}{$_}{props}, keys %migrate;
+  # migrate ranges
+  map {
+    my $class = $soml{properties}{$_}{range};
+    $class &&= $migrate{$class};
+    $soml{properties}{$_}{range} = $class if $class;
+  } keys %{$soml{properties}}
 }
 
 sub expand_union($); # quash "called too early to check prototype" because of recursive call
@@ -344,7 +370,7 @@ if ($ontology_iri) {
   my $label = get_label ($ontology_iri,"ontology");
   $soml{label} = $label if $label;
   my @creators = uniq_en_strings($model->objects($ontology_iri, [map IRI($_), @CREATOR_PROPS]));
-  $soml{creator} = join ", ", @creators;
+  $soml{creator} = join ", ", @creators if @creators;
   my $created = date_part (one_value($model->objects($ontology_iri, IRI("dct:created"))));
   $soml{created} = $created if $created;
   my $updated = date_part (one_value($model->objects($ontology_iri, IRI("dct:modified"))));
@@ -356,12 +382,15 @@ if ($ontology_iri) {
 # classes (objects)
 
 # https://github.com/kasei/attean/issues/152: need to use uniq()
-my @classes = uniq ($model->subjects(IRI("rdf:type"), [IRI("rdfs:Class"), IRI("owl:Class")])->elements);
-my @no_classes = IRI("schema:DataType"),
-  $model->subjects(IRI("rdf:type"), IRI("schema:DataType"))->elements;
-# ignore classes that are schema:DataType or blank node
-@classes = grep $_->isa("Attean::IRI"), array_minus (@classes, @no_classes);
+# Ignore anonymous (blank node) classes
+my @classes = uniq (map $_->as_string, grep $_->isa("Attean::IRI"),
+                    $model->subjects(IRI("rdf:type"), [IRI("rdfs:Class"), IRI("owl:Class")])->elements);
+# Undesirable classes. Map to as_string else array_minus may miss the same IRI instantiated from the ontology vs using IRI()
+my @no_classes = map $_->as_string, (IRI("owl:Thing"), IRI("owl:Nothing"), IRI("schema:DataType"),
+                                     $model->subjects(IRI("rdf:type"), IRI("schema:DataType"))->elements);
+@classes = array_minus (@classes, @no_classes);
 for my $class (@classes) {
+  $class = iri($class);
   my $iri_name = iri_name($class);
   my $name = $iri_name->{gql};
   my $rdf = $iri_name->{rdf};
@@ -370,12 +399,14 @@ for my $class (@classes) {
   $soml{objects}{$name}{label} = $label if $label;
   my $descr = get_descr ($class);
   $soml{objects}{$name}{descr} = $descr if $descr;
-  my $superClassIter = $model->objects ($class, IRI("rdfs:subClassOf"));
-  if (my $superClass = $superClassIter->next) {
-    my ($super1,$super2) = make_superClass($superClass);
+  my @superClasses = map $_->as_string, grep $_->isa("Attean::IRI"), $model->objects ($class, IRI("rdfs:subClassOf"))->elements;
+  @superClasses = array_minus (@superClasses, @no_classes);
+  if (@superClasses) {
+    my $super = iri($superClasses[0]);
+    my ($super1,$super2) = make_superClass($super);
     $soml{objects}{$name}{inherits} = $super1;
     my_warn("Multiple superclasses found for $rdf, using only the first one: $super2")
-      if $superClassIter->next
+      if @superClasses>1
     }
 };
 
@@ -436,6 +467,8 @@ for my $prop
   $soml{properties}{$name}{kind}  = $datatype ?  "literal" : "object";
   ## my_die "prop $name: object=$isObjectProp, data=$isDataProp, class=$class, datatype=$datatype" if $name eq "relation";
 };
+
+fix_superClasses();
 
 # print YAML
 use YAML; $YAML::UseHeader=0; print YAML::Dump(\%soml);
