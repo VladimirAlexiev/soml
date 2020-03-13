@@ -4,13 +4,13 @@ label: SKOS Vocabulary
 objects:
   Collection:
     descr: A meaningful collection of concepts. Labelled collections can be used where you would like a set of concepts to be displayed under a 'node label' in the hierarchy
-    inherits: CollectionCommon
+    inherits: CollectionInterface
     label: Collection
+    type: skos:Collection
+  CollectionInterface:
+    kind: abstract
     props:
       member: {}
-    type: skos:Collection
-  CollectionCommon:
-    kind: abstract
   Concept:
     descr: An idea or notion; a unit of thought
     label: Concept
@@ -49,7 +49,7 @@ objects:
     type: skos:ConceptScheme
   OrderedCollection:
     descr: "An ordered collection of concepts, where both the grouping and the ordering are meaningful. Ordered collections can be used where you would like a set of concepts to be displayed in a specific order, and optionally under a 'node label'"
-    inherits: CollectionCommon
+    inherits: CollectionInterface
     label: Ordered Collection
     props:
       memberList: {}
@@ -229,8 +229,8 @@ properties:
     rdfProp: skos:note
   prefLabel:
     descr: |-
-      A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise
-            disjoint properties. The preferred lexical label for a resource, in a given language
+      skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise
+            disjoint properties. The range of skos:prefLabel is the class of RDF plain literals. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The preferred lexical label for a resource, in a given language
     kind: literal
     label: preferred label
     max: inf

@@ -1,12 +1,6 @@
 #!perl -w
 
-# DONE: ignore rdfs:subClassOf owl:Thing
-# DONE: Use *Interface instead of *Common for the abstract super-class.
-# DONE: fix_superClasses: Migrate props from concrete subclass to its corresponding abstract superclass
-# DONE: Wide character in print at ..\owl2soml.pl line 445: use open ':std', ':encoding(utf8)'
-# TODO: handle vann:preferredNamespacePrefix
-# TODO: document how it searches for vocab_iri and vocab_prefix, in particular swc: props
-# TODO: document rdfs:subClassOf
+# see https://github.com/VladimirAlexiev/soml/tree/master/owl2soml#change-log
 
 use v5.14;
 use warnings;
@@ -47,6 +41,11 @@ our %iri_name;                  # Mapping (hash, dict) from IRI->as_string to Gr
 our %soml;                      # The total SOML as hash (dict), see YAML::Dump at the end
 
 
+our @PROP_CLASSES =
+  qw(rdf:Property owl:AnnotationProperty owl:DatatypeProperty owl:ObjectProperty
+   owl:FunctionalProperty owl:InverseFunctionalProperty owl:ReflexiveProperty
+   owl:IrreflexiveProperty owl:SymmetricProperty owl:AsymmetricProperty owl:TransitiveProperty);
+our @NO_PROPS = qw(owl:topObjectProperty owl:bottomObjectProperty owl:topDataProperty owl:bottomDataProperty);
 our @LABEL_PROPS = qw(rdfs:label skos:prefLabel dc:title dct:title);
 our @DESCR_PROPS = qw(rdfs:comment skos:definition skos:description skos:scopeNote dc:description dct:description);
 our @CREATOR_PROPS = qw(dc:creator dct:creator); # dc:contributor dct:contributor
@@ -166,10 +165,20 @@ sub first_ontology() {
       # my_die "--vocab prefix '$vocab_prefix' does not agree with swc:identifier '$vocab_prefix1'" if $vocab_prefix && $vocab_prefix1 && $vocab_prefix ne $vocab_prefix1;
     }
   } elsif ($ontology_iri and $vocab_iri = one_value($model->objects($ontology_iri, IRI("vann:preferredNamespaceUri")))) {
-    $vocab_prefix = $map->prefix_for($vocab_iri)
-      or my_die "can't find vocab_prefix for vann:preferredNamespaceUri $vocab_iri";
-       # TODO: handle vann:preferredNamespacePrefix
-      # my_die "iri ".$vocab_iri->as_string." from --vocab prefix does not agree with vann:preferredNamespaceUri $vocab_iri1"
+    my $voc1 = $map->prefix_for($vocab_iri);
+    my $voc2 = one_value($model->objects($ontology_iri, IRI("vann:preferredNamespacePrefix")));
+    if ($voc1 && $voc2 && $voc1 ne $voc2) {
+      my $vocab2 = $map->namespace_uri($voc2);
+      $vocab2 &&= $vocab2->as_string;
+      if ($vocab2) {
+        my_die "Namespace $vocab_iri from vann:preferredNamespaceUri (prefix $voc1) does not agree with  namespace $vocab2 (from vann:preferredNamespacePrefix $voc2)"
+          if $vocab2 ne $vocab_iri;
+      } else {
+        $map->add_mapping ($voc2 => $vocab_iri)
+      }
+    };
+    $voc1 || $voc2 or my_die "can't find vocab_prefix for vann:preferredNamespaceUri $vocab_iri, and vann:preferredNamespacePrefix is not specified";
+    $vocab_prefix = $voc1 || $voc2;
     $vocab_iri = iri ($vocab_iri);
   } elsif ($ontology_iri) { # look for it amongst defined prefixes
     my $ontology_re = qr(^\Q$ontology\E[#/]?$); # ontology IRI, optionally followed by slash or hash
@@ -411,12 +420,11 @@ for my $class (@classes) {
 };
 
 # properties
-for my $prop
-  (uniq ($model->subjects
-         (IRI("rdf:type"),
-          [map IRI($_),
-           qw(rdf:Property owl:AnnotationProperty owl:DatatypeProperty owl:ObjectProperty)])
-         ->elements)) {
+my @props = uniq (map $_->as_string,
+                  $model->subjects (IRI("rdf:type"), [map IRI($_), @PROP_CLASSES]) ->elements);
+my @no_props = map IRI($_)->as_string, @NO_PROPS;
+@props = array_minus (@props, @no_props);
+for my $prop (map iri($_), @props) {
   my $iri_name = iri_name($prop);
   my $name = $iri_name->{gql};
   my $rdf = $iri_name->{rdf};
@@ -434,8 +442,11 @@ for my $prop
   my $isFunctional = $model->holds ($prop, IRI("rdf:type"), IRI("owl:FunctionalProperty"));
   $soml{properties}{$name}{max} = "inf" unless $isFunctional;
   my $inverseOf = one_value ($model->objects ($prop, [IRI("owl:inverseOf"), IRI("schema:inverseOf")]));
-  $inverseOf = iri_name($inverseOf)->{gql} if $inverseOf;
-  $soml{properties}{$name}{inverseOf} = $inverseOf if $inverseOf;
+  if ($inverseOf) {
+    $inverseOf = iri_name($inverseOf)->{gql};
+    $soml{properties}{$name}{inverseOf} = $inverseOf;
+    $soml{properties}{$inverseOf}{inverseOf} = $name; # hope and pray $inverseOf is defined as a prop
+  };
 
   # domains
   my @domains = expand_union ($model->objects ($prop, [IRI("rdfs:domain"), IRI("schema:domainIncludes")]));
