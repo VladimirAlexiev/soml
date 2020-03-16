@@ -1,5 +1,8 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/>.
+
+skos:prefLabel          schema:domainIncludes skos:Concept, skos:ConceptScheme.
 
 skos:altLabel           rdfs:domain skos:Concept.
 skos:changeNote         rdfs:domain skos:Concept.
@@ -10,10 +13,13 @@ skos:hiddenLabel        rdfs:domain skos:Concept.
 skos:historyNote        rdfs:domain skos:Concept.
 skos:notation           rdfs:domain skos:Concept.
 skos:note               rdfs:domain skos:Concept.
-skos:prefLabel          rdfs:domain skos:Concept.
 skos:scopeNote          rdfs:domain skos:Concept.
 
 skos:inScheme           rdfs:domain skos:Concept.
+
+# The following sub-props assume that domain/range will be inherited from:
+#skos:semanticRelation   rdfs:domain skos:Concept; rdfs:range skos:Concept.
+# But SOML doesn't yet support prop inheritance, so we declare them explicitly:
 
 skos:broadMatch         rdfs:domain skos:Concept; rdfs:range skos:Concept.
 skos:broader            rdfs:domain skos:Concept; rdfs:range skos:Concept.

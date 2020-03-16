@@ -3,7 +3,7 @@
 #+options: inline:t num:nil p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2020-02-12>
+#+date: <2020-03-12>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
@@ -22,7 +22,7 @@ The Ontotext Platform helps create knowledge graphs in an easier way,
 both using and enabling text analytics to interlink and enrich knowledge graphs,
 and enabling better search, exploration, classification, and recommendation across diverse information spaces.
 
-The platform was released at the end of 2019 and is under active develoment and evolution.
+Version 3.0 of the Platform was released at the end of 2019 and is under active develoment and evolution.
 - It is documented at http://platform.ontotext.com/, including:
   - [[http://platform.ontotext.com/semantic-objects/semantic-objects.html][Semantic Objects as a Service (SOaaS)]]
   - [[http://platform.ontotext.com/soml/index.html][Semantic Objects Modeling Language (SOML)]]

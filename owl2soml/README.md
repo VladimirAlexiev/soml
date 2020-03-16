@@ -9,14 +9,17 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
 - [Usage](#usage)
     - [Features](#features)
         - [Ontologies](#ontologies)
-        - [`vocab_prefix, vocab_iri`](#vocabprefix-vocabiri)
+        - [`vocab_prefix, vocab_iri`](#vocab_prefix-vocab_iri)
         - [Classes](#classes)
+            - [subClassOf](#subclassof)
         - [Properties](#properties)
+            - [Domain and Range](#domain-and-range)
         - [Datatypes](#datatypes)
         - [Labels and Descriptions](#labels-and-descriptions)
     - [Limitations](#limitations)
     - [Gaps in Ontologies](#gaps-in-ontologies)
     - [Dependencies](#dependencies)
+        - [Dependency Problems](#dependency-problems)
     - [Change Log](#change-log)
 - [Platform Service](#platform-service)
 
@@ -105,6 +108,7 @@ This is currently not used to shorten IRIs in GraphQL queries and responses, but
 
 The tool recognizes instances of `rdfs:Class` and/or `owl:Class` as classes:
 - If one instance has both types, it's processed only once
+- Anonymous (blank node) classes are ignored
 - It ignores instances of `schema:DataType` and that class itself (see [Datatypes](#datatypes) below)
 - Also ignores the classes `owl:Thing, owl:Nothing` that are not useful for querying
 
@@ -118,7 +122,8 @@ Classes are processed as follows:
 #### subClassOf
 
 `rdfs:subClassOf` is emitted in SOML as `inherits`.
-Currently the platform doesn't support multiple inheritance, so only the first superclass is used.
+- Anonymous (blank node) classes are ignored
+- Currently the platform doesn't support multiple inheritance, so only the first superclass is used.
 
 GraphQL represents superclasses as interfaces, and interfaces cannot have instances.
 Also, it does not allow an interface and class (type) to have the same name as there would be a name conflict.
@@ -199,13 +204,17 @@ The tool recognizes instances of the following as props: `rdf:Property, owl:Anno
   only the more advanced "prop characteristic" types:
   `owl:FunctionalProperty owl:InverseFunctionalProperty owl:ReflexiveProperty owl:IrreflexiveProperty owl:SymmetricProperty owl:AsymmetricProperty owl:TransitiveProperty`.
   So the tool recognizes these too.
-- It doesn't recognize props that merely participate in prop relations such as `rdfs:domain rdfs:range`: 
+- It doesn't recognize props 
+  that participate in prop relations like `rdfs:domain, rdfs:range` but are not declared: 
   each prop must have one of the above types.
-- It ignores the following, which are not useful for querying: `owl:topObjectProperty owl:bottomObjectProperty owl:topDataProperty owl:bottomDataProperty`
+- It ignores the following, which are not useful for querying:
+  `owl:topObjectProperty owl:bottomObjectProperty owl:topDataProperty owl:bottomDataProperty`
 
 Properties are processed as follows:
 - The chars `[-_.]` are removed from class & property local names in order to make valid GraphQL names.
 - Gets prop [Labels and Descriptions](#labels-and-descriptions)
+- Assigns `kind: literal` or `kind: object` depending on property type and range: 
+  see [Datatypes](#datatypes) for details
 - Processes the following prop characteristics:
   - `owl:FunctionalProperty` is mapped to `max: 1`. 
     Unfortunately too few ontologies use this characteristic, 
@@ -227,20 +236,41 @@ properties:
   You could use `inverseAlias` to navigate the SOML Knowledge Graph in any direction,
   without requiring the storage of inverse triples.
 
-- Treats 
+#### Domain and Range
 
-- prop relations (; but );
-- prop domains (rdfs:domain, schema:domainIncludes, owl:unionOf). Multiple domains are allowed.
-- prop ranges (rdfs:range, schema:rangeIncludes, owl:unionOf). Object or datatype ranges are allowed.
+The tool processes the following:
+- domains (`rdfs:domain, schema:domainIncludes`). Multiple domains are allowed (which must be classes).
+- ranges (`rdfs:range, schema:rangeIncludes`). Only the first encountered range is used. Class or datatype ranges are allowed.
 
+The tool also handles `owl:unionOf` constructs, eg (`a owl:Class` is not necessary):
+
+```ttl
+:propP   rdfs:domain         [a owl:Class; owl:unionOf (:classX :classY :classZ].
+:propP schema:domainIncludes [a owl:Class; owl:unionOf (:classX :classY)], :classZ.
+:propP   rdfs:domain         [a owl:Class; owl:unionOf (:classX [a owl:Class; owl:unionOf (:classY :classZ)])].
+```
+
+In all these cases `:prop` is attached to (uses as domain) all mentioned classes:
+
+```yaml
+objects:
+  classX: {props: {propP: {}}}
+  classY: {props: {propP: {}}}
+  classZ: {props: {propP: {}}}
+```
 
 ### Datatypes
 
 The tool handles the following datatypes:
-- XSD datatypes: `boolean, byte, date, dateTime, decimal, double, gYear, gYearMonth, int, integer, long, negativeInteger, nonNegativeInteger, nonPositiveInteger, positiveInteger, short, string, time, unsignedByte, unsignedInt, unsignedLong, unsignedShort`
-- schema.org datatypes: `Boolean, Date, DateTime, Float, Integer, Number, Text, Time`
-- `schema:URL` is mapped to `iri`, i.e. a free IRI that does not designate an instance (object) stored in the platform.
-- the default datatype is `string`. These are also mapped to string: `rdf:langString, rdfs:Literal`
+- `xsd:` datatypes: `boolean, byte, date, dateTime, decimal, double, gYear, gYearMonth, int, integer, long, negativeInteger, nonNegativeInteger, nonPositiveInteger, positiveInteger, short, string, time, unsignedByte, unsignedInt, unsignedLong, unsignedShort`
+- `schema` (schema.org) datatypes: `Boolean, Date, DateTime, Float, Integer, Number, Text, Time`
+  - `schema:URL` is mapped to `iri`, i.e. a free IRI that does not designate an instance (object) stored in the platform.
+- You cannot use `owl:ObjectProperty` with a datatype range.
+  - An `owl:ObjectProperty` without specified class is mapped to `iri` (a "free-standing" URL)
+- You cannot use `owl:DatatypeProperty` or `owl:AnnotationProperty` with a class range.
+  - The default datatype of a prop that doesn't mention a range is `string`.
+    This applies to `rdf:Property, owl:DatatypeProperty, owl:AnnotationProperty`.
+  - These datatypes are also mapped to string: `rdf:langString, rdfs:Literal`.
 
 ### Labels and Descriptions
 
@@ -266,7 +296,7 @@ Example: <anvils and anvil accessories> BTG <forging and metal-shaping tools> BT
 so <anvils and anvil accessories> BTGE <forging and metal-shaping equipment>""".
 ```
 
-TODO: strip HTML tags, which are used e.g. in schema.org rdfs:comments:
+TODO: strip HTML tags, which are used e.g. in schema.org `rdfs:comment`:
 
 ```ttl
 schema:AcceptAction a rdfs:Class ;
@@ -285,17 +315,10 @@ Related actions:<br/><br/>
 In addition to TODOs sprinkled above, `owl2soml` (or the Ontotext Platform) 
 has other limitations (thus ideas for improvement) that are described below.
 If one of these limitations is especially important for you, please send feedback.
-In some cases we've referenced the issue number in our internal issue tracker.
+In some cases we've referenced the issue number in our internal issue tracker,
+so you can enquire about the status of that particular issue.
 
-- Takes metadata only from the first ("root") owl:Ontology
-- Uses only labels/descriptions in "en" (including en-US, en-GB, etc) or without language tag
-- owl:AnnotationProperty and owl:DatatypeProperty are treated the same
-- Doesn't support multiple inheritance (only the first superclass is used). Enquire about the status of issue PLATFORM-360
-- Doesn't support multiple prop ranges (the first one is used). Enquire about the status of issue PLATFORM-1493
-- Doesn't handle owl:import. Instead, provide multiple ontologies on input
-- rdf:langString and rdfs:Literal are mapped to xsd:string
-- Some ontologies (eg SKOS) expect that a subProperty inherits domain & range from its ancestors transitively (e.g. all 10 subprops of skos:semanticRelation do not define their own domain & range but inherit it). Such inheritance is defined in OWL 2 Web Ontology Language Profiles, Table 9 The Semantics of Schema Vocabulary (rules https://www.w3.org/TR/owl2-profiles/#scm-dom2, https://www.w3.org/TR/owl2-profiles/#scm-rng2); though not by RDFS semantics (https://www.w3.org/TR/rdf11-mt/#rdfs-entailment). Enquire about the status of issue PLATFORM-1500
-- [`vocab_prefix, vocab_iri`](#vocabprefix-vocabiri) describes how the tool seeks to find a default `vocab_prefix`.
+- [`vocab_prefix, vocab_iri`](#vocab_prefix-vocab_iri) describes how the tool seeks to find a default `vocab_prefix`.
   It's usually convenient to have one for better GraphQL names, but
   if you have many ontologies and none of them is "dominant", you may not care for a `vocab_prefix`.
   The platform has default values (see [Special Prefixes](http://platform.ontotext.com/soml/preamble.html#special-prefixes)) as shown below, so they are optional in SOML.
@@ -308,18 +331,106 @@ specialPrefixes:
   vocab_prefix: voc
 ```
 
-- The platform should process more prop characteristics: ` owl:InverseFunctionalProperty owl:ReflexiveProperty owl:IrreflexiveProperty owl:AsymmetricProperty owl:TransitiveProperty`.
-Currently it only handles `owl:FunctionalProperty owl:SymmetricProperty` (and `inverseOf`)
+- The tool doesn't handle `owl:import`. Instead, provide multiple ontologies on input
+- Takes metadata only from `owl:Ontology` of the first supplied RDF file.
+  This is a minor limitation since you can always supply the relevant file first.
+- The platform supports metadata (`label:` and `descr`) in only one language, 
+  so the tool uses only labels/descriptions without language tag,
+  or in Egnlish and "dialects" (`en`, `en-US`, `en-GB`, etc).
+- `owl:AnnotationProperty` and `owl:DatatypeProperty` are treated the same,
+  but there are some ontologies that use `owl:AnnotationProperty` with resources.
+- The platform does not yet support multiple inheritance, 
+  so only the first superclass is used (PLATFORM-360).
+- The platform does not yet support multiple prop ranges (range union), 
+  so only the first one is used (PLATFORM-1493)
+- The platform does not yet support `rdf:langString`,
+  so `langString` and `rdfs:Literal` are mapped to `xsd:string` (PLATFORM-1241).
+  We are planning powerful features to fetch only selected languages, 
+  language preference and fallback,
+  find objects having values in certain languages,
+  validation of languages on mutation, etc.
+- Some ontologies (e.g. SKOS) expect that 
+  a subProperty inherits its domain and range from its transitive ancestors 
+  (e.g. none of the 10 subprops of `skos:semanticRelation` define their own domain and range,
+  but expect to inherit it). 
+  - Such inheritance is defined in [OWL 2 Web Ontology Language Profiles](https://www.w3.org/TR/owl2-profiles), 
+    Table 9 The Semantics of Schema Vocabulary, rules [scm-dom2](https://www.w3.org/TR/owl2-profiles/#scm-dom2), [scm-rng2](https://www.w3.org/TR/owl2-profiles/#scm-rng2)
+  - Such inheritance is not defined [RDF 1.1 Semantics](https://www.w3.org/TR/rdf11-mt): [Entailment](https://www.w3.org/TR/rdf11-mt/#rdfs-entailment)
+  - The platform does not yet support property inheritance (PLATFORM-1500)
+- Currently the platform handles only these prop characteristics:
+  `owl:FunctionalProperty owl:SymmetricProperty` (and `inverseOf`)
+  It should process more prop characteristics: 
+  `owl:InverseFunctionalProperty owl:ReflexiveProperty owl:IrreflexiveProperty owl:AsymmetricProperty owl:TransitiveProperty`.
 
-NOT rdfs:subPropertyOf
+- The tool should perhaps also handle the following [Domain and Range](#domain-and-range) constructs:
+
+```ttl
+:classX rdfs:subClassOf [a owl:Restriction; owl:onProperty :propP; owl:allValuesFrom  :classY]
+:classX rdfs:subClassOf [a owl:Restriction; owl:onProperty :propP; owl:someValuesFrom :classY]
+```
+
+  - In both cases emit the following
+    (`props` definitions are local so this won't cause range conflict between classes):
+
+```yaml
+objects:
+  classX: {props: {propP: {range: classY}}}
+```
+
+- Maybe also handle a variant with `owl:equivalentClass` instead of `rdfs:subClassOf`
+
 
 ## Gaps in Ontologies
 
+TODO
+
 ## Dependencies
 
+The tool depends on the following requirements:
+
+- Perl 5.14 or later (but not Perl 6)
+- Specific modules: `Attean URI::NamespaceMap List::MoreUtils Array::Utils YAML`
+  - If you want to read JSONLD: `AtteanX::Parser::JSONLD`
+- Generally installed modules: `warnings strict Carp::Always Getopt::Long`
+
+You can install all required modules with `cpan` (or `cpanm` on straberry-perl), e.g.
+
+```sh
+cpanm Attean URI::NamespaceMap List::MoreUtils Array::Utils YAML
+```
+
+- TODO: Do any of the modules use `XS` and thus require a working C toolchain?
+
+The tool has been tested on:
+- Windows 10.0.17134.112 (MSWin32-x64-multi-thread) with strawberry-perl 5.28.0.1 and `cpanm`
+- Linux: TODO specify
+
+We are also working on a Dockerfile.
+
+### Dependency Problems
+
+Some problems in the dependencies:
+- schema.org is the largest ontology tested so far.
+  `schema.ttl` is 508k ttl, 9k triples, results in 428k yaml, 
+  and takes 4 minutes to process". See [attean#154](https://github.com/kasei/attean/issues/154)
+- `schema.rdf` causes error `Read more bytes than requested` in `XML::LibXML`
+  (other RDF ontologies don't cause this error).
+  See  [rt.cpan.org#131982](https://rt.cpan.org/Ticket/Display.html?id=131982).
+  - To upgrade `XML::LibXML` to the latest version 2.0202, 
+    ensure you don't have the `PERL_UNICODE` env var set
+    or you'll get error `Installing Alien::Build::MM failed`, see [Alien-Build#173](https://github.com/Perl5-Alien/Alien-Build/issues/173).
+    But even this latest version still has the above problem.
+- Installing `AtteanX::Parser::JSONLD` causes warning 
+  `Subroutine spacepad redefined at Debug/ShowStuff.pm` on every execution of the script.
+  The warning is harmless but annoying and I don't know how to quash it 
+  (`no warnings 'redefine'` doesn't help).
+  So don't install this module unless you need to read JSONLD.
+  See [attean#153](https://github.com/kasei/attean/issues/153) and [rt.cpan.org#131983](https://rt.cpan.org/Ticket/Display.html?id=131983)
 
 ## Change Log
 
+15-Мар-2020:
+- Emit `owl:inverseOf` in both directions
 
 13-Mar-2020:
 - Recognize extra prop types: `owl:FunctionalProperty owl:InverseFunctionalProperty owl:ReflexiveProperty owl:IrreflexiveProperty owl:SymmetricProperty owl:AsymmetricProperty owl:TransitiveProperty`
@@ -332,10 +443,14 @@ NOT rdfs:subPropertyOf
 - Handle `vann:preferredNamespacePrefix`
 - Unicode: `Wide character in print at owl2soml.pl line 445`: fixed by `use open ':std', ':encoding(utf8)'`
 
-27-Feb-2020: initial version
+27-Feb-2020:
+- initial version
 
 # Platform Service
 
+TODO 
+
+We have plans to rewrite the tool to Java and as a platform service.
 We also need to design how it is invoked and how input/output/errors are handled.
 The best is to use the same soaas REST APIs, just with different content-type (application/rdf+xml, text/turtle, application/ld+json)
 Need to decide whether the posted ontologies are saved, or only the generated SOML
@@ -347,7 +462,7 @@ bind props to classes. Eg the majority of DCT props are not attached, and the co
 declaring inverseAliases?
 tighten up properties cardinality to single-valued i.e. max=1 (very few ontologies use owl:FunctionalProperty)
 tighten up incoming prop cardinality, i.e. cardinality of inverseAlais (very few ontologies use owl:InverseFunctionalProperty)
-Jem Rayfield how would that be passed on?
+How would that be passed on?
 
 I definitely think there needs to be a command-line version of owl2soml. It's a utility, so it should be easily invocable as a utility.
  it will need to be re-engineered using JAVA (as part of SOaaS) and made available at existing /soml endpoints:

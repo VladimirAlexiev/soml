@@ -408,7 +408,9 @@ for my $class (@classes) {
   $soml{objects}{$name}{label} = $label if $label;
   my $descr = get_descr ($class);
   $soml{objects}{$name}{descr} = $descr if $descr;
-  my @superClasses = map $_->as_string, grep $_->isa("Attean::IRI"), $model->objects ($class, IRI("rdfs:subClassOf"))->elements;
+  # Ignore anonymous (blank node) super-classes
+  my @superClasses = map $_->as_string, grep $_->isa("Attean::IRI"),
+    $model->objects ($class, IRI("rdfs:subClassOf"))->elements;
   @superClasses = array_minus (@superClasses, @no_classes);
   if (@superClasses) {
     my $super = iri($superClasses[0]);
@@ -442,7 +444,7 @@ for my $prop (map iri($_), @props) {
   my $isFunctional = $model->holds ($prop, IRI("rdf:type"), IRI("owl:FunctionalProperty"));
   $soml{properties}{$name}{max} = "inf" unless $isFunctional;
   my $inverseOf = one_value ($model->objects ($prop, [IRI("owl:inverseOf"), IRI("schema:inverseOf")]));
-  if ($inverseOf) {
+  if ($inverseOf) { # emit bidirectionally
     $inverseOf = iri_name($inverseOf)->{gql};
     $soml{properties}{$name}{inverseOf} = $inverseOf;
     $soml{properties}{$inverseOf}{inverseOf} = $name; # hope and pray $inverseOf is defined as a prop
