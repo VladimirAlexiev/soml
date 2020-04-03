@@ -311,6 +311,10 @@ Related actions:<br/><br/>
 """ ;
 ```
 
+TODO:
+- Trim leading and trailing whitespace including spaces and newlines
+- Ignore empty labels/descriptions, which are found in some ontologies
+
 ## Limitations
 
 In addition to TODOs sprinkled above, `owl2soml` (or the Ontotext Platform) 
@@ -342,8 +346,9 @@ specialPrefixes:
   but there are some ontologies that use `owl:AnnotationProperty` with resources.
 - The platform does not yet support multiple inheritance, 
   so only the first superclass is used (PLATFORM-360).
-- The platform does not yet support multiple prop ranges (range union), 
-  so only the first one is used (PLATFORM-1493)
+- TODO: The platform does not yet support multiple prop ranges (union ranges), 
+  so only one is used (PLATFORM-1493).
+  The tool picks a random range, which is undeterministic.
 - The platform does not yet support `rdf:langString`,
   so `langString` and `rdfs:Literal` are mapped to `xsd:string` (PLATFORM-1241).
   We are planning powerful features to fetch only selected languages, 
@@ -461,7 +466,7 @@ The tool depends on the following requirements:
 - Perl 5.14 or later (but not Perl 6)
 - Specific modules: `Attean URI::NamespaceMap List::MoreUtils Array::Utils YAML`
   - If you want to read JSONLD: `AtteanX::Parser::JSONLD`
-- Generally installed modules: `warnings strict Carp::Always Getopt::Long`
+- Generally installed modules: `warnings strict Carp::Always Getopt::Long` (don't need to install these)
 
 You can install all required modules with `cpan` (or `cpanm` on straberry-perl).
 In some cases, using `-f` to force-install even if some test fails, can help, e.g.:
@@ -502,8 +507,9 @@ Some problems in the dependencies:
 ## Change Log
 
 3-Apr-2020
-- Fix `make_superClass()` to return both values when cached: `Use of uninitialized value $super2 in concatenation (.) or string at owl2soml.pl line 420.`
+- `make_superClass()`: fix to return both values when cached: `Use of uninitialized value $super2 in concatenation (.) or string at owl2soml.pl line 420.`
 - `schema:URL, rdfs:Resource, xsd:anyURI` are mapped to `iri`, i.e. a "free-standing" IRI pointing to an external resource (before only the first one was)
+- `get_descr()`: Sort multiple descriptions before concatenating, so the output is deterministic
 
 15-Мар-2020:
 - Emit `owl:inverseOf` in both directions

@@ -36,6 +36,7 @@ our $MAP   = URI::NamespaceMap->new    # fixed prefixes used in mapping ("servic
     swc    => "http://schema.semantic-web.at/ppt/",
     vann   => "http://purl.org/vocab/vann/preferredNamespaceUri",
     xsd    => "http://www.w3.org/2001/XMLSchema#",
+    "fibo-fnd-dt-fd" => "https://spec.edmcouncil.org/fibo/ontology/FND/DatesAndTimes/FinancialDates/",
    });
 our %iri_name;                  # Mapping (hash, dict) from IRI->as_string to GrapQL name
 our %soml;                      # The total SOML as hash (dict), see YAML::Dump at the end
@@ -87,6 +88,7 @@ our %DATATYPES =
    "schema:URL"             => "iri",
    "rdfs:Resource"          => "iri",
    "xsd:anyURI"             => "iri",
+   "fibo-fnd-dt-fd:CombinedDateTime" => "dateOrYearOrMonth",
   );
 
 sub my_exit() {
@@ -255,7 +257,7 @@ sub get_descr ($) {
   my $iri = shift;  # the node whose descriptions we're fetching: ontology, class or property
   my @descr = uniq_en_strings($model->objects($iri, [map IRI($_), @DESCR_PROPS]));
   map {s{\. *$}{}} @descr; # remove trailing dot...
-  join ". ", @descr; # ...because we add dot between values
+  join ". ", sort @descr; # ...because we add dot between values
 }
 
 sub one_value ($) {
