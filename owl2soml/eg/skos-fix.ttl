@@ -5,15 +5,18 @@
 skos:prefLabel          schema:domainIncludes skos:Concept, skos:ConceptScheme.
 
 skos:altLabel           rdfs:domain skos:Concept.
-skos:changeNote         rdfs:domain skos:Concept.
-skos:definition         rdfs:domain skos:Concept.
-skos:editorialNote      rdfs:domain skos:Concept.
-skos:example            rdfs:domain skos:Concept.
 skos:hiddenLabel        rdfs:domain skos:Concept.
-skos:historyNote        rdfs:domain skos:Concept.
+
 skos:notation           rdfs:domain skos:Concept.
+
 skos:note               rdfs:domain skos:Concept.
+skos:definition         rdfs:domain skos:Concept.
 skos:scopeNote          rdfs:domain skos:Concept.
+
+skos:example            rdfs:domain skos:Concept.
+skos:changeNote         rdfs:domain skos:Concept.
+skos:editorialNote      rdfs:domain skos:Concept.
+skos:historyNote        rdfs:domain skos:Concept.
 
 skos:inScheme           rdfs:domain skos:Concept.
 

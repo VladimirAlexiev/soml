@@ -263,20 +263,21 @@ objects:
 
 The tool handles the following datatypes:
 - `xsd:` datatypes: `boolean, byte, date, dateTime, decimal, double, gYear, gYearMonth, int, integer, long, negativeInteger, nonNegativeInteger, nonPositiveInteger, positiveInteger, short, string, time, unsignedByte, unsignedInt, unsignedLong, unsignedShort`
-- `schema` (schema.org) datatypes: `Boolean, Date, DateTime, Float, Integer, Number, Text, Time`
-  - `schema:URL` is mapped to `iri`, i.e. a free IRI that does not designate an instance (object) stored in the platform.
+- `schema:` (schema.org) datatypes: `Boolean, Date, DateTime, Float, Integer, Number, Text, Time`
+- `schema:URL, rdfs:Resource, xsd:anyURI` are mapped to `iri`, i.e. a "free-standing" IRI that does not designate an instance (object) stored in the platform.
 - You cannot use `owl:ObjectProperty` with a datatype range.
-  - An `owl:ObjectProperty` without specified class is mapped to `iri` (a "free-standing" URL)
+  - An `owl:ObjectProperty` without specified class is mapped to `iri` (a "free-standing" IRI)
 - You cannot use `owl:DatatypeProperty` or `owl:AnnotationProperty` with a class range.
   - The default datatype of a prop that doesn't mention a range is `string`.
     This applies to `rdf:Property, owl:DatatypeProperty, owl:AnnotationProperty`.
   - These datatypes are also mapped to string: `rdf:langString, rdfs:Literal`.
+  - Finally, `rdf:Resource` is mapped to `iri`, a free-standing IRI pointing to an external resource
 
 ### Labels and Descriptions
 
 The tool handles the following descriptive attributes of schema elements (Ontology, Classes and Properties):
-- labels (rdfs:label, skos:prefLabel, dc:title, dct:title)
-- descriptions (rdfs:comment, skos:definition, skos:description, skos:scopeNote, dc:description, dct:description)
+- labels: `rdfs:label, skos:prefLabel, dc:title, dct:title`
+- descriptions: `rdfs:comment, skos:definition, skos:description, skos:scopeNote, dc:description, dct:description`
 
 It looks only for values without lang tag or with lang `en` (as well as "dialects" such as `en-US, en-GB`).
 The reason is that many ontologies include translations, but SOML currently supports only one value per element.
@@ -362,23 +363,92 @@ specialPrefixes:
   It should process more prop characteristics: 
   `owl:InverseFunctionalProperty owl:ReflexiveProperty owl:IrreflexiveProperty owl:AsymmetricProperty owl:TransitiveProperty`.
 
-- The tool should perhaps also handle the following [Domain and Range](#domain-and-range) constructs:
+### Handle OWL Restrictions
+
+The tool should perhaps handle the following [Domain and Range](#domain-and-range) constructs:
 
 ```ttl
 :classX rdfs:subClassOf [a owl:Restriction; owl:onProperty :propP; owl:allValuesFrom  :classY]
 :classX rdfs:subClassOf [a owl:Restriction; owl:onProperty :propP; owl:someValuesFrom :classY]
 ```
 
-  - In both cases emit the following
-    (`props` definitions are local so this won't cause range conflict between classes):
+In both cases should emit the following (`props` definitions are local so this won't cause range conflict between classes):
 
 ```yaml
 objects:
   classX: {props: {propP: {range: classY}}}
 ```
 
-- Maybe also handle a variant with `owl:equivalentClass` instead of `rdfs:subClassOf`
+- Also handle variants with `owl:equivalentClass` instead of `rdfs:subClassOf`
+- Also handle variants with `owl:intersectionOf`, they are common in LifeSci ontologies.
+  Eg see this variant from [Populous_tutorial_SWAT4LS_2011.zip::Output_ontology/cell_types.owl](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/owlpopulous/Populous_tutorial_SWAT4LS_2011.zip)
+  (note: two of the intersections are superfluous since they have a single member).
 
+```ttl
+ont:CTODEV18198000  a        owl:Class ;
+        rdfs:label           "macula densa epithelial cell"@en ;
+        rdfs:subClassOf      ont:CTODEV70164000 , ont:CTODEV54509000 ;
+        rdfs:subClassOf      [ a                   owl:Class ;
+                               owl:intersectionOf  ( [ a                   owl:Restriction ;
+                                                       owl:onProperty      properties_populous_tutorial_SWAT4LS2011:participates_in ;
+                                                       owl:someValuesFrom  GO:GO_0003093
+                                                     ]
+                                                     [ a                   owl:Restriction ;
+                                                       owl:onProperty      properties_populous_tutorial_SWAT4LS2011:participates_in ;
+                                                       owl:someValuesFrom  GO:GO_0003098
+                                                     ]
+                                                   )
+                             ] ;
+        rdfs:subClassOf      [ a                   owl:Class ;
+                               owl:intersectionOf  ( [ a                   owl:Restriction ;
+                                                       owl:onProperty      properties_populous_tutorial_SWAT4LS2011:has_phenotypic_quality ;
+                                                       owl:someValuesFrom  PATO:PATO_0001407
+                                                     ]
+                                                   )
+                             ] ;
+        owl:equivalentClass  [ a                   owl:Class ;
+                               owl:intersectionOf  ( obo:CL_0000000
+                                                     [ a                   owl:Class ;
+                                                       owl:intersectionOf  ( [ a                   owl:Restriction ;
+                                                                               owl:onProperty      OBO_REL:part_of ;
+                                                                               owl:someValuesFrom  obo:UBERON_0002335
+                                                                             ]
+                                                                           )
+                                                     ]
+                                                   )
+                             ] .
+```
+
+Should become:
+
+```yaml
+objects:
+  ont:CTODEV18198000:
+    label: "macula densa epithelial cell"
+    inherits: [ont:CTODEV70164000, ont:CTODEV54509000, obo:CL_0000000]
+    props:
+      properties_populous_tutorial_SWAT4LS2011:participates_in: {range: [GO:GO_0003093, GO:GO_0003098]}
+      properties_populous_tutorial_SWAT4LS2011:has_phenotypic_quality: {range: PATO:PATO_0001407}
+      OBO_REL:part_of: {range: obo:UBERON_0002335}
+```
+
+Notes:
+- PLATFORM-1625 to allow punctuation in local names
+- `participates_in: {range: [GO:GO_0003093, GO:GO_0003098]}` is not quite correct 
+  since it means the object of `participates_in` can be from either of these classes, 
+  whereas the Turtle means the object should be from both of these classes.
+  - But it's the best we can do, without introducing anynymous (or auto-generated) intersection classes:
+    `gen:GO_GO_0003093__AND__GO_GO_0003098: {inherits: [GO:GO_0003093, GO:GO_0003098]}`
+
+Also map `:X owl:equivalentClass [owl:intersectionOf (:Y...)]` to `X inherits: Y` (see `obo:CL_0000000` above)
+
+- TODO: check FIBO for some more variants.
+
+### Handle OWL Cardinalities
+
+- Handle OWL cardinality and qualified cardinality restrictions to map to `min: max:`
+- `owl:someValuesFrom` is logically equivalent to `min: 1`. It is widely used in FIBO because it's less computationally expensive for reasoners
+  (see [FIBO Ontology Guidelines T15. Use of "min 1" cardinality restrictions](https://github.com/edmcouncil/fibo/blob/master/ONTOLOGY_GUIDE.md#t15--use-of-min-1-cardinality-restrictions))
 
 ## Gaps in Ontologies
 
@@ -393,10 +463,12 @@ The tool depends on the following requirements:
   - If you want to read JSONLD: `AtteanX::Parser::JSONLD`
 - Generally installed modules: `warnings strict Carp::Always Getopt::Long`
 
-You can install all required modules with `cpan` (or `cpanm` on straberry-perl), e.g.
+You can install all required modules with `cpan` (or `cpanm` on straberry-perl).
+In some cases, using `-f` to force-install even if some test fails, can help, e.g.:
 
 ```sh
-cpanm Attean URI::NamespaceMap List::MoreUtils Array::Utils YAML
+cpan -fi Attean URI::NamespaceMap List::MoreUtils Array::Utils YAML
+cpanm -f Attean URI::NamespaceMap List::MoreUtils Array::Utils YAML
 ```
 
 - TODO: Do any of the modules use `XS` and thus require a working C toolchain?
@@ -428,6 +500,10 @@ Some problems in the dependencies:
   See [attean#153](https://github.com/kasei/attean/issues/153) and [rt.cpan.org#131983](https://rt.cpan.org/Ticket/Display.html?id=131983)
 
 ## Change Log
+
+3-Apr-2020
+- Fix `make_superClass()` to return both values when cached: `Use of uninitialized value $super2 in concatenation (.) or string at owl2soml.pl line 420.`
+- `schema:URL, rdfs:Resource, xsd:anyURI` are mapped to `iri`, i.e. a "free-standing" IRI pointing to an external resource (before only the first one was)
 
 15-Мар-2020:
 - Emit `owl:inverseOf` in both directions
@@ -468,3 +544,7 @@ I definitely think there needs to be a command-line version of owl2soml. It's a 
  it will need to be re-engineered using JAVA (as part of SOaaS) and made available at existing /soml endpoints:
 We can build a CLI (or/and a GUI) that uses /soml Content-Type: text/turtle
 
+should be able to pass a few params (eg voc prefix)
+should also be available as command line tool
+should test on ontologies collected in owl2soml/eg and more:
+Skos, dct, schema, gvp; parts of FIBO...

@@ -85,6 +85,8 @@ our %DATATYPES =
    "schema:Text"            => "string",
    "schema:Time"            => "time",
    "schema:URL"             => "iri",
+   "rdfs:Resource"          => "iri",
+   "xsd:anyURI"             => "iri",
   );
 
 sub my_exit() {
@@ -299,7 +301,7 @@ sub iri_name($) {
     or my_die("No suitable prefix for IRI $iri");
   my $gql = $rdf;
   $gql =~ s{^$vocab_prefix:}{};
-  $gql =~ s{[-_.]}{}g;  # FIXME: this is not very comprehensive
+  $gql =~ s{[-_.]}{}g;  # FIXME: this is neither nice, not comprehensive. PLATFORM-1625 Allow punctuation in local names and prefixes
   return $iri_name{$iri} = {gql=>$gql, rdf=>$rdf}
 }
 
@@ -316,7 +318,8 @@ sub iri_name($) {
 sub make_superClass ($) {
   my $iri = shift;
   my $iri_name = iri_name($iri);
-  return $iri_name->{super} if $iri_name->{super};
+  return ($iri_name->{super}, $iri_name->{gql})
+    if $iri_name->{super};
   my $concrete = $iri_name->{gql};
   my $super = $iri_name->{super} = $concrete."Interface";
   $soml{objects}{$super}{kind} = "abstract";
@@ -415,6 +418,7 @@ for my $class (@classes) {
   if (@superClasses) {
     my $super = iri($superClasses[0]);
     my ($super1,$super2) = make_superClass($super);
+    ## print STDERR "make_superClass($super) = ($super1,$super2)\n";
     $soml{objects}{$name}{inherits} = $super1;
     my_warn("Multiple superclasses found for $rdf, using only the first one: $super2")
       if @superClasses>1
@@ -469,8 +473,10 @@ for my $prop (map iri($_), @props) {
       if @ranges>1;
     # fix for referenced classes that may not be defined in the ontology
     $soml{objects}{$class}{type} = iri_name($range)->{rdf} if $class;
-    if ($isObjectProp && $datatype) {my_die("Prop $name is owl:ObjectProperty but has range datatype $datatype")};
-    if ($isDataProp   && $class)    {my_die("Prop $name is owl:DatatypeProperty or owl:AnnotationProperty but has range class $class")};
+    $isObjectProp && $datatype && $datatype ne "iri"
+      and my_die("Prop $name is owl:ObjectProperty but has range datatype $datatype");
+    $isDataProp && $class
+      and my_die("Prop $name is owl:DatatypeProperty or owl:AnnotationProperty but has range class $class");
   };
   # defaults: "free-standing" URL vs string
   if (!$datatype && !$class) {

@@ -3,7 +3,7 @@
 #+options: inline:t num:nil p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2020-03-12>
+#+date: <2020-03-23>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
@@ -346,23 +346,16 @@ as distinct business classes
 
 ** GraphQL Type vs rdf:type
 
-** No Multiple Typing
-
 ** Single vs Multiple-Value Props
 
 ** Inverse Aliases
 
-** Literals (langString, union datatypes)
+** Literals 
+(langString, union datatypes)
 
 ** Extended Pattern (Prefix + Regex)
 
 ** IRI Generation
 
 ** Schema Inclusion/Modularity
-
-** Concrete Superclass
-
-** Covariant Range
-
-** Multiple Inheritance
 

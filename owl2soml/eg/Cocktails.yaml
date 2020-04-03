@@ -1,0 +1,263 @@
+id: /soml/cocktail-ontology
+label: Cocktail ontology
+objects:
+  AlcoholicBeverages:
+    inherits: BeveragesInterface
+    label: Alcoholic Beverages
+    type: cocktail-ontology:Alcoholic-Beverages
+  AlcoholicBeveragesInterface:
+    kind: abstract
+  Beverages:
+    inherits: BeveragesInterface
+    label: Beverages
+    type: cocktail-ontology:Beverages
+  BeveragesInterface:
+    kind: abstract
+  Brandies:
+    inherits: AlcoholicBeveragesInterface
+    label: Brandies
+    type: cocktail-ontology:Brandies
+  Cocktail:
+    label: Cocktail
+    props:
+      consistsof: {}
+      iba: {}
+      image: {}
+      isvariantof: {}
+      notdrinkafterd: {}
+      preparation: {}
+      served: {}
+      timing: {}
+      uses: {}
+      uses2: {}
+    type: cocktail-ontology:Cocktail
+  Coconutmilks:
+    inherits: NonalcoholicBeveragesInterface
+    label: Coconut milks
+    type: cocktail-ontology:Coconut-milks
+  Coffees:
+    inherits: NonalcoholicBeveragesInterface
+    label: Coffees
+    type: cocktail-ontology:Coffees
+  Dairyproducts:
+    inherits: NonalcoholicBeveragesInterface
+    label: Dairy products
+    type: cocktail-ontology:Dairy-products
+  Drinkware:
+    label: Drinkware
+    props:
+      image2: {}
+      isusedby: {}
+    type: cocktail-ontology:Drinkware
+  Fortifiedwines:
+    inherits: AlcoholicBeveragesInterface
+    label: Fortified wines
+    type: cocktail-ontology:Fortified-wines
+  Fromeggs:
+    inherits: NonalcoholicBeveragesInterface
+    label: From eggs
+    type: cocktail-ontology:From-eggs
+  Garnish:
+    label: Garnish
+    props:
+      isOppositeOf: {}
+      isusedby2: {}
+    type: cocktail-ontology:Garnish
+  Gins:
+    inherits: AlcoholicBeveragesInterface
+    label: Gins
+    type: cocktail-ontology:Gins
+  Herbaldistillates:
+    inherits: NonalcoholicBeveragesInterface
+    label: Herbal distillates
+    type: cocktail-ontology:Herbal-distillates
+  Hotsouces:
+    inherits: SoucesInterface
+    type: cocktail-ontology:Hot-souces
+  Ingredients:
+    label: Ingredients
+    props:
+      image3: {}
+      ispartof: {}
+    type: cocktail-ontology:Ingredients
+  Juices:
+    inherits: NonalcoholicBeveragesInterface
+    label: Juices
+    type: cocktail-ontology:Juices
+  Liqueurs:
+    inherits: AlcoholicBeveragesInterface
+    label: Liqueurs
+    type: cocktail-ontology:Liqueurs
+  NonalcoholicBeverages:
+    inherits: BeveragesInterface
+    label: Non-alcoholic Beverages
+    type: cocktail-ontology:Non-alcoholic-Beverages
+  NonalcoholicBeveragesInterface:
+    kind: abstract
+  Rums:
+    inherits: AlcoholicBeveragesInterface
+    label: Rums
+    type: cocktail-ontology:Rums
+  Schnapps:
+    inherits: AlcoholicBeveragesInterface
+    label: Schnapps'
+    type: cocktail-ontology:Schnapps
+  Softdrinks:
+    inherits: NonalcoholicBeveragesInterface
+    label: Soft drinks
+    type: cocktail-ontology:Soft-drinks
+  Souces:
+    inherits: SoucesInterface
+    label: Sauces
+    type: cocktail-ontology:Souces
+  SoucesInterface:
+    kind: abstract
+  Sweeteners:
+    label: Sweeteners
+    type: cocktail-ontology:Sweeteners
+  Tequilas:
+    inherits: AlcoholicBeveragesInterface
+    label: Tequilas
+    type: cocktail-ontology:Tequilas
+  Vodkas:
+    inherits: AlcoholicBeveragesInterface
+    label: Vodkas
+    type: cocktail-ontology:Vodkas
+  Whiskie:
+    inherits: AlcoholicBeveragesInterface
+    label: Whiskies
+    type: cocktail-ontology:Whiskie
+  Wines:
+    inherits: AlcoholicBeveragesInterface
+    label: Wines
+    type: cocktail-ontology:Wines
+  Worcestershiresauce:
+    inherits: SoucesInterface
+    label: Worcestershire sauce
+    type: cocktail-ontology:Worcestershire-sauce
+prefixes:
+  cocktail-ontology: http://vocabulary.semantic-web.at/cocktail-ontology/
+  csw: http://semantic-web.at/ontologies/csw.owl#
+  ctag: http://commontag.org/ns#
+  cyc: http://sw.cyc.com/concept/
+  cycAnnot: http://sw.cyc.com/CycAnnotations_v1#
+  dbpedia: http://dbpedia.org/resource/
+  dc: http://purl.org/dc/elements/1.1/
+  dcterms: http://purl.org/dc/terms/
+  foaf: http://xmlns.com/foaf/0.1/
+  freebase: http://rdf.freebase.com/ns/
+  opencyc: http://sw.opencyc.org/concept/
+  owl: http://www.w3.org/2002/07/owl#
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  skos: http://www.w3.org/2004/02/skos/core#
+  skosxl: http://www.w3.org/2008/05/skos-xl#
+  swc: http://schema.semantic-web.at/ppt/
+  tags: http://www.holygoat.co.uk/owl/redwood/0.1/tags/
+  xsd: http://www.w3.org/2001/XMLSchema#
+properties:
+  consistsof:
+    inverseOf: ispartof
+    kind: object
+    label: consists of
+    max: inf
+    range: Ingredients
+    rdfProp: cocktail-ontology:consists-of
+  iba:
+    kind: literal
+    label: IBA
+    range: iri
+    rdfProp: cocktail-ontology:iba
+  image:
+    kind: literal
+    label: image
+    max: inf
+    range: iri
+    rdfProp: cocktail-ontology:image
+  image2:
+    kind: literal
+    label: image
+    max: inf
+    range: iri
+    rdfProp: cocktail-ontology:image_2
+  image3:
+    kind: literal
+    label: image
+    max: inf
+    range: iri
+    rdfProp: cocktail-ontology:image_3
+  isOppositeOf:
+    kind: object
+    label: isOppositeOf
+    max: inf
+    range: Garnish
+    rdfProp: cocktail-ontology:isOppositeOf
+    symmetric: 1
+  ispartof:
+    inverseOf: consistsof
+    kind: object
+    label: is part of
+    max: inf
+    range: Cocktail
+    rdfProp: cocktail-ontology:is-part-of
+  isusedby:
+    inverseOf: uses
+    kind: object
+    label: is used by
+    max: inf
+    range: Cocktail
+    rdfProp: cocktail-ontology:is-used-by
+  isusedby2:
+    inverseOf: uses2
+    kind: object
+    label: is used by
+    max: inf
+    range: Cocktail
+    rdfProp: cocktail-ontology:is-used-by_2
+  isvariantof:
+    kind: object
+    label: is variant of
+    max: inf
+    range: Cocktail
+    rdfProp: cocktail-ontology:is-variant-of
+  notdrinkafterd:
+    kind: literal
+    range: dateTime
+    rdfProp: cocktail-ontology:notdrinkafterd
+  preparation:
+    kind: literal
+    label: preparation
+    max: inf
+    range: string
+    rdfProp: cocktail-ontology:preparation
+  served:
+    kind: literal
+    label: served
+    max: inf
+    range: string
+    rdfProp: cocktail-ontology:served
+  timing:
+    kind: literal
+    max: inf
+    range: string
+    rdfProp: cocktail-ontology:timing
+  uses:
+    inverseOf: isusedby
+    kind: object
+    label: uses Drinkware
+    max: inf
+    range: Drinkware
+    rdfProp: cocktail-ontology:uses
+  uses2:
+    inverseOf: isusedby2
+    kind: object
+    label: uses Garnish
+    max: inf
+    range: Garnish
+    rdfProp: cocktail-ontology:uses_2
+specialPrefixes:
+  base_iri: http://vocabulary.semantic-web.at
+  ontology_iri: http://vocabulary.semantic-web.at/cocktail-ontology
+  vocab_iri: http://vocabulary.semantic-web.at/cocktail-ontology/
+  vocab_prefix: cocktail-ontology
+updated: 2020-02-11

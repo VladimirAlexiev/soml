@@ -1,0 +1,273 @@
+@prefix csw: <http://semantic-web.at/ontologies/csw.owl#> .
+@prefix ctag: <http://commontag.org/ns#> .
+@prefix cyc: <http://sw.cyc.com/concept/> .
+@prefix cycAnnot: <http://sw.cyc.com/CycAnnotations_v1#> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix freebase: <http://rdf.freebase.com/ns/> .
+@prefix opencyc: <http://sw.opencyc.org/concept/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix skosxl: <http://www.w3.org/2008/05/skos-xl#> .
+@prefix swc: <http://schema.semantic-web.at/ppt/> .
+@prefix tags: <http://www.holygoat.co.uk/owl/redwood/0.1/tags/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology> a owl:Ontology;
+  dcterms:contributor <http://localhost/user/nagyh>;
+  dcterms:modified "2020-02-11T10:29:18.705Z"^^xsd:dateTime;
+  swc:BaseUrl "http://vocabulary.semantic-web.at";
+  swc:ResourceSeparator "/";
+  swc:containsCustomType <http://vocabulary.semantic-web.at/cocktail-ontology/Alcoholic-Beverages>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/Beverages>, <http://vocabulary.semantic-web.at/cocktail-ontology/Brandies>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail>, <http://vocabulary.semantic-web.at/cocktail-ontology/Coconut-milks>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/Dairy-products>, <http://vocabulary.semantic-web.at/cocktail-ontology/Drinkware>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/Fortified-wines>, <http://vocabulary.semantic-web.at/cocktail-ontology/From-eggs>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/Garnish>, <http://vocabulary.semantic-web.at/cocktail-ontology/Gins>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/Herbal-distillates>, <http://vocabulary.semantic-web.at/cocktail-ontology/Hot-souces>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/Ingredients>, <http://vocabulary.semantic-web.at/cocktail-ontology/Juices>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/Liqueurs>, <http://vocabulary.semantic-web.at/cocktail-ontology/Non-alcoholic-Beverages>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/Rums>, <http://vocabulary.semantic-web.at/cocktail-ontology/Schnapps>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/Coffees>, <http://vocabulary.semantic-web.at/cocktail-ontology/Soft-drinks>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/Souces>, <http://vocabulary.semantic-web.at/cocktail-ontology/Sweeteners>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/Tequilas>, <http://vocabulary.semantic-web.at/cocktail-ontology/Vodkas>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/Whiskie>, <http://vocabulary.semantic-web.at/cocktail-ontology/Wines>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/Worcestershire-sauce>;
+  swc:containsDirectedProperty <http://vocabulary.semantic-web.at/cocktail-ontology/is-variant-of>;
+  swc:containsSymmetricProperty <http://vocabulary.semantic-web.at/cocktail-ontology/isOppositeOf>;
+  swc:hasLanguagePreference <urn:node1e0g3dkd8x365135>, <urn:node1e0g3dkd8x365136>,
+    <urn:node1e0g3dkd8x365137>;
+  swc:containsPropertyWithInverse <http://vocabulary.semantic-web.at/cocktail-ontology/uses>;
+  swc:identifier "cocktail-ontology";
+  swc:visible "PUBLIC" .
+
+<urn:node1e0g3dkd8x365135> a swc:LanguagePreference;
+  swc:languagePreferencePriority "0"^^xsd:int;
+  swc:languagePreferenceValue "de" .
+
+<urn:node1e0g3dkd8x365137> a swc:LanguagePreference;
+  swc:languagePreferencePriority "2"^^xsd:int;
+  swc:languagePreferenceValue "mis" .
+
+<urn:node1e0g3dkd8x365136> a swc:LanguagePreference;
+  swc:languagePreferencePriority "1"^^xsd:int;
+  swc:languagePreferenceValue "en" .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Drinkware> a owl:Class;
+  rdfs:label "Drinkware" .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Rums> a owl:Class;
+  rdfs:label "Rums";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Alcoholic-Beverages> a owl:Class;
+  rdfs:label "Alcoholic Beverages";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Beverages> a owl:Class;
+  rdfs:label "Beverages" .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Schnapps> a owl:Class;
+  rdfs:label "Schnapps'";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Hot-souces> a owl:Class;
+  dcterms:contributor <http://localhost/user/barzgarann>;
+  dcterms:modified "2018-03-17T17:04:26.000Z"^^xsd:dateTime;
+  rdfs:comment ""@de, """                                        
+                                    """@de;
+  rdfs:label "Hot sauces"@de;
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Souces> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Souces> a owl:Class;
+  rdfs:label "Sauces" .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Brandies> a owl:Class;
+  rdfs:label "Brandies";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail> a owl:Class;
+  rdfs:label "Cocktail" .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Dairy-products> a owl:Class;
+  rdfs:label "Dairy products";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Non-alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Non-alcoholic-Beverages> a owl:Class;
+  rdfs:label "Non-alcoholic Beverages";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Juices> a owl:Class;
+  rdfs:label "Juices";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Non-alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Herbal-distillates> a owl:Class;
+  rdfs:label "Herbal distillates";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Non-alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Coconut-milks> a owl:Class;
+  rdfs:label "Coconut milks";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Non-alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Vodkas> a owl:Class;
+  rdfs:label "Vodkas";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Liqueurs> a owl:Class;
+  rdfs:label "Liqueurs";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Ingredients> a owl:Class;
+  rdfs:label "Ingredients" .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/From-eggs> a owl:Class;
+  rdfs:label "From eggs";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Non-alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Worcestershire-sauce> a owl:Class;
+  rdfs:label "Worcestershire sauce";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Souces> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Gins> a owl:Class;
+  rdfs:label "Gins";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Garnish> a owl:Class;
+  rdfs:label "Garnish" .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Soft-drinks> a owl:Class;
+  rdfs:label "Soft drinks";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Non-alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Wines> a owl:Class;
+  rdfs:label "Wines";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Fortified-wines> a owl:Class;
+  rdfs:label "Fortified wines";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Tequilas> a owl:Class;
+  rdfs:label "Tequilas";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Sweeteners> a owl:Class;
+  rdfs:label "Sweeteners" .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Whiskie> a owl:Class;
+  rdfs:label "Whiskies";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/Coffees> a owl:Class;
+  rdfs:label "Coffees";
+  rdfs:subClassOf <http://vocabulary.semantic-web.at/cocktail-ontology/Non-alcoholic-Beverages> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/is-variant-of> a owl:ObjectProperty;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail>;
+  rdfs:label "is variant of";
+  rdfs:range <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/isOppositeOf> a owl:SymmetricProperty;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Garnish>;
+  rdfs:label "isOppositeOf";
+  rdfs:range <http://vocabulary.semantic-web.at/cocktail-ontology/Garnish> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/uses> a owl:ObjectProperty;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail>;
+  rdfs:label "uses Drinkware";
+  rdfs:range <http://vocabulary.semantic-web.at/cocktail-ontology/Drinkware>;
+  owl:inverseOf <http://vocabulary.semantic-web.at/cocktail-ontology/is-used-by> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/is-used-by> a owl:ObjectProperty;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Drinkware>;
+  rdfs:label "is used by";
+  rdfs:range <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail>;
+  owl:inverseOf <http://vocabulary.semantic-web.at/cocktail-ontology/uses> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology> dcterms:description "How to create great ontologies";
+  swc:containsAttributeProperty <http://vocabulary.semantic-web.at/cocktail-ontology/iba>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/image>, <http://vocabulary.semantic-web.at/cocktail-ontology/image_2>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/image_3>, <http://vocabulary.semantic-web.at/cocktail-ontology/notdrinkafterd>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/preparation>, <http://vocabulary.semantic-web.at/cocktail-ontology/served>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/timing>;
+  swc:containsPropertyWithInverse <http://vocabulary.semantic-web.at/cocktail-ontology/consists-of>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/is-part-of>, <http://vocabulary.semantic-web.at/cocktail-ontology/is-used-by>,
+    <http://vocabulary.semantic-web.at/cocktail-ontology/is-used-by_2>, <http://vocabulary.semantic-web.at/cocktail-ontology/uses_2>;
+  rdfs:label "Cocktail ontology" .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/uses_2> a owl:ObjectProperty;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail>;
+  rdfs:label "uses Garnish";
+  rdfs:range <http://vocabulary.semantic-web.at/cocktail-ontology/Garnish>;
+  owl:inverseOf <http://vocabulary.semantic-web.at/cocktail-ontology/is-used-by_2> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/is-used-by_2> a owl:ObjectProperty;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Garnish>;
+  rdfs:label "is used by";
+  rdfs:range <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail>;
+  owl:inverseOf <http://vocabulary.semantic-web.at/cocktail-ontology/uses_2> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/is-part-of> a owl:ObjectProperty;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Ingredients>;
+  rdfs:label "is part of";
+  rdfs:range <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail>;
+  owl:inverseOf <http://vocabulary.semantic-web.at/cocktail-ontology/consists-of> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/consists-of> a owl:ObjectProperty;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail>;
+  rdfs:label "consists of";
+  rdfs:range <http://vocabulary.semantic-web.at/cocktail-ontology/Ingredients>;
+  owl:inverseOf <http://vocabulary.semantic-web.at/cocktail-ontology/is-part-of> .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/iba> a owl:DatatypeProperty,
+    owl:FunctionalProperty;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail>;
+  rdfs:label "IBA";
+  rdfs:range rdfs:Resource .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/served> a owl:DatatypeProperty;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail>;
+  rdfs:label "served";
+  rdfs:range rdf:langString .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/timing> a swc:FunctionalLanguageProperty,
+    owl:DatatypeProperty;
+  dcterms:created "2018-04-09T13:56:24.000Z"^^xsd:dateTime;
+  dcterms:creator <http://localhost/user/yangy>;
+  swc:singleLineInput true;
+  rdfs:comment ""@de;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail>;
+  rdfs:label "timing"@de;
+  rdfs:range rdfs:Literal .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/image> a owl:DatatypeProperty;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail>;
+  rdfs:label "image";
+  rdfs:range rdfs:Resource .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/notdrinkafterd> a owl:DatatypeProperty,
+    owl:FunctionalProperty;
+  dcterms:created "2018-12-17T14:07:43.974Z"^^xsd:dateTime;
+  dcterms:creator <https://resource.semantic-web.at/user/nagyh>;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail>;
+  rdfs:label "notdrinkafterdate"@de;
+  rdfs:range xsd:dateTime .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/preparation> a owl:DatatypeProperty;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Cocktail>;
+  rdfs:label "preparation";
+  rdfs:range rdf:langString .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/image_3> a owl:DatatypeProperty;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Ingredients>;
+  rdfs:label "image";
+  rdfs:range rdfs:Resource .
+
+<http://vocabulary.semantic-web.at/cocktail-ontology/image_2> a owl:DatatypeProperty;
+  rdfs:domain <http://vocabulary.semantic-web.at/cocktail-ontology/Drinkware>;
+  rdfs:label "image";
+  rdfs:range rdfs:Resource .
