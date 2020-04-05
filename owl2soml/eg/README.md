@@ -9,6 +9,9 @@
     - [SKOS](#skos)
     - [DCTerms](#dcterms)
     - [Schema.org](#schema-org)
+    - [Getty Vocabulary Program](#getty-vocabulary-program)
+    - [FIBO](#fibo)
+    - [Cocktails](#cocktails)
 
 <!-- markdown-toc end -->
 
@@ -147,3 +150,8 @@ user    0m0.015s
 sys     0m0.046s
 ```
 
+## Cocktails
+
+Cocktail Ontology is a simple PoolParty schema extending `skos:Concepts` with specific classes and properties:
+- Uses dashes in prop names (eg `cocktail-ontology:is-used-by`) that are removed (eg `isusedby`) since SOML does not yet allow punctuation in names.
+- Should filter out empty descriptions like `""@de` or `"  \n     "@de`.
