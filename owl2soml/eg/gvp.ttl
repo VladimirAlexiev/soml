@@ -258,7 +258,7 @@ gvp:parentString a owl:DatatypeProperty;
   rdfs:isDefinedBy <http://vocab.getty.edu/ontology> ;
   rdfs:label "parentString";
   rdfs:domain gvp:Subject;
-  rdfs:range rdf:Literal;
+  rdfs:range rdfs:Literal;
   rdfs:comment "Preferred labels of *all* of the subject's preferred ancestors, listed bottom up. Useful to show the subject's full context";
   skos:note "Display version of gvp:broaderPreferredExtended";
   skos:example "For aat:300226882 baking dishes: bakeware, <vessels for cooking food>, <containers for cooking food>, <culinary containers>, <containers by function or context>, containers (receptacles), Containers (Hierarchy Name), Furnishings and Equipment (Hierarchy Name), Objects Facet";
@@ -270,7 +270,7 @@ gvp:parentStringAbbrev a owl:DatatypeProperty;
   rdfs:isDefinedBy <http://vocab.getty.edu/ontology> ;
   rdfs:label "parentStringAbbrev";
   rdfs:domain gvp:Subject;
-  rdfs:range rdf:Literal;
+  rdfs:range rdfs:Literal;
   rdfs:comment "Preferred labels of *some* of the subject's preferred ancestors, listed bottom up. Useful to show the subject's context";
   skos:note "Shortened display version of gvp:broaderPreferredExtended";
   skos:example "For aat:300226882 baking dishes: bakeware, <vessels for cooking food>, ... Furnishings and Equipment (Hierarchy Name)";
@@ -296,7 +296,7 @@ Example: tgn:7008038 Paris, France is noted but tgn:2106600 Paris, Texas is not 
 gvp:term a owl:DatatypeProperty;
   rdfs:isDefinedBy <http://vocab.getty.edu/ontology> ;
   rdfs:domain skosxl:Label;
-  rdfs:range rdf:Literal;
+  rdfs:range rdfs:Literal;
   rdfs:label "term";
   rdfs:comment "Term (label), used as the basic (prefix) part of skosxsl:literalForm";
   dct:description "Term (label), used as the basic (prefix) part of skosxsl:literalForm".
@@ -304,7 +304,7 @@ gvp:term a owl:DatatypeProperty;
 gvp:qualifier a owl:DatatypeProperty;
   rdfs:isDefinedBy <http://vocab.getty.edu/ontology> ;
   rdfs:domain skosxl:Label;
-  rdfs:range rdf:Literal;
+  rdfs:range rdfs:Literal;
   rdfs:label "qualifier";
   rdfs:comment """Clarifies and disambiguates terms with the same spelling but different meaning.
 Appended in parentheses to gvp:term, forming skosxsl:literalForm.

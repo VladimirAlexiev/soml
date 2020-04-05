@@ -17,6 +17,9 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
         - [Datatypes](#datatypes)
         - [Labels and Descriptions](#labels-and-descriptions)
     - [Limitations](#limitations)
+        - [Handle Property Inheritance](#handle-property-inheritance)
+        - [Handle OWL Restrictions](#handle-owl-restrictions)
+        - [Handle OWL Cardinalities](#handle-owl-cardinalities)
     - [Gaps in Ontologies](#gaps-in-ontologies)
     - [Dependencies](#dependencies)
         - [Dependency Problems](#dependency-problems)
@@ -271,7 +274,7 @@ The tool handles the following datatypes:
   - The default datatype of a prop that doesn't mention a range is `string`.
     This applies to `rdf:Property, owl:DatatypeProperty, owl:AnnotationProperty`.
   - These datatypes are also mapped to string: `rdf:langString, rdfs:Literal`.
-  - Finally, `rdf:Resource` is mapped to `iri`, a free-standing IRI pointing to an external resource
+  - Finally, `rdfs:Resource` is mapped to `iri`, a free-standing IRI pointing to an external resource
 
 ### Labels and Descriptions
 
@@ -323,22 +326,6 @@ If one of these limitations is especially important for you, please send feedbac
 In some cases we've referenced the issue number in our internal issue tracker,
 so you can enquire about the status of that particular issue.
 
-- [`vocab_prefix, vocab_iri`](#vocab_prefix-vocab_iri) describes how the tool seeks to find a default `vocab_prefix`.
-  It's usually convenient to have one for better GraphQL names, but
-  if you have many ontologies and none of them is "dominant", you may not care for a `vocab_prefix`.
-  The platform has default values (see [Special Prefixes](http://platform.ontotext.com/soml/preamble.html#special-prefixes)) as shown below, so they are optional in SOML.
-  We could add a special value `--voc NONE` to disable `vocab_prefix` processing.
-
-```
-specialPrefixes:
-  base_iri:     http://example.org/resource/
-  vocab_iri:    http://example.org/vocabulary/
-  vocab_prefix: voc
-```
-
-- The tool doesn't handle `owl:import`. Instead, provide multiple ontologies on input
-- Takes metadata only from `owl:Ontology` of the first supplied RDF file.
-  This is a minor limitation since you can always supply the relevant file first.
 - The platform supports metadata (`label:` and `descr`) in only one language, 
   so the tool uses only labels/descriptions without language tag,
   or in Egnlish and "dialects" (`en`, `en-US`, `en-GB`, etc).
@@ -350,23 +337,62 @@ specialPrefixes:
   so only one is used (PLATFORM-1493).
   The tool picks a random range, which is undeterministic.
 - The platform does not yet support `rdf:langString`,
-  so `langString` and `rdfs:Literal` are mapped to `xsd:string` (PLATFORM-1241).
+  so `rdf:langString` and `rdfs:Literal` are mapped to `xsd:string` (PLATFORM-1241).
   We are planning powerful features to fetch only selected languages, 
   language preference and fallback,
   find objects having values in certain languages,
   validation of languages on mutation, etc.
-- Some ontologies (e.g. SKOS) expect that 
-  a subProperty inherits its domain and range from its transitive ancestors 
-  (e.g. none of the 10 subprops of `skos:semanticRelation` define their own domain and range,
-  but expect to inherit it). 
-  - Such inheritance is defined in [OWL 2 Web Ontology Language Profiles](https://www.w3.org/TR/owl2-profiles), 
-    Table 9 The Semantics of Schema Vocabulary, rules [scm-dom2](https://www.w3.org/TR/owl2-profiles/#scm-dom2), [scm-rng2](https://www.w3.org/TR/owl2-profiles/#scm-rng2)
-  - Such inheritance is not defined [RDF 1.1 Semantics](https://www.w3.org/TR/rdf11-mt): [Entailment](https://www.w3.org/TR/rdf11-mt/#rdfs-entailment)
-  - The platform does not yet support property inheritance (PLATFORM-1500)
 - Currently the platform handles only these prop characteristics:
   `owl:FunctionalProperty owl:SymmetricProperty` (and `inverseOf`)
   It should process more prop characteristics: 
   `owl:InverseFunctionalProperty owl:ReflexiveProperty owl:IrreflexiveProperty owl:AsymmetricProperty owl:TransitiveProperty`.
+- SOML currently does not allow punctuation (`_-.`) in prefixes or local names (issue PLATFORM-1625).
+  So a prop like `fibo-fnd-acc-aeq:Equity` is mapped to `fibofndaccaeq:Equity`, which is not good.
+  Such prefixes are prevalent in FIBO. 
+  Other ontologies (especially related to biology and life sciences) use punctuation (even `:`) in local names.
+
+### Better Handling of Multiple Ontologies
+
+To handle numerous related ontologies (eg like FIBO), these improvements could be relevant:
+
+- The tool doesn't handle `owl:import`. Instead, provide multiple ontologies on input
+  (or in the case of FIBO I've concatenated Turtle files)
+- Takes metadata only from `owl:Ontology` of the first supplied RDF file.
+  This is a minor limitation since you can always supply the relevant file first.
+- [`vocab_prefix, vocab_iri`](#vocab_prefix-vocab_iri) describes how the tool seeks to find a default `vocab_prefix`.
+  It's usually convenient to have one for better GraphQL names, but
+  if you have many ontologies and none of them is "dominant"
+  you may not care for a `vocab_prefix`.
+  - Eg in the case of FIBO the first encountered ontology
+  (https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Communications/) 
+  is treated specially: the `fibo-fnd-arr-com:` is treated as `vocab_prefix` 
+  and is stripped from GraphQL names.
+  - It would be better to run without `vocab_prefix` and afford it no such special treatment.
+  - The platform has default values (see [Special Prefixes](http://platform.ontotext.com/soml/preamble.html#special-prefixes)) as shown below, so they are optional in SOML.
+    We could add a special value `--voc NONE` to disable `vocab_prefix` processing.
+
+```
+specialPrefixes:
+  base_iri:     http://example.org/resource/
+  vocab_iri:    http://example.org/vocabulary/
+  vocab_prefix: voc
+```
+
+### Handle Property Inheritance
+
+Some ontologies (e.g. SKOS) expect that 
+a subProperty inherits its domain and range from its transitive ancestors 
+(e.g. none of the 10 subprops of `skos:semanticRelation` define their own domain and range,
+but expect to inherit it). 
+- Such inheritance is defined in OWL2, see [Web Ontology Language Profiles](https://www.w3.org/TR/owl2-profiles), 
+  Table 9 The Semantics of Schema Vocabulary, rules [scm-dom2](https://www.w3.org/TR/owl2-profiles/#scm-dom2), [scm-rng2](https://www.w3.org/TR/owl2-profiles/#scm-rng2)
+- Such inheritance is **not** defined in RDFS, see [RDF 1.1 Semantics](https://www.w3.org/TR/rdf11-mt), [Entailment](https://www.w3.org/TR/rdf11-mt/#rdfs-entailment)
+- The platform does not yet support property domain/range inheritance (PLATFORM-1500)
+
+One ontology that uses property inheritance is SKOS.
+All descendant props of `skos:semanticRelation` (including `skos:broader, narrower, broaderMatch, narrowerMatch, related` etc)
+do not define their own domain & range.
+As a workaround, the file `skos-fix.ttl` adds domain & range to these props.
 
 ### Handle OWL Restrictions
 
@@ -457,7 +483,30 @@ Also map `:X owl:equivalentClass [owl:intersectionOf (:Y...)]` to `X inherits: Y
 
 ## Gaps in Ontologies
 
-TODO
+- A major shortcoming of most ontologies is that fery few props are declared `owl:FunctionalProperty`, so most of them get cardinality `max: inf` in SOML.
+  Such multi-valued props are considerably more expensive to query, and if used in a filter have an implicit `EXISTS` semantics.
+- Some ontologies leave some props without domain (unbound), so they can be reused in  more situations.
+  - One example are all SKOS label and note props: SKOS says they are universally applicable.
+    But unless we bind them to `skos:Concept`, they won't show up in any class.
+    So we wrote a `skos-fix.ttl` that does that.
+    (See [Handle Property Inheritance](#handle-property-inheritance) for other fixes in the same file.)
+  - Another example are DC and DCT properties, 
+    most of which are very generic (defined on `rdfs:Resource`, which is mapped to `range: iri`).
+    For specific applications, we recommend writing an RDF "fix" file to bind them to specific classes.
+  - A particular example is this generated piece where 
+    `isFormatOf/hasFormat` are not attached yet are declared inverses.
+    SOML currently wants to check that they are defined on a pair of classes
+    and to check domain/range conformance, so that is invalid SOML (issue PLATFORM-1509):
+
+```yaml
+  isFormatOf:
+    descr: 'A related resource that is substantially the same as the described resource, but in another format'
+    inverseOf: hasFormat
+    kind: object
+    label: Is Format Of
+    max: inf
+    range: iri
+```
 
 ## Dependencies
 
@@ -489,22 +538,36 @@ We are also working on a Dockerfile.
 Some problems in the dependencies:
 - schema.org is the largest ontology tested so far.
   `schema.ttl` is 508k ttl, 9k triples, results in 428k yaml, 
-  and takes 4 minutes to process". See [attean#154](https://github.com/kasei/attean/issues/154)
+  and takes 4 minutes to process: posted [attean#154](https://github.com/kasei/attean/issues/154)
 - `schema.rdf` causes error `Read more bytes than requested` in `XML::LibXML`
-  (other RDF ontologies don't cause this error).
-  See  [rt.cpan.org#131982](https://rt.cpan.org/Ticket/Display.html?id=131982).
+  (other RDF ontologies don't cause this error): 
+  posted [rt.cpan.org#131982](https://rt.cpan.org/Ticket/Display.html?id=131982), see [eg/LibXML-schema.rdf.err](eg/LibXML-schema.rdf.err).
   - To upgrade `XML::LibXML` to the latest version 2.0202, 
     ensure you don't have the `PERL_UNICODE` env var set
-    or you'll get error `Installing Alien::Build::MM failed`, see [Alien-Build#173](https://github.com/Perl5-Alien/Alien-Build/issues/173).
+    or you'll get error `Installing Alien::Build::MM failed`, 
+    posted [Alien-Build#173](https://github.com/Perl5-Alien/Alien-Build/issues/173), see [eg/Alien-Build-MM_build.log](eg/Alien-Build-MM_build.log)..
     But even this latest version still has the above problem.
 - Installing `AtteanX::Parser::JSONLD` causes warning 
   `Subroutine spacepad redefined at Debug/ShowStuff.pm` on every execution of the script.
   The warning is harmless but annoying and I don't know how to quash it 
   (`no warnings 'redefine'` doesn't help).
   So don't install this module unless you need to read JSONLD.
-  See [attean#153](https://github.com/kasei/attean/issues/153) and [rt.cpan.org#131983](https://rt.cpan.org/Ticket/Display.html?id=131983)
+  See [attean#153](https://github.com/kasei/attean/issues/153) and [rt.cpan.org#131983](https://rt.cpan.org/Ticket/Display.html?id=131983). Example:
+
+```sh
+perl ../owl2soml.pl -voc schema schema.jsonld > schema2.yaml
+Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm line 1635.
+        require Debug/ShowStuff.pm called at C:/Strawberry/perl/site/lib/JSONLD.pm line 57
+        JSONLD::BEGIN() called at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm line 1635
+        ...
+```
+
 
 ## Change Log
+
+5-Apr-2020
+- Add datatypes `xsd:dateTimeStamp` (mapped to `dateTime`), `fibo-fnd-dt-fd:CombinedDateTime` (mapped to `dateOrYearOrMonth`), `owl:rational` (mapped to `xsd:decimal` even though that's a lie)
+- Add `eg/Makefile` to make the various examples; capture stderr warnings in `.log`
 
 3-Apr-2020
 - `make_superClass()`: fix to return both values when cached: `Use of uninitialized value $super2 in concatenation (.) or string at owl2soml.pl line 420.`

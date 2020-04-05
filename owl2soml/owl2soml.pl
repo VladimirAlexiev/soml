@@ -70,6 +70,7 @@ our %DATATYPES =
    "xsd:negativeInteger"    => "negativeInteger",
    "xsd:nonNegativeInteger" => "nonNegativeInteger",
    "xsd:dateTime"           => "dateTime",
+   "xsd:dateTimeStamp"      => "dateTime",
    "xsd:time"               => "time",
    "xsd:date"               => "date",
    "xsd:gYear"              => "year",
@@ -88,7 +89,9 @@ our %DATATYPES =
    "schema:URL"             => "iri",
    "rdfs:Resource"          => "iri",
    "xsd:anyURI"             => "iri",
+   # weird or unusual datatypes
    "fibo-fnd-dt-fd:CombinedDateTime" => "dateOrYearOrMonth",
+   "owl:rational"                    => "xsd:decimal", # that's a lie, a proper owl:rational impl is lacking
   );
 
 sub my_exit() {

@@ -1,0 +1,3654 @@
+created: 2014-02-15
+creator: 'http://www.getty.edu/research/, http://www.ontotext.com'
+id: /soml/gvp
+label: Getty Vocabulary Program ontology
+objects:
+  AdminPlaceConcept:
+    descr: |-
+      Place defined by administrative boundaries and conditions, including inhabited places, nations, and empires. Used in TGN only. Place defined by administrative boundaries and conditions, including inhabited places, nations, and empires. Used in TGN only.
+      Example: Burgundy region in France (TGN)
+    inherits: skos:ConceptInterface
+    label: AdminPlaceConcept
+    type: gvp:AdminPlaceConcept
+  Biography:
+    descr: |-
+      Biography of a ULAN agent (schema:Person|Organization). Depending on the agent, has these fields:
+      - schema:description: one-line-biography
+      - gvp:estStart
+      - schema:birthPlace | foundationLocation, pointing to TGN
+      - gvp:estEnd
+      - schema:deathPlace | dissolutionLocation, pointing to TGN
+      - schema:gender, pointing to AAT (male, female, other)
+      - dct:contributor
+      The fields of the preferred biogrpahy are also available in the agent
+    type: gvp:Biography
+  Concept:
+    descr: |-
+      Proper concept. Used in AAT only; TGN & ULAN have their own, e.g. gvp:PhysPlaceConcept & gvp:PersonConcept. Used for indexing and cataloguing. Proper concept. Used in AAT only; TGN & ULAN have their own, e.g. gvp:PhysPlaceConcept & gvp:PersonConcept. Used for indexing and cataloguing.
+      Example: rhyta (AAT)
+    inherits: SubjectInterface
+    label: Concept
+    type: gvp:Concept
+  Facet:
+    descr: |-
+      One of the major divisions of a vocabulary. One of the major divisions of a vocabulary.
+      Example: Objects Facet (AAT), World (TGN), Artists (ULAN)
+    inherits: SubjectInterface
+    label: Facet
+    type: gvp:Facet
+  GroupConcept:
+    descr: |-
+      Two or more people who generally worked together to collectively create art. Not necessarily legally incorporated. A family of artists may be considered a "corporate body". Corresponds to crm:E74_Group, not its subclass crm:E40_Legal_Body. Two or more people who generally worked together to collectively create art. Not necessarily legally incorporated. A family of artists may be considered a "corporate body". Corresponds to crm:E74_Group, not its subclass crm:E40_Legal_Body.
+      Example: 500356337 Albrecht Duerer Workshop (ULAN)
+    inherits: SubjectInterface
+    label: GroupConcept
+    type: gvp:GroupConcept
+  GuideTerm:
+    descr: |-
+      Guide Term: place holder to create a level in the hierarchy. Used in AAT and ULAN. Not used for indexing or cataloguing. Guide Term: place holder to create a level in the hierarchy. Used in AAT and ULAN. Not used for indexing or cataloguing..
+      Example: <vessels for serving and consuming food> (AAT), ulan:500353455 <named animals> under facet Non-Artists (ULAN)
+    inherits: SubjectInterface
+    label: GuideTerm
+    type: gvp:GuideTerm
+  Hierarchy:
+    descr: |-
+      Top of a hierarchy. Used in AAT only. Not used for indexing or cataloguing. Top of a hierarchy. Used in AAT only. Not used for indexing or cataloguing.
+      Example: Containers (Hierarchy Name) (AAT)
+    inherits: SubjectInterface
+    label: Hierarchy
+    type: gvp:Hierarchy
+  ObsoleteSubject:
+    descr: |-
+      Obsolete subject: moved out of the publishable hierarchy, or merged to another (pointed by dct:isReplacedBy). Obsolete subject: moved out of the publishable hierarchy, or merged to another (pointed by dct:isReplacedBy).
+      Example: 300375205 "shranks" (AAT) was merged to 300039264 "schranks" (AAT), so aat:300375205 dct:isReplacedBy aat:300039264
+    inherits: SubjectInterface
+    label: ObsoleteSubject
+    type: gvp:ObsoleteSubject
+  PersonConcept:
+    descr: |-
+      A single individual. Usually people engaged in the design or creation of art or architecture ("Artists"); but may also include donors, patrons, rulers, sitters, art historians, etc ("Non-Artists"). A single individual. Usually people engaged in the design or creation of art or architecture ("Artists"); but may also include donors, patrons, rulers, sitters, art historians, etc ("Non-Artists").
+      Example: 500115493 Duerer, Albrecht (ULAN)
+    inherits: SubjectInterface
+    label: PersonConcept
+    type: gvp:PersonConcept
+  PhysAdminPlaceConcept:
+    descr: |-
+      Place that is both administrative and physical. Rarely used. Used in TGN only. Place that is both administrative and physical. Rarely used. Used in TGN only.
+      Example: 6003090 Kiik-Koba (TGN)
+    inherits: SubjectInterface
+    label: PhysAdminPlaceConcept
+    type: gvp:PhysAdminPlaceConcept
+  PhysPlaceConcept:
+    descr: |-
+      Physical feature, defined by its physical characteristics on planet Earth, including mountains, rivers, and oceans. Used in TGN only. Physical feature, defined by its physical characteristics on planet Earth, including mountains, rivers, and oceans. Used in TGN only.
+      Example: Amazon River (TGN)
+    inherits: skos:ConceptInterface
+    label: PhysPlaceConcept
+    type: gvp:PhysPlaceConcept
+  ScopeNote:
+    descr: |-
+      Defines a GVP subject or provides usage information. Has fields:
+      - dc:identifier: numeric ID, also used in the URL.
+      - rdf:value: the note itself (as per SKOS Primer: 4.2 Advanced Documentation Features) with language tag
+      - dct:language: matches the language tag
+      - gvp:displayOrder, order of this note amongst others
+      - gvp:historicFlag, gvp:estStart, gvp:estEnd, rdfs:comment: Historic Information about applicability
+      - dct:source or subproperties thereof 
+      - dct:contributor or subproperties thereof. Defines a GVP subject or provides usage information. Has fields:
+      - dc:identifier: numeric ID, also used in the URL.
+      - rdf:value: the note itself (as per SKOS Primer: 4.2 Advanced Documentation Features) with language tag
+      - dct:language: matches the language tag
+      - gvp:displayOrder, order of this note amongst others
+      - gvp:historicFlag, vp:estStart, gvp:estEnd, rdfs:comment: Historic Information about applicability
+      - dct:source or subproperties thereof 
+      - dct:contributor or subproperties thereof
+    type: gvp:ScopeNote
+  Subject:
+    descr: |-
+      Node in a GVP vocabulary hierarchy. 
+      May be Facet, GuideTerm, Hierarchy, Concept, AdminPlaceConcept, PhysPlaceConcept, PhysAdminPlaceConcept, or ObsoleteSubject.
+      Implemented as skos:Concept or iso:ThesaurusArray and skos:Collection
+    inherits: SubjectInterface
+    label: Subject
+    type: gvp:Subject
+  SubjectInterface:
+    kind: abstract
+    props:
+      agentType: {}
+      agentTypeNonPreferred: {}
+      agentTypePreferred: {}
+      broader: {}
+      broaderExtended: {}
+      broaderGeneric: {}
+      broaderGenericExtended: {}
+      broaderInstantial: {}
+      broaderInstantialExtended: {}
+      broaderNonPreferred: {}
+      broaderPartitive: {}
+      broaderPartitiveExtended: {}
+      broaderPreferred: {}
+      broaderPreferredExtended: {}
+      isNoted: {}
+      parentString: {}
+      parentStringAbbrev: {}
+      placeType: {}
+      placeTypeNonPreferred: {}
+      placeTypePreferred: {}
+      prefLabelGVP: {}
+      prefLabelLoC: {}
+  UnknownPersonConcept:
+    descr: |-
+      Unknown person representing a nationality/culture (the Unknown People by Culture facet). Unknown person representing a nationality/culture (the Unknown People by Culture facet).
+      Example: 500355202 Unknown Bulgarian (modern) (ULAN)
+    inherits: skos:ConceptInterface
+    label: UnknownPersonConcept
+    type: gvp:UnknownPersonConcept
+  bibo:Document:
+    type: bibo:Document
+  bio:Event:
+    type: bio:Event
+  foaf:Agent:
+    type: foaf:Agent
+  schema:Organization:
+    props:
+      schema:dissolutionLocation: {}
+    type: schema:Organization
+  schema:Place:
+    type: schema:Place
+  skos:Concept:
+    inherits: skos:ConceptInterface
+    type: skos:Concept
+  skos:ConceptInterface:
+    kind: abstract
+    props:
+      aat2000relatedto: {}
+      aat2001formerlyreferredto: {}
+      aat2100distinguishedfrom: {}
+      aat2110meaningusageoverlapswith: {}
+      aat2203associatedwith: {}
+      aat2205causesisrequired: {}
+      aat2206causedbyrequires: {}
+      aat2208locussettingfor: {}
+      aat2209usedlocatedin: {}
+      aat2211produce: {}
+      aat2212producedby: {}
+      aat2215requiredfor: {}
+      aat2216require: {}
+      aat2218usedfunctionas: {}
+      aat2219haveform: {}
+      aat2221actupon: {}
+      aat2222areactedupon: {}
+      aat2281havecounterpart: {}
+      aat2285practicedstudiedby: {}
+      aat2286practicestudy: {}
+      aat2291locussettingfor: {}
+      aat2292worklivein: {}
+      aat2294locussettingfor: {}
+      aat2295locatedin: {}
+      aat2311performedby: {}
+      aat2312perform: {}
+      aat2315usedby: {}
+      aat2316use: {}
+      aat2318involvedin: {}
+      aat2319involves: {}
+      aat2321usedby: {}
+      aat2322use: {}
+      aat2325createdby: {}
+      aat2326create: {}
+      aat2328involvedwith: {}
+      aat2329involves: {}
+      aat2332affiliatedwith: {}
+      aat2333haveaffiliates: {}
+      aat2335associatedwith: {}
+      aat2336hasassociates: {}
+      aat2397focusof: {}
+      aat2398focuseson: {}
+      aat2408locussettingfor: {}
+      aat2409takesplacein: {}
+      aat2411involvedin: {}
+      aat2412involves: {}
+      aat2415requiredfor: {}
+      aat2416requires: {}
+      aat2418uses: {}
+      aat2419usedfor: {}
+      aat2421locussettingfor: {}
+      aat2422takesplacein: {}
+      aat2424producedby: {}
+      aat2425produces: {}
+      aat2427producedby: {}
+      aat2428produces: {}
+      aat2431requiredfor: {}
+      aat2432requires: {}
+      aat2434contextualizedin: {}
+      aat2435contextfor: {}
+      aat2501madeofrequire: {}
+      aat2502materialfor: {}
+      aat2504usedlocatedin: {}
+      aat2505locussettingfor: {}
+      aat2507produceprocess: {}
+      aat2508producedprocessedby: {}
+      aat2551reflectproducedby: {}
+      aat2552reflectedinproduces: {}
+      aat2554reflects: {}
+      aat2555reflectedin: {}
+      aat2557reflects: {}
+      aat2558reflectedin: {}
+      aat2562locussettingfor: {}
+      aat2563locatedin: {}
+      aat2601possessedbyexistingin: {}
+      aat2602possessexistin: {}
+      aat2604possessedbyexistingin: {}
+      aat2605possessexistin: {}
+      aat2607causedbyrequires: {}
+      aat2608causesrequiredfor: {}
+      aat2612possessedbyexistingin: {}
+      aat2613possessexistin: {}
+      aat2801conjunctedwith: {}
+      aat2802exemplifiedby: {}
+      aat2803exampleof: {}
+      aat2805contextualizedin: {}
+      aat2806providecontext: {}
+      aat2807derivedfromcommonsource: {}
+      aat2809coexistedwith: {}
+      aat2811preceded: {}
+      aat2812followed: {}
+      aat2814constituentof: {}
+      aat2815composedof: {}
+      aat2817derivedmadefrom: {}
+      aat2818sourcefor: {}
+      aat2821basedon: {}
+      aat2822basisof: {}
+      aat2824hasparallelswith: {}
+      aat2826usedwith: {}
+      aat2828userequire: {}
+      aat2829usedrequiredfor: {}
+      aat2831associatedwith: {}
+      aat2833ancestorof: {}
+      aat2834decendantof: {}
+      aat2836derivedmadefrom: {}
+      aat2837sourcefor: {}
+      aat2841derivedmadefrom: {}
+      aat2842sourcefor: {}
+      aat2845usedlocatedin: {}
+      aat2846locussettingfor: {}
+      aat2848involvedin: {}
+      aat2849involves: {}
+      aat2852involvedwith: {}
+      aat2853involve: {}
+      aat2875characteristicof: {}
+      aat2876characterizedby: {}
+      aat2878precededsourcefor: {}
+      aat2879followeddevelopedfrom: {}
+      aat2881reflectedin: {}
+      aat2882reflect: {}
+      aat2884involvedwith: {}
+      aat2885involves: {}
+      aat2886usedfunctionas: {}
+      aat2887exemplifiedby: {}
+      aat2891exemplifiedby: {}
+      aat2892exampleof: {}
+      aat2894exemplifiedby: {}
+      aat2895exampleof: {}
+      aat2900miscellaneousrelationship: {}
+      broaderNonConcept: {}
+      tgn3000relatedto: {}
+      tgn3001distinguishedfrom: {}
+      tgn3005possiblyidentifiedas: {}
+      tgn3006formerlyidentifiedas: {}
+      tgn3101nearadjacentto: {}
+      tgn3102coextensivewith: {}
+      tgn3103locatedon: {}
+      tgn3104islocationof: {}
+      tgn3110meaningusageoverlapswith: {}
+      tgn3201capitalof: {}
+      tgn3202capitalis: {}
+      tgn3301allyof: {}
+      tgn3317memberof: {}
+      tgn3318memberis: {}
+      tgn3401movedfrom: {}
+      tgn3402movedto: {}
+      tgn3411successorof: {}
+      tgn3412predecessorof: {}
+      tgn3510historicalconnection: {}
+      tgn3611administrativedependentof: {}
+      tgn3612administrativeentityfor: {}
+      ulan1000relatedto: {}
+      ulan1003associatedwith: {}
+      ulan1005possiblyidentifiedwith: {}
+      ulan1006formerlyidentifiedwith: {}
+      ulan1007distinguishedfrom: {}
+      ulan1008meaningusageoverlapswith: {}
+      ulan1101teacherof: {}
+      ulan1102studentof: {}
+      ulan1105apprenticeof: {}
+      ulan1106apprenticewas: {}
+      ulan1107influenced: {}
+      ulan1108influencedby: {}
+      ulan1111masterof: {}
+      ulan1112masterwas: {}
+      ulan1113fellowstudentof: {}
+      ulan1201patronof: {}
+      ulan1202patronwas: {}
+      ulan1203donorof: {}
+      ulan1204donorwas: {}
+      ulan1205clientof: {}
+      ulan1206clientwas: {}
+      ulan1211artistto: {}
+      ulan1212artistwas: {}
+      ulan1213courtartistto: {}
+      ulan1214courtartistwas: {}
+      ulan1217employeeof: {}
+      ulan1218employeewas: {}
+      ulan1221appointedby: {}
+      ulan1222appointeeof: {}
+      ulan1223crownedby: {}
+      ulan1224crowned: {}
+      ulan1301colleagueof: {}
+      ulan1302associateof: {}
+      ulan1303collaboratedwith: {}
+      ulan1305workedwith: {}
+      ulan1306performswith: {}
+      ulan1307assistantof: {}
+      ulan1308assistedby: {}
+      ulan1309advisorof: {}
+      ulan1310advisedby: {}
+      ulan1311partnerof: {}
+      ulan1313partnerin: {}
+      ulan1314partnerwas: {}
+      ulan1315principalin: {}
+      ulan1316principalwas: {}
+      ulan1317memberof: {}
+      ulan1318memberwas: {}
+      ulan1321schoolof: {}
+      ulan1322schoolwas: {}
+      ulan1331workedwith: {}
+      ulan1332workerwas: {}
+      ulan1411successorof: {}
+      ulan1412predecessorof: {}
+      ulan1413administrationoverlapswith: {}
+      ulan1414jointventurewith: {}
+      ulan1421foundedby: {}
+      ulan1422founded: {}
+      ulan1500relatedto: {}
+      ulan1501siblingof: {}
+      ulan1511childof: {}
+      ulan1512parentof: {}
+      ulan1513grandchildof: {}
+      ulan1514gandparentof: {}
+      ulan1515greatgrandparentof: {}
+      ulan1516greatgrandchildof: {}
+      ulan1521cousinof: {}
+      ulan1531nephewnieceof: {}
+      ulan1532uncleauntof: {}
+      ulan1541spouseof: {}
+      ulan1542consortof: {}
+      ulan1543consortwas: {}
+      ulan1544significantotherof: {}
+      ulan1547romanticpartnerof: {}
+      ulan1548domesticpartnerof: {}
+      ulan1550relativebymarriage: {}
+      ulan1551siblingbymarriageof: {}
+      ulan1552parentbymarriageof: {}
+      ulan1553childbymarriageof: {}
+      ulan1554adoptiveparentof: {}
+      ulan1555adoptedchildof: {}
+      ulan1556halfsiblingof: {}
+      ulan1557stepsiblingof: {}
+      ulan1561stepchildof: {}
+      ulan1562stepparentof: {}
+      ulan1571guardianof: {}
+      ulan1573wardof: {}
+      ulan1574godparentof: {}
+      ulan1575godchildof: {}
+      ulan1581descendantof: {}
+      ulan1582ancestorof: {}
+      ulan1590possiblyrelatedto: {}
+      ulan2550friendof: {}
+      ulan2572founderof: {}
+      ulan2573foundedby: {}
+      ulan2574directorof: {}
+      ulan2575directedby: {}
+      ulan2576patronof: {}
+      ulan2577patronwas: {}
+      ulan2578trusteeof: {}
+      ulan2579trusteewas: {}
+      ulan2581administratorof: {}
+      ulan2582administeredby: {}
+      ulan2583chairmanof: {}
+      ulan2584chairedby: {}
+      ulan2650publisherwas: {}
+      ulan2651publisherof: {}
+      ulan2674professorat: {}
+      ulan2675professorwas: {}
+      ulan2676teacherat: {}
+      ulan2677teacherwas: {}
+      ulan2692presidentof: {}
+      ulan2693presidentwas: {}
+      ulan2696leaderof: {}
+      ulan2697leaderwas: {}
+      ulan2778ownerof: {}
+      ulan2779ownedby: {}
+      ulan2781dedicateeof: {}
+      ulan2782dedicatedto: {}
+      ulan2794representativeof: {}
+      ulan2795representativewas: {}
+      ulan2828studentat: {}
+      ulan2829studentwas: {}
+      ulan2840performerwith: {}
+      ulan2841performerwas: {}
+  skosxl:Label:
+    props:
+      contributorAlternatePreferred: {}
+      contributorNonPreferred: {}
+      contributorPreferred: {}
+      qualifier: {}
+      sourceAlternatePreferred: {}
+      sourceNonPreferred: {}
+      sourcePreferred: {}
+      term: {}
+      termDisplay: {}
+      termFlag: {}
+      termKind: {}
+      termPOS: {}
+      termType: {}
+    type: skosxl:Label
+prefixes:
+  aat: http://vocab.getty.edu/aat/
+  aat_contrib: http://vocab.getty.edu/aat/contrib/
+  aat_rel: http://vocab.getty.edu/aat/rel/
+  aat_rev: http://vocab.getty.edu/aat/rev/
+  aat_scopeNote: http://vocab.getty.edu/aat/scopeNote/
+  aat_source: http://vocab.getty.edu/aat/source/
+  aat_source_rev: http://vocab.getty.edu/aat/source/rev/
+  aat_term: http://vocab.getty.edu/aat/term/
+  adms: http://www.w3.org/ns/adms#
+  bibo: http://purl.org/ontology/bibo/
+  bio: http://purl.org/vocab/bio/0.1/
+  cc: http://creativecommons.org/ns#
+  dc: http://purl.org/dc/elements/1.1/
+  dcat: http://www.w3.org/ns/dcat#
+  dct: http://purl.org/dc/terms/
+  dctype: http://purl.org/dc/dcmitype/
+  fmt: http://www.w3.org/ns/formats/
+  foaf: http://xmlns.com/foaf/0.1/
+  gvp: http://vocab.getty.edu/ontology#
+  gvp_lang: http://vocab.getty.edu/language/
+  iso: http://purl.org/iso25964/skos-thes#
+  luc: http://www.ontotext.com/owlim/lucene#
+  ontogeo: http://www.ontotext.com/owlim/geo#
+  owl: http://www.w3.org/2002/07/owl#
+  prov: http://www.w3.org/ns/prov#
+  ptop: http://www.ontotext.com/proton/protontop#
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  rr: http://www.w3.org/ns/r2rml#
+  rrx: http://purl.org/r2rml-ext/
+  schema: http://schema.org/
+  sd: http://www.w3.org/ns/sparql-service-description#
+  sesame: http://www.openrdf.org/schema/sesame#
+  skos: http://www.w3.org/2004/02/skos/core#
+  skosxl: http://www.w3.org/2008/05/skos-xl#
+  tgn: http://vocab.getty.edu/tgn/
+  tgn_contrib: http://vocab.getty.edu/tgn/contrib/
+  tgn_rel: http://vocab.getty.edu/tgn/rel/
+  tgn_rev: http://vocab.getty.edu/tgn/rev/
+  tgn_scopeNote: http://vocab.getty.edu/tgn/scopeNote/
+  tgn_source: http://vocab.getty.edu/tgn/source/
+  tgn_source_rev: http://vocab.getty.edu/tgn/source/rev/
+  tgn_term: http://vocab.getty.edu/tgn/term/
+  ulan: http://vocab.getty.edu/ulan/
+  ulan_bio: http://vocab.getty.edu/ulan/bio/
+  ulan_contrib: http://vocab.getty.edu/ulan/contrib/
+  ulan_event: http://vocab.getty.edu/ulan/event/
+  ulan_rel: http://vocab.getty.edu/ulan/rel/
+  ulan_rev: http://vocab.getty.edu/ulan/rev/
+  ulan_scopeNote: http://vocab.getty.edu/ulan/scopeNote/
+  ulan_source: http://vocab.getty.edu/ulan/source/
+  ulan_source_rev: http://vocab.getty.edu/ulan/source/rev/
+  ulan_term: http://vocab.getty.edu/ulan/term/
+  vaem: http://www.linkedmodel.org/schema/vaem#
+  vann: http://purl.org/vocab/vann/
+  vcard: http://www.w3.org/2006/vcard/ns#
+  vdpp: http://data.lirmm.fr/ontologies/vdpp#
+  voaf: http://purl.org/vocommons/voaf#
+  voag: http://voag.linkedmodel.org/voag#
+  void: http://rdfs.org/ns/void#
+  wdrs: http://www.w3.org/2007/05/powder-s#
+  wgs: http://www.w3.org/2003/01/geo/wgs84_pos#
+  wv: http://vocab.org/waiver/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+properties:
+  aat2000relatedto:
+    descr: |-
+      any - related to - any; generic relationship, not explained.
+      Example: gulf red is related to light red (pigment). generic relationship, not explained
+    kind: object
+    label: aat2000_related_to
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2000_related_to
+    symmetric: 1
+  aat2001formerlyreferredto:
+    descr: |-
+      any - formerly referred - any.
+      Example: gigues formerly referred to fiddles
+    kind: object
+    label: aat2001_formerly_referred_to
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2001_formerly_referred_to
+    symmetric: 1
+  aat2100distinguishedfrom:
+    descr: |-
+      any - distinguished from - any.
+      Example: historic farms are distinguished from abandoned farms; naive art is distinguished from outsider art
+    kind: object
+    label: aat2100_distinguished_from
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2100_distinguished_from
+    symmetric: 1
+  aat2110meaningusageoverlapswith:
+    descr: |-
+      any - meaning/usage overlaps with - any.
+      Example: chimney hoods has meaning/usage that overlaps with chimney caps; scribes has meaning/usage that overlaps with copyists
+    kind: object
+    label: aat2110_meaning-usage_overlaps_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2110_meaning-usage_overlaps_with
+    symmetric: 1
+  aat2203associatedwith:
+    descr: |-
+      activity/event/[process/function] - [is] associated with - activity/event/[process/function].
+      Example: Easter is associated with Lent; cavalry exercises are associated with dressage
+    kind: object
+    label: aat2203_associated_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2203_associated_with
+    symmetric: 1
+  aat2205causesisrequired:
+    descr: |-
+      activity/event/[process/function] - causes/is required for - activity/event/[process/function].
+      Example: on-demand printing causes/is required for on-demand publishing;  preserving causes/is required for preservation
+    inverseOf: aat2206causedbyrequires
+    kind: object
+    label: aat2205_causes-is_required
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2205_causes-is_required
+  aat2206causedbyrequires:
+    descr: |-
+      activity/event/[process/function] - [is] caused by/dependent upon - activity/event/[process/function].
+      Example: on-demand publishing is caused by/requires on-demand printing; preservation is caused by/requires preserving
+    inverseOf: aat2205causesisrequired
+    kind: object
+    label: aat2206_caused_by-requires
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2206_caused_by-requires
+  aat2208locussettingfor:
+    descr: |-
+      locus/setting - [is] locus/setting for - things.
+      Example: glassworks (buildings) are the locus/setting for glassware; caves are the locus/setting for cave paintings
+    inverseOf: aat2209usedlocatedin
+    kind: object
+    label: aat2208_locus-setting_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2208_locus-setting_for
+  aat2209usedlocatedin:
+    descr: |-
+      things -used/located in -  locus/setting.
+      Example: glassware is used/located in glassworks (buildings); cave paintings are located in caves
+    inverseOf: aat2208locussettingfor
+    kind: object
+    label: aat2209_used-located_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2209_used-located_in
+  aat2211produce:
+    descr: |-
+      things/[equipment] - produce - things.
+      Example: stereoscopic cameras produce stereoscopic photographs; punches (marking tools) produce punchwork
+    inverseOf: aat2212producedby
+    kind: object
+    label: aat2211_produce
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2211_produce
+  aat2212producedby:
+    descr: |-
+      things - [are] produced by - things/[equipment].
+      Example: stereoscopic photographs are produced by stereoscopic cameras; punchwork is produced by punches (marking tools)
+    inverseOf: aat2211produce
+    kind: object
+    label: aat2212_produced_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2212_produced_by
+  aat2215requiredfor:
+    descr: |-
+      things - [are] required for -  things.
+      Example: eyelets are required for broderie anglaise; compact discs are required for compact disc players
+    inverseOf: aat2216require
+    kind: object
+    label: aat2215_required_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2215_required_for
+  aat2216require:
+    descr: |-
+      things - require - things [in order to exist or work].
+      Example: broderie anglaise requires eyelets; compact disc players require compact discs
+    inverseOf: aat2215requiredfor
+    kind: object
+    label: aat2216_require
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2216_require
+  aat2218usedfunctionas:
+    descr: |-
+      things - [are] used/function as - things.
+      Example: arc lamps are used/function as lighthouse lamps;  toile peinte is used/function as cartoons (working drawings)
+    inverseOf: aat2219haveform
+    kind: object
+    label: aat2218_used-function_as
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2218_used-function_as
+  aat2219haveform:
+    descr: |-
+      things - have form [of] - things.
+      Example: lighthouse lamps have the form of arc lamps; cartoons (working drawings) have the form of toile peinte
+    inverseOf: aat2218usedfunctionas
+    kind: object
+    label: aat2219_have_form
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2219_have_form
+  aat2221actupon:
+    descr: |-
+      [actors having] role - act upon - genus/species.
+      Example: jockeys act upon Equus caballus(species); tappers act upon Acer saccharum(species)
+    inverseOf: aat2222areactedupon
+    kind: object
+    label: aat2221_act_upon
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2221_act_upon
+  aat2222areactedupon:
+    descr: |-
+      genus/species - is acted upon [by] - [actors having] role.
+      Example: Equus caballus(species) is acted upon by jockeys; Acer saccharum(species) is acted upon by tappers
+    inverseOf: aat2221actupon
+    kind: object
+    label: aat2222_are_acted_upon
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2222_are_acted_upon
+  aat2281havecounterpart:
+    descr: |-
+      role -[is] counterpart to - role.
+      Example: duchesses have counterpart dukes; godesses have counterpart gods
+    kind: object
+    label: aat2281_have_counterpart
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2281_have_counterpart
+    symmetric: 1
+  aat2285practicedstudiedby:
+    descr: |-
+      field [of study, genre]/discipline - [is] practiced/studied by - a role.
+      Example: Egyptology is practiced/studied by Egyptologists; architectural history is practiced/studied by architectural historians
+    inverseOf: aat2286practicestudy
+    kind: object
+    label: aat2285_practiced-studied_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2285_practiced-studied_by
+  aat2286practicestudy:
+    descr: |-
+      [actor having] role - practice/study - field [of study, genre]/discipline.
+      Example: Egyptologists practice/study Egyptology; architectural historians practice/study architectural history
+    inverseOf: aat2285practicedstudiedby
+    kind: object
+    label: aat2286_practice-study
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2286_practice-study
+  aat2291locussettingfor:
+    descr: |-
+      locus/setting - [is] locus setting for - [actor or institution having] role.
+      Example: roperies are the locus/setting of rope-makers; convents (built complexes) are the locus/setting of nuns; libraries (buildings) are the locus/setting of libraries (institutions)
+    inverseOf: aat2292worklivein
+    kind: object
+    label: aat2291_locus-setting_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2291_locus-setting_for
+  aat2292worklivein:
+    descr: |-
+      [actor or institution having] role - work/live/[exist] in - locus/setting.
+      Example: rope-makers live/work in roperies; nuns live/work in convents (nunneries); libraries (institutions) live/work in libraries (buildings)
+    inverseOf: aat2291locussettingfor
+    kind: object
+    label: aat2292_work-live_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2292_work-live_in
+  aat2294locussettingfor:
+    descr: |-
+      locus/setting - [is] locus setting for - locus/setting.
+      Example: nations are the locus/setting for national capitals; mountain ranges are the locus/setting for mountains
+    inverseOf: aat2295locatedin
+    kind: object
+    label: aat2294_locus-setting_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2294_locus-setting_for
+  aat2295locatedin:
+    descr: |-
+      locus/setting - [is] located in - locus/setting.
+      Example: national capitals are located in nations; mountains are located in mountain ranges
+    inverseOf: aat2294locussettingfor
+    kind: object
+    label: aat2295_located_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2295_located_in
+  aat2311performedby:
+    descr: |-
+      activity/event/[process/function] - [is] performed by - [actors having] a role.
+      Example: clockmaking is performed by clockmakers; curating is performed by curators
+    inverseOf: aat2312perform
+    kind: object
+    label: aat2311_performed_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2311_performed_by
+  aat2312perform:
+    descr: |-
+      [actors having] a role - perform - activity/event/process.
+      Example: clockmakers perform clockmaking; curators perform curating
+    inverseOf: aat2311performedby
+    kind: object
+    label: aat2312_perform
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2312_perform
+  aat2315usedby:
+    descr: |-
+      material - [is] used by - [actor having] role.
+      Example: precious stone is used by lapidiaries; brass (alloy) is used by braziers (metalworkers)
+    inverseOf: aat2316use
+    kind: object
+    label: aat2315_used_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2315_used_by
+  aat2316use:
+    descr: |-
+      [actors having] role - use - material.
+      Example: lapidaries use precious stone; braziers (metalworkers) use brass (alloy)
+    inverseOf: aat2315usedby
+    kind: object
+    label: aat2316_use
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2316_use
+  aat2318involvedin:
+    descr: |-
+      [actors having] role -[are] involved - activity/event.
+      Example: bridegrooms are involved in weddings; martyrs are involved in martyrdoms
+    inverseOf: aat2319involves
+    kind: object
+    label: aat2318_involved_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2318_involved_in
+  aat2319involves:
+    descr: |-
+      activity/event - involves - [actors having] role.
+      Example: weddings involve bridegrooms; martyrdoms involve martyrs
+    inverseOf: aat2318involvedin
+    kind: object
+    label: aat2319_involves
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2319_involves
+  aat2321usedby:
+    descr: |-
+      things/equipment - [are] used by - [actors having] role.
+      Example: violoncellos are used by violoncellists; surveying instruments are used by surveyors
+    inverseOf: aat2322use
+    kind: object
+    label: aat2321_used_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2321_used_by
+  aat2322use:
+    descr: |-
+      [actors having] role - use - things/equipment.
+      Example: violoncellists use violoncellos; surveyors use surveying instruments
+    inverseOf: aat2321usedby
+    kind: object
+    label: aat2322_use
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2322_use
+  aat2325createdby:
+    descr: |-
+      things - [are] created by - [actors having] role.
+      Example: drawings are created by draftsmen; poems are created by poets
+    inverseOf: aat2326create
+    kind: object
+    label: aat2325_created_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2325_created_by
+  aat2326create:
+    descr: |-
+      [actors having] role - create - things.
+      Example: draftsmen create drawings; poets create poems
+    inverseOf: aat2325createdby
+    kind: object
+    label: aat2326_create
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2326_create
+  aat2328involvedwith:
+    descr: |-
+      [actors having] role - [are] involved in- things.
+      Example: sitters are involved with portraits; actors (performing artists) are involved with motion pictures (visual works)
+    inverseOf: aat2329involves
+    kind: object
+    label: aat2328_involved_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2328_involved_with
+  aat2329involves:
+    descr: |-
+      things - involve - [actors having] role.
+      Example: portraits involve sitters; motion pictures (visual works) involve actors (performing artists)
+    inverseOf: aat2328involvedwith
+    kind: object
+    label: aat2329_involves
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2329_involves
+  aat2332affiliatedwith:
+    descr: |-
+      [actors having] role - [are] affiliated with - role [organization].
+      Example: students are affiliated with schools (organizations); dukes are affiliated with duchies
+    inverseOf: aat2333haveaffiliates
+    kind: object
+    label: aat2332_affiliated_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2332_affiliated_with
+  aat2333haveaffiliates:
+    descr: |-
+      role [organizations] - have affiliates - [actors having] role.
+      Example: schools (organizations) have as affiliates students; duchies have as affiliates dukes
+    inverseOf: aat2332affiliatedwith
+    kind: object
+    label: aat2333_have_affiliates
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2333_have_affiliates
+  aat2335associatedwith:
+    descr: |-
+      [actors having] role - [are] associated with - style/period/culture/[religion/ideology].
+      Example: abstract artists are associated with Abstract (fine arts style); popes are associated with Roman Catholicism
+    inverseOf: aat2336hasassociates
+    kind: object
+    label: aat2335_associated_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2335_associated_with
+  aat2336hasassociates:
+    descr: |-
+      style/period/culture/[relgion] - has associates - [actors having] role.
+      Example: Abstract (fine arts style) has associates abstract artists; Roman Catholicism has associates popes
+    inverseOf: aat2335associatedwith
+    kind: object
+    label: aat2336_has_associates
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2336_has_associates
+  aat2397focusof:
+    descr: |-
+      any - [is] focus of - field [of study]/discipline.
+      Example: manuscripts are the focus of codicology; music is the focus of musicology; Plantae (kingdom) is the focus of botany
+    inverseOf: aat2398focuseson
+    kind: object
+    label: aat2397_focus_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2397_focus_of
+  aat2398focuseson:
+    descr: |-
+      field [of study]/discipline - focuses on - any.
+      Example: codicology focuses on manuscripts; musicology focuses on music; bontany focuses on Plantae (kingdom)
+    inverseOf: aat2397focusof
+    kind: object
+    label: aat2398_focuses_on
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2398_focuses_on
+  aat2408locussettingfor:
+    descr: |-
+      locus/setting - [is] locus/setting for - field of study/discipline.
+      Example: schools (buildings) are the locus/setting for education; hospitals (buildings) are the locus/setting for medicine (discipline)
+    inverseOf: aat2409takesplacein
+    kind: object
+    label: aat2408_locus-setting_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2408_locus-setting_for
+  aat2409takesplacein:
+    descr: |-
+      field of study/discipline - takes place in - locus/setting.
+      Example: education takes place in schools (buildings); medicine (discipline) takes place in hospitals (buildings)
+    inverseOf: aat2408locussettingfor
+    kind: object
+    label: aat2409_takes_place_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2409_takes_place_in
+  aat2411involvedin:
+    descr: |-
+      activity/event/[process/function] - [is] involved in - field/discipline.
+      Example: journalistic photography is involved in photojournalism (discipline); gardening is involved in horticulture
+    inverseOf: aat2412involves
+    kind: object
+    label: aat2411_involved_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2411_involved_in
+  aat2412involves:
+    descr: |-
+      field/discipline - involves - activity/event/[process/function].
+      Example: photojournalism (discipline) involves journalistic photography; horticulture involves gardening
+    inverseOf: aat2411involvedin
+    kind: object
+    label: aat2412_involves
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2412_involves
+  aat2415requiredfor:
+    descr: |-
+      material - [is] required for - activity/event/[process/function].
+      Example: dye is required for dying; pewter is required for pewtersmithing
+    inverseOf: aat2416requires
+    kind: object
+    label: aat2415_required_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2415_required_for
+  aat2416requires:
+    descr: |-
+      activity/event/[process/function] - requires - material.
+      Example: dying requires dye; pewtersmithing requires pewter
+    inverseOf: aat2415requiredfor
+    kind: object
+    label: aat2416_requires
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2416_requires
+  aat2418uses:
+    descr: |-
+      field [of study]/discipline - uses - things/[equipment].
+      Example: astronomy uses astronomical instruments; divination [discipline] uses divination objects
+    inverseOf: aat2419usedfor
+    kind: object
+    label: aat2418_uses
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2418_uses
+  aat2419usedfor:
+    descr: |-
+      things/[equipment] - [are] used for - field [of study]/discipline.
+      Example: astronomical instruments are used for astronomy; divination objects are used for divination [discipline]
+    inverseOf: aat2418uses
+    kind: object
+    label: aat2419_used_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2419_used_for
+  aat2421locussettingfor:
+    descr: |-
+      locus/setting - [is] locus/setting for - activity/event/[process/function].
+      Example: smelters (metalworking plants) are the locus/setting for smelting; pilgrimage centers are the locus/setting for pilgrimages
+    inverseOf: aat2422takesplacein
+    kind: object
+    label: aat2421_locus-setting_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2421_locus-setting_for
+  aat2422takesplacein:
+    descr: |-
+      activity/event/[process/function] - takes place in - locus/setting.
+      Example: smelting takes place in smelters (metalworking plants); pilgrimages take place in pilgrimage centers
+    inverseOf: aat2421locussettingfor
+    kind: object
+    label: aat2422_takes_place_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2422_takes_place_in
+  aat2424producedby:
+    descr: |-
+      material - [is] produced by - activity/event/process.
+      Example: wire is produced by wiredrawing; paper is produced by papermaking
+    inverseOf: aat2425produces
+    kind: object
+    label: aat2424_produced_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2424_produced_by
+  aat2425produces:
+    descr: |-
+      activity/event/process - produces - material.
+      Example: wiredrawing produces wire; papermaking produces paper
+    inverseOf: aat2424producedby
+    kind: object
+    label: aat2425_produces
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2425_produces
+  aat2427producedby:
+    descr: |-
+      things - [are] produced by - activity/event/process.
+      Example: vase paintings (visual works) are produced by vase painting (image making); forgeries are produced by forging (copying)
+    inverseOf: aat2428produces
+    kind: object
+    label: aat2427_produced_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2427_produced_by
+  aat2428produces:
+    descr: |-
+      activity/event/process - produces - things.
+      Example: vase painting (image making) produces vase paintings (visual works); forging (copying) produces forgeries
+    inverseOf: aat2427producedby
+    kind: object
+    label: aat2428_produces
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2428_produces
+  aat2431requiredfor:
+    descr: |-
+      things/equipment - [are] required for - activity/event/process.
+      Example: painting equipment is required for painting (image making); dowels are required for doweling
+    inverseOf: aat2432requires
+    kind: object
+    label: aat2431_required_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2431_required_for
+  aat2432requires:
+    descr: |-
+      activity/event/process - requires - things/equipment.
+      Example: painting (image making) requires painting equipment; doweling requires dowels
+    inverseOf: aat2431requiredfor
+    kind: object
+    label: aat2432_requires
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2432_requires
+  aat2434contextualizedin:
+    descr: |-
+      things - [are] context for - activity/event/process.
+      Example: funeral books are contextualized in funerals; Christmas trees are contextualized in Christmas
+    inverseOf: aat2435contextfor
+    kind: object
+    label: aat2434_contextualized_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2434_contextualized_in
+  aat2435contextfor:
+    descr: |-
+      activity/event/process - [is] contextualized in - thing.
+      Example: funerals are the context for funeral books; Christmas is the context for Christmas trees
+    inverseOf: aat2434contextualizedin
+    kind: object
+    label: aat2435_context_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2435_context_for
+  aat2501madeofrequire:
+    descr: |-
+      things - [are] made of/require - material.
+      Example: obsidian mirrors are made of/require obsidian; ivories (sculptures) are made of/require ivory
+    inverseOf: aat2502materialfor
+    kind: object
+    label: aat2501_made_of-require
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2501_made_of-require
+  aat2502materialfor:
+    descr: |-
+      material - [is] material for - things.
+      Example: obsidian is material for obsidian mirrors; ivory is material for ivories (sculptures)
+    inverseOf: aat2501madeofrequire
+    kind: object
+    label: aat2502_material_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2502_material_for
+  aat2504usedlocatedin:
+    descr: |-
+      material - [is] used/located in - locus/setting.
+      Example: tephra is used/located in [at] volcanoes; brick (clay product) is used/located in brickworks (factories)
+    inverseOf: aat2505locussettingfor
+    kind: object
+    label: aat2504_used-located_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2504_used-located_in
+  aat2505locussettingfor:
+    descr: |-
+      locus/setting - [is] locus/setting for - material.
+      Example: volcanoes are locus/setting for  tephra; brickworks (factories) are locus/setting for brick (clay product)
+    inverseOf: aat2504usedlocatedin
+    kind: object
+    label: aat2505_locus-setting_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2505_locus-setting_for
+  aat2507produceprocess:
+    descr: |-
+      things/[equipment] - produce/process - material.
+      Example: cotton (fiber) is produced/processed by cotton gins; groundwater is produced/processed by water wells
+    inverseOf: aat2508producedprocessedby
+    kind: object
+    label: aat2507_produce-process
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2507_produce-process
+  aat2508producedprocessedby:
+    descr: |-
+      material - [is] produced/processed by - things/[equipment].
+      Example: cotton gins produce/process cotton (fiber); waterwells produce/process groundwater
+    inverseOf: aat2507produceprocess
+    kind: object
+    label: aat2508_produced-processed_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2508_produced-processed_by
+  aat2551reflectproducedby:
+    descr: |-
+      things - reflect/[are] produced by - style/period/culture/[religion/ideology].
+      Example: Nasca lines reflect/are produced by Nasca [culture]; Judaica reflects/is produced by Judaism
+    inverseOf: aat2552reflectedinproduces
+    kind: object
+    label: aat2551_reflect-produced_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2551_reflect-produced_by
+  aat2552reflectedinproduces:
+    descr: |-
+      style/period/culture/[religion/ideology] - [is] reflected in/produces - things.
+      Example: Nasca [culture] produces/is reflected in Nasca lines; Judaism produces/is reflected in Judaica
+    inverseOf: aat2551reflectproducedby
+    kind: object
+    label: aat2552_reflected_in-produces
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2552_reflected_in-produces
+  aat2554reflects:
+    descr: |-
+      activity/event - reflects - style/period/culture /[religion/ideology].
+      Example: dhokra (casting technique) reflects Dhokra (culture); red-figure vase painting reflects Red-figure [style]
+    inverseOf: aat2555reflectedin
+    kind: object
+    label: aat2554_reflects
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2554_reflects
+  aat2555reflectedin:
+    descr: |-
+      style/period/culture /[religion/ideology] - [is] reflected in activity/event.
+      Example: Dhokra (culture) is reflected in dhokra (casting technique); Red-figure [style] is reflected in red-figure vase painting
+    inverseOf: aat2554reflects
+    kind: object
+    label: aat2555_reflected_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2555_reflected_in
+  aat2557reflects:
+    descr: |-
+      field/discipline - reflects - style/period/culture /[religion/ideology].
+      Example: bugatu [dance discipline] reflects Buddhism; church history reflects Christianity; classics (discipline) reflects Ancient Greek [culture]
+    inverseOf: aat2558reflectedin
+    kind: object
+    label: aat2557_reflects
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2557_reflects
+  aat2558reflectedin:
+    descr: |-
+      style/period/culture /[religion/ideology] - [is] reflected in field/discipline.
+      Example: Buddhism is reflected in bugatu [dance discipline]; Christianity is reflected in church history; Ancient Greek [culture] is reflected in classics (discipline)
+    inverseOf: aat2557reflects
+    kind: object
+    label: aat2558_reflected_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2558_reflected_in
+  aat2562locussettingfor:
+    descr: |-
+      locus/setting - [is] locus/setting for - style/period/culture/[religion/ideology].
+      Example: First Nations reserves are the locus/setting for First Nations (culture); agraharas are the locus/setting for Brahmanism
+    inverseOf: aat2563locatedin
+    kind: object
+    label: aat2562_locus-setting_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2562_locus-setting_for
+  aat2563locatedin:
+    descr: |-
+      style/period/culture/[religion/ideology] - is located/[reflected] in - locus/setting.
+      Example: First Nations (culture) is located/reflected in First Nations reserves; Brahmanism is located/reflected in agraharas
+    inverseOf: aat2562locussettingfor
+    kind: object
+    label: aat2563_located_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2563_located_in
+  aat2601possessedbyexistingin:
+    descr: |-
+      attributes /associated concepts - [is] possessed by/existing in - role [of actors].
+      Example: adulthood is possessed by/existing in adults; nomadism is possessed by/existing in nomads
+    inverseOf: aat2602possessexistin
+    kind: object
+    label: aat2601_possessed_by-existing_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2601_possessed_by-existing_in
+  aat2602possessexistin:
+    descr: |-
+      role [of actors] - possess/exist in - attributes /associated concepts.
+      Example: adults possess/exist in adulthood; nomads possess/exist in [state of] nomadism
+    inverseOf: aat2601possessedbyexistingin
+    kind: object
+    label: aat2602_possess-exist_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2602_possess-exist_in
+  aat2604possessedbyexistingin:
+    descr: |-
+      attributes /associated concepts - [is] possessed by/existing in - things.
+      Example: boudoir (photograph size) is possessed by/existing in boudoir photographs; ruined [condition] is possessed by/existing in ruins
+    inverseOf: aat2605possessexistin
+    kind: object
+    label: aat2604_possessed_by-existing_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2604_possessed_by-existing_in
+  aat2605possessexistin:
+    descr: |-
+      things - possess/exist in - attributes /associated concepts.
+      Example: boudoir photographs possess/exist in boudoir (photograph size); ruins possess/exist in ruined [contition]
+    inverseOf: aat2604possessedbyexistingin
+    kind: object
+    label: aat2605_possess-exist_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2605_possess-exist_in
+  aat2607causedbyrequires:
+    descr: |-
+      attributes /associated concepts - [is] caused by/requires - an activity/event/[process/function].
+      Example: watertightness is caused by/requires waterproofing; creases (condition) is caused by/requires creasing (process)
+    inverseOf: aat2608causesrequiredfor
+    kind: object
+    label: aat2607_caused_by-requires
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2607_caused_by-requires
+  aat2608causesrequiredfor:
+    descr: |-
+      activity/event/[process/function] - causes/[is] required for - [a] state/condition/attributes.
+      Example: waterproofing causes/is required for watertighness; creasing (process) causes/is required for creases (condition)
+    inverseOf: aat2607causedbyrequires
+    kind: object
+    label: aat2608_causes-required_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2608_causes-required_for
+  aat2612possessedbyexistingin:
+    descr: |-
+      attributes /associated concepts - is possessed by/existing in - material.
+      Example: dry rot is possessed by/existing in wood(plant material); dielectric properties are possessed by/existing in dielectric (material)
+    inverseOf: aat2613possessexistin
+    kind: object
+    label: aat2612_possessed_by-existing_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2612_possessed_by-existing_in
+  aat2613possessexistin:
+    descr: |-
+      material - possesses/exists in - condition/state/[property].
+      Example: wood(plant material) possesses/exists in [condition of] dry rot; dielectric (material) possesses/exists in dielectric properties
+    inverseOf: aat2612possessedbyexistingin
+    kind: object
+    label: aat2613_possess-exist_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2613_possess-exist_in
+  aat2801conjunctedwith:
+    descr: |-
+      things - [are] conjuncted with - things.
+      Example: cups are conjuncted with saucers; dining tables are conjuncted with dining chairs
+    kind: object
+    label: aat2801_conjuncted_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2801_conjuncted_with
+    symmetric: 1
+  aat2802exemplifiedby:
+    descr: |-
+      material - [is] exemplified by - brand name.
+      Example: petrolium jelly is exemplified by Vaseline (TM); polytetrafluoroethyelene is exemplified by Teflon (TM)
+    inverseOf: aat2803exampleof
+    kind: object
+    label: aat2802_exemplified_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2802_exemplified_by
+  aat2803exampleof:
+    descr: |-
+      brand name - [is] example of - material.
+      Example: Vaseline (TM) is an example of petrolium jelly; Teflon (TM) is an example of polytetrafluoroethyelene
+    inverseOf: aat2802exemplifiedby
+    kind: object
+    label: aat2803_example_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2803_example_of
+  aat2805contextualizedin:
+    descr: |-
+      [smaller] things - [are] contextualized in - [larger] things.
+      Example: predellas are contextualized in altarpieces; chapters are contextualized in books
+    inverseOf: aat2806providecontext
+    kind: object
+    label: aat2805_contextualized_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2805_contextualized_in
+  aat2806providecontext:
+    descr: |-
+      [larger] things - provide context [for] - [smaller] things.
+      Example: altarpieces provide context for predellas; books provide context for chapters
+    inverseOf: aat2805contextualizedin
+    kind: object
+    label: aat2806_provide_context
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2806_provide_context
+  aat2807derivedfromcommonsource:
+    descr: |-
+      material - [is] derived from common source [as] - material.
+      Example: malachite (mineral) is derived from common source with azurite (mineral); mustard(material) is derived from common source with mustard oil
+    kind: object
+    label: aat2807_derived_from_common_source
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2807_derived_from_common_source
+    symmetric: 1
+  aat2809coexistedwith:
+    descr: |-
+      style/period/culture/[religion/ideology] - coexisted with -  style/period/culture/[religion/ideology].
+      Example: Sangoan coexisted with Fauresmith; Early Minoan coexisted with Prepalatial
+    kind: object
+    label: aat2809_coexisted_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2809_coexisted_with
+    symmetric: 1
+  aat2811preceded:
+    descr: |-
+      style/period/culture/[religion/ideology] - preceded  - style/period/culture/[religion/ideology].
+      Example: Impressionist preceded Abstract Impressionist; Acheulian preceded Micoquian
+    inverseOf: aat2812followed
+    kind: object
+    label: aat2811_preceded
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2811_preceded
+  aat2812followed:
+    descr: |-
+      style/period/culture/[religion/ideology] - followed  - style/period/culture/[religion/ideology].
+      Example: Abstract Impressionism followed Impressionist; Micoquian followed Acheulian
+    inverseOf: aat2811preceded
+    kind: object
+    label: aat2812_followed
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2812_followed
+  aat2814constituentof:
+    descr: |-
+      material - [is] constituent of - material.
+      Example: titanium white is a constituent of composite white; iron oxide is a constituent of desert varnish
+    inverseOf: aat2815composedof
+    kind: object
+    label: aat2814_constituent_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2814_constituent_of
+  aat2815composedof:
+    descr: |-
+      material - [is] composed of - material.
+      Example: composite white is composed of titanium white; desert varnish is composed of iron oxide
+    inverseOf: aat2814constituentof
+    kind: object
+    label: aat2815_composed_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2815_composed_of
+  aat2817derivedmadefrom:
+    descr: |-
+      material - [is] derived/made from - material.
+      Example: gypsum is derived/made from from anhydrite; wood board is derived/made from timber (lumber)
+    inverseOf: aat2818sourcefor
+    kind: object
+    label: aat2817_derived-made_from
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2817_derived-made_from
+  aat2818sourcefor:
+    descr: |-
+      material - [is] source for - material.
+      Example: anhydrite is the source for gypsum; timber (lumber) is the source for wood board
+    inverseOf: aat2817derivedmadefrom
+    kind: object
+    label: aat2818_source_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2818_source_for
+  aat2821basedon:
+    descr: |-
+      any - [is] based on - any.
+      Example: Neo-Gothic is based on Gothic (Medieval); curved [form attribute] is based on curves (geometric figures); pencils are based on plummets
+    inverseOf: aat2822basisof
+    kind: object
+    label: aat2821_based_on
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2821_based_on
+  aat2822basisof:
+    descr: |-
+      any - [is] basis of - any.
+      Example: Gothic (Medieval) is the basis of Neo-Gothic; curves (geometric figures) are the basis of curved [form attribute]; plummets are the basis of pencils
+    inverseOf: aat2821basedon
+    kind: object
+    label: aat2822_basis_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2822_basis_of
+  aat2824hasparallelswith:
+    descr: |-
+      style/period/culture/[religion/ideology] - has parallels with - style/period/culture/[religion/ideology].
+      Example: Lagozza [culture] has parallels with Chasseen [culture];  Gnathian (pottery style) has parallels with West Slope (pottery style)
+    kind: object
+    label: aat2824_has_parallels_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2824_has_parallels_with
+    symmetric: 1
+  aat2826usedwith:
+    descr: |-
+      material - [is] used with - material.
+      Example: watercolor paper is used with watercolor (paint); arriccio is used with intonaco
+    kind: object
+    label: aat2826_used_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2826_used_with
+    symmetric: 1
+  aat2828userequire:
+    descr: |-
+      things - use/require - material.
+      Example: oil paintings use/require varnish; wine glasses use/require wine
+    inverseOf: aat2829usedrequiredfor
+    kind: object
+    label: aat2828_use-require
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2828_use-require
+  aat2829usedrequiredfor:
+    descr: |-
+      material - [is] required/used for - things.
+      Example: varnish is used/required for oil paintings; wine is required/used for wine glasses
+    inverseOf: aat2828userequire
+    kind: object
+    label: aat2829_used-required_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2829_used-required_for
+  aat2831associatedwith:
+    descr: |-
+      genus/species/[other living organism term] - [is] associated with - genus/species.
+      Example: Anthonomus grandis (species) [boll weevil] is associated with Gossypium (genus) [cotton]; Amphiprioninae (subfamily) [clown fish] is associated with Actiniaria (order) [sea anemone]
+    kind: object
+    label: aat2831_associated_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2831_associated_with
+    symmetric: 1
+  aat2833ancestorof:
+    descr: |-
+      genus/species - is ancestor of -  another genus/species.
+      Example: Canis lupus is the ancestor of Canis familiaris; Equus asinus is the ancestor of donkeys
+    inverseOf: aat2834decendantof
+    kind: object
+    label: aat2833_ancestor_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2833_ancestor_of
+  aat2834decendantof:
+    descr: |-
+      genus/species - is decendant of -  genus/species.
+      Example: Canis familiaris is the descendant of Canis lupus; donkeys are the descendents of Equus asinus
+    inverseOf: aat2833ancestorof
+    kind: object
+    label: aat2834_decendant_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2834_decendant_of
+  aat2836derivedmadefrom:
+    descr: |-
+      things - [are] derived/made from - genus/species [or its parts].
+      Example: k?kaku are derived/made from Phormium tenax (species); ostrich-egg cups are derived/made from Struthio camelus (species)
+    inverseOf: aat2837sourcefor
+    kind: object
+    label: aat2836_derived-made_from
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2836_derived-made_from
+  aat2837sourcefor:
+    descr: |-
+      genus/species [or its parts] - [is] source for - things.
+      Example: Phormium tenax (species) is the source for k?kaku; Struthio camelus(species) is the source for ostrich-egg cups
+    inverseOf: aat2836derivedmadefrom
+    kind: object
+    label: aat2837_source_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2837_source_for
+  aat2841derivedmadefrom:
+    descr: |-
+      material - [is] derived/made from - genus/species.
+      Example: alpaca (wool) is derived from Vicugna pacos (species); maple (wood) is derived from Acer (genus)
+    inverseOf: aat2842sourcefor
+    kind: object
+    label: aat2841_derived-made_from
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2841_derived-made_from
+  aat2842sourcefor:
+    descr: |-
+      genus/species - [is] source for - material.
+      Example: Vicugna pacos (species) is the source for alpaca (wool); Acer (genus) is the source for maple (wood)
+    inverseOf: aat2841derivedmadefrom
+    kind: object
+    label: aat2842_source_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2842_source_for
+  aat2845usedlocatedin:
+    descr: |-
+      genus/species - [is] used/located in -  locus/setting.
+      Example: Elephantidae(family) are used/located in elephant houses; Vitaceae (family) is used/located in vineyards
+    inverseOf: aat2846locussettingfor
+    kind: object
+    label: aat2845_used-located_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2845_used-located_in
+  aat2846locussettingfor:
+    descr: |-
+      locus/setting - [is] locus/setting for - genus/species.
+      Example: elephant houses are the locus/setting for Elephantidae(family); vineyards are the locus/setting of Vitaceae (family)
+    inverseOf: aat2845usedlocatedin
+    kind: object
+    label: aat2846_locus-setting_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2846_locus-setting_for
+  aat2848involvedin:
+    descr: |-
+      genus/species - is involved in - activity/event.
+      Example: bulls (animals) are involved in bullfighting; Equus caballus (species) is involved in polo(field sport)
+    inverseOf: aat2849involves
+    kind: object
+    label: aat2848_involved_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2848_involved_in
+  aat2849involves:
+    descr: |-
+      activity/event - involves - genus/species.
+      Example: bullfighting involves bulls (animals); polo (field sport) involves Equus caballus (species)
+    inverseOf: aat2848involvedin
+    kind: object
+    label: aat2849_involves
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2849_involves
+  aat2852involvedwith:
+    descr: |-
+      genus/species - [is] involved with - things/[equipment].
+      Example: Rosa (genus) is involved with rose bowls; Camelus (genus) is involved with camel saddles
+    inverseOf: aat2853involve
+    kind: object
+    label: aat2852_involved_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2852_involved_with
+  aat2853involve:
+    descr: |-
+      things/[equipment] - involve - genus/species.
+      Example: rose bowls involve Rosa (genus); camel saddles involve Camelus (genus)
+    inverseOf: aat2852involvedwith
+    kind: object
+    label: aat2853_involve
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2853_involve
+  aat2875characteristicof:
+    descr: |-
+      language - [is] characteristic of - style/period/culture.
+      Example: Afar (language) is characteristic of Afar (culture); Celtic (language) was characteristic of Celtic (culture)
+    inverseOf: aat2876characterizedby
+    kind: object
+    label: aat2875_characteristic_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2875_characteristic_of
+  aat2876characterizedby:
+    descr: |-
+      style/period/culture - [is] characterized by - language.
+      Example: Afar (culture) is characterized by Afar (language); Celtic (culture) is characterized by Celtic (language)
+    inverseOf: aat2875characteristicof
+    kind: object
+    label: aat2876_characterized_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2876_characterized_by
+  aat2878precededsourcefor:
+    descr: |-
+      language - preceded/[is] source for - language.
+      Example: Ancient Greek (language) preceded/is source for Greek (modern language); Ancient Egyptian (language) preceded/is source for Egyptian, Coptic (language)
+    inverseOf: aat2879followeddevelopedfrom
+    kind: object
+    label: aat2878_preceded-source_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2878_preceded-source_for
+  aat2879followeddevelopedfrom:
+    descr: |-
+      language - followed/developed from - language.
+      Example: Greek (modern language) followed/developed from Ancient Greek (language); Egyptian, Coptic (language) followed/developed from Ancient Egyptian (language)
+    inverseOf: aat2878precededsourcefor
+    kind: object
+    label: aat2879_followed-developed_from
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2879_followed-developed_from
+  aat2881reflectedin:
+    descr: |-
+      language - [is] reflected in - things.
+      Example: Greek (language) is reflected in Greek alphabet; Sanskrit is reflected in Vedas
+    inverseOf: aat2882reflect
+    kind: object
+    label: aat2881_reflected_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2881_reflected_in
+  aat2882reflect:
+    descr: |-
+      things - reflect - language.
+      Example: Greek alphabet reflects Greek (language); Vedas reflect Sanskrit
+    inverseOf: aat2881reflectedin
+    kind: object
+    label: aat2882_reflect
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2882_reflect
+  aat2884involvedwith:
+    descr: |-
+      attributes /associated concepts - [are] involved with - any.
+      Example: climate is involved with climate change; insect damage is involved with infestation; Celtic crosses (design motif) are involved with Celtic culture
+    inverseOf: aat2885involves
+    kind: object
+    label: aat2884_involved_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2884_involved_with
+  aat2885involves:
+    descr: |-
+      any - involves - attributes /associated concepts.
+      Example: climate change involves climate;  infestation involves insect damage; Celtic culture involves Celtic crosses (design motif)
+    inverseOf: aat2884involvedwith
+    kind: object
+    label: aat2885_involves
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2885_involves
+  aat2886usedfunctionas:
+    descr: |-
+      material - used/function as - material.
+      Example: carbon disulfide - is used/functions as - solvent
+    inverseOf: aat2887exemplifiedby
+    kind: object
+    label: aat2886_used-function_as
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2886_used-function_as
+  aat2887exemplifiedby:
+    descr: |-
+      material - exemplified by - material.
+      Example: solvent - exemplified by - carbon disulfide
+    inverseOf: aat2886usedfunctionas
+    kind: object
+    label: aat2887_exemplified_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2887_exemplified_by
+  aat2891exemplifiedby:
+    descr: |-
+      things - [are] exemplied by - brand name.
+      Example: photothermographic transfer prints are exemplified by Pictrography (TM) prints
+    inverseOf: aat2892exampleof
+    kind: object
+    label: aat2891_exemplified_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2891_exemplified_by
+  aat2892exampleof:
+    descr: |-
+      brand name - [is] example of - things.
+      Example: Pictrography (TM) prints are examples of photothermographic transfer prints
+    inverseOf: aat2891exemplifiedby
+    kind: object
+    label: aat2892_example_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2892_example_of
+  aat2894exemplifiedby:
+    descr: |-
+      activity/event/[process/function] - [is] exemplified by - brand name.
+      Example: deacidification [process/function] is exemplified by Papersave Process (TM)
+    inverseOf: aat2895exampleof
+    kind: object
+    label: aat2894_exemplified_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2894_exemplified_by
+  aat2895exampleof:
+    descr: |-
+      brand name - [is] example of - activity/event/[process/function].
+      Example: Papersave Process (TM) is example of deacidification [process/function]
+    inverseOf: aat2894exemplifiedby
+    kind: object
+    label: aat2895_example_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2895_example_of
+  aat2900miscellaneousrelationship:
+    descr: |-
+      any - [has] miscellaneous relationship [to] - any.
+      Example: Conditions and Effects has miscellaneous relationship with Processes and Techniques
+    kind: object
+    label: aat2900_miscellaneous_relationship
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:aat2900_miscellaneous_relationship
+    symmetric: 1
+  agentType:
+    descr: 'Type of a ULAN PersonConcept or GroupConcept. Domain is ULAN concept, range is AAT concept'
+    kind: object
+    label: agentType
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:agentType
+  agentTypeNonPreferred:
+    descr: |-
+      A secondary type of a ULAN Person or Corporate body. Domain is ULAN concept, range is AAT concept. A secondary type of a ULAN Person or Corporate body. Domain is ULAN concept, range is AAT concept.
+      Example: Non-preferred types of "Albrecht Duerer Workshop" (ULAN) include "printmakers" and painters" (AAT)
+    kind: object
+    label: agentTypeNonPreferred
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:agentTypeNonPreferred
+  agentTypePreferred:
+    descr: |-
+      The primary type of a ULAN Person or Corporate body. Domain is ULAN concept, range is AAT concept. The primary type of a ULAN Person or Corporate body. Domain is ULAN concept, range is AAT concept.
+      Example: The preferred type of "Albrecht Duerer Workshop" (ULAN) is "workshop" (AAT)
+    kind: object
+    label: agentTypePreferred
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:agentTypePreferred
+  biography:
+    descr: 'Biography of an ULAN agent. Domain is schema:Person/Organization, range is gvp:Biography. The preferred biography fields are also directly available in the Person/Organization'
+    kind: object
+    label: biography
+    max: inf
+    range: Biography
+    rdfProp: gvp:biography
+  biographyNonPreferred:
+    descr: 'Non-preferred biography of an ULAN agent. Domain is schema:Person/Organization, range is gvp:Biography'
+    kind: object
+    label: biographyNonPreferred
+    max: inf
+    range: Biography
+    rdfProp: gvp:biographyNonPreferred
+  biographyPreferred:
+    descr: 'Preferred biography of an ULAN agent. Domain is schema:Person/Organization, range is gvp:Biography. The biography fields are also directly available in the Person/Organization'
+    kind: object
+    label: biographyPreferred
+    max: inf
+    range: Biography
+    rdfProp: gvp:biographyPreferred
+  broader:
+    descr: Parents of a subject. Each broader is also Preferred|NonPreferred and Partitive|Instantial|Generic
+    kind: object
+    label: broader
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:broader
+  broaderExtended:
+    descr: |-
+      Appropriate ancestors. Meaningful closure of gvp:broader for query expansion. Use this, not skos:broaderTransitive. Appropriate ancestors. Meaningful closure of gvp:broader for query expansion. Use this, not skos:broaderTransitive.
+      Example: Mt Athos has ancestor places (BTPE) World, Europe, Greece, Macedonia, Pangaíon Óros regional division;
+      and place types (BTIE) inhabited place; and orthodox religious center, Christian religious center, religious center
+    kind: object
+    label: broaderExtended
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:broaderExtended
+  broaderGeneric:
+    descr: |-
+      BTG (Genus/Species, "is a") relation. We also infer iso-thes:broaderGeneric, which goes only between Concepts. BTG (Genus/Species, "is a") relation. We also infer iso-thes:broaderGeneric, which goes only between Concepts.
+      Example: calcite (AAT) BTG mineral (AAT)
+    kind: object
+    label: broaderGeneric
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:broaderGeneric
+  broaderGenericExtended:
+    descr: |-
+      Ancestors (Generic). Meaningful closure of gvp:broaderGeneric. Infers iso:broaderGeneric for pairs of directly related skos:Concepts. Ancestors (Generic). Meaningful closure of gvp:broaderGeneric. Infers iso:broaderGeneric for pairs of directly related skos:Concepts.
+      Example: <anvils and anvil accessories> BTG <forging and metal-shaping tools> BTG <forging and metal-shaping equipment>,
+      so <anvils and anvil accessories> BTGE <forging and metal-shaping equipment>
+    kind: object
+    label: broaderGenericExtended
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:broaderGenericExtended
+  broaderInstantial:
+    descr: |-
+      BTI (Kind/Instance, "example of") relation. We also infer iso-thes:broaderInstantial, which goes only between Concepts. BTI (Kind/Instance, "example of") relation. We also infer iso-thes:broaderInstantial, which goes only between Concepts.
+      Example: Rembrandt van Rijn BTI Persons/Artists (ULAN)
+    kind: object
+    label: broaderInstantial
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:broaderInstantial
+  broaderInstantialExtended:
+    descr: Ancestors (Instantial). Meaningful closure of gvp:broaderInstantial. Infers iso:broaderInstantial for pairs of directly related skos:Concepts
+    kind: object
+    label: broaderInstantialExtended
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:broaderInstantialExtended
+  broaderNonConcept:
+    descr: 'Chain of gvp:broader from Concept to GuideTerms, without intervening Concept'
+    kind: object
+    label: broaderNonConcept
+    max: inf
+    range: GuideTerm
+    rdfProp: gvp:broaderNonConcept
+  broaderNonPreferred:
+    descr: |-
+      Auxiliary parents of a subject. Very often there are several non-preferred parents (poly-hierarchy). Can use to mark such parents with [N] in displays . Auxiliary parents of a subject. Very often there are several non-preferred parents (poly-hierarchy). Can use to mark such parents with [N] in displays .
+      Example: Non-preferred: "baking dishes" BTG "dishes (vessels)" (AAT)
+    kind: object
+    label: broaderNonPreferred
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:broaderNonPreferred
+  broaderPartitive:
+    descr: |-
+      BTP (Part/Whole, "part of") relation. We also infer iso-thes:broaderPartitive, which goes only between Concepts. BTP (Part/Whole, "part of") relation. We also infer iso-thes:broaderPartitive, which goes only between Concepts.
+      Example: Tuscany (TGN) BTP Italy (TGN)
+    kind: object
+    label: broaderPartitive
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:broaderPartitive
+  broaderPartitiveExtended:
+    descr: |-
+      Ancestors (Partitive). Meaningful closure of gvp:broaderPartitive. Infers iso:broaderPartitive for pairs of directly related skos:Concepts. Ancestors (Partitive). Meaningful closure of gvp:broaderPartitive. Infers iso:broaderPartitive for pairs of directly related skos:Concepts.
+      Example: anvil components BTP <anvils and anvil accessories> BTG <forging and metal-shaping tools>,
+      so anvil components BTPE <forging and metal-shaping tools>
+    kind: object
+    label: broaderPartitiveExtended
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:broaderPartitiveExtended
+  broaderPreferred:
+    descr: |-
+      Main parent of a subject. Needed to display the hierarchy. Main parent of a subject. Needed to display the hierarchy.
+      Example: Preferred: "baking dishes" (AAT) BTG "bakeware" (AAT); Sofia (TGN) BTP Bulgaria (TGN)
+    kind: object
+    label: broaderPreferred
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:broaderPreferred
+  broaderPreferredExtended:
+    descr: |-
+      Preferred Ancestors. Meaningful closure of gvp:broaderPreferred. Needed to display the hierarchy. Preferred Ancestors. Meaningful closure of gvp:broaderPreferred. Needed to display the hierarchy.
+      Example: Mt Athos has preferred ancestor places (BTPE) World, Europe, Greece, Macedonia, Pangaíon Óros regional division;
+      and prefererd place type (BTIE) inhabited place
+    kind: object
+    label: broaderPreferredExtended
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:broaderPreferredExtended
+  contributorAlternatePreferred:
+    descr: Contributor for which the term is Alternate Preferred. Range is foaf:Agent
+    kind: object
+    label: contributorAlternatePreferred
+    max: inf
+    range: foaf:Agent
+    rdfProp: gvp:contributorAlternatePreferred
+  contributorNonPreferred:
+    descr: |-
+      Contributor for which the term is Non-preferred. Range is foaf:Agent. Contributor for which the term is Non-preferred. Range is foaf:Agent.
+      Example: "Lycra" is non-preferred term for WHS
+    kind: object
+    label: contributorNonPreferred
+    max: inf
+    range: foaf:Agent
+    rdfProp: gvp:contributorNonPreferred
+  contributorPreferred:
+    descr: |-
+      Contributor for which the term is Preferred. Range is foaf:Agent. Contributor for which the term is Preferred. Range is foaf:Agent.
+      Example: "organza" is preferred term for WHS
+    kind: object
+    label: contributorPreferred
+    max: inf
+    range: foaf:Agent
+    rdfProp: gvp:contributorPreferred
+  displayOrder:
+    descr: |-
+      Display order of subject or term amongst its siblings.
+      If all are 1 then use alphabetical. Domain is gvp:Subject or skosxl:Label
+    kind: literal
+    label: displayOrder
+    max: inf
+    range: positiveInteger
+    rdfProp: gvp:displayOrder
+  estEnd:
+    descr: 'Estimated end date of term, relation, type assignment, event, biography'
+    kind: literal
+    label: estEnd
+    max: inf
+    range: string
+    rdfProp: gvp:estEnd
+  estStart:
+    descr: 'Estimated start date of term, relation, type assignment, event, biography'
+    kind: literal
+    label: estStart
+    max: inf
+    range: string
+    rdfProp: gvp:estStart
+  eventNonPreferred:
+    descr: 'Non-preferred life event of an ULAN agent. Domain is schema:Person/Organization, range is bio:Event'
+    kind: object
+    label: eventNonPreferred
+    max: inf
+    range: bio:Event
+    rdfProp: gvp:eventNonPreferred
+  eventPreferred:
+    descr: 'Preferred life event of an ULAN agent. Domain is schema:Person/Organization, range is bio:Event'
+    kind: object
+    label: eventPreferred
+    max: inf
+    range: bio:Event
+    rdfProp: gvp:eventPreferred
+  historicFlag:
+    descr: Historic Flag
+    kind: object
+    label: historicFlag
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:historicFlag
+  isNoted:
+    descr: |-
+      One amongst several homographic concepts may be especially noted so it's easier to find. One amongst several homographic concepts may be especially noted so it's easier to find.
+      Example: tgn:7008038 Paris, France is noted but tgn:2106600 Paris, Texas is not (except if you're Fassbinder)
+    kind: literal
+    label: isNoted
+    max: inf
+    range: boolean
+    rdfProp: gvp:isNoted
+  nationalityNonPreferred:
+    descr: 'Non-preferred nationality/culture/race/ethnicity/religion/sexual orientation of an ULAN agent. Domain is schema:Person/Organization, range is AAT concept'
+    kind: object
+    label: nationalityNonPreferred
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:nationalityNonPreferred
+  nationalityPreferred:
+    descr: 'Preferred nationality/culture/race/ethnicity/religion/sexual orientation of an ULAN agent. Domain is schema:Person/Organization, range is AAT concept'
+    kind: object
+    label: nationalityPreferred
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:nationalityPreferred
+  parentString:
+    descr: |-
+      Preferred labels of *all* of the subject's preferred ancestors, listed bottom up. Useful to show the subject's full context. Preferred labels of *all* of the subject's preferred ancestors, listed bottom up. Useful to show the subject's full context.
+      Display version of gvp:broaderPreferredExtended.
+      For aat:300226882 baking dishes: bakeware, <vessels for cooking food>, <containers for cooking food>, <culinary containers>, <containers by function or context>, containers (receptacles), Containers (Hierarchy Name), Furnishings and Equipment (Hierarchy Name), Objects Facet
+    kind: literal
+    label: parentString
+    max: inf
+    range: string
+    rdfProp: gvp:parentString
+  parentStringAbbrev:
+    descr: |-
+      Preferred labels of *some* of the subject's preferred ancestors, listed bottom up. Useful to show the subject's context. Preferred labels of *some* of the subject's preferred ancestors, listed bottom up. Useful to show the subject's context.
+      Shortened display version of gvp:broaderPreferredExtended.
+      Example for aat:300226882 baking dishes: bakeware, <vessels for cooking food>, ... Furnishings and Equipment (Hierarchy Name)
+    kind: literal
+    label: parentStringAbbrev
+    max: inf
+    range: string
+    rdfProp: gvp:parentStringAbbrev
+  placeType:
+    descr: |-
+      Type for a TGN place. Domain is TGN concept (AdminPlaceConcept or PhysPlaceConcept), range is AAT Concept. Type for a TGN place. Domain is TGN concept (AdminPlaceConcept or PhysPlaceConcept), range is AAT Concept.
+      Example: Machupicchu, Peru has preferred type "deserted settlement" (current) and non-preferred type "Inca center" (historic)
+    kind: object
+    label: placeType
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:placeType
+  placeTypeNonPreferred:
+    descr: |-
+      A secondary type for a TGN Place. Domain is TGN concept, range is AAT concept. A secondary type for a TGN Place. Domain is TGN concept, range is AAT concept.
+      Example: A non-preferred type of Machupicchu, Peru is "Inca center" (historical)
+    kind: object
+    label: placeTypeNonPreferred
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:placeTypeNonPreferred
+  placeTypePreferred:
+    descr: |-
+      The primary type of a TGN Place. Domain is TGN concept, range is AAT concept. The primary type of a TGN Place. Domain is TGN concept, range is AAT concept.
+      Example: The preferred place type of Machupicchu, Peru is "deserted settlement" (current)
+    kind: object
+    label: placeTypePreferred
+    max: inf
+    range: SubjectInterface
+    rdfProp: gvp:placeTypePreferred
+  prefLabelGVP:
+    descr: 'Term preferred by the Getty Vocabulary Program. The language is usually English. Applicable to AAT, ULAN, TGN. Used with skosxl:prefLabel'
+    kind: object
+    label: prefLabelGVP
+    max: inf
+    range: skosxl:Label
+    rdfProp: gvp:prefLabelGVP
+  prefLabelLoC:
+    descr: 'Term preferred by Library of Congress, thus used for cataloging according to AACR2. Applicable to AAT and ULAN. Used with skosxl:prefLabel'
+    kind: object
+    label: prefLabelLoC
+    max: inf
+    range: skosxl:Label
+    rdfProp: gvp:prefLabelLoC
+  qualifier:
+    descr: |-
+      Clarifies and disambiguates terms with the same spelling but different meaning.
+      Appended in parentheses to gvp:term, forming skosxsl:literalForm.
+      Every qualifier is in the same language as the term. Clarifies and disambiguates terms with the same spelling but different meaning.
+      Appended in parentheses to gvp:term, forming skosxsl:literalForm.
+      Every qualifier is in the same language as the term.
+      Example: "Rhea (vessels)"=rhyta (a kind of drinking vessel) vs "Rhea (species)"=Boehmeria nivea (Chinese grass)
+    kind: literal
+    label: qualifier
+    max: inf
+    range: string
+    rdfProp: gvp:qualifier
+  schema:dissolutionLocation:
+    descr: |-
+      The place where the Organization was dissolved. The place where the Organization was dissolved.
+      Schema has properties foundationLocation and dissolutionDate but no dissolutionLocation. 
+      In contrast, for a person all 4 properties are present: birth/death place/date.
+      We posted issue https://github.com/schemaorg/schemaorg/issues/302, which looks like it will have a positive outcome in the far future.
+      And we define the property here
+    kind: object
+    label: dissolutionLocation
+    max: inf
+    range: schema:Place
+  sourceAlternatePreferred:
+    descr: |-
+      Source for which the term is Alternate Preferred. Range is bibo:Document or bibo:DocumentPart. Source for which the term is Alternate Preferred. Range is bibo:Document or bibo:DocumentPart.
+      Example: "Kayseri" is alternate preferred in Webster's New Geographical Dictionary (1988)
+    kind: object
+    label: sourceAlternatePreferred
+    max: inf
+    range: bibo:Document
+    rdfProp: gvp:sourceAlternatePreferred
+  sourceNonPreferred:
+    descr: |-
+      Source for which the term is Non-preferred. Range is bibo:Document or bibo:DocumentPart. Source for which the term is Non-preferred. Range is bibo:Document or bibo:DocumentPart.
+      Example: "Panderma" is non-preferred in Webster's New Geographical Dictionary (1988)
+    kind: object
+    label: sourceNonPreferred
+    max: inf
+    range: bibo:Document
+    rdfProp: gvp:sourceNonPreferred
+  sourcePreferred:
+    descr: |-
+      Source for which the term is Preferred. Range is bibo:Document or bibo:DocumentPart. Source for which the term is Preferred. Range is bibo:Document or bibo:DocumentPart.
+      Example: "Isfahan" is preferred in Webster's New Geographical Dictionary (1988)
+    kind: object
+    label: sourcePreferred
+    max: inf
+    range: bibo:Document
+    rdfProp: gvp:sourcePreferred
+  term:
+    descr: 'Term (label), used as the basic (prefix) part of skosxsl:literalForm'
+    kind: literal
+    label: term
+    max: inf
+    range: string
+    rdfProp: gvp:term
+  termDisplay:
+    descr: Term Display
+    kind: object
+    label: termDisplay
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:termDisplay
+  termFlag:
+    descr: Term Flag
+    kind: object
+    label: termFlag
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:termFlag
+  termKind:
+    descr: Term Kind
+    kind: object
+    label: termKind
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:termKind
+  termPOS:
+    descr: Part of Speech
+    kind: object
+    label: termPOS
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:termPOS
+  termType:
+    descr: Term Type
+    kind: object
+    label: termType
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:termType
+  tgn3000relatedto:
+    descr: |-
+      any - related to - any.
+      Example: Fountains Abbey is related to Studley Royal; Austria-Hungary is related to Magyarorszag
+    kind: object
+    label: tgn3000_related_to
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3000_related_to
+    symmetric: 1
+  tgn3001distinguishedfrom:
+    descr: |-
+      any - distinguished from - any.
+      Example: The Ancient Mesopotamian Kingdom 'Assyria' is distinguished from the Roman Province of the same name
+    kind: object
+    label: tgn3001_distinguished_from
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3001_distinguished_from
+    symmetric: 1
+  tgn3005possiblyidentifiedas:
+    descr: |-
+      place - possibly identified as - place.
+      Example: The lost settlement of Sharuhen is possibly identified as Tel el-Far'ah (As Suwayda', Syria) (deserted settlement)
+    kind: object
+    label: tgn3005_possibly_identified_as
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3005_possibly_identified_as
+    symmetric: 1
+  tgn3006formerlyidentifiedas:
+    descr: |-
+      New. place - formerly identified as - place; New.
+      Example: The deserted settlement of Machupicchu was formerly identified as Tampu Tocco
+    kind: object
+    label: tgn3006_formerly_identified_as
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3006_formerly_identified_as
+    symmetric: 1
+  tgn3101nearadjacentto:
+    descr: |-
+      any - near/adjacent to - any.
+      Example: Saint Paul (Minnesota, USA), is linked to its 'Twin City' Minneapolis (Hennepin county, Minnesota, USA)
+    kind: object
+    label: tgn3101_near-adjacent_to
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3101_near-adjacent_to
+    symmetric: 1
+  tgn3102coextensivewith:
+    descr: |-
+      place - coextensive with - place.
+      Example: Kings county (New York, USA) is coextensive with Brooklyn (New York, USA)
+    kind: object
+    label: tgn3102_coextensive_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3102_coextensive_with
+    symmetric: 1
+  tgn3103locatedon:
+    descr: |-
+      place - located on - place.
+      Example: tgn:7018835 Palmyra is located on tgn:7031416 Silk Road
+    inverseOf: tgn3104islocationof
+    kind: object
+    label: tgn3103_located_on
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3103_located_on
+  tgn3104islocationof:
+    descr: |-
+      place - is location of - place.
+      Example: tgn:7031416 Silk Road is location of tgn:7018835 Palmyra
+    inverseOf: tgn3103locatedon
+    kind: object
+    label: tgn3104_is_location_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3104_is_location_of
+  tgn3110meaningusageoverlapswith:
+    descr: |-
+      any - meaning/usage overlaps with - any.
+      Example: Judaea (Israel) (historical region) meaning/usage overlaps with Holy Land (Asia) (historical region)
+    kind: object
+    label: tgn3110_meaning-usage_overlaps_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3110_meaning-usage_overlaps_with
+    symmetric: 1
+  tgn3201capitalof:
+    descr: |-
+      city - capital of - nation.
+      Example: Thecapital of Maxima Caesariensis from 296 to 800 CE was London
+    inverseOf: tgn3202capitalis
+    kind: object
+    label: tgn3201_capital_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3201_capital_of
+  tgn3202capitalis:
+    descr: |-
+      nation - capital is - city.
+      Example: London was the capital of Maxima Caesariensis from 296 to 800 CE
+    inverseOf: tgn3201capitalof
+    kind: object
+    label: tgn3202_capital_is
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3202_capital_is
+  tgn3301allyof:
+    descr: |-
+      nation - ally of - nation.
+      Example: Siena, Arezzo, Pisa, and Pistoia were Ghibeline allies during the 13th and 14th centuries
+    kind: object
+    label: tgn3301_ally_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3301_ally_of
+    symmetric: 1
+  tgn3317memberof:
+    descr: |-
+      nation - member of - union.
+      Example: Austria is a member of the European Union since 1915; Belgium is a member of the European Union since 1958
+    inverseOf: tgn3318memberis
+    kind: object
+    label: tgn3317_member_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3317_member_of
+  tgn3318memberis:
+    descr: |-
+      union - member is - nation.
+      Example: Austria is a member of the European Union since 1915; Belgium is a member of the European Union since 1958
+    inverseOf: tgn3317memberof
+    kind: object
+    label: tgn3318_member_is
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3318_member_is
+  tgn3401movedfrom:
+    descr: |-
+      Note: places that were physically moved from one location to another, often due to the threat or occurrence of natural disaster. place - moved from - place; Note: places that were physically moved from one location to another, often due to the threat or occurrence of natural disaster..
+      Example: Troupville, Georgia, USA was moved to Valdosta (Lowndes county, Georgia, USA)
+    inverseOf: tgn3402movedto
+    kind: object
+    label: tgn3401_moved_from
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3401_moved_from
+  tgn3402movedto:
+    descr: |-
+      place - moved to - place.
+      Example: Valdosta (Lowndes county, Georgia, USA) moved from Troupville (Georgia, USA)
+    inverseOf: tgn3401movedfrom
+    kind: object
+    label: tgn3402_moved_to
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3402_moved_to
+  tgn3411successorof:
+    descr: |-
+      nation - successor of - nation.
+      Example: Iran (nation) is the successor of Persia
+    inverseOf: tgn3412predecessorof
+    kind: object
+    label: tgn3411_successor_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3411_successor_of
+  tgn3412predecessorof:
+    descr: |-
+      nation - predecessor of - nation.
+      Example: Persia is the predecessor of Iran (nation)
+    inverseOf: tgn3411successorof
+    kind: object
+    label: tgn3412_predecessor_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3412_predecessor_of
+  tgn3510historicalconnection:
+    descr: |-
+      any - historical connection - any.
+      Example: Guyenne, France (historical region) has a historical connection to Gascogne (France) (historical region)
+    kind: object
+    label: tgn3510_historical_connection
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3510_historical_connection
+    symmetric: 1
+  tgn3611administrativedependentof:
+    descr: |-
+      New. place - administrative dependent of - place; New.
+      Example: Luni (La Spezia province, Liguria, Italy) is the admisistrative dependent of Ortonovo (Massa-Carrara province, Tuscany, Italy)
+    inverseOf: tgn3612administrativeentityfor
+    kind: object
+    label: tgn3611_administrative_dependent_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3611_administrative_dependent_of
+  tgn3612administrativeentityfor:
+    descr: |-
+      place - administrative entity for - place.
+      Example: Ortonovo (Massa-Carra province, Tuscany, Italy) is the administrative entity for Luni (La Spezia province, Liguria, Italy)
+    inverseOf: tgn3611administrativedependentof
+    kind: object
+    label: tgn3612_administrative_entity_for
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:tgn3612_administrative_entity_for
+  ulan1000relatedto:
+    descr: |-
+      any - related to - any.
+      Example: Frank Lloyd Wright is related to Francis Conroy Sullivan; Herman Miller, Inc. is related to Irving Harper; National Endowment for the Humanities is related to Connecticut Humanities Council
+    kind: object
+    label: ulan1000_related_to
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1000_related_to
+    symmetric: 1
+  ulan1003associatedwith:
+    descr: |-
+      any - associated with - any.
+      Example: Richard Meier is associated with Renny B.Saltzman; United Nations is associated with World Bank
+    kind: object
+    label: ulan1003_associated_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1003_associated_with
+    symmetric: 1
+  ulan1005possiblyidentifiedwith:
+    descr: |-
+      any - possibly identified with - any.
+      Example: Master of the Saint John Altarpiece is possibly identified with Hughe Jacobsz; Bauart is possibly identified with Gruppe BAUart
+    kind: object
+    label: ulan1005_possibly_identified_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1005_possibly_identified_with
+    symmetric: 1
+  ulan1006formerlyidentifiedwith:
+    descr: |-
+      any - formerly identified with - any.
+      Example: Tommaso is formerly identified with Tommaso di Stefano Lunetti; GreenWorks is formerly identified with Mike Faha & Associates
+    kind: object
+    label: ulan1006_formerly_identified_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1006_formerly_identified_with
+    symmetric: 1
+  ulan1007distinguishedfrom:
+    descr: |-
+      any - distinguished from - any.
+      Example: Laura Theresa Alma-Tadema is distinguished from Lawrence Alma-Tadema; The Noguchi Museum is distinguished form Isamu Noguchi Garden Museum Japan
+    kind: object
+    label: ulan1007_distinguished_from
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1007_distinguished_from
+    symmetric: 1
+  ulan1008meaningusageoverlapswith:
+    descr: |-
+      any - meaning /usage overlaps with - any.
+      Example: The meaning or usage of unknown Zimbabwean overlaps with unknown Rodesian
+    kind: object
+    label: ulan1008_meaning_-usage_overlaps_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1008_meaning_-usage_overlaps_with
+    symmetric: 1
+  ulan1101teacherof:
+    descr: |-
+      person - teacher of - person.
+      Example: Rivalz, Antoine was the teacher of Pierre Subleyras
+    inverseOf: ulan1102studentof
+    kind: object
+    label: ulan1101_teacher_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1101_teacher_of
+  ulan1102studentof:
+    descr: |-
+      person - student of - person.
+      Example: Pierre Subleyras was the student of Rivalz, Antoine
+    inverseOf: ulan1101teacherof
+    kind: object
+    label: ulan1102_student_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1102_student_of
+  ulan1105apprenticeof:
+    descr: |-
+      person - apprentice of - person.
+      Example: Nicolas Hawksmoor was the apprentice of Christopher Wren
+    inverseOf: ulan1106apprenticewas
+    kind: object
+    label: ulan1105_apprentice_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1105_apprentice_of
+  ulan1106apprenticewas:
+    descr: |-
+      person - apprentice was - person.
+      Example: Nicolas Hawksmoor was the apprentice of Christopher Wren
+    inverseOf: ulan1105apprenticeof
+    kind: object
+    label: ulan1106_apprentice_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1106_apprentice_was
+  ulan1107influenced:
+    descr: |-
+      person - influenced - person.
+      Example: Rembrandt van Rijn influenced Salomon Koninck
+    inverseOf: ulan1108influencedby
+    kind: object
+    label: ulan1107_influenced
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1107_influenced
+  ulan1108influencedby:
+    descr: |-
+      person - influenced by - person.
+      Example: Salomon Koninck was influenced by Rembrandt van Rijn
+    inverseOf: ulan1107influenced
+    kind: object
+    label: ulan1108_influenced_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1108_influenced_by
+  ulan1111masterof:
+    descr: |-
+      person - master of - person.
+      Example: Peter Paul Rubens - master of Jan Thomas
+    inverseOf: ulan1112masterwas
+    kind: object
+    label: ulan1111_master_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1111_master_of
+  ulan1112masterwas:
+    descr: |-
+      person - master was - person.
+      Example: Peter Paul Rubens - master of Jan Thomas
+    inverseOf: ulan1111masterof
+    kind: object
+    label: ulan1112_master_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1112_master_was
+  ulan1113fellowstudentof:
+    descr: |-
+      person - fellow student of - person.
+      Example: Alexander Calder was a fellow student of John Sloan; John Sloan was a fellow student of Thomas Hart Benton
+    kind: object
+    label: ulan1113_fellow_student_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1113_fellow_student_of
+    symmetric: 1
+  ulan1201patronof:
+    descr: |-
+      person - patron of - person/firm/family.
+      Example: Cosimo I, Grand-Duke of Tuscany was the patron of Donatello
+    inverseOf: ulan1202patronwas
+    kind: object
+    label: ulan1201_patron_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1201_patron_of
+  ulan1202patronwas:
+    descr: |-
+      person/firm/family - patron was - person.
+      Example: The patron of Donatello was Cosimo I, Grand-Duke of Tuscany
+    inverseOf: ulan1201patronof
+    kind: object
+    label: ulan1202_patron_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1202_patron_was
+  ulan1203donorof:
+    descr: |-
+      person/firm/family - donor of - person/firm/family.
+      Example: Andrew W. Mellon was a donor of National Gallery of Art
+    inverseOf: ulan1204donorwas
+    kind: object
+    label: ulan1203_donor_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1203_donor_of
+  ulan1204donorwas:
+    descr: |-
+      person/firm/family - donor was - person/firm/family.
+      Example: Donor to the National Gallery of Art was Andrew W. Mellon
+    inverseOf: ulan1203donorof
+    kind: object
+    label: ulan1204_donor_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1204_donor_was
+  ulan1205clientof:
+    descr: |-
+      person/firm/family - client of - person/firm/family.
+      Example: The Chicago Herald was the client of Burnham and Root
+    inverseOf: ulan1206clientwas
+    kind: object
+    label: ulan1205_client_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1205_client_of
+  ulan1206clientwas:
+    descr: |-
+      person/firm/family - client was - person/firm/family.
+      Example: Burnham and Root's client was the Chicago Herald
+    inverseOf: ulan1205clientof
+    kind: object
+    label: ulan1206_client_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1206_client_was
+  ulan1211artistto:
+    descr: |-
+      person - artist to - person.
+      Example: Artist to Louis XIV, King of France was Charles-Pierre Coustou
+    inverseOf: ulan1212artistwas
+    kind: object
+    label: ulan1211_artist_to
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1211_artist_to
+  ulan1212artistwas:
+    descr: |-
+      person - artist was - person.
+      Example: Charles-Pierre Coustou was artist to Louis XIV, King of France
+    inverseOf: ulan1211artistto
+    kind: object
+    label: ulan1212_artist_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1212_artist_was
+  ulan1213courtartistto:
+    descr: |-
+      person - court artist to - person.
+      Example: Court artist to Gonzaga Vincenzo I, Duke of Mantua was Peter Paul Rubens; court artist to Charles IV, King of Spain was Francisco de Goya
+    inverseOf: ulan1214courtartistwas
+    kind: object
+    label: ulan1213_court_artist_to
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1213_court_artist_to
+  ulan1214courtartistwas:
+    descr: |-
+      person - court artist was - person.
+      Example: Peter Paul Rubens was court artist to Gonzaga Vincenzo I, Duke of Mantua; Francisco de Goya was court artist to Charles IV, King of Spain
+    inverseOf: ulan1213courtartistto
+    kind: object
+    label: ulan1214_court_artist_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1214_court_artist_was
+  ulan1217employeeof:
+    descr: |-
+      person/firm - employee of - person.
+      Example: Employee of Christopher Wren was Jean Tijou
+    inverseOf: ulan1218employeewas
+    kind: object
+    label: ulan1217_employee_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1217_employee_of
+  ulan1218employeewas:
+    descr: |-
+      person - employee was - person/firm.
+      Example: Jean Tijou was an employee of Christopher Wren
+    inverseOf: ulan1217employeeof
+    kind: object
+    label: ulan1218_employee_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1218_employee_was
+  ulan1221appointedby:
+    descr: |-
+      person - appointed by - person.
+      Example: Pope Urban VIII appointed Virginio Cesarini
+    inverseOf: ulan1222appointeeof
+    kind: object
+    label: ulan1221_appointed_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1221_appointed_by
+  ulan1222appointeeof:
+    descr: |-
+      person - appointee of - person.
+      Example: Virginio Cesarini was appointee by Pope Urban VIII
+    inverseOf: ulan1221appointedby
+    kind: object
+    label: ulan1222_appointee_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1222_appointee_of
+  ulan1223crownedby:
+    descr: |-
+      person - crowned by - person.
+      Example: Pope Leo III crowned Emperor Charlemagne
+    inverseOf: ulan1224crowned
+    kind: object
+    label: ulan1223_crowned_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1223_crowned_by
+  ulan1224crowned:
+    descr: |-
+      person - crowned - person.
+      Example: Emperor Charlemagne was crowned by Pope Leo III
+    inverseOf: ulan1223crownedby
+    kind: object
+    label: ulan1224_crowned
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1224_crowned
+  ulan1301colleagueof:
+    descr: |-
+      person - colleague of - person.
+      Example: Titian was a colleague of Maria Giovanni Verdizotti
+    kind: object
+    label: ulan1301_colleague_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1301_colleague_of
+    symmetric: 1
+  ulan1302associateof:
+    descr: |-
+      person - associate of - person.
+      Example: Frank Lloyd Wright was an associate of Giannini and Hilgart
+    kind: object
+    label: ulan1302_associate_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1302_associate_of
+    symmetric: 1
+  ulan1303collaboratedwith:
+    descr: |-
+      person - collaborated with - person.
+      Example: Pablo Picasso collaborated with Georges Braque
+    kind: object
+    label: ulan1303_collaborated_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1303_collaborated_with
+    symmetric: 1
+  ulan1305workedwith:
+    descr: |-
+      person - worked with - person.
+      Example: William Cleare worked with Christopher Wren; Frank Lloyd Wright work with Aaron G. Green
+    kind: object
+    label: ulan1305_worked_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1305_worked_with
+    symmetric: 1
+  ulan1306performswith:
+    descr: |-
+      person - performs with - person.
+      Example: Harry Kipper performs with Harry Kipper (as part of 'The Kipper Kids')
+    kind: object
+    label: ulan1306_performs_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1306_performs_with
+    symmetric: 1
+  ulan1307assistantof:
+    descr: |-
+      person - assistant of - person.
+      Example: Bernard Castelli was assistant of Pablo Picasso
+    inverseOf: ulan1308assistedby
+    kind: object
+    label: ulan1307_assistant_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1307_assistant_of
+  ulan1308assistedby:
+    descr: |-
+      person - assisted by - person.
+      Example: Pablo Picasso was assisted by Bernard Castelli
+    inverseOf: ulan1307assistantof
+    kind: object
+    label: ulan1308_assisted_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1308_assisted_by
+  ulan1309advisorof:
+    descr: |-
+      person - advisor of - person.
+      Example: Thomas Cromwell, Earl of Essex was the advisor of Henry VIII, King of England
+    inverseOf: ulan1310advisedby
+    kind: object
+    label: ulan1309_advisor_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1309_advisor_of
+  ulan1310advisedby:
+    descr: |-
+      person - advised by - person.
+      Example: Henry VIII, King of England was advised by Thomas Cromwell, Earl of Essex
+    inverseOf: ulan1309advisorof
+    kind: object
+    label: ulan1310_advised_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1310_advised_by
+  ulan1311partnerof:
+    descr: |-
+      person - partner of - person.
+      Example: Frank Gehry and James Glymph are partners
+    kind: object
+    label: ulan1311_partner_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1311_partner_of
+    symmetric: 1
+  ulan1313partnerin:
+    descr: |-
+      person - partner in - firm.
+      Example: Parners of Adler and Sullivan included Louis H. Sullivan and Dankmar Adler
+    inverseOf: ulan1314partnerwas
+    kind: object
+    label: ulan1313_partner_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1313_partner_in
+  ulan1314partnerwas:
+    descr: |-
+      firm - partner was - person.
+      Example: Louis H. Sullivan and Dankmar Adler were partners in Adler and Sullivan
+    inverseOf: ulan1313partnerin
+    kind: object
+    label: ulan1314_partner_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1314_partner_was
+  ulan1315principalin:
+    descr: |-
+      person - principal in - firm.
+      Example: Principal in Fontana Workshop was Orazio Fontana
+    inverseOf: ulan1316principalwas
+    kind: object
+    label: ulan1315_principal_in
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1315_principal_in
+  ulan1316principalwas:
+    descr: |-
+      firm - principal was - person.
+      Example: Orazio Fontana was principal in Fontana Workshop
+    inverseOf: ulan1315principalin
+    kind: object
+    label: ulan1316_principal_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1316_principal_was
+  ulan1317memberof:
+    descr: |-
+      firm/group - member of - person/firm/group.
+      Example: A member of the Foundation of Documents of Architecture is the National Gallery of Art
+    inverseOf: ulan1318memberwas
+    kind: object
+    label: ulan1317_member_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1317_member_of
+  ulan1318memberwas:
+    descr: |-
+      person/firm/group - member was - firm/group.
+      Example: The National Gallery of Art was/is a member of the Foundation of Documentation of Architecture
+    inverseOf: ulan1317memberof
+    kind: object
+    label: ulan1318_member_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1318_member_was
+  ulan1321schoolof:
+    descr: |-
+      person - school of - firm/group.
+      Example: The school of Pierre Saalburg was the Architectural Association. School of Architecture
+    inverseOf: ulan1322schoolwas
+    kind: object
+    label: ulan1321_school_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1321_school_of
+  ulan1322schoolwas:
+    descr: |-
+      firm/group - school was - person.
+      Example: Pierre Saalburg attended Architectural Association. School of Architecture
+    inverseOf: ulan1321schoolof
+    kind: object
+    label: ulan1322_school_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1322_school_was
+  ulan1331workedwith:
+    descr: |-
+      any - worked with - person.
+      Example: Scarsellino and Domenichino worked with the Carracci family
+    inverseOf: ulan1332workerwas
+    kind: object
+    label: ulan1331_worked_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1331_worked_with
+  ulan1332workerwas:
+    descr: |-
+      person - worker was - any.
+      Example: Workers for the Carracci family included Scarsellino and Domenichino
+    inverseOf: ulan1331workedwith
+    kind: object
+    label: ulan1332_worker_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1332_worker_was
+  ulan1411successorof:
+    descr: |-
+      firm/group - successor of - firm/group.
+      Example: Richard Meier & Partners Architects LLP is the successor of Richard Meier & Associates
+    inverseOf: ulan1412predecessorof
+    kind: object
+    label: ulan1411_successor_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1411_successor_of
+  ulan1412predecessorof:
+    descr: |-
+      firm/group - predecessor of - firm/group.
+      Example: Richard Meier & Associates is the predecessor of Richard Meier & Partners Architects LLP
+    inverseOf: ulan1411successorof
+    kind: object
+    label: ulan1412_predecessor_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1412_predecessor_of
+  ulan1413administrationoverlapswith:
+    descr: |-
+      firm/group - administration overlaps with - firm/group.
+      Example: The administration of the Numismatic Collection overlaps with Bode Museum
+    kind: object
+    label: ulan1413_administration_overlaps_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1413_administration_overlaps_with
+    symmetric: 1
+  ulan1414jointventurewith:
+    descr: |-
+      firm/group - joint venture with - firm/group.
+      Example: Schwetye Luchini Architects is in a joint venture with ACME Architects
+    kind: object
+    label: ulan1414_joint_venture_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1414_joint_venture_with
+    symmetric: 1
+  ulan1421foundedby:
+    descr: |-
+      firm/group - founded by - firm/group.
+      Example: National Gallery of Art was founded by United States Congress
+    inverseOf: ulan1422founded
+    kind: object
+    label: ulan1421_founded_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1421_founded_by
+  ulan1422founded:
+    descr: |-
+      firm/group - founded - firm/group.
+      Example: The United States Congress founded the National Gallery of Art
+    inverseOf: ulan1421foundedby
+    kind: object
+    label: ulan1422_founded
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1422_founded
+  ulan1500relatedto:
+    descr: |-
+      person - related to (familial relationship) - person.
+      Example: Titian and Tizianello have a familial relationship with each other
+    kind: object
+    label: ulan1500_related_to
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1500_related_to
+    symmetric: 1
+  ulan1501siblingof:
+    descr: |-
+      person - sibling of - person.
+      Example: Philippe Rubens is the sibling of Peter Paul Rubens
+    kind: object
+    label: ulan1501_sibling_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1501_sibling_of
+    symmetric: 1
+  ulan1511childof:
+    descr: |-
+      person - child of - person.
+      Example: Rembrandt van Rijn is the child of Neeltgen Willemsdr van Zuydtbroeck
+    inverseOf: ulan1512parentof
+    kind: object
+    label: ulan1511_child_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1511_child_of
+  ulan1512parentof:
+    descr: |-
+      person - parent of - person.
+      Example: Rembrandt van Rijn is the parent of Rumbertus van Rijn
+    inverseOf: ulan1511childof
+    kind: object
+    label: ulan1512_parent_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1512_parent_of
+  ulan1513grandchildof:
+    descr: |-
+      person - grandchild of - person.
+      Example: Eric Lloyd Wright is the grandchild of Frank Lloyd Wright
+    inverseOf: ulan1514gandparentof
+    kind: object
+    label: ulan1513_grandchild_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1513_grandchild_of
+  ulan1514gandparentof:
+    descr: |-
+      person - gandparent of - person.
+      Example: Frank Lloyd Wright is the grandparent of Eric Lloyd Wright
+    inverseOf: ulan1513grandchildof
+    kind: object
+    label: ulan1514_gandparent_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1514_gandparent_of
+  ulan1515greatgrandparentof:
+    descr: |-
+      person - great-grandparent of - person.
+      Example: Albrecht Adam is the great-grandparent of Richard Benno Adam
+    inverseOf: ulan1516greatgrandchildof
+    kind: object
+    label: ulan1515_great-grandparent_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1515_great-grandparent_of
+  ulan1516greatgrandchildof:
+    descr: |-
+      person - great-grandchild of - person.
+      Example: Richard Benno Adam is the great-grandchild of Albrecht Adam
+    inverseOf: ulan1515greatgrandparentof
+    kind: object
+    label: ulan1516_great-grandchild_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1516_great-grandchild_of
+  ulan1521cousinof:
+    descr: |-
+      person - cousin of - person.
+      Example: Richard Meier and Frank Gehry are cousins
+    kind: object
+    label: ulan1521_cousin_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1521_cousin_of
+    symmetric: 1
+  ulan1531nephewnieceof:
+    descr: |-
+      person - nephew/niece of - person.
+      Example: Jan Brueghel, the elder is the nephew/neice of  Pieter Coecke van Aeist, the younger
+    inverseOf: ulan1532uncleauntof
+    kind: object
+    label: ulan1531_nephew-niece_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1531_nephew-niece_of
+  ulan1532uncleauntof:
+    descr: |-
+      person - uncle/aunt of - person.
+      Example: Edouard Manet is the uncle/aunt of Julie Manet
+    inverseOf: ulan1531nephewnieceof
+    kind: object
+    label: ulan1532_uncle-aunt_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1532_uncle-aunt_of
+  ulan1541spouseof:
+    descr: |-
+      person - spouse of - person.
+      Example: Alfred Stieglitz and Georgia O'Keeffe were married to each other
+    kind: object
+    label: ulan1541_spouse_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1541_spouse_of
+    symmetric: 1
+  ulan1542consortof:
+    descr: |-
+      person - consort of - person.
+      Example: Empress Livia was the consort of Augustus, Emperor of Rome
+    inverseOf: ulan1543consortwas
+    kind: object
+    label: ulan1542_consort_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1542_consort_of
+  ulan1543consortwas:
+    descr: |-
+      person - consort was - person.
+      Example: Augustus, Emperor of Rome's consort was Empress Livia
+    inverseOf: ulan1542consortof
+    kind: object
+    label: ulan1543_consort_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1543_consort_was
+  ulan1544significantotherof:
+    descr: |-
+      person - significant other of - person.
+      Example: Jeanne Hebuterne was the significant other of Amedeo Modigliani
+    kind: object
+    label: ulan1544_significant_other_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1544_significant_other_of
+    symmetric: 1
+  ulan1547romanticpartnerof:
+    descr: |-
+      person - romantic partner of - person.
+      Example: Pablo Picasso and Gaby Lespinasse were romantic partners; Vincent van Gogh and Clasina Hoornik were romantic partners
+    kind: object
+    label: ulan1547_romantic_partner_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1547_romantic_partner_of
+    symmetric: 1
+  ulan1548domesticpartnerof:
+    descr: 'person - domestic partner of - person'
+    kind: object
+    label: ulan1548_domestic_partner_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1548_domestic_partner_of
+    symmetric: 1
+  ulan1550relativebymarriage:
+    descr: |-
+      person - relative by marriage (in-law) - person.
+      Example: Juana Galarza d Goicoechea and Francisco de Goya are related by marriage
+    kind: object
+    label: ulan1550_relative_by_marriage
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1550_relative_by_marriage
+    symmetric: 1
+  ulan1551siblingbymarriageof:
+    descr: |-
+      person - sibling by marriage (step sibling) - person.
+      Example: Peter Paul Rubens and Susanne Fourment are siblings by marriage
+    kind: object
+    label: ulan1551_sibling_by_marriage_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1551_sibling_by_marriage_of
+    symmetric: 1
+  ulan1552parentbymarriageof:
+    descr: |-
+      person - parent by marriage (step parent) - person.
+      Example: Frans Hals is a parent by marriage of Pieter Gerritsz van Roestraten
+    inverseOf: ulan1553childbymarriageof
+    kind: object
+    label: ulan1552_parent_by_marriage_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1552_parent_by_marriage_of
+  ulan1553childbymarriageof:
+    descr: |-
+      person - child by marriage (step child) - person.
+      Example: Pieter Gerritsz van Roestraten is the child by marriage of Frans Hals
+    inverseOf: ulan1552parentbymarriageof
+    kind: object
+    label: ulan1553_child_by_marriage_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1553_child_by_marriage_of
+  ulan1554adoptiveparentof:
+    descr: |-
+      person - adoptive parent of - person.
+      Example: Julius Caesar is the adoptive parent of Augustus, Emperor of Rome
+    inverseOf: ulan1555adoptedchildof
+    kind: object
+    label: ulan1554_adoptive_parent_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1554_adoptive_parent_of
+  ulan1555adoptedchildof:
+    descr: |-
+      person - adopted child of - person.
+      Example: Augusts, Emperor of Rome is the adopted child of Julius Caesar
+    inverseOf: ulan1554adoptiveparentof
+    kind: object
+    label: ulan1555_adopted_child_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1555_adopted_child_of
+  ulan1556halfsiblingof:
+    descr: |-
+      person - half-sibling of - person.
+      Example: Juan Bautista Monegro and Luis de Carbajal are half siblings
+    kind: object
+    label: ulan1556_half-sibling_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1556_half-sibling_of
+    symmetric: 1
+  ulan1557stepsiblingof:
+    descr: |-
+      person - step-sibling of - person.
+      Example: W. L. Wyllie and Lionel Percy Smythe are step-siblings
+    kind: object
+    label: ulan1557_step-sibling_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1557_step-sibling_of
+    symmetric: 1
+  ulan1561stepchildof:
+    descr: |-
+      person - step-child of - person.
+      Example: Hortense, Quene consort of Louis Bonaparte is the step-child of Napoleon I, Emperor of the French
+    inverseOf: ulan1562stepparentof
+    kind: object
+    label: ulan1561_step-child_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1561_step-child_of
+  ulan1562stepparentof:
+    descr: |-
+      person - step-parent of - person.
+      Example: Napoleon I, Emperor of the French is the step-parent of Hortense, Quene consort of Louis Bonaparte
+    inverseOf: ulan1561stepchildof
+    kind: object
+    label: ulan1562_step-parent_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1562_step-parent_of
+  ulan1571guardianof:
+    descr: |-
+      person - guardian of - person.
+      Example: John Hoskins, the elder was the guardian of Samuel Cooper
+    inverseOf: ulan1573wardof
+    kind: object
+    label: ulan1571_guardian_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1571_guardian_of
+  ulan1573wardof:
+    descr: |-
+      person - ward of - person.
+      Example: Samuel Cooper was a ward of John Hoskins, the elder
+    inverseOf: ulan1571guardianof
+    kind: object
+    label: ulan1573_ward_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1573_ward_of
+  ulan1574godparentof:
+    descr: |-
+      person - godparent of - person.
+      Example: Jean-Baptiste Goy is godparent of Jean I Nocret
+    inverseOf: ulan1575godchildof
+    kind: object
+    label: ulan1574_godparent_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1574_godparent_of
+  ulan1575godchildof:
+    descr: |-
+      person - godchild of - person.
+      Example: Jean I Nocret is the godchild of Jean-Baptiste Goy
+    inverseOf: ulan1574godparentof
+    kind: object
+    label: ulan1575_godchild_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1575_godchild_of
+  ulan1581descendantof:
+    descr: |-
+      person - descendant of - person.
+      Example: Paolo Caliari is the descendant of Paolo Veronese
+    inverseOf: ulan1582ancestorof
+    kind: object
+    label: ulan1581_descendant_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1581_descendant_of
+  ulan1582ancestorof:
+    descr: |-
+      person - ancestor of - person.
+      Example: Paolo Veronese is the ancestor of Paolo Caliari
+    inverseOf: ulan1581descendantof
+    kind: object
+    label: ulan1582_ancestor_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1582_ancestor_of
+  ulan1590possiblyrelatedto:
+    descr: |-
+      person - possibly related to (familial relationship) - person.
+      Example: A familial relationship between Ramon Destorrents, the younger and Ramon Destorrents, the elder is possible
+    kind: object
+    label: ulan1590_possibly_related_to
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan1590_possibly_related_to
+    symmetric: 1
+  ulan2550friendof:
+    descr: |-
+      person - friend of (personal relationship) - person.
+      Example: Alfred Stieglitz and Frank Simon Herrmann were friends
+    kind: object
+    label: ulan2550_friend_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2550_friend_of
+    symmetric: 1
+  ulan2572founderof:
+    descr: |-
+      person - founder of - institution.
+      Example: Louis Comfort Tiffany was the founder of Tiffany Glass & Decorating Company
+    inverseOf: ulan2573foundedby
+    kind: object
+    label: ulan2572_founder_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2572_founder_of
+  ulan2573foundedby:
+    descr: |-
+      institution - founded by - person.
+      Example: Tiffany Glass & Decorating Company was founded by Louis Comfort Tiffany
+    inverseOf: ulan2572founderof
+    kind: object
+    label: ulan2573_founded_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2573_founded_by
+  ulan2574directorof:
+    descr: |-
+      person - director of - institution.
+      Example: Jean Jans I directed Gobelins Tapestry Manufactory
+    inverseOf: ulan2575directedby
+    kind: object
+    label: ulan2574_director_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2574_director_of
+  ulan2575directedby:
+    descr: |-
+      institution - directed by - person.
+      Example: Gobelins Tapestry Manufactory was directed by Jean Jans I
+    inverseOf: ulan2574directorof
+    kind: object
+    label: ulan2575_directed_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2575_directed_by
+  ulan2576patronof:
+    descr: |-
+      person - patron of - person.
+      Example: The patron of William Chambers was James Caulfiel, Earl of Charlemont
+    inverseOf: ulan2577patronwas
+    kind: object
+    label: ulan2576_patron_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2576_patron_of
+  ulan2577patronwas:
+    descr: |-
+      person - patron was - person.
+      Example: James Caulfiel, Earl of Charlemont was the patron of William Chambers
+    inverseOf: ulan2576patronof
+    kind: object
+    label: ulan2577_patron_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2577_patron_was
+  ulan2578trusteeof:
+    descr: |-
+      person - trustee of - institution.
+      Example: George Douglas Haig was a trustee of the National Galleries of Scotland
+    inverseOf: ulan2579trusteewas
+    kind: object
+    label: ulan2578_trustee_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2578_trustee_of
+  ulan2579trusteewas:
+    descr: |-
+      institution - trustee was - person.
+      Example: National Galleries of Scotland trustee was George Douglas Haig
+    inverseOf: ulan2578trusteeof
+    kind: object
+    label: ulan2579_trustee_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2579_trustee_was
+  ulan2581administratorof:
+    descr: |-
+      person - administrator of - institution.
+      Example: Georges Mathieu was the administrator of Societe nationale des chemins de fer Francais. Agence des gares
+    inverseOf: ulan2582administeredby
+    kind: object
+    label: ulan2581_administrator_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2581_administrator_of
+  ulan2582administeredby:
+    descr: |-
+      institution - administered by - person.
+      Example: Societe nationale des chemins de fer Francais. Agence des gares was administered by Georges Mathieu
+    inverseOf: ulan2581administratorof
+    kind: object
+    label: ulan2582_administered_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2582_administered_by
+  ulan2583chairmanof:
+    descr: 'person - chairman of - institution'
+    inverseOf: ulan2584chairedby
+    kind: object
+    label: ulan2583_chairman_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2583_chairman_of
+  ulan2584chairedby:
+    descr: 'institution - chaired by - person'
+    inverseOf: ulan2583chairmanof
+    kind: object
+    label: ulan2584_chaired_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2584_chaired_by
+  ulan2650publisherwas:
+    descr: |-
+      person - publisher was - firm.
+      Example: The publisher for Pierre Joseph Rossier was Negretti and Zambra
+    inverseOf: ulan2651publisherof
+    kind: object
+    label: ulan2650_publisher_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2650_publisher_was
+  ulan2651publisherof:
+    descr: |-
+      firm - publisher of - person.
+      Example: Negretti and Zambra was the publisher of Pierre Joseph Rossier
+    inverseOf: ulan2650publisherwas
+    kind: object
+    label: ulan2651_publisher_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2651_publisher_of
+  ulan2674professorat:
+    descr: |-
+      person - professor at - institution.
+      Example: Paul Klee was a professor at Bauhaus
+    inverseOf: ulan2675professorwas
+    kind: object
+    label: ulan2674_professor_at
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2674_professor_at
+  ulan2675professorwas:
+    descr: |-
+      institution - professor was - person.
+      Example: A professor at Bauhaus was Paul Klee
+    inverseOf: ulan2674professorat
+    kind: object
+    label: ulan2675_professor_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2675_professor_was
+  ulan2676teacherat:
+    descr: |-
+      person - teacher at - institution.
+      Example: Willem De Kooning was a teacher at Black Mountain College
+    inverseOf: ulan2677teacherwas
+    kind: object
+    label: ulan2676_teacher_at
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2676_teacher_at
+  ulan2677teacherwas:
+    descr: |-
+      institution - teacher was - person.
+      Example: A teacher at Black Mountain College was Willem De Kooning
+    inverseOf: ulan2676teacherat
+    kind: object
+    label: ulan2677_teacher_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2677_teacher_was
+  ulan2692presidentof:
+    descr: |-
+      person - president of - institution.
+      Example: David K. E. Bruce was president of National Gallery of Art
+    inverseOf: ulan2693presidentwas
+    kind: object
+    label: ulan2692_president_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2692_president_of
+  ulan2693presidentwas:
+    descr: |-
+      institution - president was - person.
+      Example: A president of National Gallery of Art was David K. E. Bruce
+    inverseOf: ulan2692presidentof
+    kind: object
+    label: ulan2693_president_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2693_president_was
+  ulan2696leaderof:
+    descr: |-
+      person - leader of - institution.
+      Example: Rush Harrison Kress was the leader of Samuel H. Kress Foundation
+    inverseOf: ulan2697leaderwas
+    kind: object
+    label: ulan2696_leader_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2696_leader_of
+  ulan2697leaderwas:
+    descr: |-
+      institution - leader was - person.
+      Example: The leader of Samuel H. Kress Foundation was Rush Harrison Kress
+    inverseOf: ulan2696leaderof
+    kind: object
+    label: ulan2697_leader_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2697_leader_was
+  ulan2778ownerof:
+    descr: |-
+      firm - owner of - person.
+      Example: Walter Scott Lenox was the owner of Lenox China Co
+    inverseOf: ulan2779ownedby
+    kind: object
+    label: ulan2778_owner_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2778_owner_of
+  ulan2779ownedby:
+    descr: |-
+      person - owned by - firm.
+      Example: Walter Scott Lenox was owned by Lenox China Co
+    inverseOf: ulan2778ownerof
+    kind: object
+    label: ulan2779_owned_by
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2779_owned_by
+  ulan2781dedicateeof:
+    descr: |-
+      person - dedicatee of - institution.
+      Example: Auguste Rodin is the dedicatee of The Rodin Museum in Philadelphia
+    inverseOf: ulan2782dedicatedto
+    kind: object
+    label: ulan2781_dedicatee_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2781_dedicatee_of
+  ulan2782dedicatedto:
+    descr: |-
+      institution - dedicated to - person.
+      Example: The Rodin Museum in Philadelphia is didicated to Auguste Rodin
+    inverseOf: ulan2781dedicateeof
+    kind: object
+    label: ulan2782_dedicated_to
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2782_dedicated_to
+  ulan2794representativeof:
+    descr: |-
+      person - representative of - institution.
+      Example: The Noguch Museum - representative was Isamu Noguchi
+    inverseOf: ulan2795representativewas
+    kind: object
+    label: ulan2794_representative_of
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2794_representative_of
+  ulan2795representativewas:
+    descr: |-
+      institution - representative was - person.
+      Example: The Noguch Museum - representative was Isamu Noguchi
+    inverseOf: ulan2794representativeof
+    kind: object
+    label: ulan2795_representative_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2795_representative_was
+  ulan2828studentat:
+    descr: |-
+      person - student at - institution.
+      Example: Zdanek Rossman was a student at Bauhaus
+    inverseOf: ulan2829studentwas
+    kind: object
+    label: ulan2828_student_at
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2828_student_at
+  ulan2829studentwas:
+    descr: |-
+      institution - student was - person.
+      Example: Bauhaus student was Zdanek Rossman
+    inverseOf: ulan2828studentat
+    kind: object
+    label: ulan2829_student_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2829_student_was
+  ulan2840performerwith:
+    descr: 'person - performer with - group'
+    inverseOf: ulan2841performerwas
+    kind: object
+    label: ulan2840_performer_with
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2840_performer_with
+  ulan2841performerwas:
+    descr: 'group - performer was - person'
+    inverseOf: ulan2840performerwith
+    kind: object
+    label: ulan2841_performer_was
+    max: inf
+    range: skos:ConceptInterface
+    rdfProp: gvp:ulan2841_performer_was
+specialPrefixes:
+  ontology_iri: http://vocab.getty.edu/ontology
+  vocab_iri: http://vocab.getty.edu/ontology#
+  vocab_prefix: gvp
+updated: 2016-04-25
+versionInfo: 3.3
