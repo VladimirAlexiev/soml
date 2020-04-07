@@ -1,4 +1,4 @@
-IGNORE = skos-fix.ttl
+IGNORE = skos-fix.ttl skos-xl.ttl skos-thes.ttl
 TTL    = $(filter-out $(IGNORE), $(wildcard *.ttl))
 YAML   = $(patsubst %.ttl, %.yaml, $(TTL)) # schema1.yaml
 
@@ -8,16 +8,12 @@ clean :
 	find . -size 0 -delete
 
 %.yaml : ../owl2soml.pl %.ttl
-	time perl $^ > $@ 2> $*.log
+	time perl $^ $(EXTRA) > $@ 2> $*.log
 
-skos.yaml : ../owl2soml.pl skos.rdf skos-fix.ttl
-	time perl $^ > $@ 2> $*.log
-
-dct_owldl.yaml : ../owl2soml.pl dct_owldl.ttl
-	time perl ../owl2soml.pl -voc dcterms dct_owldl.ttl > $@ 2> $*.log
-
-schema.yaml : ../owl2soml.pl schema.ttl
-	time perl ../owl2soml.pl -voc schema > $@ 2> $*.log
+skos.yaml      : EXTRA = skos-fix.ttl
+gvp.yaml       : EXTRA = skos.ttl skos-fix.ttl skos-xl.ttl # skos-thes.ttl
+dct_owldl.yaml : EXTRA = -voc dcterms
+schema.yaml    : EXTRA = -voc schema
 
 ## Read more bytes than requested. Do you use an encoding-related PerlIO layer?
 # schema1.yaml : ../owl2soml.pl schema.rdf

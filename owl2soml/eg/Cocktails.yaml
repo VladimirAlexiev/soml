@@ -1,11 +1,11 @@
 id: /soml/cocktail-ontology
 label: Cocktail ontology
 objects:
-  AlcoholicBeverages:
+  Alcoholic-Beverages:
     inherits: BeveragesInterface
     label: Alcoholic Beverages
     type: cocktail-ontology:Alcoholic-Beverages
-  AlcoholicBeveragesInterface:
+  Alcoholic-BeveragesInterface:
     kind: abstract
   Beverages:
     inherits: BeveragesInterface
@@ -14,96 +14,96 @@ objects:
   BeveragesInterface:
     kind: abstract
   Brandies:
-    inherits: AlcoholicBeveragesInterface
+    inherits: Alcoholic-BeveragesInterface
     label: Brandies
     type: cocktail-ontology:Brandies
   Cocktail:
     label: Cocktail
     props:
-      consistsof: {}
+      consists-of: {}
       iba: {}
       image: {}
-      isvariantof: {}
+      is-variant-of: {}
       notdrinkafterd: {}
       preparation: {}
       served: {}
       timing: {}
       uses: {}
-      uses2: {}
+      uses_2: {}
     type: cocktail-ontology:Cocktail
-  Coconutmilks:
-    inherits: NonalcoholicBeveragesInterface
+  Coconut-milks:
+    inherits: Non-alcoholic-BeveragesInterface
     label: Coconut milks
     type: cocktail-ontology:Coconut-milks
   Coffees:
-    inherits: NonalcoholicBeveragesInterface
+    inherits: Non-alcoholic-BeveragesInterface
     label: Coffees
     type: cocktail-ontology:Coffees
-  Dairyproducts:
-    inherits: NonalcoholicBeveragesInterface
+  Dairy-products:
+    inherits: Non-alcoholic-BeveragesInterface
     label: Dairy products
     type: cocktail-ontology:Dairy-products
   Drinkware:
     label: Drinkware
     props:
-      image2: {}
-      isusedby: {}
+      image_2: {}
+      is-used-by: {}
     type: cocktail-ontology:Drinkware
-  Fortifiedwines:
-    inherits: AlcoholicBeveragesInterface
+  Fortified-wines:
+    inherits: Alcoholic-BeveragesInterface
     label: Fortified wines
     type: cocktail-ontology:Fortified-wines
-  Fromeggs:
-    inherits: NonalcoholicBeveragesInterface
+  From-eggs:
+    inherits: Non-alcoholic-BeveragesInterface
     label: From eggs
     type: cocktail-ontology:From-eggs
   Garnish:
     label: Garnish
     props:
+      is-used-by_2: {}
       isOppositeOf: {}
-      isusedby2: {}
     type: cocktail-ontology:Garnish
   Gins:
-    inherits: AlcoholicBeveragesInterface
+    inherits: Alcoholic-BeveragesInterface
     label: Gins
     type: cocktail-ontology:Gins
-  Herbaldistillates:
-    inherits: NonalcoholicBeveragesInterface
+  Herbal-distillates:
+    inherits: Non-alcoholic-BeveragesInterface
     label: Herbal distillates
     type: cocktail-ontology:Herbal-distillates
-  Hotsouces:
+  Hot-souces:
     inherits: SoucesInterface
     type: cocktail-ontology:Hot-souces
   Ingredients:
     label: Ingredients
     props:
-      image3: {}
-      ispartof: {}
+      image_3: {}
+      is-part-of: {}
     type: cocktail-ontology:Ingredients
   Juices:
-    inherits: NonalcoholicBeveragesInterface
+    inherits: Non-alcoholic-BeveragesInterface
     label: Juices
     type: cocktail-ontology:Juices
   Liqueurs:
-    inherits: AlcoholicBeveragesInterface
+    inherits: Alcoholic-BeveragesInterface
     label: Liqueurs
     type: cocktail-ontology:Liqueurs
-  NonalcoholicBeverages:
-    inherits: BeveragesInterface
+  Non-alcoholic-Beverages:
+    inherits: Non-alcoholic-BeveragesInterface
     label: Non-alcoholic Beverages
     type: cocktail-ontology:Non-alcoholic-Beverages
-  NonalcoholicBeveragesInterface:
+  Non-alcoholic-BeveragesInterface:
     kind: abstract
   Rums:
-    inherits: AlcoholicBeveragesInterface
+    inherits: Alcoholic-BeveragesInterface
     label: Rums
     type: cocktail-ontology:Rums
   Schnapps:
-    inherits: AlcoholicBeveragesInterface
+    inherits: Alcoholic-BeveragesInterface
     label: Schnapps'
     type: cocktail-ontology:Schnapps
-  Softdrinks:
-    inherits: NonalcoholicBeveragesInterface
+  Soft-drinks:
+    inherits: Non-alcoholic-BeveragesInterface
     label: Soft drinks
     type: cocktail-ontology:Soft-drinks
   Souces:
@@ -116,22 +116,22 @@ objects:
     label: Sweeteners
     type: cocktail-ontology:Sweeteners
   Tequilas:
-    inherits: AlcoholicBeveragesInterface
+    inherits: Alcoholic-BeveragesInterface
     label: Tequilas
     type: cocktail-ontology:Tequilas
   Vodkas:
-    inherits: AlcoholicBeveragesInterface
+    inherits: Alcoholic-BeveragesInterface
     label: Vodkas
     type: cocktail-ontology:Vodkas
   Whiskie:
-    inherits: AlcoholicBeveragesInterface
+    inherits: Alcoholic-BeveragesInterface
     label: Whiskies
     type: cocktail-ontology:Whiskie
   Wines:
-    inherits: AlcoholicBeveragesInterface
+    inherits: Alcoholic-BeveragesInterface
     label: Wines
     type: cocktail-ontology:Wines
-  Worcestershiresauce:
+  Worcestershire-sauce:
     inherits: SoucesInterface
     label: Worcestershire sauce
     type: cocktail-ontology:Worcestershire-sauce
@@ -156,8 +156,8 @@ prefixes:
   tags: http://www.holygoat.co.uk/owl/redwood/0.1/tags/
   xsd: http://www.w3.org/2001/XMLSchema#
 properties:
-  consistsof:
-    inverseOf: ispartof
+  consists-of:
+    inverseOf: is-part-of
     kind: object
     label: consists of
     max: inf
@@ -174,18 +174,45 @@ properties:
     max: inf
     range: iri
     rdfProp: cocktail-ontology:image
-  image2:
+  image_2:
     kind: literal
     label: image
     max: inf
     range: iri
     rdfProp: cocktail-ontology:image_2
-  image3:
+  image_3:
     kind: literal
     label: image
     max: inf
     range: iri
     rdfProp: cocktail-ontology:image_3
+  is-part-of:
+    inverseOf: consists-of
+    kind: object
+    label: is part of
+    max: inf
+    range: Cocktail
+    rdfProp: cocktail-ontology:is-part-of
+  is-used-by:
+    inverseOf: uses
+    kind: object
+    label: is used by
+    max: inf
+    range: Cocktail
+    rdfProp: cocktail-ontology:is-used-by
+  is-used-by_2:
+    inverseOf: uses_2
+    kind: object
+    label: is used by
+    max: inf
+    range: Cocktail
+    rdfProp: cocktail-ontology:is-used-by_2
+  is-variant-of:
+    kind: object
+    label: is variant of
+    max: inf
+    range: Cocktail
+    rdfProp: cocktail-ontology:is-variant-of
   isOppositeOf:
     kind: object
     label: isOppositeOf
@@ -193,33 +220,6 @@ properties:
     range: Garnish
     rdfProp: cocktail-ontology:isOppositeOf
     symmetric: 1
-  ispartof:
-    inverseOf: consistsof
-    kind: object
-    label: is part of
-    max: inf
-    range: Cocktail
-    rdfProp: cocktail-ontology:is-part-of
-  isusedby:
-    inverseOf: uses
-    kind: object
-    label: is used by
-    max: inf
-    range: Cocktail
-    rdfProp: cocktail-ontology:is-used-by
-  isusedby2:
-    inverseOf: uses2
-    kind: object
-    label: is used by
-    max: inf
-    range: Cocktail
-    rdfProp: cocktail-ontology:is-used-by_2
-  isvariantof:
-    kind: object
-    label: is variant of
-    max: inf
-    range: Cocktail
-    rdfProp: cocktail-ontology:is-variant-of
   notdrinkafterd:
     kind: literal
     range: dateTime
@@ -242,14 +242,14 @@ properties:
     range: string
     rdfProp: cocktail-ontology:timing
   uses:
-    inverseOf: isusedby
+    inverseOf: is-used-by
     kind: object
     label: uses Drinkware
     max: inf
     range: Drinkware
     rdfProp: cocktail-ontology:uses
-  uses2:
-    inverseOf: isusedby2
+  uses_2:
+    inverseOf: is-used-by_2
     kind: object
     label: uses Garnish
     max: inf

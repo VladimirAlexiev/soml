@@ -42,10 +42,11 @@ objects:
       topConceptOf: {}
     type: skos:Concept
   ConceptScheme:
-    descr: 'A set of concepts, optionally including statements about semantic relationships between those concepts. A concept scheme may be defined to include concepts from different sources'
+    descr: 'A concept scheme may be defined to include concepts from different sources. A set of concepts, optionally including statements about semantic relationships between those concepts'
     label: Concept Scheme
     props:
       hasTopConcept: {}
+      prefLabel: {}
     type: skos:ConceptScheme
   OrderedCollection:
     descr: "An ordered collection of concepts, where both the grouping and the ordering are meaningful. Ordered collections can be used where you would like a set of concepts to be displayed in a specific order, and optionally under a 'node label'"
@@ -61,10 +62,11 @@ prefixes:
   owl: http://www.w3.org/2002/07/owl#
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   rdfs: http://www.w3.org/2000/01/rdf-schema#
+  schema: http://schema.org/
   skos: http://www.w3.org/2004/02/skos/core#
 properties:
   altLabel:
-    descr: 'The range of skos:altLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties. An alternative lexical label for a resource'
+    descr: 'An alternative lexical label for a resource. The range of skos:altLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties'
     kind: literal
     label: alternative label
     max: inf
@@ -79,7 +81,7 @@ properties:
     range: Concept
     rdfProp: skos:broadMatch
   broader:
-    descr: 'Broader concepts are typically rendered as parents in a concept hierarchy (tree). Relates a concept to a concept that is more general in meaning. By convention, skos:broader is only used to assert an immediate (i.e. direct) hierarchical link between two conceptual resources'
+    descr: 'Broader concepts are typically rendered as parents in a concept hierarchy (tree). By convention, skos:broader is only used to assert an immediate (i.e. direct) hierarchical link between two conceptual resources. Relates a concept to a concept that is more general in meaning'
     inverseOf: narrower
     kind: object
     label: has broader
@@ -87,7 +89,7 @@ properties:
     range: Concept
     rdfProp: skos:broader
   broaderTransitive:
-    descr: 'skos:broaderTransitive is a transitive superproperty of skos:broader. By convention, skos:broaderTransitive is not used to make assertions. Rather, the properties can be used to draw inferences about the transitive closure of the hierarchical relation, which is useful e.g. when implementing a simple query expansion algorithm in a search application'
+    descr: 'By convention, skos:broaderTransitive is not used to make assertions. Rather, the properties can be used to draw inferences about the transitive closure of the hierarchical relation, which is useful e.g. when implementing a simple query expansion algorithm in a search application. skos:broaderTransitive is a transitive superproperty of skos:broader'
     inverseOf: narrowerTransitive
     kind: object
     label: has broader transitive
@@ -147,7 +149,7 @@ properties:
     range: Concept
     rdfProp: skos:hasTopConcept
   hiddenLabel:
-    descr: 'skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties. The range of skos:hiddenLabel is the class of RDF plain literals. A lexical label for a resource that should be hidden when generating visual displays of the resource, but should still be accessible to free text search operations'
+    descr: 'A lexical label for a resource that should be hidden when generating visual displays of the resource, but should still be accessible to free text search operations. The range of skos:hiddenLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties'
     kind: literal
     label: hidden label
     max: inf
@@ -161,14 +163,14 @@ properties:
     range: string
     rdfProp: skos:historyNote
   inScheme:
-    descr: Relates a resource (for example a concept) to a concept scheme in which it is included. A concept may be a member of more than one concept scheme
+    descr: A concept may be a member of more than one concept scheme. Relates a resource (for example a concept) to a concept scheme in which it is included
     kind: object
     label: is in scheme
     max: inf
     range: ConceptScheme
     rdfProp: skos:inScheme
   mappingRelation:
-    descr: 'These concept mapping relations mirror semantic relations, and the data model defined below is similar (with the exception of skos:exactMatch) to the data model defined for semantic relations. A distinct vocabulary is provided for concept mapping relations, to provide a convenient way to differentiate links within a concept scheme from links between concept schemes. However, this pattern of usage is not a formal requirement of the SKOS data model, and relies on informal definitions of best practice. Relates two concepts coming, by convention, from different schemes, and that have comparable meanings'
+    descr: 'Relates two concepts coming, by convention, from different schemes, and that have comparable meanings. These concept mapping relations mirror semantic relations, and the data model defined below is similar (with the exception of skos:exactMatch) to the data model defined for semantic relations. A distinct vocabulary is provided for concept mapping relations, to provide a convenient way to differentiate links within a concept scheme from links between concept schemes. However, this pattern of usage is not a formal requirement of the SKOS data model, and relies on informal definitions of best practice'
     kind: object
     label: is in mapping relation with
     max: inf
@@ -179,7 +181,7 @@ properties:
     kind: object
     label: has member
     max: inf
-    range: Concept
+    range: CollectionInterface
     rdfProp: skos:member
   memberList:
     descr: |-
@@ -198,7 +200,7 @@ properties:
     range: Concept
     rdfProp: skos:narrowMatch
   narrower:
-    descr: 'Narrower concepts are typically rendered as children in a concept hierarchy (tree). Relates a concept to a concept that is more specific in meaning. By convention, skos:broader is only used to assert an immediate (i.e. direct) hierarchical link between two conceptual resources'
+    descr: 'By convention, skos:broader is only used to assert an immediate (i.e. direct) hierarchical link between two conceptual resources. Narrower concepts are typically rendered as children in a concept hierarchy (tree). Relates a concept to a concept that is more specific in meaning'
     inverseOf: broader
     kind: object
     label: has narrower
@@ -206,7 +208,7 @@ properties:
     range: Concept
     rdfProp: skos:narrower
   narrowerTransitive:
-    descr: 'skos:narrowerTransitive is a transitive superproperty of skos:narrower. By convention, skos:narrowerTransitive is not used to make assertions. Rather, the properties can be used to draw inferences about the transitive closure of the hierarchical relation, which is useful e.g. when implementing a simple query expansion algorithm in a search application'
+    descr: 'By convention, skos:narrowerTransitive is not used to make assertions. Rather, the properties can be used to draw inferences about the transitive closure of the hierarchical relation, which is useful e.g. when implementing a simple query expansion algorithm in a search application. skos:narrowerTransitive is a transitive superproperty of skos:narrower'
     inverseOf: broaderTransitive
     kind: object
     label: has narrower transitive
@@ -229,15 +231,15 @@ properties:
     rdfProp: skos:note
   prefLabel:
     descr: |-
-      skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise
-            disjoint properties. The range of skos:prefLabel is the class of RDF plain literals. A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The preferred lexical label for a resource, in a given language
+      A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag. The preferred lexical label for a resource, in a given language. The range of skos:prefLabel is the class of RDF plain literals. skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise
+            disjoint properties
     kind: literal
     label: preferred label
     max: inf
     range: string
     rdfProp: skos:prefLabel
   related:
-    descr: skos:related is disjoint with skos:broaderTransitive. Relates a concept to a concept with which there is an associative semantic relationship
+    descr: Relates a concept to a concept with which there is an associative semantic relationship. skos:related is disjoint with skos:broaderTransitive
     kind: object
     label: has related
     max: inf

@@ -39,7 +39,7 @@ objects:
       For more specific types of accommodations not defined in schema.org, one can use additionalType with external vocabularies.
       <br /><br />
       See also the <a href="/docs/hotels.html">dedicated document on the use of schema.org for marking up hotels and other forms of accommodations</a>
-    inherits: AccommodationInterface
+    inherits: PlaceInterface
     label: Accommodation
     type: schema:Accommodation
   AccommodationInterface:
@@ -118,7 +118,7 @@ objects:
     kind: abstract
   AdministrativeArea:
     descr: 'A geographical region, typically under the jurisdiction of a particular government'
-    inherits: PlaceInterface
+    inherits: AdministrativeAreaInterface
     label: AdministrativeArea
     type: schema:AdministrativeArea
   AdministrativeAreaInterface:
@@ -285,7 +285,7 @@ objects:
     type: schema:AskAction
   AssessAction:
     descr: "The act of forming one's opinion, reaction or sentiment"
-    inherits: ActionInterface
+    inherits: AssessActionInterface
     label: AssessAction
     type: schema:AssessAction
   AssessActionInterface:
@@ -305,7 +305,7 @@ objects:
     type: schema:Attorney
   Audience:
     descr: 'Intended audience for an item, i.e. the group for whom the item was created'
-    inherits: IntangibleInterface
+    inherits: AudienceInterface
     label: Audience
     type: schema:Audience
   AudienceInterface:
@@ -344,7 +344,7 @@ objects:
     type: schema:AutoDealer
   AutoPartsStore:
     descr: An auto parts store
-    inherits: AutomotiveBusinessInterface
+    inherits: StoreInterface
     label: AutoPartsStore
     type: schema:AutoPartsStore
   AutoRental:
@@ -381,7 +381,7 @@ objects:
     type: schema:Bakery
   BankAccount:
     descr: 'A product or service offered by a bank whereby one may deposit, withdraw or transfer money and in some cases be paid interest'
-    inherits: FinancialProductInterface
+    inherits: BankAccountInterface
     label: BankAccount
     type: schema:BankAccount
   BankAccountInterface:
@@ -460,7 +460,7 @@ objects:
     type: schema:Blog
   BlogPosting:
     descr: A blog post
-    inherits: SocialMediaPostingInterface
+    inherits: BlogPostingInterface
     label: BlogPosting
     type: schema:BlogPosting
   BlogPostingInterface:
@@ -708,7 +708,7 @@ objects:
       In British English a campsite is an area, usually divided into a number of pitches, where people can camp overnight using tents or camper vans or caravans; this British English use of the word is synonymous with the American English expression campground. In American English the term campsite generally means an area where an individual, family, group, or military unit can pitch a tent or park a camper; a campground may contain many campsites (Source: Wikipedia see <a href="https://en.wikipedia.org/wiki/Campsite">https://en.wikipedia.org/wiki/Campsite</a>).<br/><br/>
       
       See also the dedicated <a href="/docs/hotels.html">document on the use of schema.org for marking up hotels and other forms of accommodations</a>
-    inherits: CivicStructureInterface
+    inherits: LodgingBusinessInterface
     label: Campground
     type: schema:Campground
   CampingPitch:
@@ -749,8 +749,6 @@ objects:
     inherits: EntertainmentBusinessInterface
     label: Casino
     type: schema:Casino
-  CategoryCode:
-    type: schema:CategoryCode
   CatholicChurch:
     descr: A Catholic church
     inherits: ChurchInterface
@@ -817,7 +815,7 @@ objects:
     type: schema:ChildrensEvent
   ChooseAction:
     descr: The act of expressing a preference from a set of options or a large or unbounded set of choices/options
-    inherits: ChooseActionInterface
+    inherits: AssessActionInterface
     label: ChooseAction
     type: schema:ChooseAction
   ChooseActionInterface:
@@ -887,7 +885,7 @@ objects:
     type: schema:Code
   CollectionPage:
     descr: 'Web page type: Collection page'
-    inherits: WebPageInterface
+    inherits: CollectionPageInterface
     label: CollectionPage
     type: schema:CollectionPage
   CollectionPageInterface:
@@ -1011,7 +1009,7 @@ objects:
     type: schema:Continent
   ControlAction:
     descr: An agent controls a device or application
-    inherits: ControlActionInterface
+    inherits: ActionInterface
     label: ControlAction
     type: schema:ControlAction
   ControlActionInterface:
@@ -1079,7 +1077,7 @@ objects:
     kind: abstract
   CreativeWork:
     descr: 'The most generic kind of creative work, including books, movies, photographs, software programs, etc'
-    inherits: CreativeWorkInterface
+    inherits: ThingInterface
     label: CreativeWork
     type: schema:CreativeWork
   CreativeWorkInterface:
@@ -1668,7 +1666,7 @@ objects:
     kind: abstract
   Episode:
     descr: 'A media episode (e.g. TV, radio, video game) which can be part of a series or season'
-    inherits: CreativeWorkInterface
+    inherits: EpisodeInterface
     label: Episode
     type: schema:Episode
   EpisodeInterface:
@@ -2025,7 +2023,7 @@ objects:
     type: schema:GeoCoordinates
   GeoShape:
     descr: The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points
-    inherits: StructuredValueInterface
+    inherits: GeoShapeInterface
     label: GeoShape
     type: schema:GeoShape
   GeoShapeInterface:
@@ -2133,7 +2131,7 @@ objects:
     type: schema:HardwareStore
   HealthAndBeautyBusiness:
     descr: Health and beauty
-    inherits: LocalBusinessInterface
+    inherits: HealthAndBeautyBusinessInterface
     label: HealthAndBeautyBusiness
     type: schema:HealthAndBeautyBusiness
   HealthAndBeautyBusinessInterface:
@@ -2181,7 +2179,7 @@ objects:
     type: schema:HomeGoodsStore
   Hospital:
     descr: A hospital
-    inherits: CivicStructureInterface
+    inherits: MedicalOrganizationInterface
     label: Hospital
     type: schema:Hospital
   Hostel:
@@ -2213,7 +2211,7 @@ objects:
     type: schema:HotelRoom
   House:
     descr: 'A house is a building or structure that has the ability to be occupied for habitation by humans or other creatures (Source: Wikipedia, the free encyclopedia, see <a href="http://en.wikipedia.org/wiki/House">http://en.wikipedia.org/wiki/House</a>)'
-    inherits: HouseInterface
+    inherits: AccommodationInterface
     label: House
     type: schema:House
   HouseInterface:
@@ -2232,7 +2230,7 @@ objects:
     type: schema:HowTo
   HowToDirection:
     descr: A direction indicating a single action to do in the instructions for how to achieve a result
-    inherits: CreativeWorkInterface
+    inherits: ListItemInterface
     label: HowToDirection
     props:
       afterMedia: {}
@@ -2267,14 +2265,14 @@ objects:
       requiredQuantity: {}
   HowToSection:
     descr: A sub-grouping of steps in the instructions for how to achieve a result (e.g. steps for making a pie crust within a pie recipe)
-    inherits: CreativeWorkInterface
+    inherits: ListItemInterface
     label: HowToSection
     props:
       steps: {}
     type: schema:HowToSection
   HowToStep:
     descr: A step in the instructions for how to achieve a result. It is an ordered list with HowToDirection and/or HowToTip items
-    inherits: CreativeWorkInterface
+    inherits: ItemListInterface
     label: HowToStep
     type: schema:HowToStep
   HowToSupply:
@@ -2505,7 +2503,7 @@ objects:
     type: schema:LakeBodyOfWater
   Landform:
     descr: 'A landform or physical feature.  Landform elements include mountains, plains, lakes, rivers, seascape and oceanic waterbody interface features such as bays, peninsulas, seas and so forth, including sub-aqueous terrain features such as submersed mountain ranges, volcanoes, and the great ocean basins'
-    inherits: PlaceInterface
+    inherits: LandformInterface
     label: Landform
     type: schema:Landform
   LandformInterface:
@@ -2628,7 +2626,7 @@ objects:
       requiredCollateral: {}
   LocalBusiness:
     descr: 'A particular physical business or branch of an organization. Examples of LocalBusiness include a restaurant, a particular branch of a restaurant chain, a branch of a bank, a medical practice, a club, a bowling alley, etc'
-    inherits: OrganizationInterface
+    inherits: PlaceInterface
     label: LocalBusiness
     type: schema:LocalBusiness
   LocalBusinessInterface:
@@ -2758,16 +2756,13 @@ objects:
       authenticator: {}
       expectsAcceptanceOf: {}
     type: schema:MediaSubscription
-  MedicalBusiness:
-    inherits: MedicalBusinessInterface
-    type: schema:MedicalBusiness
-  MedicalBusinessInterface:
-    kind: abstract
   MedicalOrganization:
     descr: 'A medical organization (physical or not), such as hospital, institution or clinic'
     inherits: OrganizationInterface
     label: MedicalOrganization
     type: schema:MedicalOrganization
+  MedicalOrganizationInterface:
+    kind: abstract
   MedicalStudy:
     props:
       sponsor: {}
@@ -2813,7 +2808,7 @@ objects:
     type: schema:MenuSection
   Message:
     descr: A single message from a sender to one or more organizations or people
-    inherits: MessageInterface
+    inherits: CreativeWorkInterface
     label: Message
     type: schema:Message
   MessageInterface:
@@ -3028,7 +3023,7 @@ objects:
     type: schema:MusicGroup
   MusicPlaylist:
     descr: A collection of music tracks in playlist form
-    inherits: CreativeWorkInterface
+    inherits: MusicPlaylistInterface
     label: MusicPlaylist
     type: schema:MusicPlaylist
   MusicPlaylistInterface:
@@ -3162,7 +3157,7 @@ objects:
       Note: As the <a class="localLink" href="http://schema.org/businessFunction">businessFunction</a> property, which identifies the form of offer (e.g. sell, lease, repair, dispose), defaults to http://purl.org/goodrelations/v1#Sell; an Offer without a defined businessFunction value can be assumed to be an offer to sell.<br/><br/>
       
       For <a href="http://www.gs1.org/barcodes/technical/idkeys/gtin">GTIN</a>-related fields, see <a href="http://www.gs1.org/barcodes/support/check_digit_calculator">Check Digit calculator</a> and <a href="http://www.gs1us.org/resources/standards/gtin-validation-guide">validation guide</a> from <a href="http://www.gs1.org/">GS1</a>
-    inherits: OfferInterface
+    inherits: IntangibleInterface
     label: Offer
     type: schema:Offer
   OfferCatalog:
@@ -3356,7 +3351,7 @@ objects:
       vatID: {}
   OrganizationRole:
     descr: A subclass of Role used to describe roles within organizations
-    inherits: OrganizationRoleInterface
+    inherits: RoleInterface
     label: OrganizationRole
     type: schema:OrganizationRole
   OrganizationRoleInterface:
@@ -3459,7 +3454,7 @@ objects:
     type: schema:PayAction
   PaymentCard:
     descr: 'A payment method using a credit, debit, store or other card to associate the payment with an account'
-    inherits: FinancialProductInterface
+    inherits: PaymentMethodInterface
     label: PaymentCard
     type: schema:PaymentCard
   PaymentChargeSpecification:
@@ -3490,6 +3485,8 @@ objects:
     inherits: EnumerationInterface
     label: PaymentMethod
     type: schema:PaymentMethod
+  PaymentMethodInterface:
+    kind: abstract
   PaymentService:
     descr: A Service to transfer funds from a person or organization to a beneficiary person or organization
     inherits: FinancialProductInterface
@@ -3502,7 +3499,7 @@ objects:
     type: schema:PaymentStatusType
   PeopleAudience:
     descr: "A set of characteristics belonging to people, e.g. who compose an item's target audience"
-    inherits: AudienceInterface
+    inherits: PeopleAudienceInterface
     label: PeopleAudience
     type: schema:PeopleAudience
   PeopleAudienceInterface:
@@ -3550,7 +3547,7 @@ objects:
     type: schema:Periodical
   Permit:
     descr: 'A permit issued by an organization, e.g. a parking pass'
-    inherits: IntangibleInterface
+    inherits: PermitInterface
     label: Permit
     type: schema:Permit
   PermitInterface:
@@ -3632,7 +3629,7 @@ objects:
     type: schema:PetStore
   Pharmacy:
     descr: A pharmacy or drugstore
-    inherits: MedicalBusinessInterface
+    inherits: MedicalOrganizationInterface
     label: Pharmacy
     type: schema:Pharmacy
   Photograph:
@@ -3653,7 +3650,7 @@ objects:
     type: schema:PhysicalActivityCategory
   Physician:
     descr: A doctor's office
-    inherits: MedicalBusinessInterface
+    inherits: MedicalOrganizationInterface
     label: Physician
     type: schema:Physician
   Place:
@@ -3708,14 +3705,14 @@ objects:
       telephone: {}
   PlaceOfWorship:
     descr: 'Place of worship, such as a church, synagogue, or mosque'
-    inherits: PlaceOfWorshipInterface
+    inherits: CivicStructureInterface
     label: PlaceOfWorship
     type: schema:PlaceOfWorship
   PlaceOfWorshipInterface:
     kind: abstract
   PlanAction:
     descr: The act of planning the execution of an event/task/action/reservation/plan to a future date
-    inherits: OrganizeActionInterface
+    inherits: PlanActionInterface
     label: PlanAction
     type: schema:PlanAction
   PlanActionInterface:
@@ -3816,7 +3813,7 @@ objects:
       valueAddedTaxIncluded: {}
   Product:
     descr: 'Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online'
-    inherits: ProductInterface
+    inherits: ThingInterface
     label: Product
     type: schema:Product
   ProductInterface:
@@ -3901,7 +3898,7 @@ objects:
       A property-value pair, e.g. representing a feature of a product or place. Use the 'name' property for the name of the property. If there is an additional human-readable version of the value, put that into the 'description' property.<br/><br/>
       
       Always use specific schema.org properties when a) they exist and b) you can populate them. Using PropertyValue as a substitute will typically not trigger the same effect as using the original, specific property
-    inherits: PropertyValueInterface
+    inherits: StructuredValueInterface
     label: PropertyValue
     type: schema:PropertyValue
   PropertyValueInterface:
@@ -3980,7 +3977,7 @@ objects:
     type: schema:QAPage
   QualitativeValue:
     descr: "A predefined value for a product characteristic, e.g. the power cord plug type 'US' or the garment sizes 'S', 'M', 'L', and 'XL'"
-    inherits: QualitativeValueInterface
+    inherits: EnumerationInterface
     label: QualitativeValue
     type: schema:QualitativeValue
   QualitativeValueInterface:
@@ -4009,7 +4006,7 @@ objects:
     type: schema:QuantitativeValue
   QuantitativeValueDistribution:
     descr: A statistical distribution of values
-    inherits: StructuredValueInterface
+    inherits: QuantitativeValueDistributionInterface
     label: QuantitativeValueDistribution
     type: schema:QuantitativeValueDistribution
   QuantitativeValueDistributionInterface:
@@ -4051,7 +4048,7 @@ objects:
     type: schema:RVPark
   RadioChannel:
     descr: A unique instance of a radio BroadcastService on a CableOrSatelliteService lineup
-    inherits: BroadcastChannelInterface
+    inherits: RadioChannelInterface
     label: RadioChannel
     type: schema:RadioChannel
   RadioChannelInterface:
@@ -4098,7 +4095,7 @@ objects:
     type: schema:RadioStation
   Rating:
     descr: 'A rating is an evaluation on a numeric scale, such as 1 to 5 stars'
-    inherits: IntangibleInterface
+    inherits: RatingInterface
     label: Rating
     type: schema:Rating
   RatingInterface:
@@ -4339,7 +4336,7 @@ objects:
     type: schema:ReturnAction
   Review:
     descr: 'A review of an item - for example, of a restaurant, movie, or store'
-    inherits: ReviewInterface
+    inherits: CreativeWorkInterface
     label: Review
     type: schema:Review
   ReviewAction:
@@ -4522,7 +4519,7 @@ objects:
     type: schema:Series
   Service:
     descr: 'A service provided by an organization, e.g. delivery service, print services, etc'
-    inherits: ServiceInterface
+    inherits: IntangibleInterface
     label: Service
     type: schema:Service
   ServiceChannel:
@@ -4614,7 +4611,7 @@ objects:
       sharedContent: {}
   SoftwareApplication:
     descr: A software application
-    inherits: SoftwareApplicationInterface
+    inherits: CreativeWorkInterface
     label: SoftwareApplication
     type: schema:SoftwareApplication
   SoftwareApplicationInterface:
@@ -4705,7 +4702,7 @@ objects:
     type: schema:SportsEvent
   SportsOrganization:
     descr: 'Represents the collection of all sports organizations, including sports teams, governing bodies, and sports associations'
-    inherits: SportsOrganizationInterface
+    inherits: OrganizationInterface
     label: SportsOrganization
     type: schema:SportsOrganization
   SportsOrganizationInterface:
@@ -4725,7 +4722,7 @@ objects:
     type: schema:SpreadsheetDigitalDocument
   StadiumOrArena:
     descr: A stadium
-    inherits: CivicStructureInterface
+    inherits: SportsActivityLocationInterface
     label: StadiumOrArena
     type: schema:StadiumOrArena
   State:
@@ -4810,7 +4807,7 @@ objects:
     type: schema:TVEpisode
   TVSeason:
     descr: Season dedicated to TV broadcast and associated online delivery
-    inherits: CreativeWorkInterface
+    inherits: CreativeWorkSeasonInterface
     label: TVSeason
     props:
       countryOfOrigin: {}
@@ -4818,7 +4815,7 @@ objects:
     type: schema:TVSeason
   TVSeries:
     descr: CreativeWorkSeries dedicated to TV broadcast and associated online delivery
-    inherits: CreativeWorkInterface
+    inherits: CreativeWorkSeriesInterface
     label: TVSeries
     props:
       actor: {}
@@ -5140,7 +5137,7 @@ objects:
       targetCollection: {}
   UseAction:
     descr: The act of applying an object to its intended purpose
-    inherits: ConsumeActionInterface
+    inherits: UseActionInterface
     label: UseAction
     type: schema:UseAction
   UseActionInterface:
@@ -5534,14 +5531,14 @@ properties:
     kind: object
     label: acceptedPaymentMethod
     max: inf
-    range: LoanOrCreditInterface
+    range: PaymentMethodInterface
     rdfProp: schema:acceptedPaymentMethod
   acceptsReservations:
     descr: 'Indicates whether a FoodEstablishment accepts reservations. Values can be Boolean, an URL at which reservations can be made or (for backwards compatibility) the strings <code>Yes</code> or <code>No</code>'
     kind: literal
     label: acceptsReservations
     max: inf
-    range: boolean
+    range: string
     rdfProp: schema:acceptsReservations
   accessCode:
     descr: 'Password, PIN, or access code needed for delivery (e.g. from a locker)'
@@ -5636,10 +5633,10 @@ properties:
     rdfProp: schema:actionApplication
   actionOption:
     descr: A sub property of object. The options subject to this action
-    kind: object
+    kind: literal
     label: actionOption
     max: inf
-    range: ThingInterface
+    range: string
     rdfProp: schema:actionOption
   actionPlatform:
     descr: 'The high level platform(s) where the Action can be performed for the given URL. To specify a specific application or operating system instance, use actionApplication'
@@ -5716,10 +5713,10 @@ properties:
     rdfProp: schema:address
   addressCountry:
     descr: 'The country. For example, USA. You can also provide the two-letter <a href="http://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166-1 alpha-2 country code</a>'
-    kind: object
+    kind: literal
     label: addressCountry
     max: inf
-    range: Country
+    range: string
     rdfProp: schema:addressCountry
   addressLocality:
     descr: 'The locality in which the street address is, and which is in the region. For example, Mountain View'
@@ -5751,10 +5748,10 @@ properties:
     rdfProp: schema:affiliation
   afterMedia:
     descr: A media object representing the circumstances after performing this direction
-    kind: object
+    kind: literal
     label: afterMedia
     max: inf
-    range: MediaObjectInterface
+    range: iri
     rdfProp: schema:afterMedia
   agent:
     descr: The direct performer or driver of the action (animate or inanimate). e.g. <em>John</em> wrote a book
@@ -5848,7 +5845,7 @@ properties:
     kind: object
     label: alumniOf
     max: inf
-    range: EducationalOrganizationInterface
+    range: OrganizationInterface
     rdfProp: schema:alumniOf
   amenityFeature:
     descr: An amenity feature (e.g. a characteristic or service) of the Accommodation. This generic property does not make a statement about whether the feature is included in an offer for the main accommodation or available at extra costs
@@ -5859,10 +5856,10 @@ properties:
     rdfProp: schema:amenityFeature
   amount:
     descr: The amount of money
-    kind: object
+    kind: literal
     label: amount
     max: inf
-    range: MonetaryAmount
+    range: decimal
     rdfProp: schema:amount
   amountOfThisGood:
     descr: The quantity of the goods included in the offer
@@ -5897,14 +5894,14 @@ properties:
     kind: literal
     label: applicationCategory
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:applicationCategory
   applicationSubCategory:
     descr: "Subcategory of the application, e.g. 'Arcade Game'"
     kind: literal
     label: applicationSubCategory
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:applicationSubCategory
   applicationSuite:
     descr: The name of the application suite to which the application belongs (e.g. Excel belongs to Office)
@@ -5925,7 +5922,7 @@ properties:
     kind: object
     label: appliesToPaymentMethod
     max: inf
-    range: PaymentMethod
+    range: PaymentMethodInterface
     rdfProp: schema:appliesToPaymentMethod
   area:
     descr: The area within which users can expect to reach the broadcast service
@@ -5936,10 +5933,10 @@ properties:
     rdfProp: schema:area
   areaServed:
     descr: The geographic area where a service or offered item is provided
-    kind: object
+    kind: literal
     label: areaServed
     max: inf
-    range: AdministrativeAreaInterface
+    range: string
     rdfProp: schema:areaServed
   arrivalAirport:
     descr: The airport where the flight terminates
@@ -5953,7 +5950,7 @@ properties:
     kind: object
     label: arrivalBusStop
     max: inf
-    range: BusStation
+    range: BusStop
     rdfProp: schema:arrivalBusStop
   arrivalGate:
     descr: Identifier of the flight's arrival gate
@@ -5995,7 +5992,7 @@ properties:
     kind: literal
     label: artEdition
     max: inf
-    range: integer
+    range: string
     rdfProp: schema:artEdition
   artMedium:
     descr: 'The material used. (e.g. Oil, Watercolour, Acrylic, Linoprint, Marble, Cyanotype, Digital, Lithograph, DryPoint, Intaglio, Pastel, Woodcut, Pencil, Mixed Media, etc.)'
@@ -6009,7 +6006,7 @@ properties:
     kind: literal
     label: artform
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:artform
   articleBody:
     descr: The actual body of the article
@@ -6030,7 +6027,7 @@ properties:
     kind: literal
     label: artworkSurface
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:artworkSurface
   assembly:
     descr: 'Library file name e.g., mscorlib.dll, system.web.dll'
@@ -6079,7 +6076,7 @@ properties:
     kind: object
     label: attendees
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:attendees
   audience:
     descr: 'An intended audience, i.e. a group for whom something was created'
@@ -6100,7 +6097,7 @@ properties:
     kind: object
     label: audio
     max: inf
-    range: AudioObject
+    range: MusicRecording
     rdfProp: schema:audio
   authenticator:
     descr: "The Organization responsible for authenticating the user's subscription. For example, many media apps require a cable/satellite provider to authenticate your subscription before playing media"
@@ -6128,14 +6125,14 @@ properties:
     kind: literal
     label: availabilityEnds
     max: inf
-    range: date
+    range: dateTime
     rdfProp: schema:availabilityEnds
   availabilityStarts:
     descr: The beginning of the availability of the product or service included in the offer
     kind: literal
     label: availabilityStarts
     max: inf
-    range: date
+    range: dateTime
     rdfProp: schema:availabilityStarts
   availableAtOrFrom:
     descr: The place(s) from which the offer can be obtained (e.g. store locations)
@@ -6167,10 +6164,10 @@ properties:
     rdfProp: schema:availableFrom
   availableLanguage:
     descr: 'A language someone may use with or at the item, service or place. Please use one of the language codes from the <a href="http://tools.ietf.org/html/bcp47">IETF BCP 47 standard</a>. See also <a class="localLink" href="http://schema.org/inLanguage">inLanguage</a>'
-    kind: object
+    kind: literal
     label: availableLanguage
     max: inf
-    range: Language
+    range: string
     rdfProp: schema:availableLanguage
   availableOnDevice:
     descr: Device required to run the application. Used in cases where a specific make/model is required to run the application
@@ -6205,14 +6202,14 @@ properties:
     kind: object
     label: awayTeam
     max: inf
-    range: Person
+    range: SportsTeam
     rdfProp: schema:awayTeam
   baseSalary:
     descr: The base salary of the job or of an employee in an EmployeeRole
-    kind: object
+    kind: literal
     label: baseSalary
     max: inf
-    range: MonetaryAmount
+    range: decimal
     rdfProp: schema:baseSalary
   bccRecipient:
     descr: A sub property of recipient. The recipient blind copied on a message
@@ -6225,17 +6222,17 @@ properties:
     descr: |-
       The type of bed or beds included in the accommodation. For the single case of just one bed of a certain type, you use bed directly with a text.
             If you want to indicate the quantity of a certain kind of bed, use an instance of BedDetails. For more detailed information, use the amenityFeature property
-    kind: object
+    kind: literal
     label: bed
     max: inf
-    range: BedDetails
+    range: string
     rdfProp: schema:bed
   beforeMedia:
     descr: A media object representing the circumstances before performing this direction
-    kind: object
+    kind: literal
     label: beforeMedia
     max: inf
-    range: MediaObjectInterface
+    range: iri
     rdfProp: schema:beforeMedia
   benefits:
     descr: Description of benefits associated with the job
@@ -6249,7 +6246,7 @@ properties:
     kind: literal
     label: bestRating
     max: inf
-    range: decimal
+    range: string
     rdfProp: schema:bestRating
   billingAddress:
     descr: The billing address for the order
@@ -6340,7 +6337,7 @@ properties:
     kind: object
     label: bookingAgent
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:bookingAgent
   bookingTime:
     descr: The date and time the reservation was booked
@@ -6385,14 +6382,14 @@ properties:
     kind: object
     label: brand
     max: inf
-    range: Brand
+    range: OrganizationInterface
     rdfProp: schema:brand
   breadcrumb:
     descr: A set of links that can help a user understand and navigate a website hierarchy
-    kind: object
+    kind: literal
     label: breadcrumb
     max: inf
-    range: BreadcrumbList
+    range: string
     rdfProp: schema:breadcrumb
   broadcastAffiliateOf:
     descr: The media network(s) whose content is broadcast on this station
@@ -6417,17 +6414,17 @@ properties:
     rdfProp: schema:broadcastDisplayName
   broadcastFrequency:
     descr: 'The frequency used for over-the-air broadcasts. Numeric values or simple ranges e.g. 87-99. In addition a shortcut idiom is supported for frequences of AM and FM radio channels, e.g. "87 FM"'
-    kind: object
+    kind: literal
     label: broadcastFrequency
     max: inf
-    range: BroadcastFrequencySpecification
+    range: string
     rdfProp: schema:broadcastFrequency
   broadcastFrequencyValue:
     descr: The frequency in MHz for a particular broadcast
-    kind: object
+    kind: literal
     label: broadcastFrequencyValue
     max: inf
-    range: QuantitativeValue
+    range: decimal
     rdfProp: schema:broadcastFrequencyValue
   broadcastOfEvent:
     descr: The event being broadcast such as a sporting event or awards ceremony
@@ -6504,7 +6501,7 @@ properties:
     kind: object
     label: byArtist
     max: inf
-    range: MusicGroup
+    range: Person
     rdfProp: schema:byArtist
   calories:
     descr: The number of calories
@@ -6621,14 +6618,14 @@ properties:
     kind: literal
     label: checkinTime
     max: inf
-    range: dateTime
+    range: time
     rdfProp: schema:checkinTime
   checkoutTime:
     descr: The latest someone may check out of a lodging establishment
     kind: literal
     label: checkoutTime
     max: inf
-    range: dateTime
+    range: time
     rdfProp: schema:checkoutTime
   childMaxAge:
     descr: Maximal age of the child
@@ -6667,10 +6664,10 @@ properties:
     rdfProp: schema:circle
   citation:
     descr: 'A citation or reference to another creative work, such as another publication, web page, scholarly article, etc'
-    kind: object
+    kind: literal
     label: citation
     max: inf
-    range: CreativeWorkInterface
+    range: string
     rdfProp: schema:citation
   claimReviewed:
     descr: A short summary of the specific claims reviewed in a ClaimReview
@@ -6889,7 +6886,7 @@ properties:
     kind: object
     label: contributor
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:contributor
   cookTime:
     descr: 'The time it takes to actually cook the dish, in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 duration format</a>'
@@ -6910,7 +6907,7 @@ properties:
     kind: object
     label: copyrightHolder
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:copyrightHolder
   copyrightYear:
     descr: The year during which the claimed copyright for the CreativeWork was first asserted
@@ -6959,7 +6956,7 @@ properties:
     kind: literal
     label: courseMode
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:courseMode
   coursePrerequisites:
     descr: 'Requirements for taking the Course. May be completion of another <a class="localLink" href="http://schema.org/Course">Course</a> or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using <a class="localLink" href="http://schema.org/AlignmentObject">AlignmentObject</a>'
@@ -6987,7 +6984,7 @@ properties:
     kind: object
     label: creator
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:creator
   creditedTo:
     descr: 'The group the release is credited to if different than the byArtist. For example, Red and Blue is credited to "Stefani Germanotta Band", but by Lady Gaga'
@@ -7028,14 +7025,14 @@ properties:
     kind: object
     label: customer
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:customer
   dataFeedElement:
     descr: An item within in a data feed. Data feeds may have many elements
     kind: object
     label: dataFeedElement
     max: inf
-    range: DataFeedItem
+    range: ThingInterface
     rdfProp: schema:dataFeedElement
   dataset:
     descr: A dataset contained in this catalog
@@ -7057,7 +7054,7 @@ properties:
     kind: literal
     label: dateCreated
     max: inf
-    range: date
+    range: dateTime
     rdfProp: schema:dateCreated
   dateDeleted:
     descr: The datetime the item was removed from the DataFeed
@@ -7071,7 +7068,7 @@ properties:
     kind: literal
     label: dateIssued
     max: inf
-    range: date
+    range: dateTime
     rdfProp: schema:dateIssued
   dateModified:
     descr: The date on which the CreativeWork was most recently modified or when the item's entry was modified within a DataFeed
@@ -7209,7 +7206,7 @@ properties:
     kind: object
     label: departureBusStop
     max: inf
-    range: BusStation
+    range: BusStop
     rdfProp: schema:departureBusStop
   departureGate:
     descr: Identifier of the flight's departure gate
@@ -7244,7 +7241,7 @@ properties:
     kind: literal
     label: departureTime
     max: inf
-    range: dateTime
+    range: time
     rdfProp: schema:departureTime
   dependencies:
     descr: Prerequisites needed to fulfill steps in article
@@ -7258,7 +7255,7 @@ properties:
     kind: object
     label: depth
     max: inf
-    range: Distance
+    range: QuantitativeValue
     rdfProp: schema:depth
   description:
     descr: A description of the item
@@ -7300,7 +7297,7 @@ properties:
     kind: literal
     label: discount
     max: inf
-    range: decimal
+    range: string
     rdfProp: schema:discount
   discountCode:
     descr: Code used to redeem a discount
@@ -7377,10 +7374,10 @@ properties:
     rdfProp: schema:downvoteCount
   driveWheelConfiguration:
     descr: "The drive wheel configuration, i.e. which roadwheels will receive torque from the vehicle's engine via the drivetrain"
-    kind: object
+    kind: literal
     label: driveWheelConfiguration
     max: inf
-    range: DriveWheelConfigurationValue
+    range: string
     rdfProp: schema:driveWheelConfiguration
   dropoffLocation:
     descr: Where a rental car can be dropped off
@@ -7440,10 +7437,10 @@ properties:
     rdfProp: schema:educationalAlignment
   educationalCredentialAwarded:
     descr: 'A description of the qualification, award, certificate, diploma or other educational credential awarded as a consequence of successful completion of this course or program'
-    kind: object
+    kind: literal
     label: educationalCredentialAwarded
     max: inf
-    range: EducationalOccupationalCredential
+    range: iri
     rdfProp: schema:educationalCredentialAwarded
   educationalFramework:
     descr: The framework to which the resource being described is aligned
@@ -7499,10 +7496,10 @@ properties:
       The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid.<br/><br/>
       
       See also <a class="localLink" href="http://schema.org/ineligibleRegion">ineligibleRegion</a>
-    kind: object
+    kind: literal
     label: eligibleRegion
     max: inf
-    range: GeoShapeInterface
+    range: string
     rdfProp: schema:eligibleRegion
   eligibleTransactionVolume:
     descr: 'The transaction volume, in a monetary unit, for which the offer or price specification is valid, e.g. for indicating a minimal purchasing volume, to express free shipping above a certain order volume, or to limit the acceptance of credit cards to purchases to a certain minimal amount'
@@ -7631,7 +7628,7 @@ properties:
     kind: literal
     label: episodeNumber
     max: inf
-    range: integer
+    range: string
     rdfProp: schema:episodeNumber
   episodes:
     descr: An episode of a TV/radio series or season
@@ -7730,7 +7727,7 @@ properties:
     kind: literal
     label: expectedArrivalFrom
     max: inf
-    range: date
+    range: dateTime
     rdfProp: schema:expectedArrivalFrom
   expectedArrivalUntil:
     descr: The latest date the package may arrive
@@ -7786,7 +7783,7 @@ properties:
     kind: literal
     label: featureList
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:featureList
   feesAndCommissionsSpecification:
     descr: 'Description of fees, commissions, and other terms applied either to a class of financial product, or by a financial service organization'
@@ -7807,7 +7804,7 @@ properties:
     kind: literal
     label: fileFormat
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:fileFormat
   fileSize:
     descr: 'Size of the application / package (e.g. 18MB). In the absence of a unit (MB, KB etc.), KB will be assumed'
@@ -7825,10 +7822,10 @@ properties:
     rdfProp: schema:firstPerformance
   flightDistance:
     descr: The distance of the flight
-    kind: object
+    kind: literal
     label: flightDistance
     max: inf
-    range: Distance
+    range: string
     rdfProp: schema:flightDistance
   flightNumber:
     descr: "The unique identifier for a flight including the airline IATA code. For example, if describing United flight 110, where the IATA code for United is 'UA', the flightNumber is 'UA110'"
@@ -7851,7 +7848,7 @@ properties:
     kind: object
     label: followee
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:followee
   follows:
     descr: The most generic uni-directional social relation
@@ -7865,7 +7862,7 @@ properties:
     kind: object
     label: foodEstablishment
     max: inf
-    range: FoodEstablishmentInterface
+    range: PlaceInterface
     rdfProp: schema:foodEstablishment
   foodEvent:
     descr: A sub property of location. The specific food event where the action occurred
@@ -7946,17 +7943,17 @@ properties:
     rdfProp: schema:fuelEfficiency
   fuelType:
     descr: 'The type of fuel suitable for the engine or engines of the vehicle. If the vehicle has only one engine, this property can be attached directly to the vehicle'
-    kind: object
+    kind: literal
     label: fuelType
     max: inf
-    range: QualitativeValueInterface
+    range: string
     rdfProp: schema:fuelType
   funder:
     descr: A person or organization that supports (sponsors) something through some kind of financial contribution
     kind: object
     label: funder
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:funder
   game:
     descr: Video game which is played on this server
@@ -7978,14 +7975,14 @@ properties:
     kind: object
     label: gameLocation
     max: inf
-    range: PlaceInterface
+    range: PostalAddress
     rdfProp: schema:gameLocation
   gamePlatform:
     descr: 'The electronic systems used to play <a href="http://en.wikipedia.org/wiki/Category:Video_game_platforms">video games</a>'
-    kind: object
+    kind: literal
     label: gamePlatform
     max: inf
-    range: ThingInterface
+    range: string
     rdfProp: schema:gamePlatform
   gameServer:
     descr: The server on which  it is possible to play the game
@@ -8007,7 +8004,7 @@ properties:
     kind: literal
     label: genre
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:genre
   geo:
     descr: The geo coordinates of the place
@@ -8028,7 +8025,7 @@ properties:
     kind: object
     label: geoCoveredBy
     max: inf
-    range: GeospatialGeometry
+    range: PlaceInterface
     rdfProp: schema:geoCoveredBy
   geoCovers:
     descr: 'Represents a relationship between two geometries (or the places they represent), relating a covering geometry to a covered geometry. "Every point of b is a point of (the interior or boundary of) a". As defined in <a href="https://en.wikipedia.org/wiki/DE-9IM">DE-9IM</a>'
@@ -8049,21 +8046,21 @@ properties:
     kind: object
     label: geoDisjoint
     max: inf
-    range: GeospatialGeometry
+    range: PlaceInterface
     rdfProp: schema:geoDisjoint
   geoEquals:
     descr: 'Represents spatial relations in which two geometries (or the places they represent) are topologically equal, as defined in <a href="https://en.wikipedia.org/wiki/DE-9IM">DE-9IM</a>. "Two geometries are topologically equal if their interiors intersect and no part of the interior or boundary of one geometry intersects the exterior of the other" (a symmetric relationship)'
     kind: object
     label: geoEquals
     max: inf
-    range: GeospatialGeometry
+    range: PlaceInterface
     rdfProp: schema:geoEquals
   geoIntersects:
     descr: 'Represents spatial relations in which two geometries (or the places they represent) have at least one point in common. As defined in <a href="https://en.wikipedia.org/wiki/DE-9IM">DE-9IM</a>'
     kind: object
     label: geoIntersects
     max: inf
-    range: GeospatialGeometry
+    range: PlaceInterface
     rdfProp: schema:geoIntersects
   geoMidpoint:
     descr: Indicates the GeoCoordinates at the centre of a GeoShape e.g. GeoCircle
@@ -8077,14 +8074,14 @@ properties:
     kind: object
     label: geoOverlaps
     max: inf
-    range: GeospatialGeometry
+    range: PlaceInterface
     rdfProp: schema:geoOverlaps
   geoRadius:
     descr: Indicates the approximate radius of a GeoCircle (metres unless indicated otherwise via Distance notation)
-    kind: object
+    kind: literal
     label: geoRadius
     max: inf
-    range: Distance
+    range: string
     rdfProp: schema:geoRadius
   geoTouches:
     descr: 'Represents spatial relations in which two geometries (or the places they represent) touch: they have at least one boundary point in common, but no interior points." (a symmetric relationship, as defined in <a href="https://en.wikipedia.org/wiki/DE-9IM">DE-9IM</a> )'
@@ -8126,7 +8123,7 @@ properties:
     kind: object
     label: grantee
     max: inf
-    range: AudienceInterface
+    range: ContactPointInterface
     rdfProp: schema:grantee
   greater:
     descr: This ordering relation for qualitative values indicates that the subject is greater than the object
@@ -8208,10 +8205,10 @@ properties:
     rdfProp: schema:hasMap
   hasMenu:
     descr: 'Either the actual menu as a structured representation, as text, or a URL of the menu'
-    kind: object
+    kind: literal
     label: hasMenu
     max: inf
-    range: Menu
+    range: string
     rdfProp: schema:hasMenu
   hasMenuItem:
     descr: A food or drink item contained in a menu or menu section
@@ -8268,7 +8265,7 @@ properties:
     kind: object
     label: height
     max: inf
-    range: Distance
+    range: QuantitativeValue
     rdfProp: schema:height
   highPrice:
     descr: |
@@ -8297,14 +8294,14 @@ properties:
     kind: object
     label: homeLocation
     max: inf
-    range: ContactPointInterface
+    range: PlaceInterface
     rdfProp: schema:homeLocation
   homeTeam:
     descr: The home team in a sports event
     kind: object
     label: homeTeam
     max: inf
-    range: Person
+    range: SportsTeam
     rdfProp: schema:homeTeam
   honorificPrefix:
     descr: An honorific prefix preceding a Person's name such as Dr/Mrs/Mr
@@ -8357,10 +8354,10 @@ properties:
     rdfProp: schema:icaoCode
   identifier:
     descr: 'The identifier property represents any kind of identifier for any kind of <a class="localLink" href="http://schema.org/Thing">Thing</a>, such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See <a href="/docs/datamodel.html#identifierBg">background notes</a> for more details'
-    kind: object
+    kind: literal
     label: identifier
     max: inf
-    range: PropertyValueInterface
+    range: string
     rdfProp: schema:identifier
   illustrator:
     descr: The illustrator of the book
@@ -8371,10 +8368,10 @@ properties:
     rdfProp: schema:illustrator
   image:
     descr: 'An image of the item. This can be a <a class="localLink" href="http://schema.org/URL">URL</a> or a fully described <a class="localLink" href="http://schema.org/ImageObject">ImageObject</a>'
-    kind: object
+    kind: literal
     label: image
     max: inf
-    range: ImageObjectInterface
+    range: iri
     rdfProp: schema:image
   inAlbum:
     descr: The album to which this recording belongs
@@ -8449,10 +8446,10 @@ properties:
     rdfProp: schema:includesObject
   industry:
     descr: The industry associated with the job position
-    kind: object
+    kind: literal
     label: industry
     max: inf
-    range: DefinedTerm
+    range: string
     rdfProp: schema:industry
   ingredients:
     descr: 'A single ingredient used in the recipe, e.g. sugar, flour or garlic'
@@ -8519,10 +8516,10 @@ properties:
     rdfProp: schema:interactivityType
   interestRate:
     descr: 'The interest rate, charged or paid, applicable to the financial product. Note: This is different from the calculated annualPercentageRate'
-    kind: object
+    kind: literal
     label: interestRate
     max: inf
-    range: QuantitativeValue
+    range: decimal
     rdfProp: schema:interestRate
   inventoryLevel:
     descr: The current approximate inventory level for the item or items
@@ -8547,17 +8544,17 @@ properties:
     rdfProp: schema:isAccessoryOrSparePartFor
   isBasedOn:
     descr: A resource from which this work is derived or from which it is a modification or adaption
-    kind: object
+    kind: literal
     label: isBasedOn
     max: inf
-    range: CreativeWorkInterface
+    range: iri
     rdfProp: schema:isBasedOn
   isBasedOnUrl:
     descr: 'A resource that was used in the creation of this resource. This term can be repeated for multiple sources. For example, http://example.com/great-multiplication-intro.html'
-    kind: object
+    kind: literal
     label: isBasedOnUrl
     max: inf
-    range: CreativeWorkInterface
+    range: iri
     rdfProp: schema:isBasedOnUrl
   isConsumableFor:
     descr: A pointer to another product (or multiple products) for which this product is a consumable
@@ -8607,7 +8604,7 @@ properties:
     kind: object
     label: isSimilarTo
     max: inf
-    range: ProductInterface
+    range: ServiceInterface
     rdfProp: schema:isSimilarTo
   isVariantOf:
     descr: 'A pointer to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive'
@@ -8693,17 +8690,17 @@ properties:
       Text values are best if the elements in the list are plain strings. Existing entities are best for a simple, unordered list of existing things in your data. ListItem is used with ordered lists when you want to provide additional context about the element in that list or when the same item might be in different places in different lists.<br/><br/>
       
       Note: The order of elements in your mark-up is not sufficient for indicating the order or elements.  Use ListItem with a 'position' property in such cases
-    kind: object
+    kind: literal
     label: itemListElement
     max: inf
-    range: ListItemInterface
+    range: string
     rdfProp: schema:itemListElement
   itemListOrder:
     descr: 'Type of ordering (e.g. Ascending, Descending, Unordered)'
-    kind: object
+    kind: literal
     label: itemListOrder
     max: inf
-    range: ItemListOrderType
+    range: string
     rdfProp: schema:itemListOrder
   itemOffered:
     descr: 'An item being offered (or demanded). The transactional nature of the offer or demand is documented using <a class="localLink" href="http://schema.org/businessFunction">businessFunction</a>, e.g. sell, lease etc. While several common expected types are listed explicitly in this definition, others can be used. Using a second type, such as Product or a subtype of Product, can clarify the nature of the offer'
@@ -8711,7 +8708,7 @@ properties:
     kind: object
     label: itemOffered
     max: inf
-    range: AggregateOffer
+    range: ServiceInterface
     rdfProp: schema:itemOffered
   itemReviewed:
     descr: The item that is being reviewed/rated
@@ -8834,10 +8831,10 @@ properties:
     rdfProp: schema:lesserOrEqual
   license:
     descr: 'A license document that applies to this content, typically indicated by URL'
-    kind: object
+    kind: literal
     label: license
     max: inf
-    range: CreativeWorkInterface
+    range: iri
     rdfProp: schema:license
   line:
     descr: A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space
@@ -8862,10 +8859,10 @@ properties:
     rdfProp: schema:loanTerm
   location:
     descr: 'The location of for example where the event is happening, an organization is located, or where an action takes place'
-    kind: object
+    kind: literal
     label: location
     max: inf
-    range: PlaceInterface
+    range: string
     rdfProp: schema:location
   locationCreated:
     descr: 'The location where the CreativeWork was created, which may not be the same as the location depicted in the CreativeWork'
@@ -8883,10 +8880,10 @@ properties:
     rdfProp: schema:lodgingUnitDescription
   lodgingUnitType:
     descr: 'Textual description of the unit type (including suite vs. room, size of bed, etc.)'
-    kind: object
+    kind: literal
     label: lodgingUnitType
     max: inf
-    range: QualitativeValueInterface
+    range: string
     rdfProp: schema:lodgingUnitType
   logo:
     descr: An associated logo
@@ -8900,7 +8897,7 @@ properties:
     kind: literal
     label: longitude
     max: inf
-    range: decimal
+    range: string
     rdfProp: schema:longitude
   loser:
     descr: A sub property of participant. The loser of the action
@@ -8999,10 +8996,10 @@ properties:
     rdfProp: schema:maps
   material:
     descr: 'A material that something is made from, e.g. leather, wool, cotton, paper'
-    kind: object
+    kind: literal
     label: material
     max: inf
-    range: ProductInterface
+    range: string
     rdfProp: schema:material
   maxPrice:
     descr: The highest price if the price is a range
@@ -9060,7 +9057,7 @@ properties:
     kind: object
     label: members
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:members
   membershipNumber:
     descr: A unique identifier for the membership
@@ -9074,7 +9071,7 @@ properties:
     kind: literal
     label: memoryRequirements
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:memoryRequirements
   mentions:
     descr: 'Indicates that the CreativeWork contains a reference to, but is not necessarily about a concept'
@@ -9085,10 +9082,10 @@ properties:
     rdfProp: schema:mentions
   menu:
     descr: 'Either the actual menu as a structured representation, as text, or a URL of the menu'
-    kind: object
+    kind: literal
     label: menu
     max: inf
-    range: Menu
+    range: iri
     rdfProp: schema:menu
   menuAddOn:
     descr: Additional menu item(s) such as a side dish of salad or side order of fries that can be added to this menu item. Additionally it can be a menu section containing allowed add-on menu items for this menu item
@@ -9245,7 +9242,7 @@ properties:
     kind: object
     label: netWorth
     max: inf
-    range: MonetaryAmount
+    range: PriceSpecificationInterface
     rdfProp: schema:netWorth
   nextItem:
     descr: A link to the ListItem that follows the current one
@@ -9287,7 +9284,7 @@ properties:
     kind: literal
     label: numberOfAirbags
     max: inf
-    range: decimal
+    range: string
     rdfProp: schema:numberOfAirbags
   numberOfAxles:
     descr: |-
@@ -9311,10 +9308,10 @@ properties:
       The number of doors.<br/><br/>
       
       Typical unit code(s): C62
-    kind: object
+    kind: literal
     label: numberOfDoors
     max: inf
-    range: QuantitativeValue
+    range: decimal
     rdfProp: schema:numberOfDoors
   numberOfEmployees:
     descr: The number of employees in an organization e.g. business
@@ -9335,10 +9332,10 @@ properties:
       The total number of forward gears available for the transmission system of the vehicle.<br/><br/>
       
       Typical unit code(s): C62
-    kind: object
+    kind: literal
     label: numberOfForwardGears
     max: inf
-    range: QuantitativeValue
+    range: decimal
     rdfProp: schema:numberOfForwardGears
   numberOfItems:
     descr: 'The number of items in an ItemList. Note that some descriptions might not fully describe all items in a list (e.g., multi-page pagination); in such cases, the numberOfItems would be for the entire list'
@@ -9366,10 +9363,10 @@ properties:
       The number of owners of the vehicle, including the current one.<br/><br/>
       
       Typical unit code(s): C62
-    kind: object
+    kind: literal
     label: numberOfPreviousOwners
     max: inf
-    range: QuantitativeValue
+    range: decimal
     rdfProp: schema:numberOfPreviousOwners
   numberOfRooms:
     descr: |-
@@ -9429,10 +9426,10 @@ properties:
       A category describing the job, preferably using a term from a taxonomy such as <a href="http://www.onetcenter.org/taxonomy.html">BLS O*NET-SOC</a>, <a href="https://www.ilo.org/public/english/bureau/stat/isco/isco08/">ISCO-08</a> or similar, with the property repeated for each applicable value. Ideally the taxonomy should be identified, and both the textual label and formal code for the category should be provided.<br/><br/>
       
       Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC
-    kind: object
+    kind: literal
     label: occupationalCategory
     max: inf
-    range: CategoryCode
+    range: string
     rdfProp: schema:occupationalCategory
   offerCount:
     descr: The number of offers for the product
@@ -9455,7 +9452,7 @@ properties:
     kind: object
     label: offers
     max: inf
-    range: Demand
+    range: OfferInterface
     rdfProp: schema:offers
   openingHours:
     descr: |
@@ -9603,7 +9600,7 @@ properties:
     kind: literal
     label: pageEnd
     max: inf
-    range: integer
+    range: string
     rdfProp: schema:pageEnd
   pageStart:
     descr: The page on which the work starts; for example "135" or "xiii"
@@ -9751,7 +9748,7 @@ properties:
     kind: object
     label: paymentMethod
     max: inf
-    range: PaymentMethod
+    range: PaymentMethodInterface
     rdfProp: schema:paymentMethod
   paymentMethodId:
     descr: An identifier for the method of payment used (e.g. the last 4 digits of the credit card)
@@ -9762,10 +9759,10 @@ properties:
     rdfProp: schema:paymentMethodId
   paymentStatus:
     descr: The status of payment; whether the invoice has been paid or not
-    kind: object
+    kind: literal
     label: paymentStatus
     max: inf
-    range: PaymentStatusType
+    range: string
     rdfProp: schema:paymentStatus
   paymentUrl:
     descr: The URL for sending a payment
@@ -9870,14 +9867,14 @@ properties:
     kind: object
     label: photo
     max: inf
-    range: ImageObjectInterface
+    range: Photograph
     rdfProp: schema:photo
   photos:
     descr: Photographs of this place
     kind: object
     label: photos
     max: inf
-    range: ImageObjectInterface
+    range: Photograph
     rdfProp: schema:photos
   pickupLocation:
     descr: Where a taxi will pick up a passenger or a rental car can be picked up
@@ -10093,7 +10090,7 @@ properties:
     kind: object
     label: producer
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:producer
   produces:
     descr: 'The tangible thing generated by the service, e.g. a passport, permit, etc'
@@ -10188,7 +10185,7 @@ properties:
     kind: object
     label: provider
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:provider
   providerMobility:
     descr: "Indicates the mobility of a provided service (e.g. 'static', 'dynamic')"
@@ -10344,24 +10341,24 @@ properties:
     rdfProp: schema:recipeIngredient
   recipeInstructions:
     descr: 'A step in making the recipe, in the form of a single item (document, video, etc.) or an ordered list with HowToStep and/or HowToSection items'
-    kind: object
+    kind: literal
     label: recipeInstructions
     max: inf
-    range: CreativeWorkInterface
+    range: string
     rdfProp: schema:recipeInstructions
   recipeYield:
     descr: 'The quantity produced by the recipe (for example, number of people served, number of servings, etc)'
-    kind: object
+    kind: literal
     label: recipeYield
     max: inf
-    range: QuantitativeValue
+    range: string
     rdfProp: schema:recipeYield
   recipient:
     descr: A sub property of participant. The participant who is at the receiving end of the action
     kind: object
     label: recipient
     max: inf
-    range: AudienceInterface
+    range: ContactPointInterface
     rdfProp: schema:recipient
   recordLabel:
     descr: The label that issued the release
@@ -10449,7 +10446,7 @@ properties:
     kind: literal
     label: releaseNotes
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:releaseNotes
   releaseOf:
     descr: The album this is a release of
@@ -10545,10 +10542,10 @@ properties:
     rdfProp: schema:requiredMinAge
   requiredQuantity:
     descr: The required quantity of the item(s)
-    kind: object
+    kind: literal
     label: requiredQuantity
     max: inf
-    range: QuantitativeValue
+    range: string
     rdfProp: schema:requiredQuantity
   requirements:
     descr: 'Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime)'
@@ -10559,10 +10556,10 @@ properties:
     rdfProp: schema:requirements
   requiresSubscription:
     descr: "Indicates if use of the media require a subscription  (either paid or free). Allowed values are <code>true</code> or <code>false</code> (note that an earlier version had 'yes', 'no')"
-    kind: object
+    kind: literal
     label: requiresSubscription
     max: inf
-    range: MediaSubscription
+    range: boolean
     rdfProp: schema:requiresSubscription
   reservationFor:
     descr: 'The thing -- flight, event, restaurant,etc. being reserved'
@@ -10660,7 +10657,7 @@ properties:
     kind: object
     label: reviewedBy
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:reviewedBy
   reviews:
     descr: Review of the item
@@ -10674,7 +10671,7 @@ properties:
     kind: literal
     label: roleName
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:roleName
   rsvpResponse:
     descr: 'The response (yes, no, maybe) to the RSVP'
@@ -10744,7 +10741,7 @@ properties:
     kind: literal
     label: schemaVersion
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:schemaVersion
   screenCount:
     descr: The number of screens in the movie theater
@@ -10772,7 +10769,7 @@ properties:
     kind: literal
     label: seasonNumber
     max: inf
-    range: integer
+    range: string
     rdfProp: schema:seasonNumber
   seasons:
     descr: A season in a media series
@@ -10804,10 +10801,10 @@ properties:
     rdfProp: schema:seatSection
   seatingType:
     descr: The type/class of the seat
-    kind: object
+    kind: literal
     label: seatingType
     max: inf
-    range: QualitativeValueInterface
+    range: string
     rdfProp: schema:seatingType
   securityScreening:
     descr: The type of security screening the passenger is subject to
@@ -10828,14 +10825,14 @@ properties:
     kind: object
     label: seller
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:seller
   sender:
     descr: A sub property of participant. The participant who is at the sending end of the action
     kind: object
     label: sender
     max: inf
-    range: AudienceInterface
+    range: Person
     rdfProp: schema:sender
   serialNumber:
     descr: 'The serial number or any alphanumeric identifier of a particular product. When attached to an offer, it is a shortcut for the serial number of the product included in the offer'
@@ -10863,7 +10860,7 @@ properties:
     kind: object
     label: serviceArea
     max: inf
-    range: AdministrativeAreaInterface
+    range: PlaceInterface
     rdfProp: schema:serviceArea
   serviceAudience:
     descr: The audience eligible for this service
@@ -11024,7 +11021,7 @@ properties:
     kind: literal
     label: softwareRequirements
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:softwareRequirements
   softwareVersion:
     descr: Version of the software instance
@@ -11073,10 +11070,10 @@ properties:
       
       For more sophisticated markup of speakable sections beyond simple ID references, either CSS selectors or XPath expressions to pick out document section(s) as speakable. For this
       we define a supporting type, <a class="localLink" href="http://schema.org/SpeakableSpecification">SpeakableSpecification</a>  which is defined to be a possible value of the <em>speakable</em> property
-    kind: object
+    kind: literal
     label: speakable
     max: inf
-    range: SpeakableSpecification
+    range: iri
     rdfProp: schema:speakable
   specialCommitments:
     descr: 'Any special commitments associated with this job posting. Valid entries include VeteranCommit, MilitarySpouseCommit, etc'
@@ -11107,7 +11104,7 @@ properties:
     kind: object
     label: sponsor
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:sponsor
   sportsActivityLocation:
     descr: A sub property of location. The sports activity location where this action occurred
@@ -11159,7 +11156,7 @@ properties:
     kind: literal
     label: startTime
     max: inf
-    range: dateTime
+    range: time
     rdfProp: schema:startTime
   steeringPosition:
     descr: The position of the steering wheel or similar device (mostly for cars)
@@ -11184,17 +11181,17 @@ properties:
     rdfProp: schema:stepValue
   steps:
     descr: "A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed 'steps'; 'step' is preferred)"
-    kind: object
+    kind: literal
     label: steps
     max: inf
-    range: CreativeWorkInterface
+    range: string
     rdfProp: schema:steps
   storageRequirements:
     descr: Storage requirements (free space required)
     kind: literal
     label: storageRequirements
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:storageRequirements
   streetAddress:
     descr: 'The street address. For example, 1600 Amphitheatre Pkwy'
@@ -11239,7 +11236,7 @@ properties:
     kind: object
     label: subjectOf
     max: inf
-    range: CreativeWorkInterface
+    range: EventInterface
     rdfProp: schema:subjectOf
   successorOf:
     descr: 'A pointer from a newer variant of a product  to its previous, often discontinued predecessor'
@@ -11389,7 +11386,7 @@ properties:
     kind: literal
     label: temporal
     max: inf
-    range: dateTime
+    range: string
     rdfProp: schema:temporal
   temporalCoverage:
     descr: |-
@@ -11401,7 +11398,7 @@ properties:
     kind: literal
     label: temporalCoverage
     max: inf
-    range: dateTime
+    range: string
     rdfProp: schema:temporalCoverage
   text:
     descr: The textual content of this CreativeWork
@@ -11443,7 +11440,7 @@ properties:
     kind: literal
     label: ticketToken
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:ticketToken
   ticketedSeat:
     descr: The seat associated with the ticket
@@ -11478,14 +11475,14 @@ properties:
     kind: object
     label: toRecipient
     max: inf
-    range: AudienceInterface
+    range: Person
     rdfProp: schema:toRecipient
   tool:
     descr: A sub property of instrument. An object used (but not consumed) when performing instructions or a direction
-    kind: object
+    kind: literal
     label: tool
     max: inf
-    range: HowToTool
+    range: string
     rdfProp: schema:tool
   totalPaymentDue:
     descr: The total amount due
@@ -11504,10 +11501,10 @@ properties:
       <li>Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.</li>
       <li>Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.</li>
       </ul>
-    kind: object
+    kind: literal
     label: totalPrice
     max: inf
-    range: PriceSpecificationInterface
+    range: string
     rdfProp: schema:totalPrice
   totalTime:
     descr: 'The total time required to perform instructions or a direction (including time to prepare the supplies), in <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601 duration format</a>'
@@ -11518,17 +11515,17 @@ properties:
     rdfProp: schema:totalTime
   touristType:
     descr: 'Attraction suitable for type(s) of tourist. eg. Children, visitors from a particular country, etc'
-    kind: object
+    kind: literal
     label: touristType
     max: inf
-    range: AudienceInterface
+    range: string
     rdfProp: schema:touristType
   track:
     descr: 'A music recording (track)&#x2014;usually a single song. If an ItemList is given, the list should contain items of type MusicRecording'
     kind: object
     label: track
     max: inf
-    range: ItemListInterface
+    range: MusicRecording
     rdfProp: schema:track
   trackingNumber:
     descr: Shipper tracking number
@@ -11605,7 +11602,7 @@ properties:
     kind: object
     label: typeOfGood
     max: inf
-    range: ProductInterface
+    range: ServiceInterface
     rdfProp: schema:typeOfGood
   typicalAgeRange:
     descr: "The typical expected age range, e.g. '7-9', '11-'"
@@ -11619,14 +11616,14 @@ properties:
     kind: object
     label: underName
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:underName
   unitCode:
     descr: The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon
     kind: literal
     label: unitCode
     max: inf
-    range: iri
+    range: string
     rdfProp: schema:unitCode
   unitText:
     descr: |-
@@ -11691,7 +11688,7 @@ properties:
     kind: literal
     label: validFrom
     max: inf
-    range: date
+    range: dateTime
     rdfProp: schema:validFrom
   validIn:
     descr: The geographic area where a permit or similar thing is valid
@@ -11724,10 +11721,10 @@ properties:
       <li>Use values from 0123456789 (Unicode 'DIGIT ZERO' (U+0030) to 'DIGIT NINE' (U+0039)) rather than superficially similiar Unicode symbols.</li>
       <li>Use '.' (Unicode 'FULL STOP' (U+002E)) rather than ',' to indicate a decimal point. Avoid using these symbols as a readability separator.</li>
       </ul>
-    kind: object
+    kind: literal
     label: value
     max: inf
-    range: StructuredValueInterface
+    range: string
     rdfProp: schema:value
   valueAddedTaxIncluded:
     descr: Specifies whether the applicable value-added tax (VAT) is included in the price specification or not
@@ -11769,7 +11766,7 @@ properties:
     kind: object
     label: valueReference
     max: inf
-    range: EnumerationInterface
+    range: PropertyValueInterface
     rdfProp: schema:valueReference
   valueRequired:
     descr: Whether the property must be filled in to complete the action.  Default is false
@@ -11832,24 +11829,24 @@ properties:
       The number of passengers that can be seated in the vehicle, both in terms of the physical space available, and in terms of limitations set by law.<br/><br/>
       
       Typical unit code(s): C62 for persons
-    kind: object
+    kind: literal
     label: vehicleSeatingCapacity
     max: inf
-    range: QuantitativeValue
+    range: decimal
     rdfProp: schema:vehicleSeatingCapacity
   vehicleTransmission:
     descr: The type of component used for transmitting the power from a rotating power source to the wheels or other relevant component(s) ("gearbox" for cars)
-    kind: object
+    kind: literal
     label: vehicleTransmission
     max: inf
-    range: QualitativeValueInterface
+    range: string
     rdfProp: schema:vehicleTransmission
   vendor:
     descr: "'vendor' is an earlier term for 'seller'"
     kind: object
     label: vendor
     max: inf
-    range: OrganizationInterface
+    range: Person
     rdfProp: schema:vendor
   version:
     descr: The version of the CreativeWork embodied by a specified resource
@@ -11891,7 +11888,7 @@ properties:
     kind: literal
     label: volumeNumber
     max: inf
-    range: integer
+    range: string
     rdfProp: schema:volumeNumber
   warranty:
     descr: The warranty promise(s) included in the offer
@@ -11933,7 +11930,7 @@ properties:
     kind: object
     label: width
     max: inf
-    range: Distance
+    range: QuantitativeValue
     rdfProp: schema:width
   winner:
     descr: A sub property of participant. The winner of the action
@@ -11978,7 +11975,7 @@ properties:
     kind: object
     label: workLocation
     max: inf
-    range: ContactPointInterface
+    range: PlaceInterface
     rdfProp: schema:workLocation
   workPerformed:
     descr: 'A work performed in some event, for example a play performed in a TheaterEvent'

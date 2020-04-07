@@ -266,15 +266,19 @@ objects:
 
 The tool handles the following datatypes:
 - `xsd:` datatypes: `boolean, byte, date, dateTime, decimal, double, gYear, gYearMonth, int, integer, long, negativeInteger, nonNegativeInteger, nonPositiveInteger, positiveInteger, short, string, time, unsignedByte, unsignedInt, unsignedLong, unsignedShort`
-- `schema:` (schema.org) datatypes: `Boolean, Date, DateTime, Float, Integer, Number, Text, Time`
-- `schema:URL, rdfs:Resource, xsd:anyURI` are mapped to `iri`, i.e. a "free-standing" IRI that does not designate an instance (object) stored in the platform.
+  - `xsd:dateTimeStamp` is mapped to `dateTime` which is not precise because the former requires timezone
+- `schema:` (schema.org) datatypes: `Boolean, Date, DateTime, Integer, Text, Time`
+  - `schema:Float` is mapped to `double` because GraphQL `Float` is also in fact a double number
+  - `schema:Number` is mapped to `decimal` which is not precise because it could be integer or decimal
+- `schema:URL, rdfs:Resource, xsd:anyURI` are mapped to `iri`, i.e. a "free-standing" IRI pointing to an external resource (not an instance stored in the platform).
 - You cannot use `owl:ObjectProperty` with a datatype range.
-  - An `owl:ObjectProperty` without specified class is mapped to `iri` (a "free-standing" IRI)
+  - An `owl:ObjectProperty` without specified class range is mapped to `iri` (a "free-standing" IRI)
+  - If a class is used as property range but not declared in the ontology, it's declared in SOML (without any props)
 - You cannot use `owl:DatatypeProperty` or `owl:AnnotationProperty` with a class range.
-  - The default datatype of a prop that doesn't mention a range is `string`.
-    This applies to `rdf:Property, owl:DatatypeProperty, owl:AnnotationProperty`.
-  - These datatypes are also mapped to string: `rdf:langString, rdfs:Literal`.
-  - Finally, `rdfs:Resource` is mapped to `iri`, a free-standing IRI pointing to an external resource
+  - The default datatype of a prop that doesn't mention a range is `string`
+    This applies to `rdf:Property, owl:DatatypeProperty, owl:AnnotationProperty`
+  - These datatypes are also mapped to string: `rdf:langString, rdfs:Literal`
+  - Other datatypes not supported by the platform are ignored with a warning.
 
 ### Labels and Descriptions
 
@@ -481,6 +485,57 @@ Also map `:X owl:equivalentClass [owl:intersectionOf (:Y...)]` to `X inherits: Y
 - `owl:someValuesFrom` is logically equivalent to `min: 1`. It is widely used in FIBO because it's less computationally expensive for reasoners
   (see [FIBO Ontology Guidelines T15. Use of "min 1" cardinality restrictions](https://github.com/edmcouncil/fibo/blob/master/ONTOLOGY_GUIDE.md#t15--use-of-min-1-cardinality-restrictions))
 
+### Unusual Datatypes
+
+Currently the following unsupported datatypes are ignored with warning:
+
+`xsd:duration xsd:gMonthDay xsd:gDay xsd:gMonth xsd:base64Binary xsd:hexBinary xsd:float
+xsd:QName xsd:NOTATION xsd:normalizedString xsd:token xsd:language
+xsd:Name xsd:NCName xsd:ID xsd:IDREF xsd:IDREFS xsd:ENTITY xsd:ENTITIES xsd:NMTOKEN xsd:NMTOKENS
+owl:rational owl:real`
+
+If the property has any other range it is selected, otherwise it's mapped to string.
+As we find platform users who wish to use some of these types, we'll gradually add them to the platform.
+
+Below we have notes on some of these types, plus some extras that are not even in the black-list above.
+
+### owl:rational
+
+`owl:real` is defined in OWL2 sec [4.1 Real Numbers, Decimal Numbers, and Integers](https://www.w3.org/TR/owl2-syntax/#Real_Numbers.2C_Decimal_Numbers.2C_and_Integers).
+It is only of theoretical interest since it doesn't have a lexical representation.
+
+`owl:rational` is defined in the same section.
+as an exact ratio of two integers (eg `"1/3"^^owl:rational`).
+This is a super-set of `xsd:decimal` because 
+some rationals correspond to an infinite number of decimal digits.
+
+FIBO uses `owl:rational` in two classes (`fibo-fnd-qt-qtu:QuantityKindFactor fibo-fnd-qt-qtu:UnitFactor`).
+These are used to represent the dimension factors of units of measurement.
+
+Properly handling them would require an extension to rdf4j: 
+both for the special syntax, and to implement arithmetic operations.
+rdf4j currently does not support them:
+
+```sparql
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+select
+  ("1/3"^^owl:rational + "2/3"^^owl:rational as ?x) 
+  ("1/3"^^owl:rational < "2/3"^^owl:rational as ?y)
+{}
+```
+
+The only implementation I've been able to find is 
+[OWLRLExtras](https://owl-rl.readthedocs.io/en/latest/OWLRLExtras.html) in the `owl-rl` Python library by Ivan Herman 
+(not sure how complete it is, eg whether it has arithmetic functions).
+
+### GeoSPARQL Serializations
+
+TODO: `geo:asWKT, geo:asGML`.
+
+### PlainLiteral, XMLLiteral, HTMLLiteral
+
+TODO
+
 ## Gaps in Ontologies
 
 - A major shortcoming of most ontologies is that fery few props are declared `owl:FunctionalProperty`, so most of them get cardinality `max: inf` in SOML.
@@ -564,6 +619,14 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 
 
 ## Change Log
+
+6-Apr-2020
+- `make_superClass()`: fix `ERROR: Object 'lcclr:Arrangement' should have at least one type value`:
+  declare RDF `type` of undefined (external) classes
+- Emit the RDF `type` of superclasses at the concrete class not the abstract Interface
+- Filter out unsupported datatypes (using a blacklist `@NO_DATATYPES`) and issue warning
+- Sort multiple superclasses and multiple ranges by SOML name before picking the first one, in order to be deterministic
+- Don't mangle prefixed names: PLATFORM-1625 "Allow punctuation in local names and prefixes" replaces `[-_.:]` with `_` so we don't need to do it
 
 5-Apr-2020
 - Add datatypes `xsd:dateTimeStamp` (mapped to `dateTime`), `fibo-fnd-dt-fd:CombinedDateTime` (mapped to `dateOrYearOrMonth`), `owl:rational` (mapped to `xsd:decimal` even though that's a lie)

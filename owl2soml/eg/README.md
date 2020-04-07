@@ -64,10 +64,10 @@ Download:
 - We have to specify the `-voc` prefix because schema.org doesn't define an `owl:Ontology`.
 
 ```sh
-time perl ../owl2soml.pl -voc schema schema.ttl    > schema1.yaml
-real    4m9.203s
+time perl ../owl2soml.pl schema.ttl -voc schema > schema.yaml 2> schema.log
+real    3m39.310s
 user    0m0.000s
-sys     0m0.094s
+sys     0m0.078s
 ```
 
 - `schema.ttl`: worked ok, see [schema.yaml](schema.yaml)
@@ -86,8 +86,21 @@ Read more bytes than requested. Do you use an encoding-related PerlIO layer? at 
 ## Getty Vocabulary Program
 
 - `gvp.ttl` is saved from http://vocab.getty.edu/ontology.ttl
--  Fixed a wrong range `rdf:Literal` to `rdfs:Literal` (reported to Getty)
-- A few warnings like `Multiple superclasses found for gvp:Facet, using only the first one: Subject`
+- Fixed a wrong range `rdf:Literal` to `rdfs:Literal` (reported to Getty)
+- This imports other ontologies (`skos.ttl skos-xl.ttl`) so we include them as extra inputs.
+- It also imports `skos-thes.ttl` but we skip it because it causes error `No suitable prefix for IRI <http://ec.europa.eu/esco/model#statusDataType>`
+- Timing:
+
+```sh
+make  gvp.yaml
+time perl ../owl2soml.pl gvp.ttl skos.ttl skos-fix.ttl skos-xl.ttl > gvp.yaml 2> gvp.log
+
+real    1m10.143s
+user    0m0.015s
+sys     0m0.031s
+```
+
+- A few warnings like `Multiple superclasses found for Facet, using only the first one: Subject`
 - Multiple warnings like `Found multiple labels for property gvp:tgn3101_near-adjacent_to, using the first one: tgn3101_near-adjacent_to, near/adjacent to - any`. The reason is that GVP [Relationship Representation](http://vocab.getty.edu/doc/#Relationship_Representation) emits the local name in `skos:prefLabel` and "<name> - <range>" in `dc:title`, but the tool handles only one label per prop:
 
 ```ttl
@@ -95,7 +108,7 @@ gvp:aat2208_locus-setting_for a owl:ObjectProperty;
   skos:prefLabel "aat2208_locus-setting_for";
   dc:title "locus/setting for - things".
 ```
-- GVP includes partially duplicated decriptions (`rdfs:comment+skos:example=dct:description), eg
+- GVP includes partially duplicated decriptions (`rdfs:comment+skos:example=dct:description`), eg
 
 ```ttl
 gvp:GroupConcept a owl:Class ;
@@ -129,8 +142,11 @@ FIBO is a large family of fintech-related ontologies.
 ```
 find latest/FND/* -type f ! -name "Metadata*" ! -name "All*" | xargs cat > fibo-FND.ttl
 ```
+- Added 15 prefixes that are missing in some of these files, see [fibo#995](https://github.com/edmcouncil/fibo/issues/995)
 - Mapped `fibo-fnd-dt-fd:CombinedDateTime` to datatype `dateOrYearOrMonth` (a named scalar union)
-- Mapped `owl:rational` to `xsd:decimal` even though that won't really work because `owl:rational` are exact ratios of integers (eg `1/3`) that are a super-set of `xsd:decimal`, and represented differently (as two integers separated with a slash)
+- Ignore the datatype `owl:rational`, which will have the effect of downgrading it to string.
+  - `owl:rational` are exact ratios of integers (eg `1/3`) that are a super-set of `xsd:decimal`, and represented differently (as two integers separated with a slash). 
+     So mapping to `xsd:decimal` won't really work
 - SOML currently does not allow punctuation (`_-.`) in prefixes or local names (issue PLATFORM-1625).
   So a prop like `fibo-fnd-acc-aeq:Equity` is mapped to `fibofndaccaeq:Equity`, which is not good.
 - FIBO does not have a dominant ontology. 

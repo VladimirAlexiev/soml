@@ -51,7 +51,7 @@ objects:
     kind: abstract
   MediaType:
     descr: A file format or physical medium
-    inherits: MediaTypeInterface
+    inherits: MediaTypeOrExtentInterface
     label: Media Type
     type: dcterms:MediaType
   MediaTypeInterface:

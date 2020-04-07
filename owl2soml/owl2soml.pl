@@ -38,7 +38,7 @@ our $MAP   = URI::NamespaceMap->new    # fixed prefixes used in mapping ("servic
     xsd    => "http://www.w3.org/2001/XMLSchema#",
     "fibo-fnd-dt-fd" => "https://spec.edmcouncil.org/fibo/ontology/FND/DatesAndTimes/FinancialDates/",
    });
-our %iri_name;                  # Mapping (hash, dict) from IRI->as_string to GrapQL name
+our %iri_name;                  # Mapping from IRI->as_string to {"rdf" => prefixed name, "gql" => stripped vocab_prefix , "super" => superclass if any}
 our %soml;                      # The total SOML as hash (dict), see YAML::Dump at the end
 
 
@@ -89,10 +89,15 @@ our %DATATYPES =
    "schema:URL"             => "iri",
    "rdfs:Resource"          => "iri",
    "xsd:anyURI"             => "iri",
-   # weird or unusual datatypes
+   # unusual datatypes
    "fibo-fnd-dt-fd:CombinedDateTime" => "dateOrYearOrMonth",
-   "owl:rational"                    => "xsd:decimal", # that's a lie, a proper owl:rational impl is lacking
   );
+
+# datatypes ignored with warning
+our @NO_DATATYPES =
+  qw(xsd:duration xsd:gMonthDay xsd:gDay xsd:gMonth xsd:base64Binary xsd:hexBinary xsd:float xsd:QName xsd:NOTATION xsd:normalizedString xsd:token xsd:language xsd:Name xsd:NCName xsd:ID xsd:IDREF xsd:IDREFS xsd:ENTITY xsd:ENTITIES xsd:NMTOKEN xsd:NMTOKENS owl:rational owl:real);
+our %NO_DATATYPES;
+map {$NO_DATATYPES{$_} = 1} @NO_DATATYPES;
 
 sub my_exit() {
   # quash warnings "(in cleanup) at URI/Namespace.pm line 104 during global destruction"
@@ -112,10 +117,11 @@ sub my_die($) {
 }
 
 sub usage () {
-  my $label_props   = join", ", @LABEL_PROPS;
-  my $descr_props   = join", ", @DESCR_PROPS;
-  my $creator_props = join", ", @CREATOR_PROPS;
-  my $datatypes = join ", ", sort keys %DATATYPES;
+  my $label_props   = join ", ", sort @LABEL_PROPS;
+  my $descr_props   = join ", ", sort @DESCR_PROPS;
+  my $creator_props = join ", ", sort @CREATOR_PROPS;
+  my $datatypes     = join ", ", sort keys %DATATYPES;
+  my $no_datatypes  = join ", ", sort @NO_DATATYPES;
   my_die << "END";
 $0 - Generates SOML from supplied ontologies
 
@@ -139,12 +145,13 @@ Limitations:
 - Takes metadata only from the first ("root") owl:Ontology
 - Uses only labels/descriptions in "en" (including en-US, en-GB etc) or without language tag
 - owl:AnnotationProperty and owl:DatatypeProperty are treated the same
+- Ignores some datatypes ($no_datatypes)
 - Doesn't suppport multiple superclasses (the first one is used). Enquire about the status of issue PLATFORM-360
 - Doesn't support multiple prop ranges (the first one is used). Enquire about the status of issue PLATFORM-1493
 - Doesn't handle owl:import. Instead, provide multiple ontologies on input
 - Doesn't strip HTML tags (eg in schema.org property rdfs:comments)
 - rdf:langString and rdfs:Literal are mapped to xsd:string
-- Some ontologies (eg SKOS) expect that a subProperty inherits domain & range from its ancestors transitively (e.g. all 10 subprops of skos:semanticRelation do not define their own domain & range but inherit it). Such inheritance is defined in OWL 2 Web Ontology Language Profiles, Table 9 The Semantics of Schema Vocabulary (rules https://www.w3.org/TR/owl2-profiles/#scm-dom2, https://www.w3.org/TR/owl2-profiles/#scm-rng2); though not by RDFS semantics (https://www.w3.org/TR/rdf11-mt/#rdfs-entailment). Enquire about the status of issue PLATFORM-1500
+- Doesn't inherit domain & range from a property's ancestor(s). Enquire about the status of issue PLATFORM-1500
 END
 }
 
@@ -306,28 +313,31 @@ sub iri_name($) {
     or my_die("No suitable prefix for IRI $iri");
   my $gql = $rdf;
   $gql =~ s{^$vocab_prefix:}{};
-  $gql =~ s{[-_.]}{}g;  # FIXME: this is neither nice, not comprehensive. PLATFORM-1625 Allow punctuation in local names and prefixes
+  # PLATFORM-1625 Allow punctuation in local names and prefixes: replaces [-_.:] with "_" so we don't need to do it
   return $iri_name{$iri} = {gql=>$gql, rdf=>$rdf}
 }
 
-# given $iri of a superclass (eg skos:Collection), produce the following configuration:
-#  skos:Collection:
-#    inherits: skos:CollectionInterface
+# given $super_rdf of a superclass (eg skos:Collection), produce the following configuration:
+#  Collection:
+#    inherits: CollectionInterface
 #    type: skos:Collection
-#  skos:CollectionInterface:
+#  CollectionInterface:
 #    kind: abstract
 #    props:
 #      skos:member: {}
 # TODO: once we implement concrete superclass, simplify this code
 
 sub make_superClass ($) {
-  my $iri = shift;
-  my $iri_name = iri_name($iri);
+  # given eg "skos:Collection", make the above configuration
+  # (except migrating skos:member, see next function)
+  # and return ("CollectionInterface","Collection")
+  my $iri_name = iri_name(shift);   # $map->uri($super_rdf)->as_string;
   return ($iri_name->{super}, $iri_name->{gql})
     if $iri_name->{super};
   my $concrete = $iri_name->{gql};
   my $super = $iri_name->{super} = $concrete."Interface";
   $soml{objects}{$super}{kind} = "abstract";
+  $soml{objects}{$concrete}{type} = $iri_name->{rdf};
   $soml{objects}{$concrete}{inherits} = $super;
   ($super, $concrete)
 }
@@ -364,12 +374,25 @@ sub expand_union($) {
   @objects
 }
 
-sub map_datatype ($) {
-  my $d = shift;
-  return unless $d;
-  $d = uri($d);
-  return unless $d = $MAP->abbreviate($d);
-  return $DATATYPES{$d}
+sub map_range ($$) {
+  # map a range of $pname to {kind, gql, rdf}
+  # where kind is "datatype" or "class",
+  # rdf is the prefixed name (applies only for "class")
+  # gql is the prefixed name minus vocab_prefix
+  my ($pname,$range) = @_;
+  my $x = $MAP->abbreviate(uri($range));
+  $x && $DATATYPES{$x} and return {kind=>"datatype", gql => $DATATYPES{$x}};
+  $x && $NO_DATATYPES{$x} and do {my_warn("Prop $pname uses unsupported datatype $x"); return undef};
+  my $y = iri_name($range);
+  $y and return {kind => "class", gql => $y->{gql}, rdf => $y->{rdf}};
+  return undef
+}
+
+sub map_ranges ($$) {
+  my ($prop,$name) = @_;
+  my @ranges = expand_union ($model->objects ($prop, [IRI("rdfs:range"), IRI("schema:rangeIncludes")]));
+  sort {$a->{gql} cmp $b->{gql}}
+    grep $_, map map_range($name,$_), @ranges
 }
 
 ##### main
@@ -420,12 +443,12 @@ for my $class (@classes) {
   my @superClasses = map $_->as_string, grep $_->isa("Attean::IRI"),
     $model->objects ($class, IRI("rdfs:subClassOf"))->elements;
   @superClasses = array_minus (@superClasses, @no_classes);
+  @superClasses = sort {iri_name($a)->{gql} cmp iri_name($b)->{gql}} grep iri_name($_), @superClasses;
   if (@superClasses) {
-    my $super = iri($superClasses[0]);
+    my $super = $superClasses[0];
     my ($super1,$super2) = make_superClass($super);
-    ## print STDERR "make_superClass($super) = ($super1,$super2)\n";
     $soml{objects}{$name}{inherits} = $super1;
-    my_warn("Multiple superclasses found for $rdf, using only the first one: $super2")
+    my_warn("Multiple superclasses found for $name, using only the first one: $super2")
       if @superClasses>1
     }
 };
@@ -463,6 +486,7 @@ for my $prop (map iri($_), @props) {
   my @domains = expand_union ($model->objects ($prop, [IRI("rdfs:domain"), IRI("schema:domainIncludes")]));
   for my $domain (@domains) {
     my $class = iri_name($domain)->{gql};
+    next unless $class;
     # fix for referenced classes that may not be defined in the ontology
     $soml{objects}{$class}{type} = iri_name($domain)->{rdf};
     $soml{objects}{$class}{props}{$name} = {};
@@ -470,14 +494,14 @@ for my $prop (map iri($_), @props) {
 
   # ranges
   my ($datatype, $class);
-  my @ranges = expand_union ($model->objects ($prop, [IRI("rdfs:range"), IRI("schema:rangeIncludes")]));
+  my @ranges = map_ranges($prop,$name);
   if (my $range = $ranges[0]) {
-    $datatype = map_datatype ($range);
-    $class = !$datatype && iri_name($range)->{gql};
+    $datatype = $range->{kind} eq "datatype" && $range->{gql};
+    $class = !$datatype && $range->{gql};
     my_warn("Multiple ranges found for prop $name, using only the first one: ".($datatype || $class))
       if @ranges>1;
     # fix for referenced classes that may not be defined in the ontology
-    $soml{objects}{$class}{type} = iri_name($range)->{rdf} if $class;
+    $soml{objects}{$class}{type} = $range->{rdf} if $class;
     $isObjectProp && $datatype && $datatype ne "iri"
       and my_die("Prop $name is owl:ObjectProperty but has range datatype $datatype");
     $isDataProp && $class

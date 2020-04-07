@@ -1,3 +1,22 @@
+# https://github.com/edmcouncil/fibo/issues/995
+@prefix fibo-bp-iss-pmbs:    <https://spec.edmcouncil.org/fibo/ontology/BP/SecuritiesIssuance/PrivateLabelMBSIssuance/> .
+@prefix fibo-der-drc-bsc:    <https://spec.edmcouncil.org/fibo/ontology/DER/DerivativesContracts/DerivativesBasics/> .
+@prefix fibo-fbc-dae-crf:    <https://spec.edmcouncil.org/fibo/ontology/FBC/DebtAndEquities/CreditFacilities/> .
+@prefix fibo-fbc-fi-fi:      <https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/> .
+@prefix fibo-fbc-fct-fse:    <https://spec.edmcouncil.org/fibo/ontology/FBC/FunctionalEntities/FinancialServicesEntities/> .
+@prefix fibo-fbc-pas-fpas:   <https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/FinancialProductsAndServices/> .
+@prefix fibo-fnd-law-lcap:   <https://spec.edmcouncil.org/fibo/ontology/FND/Law/LegalCapacity/> .
+@prefix fibo-fnd-plc-loc:    <https://spec.edmcouncil.org/fibo/ontology/FND/Places/Locations/> .
+@prefix fibo-fnd-pas-pas:    <https://spec.edmcouncil.org/fibo/ontology/FND/ProductsAndServices/ProductsAndServices/> .
+@prefix fibo-ind-fx-fx:      <https://spec.edmcouncil.org/fibo/ontology/IND/ForeignExchange/ForeignExchange/> .
+@prefix fibo-ind-ind-ind:    <https://spec.edmcouncil.org/fibo/ontology/IND/Indicators/Indicators/> .
+@prefix fibo-md-der-fut:     <https://spec.edmcouncil.org/fibo/ontology/MD/DerivativesTemporal/FuturesTemporal/> .
+@prefix fibo-sec-dbt-ab-abs: <https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/AssetBackedSecurities/AssetBackedSecurities/> .
+@prefix fibo-sec-dbt-ab-pbs: <https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/AssetBackedSecurities/PoolBackedSecurities/> .
+@prefix fibo-sec-dbt-dbti:   <https://spec.edmcouncil.org/fibo/ontology/SEC/Debt/DebtInstruments/> .
+@prefix fibo-sec-sec-pls:    <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/Pools/> .
+@prefix fibo-sec-sec-id:     <https://spec.edmcouncil.org/fibo/ontology/SEC/Securities/SecuritiesIdentification/> .
+
 # baseURI: https://spec.edmcouncil.org/fibo/ontology/master/latest/FND/Accounting/AccountingEquity/
 # imports: https://spec.edmcouncil.org/fibo/ontology/master/latest/FND/Accounting/CurrencyAmount/
 # imports: https://spec.edmcouncil.org/fibo/ontology/master/latest/FND/DatesAndTimes/FinancialDates/
