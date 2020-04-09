@@ -1,0 +1,45 @@
+Found multiple ontologies, metadata only of the first one is used: https://spec.edmcouncil.org/fibo/ontology/FND/Places/NorthAmerica/USPostalServiceAddresses/
+Found multiple superclasses for fibo-fnd-utl-alx:Difference, using only the first one: fibo-fnd-utl-alx:Expression, fibo-fnd-utl-alx:StatisticalMeasure
+Found multiple superclasses for fibo-fnd-txn-rea:ContractualTransactionParty, using only the first one: fibo-fnd-agr-ctr:ContractParty, fibo-fnd-txn-rea:TransactionParty
+Found multiple superclasses for fibo-fnd-utl-alx:Total, using only the first one: fibo-fnd-utl-alx:Expression, fibo-fnd-utl-alx:StatisticalMeasure
+Found multiple superclasses for fibo-fnd-plc-adr:StreetSuffix, using only the first one: fibo-fnd-arr-cls:Classifier, fibo-fnd-plc-adr:AddressComponent
+Found multiple superclasses for fibo-fnd-utl-alx:Mean, using only the first one: fibo-fnd-utl-alx:Expression, fibo-fnd-utl-alx:StatisticalMeasure
+Found multiple superclasses for ZipCodeScheme, using only the first one: lcc-lr:CodeSet, lcc-lr:IdentificationScheme
+Found multiple superclasses for fibo-fnd-arr-rt:QualitativeRatingScore, using only the first one: fibo-fnd-arr-rt:RatingScore, lcc-lr:CodeElement
+Found multiple superclasses for fibo-fnd-txn-ev:UndertakingEvent, using only the first one: fibo-fnd-txn-ev:Undertaking, fibo-fnd-txn-rea:TransactionBusinessEvent
+Found multiple superclasses for fibo-fnd-txn-sec:FinancialPrimaryMarketTransaction, using only the first one: fibo-fnd-txn-mkt:MarketTransaction, fibo-fnd-txn-rea:ContractualTransaction
+Found multiple superclasses for fibo-fnd-txn-cle:ContractualTransactionObligation, using only the first one: fibo-fnd-law-lcap:ContractualObligation, fibo-fnd-txn-cle:REATransactionObligation
+Found multiple superclasses for fibo-fnd-utl-alx:Median, using only the first one: fibo-fnd-utl-alx:Expression, fibo-fnd-utl-alx:StatisticalMeasure
+Found multiple superclasses for fibo-fnd-utl-alx:Dispersion, using only the first one: fibo-fnd-utl-alx:Expression, fibo-fnd-utl-alx:StatisticalMeasure
+Found multiple superclasses for fibo-fnd-agr-ctr:ContractualCommitment, using only the first one: fibo-fnd-agr-agr:MutualCommitment, fibo-fnd-agr-ctr:ContractualElement
+Found multiple superclasses for fibo-fnd-oac-ctl:DeJureControl, using only the first one: fibo-fnd-law-lcap:LegalConstruct, fibo-fnd-oac-ctl:ControllingCapacity
+Found multiple superclasses for fibo-fnd-txn-sec:FinancialSecuritiesSecondaryMarketTransaction, using only the first one: fibo-fnd-txn-mkt:MarketTransaction, fibo-fnd-txn-rea:ContractualTransaction
+Found multiple superclasses for fibo-fnd-pas-psch:PaymentObligation, using only the first one: fibo-fnd-agr-agr:Commitment, fibo-fnd-law-lcap:Duty
+Found multiple superclasses for fibo-fnd-acc-aeq:OwnersEquity, using only the first one: fibo-fnd-acc-aeq:Equity, fibo-fnd-utl-alx:Expression
+Found multiple superclasses for fibo-fnd-pas-pas:ContractualTemplateProduct, using only the first one: fibo-fnd-pas-pas:ContractualProduct, fibo-fnd-pas-pas:OffTheShelfProduct
+Found multiple superclasses for fibo-fnd-pas-pas:ServiceAgreement, using only the first one: fibo-fnd-agr-ctr:MutualContractualAgreement, fibo-fnd-agr-ctr:WrittenContract
+Found multiple superclasses for DeliveryAddressCodeSet, using only the first one: lcc-lr:CodeSet, lcc-lr:IdentificationScheme
+Found multiple superclasses for fibo-fnd-plc-adr:Postcode, using only the first one: lcc-lr:CodeElement, lcc-lr:Identifier
+Found multiple superclasses for fibo-fnd-plc-adr:PhysicalAddressIdentifier, using only the first one: lcc-lr:CodeElement, lcc-lr:Identifier
+Found multiple superclasses for fibo-fnd-arr-rt:RatingAgency, using only the first one: fibo-fnd-arr-rt:RatingIssuer, fibo-fnd-arr-rt:RatingScalePublisher
+Found multiple superclasses for fibo-fnd-aap-ppl:Person, using only the first one: fibo-fnd-aap-agt:AutonomousAgent, fibo-fnd-pty-pty:IndependentParty
+Found multiple superclasses for fibo-fnd-utl-alx:StatisticalPopulation, using only the first one: fibo-fnd-utl-alx:FinitePopulation, fibo-fnd-utl-alx:StatisticalUniverse
+Found multiple superclasses for fibo-fnd-txn-rea:ContractualEconomicAgreement, using only the first one: fibo-fnd-agr-ctr:Contract, fibo-fnd-txn-rea:EconomicAgreement
+Found multiple superclasses for fibo-fnd-arr-asmt:Appraisal, using only the first one: fibo-fnd-arr-asmt:AssessmentReport, fibo-fnd-arr-asmt:Opinion
+Found multiple superclasses for fibo-fnd-acc-cur:MonetaryPrice, using only the first one: fibo-fnd-acc-cur:MonetaryAmount, fibo-fnd-acc-cur:Price
+Found multiple superclasses for fibo-fnd-utl-alx:NumericIndex, using only the first one: fibo-fnd-utl-alx:Expression, fibo-fnd-utl-alx:ScopedMeasure
+Found multiple superclasses for fibo-fnd-utl-alx:WeightingFunction, using only the first one: fibo-fnd-utl-alx:Expression, fibo-fnd-utl-alx:StatisticalMeasure
+Found multiple superclasses for fibo-fnd-acc-cur:UnitOfAccountIdentifier, using only the first one: lcc-lr:CodeElement, lcc-lr:Identifier
+Found multiple superclasses for fibo-fnd-acc-cur:CurrencyIdentifier, using only the first one: lcc-lr:CodeElement, lcc-lr:Identifier
+Found multiple superclasses for fibo-fnd-txn-rea:ContractualEconomicCommitment, using only the first one: fibo-fnd-agr-ctr:ContractualCommitment, fibo-fnd-txn-rea:EconomicCommitment
+Found multiple superclasses for fibo-fnd-acc-cur:FundsIdentifier, using only the first one: lcc-lr:CodeElement, lcc-lr:Identifier
+Found multiple superclasses for fibo-fnd-pas-pas:PreciousMetalIdentifier, using only the first one: lcc-lr:CodeElement, lcc-lr:Identifier
+Found multiple superclasses for fibo-fnd-org-org:Organization, using only the first one: fibo-fnd-aap-agt:AutonomousAgent, fibo-fnd-pty-pty:IndependentParty
+Found multiple superclasses for fibo-fnd-utl-alx:Ratio, using only the first one: fibo-fnd-utl-alx:Expression, fibo-fnd-utl-alx:StatisticalMeasure
+Found multiple superclasses for fibo-fnd-agr-ctr:MutualContractualAgreement, using only the first one: fibo-fnd-agr-agr:MutualAgreement, fibo-fnd-agr-ctr:Contract
+Found multiple superclasses for fibo-fnd-agr-ctr:PromissoryNote, using only the first one: fibo-fnd-agr-ctr:UnilateralContract, fibo-fnd-agr-ctr:WrittenContract
+Prop fibo-fnd-rel-rel:hasTag uses unsupported datatype xsd:base64Binary, ignored
+Prop fibo-fnd-rel-rel:hasTag uses unsupported datatype xsd:hexBinary, ignored
+Prop fibo-fnd-qt-qtu:hasExponent uses unsupported datatype owl:rational, ignored
+Found multiple ranges for prop fibo-fnd-rel-rel:hasAcquisitionDate, using only the first one: dateTime, dateTime, string
+Found multiple ranges for prop fibo-fnd-arr-lif:hasStage, using only the first one: fibo-fnd-arr-lif:LifecycleStage, fibo-fnd-arr-lif:LifecycleStageOccurrence
