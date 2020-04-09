@@ -561,10 +561,11 @@ The Ontotext Platform provides [inverseAlias](http://platform.ontotext.com/soml/
 
 Inverses are in fact superfluous in RDF because you can always query in the opposite direction.
 - The [PROV ontology deprecates inverses]( http://w3.org/TR/prov-o/#inverse-names): "When all inverses are defined for all properties, modelers may choose from two logically equivalent properties when making each assertion. Although the two options may be logically equivalent, developers consuming the assertions may need to exert extra effort to handle both (e.g., by either adding an OWL reasoner or writing code and queries to handle both cases). This extra effort can be reduced by preferring one inverse over another".
-- PROV defines `prov:inverse`, whcih declares what name should be used for an inverse property,
-  but not triggering inverse inference (unlike `owl:inverseOf`)
-  
-Some custom prop soml:inverseAlias ?
+- PROV defines `prov:inverse`, which declares what (string) name should be used for an inverse property,
+  without triggering inverse inference (unlike `owl:inverseOf`)
+- However, it doesn't define the cardinality of that inverse property.
+
+We can use `prov:inverse` or a custom prop `soml:inverseAlias` to specify this.
 
 ### Missing Cardinality Information
 
