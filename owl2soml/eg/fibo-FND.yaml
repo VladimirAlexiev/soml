@@ -1,14 +1,119 @@
-id: /soml/fibo-fnd-txn-acc
-label: TransactionAccounting
+id: /soml/fibo-fnd-plc-uspsa
+label: U.S. Postal Service Addresses Ontology
 objects:
-  AccountsLedgerEntry:
-    descr: 'QName: NONE:AccountsLedgerEntry'
-    label: accounts ledger entry
-    props:
-      amount: {}
-      isPartOf: {}
-      narrative: {}
-    type: fibo-fnd-txn-acc:AccountsLedgerEntry
+  CompleteAddress:
+    descr: 'QName: fibo-fnd-plc-uspsa:CompleteAddress. delivery address that has all the address elements necessary to allow an exact match with the current Postal Service ZIP+4 and City State files to obtain the finest level of ZIP+4 and delivery point codes for the delivery address'
+    inherits: StandardizedAddressInterface
+    label: complete address
+    type: fibo-fnd-plc-uspsa:CompleteAddress
+  DeliveryAddressCodeSet:
+    descr: 'QName: fibo-fnd-plc-uspsa:DeliveryAddressCodeSet. system of numeric codes that substitute for specified delivery point details according to the U.S. Postal Service Publication 28'
+    inherits: lcc-lr:CodeSetInterface
+    label: delivery point code set
+    type: fibo-fnd-plc-uspsa:DeliveryAddressCodeSet
+  DeliveryPointCode:
+    descr: 'QName: fibo-fnd-plc-uspsa:DeliveryPointCode. specific set of digits between 00 and 99 assigned to a delivery point'
+    inherits: lcc-lr:CodeElementInterface
+    label: delivery point code
+    type: fibo-fnd-plc-uspsa:DeliveryPointCode
+  DeliveryPointCodeSet:
+    descr: 'QName: fibo-fnd-plc-uspsa:DeliveryPointCodeSet. system of numeric codes that substitute for specified delivery point details according to the U.S. Postal Service Publication 28'
+    inherits: lcc-lr:CodeSetInterface
+    label: delivery point code set
+    type: fibo-fnd-plc-uspsa:DeliveryPointCodeSet
+  DepartmentOfStateAddress:
+    descr: "QName: fibo-fnd-plc-uspsa:DepartmentOfStateAddress. delivery address whose delivery address line uses 'UNIT' followed by the unit identifier, followed by 'BOX' followed by box number, in place of a street address, 'DPO' as the literal value for the city, and the appropriate armed forces subdivision code in place of a subdivision (state) code"
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    label: Department of State address
+    type: fibo-fnd-plc-uspsa:DepartmentOfStateAddress
+  DepartmentOfStateUnitComponent:
+    descr: "QName: fibo-fnd-plc-uspsa:DepartmentOfStateUnitComponent. component of a Department of State address that includes 'UNIT' followed by the unit identifier"
+    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
+    label: Department of State unit component
+    type: fibo-fnd-plc-uspsa:DepartmentOfStateUnitComponent
+  GeneralDeliveryAddress:
+    descr: "QName: fibo-fnd-plc-uspsa:GeneralDeliveryAddress. delivery address that uses the words 'GENERAL DELIVERY', uppercase preferred, spelled out (no abbreviation), in place of a street address"
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    label: general delivery address
+    type: fibo-fnd-plc-uspsa:GeneralDeliveryAddress
+  HighwayContractRoute:
+    descr: 'QName: fibo-fnd-plc-uspsa:HighwayContractRoute. highway contract route associated with an address'
+    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
+    label: highway contract route
+    type: fibo-fnd-plc-uspsa:HighwayContractRoute
+  HighwayContractRouteAddress:
+    descr: "QName: fibo-fnd-plc-uspsa:HighwayContractRouteAddress. delivery address whose delivery address line uses the abbreviation 'HC', followed by the route identifier, followed by 'BOX' followed by box number, in place of a street address"
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    label: highway contract address
+    type: fibo-fnd-plc-uspsa:HighwayContractRouteAddress
+  InternationalAddress:
+    descr: 'QName: fibo-fnd-plc-uspsa:InternationalAddress. physical address that explicitly includes a country'
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    label: international address
+    type: fibo-fnd-plc-uspsa:InternationalAddress
+  Mailbox:
+    descr: 'QName: fibo-fnd-plc-uspsa:Mailbox. mailbox, other than a U.S. Post Office box, associated with an address'
+    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
+    label: mailbox
+    type: fibo-fnd-plc-uspsa:Mailbox
+  OverseasMilitaryAddress:
+    descr: "QName: fibo-fnd-plc-uspsa:OverseasMilitaryAddress. delivery address whose delivery address line uses an abbreviation for the unit or command such as 'CMR', 'PSC', or 'UNIT', or  'HC', followed by the unit identifier, followed by 'BOX' followed by box number, in place of a street address, either 'APO' or 'FPO' as the literal value for the city and the appropriate armed forces subdivision code in place of a subdivision (state) code"
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    label: overseas military address
+    type: fibo-fnd-plc-uspsa:OverseasMilitaryAddress
+  PrivateMailBoxAddress:
+    descr: "QName: fibo-fnd-plc-uspsa:PrivateMailBoxAddress. delivery address provided by a commercial mail receiving company that includes a supplementary address line containing the abbreviation 'PMB' or the pound \"#\" symbol followed by the mailbox number; alternatively, 'PMB' or '#\" and the mailbox number can be appended to the street address"
+    inherits: fibo-fnd-plc-adr:ConventionalStreetAddressInterface
+    label: private mail box address
+    type: fibo-fnd-plc-uspsa:PrivateMailBoxAddress
+  PuertoRicoAddress:
+    descr: "QName: fibo-fnd-plc-uspsa:PuertoRicoAddress. delivery address for a delivery point in Puerto Rico that may include a supplementary address line containing the abbreviation 'URB' followed by the name of the urbanization area that is appropriate for that address"
+    inherits: fibo-fnd-plc-adr:ConventionalStreetAddressInterface
+    label: Puerto Rico address
+    type: fibo-fnd-plc-uspsa:PuertoRicoAddress
+  RuralRoute:
+    descr: 'QName: fibo-fnd-plc-uspsa:RuralRoute. mail route outside the city or township limits in a rural area associated with an address'
+    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
+    label: highway contract route address
+    type: fibo-fnd-plc-uspsa:RuralRoute
+  RuralRouteAddress:
+    descr: "QName: fibo-fnd-plc-uspsa:RuralRouteAddress. delivery address whose delivery address line uses the abbreviation 'RR', followed by the route identifier, followed by 'BOX' followed by box number, in place of a street address"
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    label: rural route address
+    type: fibo-fnd-plc-uspsa:RuralRouteAddress
+  StandardizedAddress:
+    descr: 'QName: fibo-fnd-plc-uspsa:StandardizedAddress. delivery address that is fully spelled out, abbreviated by using the Postal Service standard abbreviations or as given in the current Postal Service ZIP+4 file'
+    inherits: StandardizedAddressInterface
+    label: standardized address
+    type: fibo-fnd-plc-uspsa:StandardizedAddress
+  StandardizedAddressInterface:
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    kind: abstract
+  USPostalServiceAddressIdentifier:
+    descr: 'QName: fibo-fnd-plc-uspsa:USPostalServiceAddressIdentifier. combined with the ZIP + 4 code, the delivery point code provides a unique identifier for every deliverable address served by the USPS'
+    inherits: fibo-fnd-plc-adr:PhysicalAddressIdentifierInterface
+    label: U.S. Postal Service address identifier
+    type: fibo-fnd-plc-uspsa:USPostalServiceAddressIdentifier
+  Urbanization:
+    descr: 'QName: fibo-fnd-plc-uspsa:Urbanization. an area, sector, or development within a larger geographic area'
+    inherits: lcc-cr:CountrySubdivisionInterface
+    label: urbanization
+    type: fibo-fnd-plc-uspsa:Urbanization
+  ZIPCode:
+    descr: 'QName: fibo-fnd-plc-uspsa:ZIPCode. five-digit code code assigned to a delivery address indicating the state and post office or postal zone'
+    inherits: fibo-fnd-plc-adr:PostcodeInterface
+    label: Zip Code
+    type: fibo-fnd-plc-uspsa:ZIPCode
+  ZIPPlus4Code:
+    descr: 'QName: fibo-fnd-plc-uspsa:ZIPPlus4Code. nine-digit number consisting of five digits, a hyphen, and four digits, which the USPS describes by its trademark ZIP+4'
+    inherits: fibo-fnd-plc-adr:PostcodeInterface
+    label: ZIP+4 Code
+    type: fibo-fnd-plc-uspsa:ZIPPlus4Code
+  ZipCodeScheme:
+    descr: 'QName: fibo-fnd-plc-uspsa:ZipCodeScheme. system used in the U.S. to facilitate the delivery of mail, consisting of a five- or nine-digit code Zone Improvement Plan (ZIP) printed directly after the address, the first five digits (initial code) indicating the state and post office or postal zone, the last four (expanded code) the box section or number, portion of a rural route, building, or other specific delivery location'
+    inherits: lcc-lr:CodeSetInterface
+    label: zip code scheme
+    type: fibo-fnd-plc-uspsa:ZipCodeScheme
   fibo-be-le-lei:ContractuallyCapableEntity:
     type: fibo-be-le-lei:ContractuallyCapableEntity
   fibo-fbc-pas-caa:LedgerAccount:
@@ -31,12 +136,14 @@ objects:
       fibo-fnd-rel-rel:designates: {}
       fibo-fnd-rel-rel:hasDesignation: {}
       fibo-fnd-rel-rel:isAppointedBy: {}
+    type: fibo-fnd-aap-agt:AutonomousAgent
   fibo-fnd-aap-ppl:Adult:
     descr: 'QName: fibo-fnd-aap-ppl:Adult. a person who has attained the age of majority as defined by given jurisdiction'
-    inherits: fibo-fnd-aap-ppl:PersonInterface
+    inherits: fibo-fnd-aap-ppl:AdultInterface
     label: adult
     type: fibo-fnd-aap-ppl:Adult
   fibo-fnd-aap-ppl:AdultInterface:
+    inherits: fibo-fnd-aap-ppl:PersonInterface
     kind: abstract
   fibo-fnd-aap-ppl:BirthCertificate:
     descr: 'QName: fibo-fnd-aap-ppl:BirthCertificate. an original document certifying the circumstances of the birth, or a certified copy of or representation of the ensuing registration of that birth'
@@ -68,15 +175,17 @@ objects:
     label: emancipated minor
   fibo-fnd-aap-ppl:IdentityDocument:
     descr: "QName: fibo-fnd-aap-ppl:IdentityDocument. any legal document which may be used to verify aspects of a person's identity"
-    inherits: fibo-fnd-arr-doc:LegalDocumentInterface
+    inherits: fibo-fnd-aap-ppl:IdentityDocumentInterface
     label: identity document
     type: fibo-fnd-aap-ppl:IdentityDocument
   fibo-fnd-aap-ppl:IdentityDocumentInterface:
+    inherits: fibo-fnd-arr-doc:LegalDocumentInterface
     kind: abstract
     props:
       fibo-fnd-aap-ppl:verifiesAddress: {}
       fibo-fnd-aap-ppl:verifiesDateOfBirth: {}
       fibo-fnd-aap-ppl:verifiesPlaceOfBirth: {}
+    type: fibo-fnd-aap-ppl:IdentityDocument
   fibo-fnd-aap-ppl:IncapacitatedAdult:
     descr: 'QName: fibo-fnd-aap-ppl:IncapacitatedAdult. an adult who is legally identified as not having legal capacity, typically as a result of some inherent physical or mental incapacity or as a result of having contracted some illness which temporarily deprives them of such capacity'
     inherits: fibo-fnd-aap-ppl:AdultInterface
@@ -91,6 +200,7 @@ objects:
     label: minor
     type: fibo-fnd-aap-ppl:Minor
   fibo-fnd-aap-ppl:MinorInterface:
+    inherits: fibo-fnd-aap-ppl:PersonInterface
     kind: abstract
   fibo-fnd-aap-ppl:NationalIdentificationNumber:
     descr: 'QName: fibo-fnd-aap-ppl:NationalIdentificationNumber. a number or text which appears on an identity document issued by a country or jurisdiction'
@@ -114,10 +224,11 @@ objects:
     label: passport number identification scheme
   fibo-fnd-aap-ppl:Person:
     descr: 'QName: fibo-fnd-aap-ppl:Person. a person; any member of the species homo sapiens'
-    inherits: fibo-fnd-aap-agt:AutonomousAgentInterface
+    inherits: fibo-fnd-aap-ppl:PersonInterface
     label: person
     type: fibo-fnd-aap-ppl:Person
   fibo-fnd-aap-ppl:PersonInterface:
+    inherits: fibo-fnd-aap-agt:AutonomousAgentInterface
     kind: abstract
     props:
       fibo-fnd-aap-ppl:hasCitizenship: {}
@@ -133,6 +244,7 @@ objects:
       fibo-fnd-aap-ppl:hasPersonName: {}
       fibo-fnd-aap-ppl:hasPlaceOfBirth: {}
       fibo-fnd-aap-ppl:hasSurname: {}
+    type: fibo-fnd-aap-ppl:Person
   fibo-fnd-acc-aeq:Capital:
     descr: 'QName: fibo-fnd-acc-aeq:Capital. money and other property of a corporation or other enterprise used in transacting its business'
     inherits: fibo-fnd-acc-aeq:CapitalInterface
@@ -164,15 +276,18 @@ objects:
     label: owners' equity
     type: fibo-fnd-acc-aeq:OwnersEquity
   fibo-fnd-acc-aeq:OwnersEquityInterface:
+    inherits: fibo-fnd-acc-aeq:EquityInterface
     kind: abstract
     props:
       fibo-fnd-acc-aeq:representsAnInterestIn: {}
+    type: fibo-fnd-acc-aeq:OwnersEquity
   fibo-fnd-acc-aeq:PaidInCapital:
     descr: 'QName: fibo-fnd-acc-aeq:PaidInCapital. assets received from investors in exchange for an ownership interest'
-    inherits: fibo-fnd-acc-aeq:CapitalInterface
+    inherits: fibo-fnd-acc-aeq:PaidInCapitalInterface
     label: paid-in capital
     type: fibo-fnd-acc-aeq:PaidInCapital
   fibo-fnd-acc-aeq:PaidInCapitalInterface:
+    inherits: fibo-fnd-acc-aeq:CapitalInterface
     kind: abstract
   fibo-fnd-acc-aeq:RetainedEarnings:
     descr: 'QName: fibo-fnd-acc-aeq:RetainedEarnings. net profits kept to accumulate in a business after dividends are paid'
@@ -211,6 +326,7 @@ objects:
     kind: abstract
     props:
       fibo-fnd-acc-cur:isTenderIn: {}
+    type: fibo-fnd-acc-cur:Currency
   fibo-fnd-acc-cur:ExchangeRate:
     descr: 'QName: fibo-fnd-acc-cur:ExchangeRate. a rate at which one currency can be exchanged for another'
     inherits: fibo-fnd-utl-alx:RatioValueInterface
@@ -232,24 +348,27 @@ objects:
     label: interest rate
   fibo-fnd-acc-cur:MonetaryAmount:
     descr: 'QName: fibo-fnd-acc-cur:MonetaryAmount. the measure which is an amount of money specified in monetary units'
-    inherits: fibo-fnd-qt-qtu:QuantityValueInterface
+    inherits: fibo-fnd-acc-cur:MonetaryAmountInterface
     label: monetary amount
     type: fibo-fnd-acc-cur:MonetaryAmount
   fibo-fnd-acc-cur:MonetaryAmountInterface:
+    inherits: fibo-fnd-qt-qtu:QuantityValueInterface
     kind: abstract
   fibo-fnd-acc-cur:MonetaryMeasure:
     descr: 'QName: fibo-fnd-acc-cur:MonetaryMeasure. some measure of some sum of money'
-    inherits: fibo-fnd-utl-alx:MeasureInterface
+    inherits: fibo-fnd-acc-cur:MonetaryMeasureInterface
     label: monetary measure
     type: fibo-fnd-acc-cur:MonetaryMeasure
   fibo-fnd-acc-cur:MonetaryMeasureInterface:
+    inherits: fibo-fnd-utl-alx:MeasureInterface
     kind: abstract
   fibo-fnd-acc-cur:MonetaryPrice:
     descr: 'QName: fibo-fnd-acc-cur:MonetaryPrice. a price that that is expressed as a monetary amount'
-    inherits: fibo-fnd-acc-cur:MonetaryAmountInterface
+    inherits: fibo-fnd-acc-cur:MonetaryPriceInterface
     label: monetary price
     type: fibo-fnd-acc-cur:MonetaryPrice
   fibo-fnd-acc-cur:MonetaryPriceInterface:
+    inherits: fibo-fnd-acc-cur:MonetaryAmountInterface
     kind: abstract
   fibo-fnd-acc-cur:PercentageMonetaryAmount:
     descr: 'QName: fibo-fnd-acc-cur:PercentageMonetaryAmount. a measure of some amount of money expressed as a percentage of some other amount, some notional amount or some concrete money amount'
@@ -278,6 +397,7 @@ objects:
     props:
       fibo-fnd-agr-ctr:hasContractualElement: {}
       fibo-fnd-agr-ctr:hasNonBindingTerms: {}
+    type: fibo-fnd-agr-agr:Agreement
   fibo-fnd-agr-agr:Beneficiary:
     descr: 'QName: fibo-fnd-agr-agr:Beneficiary. a party that receives some benefit or advantage or profits from something'
     inherits: fibo-fnd-pty-pty:PartyInRoleInterface
@@ -303,36 +423,42 @@ objects:
     label: mutual agreement
     type: fibo-fnd-agr-agr:MutualAgreement
   fibo-fnd-agr-agr:MutualAgreementInterface:
+    inherits: fibo-fnd-agr-agr:AgreementInterface
     kind: abstract
   fibo-fnd-agr-agr:MutualCommitment:
     descr: 'A commitment between two or more parties. QName: fibo-fnd-agr-agr:MutualCommitment'
-    inherits: fibo-fnd-agr-agr:CommitmentInterface
+    inherits: fibo-fnd-agr-agr:MutualCommitmentInterface
     label: mutual commitment
     type: fibo-fnd-agr-agr:MutualCommitment
   fibo-fnd-agr-agr:MutualCommitmentInterface:
+    inherits: fibo-fnd-agr-agr:CommitmentInterface
     kind: abstract
   fibo-fnd-agr-agr:Obligee:
     descr: 'QName: fibo-fnd-agr-agr:Obligee. a party to whom some commitment or obligation is owed, either legally or per the terms of an agreement'
-    inherits: fibo-fnd-pty-pty:PartyInRoleInterface
+    inherits: fibo-fnd-agr-agr:ObligeeInterface
     label: obligee
     type: fibo-fnd-agr-agr:Obligee
   fibo-fnd-agr-agr:ObligeeInterface:
+    inherits: fibo-fnd-pty-pty:PartyInRoleInterface
     kind: abstract
   fibo-fnd-agr-agr:Obligor:
     descr: 'QName: fibo-fnd-agr-agr:Obligor. a party that is bound legally or by agreement to repay a debt, make a payment, do something, or refrain from doing something'
-    inherits: fibo-fnd-pty-pty:PartyInRoleInterface
+    inherits: fibo-fnd-agr-agr:ObligorInterface
     label: obligor
     type: fibo-fnd-agr-agr:Obligor
   fibo-fnd-agr-agr:ObligorInterface:
+    inherits: fibo-fnd-pty-pty:PartyInRoleInterface
     kind: abstract
     props:
       fibo-fnd-agr-agr:hasObligation: {}
+    type: fibo-fnd-agr-agr:Obligor
   fibo-fnd-agr-agr:UnilateralCommitment:
     descr: 'A commitment made by one party without reference to the party to which the commitment is made. QName: fibo-fnd-agr-agr:UnilateralCommitment'
-    inherits: fibo-fnd-agr-agr:CommitmentInterface
+    inherits: fibo-fnd-agr-agr:UnilateralCommitmentInterface
     label: unilateral commitment
     type: fibo-fnd-agr-agr:UnilateralCommitment
   fibo-fnd-agr-agr:UnilateralCommitmentInterface:
+    inherits: fibo-fnd-agr-agr:CommitmentInterface
     kind: abstract
   fibo-fnd-agr-ctr:ConditionPrecedent:
     descr: 'QName: fibo-fnd-agr-ctr:ConditionPrecedent. condition that must be met, or an event or state of affairs that must occur, before a contract is considered in effect or certain obligations are expected of some party to that contract'
@@ -340,7 +466,7 @@ objects:
     label: condition precedent
   fibo-fnd-agr-ctr:Contract:
     descr: 'QName: fibo-fnd-agr-ctr:Contract. voluntary, deliberate agreement between two or more competent parties to which those parties agree to be legally bound, and to which the parties must have provided valuable consideration'
-    inherits: fibo-fnd-agr-agr:AgreementInterface
+    inherits: fibo-fnd-agr-ctr:ContractInterface
     label: contract
     type: fibo-fnd-agr-ctr:Contract
   fibo-fnd-agr-ctr:ContractDocument:
@@ -348,6 +474,7 @@ objects:
     inherits: fibo-fnd-arr-doc:LegalDocumentInterface
     label: contract document
   fibo-fnd-agr-ctr:ContractInterface:
+    inherits: fibo-fnd-agr-agr:AgreementInterface
     kind: abstract
     props:
       fibo-fnd-agr-ctr:definesTermsFor: {}
@@ -358,16 +485,18 @@ objects:
       fibo-fnd-agr-ctr:hasThirdParty: {}
       fibo-fnd-agr-ctr:isAssignable: {}
       fibo-fnd-agr-ctr:supersedes: {}
+    type: fibo-fnd-agr-ctr:Contract
   fibo-fnd-agr-ctr:ContractOriginator:
     descr: 'QName: fibo-fnd-agr-ctr:ContractOriginator. party that originates a contract and acts as principal'
     inherits: fibo-fnd-agr-ctr:ContractPrincipalInterface
     label: contract originator
   fibo-fnd-agr-ctr:ContractParty:
     descr: 'QName: fibo-fnd-agr-ctr:ContractParty. legally competant person or organization that has entered into the binding agreement, accepting and/or conceding obligations, responsibilities, and benefits as specified'
-    inherits: fibo-fnd-pty-pty:PartyInRoleInterface
+    inherits: fibo-fnd-agr-ctr:ContractPartyInterface
     label: contract party
     type: fibo-fnd-agr-ctr:ContractParty
   fibo-fnd-agr-ctr:ContractPartyInterface:
+    inherits: fibo-fnd-pty-pty:PartyInRoleInterface
     kind: abstract
   fibo-fnd-agr-ctr:ContractPrincipal:
     descr: 'QName: fibo-fnd-agr-ctr:ContractPrincipal. party identified as being the principal or first party to a contract, in the event that the contract distinguishes any party as the principal'
@@ -375,6 +504,7 @@ objects:
     label: contract principal
     type: fibo-fnd-agr-ctr:ContractPrincipal
   fibo-fnd-agr-ctr:ContractPrincipalInterface:
+    inherits: fibo-fnd-agr-ctr:ContractPartyInterface
     kind: abstract
   fibo-fnd-agr-ctr:ContractThirdParty:
     descr: 'QName: fibo-fnd-agr-ctr:ContractThirdParty. someone that may be indirectly involved but is not a principal party to an arrangement, contract, deal, lawsuit, or transaction'
@@ -387,10 +517,12 @@ objects:
     label: contractual commitment
     type: fibo-fnd-agr-ctr:ContractualCommitment
   fibo-fnd-agr-ctr:ContractualCommitmentInterface:
+    inherits: fibo-fnd-agr-agr:MutualCommitmentInterface
     kind: abstract
     props:
       fibo-fnd-agrx-ele:definedInClause: {}
       fibo-fnd-agrx-ele:definedInSection: {}
+    type: fibo-fnd-agr-ctr:ContractualCommitment
   fibo-fnd-agr-ctr:ContractualDefinition:
     descr: 'QName: fibo-fnd-agr-ctr:ContractualDefinition. contractual element that defines something in a contract or other legal instrument'
     inherits: fibo-fnd-agr-ctr:ContractualElementInterface
@@ -408,13 +540,15 @@ objects:
     label: counterparty
     type: fibo-fnd-agr-ctr:Counterparty
   fibo-fnd-agr-ctr:CounterpartyInterface:
+    inherits: fibo-fnd-agr-ctr:ContractPartyInterface
     kind: abstract
   fibo-fnd-agr-ctr:MutualContractualAgreement:
     descr: 'QName: fibo-fnd-agr-ctr:MutualContractualAgreement. contract between two or more specific named parties; the rights and obligations pertaining to either party cannot be transferred to another party without prior written permission or a change to the contract itself'
-    inherits: fibo-fnd-agr-agr:MutualAgreementInterface
+    inherits: fibo-fnd-agr-ctr:MutualContractualAgreementInterface
     label: mutual contractual agreement
     type: fibo-fnd-agr-ctr:MutualContractualAgreement
   fibo-fnd-agr-ctr:MutualContractualAgreementInterface:
+    inherits: fibo-fnd-agr-agr:MutualAgreementInterface
     kind: abstract
   fibo-fnd-agr-ctr:NonBindingTerms:
     descr: 'QName: fibo-fnd-agr-ctr:NonBindingTerms. contractual commitments that do not have binding legal standing on the issuer or holder'
@@ -439,10 +573,11 @@ objects:
     label: transferable contract holder
   fibo-fnd-agr-ctr:UnilateralContract:
     descr: 'QName: fibo-fnd-agr-ctr:UnilateralContract. contract in which only one party makes an express promise, or undertakes a performance without first securing a reciprocal agreement from the other party'
-    inherits: fibo-fnd-agr-ctr:ContractInterface
+    inherits: fibo-fnd-agr-ctr:UnilateralContractInterface
     label: unilateral contract
     type: fibo-fnd-agr-ctr:UnilateralContract
   fibo-fnd-agr-ctr:UnilateralContractInterface:
+    inherits: fibo-fnd-agr-ctr:ContractInterface
     kind: abstract
   fibo-fnd-agr-ctr:VerbalContract:
     descr: 'QName: fibo-fnd-agr-ctr:VerbalContract. contract that exists as a result of some verbal exchange'
@@ -450,13 +585,15 @@ objects:
     label: verbal contract
   fibo-fnd-agr-ctr:WrittenContract:
     descr: 'QName: fibo-fnd-agr-ctr:WrittenContract. formal contract that is written and signed by the parties thereto'
-    inherits: fibo-fnd-agr-ctr:ContractInterface
+    inherits: fibo-fnd-agr-ctr:WrittenContractInterface
     label: written contract
     type: fibo-fnd-agr-ctr:WrittenContract
   fibo-fnd-agr-ctr:WrittenContractInterface:
+    inherits: fibo-fnd-agr-ctr:ContractInterface
     kind: abstract
     props:
       fibo-fnd-agrx-ele:hasProvisions: {}
+    type: fibo-fnd-agr-ctr:WrittenContract
   fibo-fnd-agrx-ele:ContractClause:
     descr: 'A set of contractual terms, grouped according to subject, intent or the type of rights and / or obligations to which it refers. QName: NONE:ContractClause'
     inherits: fibo-fnd-agr-ctr:ContractualElementInterface
@@ -509,10 +646,11 @@ objects:
     kind: abstract
   fibo-fnd-arr-arr:DatedCollectionConstituent:
     descr: 'QName: fibo-fnd-arr-arr:DatedCollectionConstituent. a constituent of a collection that is associated with a date and time'
-    inherits: fibo-fnd-arr-arr:CollectionConstituentInterface
+    inherits: fibo-fnd-arr-arr:DatedCollectionConstituentInterface
     label: dated collection constituent
     type: fibo-fnd-arr-arr:DatedCollectionConstituent
   fibo-fnd-arr-arr:DatedCollectionConstituentInterface:
+    inherits: fibo-fnd-arr-arr:CollectionConstituentInterface
     kind: abstract
   fibo-fnd-arr-arr:DatedStructuredCollection:
     descr: 'QName: fibo-fnd-arr-arr:DatedStructuredCollection. a structured collection that includes some dated elements'
@@ -520,17 +658,19 @@ objects:
     label: dated structured collection
   fibo-fnd-arr-arr:Scheme:
     descr: 'QName: fibo-fnd-arr-arr:Scheme. a structure or means of organizing information such as a schema, numbering system, organization scheme, measurement system, taxonomy, or language for organizing information'
-    inherits: lcc-lr:ArrangementInterface
+    inherits: fibo-fnd-arr-arr:SchemeInterface
     label: scheme
     type: fibo-fnd-arr-arr:Scheme
   fibo-fnd-arr-arr:SchemeInterface:
+    inherits: lcc-lr:ArrangementInterface
     kind: abstract
   fibo-fnd-arr-arr:StructuredCollection:
     descr: 'QName: fibo-fnd-arr-arr:StructuredCollection. a collection that has a clearly defined structure or organization'
-    inherits: lcc-lr:CollectionInterface
+    inherits: fibo-fnd-arr-arr:StructuredCollectionInterface
     label: structured collection
     type: fibo-fnd-arr-arr:StructuredCollection
   fibo-fnd-arr-arr:StructuredCollectionInterface:
+    inherits: lcc-lr:CollectionInterface
     kind: abstract
   fibo-fnd-arr-asmt:Appraisal:
     descr: 'QName: fibo-fnd-arr-asmt:Appraisal. written estimate of the market value of something, provided by a qualified appraiser'
@@ -546,20 +686,23 @@ objects:
     label: assessment activity
     type: fibo-fnd-arr-asmt:AssessmentActivity
   fibo-fnd-arr-asmt:AssessmentActivityInterface:
+    inherits: fibo-fnd-dt-oc:OccurrenceKindInterface
     kind: abstract
   fibo-fnd-arr-asmt:AssessmentEvent:
     descr: 'QName: fibo-fnd-arr-asmt:AssessmentEvent. event involving the evaluation or estimation of the nature, quality, or ability of someone or something'
-    inherits: fibo-fnd-dt-oc:OccurrenceInterface
+    inherits: fibo-fnd-arr-asmt:AssessmentEventInterface
     label: assessment event
     type: fibo-fnd-arr-asmt:AssessmentEvent
   fibo-fnd-arr-asmt:AssessmentEventInterface:
+    inherits: fibo-fnd-dt-oc:OccurrenceInterface
     kind: abstract
   fibo-fnd-arr-asmt:AssessmentReport:
     descr: 'QName: fibo-fnd-arr-asmt:AssessmentReport. report that includes an opinion, judgement, appraisal, or view about something and typically the methodology and raw inputs used to arrive at that opinion'
-    inherits: fibo-fnd-arr-rep:ReportInterface
+    inherits: fibo-fnd-arr-asmt:AssessmentReportInterface
     label: assessment report
     type: fibo-fnd-arr-asmt:AssessmentReport
   fibo-fnd-arr-asmt:AssessmentReportInterface:
+    inherits: fibo-fnd-arr-rep:ReportInterface
     kind: abstract
   fibo-fnd-arr-asmt:Opinion:
     descr: 'QName: fibo-fnd-arr-asmt:Opinion. judgement, appraisal, or view about something'
@@ -574,17 +717,19 @@ objects:
     label: value assessment
   fibo-fnd-arr-cls:ClassificationScheme:
     descr: 'QName: fibo-fnd-arr-cls:ClassificationScheme. a system for allocating classifiers (elements in a classification scheme) to objects, similar to identifiers in some cases; such classification schemes are intended to permit the classification of arbitrary objects into hierarchies (or partial orders)'
-    inherits: fibo-fnd-arr-arr:SchemeInterface
+    inherits: fibo-fnd-arr-cls:ClassificationSchemeInterface
     label: classification scheme
     type: fibo-fnd-arr-cls:ClassificationScheme
   fibo-fnd-arr-cls:ClassificationSchemeInterface:
+    inherits: fibo-fnd-arr-arr:SchemeInterface
     kind: abstract
   fibo-fnd-arr-cls:Classifier:
     descr: 'QName: fibo-fnd-arr-cls:Classifier. a standardized classification or delineation for something, per some scheme for such delineation, within a specified context'
-    inherits: fibo-fnd-rel-rel:ReferenceInterface
+    inherits: fibo-fnd-arr-cls:ClassifierInterface
     label: classifier
     type: fibo-fnd-arr-cls:Classifier
   fibo-fnd-arr-cls:ClassifierInterface:
+    inherits: fibo-fnd-rel-rel:ReferenceInterface
     kind: abstract
   fibo-fnd-arr-cls:IndustrySectorClassificationScheme:
     descr: 'QName: fibo-fnd-arr-cls:IndustrySectorClassificationScheme. a system for allocating classifiers to organizations by industry sector'
@@ -604,10 +749,11 @@ objects:
     label: application
   fibo-fnd-arr-com:Request:
     descr: 'QName: fibo-fnd-arr-com:Request. occurrence whereby an agent asks another agent for something or to do something'
-    inherits: fibo-fnd-dt-oc:OccurrenceInterface
+    inherits: fibo-fnd-arr-com:RequestInterface
     label: request
     type: fibo-fnd-arr-com:Request
   fibo-fnd-arr-com:RequestInterface:
+    inherits: fibo-fnd-dt-oc:OccurrenceInterface
     kind: abstract
   fibo-fnd-arr-doc:Certificate:
     descr: 'QName: fibo-fnd-arr-doc:Certificate. document attesting to the truth of some fact or set of facts'
@@ -622,10 +768,11 @@ objects:
     kind: abstract
   fibo-fnd-arr-doc:LegalDocument:
     descr: 'QName: fibo-fnd-arr-doc:LegalDocument. a written or printed paper that bears the original, official, or legal form of something and can be used to furnish decisive evidence or information'
-    inherits: fibo-fnd-arr-doc:DocumentInterface
+    inherits: fibo-fnd-arr-doc:LegalDocumentInterface
     label: legal document
     type: fibo-fnd-arr-doc:LegalDocument
   fibo-fnd-arr-doc:LegalDocumentInterface:
+    inherits: fibo-fnd-arr-doc:DocumentInterface
     kind: abstract
   fibo-fnd-arr-doc:Notice:
     descr: 'QName: fibo-fnd-arr-doc:Notice. announcement, intimation, or warning of something, especially to allow preparations to be made'
@@ -645,15 +792,18 @@ objects:
     label: index
     type: fibo-fnd-arr-id:Index
   fibo-fnd-arr-id:IndexInterface:
+    inherits: fibo-fnd-rel-rel:ReferenceInterface
     kind: abstract
     props:
       fibo-fnd-arr-id:isIndexTo: {}
+    type: fibo-fnd-arr-id:Index
   fibo-fnd-arr-id:IndexingScheme:
     descr: 'QName: fibo-fnd-arr-id:IndexingScheme. system for indexing values, data, information, or knowledge'
-    inherits: fibo-fnd-arr-arr:SchemeInterface
+    inherits: fibo-fnd-arr-id:IndexingSchemeInterface
     label: indexing scheme
     type: fibo-fnd-arr-id:IndexingScheme
   fibo-fnd-arr-id:IndexingSchemeInterface:
+    inherits: fibo-fnd-arr-arr:SchemeInterface
     kind: abstract
   fibo-fnd-arr-lif:Lifecycle:
     descr: 'QName: fibo-fnd-arr-lif:Lifecycle. arrangement that compares the cyclical nature of families, organizations, processes, products, marketing, and order management, portfolio management or other systems with the cradle to grave life stages (birth, growth, maturity, decay, and death) of living organisms'
@@ -698,9 +848,11 @@ objects:
     label: report
     type: fibo-fnd-arr-rep:Report
   fibo-fnd-arr-rep:ReportInterface:
+    inherits: fibo-fnd-arr-doc:DocumentInterface
     kind: abstract
     props:
       fibo-fnd-arr-rep:reportsOn: {}
+    type: fibo-fnd-arr-rep:Report
   fibo-fnd-arr-rep:ReportingParty:
     descr: 'QName: fibo-fnd-arr-rep:ReportingParty. a party providing a report, typically in response to some contractual, legal, regulatory or other business requirement'
     inherits: fibo-fnd-pty-pty:PartyInRoleInterface
@@ -746,9 +898,11 @@ objects:
     label: rating issuer
     type: fibo-fnd-arr-rt:RatingIssuer
   fibo-fnd-arr-rt:RatingIssuerInterface:
+    inherits: fibo-fnd-pty-pty:PartyInRoleInterface
     kind: abstract
     props:
       fibo-fnd-arr-rt:usesRatingParty: {}
+    type: fibo-fnd-arr-rt:RatingIssuer
   fibo-fnd-arr-rt:RatingParty:
     descr: 'QName: fibo-fnd-arr-rt:RatingParty. person, organization or group that analyzes some aspect of something and develops a rating'
     inherits: fibo-fnd-pty-pty:PartyInRoleInterface
@@ -774,13 +928,15 @@ objects:
     label: rating scale publisher
   fibo-fnd-arr-rt:RatingScore:
     descr: 'QName: fibo-fnd-arr-rt:RatingScore. grade, classification, or ranking of for something in accordance with some rating scale'
-    inherits: fibo-fnd-arr-cls:ClassifierInterface
+    inherits: fibo-fnd-arr-rt:RatingScoreInterface
     label: rating score
     type: fibo-fnd-arr-rt:RatingScore
   fibo-fnd-arr-rt:RatingScoreInterface:
+    inherits: fibo-fnd-arr-cls:ClassifierInterface
     kind: abstract
     props:
       fibo-fnd-arr-rt:hasMeasureWithinScale: {}
+    type: fibo-fnd-arr-rt:RatingScore
   fibo-fnd-dt-bd:BusinessDayAdjustment:
     descr: 'QName: fibo-fnd-dt-bd:BusinessDayAdjustment. convention that specifies what happens when a date falls on a day that is a weekend or a holiday in one or more business centers'
     inherits: fibo-fnd-dt-bd:ConventionInterface
@@ -793,7 +949,7 @@ objects:
     type: fibo-fnd-dt-bd:BusinessDayConvention
   fibo-fnd-dt-bd:BusinessRecurrenceInterval:
     descr: 'QName: fibo-fnd-dt-bd:BusinessRecurrenceInterval. recurrence interval that is specified using a business recurrence interval convention'
-    inherits: fibo-fnd-dt-fd:RecurrenceIntervalInterface
+    inherits: fibo-fnd-dt-bd:BusinessRecurrenceIntervalInterface
     label: business recurrence interval
     type: fibo-fnd-dt-bd:BusinessRecurrenceInterval
   fibo-fnd-dt-bd:BusinessRecurrenceIntervalConvention:
@@ -802,6 +958,7 @@ objects:
     label: business recurrence interval convention
     type: fibo-fnd-dt-bd:BusinessRecurrenceIntervalConvention
   fibo-fnd-dt-bd:BusinessRecurrenceIntervalInterface:
+    inherits: fibo-fnd-dt-fd:RecurrenceIntervalInterface
     kind: abstract
   fibo-fnd-dt-bd:Convention:
     descr: "QName: fibo-fnd-dt-bd:Convention. widely accepted or established way of doing 'something' within some community of practice"
@@ -832,10 +989,11 @@ objects:
     label: ad hoc schedule entry
   fibo-fnd-dt-fd:CalculatedDate:
     descr: 'QName: fibo-fnd-dt-fd:CalculatedDate. a date that is or will be calculated in some way'
-    inherits: fibo-fnd-dt-fd:DateInterface
+    inherits: fibo-fnd-dt-fd:CalculatedDateInterface
     label: calculated date
     type: fibo-fnd-dt-fd:CalculatedDate
   fibo-fnd-dt-fd:CalculatedDateInterface:
+    inherits: fibo-fnd-dt-fd:DateInterface
     kind: abstract
   fibo-fnd-dt-fd:CalendarPeriod:
     descr: 'QName: fibo-fnd-dt-fd:CalendarPeriod. an enumeration that indicates whether a CalendarSpecifiedDate is figured with respect to a calendar week, a calendar month, a calendar quarter, or a calendar year'
@@ -851,17 +1009,19 @@ objects:
     label: calendar specified interval
   fibo-fnd-dt-fd:Date:
     descr: 'QName: fibo-fnd-dt-fd:Date. a calendar day on some calendar'
-    inherits: fibo-fnd-dt-fd:TimeInstantInterface
+    inherits: fibo-fnd-dt-fd:DateInterface
     label: date
     type: fibo-fnd-dt-fd:Date
   fibo-fnd-dt-fd:DateInterface:
+    inherits: fibo-fnd-dt-fd:TimeInstantInterface
     kind: abstract
   fibo-fnd-dt-fd:DatePeriod:
     descr: 'QName: fibo-fnd-dt-fd:DatePeriod. a time span over one or more calendar days, defined by at least two of three properties: (1) a start date, (2) an end date, and (3) a date period (duration); if more than one of these properties is missing, the DatePeriod is invalid'
-    inherits: fibo-fnd-dt-fd:TimeIntervalInterface
+    inherits: fibo-fnd-dt-fd:DatePeriodInterface
     label: date period
     type: fibo-fnd-dt-fd:DatePeriod
   fibo-fnd-dt-fd:DatePeriodInterface:
+    inherits: fibo-fnd-dt-fd:TimeIntervalInterface
     kind: abstract
   fibo-fnd-dt-fd:DateTime:
     descr: 'QName: fibo-fnd-dt-fd:DateTime. a combination of a date and a time, without a time zone'
@@ -879,9 +1039,11 @@ objects:
     label: duration
     type: fibo-fnd-dt-fd:Duration
   fibo-fnd-dt-fd:DurationInterface:
+    inherits: fibo-fnd-dt-fd:TimeIntervalInterface
     kind: abstract
     props:
       fibo-fnd-dt-fd:hasDurationValue: {}
+    type: fibo-fnd-dt-fd:Duration
   fibo-fnd-dt-fd:ExplicitDate:
     descr: "QName: fibo-fnd-dt-fd:ExplicitDate. a date in which the 'hasDateValue' property is required"
     inherits: fibo-fnd-dt-fd:DateInterface
@@ -906,6 +1068,7 @@ objects:
     label: recurrence interval
     type: fibo-fnd-dt-fd:RecurrenceInterval
   fibo-fnd-dt-fd:RecurrenceIntervalInterface:
+    inherits: fibo-fnd-dt-fd:TimeIntervalInterface
     kind: abstract
   fibo-fnd-dt-fd:RegularSchedule:
     descr: 'QName: fibo-fnd-dt-fd:RegularSchedule. a schedule whose time intervals recur regularly'
@@ -920,13 +1083,15 @@ objects:
     label: relative date
   fibo-fnd-dt-fd:Schedule:
     descr: 'QName: fibo-fnd-dt-fd:Schedule. a collection of events or things that will be done and the dates and/or times when they will be done'
-    inherits: lcc-lr:CollectionInterface
+    inherits: fibo-fnd-dt-fd:ScheduleInterface
     label: schedule
     type: fibo-fnd-dt-fd:Schedule
   fibo-fnd-dt-fd:ScheduleInterface:
+    inherits: lcc-lr:CollectionInterface
     kind: abstract
     props:
       fibo-fnd-dt-fd:hasOverallPeriod: {}
+    type: fibo-fnd-dt-fd:Schedule
   fibo-fnd-dt-fd:ScheduleStub:
     descr: 'QName: fibo-fnd-dt-fd:ScheduleStub. a date period before the start of the recurring part of a schedule or after the end of the recurring part, which may be associated with a specific occurrence kind'
     inherits: lcc-lr:CollectionInterface
@@ -978,6 +1143,7 @@ objects:
     props:
       fibo-fnd-arr-com:isResponseTo: {}
       fibo-fnd-dt-oc:exemplifies: {}
+    type: fibo-fnd-dt-oc:Occurrence
   fibo-fnd-dt-oc:OccurrenceKind:
     descr: 'QName: fibo-fnd-dt-oc:OccurrenceKind. instances of OccurrenceKind are types of events, each having a description'
     inherits: fibo-fnd-dt-oc:OccurrenceKindInterface
@@ -987,6 +1153,7 @@ objects:
     kind: abstract
     props:
       fibo-fnd-dt-oc:isExemplifiedBy: {}
+    type: fibo-fnd-dt-oc:OccurrenceKind
   fibo-fnd-gao-gl:Goal:
     descr: 'QName: fibo-fnd-gao-gl:Goal. a desired result that a person, organization or system envisions or plans, or to which it commits, in order to achieve a desired state'
     label: goal
@@ -1000,6 +1167,7 @@ objects:
     label: business strategy
     type: fibo-fnd-gao-obj:BusinessStrategy
   fibo-fnd-gao-obj:BusinessStrategyInterface:
+    inherits: fibo-fnd-gao-obj:StrategyInterface
     kind: abstract
   fibo-fnd-gao-obj:DistributionStrategy:
     descr: 'QName: fibo-fnd-gao-obj:DistributionStrategy. strategy for making a product or service available, or for distributing funds, such as in the form of a dividend or coupon'
@@ -1007,10 +1175,11 @@ objects:
     label: distribution strategy
   fibo-fnd-gao-obj:FinancialObjective:
     descr: 'QName: fibo-fnd-gao-obj:FinancialObjective. objective that reflects the strategic financial goals and direction of a person, organization or system within a time frame and available resources'
-    inherits: fibo-fnd-gao-obj:ObjectiveInterface
+    inherits: fibo-fnd-gao-obj:FinancialObjectiveInterface
     label: financial objective
     type: fibo-fnd-gao-obj:FinancialObjective
   fibo-fnd-gao-obj:FinancialObjectiveInterface:
+    inherits: fibo-fnd-gao-obj:ObjectiveInterface
     kind: abstract
   fibo-fnd-gao-obj:InvestmentObjective:
     descr: 'QName: fibo-fnd-gao-obj:InvestmentObjective. financial objective used by an investor to determine whether or not a given potential investment is appropriate for themselves or on behalf of another party'
@@ -1059,6 +1228,7 @@ objects:
     props:
       fibo-fnd-law-cor:constrains: {}
       fibo-fnd-law-cor:isInForceIn: {}
+    type: fibo-fnd-law-cor:Law
   fibo-fnd-law-cor:Ordinance:
     descr: 'An authoritative rule or law; a decree or command; a public injunction or regulation, such as a city ordinance against excessive horn blowing. (Source: Dictionary.com). QName: fibo-fnd-law-cor:Ordinance'
     inherits: fibo-fnd-law-cor:LawInterface
@@ -1088,6 +1258,7 @@ objects:
     kind: abstract
     props:
       fibo-fnd-law-jur:hasReach: {}
+    type: fibo-fnd-law-jur:Jurisdiction
   fibo-fnd-law-jur:LegalSystem:
     descr: 'Legal regimen of a country consisting of (1) a written or oral constitution, (2) primary legislation (statutes) enacted by the legislative body established by the constitution, (3) subsidiary legislation (bylaws) made by person or bodies authorized by the primary legislation to do so, (4) customs applied by the courts on the basis of traditional practices, and (5) principles or practices of civil, common, Roman, or other code of law. QName: fibo-fnd-law-jur:LegalSystem'
     inherits: fibo-fnd-law-jur:LegalSystemInterface
@@ -1101,26 +1272,30 @@ objects:
     label: statute law
   fibo-fnd-law-lcap:Claim:
     descr: 'QName: fibo-fnd-law-lcap:Claim. a demand or assertion made by one party on another, based on facts that, taken together, give rise to a legally enforceable right or judicial action'
-    inherits: fibo-fnd-law-lcap:LegalConstructInterface
+    inherits: fibo-fnd-law-lcap:ClaimInterface
     label: claim
     type: fibo-fnd-law-lcap:Claim
   fibo-fnd-law-lcap:ClaimInterface:
+    inherits: fibo-fnd-law-lcap:LegalConstructInterface
     kind: abstract
     props:
       fibo-fnd-txn-cle:asReportedBy: {}
+    type: fibo-fnd-law-lcap:Claim
   fibo-fnd-law-lcap:ContingentObligation:
     descr: 'QName: fibo-fnd-law-lcap:ContingentObligation. an obligation that depends on a future event or the performance of an action'
     inherits: fibo-fnd-law-lcap:ContingentObligationInterface
     label: contingent obligation
     type: fibo-fnd-law-lcap:ContingentObligation
   fibo-fnd-law-lcap:ContingentObligationInterface:
+    inherits: fibo-fnd-law-lcap:DutyInterface
     kind: abstract
   fibo-fnd-law-lcap:ContingentRight:
     descr: 'QName: fibo-fnd-law-lcap:ContingentRight. a right that depends on a future event or the performance of an action'
-    inherits: fibo-fnd-law-lcap:ClaimInterface
+    inherits: fibo-fnd-law-lcap:ContingentRightInterface
     label: contingent right
     type: fibo-fnd-law-lcap:ContingentRight
   fibo-fnd-law-lcap:ContingentRightInterface:
+    inherits: fibo-fnd-law-lcap:ClaimInterface
     kind: abstract
   fibo-fnd-law-lcap:ContractualCapability:
     descr: 'QName: fibo-fnd-law-lcap:ContractualCapability. the capacity to enter into legally binding contracts'
@@ -1128,10 +1303,11 @@ objects:
     label: contractual capability
   fibo-fnd-law-lcap:ContractualObligation:
     descr: 'QName: fibo-fnd-law-lcap:ContractualObligation. an obligation or duty that is specified in and imposed by a contract'
-    inherits: fibo-fnd-law-lcap:LegalObligationInterface
+    inherits: fibo-fnd-law-lcap:ContractualObligationInterface
     label: contractual obligation
     type: fibo-fnd-law-lcap:ContractualObligation
   fibo-fnd-law-lcap:ContractualObligationInterface:
+    inherits: fibo-fnd-law-lcap:LegalObligationInterface
     kind: abstract
   fibo-fnd-law-lcap:ContractualOption:
     descr: 'QName: fibo-fnd-law-lcap:ContractualOption. a contractual right that may be exercised at some point in the future, such as an option to extend a contract, or other available but not obligatory rights as defined in the contract'
@@ -1143,6 +1319,7 @@ objects:
     label: contractual right
     type: fibo-fnd-law-lcap:ContractualRight
   fibo-fnd-law-lcap:ContractualRightInterface:
+    inherits: fibo-fnd-law-lcap:ContingentRightInterface
     kind: abstract
   fibo-fnd-law-lcap:DelegatedLegalAuthority:
     descr: 'QName: fibo-fnd-law-lcap:DelegatedLegalAuthority. This specifically means the authority to make legally binding commitments. institutionalized and legal power inherent in a particular job, function, or position that is meant to enable its holder to successfully carry out his or her responsibilities, where such power has been delegated through some formal means'
@@ -1150,20 +1327,23 @@ objects:
     label: delegated legal authority
   fibo-fnd-law-lcap:Duty:
     descr: 'QName: fibo-fnd-law-lcap:Duty. some obligation which exists and is imposed on some individual'
-    inherits: fibo-fnd-law-lcap:LegalConstructInterface
+    inherits: fibo-fnd-law-lcap:DutyInterface
     label: duty
     type: fibo-fnd-law-lcap:Duty
   fibo-fnd-law-lcap:DutyInterface:
+    inherits: fibo-fnd-law-lcap:LegalConstructInterface
     kind: abstract
   fibo-fnd-law-lcap:LegalCapacity:
     descr: 'QName: fibo-fnd-law-lcap:LegalCapacity. the capability to carry out certain actions or to have certain rights together with the resources to do so'
-    inherits: fibo-fnd-law-lcap:LegalConstructInterface
+    inherits: fibo-fnd-law-lcap:LegalCapacityInterface
     label: legal capacity
     type: fibo-fnd-law-lcap:LegalCapacity
   fibo-fnd-law-lcap:LegalCapacityInterface:
+    inherits: fibo-fnd-law-lcap:LegalConstructInterface
     kind: abstract
     props:
       fibo-fnd-law-lcap:isCapacityOf: {}
+    type: fibo-fnd-law-lcap:LegalCapacity
   fibo-fnd-law-lcap:LegalConstruct:
     descr: 'QName: fibo-fnd-law-lcap:LegalConstruct. something which is conferred by way of law or contract, such as a right'
     inherits: fibo-fnd-law-lcap:LegalConstructInterface
@@ -1173,10 +1353,11 @@ objects:
     kind: abstract
   fibo-fnd-law-lcap:LegalObligation:
     descr: 'QName: fibo-fnd-law-lcap:LegalObligation. an obligation or duty that is enforceable by a court'
-    inherits: fibo-fnd-law-lcap:DutyInterface
+    inherits: fibo-fnd-law-lcap:LegalObligationInterface
     label: legal obligation
     type: fibo-fnd-law-lcap:LegalObligation
   fibo-fnd-law-lcap:LegalObligationInterface:
+    inherits: fibo-fnd-law-lcap:DutyInterface
     kind: abstract
   fibo-fnd-law-lcap:LegalRight:
     descr: 'QName: fibo-fnd-law-lcap:LegalRight. a contingent right or privilege that, if challenged, would be supported in court as a claim that is recognizable and enforceable in law, statutes, regulations, or other legislative actions'
@@ -1270,10 +1451,12 @@ objects:
     label: asset
     type: fibo-fnd-oac-own:Asset
   fibo-fnd-oac-own:AssetInterface:
+    inherits: fibo-fnd-pty-rl:ThingInRoleInterface
     kind: abstract
     props:
       fibo-fnd-oac-own:isOwnedBy: {}
       fibo-fnd-oac-own:isOwnedThingInRole: {}
+    type: fibo-fnd-oac-own:Asset
   fibo-fnd-oac-own:IntangibleAsset:
     descr: 'QName: fibo-fnd-oac-own:IntangibleAsset. identifiable, non-monetary asset that lacks physical substance'
     inherits: fibo-fnd-oac-own:AssetInterface
@@ -1294,10 +1477,11 @@ objects:
     type: fibo-fnd-oac-own:Ownership
   fibo-fnd-oac-own:TangibleAsset:
     descr: 'QName: fibo-fnd-oac-own:TangibleAsset. asset that is a physical, measurable resource, i.e., one that takes a physical form'
-    inherits: fibo-fnd-oac-own:AssetInterface
+    inherits: fibo-fnd-oac-own:TangibleAssetInterface
     label: tangible asset
     type: fibo-fnd-oac-own:TangibleAsset
   fibo-fnd-oac-own:TangibleAssetInterface:
+    inherits: fibo-fnd-oac-own:AssetInterface
     kind: abstract
   fibo-fnd-org-fm:FormalOrganization:
     descr: 'QName: fibo-fnd-org-fm:FormalOrganization. organization that is recognized in some legal jurisdiction, with associated rights and responsibilities'
@@ -1305,9 +1489,11 @@ objects:
     label: formal organization
     type: fibo-fnd-org-fm:FormalOrganization
   fibo-fnd-org-fm:FormalOrganizationInterface:
+    inherits: fibo-fnd-org-org:OrganizationInterface
     kind: abstract
     props:
       fibo-fnd-org-fm:isDomiciledIn: {}
+    type: fibo-fnd-org-fm:FormalOrganization
   fibo-fnd-org-fm:Group:
     descr: 'QName: fibo-fnd-org-fm:Group. collection of agents (people, organizations, software agents, etc.) that are considered as a unit'
     inherits: lcc-lr:CollectionInterface
@@ -1318,10 +1504,11 @@ objects:
     label: informal organization
   fibo-fnd-org-org:Organization:
     descr: 'QName: fibo-fnd-org-org:Organization. collection of one or more people, or groups of people formed together into a community or other social, commercial or political structure to act, or that is designated to act, towards some purpose, such as to meet a need or pursue collective goals on a continuing basis'
-    inherits: fibo-fnd-aap-agt:AutonomousAgentInterface
+    inherits: fibo-fnd-org-org:OrganizationInterface
     label: organization
     type: fibo-fnd-org-org:Organization
   fibo-fnd-org-org:OrganizationInterface:
+    inherits: fibo-fnd-aap-agt:AutonomousAgentInterface
     kind: abstract
   fibo-fnd-pas-pas:Buyer:
     descr: 'QName: fibo-fnd-pas-pas:Buyer. a party that acquires, or agrees to acquire, ownership (in case of goods), or benefit or usage (in case of services), in exchange for money or other consideration under a contract of sale'
@@ -1329,10 +1516,12 @@ objects:
     label: buyer
     type: fibo-fnd-pas-pas:Buyer
   fibo-fnd-pas-pas:BuyerInterface:
+    inherits: fibo-fnd-pty-pty:PartyInRoleInterface
     kind: abstract
     props:
       fibo-fnd-pas-pas:buys: {}
       fibo-fnd-pas-pas:buysFrom: {}
+    type: fibo-fnd-pas-pas:Buyer
   fibo-fnd-pas-pas:Client:
     descr: 'QName: fibo-fnd-pas-pas:Client. a party that purchases professional services from, or has a formal relationship to purchase services from another party'
     inherits: fibo-fnd-pty-pty:PartyInRoleInterface
@@ -1347,6 +1536,7 @@ objects:
     label: commodity
     type: fibo-fnd-pas-pas:Commodity
   fibo-fnd-pas-pas:CommodityInterface:
+    inherits: fibo-fnd-pas-pas:GoodInterface
     kind: abstract
   fibo-fnd-pas-pas:Consumer:
     descr: 'QName: fibo-fnd-pas-pas:Consumer. a party that utilizes economic goods or services'
@@ -1358,6 +1548,7 @@ objects:
     label: contractual product
     type: fibo-fnd-pas-pas:ContractualProduct
   fibo-fnd-pas-pas:ContractualProductInterface:
+    inherits: fibo-fnd-pas-pas:ProductInterface
     kind: abstract
   fibo-fnd-pas-pas:ContractualTemplateProduct:
     descr: 'QName: fibo-fnd-pas-pas:ContractualTemplateProduct. a contractual product that is finalized through specification of values for parameters defined in a template'
@@ -1384,10 +1575,11 @@ objects:
     kind: abstract
   fibo-fnd-pas-pas:NegotiableCommodity:
     descr: 'QName: fibo-fnd-pas-pas:NegotiableCommodity. a commodity that can be bought or sold in some marketplace'
-    inherits: fibo-fnd-pas-pas:CommodityInterface
+    inherits: fibo-fnd-pas-pas:NegotiableCommodityInterface
     label: negotiable commodity
     type: fibo-fnd-pas-pas:NegotiableCommodity
   fibo-fnd-pas-pas:NegotiableCommodityInterface:
+    inherits: fibo-fnd-pas-pas:CommodityInterface
     kind: abstract
   fibo-fnd-pas-pas:OffTheShelfProduct:
     descr: 'QName: fibo-fnd-pas-pas:OffTheShelfProduct. a product that is readily available from merchandise in stock, or can be quickly and easily configured to order, not specially designed or custom-made'
@@ -1418,6 +1610,7 @@ objects:
     kind: abstract
     props:
       fibo-fnd-pas-pas:isSuppliedBy: {}
+    type: fibo-fnd-pas-pas:Product
   fibo-fnd-pas-pas:Seller:
     descr: 'QName: fibo-fnd-pas-pas:Seller. a party that makes, offers or contracts to make a sale to an actual or potential buyer'
     inherits: fibo-fnd-pty-pty:PartyInRoleInterface
@@ -1453,10 +1646,11 @@ objects:
     label: transaction confirmation
   fibo-fnd-pas-pas:TransactionEvent:
     descr: 'QName: fibo-fnd-pas-pas:TransactionEvent. any sale, assignment, lease, license, loan, advance, contribution, or other transfer of any interest in or right to use any property (tangible or intangible) or money, however that transaction is effected, and regardless of whether the terms of the transaction are formally documented'
-    inherits: fibo-fnd-dt-oc:OccurrenceKindInterface
+    inherits: fibo-fnd-pas-pas:TransactionEventInterface
     label: transaction event
     type: fibo-fnd-pas-pas:TransactionEvent
   fibo-fnd-pas-pas:TransactionEventInterface:
+    inherits: fibo-fnd-dt-oc:OccurrenceKindInterface
     kind: abstract
   fibo-fnd-pas-psch:Payee:
     descr: 'QName: fibo-fnd-pas-psch:Payee. a party to whom a debt should be paid, or to whose order a bill of exchange, note, or check is made payable, or who receives or will receive a payment from a payer in partial or complete fulfillment of an obligation'
@@ -1490,17 +1684,19 @@ objects:
     type: fibo-fnd-pas-psch:PaymentSchedule
   fibo-fnd-plc-adr:Address:
     descr: 'QName: fibo-fnd-plc-adr:Address. index to a location to which communications may be delivered'
-    inherits: fibo-fnd-arr-id:IndexInterface
+    inherits: fibo-fnd-plc-adr:AddressInterface
     label: address
     type: fibo-fnd-plc-adr:Address
   fibo-fnd-plc-adr:AddressComponent:
     descr: 'QName: fibo-fnd-plc-adr:AddressComponent. aspect of an address'
-    inherits: fibo-fnd-utl-alx:AspectInterface
+    inherits: fibo-fnd-plc-adr:AddressComponentInterface
     label: address component
     type: fibo-fnd-plc-adr:AddressComponent
   fibo-fnd-plc-adr:AddressComponentInterface:
+    inherits: fibo-fnd-utl-alx:AspectInterface
     kind: abstract
   fibo-fnd-plc-adr:AddressInterface:
+    inherits: fibo-fnd-arr-id:IndexInterface
     kind: abstract
   fibo-fnd-plc-adr:AddressingScheme:
     descr: 'QName: fibo-fnd-plc-adr:AddressingScheme. system for allocating addresses to objects'
@@ -1508,22 +1704,26 @@ objects:
     label: addressing scheme
     type: fibo-fnd-plc-adr:AddressingScheme
   fibo-fnd-plc-adr:AddressingSchemeInterface:
+    inherits: fibo-fnd-arr-id:IndexingSchemeInterface
     kind: abstract
   fibo-fnd-plc-adr:ConventionalStreetAddress:
     descr: 'QName: fibo-fnd-plc-adr:ConventionalStreetAddress. physical address that identifies a location on a street to which communications may be delivered'
-    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    inherits: fibo-fnd-plc-adr:ConventionalStreetAddressInterface
     label: conventional street address
     type: fibo-fnd-plc-adr:ConventionalStreetAddress
   fibo-fnd-plc-adr:ConventionalStreetAddressInterface:
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
     kind: abstract
     props:
       fibo-fnd-plc-adr:hasStreetAddress: {}
+    type: fibo-fnd-plc-adr:ConventionalStreetAddress
   fibo-fnd-plc-adr:GeographicDirectionalSymbol:
     descr: 'QName: fibo-fnd-plc-adr:GeographicDirectionalSymbol. code element that gives directional information for postal delivery'
-    inherits: lcc-lr:CodeElementInterface
+    inherits: fibo-fnd-plc-adr:GeographicDirectionalSymbolInterface
     label: geographic directional symbol
     type: fibo-fnd-plc-adr:GeographicDirectionalSymbol
   fibo-fnd-plc-adr:GeographicDirectionalSymbolInterface:
+    inherits: lcc-lr:CodeElementInterface
     kind: abstract
   fibo-fnd-plc-adr:PhysicalAddress:
     descr: 'An address may be used as an index to the location of a building, apartment, office within an office block, or other structure or parcel of land, often using political boundaries and street names as references, along with other information such as house or building numbers or names.  Some addresses also contain secondary elements such as apartment or building numbers, or special codes to aid routing of mail and packages. QName: fibo-fnd-plc-adr:PhysicalAddress. physical address where communications can be addressed, papers served or representatives located for any kind of organization or person'
@@ -1536,8 +1736,10 @@ objects:
     label: physical address identifier
     type: fibo-fnd-plc-adr:PhysicalAddressIdentifier
   fibo-fnd-plc-adr:PhysicalAddressIdentifierInterface:
+    inherits: lcc-lr:CodeElementInterface
     kind: abstract
   fibo-fnd-plc-adr:PhysicalAddressInterface:
+    inherits: fibo-fnd-plc-adr:AddressInterface
     kind: abstract
     props:
       fibo-fnd-plc-adr:hasAddressLine1: {}
@@ -1548,6 +1750,7 @@ objects:
       fibo-fnd-plc-adr:hasMailRouting: {}
       fibo-fnd-plc-adr:hasPostalCode: {}
       fibo-fnd-plc-adr:hasStructureOrComplexName: {}
+    type: fibo-fnd-plc-adr:PhysicalAddress
   fibo-fnd-plc-adr:PhysicalAddressingScheme:
     descr: 'QName: fibo-fnd-plc-adr:PhysicalAddressingScheme. scheme for specifying physical addresses according to a country specific standard'
     inherits: fibo-fnd-plc-adr:AddressingSchemeInterface
@@ -1574,6 +1777,7 @@ objects:
     label: postcode
     type: fibo-fnd-plc-adr:Postcode
   fibo-fnd-plc-adr:PostcodeInterface:
+    inherits: lcc-lr:CodeElementInterface
     kind: abstract
   fibo-fnd-plc-adr:PostdirectionalSymbol:
     descr: 'QName: fibo-fnd-plc-adr:PostdirectionalSymbol. geographic directional symbol that follows the street name and street suffix in a street address'
@@ -1636,6 +1840,7 @@ objects:
     label: supplemental address component
     type: fibo-fnd-plc-adr:SupplementalAddressComponent
   fibo-fnd-plc-adr:SupplementalAddressComponentInterface:
+    inherits: fibo-fnd-plc-adr:AddressComponentInterface
     kind: abstract
   fibo-fnd-plc-adr:SupplementalAddressDesignator:
     descr: 'QName: fibo-fnd-plc-adr:SupplementalAddressDesignator. classifier for supplemental address information, such as a highway contract route, rural route, building complex, shopping center, condominium complex, mail box, or other similar designation'
@@ -1643,6 +1848,7 @@ objects:
     label: supplemental address designator
     type: fibo-fnd-plc-adr:SupplementalAddressDesignator
   fibo-fnd-plc-adr:SupplementalAddressDesignatorInterface:
+    inherits: fibo-fnd-arr-cls:ClassifierInterface
     kind: abstract
   fibo-fnd-plc-adr:SupplementalAddressIndicatorOrUnit:
     descr: 'QName: fibo-fnd-plc-adr:SupplementalAddressIndicatorOrUnit. address component that includes a specific route, box, apartment, condominium or other indicator or unit associated with a specific address'
@@ -1650,10 +1856,11 @@ objects:
     label: supplemental address indicator or unit
   fibo-fnd-plc-adr:VirtualAddress:
     descr: 'QName: fibo-fnd-plc-adr:VirtualAddress. address identifying a virtual, i.e. non-physical, location'
-    inherits: fibo-fnd-plc-adr:AddressInterface
+    inherits: fibo-fnd-plc-adr:VirtualAddressInterface
     label: virtual address
     type: fibo-fnd-plc-adr:VirtualAddress
   fibo-fnd-plc-adr:VirtualAddressInterface:
+    inherits: fibo-fnd-plc-adr:AddressInterface
     kind: abstract
   fibo-fnd-plc-fac:Capability:
     descr: 'A capability represents the ability to perform a particular type of work and may involve people with particular skills and knowledge, intellectual property, defined practices, operating facilities, tools and equipment. QName: fibo-fnd-plc-fac:Capability'
@@ -1668,10 +1875,11 @@ objects:
     label: physical site
   fibo-fnd-plc-fac:Site:
     descr: 'A site is a place, setting, or context in which something is situated. QName: fibo-fnd-plc-fac:Site'
-    inherits: fibo-fnd-pty-rl:ThingInRoleInterface
+    inherits: fibo-fnd-plc-fac:SiteInterface
     label: site
     type: fibo-fnd-plc-fac:Site
   fibo-fnd-plc-fac:SiteInterface:
+    inherits: fibo-fnd-pty-rl:ThingInRoleInterface
     kind: abstract
   fibo-fnd-plc-fac:Venue:
     descr: 'A place where something happens, described in the context of the event or activity that occurs there. QName: fibo-fnd-plc-fac:Venue'
@@ -1705,6 +1913,7 @@ objects:
     label: municipality
     type: fibo-fnd-plc-loc:Municipality
   fibo-fnd-plc-loc:MunicipalityInterface:
+    inherits: lcc-cr:GeopoliticalEntityInterface
     kind: abstract
   fibo-fnd-plc-loc:Parcel:
     descr: 'QName: fibo-fnd-plc-loc:Parcel. tract or plot of land'
@@ -1716,6 +1925,7 @@ objects:
     label: physical location
     type: fibo-fnd-plc-loc:PhysicalLocation
   fibo-fnd-plc-loc:PhysicalLocationInterface:
+    inherits: lcc-cr:LocationInterface
     kind: abstract
   fibo-fnd-plc-loc:PopulatedPlace:
     descr: 'QName: fibo-fnd-plc-loc:PopulatedPlace. community in which people live or have lived, without being specific as to size, population or importance'
@@ -1725,98 +1935,6 @@ objects:
     descr: 'QName: fibo-fnd-plc-loc:RealEstate. tract or plot of land including any fixed structures on it, as well as the natural resources of the land including uncultivated flora and fauna, farmed crops and livestock, water, and any additional mineral deposits'
     inherits: fibo-fnd-plc-loc:PhysicalLocationInterface
     label: real estate
-  fibo-fnd-plc-uspsa:CompleteAddress:
-    descr: 'QName: fibo-fnd-plc-uspsa:CompleteAddress. delivery address that has all the address elements necessary to allow an exact match with the current Postal Service ZIP+4 and City State files to obtain the finest level of ZIP+4 and delivery point codes for the delivery address'
-    inherits: fibo-fnd-plc-uspsa:StandardizedAddressInterface
-    label: complete address
-  fibo-fnd-plc-uspsa:DeliveryAddressCodeSet:
-    descr: 'QName: fibo-fnd-plc-uspsa:DeliveryAddressCodeSet. system of numeric codes that substitute for specified delivery point details according to the U.S. Postal Service Publication 28'
-    inherits: lcc-lr:CodeSetInterface
-    label: delivery point code set
-  fibo-fnd-plc-uspsa:DeliveryPointCode:
-    descr: 'QName: fibo-fnd-plc-uspsa:DeliveryPointCode. specific set of digits between 00 and 99 assigned to a delivery point'
-    inherits: lcc-lr:CodeElementInterface
-    label: delivery point code
-  fibo-fnd-plc-uspsa:DeliveryPointCodeSet:
-    descr: 'QName: fibo-fnd-plc-uspsa:DeliveryPointCodeSet. system of numeric codes that substitute for specified delivery point details according to the U.S. Postal Service Publication 28'
-    inherits: lcc-lr:CodeSetInterface
-    label: delivery point code set
-  fibo-fnd-plc-uspsa:DepartmentOfStateAddress:
-    descr: "QName: fibo-fnd-plc-uspsa:DepartmentOfStateAddress. delivery address whose delivery address line uses 'UNIT' followed by the unit identifier, followed by 'BOX' followed by box number, in place of a street address, 'DPO' as the literal value for the city, and the appropriate armed forces subdivision code in place of a subdivision (state) code"
-    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
-    label: Department of State address
-  fibo-fnd-plc-uspsa:DepartmentOfStateUnitComponent:
-    descr: "QName: fibo-fnd-plc-uspsa:DepartmentOfStateUnitComponent. component of a Department of State address that includes 'UNIT' followed by the unit identifier"
-    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
-    label: Department of State unit component
-  fibo-fnd-plc-uspsa:GeneralDeliveryAddress:
-    descr: "QName: fibo-fnd-plc-uspsa:GeneralDeliveryAddress. delivery address that uses the words 'GENERAL DELIVERY', uppercase preferred, spelled out (no abbreviation), in place of a street address"
-    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
-    label: general delivery address
-  fibo-fnd-plc-uspsa:HighwayContractRoute:
-    descr: 'QName: fibo-fnd-plc-uspsa:HighwayContractRoute. highway contract route associated with an address'
-    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
-    label: highway contract route
-  fibo-fnd-plc-uspsa:HighwayContractRouteAddress:
-    descr: "QName: fibo-fnd-plc-uspsa:HighwayContractRouteAddress. delivery address whose delivery address line uses the abbreviation 'HC', followed by the route identifier, followed by 'BOX' followed by box number, in place of a street address"
-    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
-    label: highway contract address
-  fibo-fnd-plc-uspsa:InternationalAddress:
-    descr: 'QName: fibo-fnd-plc-uspsa:InternationalAddress. physical address that explicitly includes a country'
-    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
-    label: international address
-  fibo-fnd-plc-uspsa:Mailbox:
-    descr: 'QName: fibo-fnd-plc-uspsa:Mailbox. mailbox, other than a U.S. Post Office box, associated with an address'
-    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
-    label: mailbox
-  fibo-fnd-plc-uspsa:OverseasMilitaryAddress:
-    descr: "QName: fibo-fnd-plc-uspsa:OverseasMilitaryAddress. delivery address whose delivery address line uses an abbreviation for the unit or command such as 'CMR', 'PSC', or 'UNIT', or  'HC', followed by the unit identifier, followed by 'BOX' followed by box number, in place of a street address, either 'APO' or 'FPO' as the literal value for the city and the appropriate armed forces subdivision code in place of a subdivision (state) code"
-    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
-    label: overseas military address
-  fibo-fnd-plc-uspsa:PrivateMailBoxAddress:
-    descr: "QName: fibo-fnd-plc-uspsa:PrivateMailBoxAddress. delivery address provided by a commercial mail receiving company that includes a supplementary address line containing the abbreviation 'PMB' or the pound \"#\" symbol followed by the mailbox number; alternatively, 'PMB' or '#\" and the mailbox number can be appended to the street address"
-    inherits: fibo-fnd-plc-adr:ConventionalStreetAddressInterface
-    label: private mail box address
-  fibo-fnd-plc-uspsa:PuertoRicoAddress:
-    descr: "QName: fibo-fnd-plc-uspsa:PuertoRicoAddress. delivery address for a delivery point in Puerto Rico that may include a supplementary address line containing the abbreviation 'URB' followed by the name of the urbanization area that is appropriate for that address"
-    inherits: fibo-fnd-plc-adr:ConventionalStreetAddressInterface
-    label: Puerto Rico address
-  fibo-fnd-plc-uspsa:RuralRoute:
-    descr: 'QName: fibo-fnd-plc-uspsa:RuralRoute. mail route outside the city or township limits in a rural area associated with an address'
-    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
-    label: highway contract route address
-  fibo-fnd-plc-uspsa:RuralRouteAddress:
-    descr: "QName: fibo-fnd-plc-uspsa:RuralRouteAddress. delivery address whose delivery address line uses the abbreviation 'RR', followed by the route identifier, followed by 'BOX' followed by box number, in place of a street address"
-    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
-    label: rural route address
-  fibo-fnd-plc-uspsa:StandardizedAddress:
-    descr: 'QName: fibo-fnd-plc-uspsa:StandardizedAddress. delivery address that is fully spelled out, abbreviated by using the Postal Service standard abbreviations or as given in the current Postal Service ZIP+4 file'
-    inherits: fibo-fnd-plc-uspsa:StandardizedAddressInterface
-    label: standardized address
-    type: fibo-fnd-plc-uspsa:StandardizedAddress
-  fibo-fnd-plc-uspsa:StandardizedAddressInterface:
-    kind: abstract
-  fibo-fnd-plc-uspsa:USPostalServiceAddressIdentifier:
-    descr: 'QName: fibo-fnd-plc-uspsa:USPostalServiceAddressIdentifier. combined with the ZIP + 4 code, the delivery point code provides a unique identifier for every deliverable address served by the USPS'
-    inherits: fibo-fnd-plc-adr:PhysicalAddressIdentifierInterface
-    label: U.S. Postal Service address identifier
-  fibo-fnd-plc-uspsa:Urbanization:
-    descr: 'QName: fibo-fnd-plc-uspsa:Urbanization. an area, sector, or development within a larger geographic area'
-    inherits: lcc-cr:CountrySubdivisionInterface
-    label: urbanization
-    type: fibo-fnd-plc-uspsa:Urbanization
-  fibo-fnd-plc-uspsa:ZIPCode:
-    descr: 'QName: fibo-fnd-plc-uspsa:ZIPCode. five-digit code code assigned to a delivery address indicating the state and post office or postal zone'
-    inherits: fibo-fnd-plc-adr:PostcodeInterface
-    label: Zip Code
-  fibo-fnd-plc-uspsa:ZIPPlus4Code:
-    descr: 'QName: fibo-fnd-plc-uspsa:ZIPPlus4Code. nine-digit number consisting of five digits, a hyphen, and four digits, which the USPS describes by its trademark ZIP+4'
-    inherits: fibo-fnd-plc-adr:PostcodeInterface
-    label: ZIP+4 Code
-  fibo-fnd-plc-uspsa:ZipCodeScheme:
-    descr: 'QName: fibo-fnd-plc-uspsa:ZipCodeScheme. system used in the U.S. to facilitate the delivery of mail, consisting of a five- or nine-digit code Zone Improvement Plan (ZIP) printed directly after the address, the first five digits (initial code) indicating the state and post office or postal zone, the last four (expanded code) the box section or number, portion of a rural route, building, or other specific delivery location'
-    inherits: lcc-lr:CodeSetInterface
-    label: zip code scheme
   fibo-fnd-plc-vrt:ElectronicMailAddress:
     descr: 'QName: fibo-fnd-plc-vrt:ElectronicMailAddress. virtual address that defines an electronic messaging endpoint to which email messages can be delivered, typically via an Simple Mail Transfer Protocol (SMTP) based communications system'
     inherits: fibo-fnd-plc-adr:VirtualAddressInterface
@@ -1841,6 +1959,7 @@ objects:
     label: virtual location
     type: fibo-fnd-plc-vrt:VirtualLocation
   fibo-fnd-plc-vrt:VirtualLocationInterface:
+    inherits: lcc-cr:LocationInterface
     kind: abstract
   fibo-fnd-pty-pty:IndependentParty:
     descr: 'QName: fibo-fnd-pty-pty:IndependentParty. any person or organization'
@@ -1857,7 +1976,7 @@ objects:
     label: organization member
   fibo-fnd-pty-pty:PartyInRole:
     descr: "QName: fibo-fnd-pty-pty:PartyInRole. The concept of a party in a role refers only to those contexts in which in natural English one would call someone a 'party' for example being party to a contract or to a transaction; it does not cover entities as performing some role in some activity or process (the separate concept Actor covers that). A good test is whether the relative thing defined as PartyInRole can be sensibly said to have a part or play a part in something. Corresponds to the English (not data modeling) sense of the word 'Party'. a relative concept that ties an independent party to a specific role they are standing in in which they play some part i.e. are party to"
-    inherits: fibo-fnd-pty-rl:AgentInRoleInterface
+    inherits: fibo-fnd-pty-pty:PartyInRoleInterface
     label: party in role
     type: fibo-fnd-pty-pty:PartyInRole
   fibo-fnd-pty-pty:PartyInRoleIdentificationScheme:
@@ -1870,20 +1989,24 @@ objects:
     label: party-in-role identifier
     type: fibo-fnd-pty-pty:PartyInRoleIdentifier
   fibo-fnd-pty-pty:PartyInRoleIdentifierInterface:
+    inherits: lcc-lr:IdentifierInterface
     kind: abstract
   fibo-fnd-pty-pty:PartyInRoleInterface:
+    inherits: fibo-fnd-pty-rl:AgentInRoleInterface
     kind: abstract
     props:
       fibo-fnd-law-lcap:licenses: {}
       fibo-fnd-pty-pty:hasCommencementDate: {}
       fibo-fnd-pty-pty:hasRelatedPartyInRole: {}
       fibo-fnd-rel-rel:holds: {}
+    type: fibo-fnd-pty-pty:PartyInRole
   fibo-fnd-pty-rl:AgentInRole:
     descr: 'An agent-in-role is a relative concept that ties an autonomous agent to a role they are playing in a given situational context. QName: fibo-fnd-pty-rl:AgentInRole'
     inherits: fibo-fnd-pty-rl:AgentInRoleInterface
     label: agent in role
     type: fibo-fnd-pty-rl:AgentInRole
   fibo-fnd-pty-rl:AgentInRoleInterface:
+    inherits: fibo-fnd-pty-rl:ThingInRoleInterface
     kind: abstract
   fibo-fnd-pty-rl:Role:
     descr: 'A role is a set of connected behaviours, rights, obligations, beliefs, and norms as conceptualised by actors in the context of some situation. QName: fibo-fnd-pty-rl:Role'
@@ -1899,6 +2022,7 @@ objects:
     props:
       fibo-fnd-pty-rl:hasRole: {}
       fibo-fnd-pty-rl:isPlayedBy: {}
+    type: fibo-fnd-pty-rl:ThingInRole
   fibo-fnd-qt-qtu:BaseQuantity:
     descr: 'QName: fibo-fnd-qt-qtu:BaseQuantity. quantity kind in a conventionally chosen subset of a given system of quantities, where no subset quantity can be expressed in terms of the others'
     inherits: fibo-fnd-qt-qtu:QuantityKindInterface
@@ -1922,21 +2046,23 @@ objects:
     type: fibo-fnd-qt-qtu:Dimensionality
   fibo-fnd-qt-qtu:MeasurementUnit:
     descr: 'QName: fibo-fnd-qt-qtu:MeasurementUnit. quantity, defined and adopted by convention, with which any other quantity of the same kind can be compared to express the ratio of the two quantities as a number'
-    inherits: fibo-fnd-qt-qtu:QuantityInterface
+    inherits: fibo-fnd-qt-qtu:MeasurementUnitInterface
     label: measurement unit
     type: fibo-fnd-qt-qtu:MeasurementUnit
   fibo-fnd-qt-qtu:MeasurementUnitInterface:
+    inherits: fibo-fnd-qt-qtu:QuantityInterface
     kind: abstract
   fibo-fnd-qt-qtu:Quantity:
     descr: 'QName: fibo-fnd-qt-qtu:Quantity. property of a phenomenon, body, or substance, to which a number can be assigned with respect to a reference'
-    inherits: fibo-fnd-utl-alx:MeasureInterface
+    inherits: fibo-fnd-qt-qtu:QuantityInterface
     label: quantity
     type: fibo-fnd-qt-qtu:Quantity
   fibo-fnd-qt-qtu:QuantityInterface:
+    inherits: fibo-fnd-utl-alx:MeasureInterface
     kind: abstract
   fibo-fnd-qt-qtu:QuantityKind:
     descr: "QName: fibo-fnd-qt-qtu:QuantityKind. classifier for 'quantity' that characterizes quantities as being mutually comparable"
-    inherits: fibo-fnd-arr-cls:ClassifierInterface
+    inherits: fibo-fnd-qt-qtu:QuantityKindInterface
     label: quantity kind
     type: fibo-fnd-qt-qtu:QuantityKind
   fibo-fnd-qt-qtu:QuantityKindFactor:
@@ -1944,9 +2070,11 @@ objects:
     inherits: fibo-fnd-arr-cls:ClassifierInterface
     label: quantity kind factor
   fibo-fnd-qt-qtu:QuantityKindInterface:
+    inherits: fibo-fnd-arr-cls:ClassifierInterface
     kind: abstract
     props:
       fibo-fnd-qt-qtu:hasDimension: {}
+    type: fibo-fnd-qt-qtu:QuantityKind
   fibo-fnd-qt-qtu:QuantityValue:
     descr: 'QName: fibo-fnd-qt-qtu:QuantityValue. number and measurement unit together giving magnitude of a quantity'
     inherits: fibo-fnd-qt-qtu:QuantityValueInterface
@@ -1986,10 +2114,19 @@ objects:
       fibo-fnd-utl-alx:hasArgument: {}
       fibo-fnd-utl-alx:hasExpression: {}
       fibo-fnd-utl-alx:hasOperand: {}
+    type: fibo-fnd-rel-rel:Reference
   fibo-fnd-rel-rel:Referent:
     descr: 'QName: fibo-fnd-rel-rel:Referent. the concept that another concept stands for or refers to'
     label: referent
     type: fibo-fnd-rel-rel:Referent
+  fibo-fnd-txn-acc:AccountsLedgerEntry:
+    descr: 'QName: NONE:AccountsLedgerEntry'
+    label: accounts ledger entry
+    props:
+      fibo-fnd-txn-acc:amount: {}
+      fibo-fnd-txn-acc:isPartOf: {}
+      fibo-fnd-txn-acc:narrative: {}
+    type: fibo-fnd-txn-acc:AccountsLedgerEntry
   fibo-fnd-txn-cle:AccountingReportingParty:
     descr: 'QName: NONE:AccountingReportingParty. The party, from the perspective of which economic facts are defined'
     inherits: fibo-fnd-txn-cle:AspectViewingPartyInterface
@@ -2038,6 +2175,7 @@ objects:
     kind: abstract
     props:
       fibo-fnd-txn-ecr:takesMaterialForm: {}
+    type: fibo-fnd-txn-ecr:EconomicResource
   fibo-fnd-txn-ev:ContractualUndertaking:
     descr: 'A commitment, defined in a Contract, in which one Party to that Contract undertakes to do something or to deliver something or make some payment, to the other Party. QName: NONE:ContractualUndertaking'
     inherits: fibo-fnd-txn-ev:UndertakingEventInterface
@@ -2065,10 +2203,11 @@ objects:
     type: fibo-fnd-txn-ev:Undertaking
   fibo-fnd-txn-ev:UndertakingEvent:
     descr: 'QName: NONE:UndertakingEvent. Something which occurs at a point in time, at which a party makes some commitment to some other party'
-    inherits: fibo-fnd-txn-ev:UndertakingInterface
+    inherits: fibo-fnd-txn-ev:UndertakingEventInterface
     label: undertaking event
     type: fibo-fnd-txn-ev:UndertakingEvent
   fibo-fnd-txn-ev:UndertakingEventInterface:
+    inherits: fibo-fnd-txn-ev:UndertakingInterface
     kind: abstract
   fibo-fnd-txn-ev:UndertakingInterface:
     kind: abstract
@@ -2078,6 +2217,7 @@ objects:
       fibo-fnd-txn-ev:isMadeAsPartOf: {}
       fibo-fnd-txn-ev:isUndertakingTo: {}
       fibo-fnd-txn-ev:undertakenBy: {}
+    type: fibo-fnd-txn-ev:Undertaking
   fibo-fnd-txn-ev:UndertakingParty:
     descr: 'QName: NONE:UndertakingParty'
     label: undertaking party
@@ -2090,12 +2230,14 @@ objects:
     label: market transaction
     type: fibo-fnd-txn-mkt:MarketTransaction
   fibo-fnd-txn-mkt:MarketTransactionInterface:
+    inherits: fibo-fnd-txn-rea:EconomicTransactionInterface
     kind: abstract
     props:
       fibo-fnd-txn-mkt:consideration: {}
       fibo-fnd-txn-mkt:counterparty: {}
       fibo-fnd-txn-mkt:paymentTerms: {}
       fibo-fnd-txn-mkt:principal: {}
+    type: fibo-fnd-txn-mkt:MarketTransaction
   fibo-fnd-txn-mkt:MarketTransactionInvoicingTerms:
     descr: 'QName: NONE:MarketTransactionInvoicingTerms'
     inherits: fibo-fnd-txn-rea:EconomicContractTermsSetInterface
@@ -2111,13 +2253,15 @@ objects:
     label: transaction counterparty
     type: fibo-fnd-txn-mkt:TransactionCounterparty
   fibo-fnd-txn-mkt:TransactionCounterpartyInterface:
+    inherits: fibo-fnd-txn-rea:TransactionPartyInterface
     kind: abstract
   fibo-fnd-txn-mkt:TransactionPrincipal:
     descr: 'QName: NONE:TransactionPrincipal'
-    inherits: fibo-fnd-txn-rea:TransactionPartyInterface
+    inherits: fibo-fnd-txn-mkt:TransactionPrincipalInterface
     label: transaction principal
     type: fibo-fnd-txn-mkt:TransactionPrincipal
   fibo-fnd-txn-mkt:TransactionPrincipalInterface:
+    inherits: fibo-fnd-txn-rea:TransactionPartyInterface
     kind: abstract
   fibo-fnd-txn-qr:QuantifiedRawMaterial:
     descr: 'QName: NONE:QuantifiedRawMaterial. Some measured or quantified amount of some raw material. Scope Note: This is a kind of economic resource i.e. it may be bought or sold or exchanged, or put to work in some process'
@@ -2128,10 +2272,11 @@ objects:
     type: fibo-fnd-txn-qr:QuantifiedRawMaterial
   fibo-fnd-txn-qr:QuantifiedResource:
     descr: 'An amount of something which is defined in terms of its use for some purpose. QName: NONE:QuantifiedResource'
-    inherits: fibo-fnd-txn-ecr:EconomicResourceInterface
+    inherits: fibo-fnd-txn-qr:QuantifiedResourceInterface
     label: quantified resource
     type: fibo-fnd-txn-qr:QuantifiedResource
   fibo-fnd-txn-qr:QuantifiedResourceInterface:
+    inherits: fibo-fnd-txn-ecr:EconomicResourceInterface
     kind: abstract
   fibo-fnd-txn-rea:ContractualEconomicAgreement:
     descr: 'An economic agreement forming part of a transaction, which has contractual standing as evidenced by a contract between the two parties to the Agreement. QName: NONE:ContractualEconomicAgreement'
@@ -2149,10 +2294,11 @@ objects:
     type: fibo-fnd-txn-rea:ContractualEconomicCommitment
   fibo-fnd-txn-rea:ContractualTransaction:
     descr: 'An economic transaction which has some contractual basis. QName: NONE:ContractualTransaction'
-    inherits: fibo-fnd-txn-rea:EconomicTransactionInterface
+    inherits: fibo-fnd-txn-rea:ContractualTransactionInterface
     label: contractual transaction
     type: fibo-fnd-txn-rea:ContractualTransaction
   fibo-fnd-txn-rea:ContractualTransactionInterface:
+    inherits: fibo-fnd-txn-rea:EconomicTransactionInterface
     kind: abstract
   fibo-fnd-txn-rea:ContractualTransactionParty:
     descr: 'QName: NONE:ContractualTransactionParty. That which is party to a transaction which has contractual standing'
@@ -2179,18 +2325,22 @@ objects:
     label: economic contract
     type: fibo-fnd-txn-rea:EconomicContract
   fibo-fnd-txn-rea:EconomicContractInterface:
+    inherits: fibo-fnd-agr-ctr:MutualContractualAgreementInterface
     kind: abstract
     props:
       fibo-fnd-txn-rea:establishesContractualEconomicCommitment: {}
+    type: fibo-fnd-txn-rea:EconomicContract
   fibo-fnd-txn-rea:EconomicContractTermsSet:
     descr: 'QName: NONE:EconomicContractTermsSet. Terms underlying the contract for a transaction'
     inherits: fibo-fnd-txn-rea:EconomicContractTermsSetInterface
     label: economic contract commitment
     type: fibo-fnd-txn-rea:EconomicContractTermsSet
   fibo-fnd-txn-rea:EconomicContractTermsSetInterface:
+    inherits: fibo-fnd-agr-ctr:ContractualCommitmentInterface
     kind: abstract
     props:
       fibo-fnd-txn-rea:setsOutContractualEconomicCommitment: {}
+    type: fibo-fnd-txn-rea:EconomicContractTermsSet
   fibo-fnd-txn-rea:EconomicTransaction:
     descr: 'QName: NONE:EconomicTransaction. Some exchange of some items of economic value between two parties (economic agents)'
     inherits: fibo-fnd-txn-rea:EconomicTransactionInterface
@@ -2204,6 +2354,7 @@ objects:
       fibo-fnd-txn-rea:subject: {}
       fibo-fnd-txn-rea:transactedUnder: {}
       fibo-fnd-txn-rea:transactionEmbodiesEconomicAgreement: {}
+    type: fibo-fnd-txn-rea:EconomicTransaction
   fibo-fnd-txn-rea:REAClaim:
     descr: 'QName: NONE:REAClaim. Some imbalance, at a given point in time, between the respective rights and obligations of two parties with respect to one another'
     inherits: fibo-fnd-txn-rea:REAClaimInterface
@@ -2214,6 +2365,7 @@ objects:
     props:
       fibo-fnd-txn-cle:definedOnThePartOf: {}
       fibo-fnd-txn-rea:isImbalanceIn: {}
+    type: fibo-fnd-txn-rea:REAClaim
   fibo-fnd-txn-rea:TransactionBusinessEvent:
     descr: 'Occurrence in time that partners to a business transaction wish to monitor or control. QName: NONE:TransactionBusinessEvent'
     inherits: fibo-fnd-txn-rea:TransactionBusinessEventInterface
@@ -2222,15 +2374,16 @@ objects:
   fibo-fnd-txn-rea:TransactionBusinessEventInterface:
     kind: abstract
     props:
-      triggers: {}
+      fibo-fnd-txn-acc:triggers: {}
+    type: fibo-fnd-txn-rea:TransactionBusinessEvent
   fibo-fnd-txn-rea:TransactionEvent:
     descr: 'QName: NONE:TransactionEvent. The event component of a transaction'
     label: transaction event
     props:
+      fibo-fnd-txn-acc:reflectedInSome: {}
       fibo-fnd-txn-rea:hasCorresponding: {}
       fibo-fnd-txn-rea:hasPerspective: {}
       fibo-fnd-txn-rea:transactionEventFollowsBusinessProcess: {}
-      reflectedInSome: {}
     type: fibo-fnd-txn-rea:TransactionEvent
   fibo-fnd-txn-rea:TransactionEventAspect:
     descr: 'A transaction side as seen from the perspective of one of the parties to the transaction. QName: NONE:TransactionEventAspect'
@@ -2244,9 +2397,11 @@ objects:
     label: transaction party
     type: fibo-fnd-txn-rea:TransactionParty
   fibo-fnd-txn-rea:TransactionPartyInterface:
+    inherits: fibo-fnd-pty-pty:PartyInRoleInterface
     kind: abstract
     props:
       fibo-fnd-txn-rea:transactsWith: {}
+    type: fibo-fnd-txn-rea:TransactionParty
   fibo-fnd-txn-sec:FinancialPrimaryMarketTransaction:
     descr: 'QName: NONE:FinancialPrimaryMarketTransaction'
     inherits: fibo-fnd-txn-mkt:MarketTransactionInterface
@@ -2260,9 +2415,11 @@ objects:
     label: financial securities secondary market transaction
     type: fibo-fnd-txn-sec:FinancialSecuritiesSecondaryMarketTransaction
   fibo-fnd-txn-sec:FinancialSecuritiesSecondaryMarketTransactionInterface:
+    inherits: fibo-fnd-txn-mkt:MarketTransactionInterface
     kind: abstract
     props:
       fibo-fnd-txn-sec:embodies: {}
+    type: fibo-fnd-txn-sec:FinancialSecuritiesSecondaryMarketTransaction
   fibo-fnd-txn-sec:SecuritiesTransactionContract:
     descr: 'QName: NONE:SecuritiesTransactionContract. The contract (written or implied) which governs the transaction of securities in the secondary Market'
     inherits: fibo-fnd-txn-rea:EconomicContractInterface
@@ -2322,6 +2479,7 @@ objects:
     label: supply transaction terms
     type: fibo-fnd-txn-sup:SupplyTransactionTerms
   fibo-fnd-txn-sup:SupplyTransactionTermsInterface:
+    inherits: fibo-fnd-txn-rea:EconomicContractTermsSetInterface
     kind: abstract
   fibo-fnd-txn-sup:Vendor:
     descr: 'QName: NONE:Vendor'
@@ -2337,6 +2495,7 @@ objects:
     label: contractually defined benefit
     type: fibo-fnd-txn-txnx:ContractuallyDefinedBenefit
   fibo-fnd-txn-txnx:ContractuallyDefinedBenefitInterface:
+    inherits: fibo-fnd-txn-ecr:EconomicResourceInterface
     kind: abstract
   fibo-fnd-txn-txnx:CoveredTransaction:
     descr: 'A transaction covered by some Master Agreement. QName: NONE:CoveredTransaction'
@@ -2387,33 +2546,38 @@ objects:
     type: fibo-fnd-utl-alx:Difference
   fibo-fnd-utl-alx:Dispersion:
     descr: 'QName: fibo-fnd-utl-alx:Dispersion. degree of scatter or variability shown by observations'
-    inherits: fibo-fnd-utl-alx:ExpressionInterface
+    inherits: fibo-fnd-utl-alx:DispersionInterface
     label: dispersion
     type: fibo-fnd-utl-alx:Dispersion
   fibo-fnd-utl-alx:DispersionInterface:
+    inherits: fibo-fnd-utl-alx:ExpressionInterface
     kind: abstract
   fibo-fnd-utl-alx:Expression:
     descr: 'QName: fibo-fnd-utl-alx:Expression. finite combination of symbols that are well-formed according to applicable rules'
-    inherits: fibo-fnd-rel-rel:ReferenceInterface
+    inherits: fibo-fnd-utl-alx:ExpressionInterface
     label: expression
     type: fibo-fnd-utl-alx:Expression
   fibo-fnd-utl-alx:ExpressionInterface:
+    inherits: fibo-fnd-rel-rel:ReferenceInterface
     kind: abstract
     props:
       fibo-fnd-utl-alx:evaluates: {}
+    type: fibo-fnd-utl-alx:Expression
   fibo-fnd-utl-alx:FinitePopulation:
     descr: 'QName: fibo-fnd-utl-alx:FinitePopulation. population for which it is possible to count its units'
-    inherits: lcc-lr:CollectionInterface
+    inherits: fibo-fnd-utl-alx:FinitePopulationInterface
     label: finite population
     type: fibo-fnd-utl-alx:FinitePopulation
   fibo-fnd-utl-alx:FinitePopulationInterface:
+    inherits: lcc-lr:CollectionInterface
     kind: abstract
   fibo-fnd-utl-alx:Formula:
     descr: 'QName: fibo-fnd-utl-alx:Formula. general fact or rule expressed in letters and symbols; may consist of one or more expressions'
-    inherits: fibo-fnd-rel-rel:ReferenceInterface
+    inherits: fibo-fnd-utl-alx:FormulaInterface
     label: formula
     type: fibo-fnd-utl-alx:Formula
   fibo-fnd-utl-alx:FormulaInterface:
+    inherits: fibo-fnd-rel-rel:ReferenceInterface
     kind: abstract
   fibo-fnd-utl-alx:GeometricMean:
     descr: 'QName: fibo-fnd-utl-alx:GeometricMean. mean that indicates the central tendency or typical value of a set of numbers by using the product of their values (as opposed to the arithmetic mean which uses their sum)'
@@ -2425,6 +2589,7 @@ objects:
     label: mean
     type: fibo-fnd-utl-alx:Mean
   fibo-fnd-utl-alx:MeanInterface:
+    inherits: fibo-fnd-utl-alx:ExpressionInterface
     kind: abstract
   fibo-fnd-utl-alx:Measure:
     descr: 'QName: fibo-fnd-utl-alx:Measure. amount or degree of something; the dimensions, capacity, or amount of something ascertained by measuring'
@@ -2432,11 +2597,13 @@ objects:
     label: measure
     type: fibo-fnd-utl-alx:Measure
   fibo-fnd-utl-alx:MeasureInterface:
+    inherits: fibo-fnd-rel-rel:ReferenceInterface
     kind: abstract
     props:
       fibo-fnd-utl-alx:hasMeasurementDateTime: {}
       fibo-fnd-utl-alx:hasMeasurementPeriodInMonths: {}
       fibo-fnd-utl-alx:isMeasureOf: {}
+    type: fibo-fnd-utl-alx:Measure
   fibo-fnd-utl-alx:Median:
     descr: 'QName: fibo-fnd-utl-alx:Median. value of the variate dividing the total frequency of a data sample, population, or probability distribution, into two halves'
     inherits: fibo-fnd-utl-alx:ExpressionInterface
@@ -2451,10 +2618,11 @@ objects:
     label: numeric index
   fibo-fnd-utl-alx:Percentage:
     descr: 'QName: fibo-fnd-utl-alx:Percentage. ratio value expressed as a fraction of 100, i.e., in which the denominator is fixed rather than variable and equal to 100'
-    inherits: fibo-fnd-utl-alx:RatioValueInterface
+    inherits: fibo-fnd-utl-alx:PercentageInterface
     label: percentage
     type: fibo-fnd-utl-alx:Percentage
   fibo-fnd-utl-alx:PercentageInterface:
+    inherits: fibo-fnd-utl-alx:RatioValueInterface
     kind: abstract
   fibo-fnd-utl-alx:QualifiedMeasure:
     descr: 'QName: fibo-fnd-utl-alx:QualifiedMeasure. statistical measure that is constrained by features, quantity kinds or units that refine how it is calculated'
@@ -2462,6 +2630,7 @@ objects:
     label: qualified measure
     type: fibo-fnd-utl-alx:QualifiedMeasure
   fibo-fnd-utl-alx:QualifiedMeasureInterface:
+    inherits: fibo-fnd-utl-alx:StatisticalMeasureInterface
     kind: abstract
   fibo-fnd-utl-alx:Ratio:
     descr: 'QName: fibo-fnd-utl-alx:Ratio. proportional relationship between two different numbers or quantities, or in mathematics a quotient of two numbers or expressions, arrived at by dividing one by the other'
@@ -2469,10 +2638,11 @@ objects:
     label: ratio
   fibo-fnd-utl-alx:RatioValue:
     descr: 'QName: fibo-fnd-utl-alx:RatioValue. proportional relationship specifically between two different quantity values that gives rise to a datum of a specific quantity type'
-    inherits: fibo-fnd-qt-qtu:QuantityValueInterface
+    inherits: fibo-fnd-utl-alx:RatioValueInterface
     label: ratio value
     type: fibo-fnd-utl-alx:RatioValue
   fibo-fnd-utl-alx:RatioValueInterface:
+    inherits: fibo-fnd-qt-qtu:QuantityValueInterface
     kind: abstract
   fibo-fnd-utl-alx:SamplingVariance:
     descr: 'QName: fibo-fnd-utl-alx:SamplingVariance. measure of the extent to which the estimate of a characteristic from different possible samples of the same size and the same design differ from one another'
@@ -2488,6 +2658,7 @@ objects:
     label: standard deviation
     type: fibo-fnd-utl-alx:StandardDeviation
   fibo-fnd-utl-alx:StandardDeviationInterface:
+    inherits: fibo-fnd-utl-alx:DispersionInterface
     kind: abstract
   fibo-fnd-utl-alx:StatisticalArea:
     descr: 'QName: fibo-fnd-utl-alx:StatisticalArea. physical location that is defined per some program for designating geographic regions for the purposes of tabulating and presenting statistical data'
@@ -2499,15 +2670,17 @@ objects:
     label: statistical area identifier
   fibo-fnd-utl-alx:StatisticalMeasure:
     descr: 'QName: fibo-fnd-utl-alx:StatisticalMeasure. summary (means, mode, total, index, etc.) of the individual quantitative variable values for the statistical units in a specific group (study domain)'
-    inherits: fibo-fnd-utl-alx:MeasureInterface
+    inherits: fibo-fnd-utl-alx:StatisticalMeasureInterface
     label: statistical measure
     type: fibo-fnd-utl-alx:StatisticalMeasure
   fibo-fnd-utl-alx:StatisticalMeasureInterface:
+    inherits: fibo-fnd-utl-alx:MeasureInterface
     kind: abstract
     props:
       fibo-fnd-utl-alx:hasApplicableDatePeriod: {}
       fibo-fnd-utl-alx:isCalculatedViaMethodology: {}
       fibo-fnd-utl-alx:isEstimate: {}
+    type: fibo-fnd-utl-alx:StatisticalMeasure
   fibo-fnd-utl-alx:StatisticalPopulation:
     descr: 'QName: fibo-fnd-utl-alx:StatisticalPopulation. statistical universe filtered by time and region'
     inherits: fibo-fnd-utl-alx:FinitePopulationInterface
@@ -2530,10 +2703,11 @@ objects:
     type: fibo-fnd-utl-alx:Variable
   fibo-fnd-utl-alx:Variance:
     descr: 'QName: fibo-fnd-utl-alx:Variance. measure of spread, calculated as the average squared deviation of each number from the mean of a data set'
-    inherits: fibo-fnd-utl-alx:DispersionInterface
+    inherits: fibo-fnd-utl-alx:VarianceInterface
     label: variance
     type: fibo-fnd-utl-alx:Variance
   fibo-fnd-utl-alx:VarianceInterface:
+    inherits: fibo-fnd-utl-alx:DispersionInterface
     kind: abstract
   fibo-fnd-utl-alx:WeightingFunction:
     descr: 'QName: fibo-fnd-utl-alx:WeightingFunction. expression or function that determines the relative importance or influence of a given element of a set with respect to the whole'
@@ -2561,13 +2735,15 @@ objects:
     label: numeric ratio value
     type: fibo-fnd-utl-val:NumericRatioValue
   fibo-fnd-utl-val:NumericRatioValueInterface:
+    inherits: fibo-fnd-utl-val:NumericValueInterface
     kind: abstract
   fibo-fnd-utl-val:NumericValue:
     descr: 'A numeric value is a single value intended to represent any number without restriction as to precision, scale or representation. The number or expression is contained in the hasDataValue property. QName: NONE:NumericValue'
-    inherits: fibo-fnd-utl-val:SingleValueInterface
+    inherits: fibo-fnd-utl-val:NumericValueInterface
     label: numeric value
     type: fibo-fnd-utl-val:NumericValue
   fibo-fnd-utl-val:NumericValueInterface:
+    inherits: fibo-fnd-utl-val:SingleValueInterface
     kind: abstract
   fibo-fnd-utl-val:PercentageValue:
     descr: 'A percentage value is a numeric value representing a rate, number, or amount in each hundred. QName: NONE:PercentageValue'
@@ -2579,9 +2755,11 @@ objects:
     label: single value
     type: fibo-fnd-utl-val:SingleValue
   fibo-fnd-utl-val:SingleValueInterface:
+    inherits: fibo-fnd-utl-val:ValueInterface
     kind: abstract
     props:
       fibo-fnd-utl-val:hasDataValue: {}
+    type: fibo-fnd-utl-val:SingleValue
   fibo-fnd-utl-val:TextValue:
     descr: 'A text value is a single value representing textural information represented as an xsd:string. Note that this class is not intended to be used directly (in these cases use xsd:string) but is intended to be subclassed with values with business semantic intent. QName: NONE:TextValue'
     inherits: fibo-fnd-utl-val:SingleValueInterface
@@ -2628,9 +2806,10 @@ objects:
   lcc-lr:CodeElementInterface:
     kind: abstract
   lcc-lr:CodeSet:
-    inherits: fibo-fnd-arr-arr:SchemeInterface
+    inherits: lcc-lr:CodeSetInterface
     type: lcc-lr:CodeSet
   lcc-lr:CodeSetInterface:
+    inherits: fibo-fnd-arr-arr:SchemeInterface
     kind: abstract
   lcc-lr:Collection:
     inherits: lcc-lr:CollectionInterface
@@ -2639,15 +2818,18 @@ objects:
     kind: abstract
     props:
       fibo-fnd-arr-arr:hasConstituent: {}
+    type: lcc-lr:Collection
   lcc-lr:IdentificationScheme:
-    inherits: fibo-fnd-arr-arr:SchemeInterface
+    inherits: lcc-lr:IdentificationSchemeInterface
     type: lcc-lr:IdentificationScheme
   lcc-lr:IdentificationSchemeInterface:
+    inherits: fibo-fnd-arr-arr:SchemeInterface
     kind: abstract
   lcc-lr:Identifier:
     inherits: lcc-lr:IdentifierInterface
     type: lcc-lr:Identifier
   lcc-lr:IdentifierInterface:
+    inherits: fibo-fnd-rel-rel:ReferenceInterface
     kind: abstract
   owl:Thing:
     type: owl:Thing
@@ -2740,13 +2922,6 @@ prefixes:
   sm: http://www.omg.org/techprocess/ab/SpecificationMetadata/
   xsd: http://www.w3.org/2001/XMLSchema#
 properties:
-  amount:
-    descr: 'QName: NONE:amount'
-    kind: object
-    label: amount
-    max: inf
-    range: fibo-fnd-acc-cur:MonetaryAmountInterface
-    rdfProp: fibo-fnd-txn-acc:amount
   dct:modified:
     kind: literal
     max: inf
@@ -4066,12 +4241,6 @@ properties:
     label: is located at
     max: inf
     range: lcc-cr:LocationInterface
-  fibo-fnd-plc-uspsa:hasUrbanization:
-    descr: 'QName: fibo-fnd-plc-uspsa:hasUrbanization. indicates  area, sector, or development within a geographic area relevant to a delivery address'
-    kind: object
-    label: has urbanization
-    max: inf
-    range: fibo-fnd-plc-uspsa:Urbanization
   fibo-fnd-plc-vrt:hasElectronicMailAddress:
     descr: 'QName: fibo-fnd-plc-vrt:hasElectronicMailAddress. specifies an electronic messaging endpoint at which some entity may be located or contacted or may receive correspondence'
     kind: object
@@ -4534,6 +4703,36 @@ properties:
     label: was formerly known as
     max: inf
     range: string
+  fibo-fnd-txn-acc:amount:
+    descr: 'QName: NONE:amount'
+    kind: object
+    label: amount
+    max: inf
+    range: fibo-fnd-acc-cur:MonetaryAmountInterface
+  fibo-fnd-txn-acc:isPartOf:
+    descr: 'QName: NONE:isPartOf'
+    kind: object
+    label: is part of
+    max: inf
+    range: fibo-fbc-pas-caa:LedgerAccount
+  fibo-fnd-txn-acc:narrative:
+    descr: 'QName: NONE:narrative'
+    kind: literal
+    label: narrative
+    max: inf
+    range: string
+  fibo-fnd-txn-acc:reflectedInSome:
+    descr: 'QName: NONE:reflectedInSome'
+    kind: object
+    label: reflected in some
+    max: inf
+    range: fibo-fnd-txn-acc:AccountsLedgerEntry
+  fibo-fnd-txn-acc:triggers:
+    descr: 'QName: NONE:triggers'
+    kind: object
+    label: triggers
+    max: inf
+    range: fibo-fnd-txn-acc:AccountsLedgerEntry
   fibo-fnd-txn-cle:asReportedBy:
     descr: 'QName: NONE:asReportedBy'
     kind: object
@@ -5067,13 +5266,13 @@ properties:
     kind: literal
     label: has data value
     range: string
-  isPartOf:
-    descr: 'QName: NONE:isPartOf'
+  hasUrbanization:
+    descr: 'QName: fibo-fnd-plc-uspsa:hasUrbanization. indicates  area, sector, or development within a geographic area relevant to a delivery address'
     kind: object
-    label: is part of
+    label: has urbanization
     max: inf
-    range: fibo-fbc-pas-caa:LedgerAccount
-    rdfProp: fibo-fnd-txn-acc:isPartOf
+    range: Urbanization
+    rdfProp: fibo-fnd-plc-uspsa:hasUrbanization
   lcc-cr:classifies:
     kind: object
     max: inf
@@ -5090,28 +5289,7 @@ properties:
     kind: literal
     max: inf
     range: string
-  narrative:
-    descr: 'QName: NONE:narrative'
-    kind: literal
-    label: narrative
-    max: inf
-    range: string
-    rdfProp: fibo-fnd-txn-acc:narrative
-  reflectedInSome:
-    descr: 'QName: NONE:reflectedInSome'
-    kind: object
-    label: reflected in some
-    max: inf
-    range: AccountsLedgerEntry
-    rdfProp: fibo-fnd-txn-acc:reflectedInSome
-  triggers:
-    descr: 'QName: NONE:triggers'
-    kind: object
-    label: triggers
-    max: inf
-    range: AccountsLedgerEntry
-    rdfProp: fibo-fnd-txn-acc:triggers
 specialPrefixes:
-  ontology_iri: https://spec.edmcouncil.org/fibo/ontology/FND/TransactionsExt/TransactionAccounting/
-  vocab_iri: https://spec.edmcouncil.org/fibo/ontology/FND/TransactionsExt/TransactionAccounting/
-  vocab_prefix: fibo-fnd-txn-acc
+  ontology_iri: https://spec.edmcouncil.org/fibo/ontology/FND/Places/NorthAmerica/USPostalServiceAddresses/
+  vocab_iri: https://spec.edmcouncil.org/fibo/ontology/FND/Places/NorthAmerica/USPostalServiceAddresses/
+  vocab_prefix: fibo-fnd-plc-uspsa

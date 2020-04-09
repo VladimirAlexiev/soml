@@ -17,11 +17,19 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
         - [Datatypes](#datatypes)
         - [Labels and Descriptions](#labels-and-descriptions)
     - [Limitations](#limitations)
+        - [Better Handling of Multiple Ontologies](#better-handling-of-multiple-ontologies)
         - [Handle Property Inheritance](#handle-property-inheritance)
         - [Handle OWL Restrictions](#handle-owl-restrictions)
         - [Handle OWL Cardinalities](#handle-owl-cardinalities)
+        - [Unusual Datatypes](#unusual-datatypes)
+        - [owl:rational](#owl-rational)
+        - [GeoSPARQL Serializations](#geosparql-serializations)
+        - [PlainLiteral, XMLLiteral, HTMLLiteral](#plainliteral-xmlliteral-htmlliteral)
     - [Gaps in Ontologies](#gaps-in-ontologies)
-    - [Dependencies](#dependencies)
+        - [Lack of Inverses](#lack-of-inverses)
+        - [Missing Cardinality Information](#missing-cardinality-information)
+        - [Unbound Props](#unbound-props)
+    - [Tool Dependencies](#tool-dependencies)
         - [Dependency Problems](#dependency-problems)
     - [Change Log](#change-log)
 - [Platform Service](#platform-service)
@@ -481,9 +489,13 @@ Also map `:X owl:equivalentClass [owl:intersectionOf (:Y...)]` to `X inherits: Y
 
 ### Handle OWL Cardinalities
 
-- Handle OWL cardinality and qualified cardinality restrictions to map to `min: max:`
+- Handle OWL cardinality and qualified cardinality restrictions and map to `min:, max:`
 - `owl:someValuesFrom` is logically equivalent to `min: 1`. It is widely used in FIBO because it's less computationally expensive for reasoners
   (see [FIBO Ontology Guidelines T15. Use of "min 1" cardinality restrictions](https://github.com/edmcouncil/fibo/blob/master/ONTOLOGY_GUIDE.md#t15--use-of-min-1-cardinality-restrictions))
+- The tool handles `owl:FunctionalProperty`
+- Should also handle `owl:InverseFunctionalProperty` 
+  as `max: 1` of an `inverseAlias` prop
+  (see [Lack of Inverses](#lack-of-inverses))
 
 ### Unusual Datatypes
 
@@ -538,20 +550,42 @@ TODO
 
 ## Gaps in Ontologies
 
+### Lack of Inverses
+Most ontologies have few inverses.
+- Eg FIBO 2020-03 has 535...1465 object props, but only 80...99 inverses (see [fibo#983](https://github.com/edmcouncil/fibo/issues/983) item 14).
+- One exception is CIDOC-CRM that has a full complement of inverses
+
+However, bidirectional navigation is essential in a Knowledge Graph,
+whereas GraphQL does not natively provide it.
+The Ontotext Platform provides [inverseAlias](http://platform.ontotext.com/soml/properties.html#inverses) to create virtual inverses and enable such navigation in GraphQL.
+
+Inverses are in fact superfluous in RDF because you can always query in the opposite direction.
+- The [PROV ontology deprecates inverses]( http://w3.org/TR/prov-o/#inverse-names): "When all inverses are defined for all properties, modelers may choose from two logically equivalent properties when making each assertion. Although the two options may be logically equivalent, developers consuming the assertions may need to exert extra effort to handle both (e.g., by either adding an OWL reasoner or writing code and queries to handle both cases). This extra effort can be reduced by preferring one inverse over another".
+- PROV defines `prov:inverse`, whcih declares what name should be used for an inverse property,
+  but not triggering inverse inference (unlike `owl:inverseOf`)
+  
+Some custom prop soml:inverseAlias ?
+
+### Missing Cardinality Information
+
 - A major shortcoming of most ontologies is that fery few props are declared `owl:FunctionalProperty`, so most of them get cardinality `max: inf` in SOML.
   Such multi-valued props are considerably more expensive to query, and if used in a filter have an implicit `EXISTS` semantics.
-- Some ontologies leave some props without domain (unbound), so they can be reused in  more situations.
-  - One example are all SKOS label and note props: SKOS says they are universally applicable.
-    But unless we bind them to `skos:Concept`, they won't show up in any class.
-    So we wrote a `skos-fix.ttl` that does that.
-    (See [Handle Property Inheritance](#handle-property-inheritance) for other fixes in the same file.)
-  - Another example are DC and DCT properties, 
-    most of which are very generic (defined on `rdfs:Resource`, which is mapped to `range: iri`).
-    For specific applications, we recommend writing an RDF "fix" file to bind them to specific classes.
-  - A particular example is this generated piece where 
-    `isFormatOf/hasFormat` are not attached yet are declared inverses.
-    SOML currently wants to check that they are defined on a pair of classes
-    and to check domain/range conformance, so that is invalid SOML (issue PLATFORM-1509):
+- The tool does not yet [Handle OWL Cardinalities](#handle-owl-cardinalities)
+  
+### Unbound Props
+
+Some ontologies leave some props without domain (unbound), so they can be reused in  more situations.
+- One example are all SKOS label and note props: SKOS says they are universally applicable.
+  But unless we bind them to `skos:Concept`, they won't show up in any class.
+  So we wrote a `skos-fix.ttl` that does that.
+  (See [Handle Property Inheritance](#handle-property-inheritance) for other fixes in the same file.)
+- Another example are DC and DCT properties, 
+  most of which are very generic (defined on `rdfs:Resource`, which is mapped to `range: iri`).
+  For specific applications, we recommend writing an RDF "fix" file to bind them to specific classes.
+- A particular example is this generated piece where 
+  `isFormatOf/hasFormat` are not attached yet are declared inverses.
+  SOML currently wants to check that they are defined on a pair of classes
+  and to check domain/range conformance, so that is invalid SOML (issue PLATFORM-1509):
 
 ```yaml
   isFormatOf:
@@ -563,7 +597,7 @@ TODO
     range: iri
 ```
 
-## Dependencies
+## Tool Dependencies
 
 The tool depends on the following requirements:
 
@@ -619,6 +653,13 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 
 
 ## Change Log
+
+9-Apr-2020
+- Rewrite of `make_superClass, fix_superClasses` to `make_inherits, make_super, lift_super`: 
+  lift `inherits` relation to abstract superclasses, if any
+- Sort `creator` in order to be deterministic
+- Print out all classes in warnings "Multiple superclasses/ranges found"
+- Filter out `schema:Thing` (add to `@NO_CLASSES`), print these ignored classes in `usage()`
 
 6-Apr-2020
 - `make_superClass()`: fix `ERROR: Object 'lcclr:Arrangement' should have at least one type value`:

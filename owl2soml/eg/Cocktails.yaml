@@ -2,10 +2,11 @@ id: /soml/cocktail-ontology
 label: Cocktail ontology
 objects:
   Alcoholic-Beverages:
-    inherits: BeveragesInterface
+    inherits: Alcoholic-BeveragesInterface
     label: Alcoholic Beverages
     type: cocktail-ontology:Alcoholic-Beverages
   Alcoholic-BeveragesInterface:
+    inherits: BeveragesInterface
     kind: abstract
   Beverages:
     inherits: BeveragesInterface
@@ -93,6 +94,7 @@ objects:
     label: Non-alcoholic Beverages
     type: cocktail-ontology:Non-alcoholic-Beverages
   Non-alcoholic-BeveragesInterface:
+    inherits: BeveragesInterface
     kind: abstract
   Rums:
     inherits: Alcoholic-BeveragesInterface

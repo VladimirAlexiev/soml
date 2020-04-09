@@ -11,6 +11,7 @@ objects:
     kind: abstract
     props:
       member: {}
+    type: skos:Collection
   Concept:
     descr: An idea or notion; a unit of thought
     label: Concept

@@ -38,14 +38,17 @@ our $MAP   = URI::NamespaceMap->new    # fixed prefixes used in mapping ("servic
     xsd    => "http://www.w3.org/2001/XMLSchema#",
     "fibo-fnd-dt-fd" => "https://spec.edmcouncil.org/fibo/ontology/FND/DatesAndTimes/FinancialDates/",
    });
-our %iri_name;                  # Mapping from IRI->as_string to {"rdf" => prefixed name, "gql" => stripped vocab_prefix , "super" => superclass if any}
-our %soml;                      # The total SOML as hash (dict), see YAML::Dump at the end
-
+our %iri_name;   # Mapping from IRI->as_string to {"rdf" => prefixed name, "gql" => stripped vocab_prefix}
+our %gql_rdf;    # Mapping from gql name to rdf name
+our %inherits;   # Mapping of rdfs:subClassOf relations as gql names (max one per class: no multiple inheritance)
+our %super;      # Mapping from concrete "class" to abstract "classInterface" (for superclasses only) as gql names
+our %soml;       # The total SOML as hash (dict), see YAML::Dump at the end
 
 our @PROP_CLASSES =
   qw(rdf:Property owl:AnnotationProperty owl:DatatypeProperty owl:ObjectProperty
    owl:FunctionalProperty owl:InverseFunctionalProperty owl:ReflexiveProperty
    owl:IrreflexiveProperty owl:SymmetricProperty owl:AsymmetricProperty owl:TransitiveProperty);
+our @NO_CLASSES = qw(owl:Thing schema:Thing owl:Nothing schema:DataType);
 our @NO_PROPS = qw(owl:topObjectProperty owl:bottomObjectProperty owl:topDataProperty owl:bottomDataProperty);
 our @LABEL_PROPS = qw(rdfs:label skos:prefLabel dc:title dct:title);
 our @DESCR_PROPS = qw(rdfs:comment skos:definition skos:description skos:scopeNote dc:description dct:description);
@@ -117,6 +120,7 @@ sub my_die($) {
 }
 
 sub usage () {
+  my $no_classes    = join ", ", sort @NO_CLASSES;
   my $label_props   = join ", ", sort @LABEL_PROPS;
   my $descr_props   = join ", ", sort @DESCR_PROPS;
   my $creator_props = join ", ", sort @CREATOR_PROPS;
@@ -131,9 +135,12 @@ Options:
 
 Parses:
 - ontologies (owl:Ontology, dct:created, dct:modified, $creator_props),
-- classes (rdfs:Class, owl:Class, EXCLUDES schema:DataType);
+- classes (rdfs:Class, owl:Class);
+  - EXCLUDES schema:DataTypes and $no_classes;
+- class inheritance (rdfs:subClassOf). Generates concrete class and abstract superclass and patches the hierarchy;
 - props (rdf:Property, owl:AnnotationProperty, owl:DatatypeProperty, owl:ObjectProperty);
 - datatypes (default string; $datatypes);
+  - EXCLUDES $no_datatypes
 - prop relations (owl:inverseOf, schema:inverseOf; but NOT rdfs:subPropertyOf);
 - prop domains (rdfs:domain, schema:domainIncludes, owl:unionOf). Multiple domains are allowed.
 - prop ranges (rdfs:range, schema:rangeIncludes, owl:unionOf). Object or datatype ranges are allowed.
@@ -145,7 +152,6 @@ Limitations:
 - Takes metadata only from the first ("root") owl:Ontology
 - Uses only labels/descriptions in "en" (including en-US, en-GB etc) or without language tag
 - owl:AnnotationProperty and owl:DatatypeProperty are treated the same
-- Ignores some datatypes ($no_datatypes)
 - Doesn't suppport multiple superclasses (the first one is used). Enquire about the status of issue PLATFORM-360
 - Doesn't support multiple prop ranges (the first one is used). Enquire about the status of issue PLATFORM-1493
 - Doesn't handle owl:import. Instead, provide multiple ontologies on input
@@ -164,7 +170,7 @@ sub first_ontology() {
   my $iter = $model->subjects(IRI("rdf:type"), IRI("owl:Ontology"));
   if ($ontology_iri = $iter->next) {
     $ontology = $ontology_iri->as_string;
-    $iter->next and my_warn("Found multiple ontologies, only metadata of the first one $ontology is used");
+    $iter->next and my_warn("Found multiple ontologies, metadata only of the first one is used: $ontology");
     $base = one_value($model->objects($ontology_iri, IRI("swc:BaseUrl")))
   };
   # try to find vocab_iri and vocab_prefix in various inter-dependent ways
@@ -314,51 +320,47 @@ sub iri_name($) {
   my $gql = $rdf;
   $gql =~ s{^$vocab_prefix:}{};
   # PLATFORM-1625 Allow punctuation in local names and prefixes: replaces [-_.:] with "_" so we don't need to do it
+  $gql_rdf{$gql} = $rdf;
   return $iri_name{$iri} = {gql=>$gql, rdf=>$rdf}
 }
 
-# given $super_rdf of a superclass (eg skos:Collection), produce the following configuration:
-#  Collection:
-#    inherits: CollectionInterface
-#    type: skos:Collection
-#  CollectionInterface:
-#    kind: abstract
-#    props:
-#      skos:member: {}
-# TODO: once we implement concrete superclass, simplify this code
-
-sub make_superClass ($) {
-  # given eg "skos:Collection", make the above configuration
-  # (except migrating skos:member, see next function)
-  # and return ("CollectionInterface","Collection")
-  my $iri_name = iri_name(shift);   # $map->uri($super_rdf)->as_string;
-  return ($iri_name->{super}, $iri_name->{gql})
-    if $iri_name->{super};
-  my $concrete = $iri_name->{gql};
-  my $super = $iri_name->{super} = $concrete."Interface";
-  $soml{objects}{$super}{kind} = "abstract";
-  $soml{objects}{$concrete}{type} = $iri_name->{rdf};
-  $soml{objects}{$concrete}{inherits} = $super;
-  ($super, $concrete)
+sub make_inherits($$) {
+  # for each $class, pick its first superclass and make the %inherits matrix
+  my ($classes, $no_classes) = @_;
+  for my $class (@$classes) {
+    # Ignore anonymous (blank node) super-classes
+    my @inherits = map $_->as_string, grep $_->isa("Attean::IRI"),
+      $model->objects ($class, IRI("rdfs:subClassOf"))->elements;
+    $class = iri_name($class) and $class = $class->{gql} or next;
+    @inherits = array_minus (@inherits, @$no_classes);
+    @inherits = sort map $_->{gql}, grep $_, map iri_name($_), @inherits;
+    $inherits{$class} = $inherits[0] if @inherits;
+    my_warn("Found multiple superclasses for $class, using only the first one: ".
+            join(", ",@inherits))
+      if @inherits>1
+  }
 }
 
-sub fix_superClasses () {
-  # migrate props from concrete to abstract superclass
-  my %migrate;
-  map {
-    $migrate{$iri_name{$_}{gql}} = $iri_name{$_}{super}
-  } grep $iri_name{$_}{super}, keys %iri_name;
-  # migrate domains
-  map {
-    $soml{objects}{$migrate{$_}}{props} = $soml{objects}{$_}{props};
-    delete $soml{objects}{$_}{props};
-  } grep $soml{objects}{$_}{props}, keys %migrate;
-  # migrate ranges
-  map {
-    my $class = $soml{properties}{$_}{range};
-    $class &&= $migrate{$class};
-    $soml{properties}{$_}{range} = $class if $class;
-  } keys %{$soml{properties}}
+# TODO: once we implement concrete superclass, eliminate this function
+sub make_super() {
+  # make SOML statements to create dual pair "$concrete class - abstract $super interface"
+  my %isSuper = reverse %inherits;
+  for my $concrete (keys %isSuper) {
+    my $super = $concrete."Interface";
+    $super{$concrete} = $super;
+    $soml{objects}{$super}{kind} = "abstract";
+    $soml{objects}{$concrete}{type} = $gql_rdf{$concrete};
+    $soml{objects}{$concrete}{inherits} = $super;
+  }
+}
+
+sub lift_inherits () {
+  # lift the %inherits relation to the abstract superclasses, if any
+  while (my ($subClass,$superClass) = each %inherits) {
+    $subClass   = $super{$subClass}   if $super{$subClass};
+    $superClass = $super{$superClass} if $super{$superClass};
+    $soml{objects}{$subClass}{inherits} = $superClass
+  }
 }
 
 sub expand_union($); # quash "called too early to check prototype" because of recursive call
@@ -382,7 +384,7 @@ sub map_range ($$) {
   my ($pname,$range) = @_;
   my $x = $MAP->abbreviate(uri($range));
   $x && $DATATYPES{$x} and return {kind=>"datatype", gql => $DATATYPES{$x}};
-  $x && $NO_DATATYPES{$x} and do {my_warn("Prop $pname uses unsupported datatype $x"); return undef};
+  $x && $NO_DATATYPES{$x} and do {my_warn("Prop $pname uses unsupported datatype $x, ignored"); return undef};
   my $y = iri_name($range);
   $y and return {kind => "class", gql => $y->{gql}, rdf => $y->{rdf}};
   return undef
@@ -410,7 +412,7 @@ if ($ontology_iri) {
   my $label = get_label ($ontology_iri,"ontology");
   $soml{label} = $label if $label;
   my @creators = uniq_en_strings($model->objects($ontology_iri, [map IRI($_), @CREATOR_PROPS]));
-  $soml{creator} = join ", ", @creators if @creators;
+  $soml{creator} = join ", ", sort @creators if @creators;
   my $created = date_part (one_value($model->objects($ontology_iri, IRI("dct:created"))));
   $soml{created} = $created if $created;
   my $updated = date_part (one_value($model->objects($ontology_iri, IRI("dct:modified"))));
@@ -424,10 +426,11 @@ if ($ontology_iri) {
 # https://github.com/kasei/attean/issues/152: need to use uniq()
 # Ignore anonymous (blank node) classes
 my @classes = uniq (map $_->as_string, grep $_->isa("Attean::IRI"),
-                    $model->subjects(IRI("rdf:type"), [IRI("rdfs:Class"), IRI("owl:Class")])->elements);
+                    $model->subjects([map IRI($_), qw(rdf:type rdfs:Class owl:Class)])->elements);
 # Undesirable classes. Map to as_string else array_minus may miss the same IRI instantiated from the ontology vs using IRI()
-my @no_classes = map $_->as_string, (IRI("owl:Thing"), IRI("owl:Nothing"), IRI("schema:DataType"),
-                                     $model->subjects(IRI("rdf:type"), IRI("schema:DataType"))->elements);
+my @no_classes = map $_->as_string,
+  ((map IRI($_), @NO_CLASSES),
+   $model->subjects(IRI("rdf:type"), IRI("schema:DataType"))->elements);
 @classes = array_minus (@classes, @no_classes);
 for my $class (@classes) {
   $class = iri($class);
@@ -439,19 +442,11 @@ for my $class (@classes) {
   $soml{objects}{$name}{label} = $label if $label;
   my $descr = get_descr ($class);
   $soml{objects}{$name}{descr} = $descr if $descr;
-  # Ignore anonymous (blank node) super-classes
-  my @superClasses = map $_->as_string, grep $_->isa("Attean::IRI"),
-    $model->objects ($class, IRI("rdfs:subClassOf"))->elements;
-  @superClasses = array_minus (@superClasses, @no_classes);
-  @superClasses = sort {iri_name($a)->{gql} cmp iri_name($b)->{gql}} grep iri_name($_), @superClasses;
-  if (@superClasses) {
-    my $super = $superClasses[0];
-    my ($super1,$super2) = make_superClass($super);
-    $soml{objects}{$name}{inherits} = $super1;
-    my_warn("Multiple superclasses found for $name, using only the first one: $super2")
-      if @superClasses>1
-    }
 };
+
+make_inherits(\@classes, \@no_classes);
+make_super();
+lift_inherits();
 
 # properties
 my @props = uniq (map $_->as_string,
@@ -485,8 +480,9 @@ for my $prop (map iri($_), @props) {
   # domains
   my @domains = expand_union ($model->objects ($prop, [IRI("rdfs:domain"), IRI("schema:domainIncludes")]));
   for my $domain (@domains) {
-    my $class = iri_name($domain)->{gql};
-    next unless $class;
+    my $class = iri_name($domain);
+    $class and $class = $class->{gql} or next;
+    $class = $super{$class} if $super{$class};
     # fix for referenced classes that may not be defined in the ontology
     $soml{objects}{$class}{type} = iri_name($domain)->{rdf};
     $soml{objects}{$class}{props}{$name} = {};
@@ -498,7 +494,8 @@ for my $prop (map iri($_), @props) {
   if (my $range = $ranges[0]) {
     $datatype = $range->{kind} eq "datatype" && $range->{gql};
     $class = !$datatype && $range->{gql};
-    my_warn("Multiple ranges found for prop $name, using only the first one: ".($datatype || $class))
+    my_warn("Found multiple ranges for prop $name, using only the first one: ".
+            join(", ", map $_->{gql}, @ranges))
       if @ranges>1;
     # fix for referenced classes that may not be defined in the ontology
     $soml{objects}{$class}{type} = $range->{rdf} if $class;
@@ -511,12 +508,10 @@ for my $prop (map iri($_), @props) {
   if (!$datatype && !$class) {
     if ($isObjectProp) {$class = "iri"} else {$datatype = "string"}
   };
+  $class = $super{$class} if $class && $super{$class};
   $soml{properties}{$name}{range} = $datatype || $class;
   $soml{properties}{$name}{kind}  = $datatype ?  "literal" : "object";
-  ## my_die "prop $name: object=$isObjectProp, data=$isDataProp, class=$class, datatype=$datatype" if $name eq "relation";
 };
-
-fix_superClasses();
 
 # print YAML
 use YAML; $YAML::UseHeader=0; print YAML::Dump(\%soml);

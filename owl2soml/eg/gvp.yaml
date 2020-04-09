@@ -136,6 +136,7 @@ objects:
       placeTypePreferred: {}
       prefLabelGVP: {}
       prefLabelLoC: {}
+    type: gvp:Subject
   UnknownPersonConcept:
     descr: |-
       Unknown person representing a nationality/culture (the Unknown People by Culture facet). Unknown person representing a nationality/culture (the Unknown People by Culture facet).
@@ -166,6 +167,7 @@ objects:
     kind: abstract
     props:
       skos:member: {}
+    type: skos:Collection
   skos:Concept:
     descr: An idea or notion; a unit of thought
     label: Concept
