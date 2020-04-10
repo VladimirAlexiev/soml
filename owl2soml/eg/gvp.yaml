@@ -2481,7 +2481,7 @@ properties:
       any - related to - any.
       Example: Fountains Abbey is related to Studley Royal; Austria-Hungary is related to Magyarorszag
     kind: object
-    label: tgn3000_related_to
+    label: 'related to - any'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3000_related_to
@@ -2491,7 +2491,7 @@ properties:
       any - distinguished from - any.
       Example: The Ancient Mesopotamian Kingdom 'Assyria' is distinguished from the Roman Province of the same name
     kind: object
-    label: tgn3001_distinguished_from
+    label: 'distinguished from - any'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3001_distinguished_from
@@ -2501,7 +2501,7 @@ properties:
       place - possibly identified as - place.
       Example: The lost settlement of Sharuhen is possibly identified as Tel el-Far'ah (As Suwayda', Syria) (deserted settlement)
     kind: object
-    label: tgn3005_possibly_identified_as
+    label: 'possibly identified as - place'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3005_possibly_identified_as
@@ -2511,7 +2511,7 @@ properties:
       New. place - formerly identified as - place; New.
       Example: The deserted settlement of Machupicchu was formerly identified as Tampu Tocco
     kind: object
-    label: tgn3006_formerly_identified_as
+    label: 'formerly identified as - place'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3006_formerly_identified_as
@@ -2521,7 +2521,7 @@ properties:
       any - near/adjacent to - any.
       Example: Saint Paul (Minnesota, USA), is linked to its 'Twin City' Minneapolis (Hennepin county, Minnesota, USA)
     kind: object
-    label: tgn3101_near-adjacent_to
+    label: 'near/adjacent to - any'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3101_near-adjacent_to
@@ -2531,7 +2531,7 @@ properties:
       place - coextensive with - place.
       Example: Kings county (New York, USA) is coextensive with Brooklyn (New York, USA)
     kind: object
-    label: tgn3102_coextensive_with
+    label: 'coextensive with - place'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3102_coextensive_with
@@ -2542,7 +2542,7 @@ properties:
       Example: tgn:7018835 Palmyra is located on tgn:7031416 Silk Road
     inverseOf: tgn3104_is_location_of
     kind: object
-    label: tgn3103_located_on
+    label: 'located on - place'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3103_located_on
@@ -2552,7 +2552,7 @@ properties:
       Example: tgn:7031416 Silk Road is location of tgn:7018835 Palmyra
     inverseOf: tgn3103_located_on
     kind: object
-    label: tgn3104_is_location_of
+    label: 'is location of - place'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3104_is_location_of
@@ -2561,7 +2561,7 @@ properties:
       any - meaning/usage overlaps with - any.
       Example: Judaea (Israel) (historical region) meaning/usage overlaps with Holy Land (Asia) (historical region)
     kind: object
-    label: tgn3110_meaning-usage_overlaps_with
+    label: 'meaning/usage overlaps with - any'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3110_meaning-usage_overlaps_with
@@ -2572,7 +2572,7 @@ properties:
       Example: Thecapital of Maxima Caesariensis from 296 to 800 CE was London
     inverseOf: tgn3202_capital_is
     kind: object
-    label: tgn3201_capital_of
+    label: 'capital of - nation'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3201_capital_of
@@ -2582,7 +2582,7 @@ properties:
       Example: London was the capital of Maxima Caesariensis from 296 to 800 CE
     inverseOf: tgn3201_capital_of
     kind: object
-    label: tgn3202_capital_is
+    label: 'capital is - city'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3202_capital_is
@@ -2591,7 +2591,7 @@ properties:
       nation - ally of - nation.
       Example: Siena, Arezzo, Pisa, and Pistoia were Ghibeline allies during the 13th and 14th centuries
     kind: object
-    label: tgn3301_ally_of
+    label: 'ally of - nation'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3301_ally_of
@@ -2602,7 +2602,7 @@ properties:
       Example: Austria is a member of the European Union since 1915; Belgium is a member of the European Union since 1958
     inverseOf: tgn3318_member_is
     kind: object
-    label: tgn3317_member_of
+    label: 'member of - union'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3317_member_of
@@ -2612,7 +2612,7 @@ properties:
       Example: Austria is a member of the European Union since 1915; Belgium is a member of the European Union since 1958
     inverseOf: tgn3317_member_of
     kind: object
-    label: tgn3318_member_is
+    label: 'member is - nation'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3318_member_is
@@ -2622,7 +2622,7 @@ properties:
       Example: Troupville, Georgia, USA was moved to Valdosta (Lowndes county, Georgia, USA)
     inverseOf: tgn3402_moved_to
     kind: object
-    label: tgn3401_moved_from
+    label: 'moved from - place'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3401_moved_from
@@ -2632,7 +2632,7 @@ properties:
       Example: Valdosta (Lowndes county, Georgia, USA) moved from Troupville (Georgia, USA)
     inverseOf: tgn3401_moved_from
     kind: object
-    label: tgn3402_moved_to
+    label: 'moved to - place'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3402_moved_to
@@ -2642,7 +2642,7 @@ properties:
       Example: Iran (nation) is the successor of Persia
     inverseOf: tgn3412_predecessor_of
     kind: object
-    label: tgn3411_successor_of
+    label: 'successor of - nation'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3411_successor_of
@@ -2652,7 +2652,7 @@ properties:
       Example: Persia is the predecessor of Iran (nation)
     inverseOf: tgn3411_successor_of
     kind: object
-    label: tgn3412_predecessor_of
+    label: 'predecessor of - nation'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3412_predecessor_of
@@ -2661,7 +2661,7 @@ properties:
       any - historical connection - any.
       Example: Guyenne, France (historical region) has a historical connection to Gascogne (France) (historical region)
     kind: object
-    label: tgn3510_historical_connection
+    label: 'historical connection - any'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3510_historical_connection
@@ -2672,7 +2672,7 @@ properties:
       Example: Luni (La Spezia province, Liguria, Italy) is the admisistrative dependent of Ortonovo (Massa-Carrara province, Tuscany, Italy)
     inverseOf: tgn3612_administrative_entity_for
     kind: object
-    label: tgn3611_administrative_dependent_of
+    label: 'administrative dependent of - place'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3611_administrative_dependent_of
@@ -2682,7 +2682,7 @@ properties:
       Example: Ortonovo (Massa-Carra province, Tuscany, Italy) is the administrative entity for Luni (La Spezia province, Liguria, Italy)
     inverseOf: tgn3611_administrative_dependent_of
     kind: object
-    label: tgn3612_administrative_entity_for
+    label: 'administrative entity for - place'
     max: inf
     range: skos:Concept
     rdfProp: gvp:tgn3612_administrative_entity_for
@@ -2691,7 +2691,7 @@ properties:
       any - related to - any.
       Example: Frank Lloyd Wright is related to Francis Conroy Sullivan; Herman Miller, Inc. is related to Irving Harper; National Endowment for the Humanities is related to Connecticut Humanities Council
     kind: object
-    label: ulan1000_related_to
+    label: 'related to - any'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1000_related_to
@@ -2701,7 +2701,7 @@ properties:
       any - associated with - any.
       Example: Richard Meier is associated with Renny B.Saltzman; United Nations is associated with World Bank
     kind: object
-    label: ulan1003_associated_with
+    label: 'associated with - any'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1003_associated_with
@@ -2711,7 +2711,7 @@ properties:
       any - possibly identified with - any.
       Example: Master of the Saint John Altarpiece is possibly identified with Hughe Jacobsz; Bauart is possibly identified with Gruppe BAUart
     kind: object
-    label: ulan1005_possibly_identified_with
+    label: 'possibly identified with - any'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1005_possibly_identified_with
@@ -2721,7 +2721,7 @@ properties:
       any - formerly identified with - any.
       Example: Tommaso is formerly identified with Tommaso di Stefano Lunetti; GreenWorks is formerly identified with Mike Faha & Associates
     kind: object
-    label: ulan1006_formerly_identified_with
+    label: 'formerly identified with - any'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1006_formerly_identified_with
@@ -2731,7 +2731,7 @@ properties:
       any - distinguished from - any.
       Example: Laura Theresa Alma-Tadema is distinguished from Lawrence Alma-Tadema; The Noguchi Museum is distinguished form Isamu Noguchi Garden Museum Japan
     kind: object
-    label: ulan1007_distinguished_from
+    label: 'distinguished from - any'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1007_distinguished_from
@@ -2741,7 +2741,7 @@ properties:
       any - meaning /usage overlaps with - any.
       Example: The meaning or usage of unknown Zimbabwean overlaps with unknown Rodesian
     kind: object
-    label: ulan1008_meaning_-usage_overlaps_with
+    label: 'meaning /usage overlaps with - any'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1008_meaning_-usage_overlaps_with
@@ -2752,7 +2752,7 @@ properties:
       Example: Rivalz, Antoine was the teacher of Pierre Subleyras
     inverseOf: ulan1102_student_of
     kind: object
-    label: ulan1101_teacher_of
+    label: 'teacher of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1101_teacher_of
@@ -2762,7 +2762,7 @@ properties:
       Example: Pierre Subleyras was the student of Rivalz, Antoine
     inverseOf: ulan1101_teacher_of
     kind: object
-    label: ulan1102_student_of
+    label: 'student of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1102_student_of
@@ -2772,7 +2772,7 @@ properties:
       Example: Nicolas Hawksmoor was the apprentice of Christopher Wren
     inverseOf: ulan1106_apprentice_was
     kind: object
-    label: ulan1105_apprentice_of
+    label: 'apprentice of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1105_apprentice_of
@@ -2782,7 +2782,7 @@ properties:
       Example: Nicolas Hawksmoor was the apprentice of Christopher Wren
     inverseOf: ulan1105_apprentice_of
     kind: object
-    label: ulan1106_apprentice_was
+    label: 'apprentice was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1106_apprentice_was
@@ -2792,7 +2792,7 @@ properties:
       Example: Rembrandt van Rijn influenced Salomon Koninck
     inverseOf: ulan1108_influenced_by
     kind: object
-    label: ulan1107_influenced
+    label: 'influenced - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1107_influenced
@@ -2802,7 +2802,7 @@ properties:
       Example: Salomon Koninck was influenced by Rembrandt van Rijn
     inverseOf: ulan1107_influenced
     kind: object
-    label: ulan1108_influenced_by
+    label: 'influenced by - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1108_influenced_by
@@ -2812,7 +2812,7 @@ properties:
       Example: Peter Paul Rubens - master of Jan Thomas
     inverseOf: ulan1112_master_was
     kind: object
-    label: ulan1111_master_of
+    label: 'master of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1111_master_of
@@ -2822,7 +2822,7 @@ properties:
       Example: Peter Paul Rubens - master of Jan Thomas
     inverseOf: ulan1111_master_of
     kind: object
-    label: ulan1112_master_was
+    label: 'master was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1112_master_was
@@ -2831,7 +2831,7 @@ properties:
       person - fellow student of - person.
       Example: Alexander Calder was a fellow student of John Sloan; John Sloan was a fellow student of Thomas Hart Benton
     kind: object
-    label: ulan1113_fellow_student_of
+    label: 'fellow student of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1113_fellow_student_of
@@ -2842,7 +2842,7 @@ properties:
       Example: Cosimo I, Grand-Duke of Tuscany was the patron of Donatello
     inverseOf: ulan1202_patron_was
     kind: object
-    label: ulan1201_patron_of
+    label: 'patron of - person/firm/family'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1201_patron_of
@@ -2852,7 +2852,7 @@ properties:
       Example: The patron of Donatello was Cosimo I, Grand-Duke of Tuscany
     inverseOf: ulan1201_patron_of
     kind: object
-    label: ulan1202_patron_was
+    label: 'patron was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1202_patron_was
@@ -2862,7 +2862,7 @@ properties:
       Example: Andrew W. Mellon was a donor of National Gallery of Art
     inverseOf: ulan1204_donor_was
     kind: object
-    label: ulan1203_donor_of
+    label: 'donor of - person/firm/family'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1203_donor_of
@@ -2872,7 +2872,7 @@ properties:
       Example: Donor to the National Gallery of Art was Andrew W. Mellon
     inverseOf: ulan1203_donor_of
     kind: object
-    label: ulan1204_donor_was
+    label: 'donor was - person/firm/family'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1204_donor_was
@@ -2882,7 +2882,7 @@ properties:
       Example: The Chicago Herald was the client of Burnham and Root
     inverseOf: ulan1206_client_was
     kind: object
-    label: ulan1205_client_of
+    label: 'client of - person/firm/family'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1205_client_of
@@ -2892,7 +2892,7 @@ properties:
       Example: Burnham and Root's client was the Chicago Herald
     inverseOf: ulan1205_client_of
     kind: object
-    label: ulan1206_client_was
+    label: 'client was - person/firm/family'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1206_client_was
@@ -2902,7 +2902,7 @@ properties:
       Example: Artist to Louis XIV, King of France was Charles-Pierre Coustou
     inverseOf: ulan1212_artist_was
     kind: object
-    label: ulan1211_artist_to
+    label: 'artist to - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1211_artist_to
@@ -2912,7 +2912,7 @@ properties:
       Example: Charles-Pierre Coustou was artist to Louis XIV, King of France
     inverseOf: ulan1211_artist_to
     kind: object
-    label: ulan1212_artist_was
+    label: 'artist was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1212_artist_was
@@ -2922,7 +2922,7 @@ properties:
       Example: Court artist to Gonzaga Vincenzo I, Duke of Mantua was Peter Paul Rubens; court artist to Charles IV, King of Spain was Francisco de Goya
     inverseOf: ulan1214_court_artist_was
     kind: object
-    label: ulan1213_court_artist_to
+    label: 'court artist to - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1213_court_artist_to
@@ -2932,7 +2932,7 @@ properties:
       Example: Peter Paul Rubens was court artist to Gonzaga Vincenzo I, Duke of Mantua; Francisco de Goya was court artist to Charles IV, King of Spain
     inverseOf: ulan1213_court_artist_to
     kind: object
-    label: ulan1214_court_artist_was
+    label: 'court artist was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1214_court_artist_was
@@ -2942,7 +2942,7 @@ properties:
       Example: Employee of Christopher Wren was Jean Tijou
     inverseOf: ulan1218_employee_was
     kind: object
-    label: ulan1217_employee_of
+    label: 'employee of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1217_employee_of
@@ -2952,7 +2952,7 @@ properties:
       Example: Jean Tijou was an employee of Christopher Wren
     inverseOf: ulan1217_employee_of
     kind: object
-    label: ulan1218_employee_was
+    label: 'employee was - person/firm'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1218_employee_was
@@ -2962,7 +2962,7 @@ properties:
       Example: Pope Urban VIII appointed Virginio Cesarini
     inverseOf: ulan1222_appointee_of
     kind: object
-    label: ulan1221_appointed_by
+    label: 'appointed by - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1221_appointed_by
@@ -2972,7 +2972,7 @@ properties:
       Example: Virginio Cesarini was appointee by Pope Urban VIII
     inverseOf: ulan1221_appointed_by
     kind: object
-    label: ulan1222_appointee_of
+    label: 'appointee of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1222_appointee_of
@@ -2982,7 +2982,7 @@ properties:
       Example: Pope Leo III crowned Emperor Charlemagne
     inverseOf: ulan1224_crowned
     kind: object
-    label: ulan1223_crowned_by
+    label: 'crowned by - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1223_crowned_by
@@ -2992,7 +2992,7 @@ properties:
       Example: Emperor Charlemagne was crowned by Pope Leo III
     inverseOf: ulan1223_crowned_by
     kind: object
-    label: ulan1224_crowned
+    label: 'crowned - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1224_crowned
@@ -3001,7 +3001,7 @@ properties:
       person - colleague of - person.
       Example: Titian was a colleague of Maria Giovanni Verdizotti
     kind: object
-    label: ulan1301_colleague_of
+    label: 'colleague of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1301_colleague_of
@@ -3011,7 +3011,7 @@ properties:
       person - associate of - person.
       Example: Frank Lloyd Wright was an associate of Giannini and Hilgart
     kind: object
-    label: ulan1302_associate_of
+    label: 'associate of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1302_associate_of
@@ -3021,7 +3021,7 @@ properties:
       person - collaborated with - person.
       Example: Pablo Picasso collaborated with Georges Braque
     kind: object
-    label: ulan1303_collaborated_with
+    label: 'collaborated with - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1303_collaborated_with
@@ -3041,7 +3041,7 @@ properties:
       person - performs with - person.
       Example: Harry Kipper performs with Harry Kipper (as part of 'The Kipper Kids')
     kind: object
-    label: ulan1306_performs_with
+    label: 'performs with - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1306_performs_with
@@ -3052,7 +3052,7 @@ properties:
       Example: Bernard Castelli was assistant of Pablo Picasso
     inverseOf: ulan1308_assisted_by
     kind: object
-    label: ulan1307_assistant_of
+    label: 'assistant of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1307_assistant_of
@@ -3062,7 +3062,7 @@ properties:
       Example: Pablo Picasso was assisted by Bernard Castelli
     inverseOf: ulan1307_assistant_of
     kind: object
-    label: ulan1308_assisted_by
+    label: 'assisted by - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1308_assisted_by
@@ -3072,7 +3072,7 @@ properties:
       Example: Thomas Cromwell, Earl of Essex was the advisor of Henry VIII, King of England
     inverseOf: ulan1310_advised_by
     kind: object
-    label: ulan1309_advisor_of
+    label: 'advisor of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1309_advisor_of
@@ -3082,7 +3082,7 @@ properties:
       Example: Henry VIII, King of England was advised by Thomas Cromwell, Earl of Essex
     inverseOf: ulan1309_advisor_of
     kind: object
-    label: ulan1310_advised_by
+    label: 'advised by - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1310_advised_by
@@ -3091,7 +3091,7 @@ properties:
       person - partner of - person.
       Example: Frank Gehry and James Glymph are partners
     kind: object
-    label: ulan1311_partner_of
+    label: 'partner of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1311_partner_of
@@ -3102,7 +3102,7 @@ properties:
       Example: Parners of Adler and Sullivan included Louis H. Sullivan and Dankmar Adler
     inverseOf: ulan1314_partner_was
     kind: object
-    label: ulan1313_partner_in
+    label: 'partner in - firm'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1313_partner_in
@@ -3112,7 +3112,7 @@ properties:
       Example: Louis H. Sullivan and Dankmar Adler were partners in Adler and Sullivan
     inverseOf: ulan1313_partner_in
     kind: object
-    label: ulan1314_partner_was
+    label: 'partner was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1314_partner_was
@@ -3122,7 +3122,7 @@ properties:
       Example: Principal in Fontana Workshop was Orazio Fontana
     inverseOf: ulan1316_principal_was
     kind: object
-    label: ulan1315_principal_in
+    label: 'principal in - firm'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1315_principal_in
@@ -3132,7 +3132,7 @@ properties:
       Example: Orazio Fontana was principal in Fontana Workshop
     inverseOf: ulan1315_principal_in
     kind: object
-    label: ulan1316_principal_was
+    label: 'principal was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1316_principal_was
@@ -3142,7 +3142,7 @@ properties:
       Example: A member of the Foundation of Documents of Architecture is the National Gallery of Art
     inverseOf: ulan1318_member_was
     kind: object
-    label: ulan1317_member_of
+    label: 'member of - person/firm/group'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1317_member_of
@@ -3152,7 +3152,7 @@ properties:
       Example: The National Gallery of Art was/is a member of the Foundation of Documentation of Architecture
     inverseOf: ulan1317_member_of
     kind: object
-    label: ulan1318_member_was
+    label: 'member was - firm/group'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1318_member_was
@@ -3162,7 +3162,7 @@ properties:
       Example: The school of Pierre Saalburg was the Architectural Association. School of Architecture
     inverseOf: ulan1322_school_was
     kind: object
-    label: ulan1321_school_of
+    label: 'school of - firm/group'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1321_school_of
@@ -3172,7 +3172,7 @@ properties:
       Example: Pierre Saalburg attended Architectural Association. School of Architecture
     inverseOf: ulan1321_school_of
     kind: object
-    label: ulan1322_school_was
+    label: 'school was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1322_school_was
@@ -3202,7 +3202,7 @@ properties:
       Example: Richard Meier & Partners Architects LLP is the successor of Richard Meier & Associates
     inverseOf: ulan1412_predecessor_of
     kind: object
-    label: ulan1411_successor_of
+    label: 'successor of - firm/group'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1411_successor_of
@@ -3212,7 +3212,7 @@ properties:
       Example: Richard Meier & Associates is the predecessor of Richard Meier & Partners Architects LLP
     inverseOf: ulan1411_successor_of
     kind: object
-    label: ulan1412_predecessor_of
+    label: 'predecessor of - firm/group'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1412_predecessor_of
@@ -3221,7 +3221,7 @@ properties:
       firm/group - administration overlaps with - firm/group.
       Example: The administration of the Numismatic Collection overlaps with Bode Museum
     kind: object
-    label: ulan1413_administration_overlaps_with
+    label: 'administration overlaps with - firm/group'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1413_administration_overlaps_with
@@ -3231,7 +3231,7 @@ properties:
       firm/group - joint venture with - firm/group.
       Example: Schwetye Luchini Architects is in a joint venture with ACME Architects
     kind: object
-    label: ulan1414_joint_venture_with
+    label: 'joint venture with - firm/group'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1414_joint_venture_with
@@ -3242,7 +3242,7 @@ properties:
       Example: National Gallery of Art was founded by United States Congress
     inverseOf: ulan1422_founded
     kind: object
-    label: ulan1421_founded_by
+    label: 'founded by - firm/group'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1421_founded_by
@@ -3252,7 +3252,7 @@ properties:
       Example: The United States Congress founded the National Gallery of Art
     inverseOf: ulan1421_founded_by
     kind: object
-    label: ulan1422_founded
+    label: 'founded - firm/group'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1422_founded
@@ -3261,7 +3261,7 @@ properties:
       person - related to (familial relationship) - person.
       Example: Titian and Tizianello have a familial relationship with each other
     kind: object
-    label: ulan1500_related_to
+    label: 'related to - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1500_related_to
@@ -3271,7 +3271,7 @@ properties:
       person - sibling of - person.
       Example: Philippe Rubens is the sibling of Peter Paul Rubens
     kind: object
-    label: ulan1501_sibling_of
+    label: 'sibling of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1501_sibling_of
@@ -3282,7 +3282,7 @@ properties:
       Example: Rembrandt van Rijn is the child of Neeltgen Willemsdr van Zuydtbroeck
     inverseOf: ulan1512_parent_of
     kind: object
-    label: ulan1511_child_of
+    label: 'child of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1511_child_of
@@ -3292,7 +3292,7 @@ properties:
       Example: Rembrandt van Rijn is the parent of Rumbertus van Rijn
     inverseOf: ulan1511_child_of
     kind: object
-    label: ulan1512_parent_of
+    label: 'parent of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1512_parent_of
@@ -3302,7 +3302,7 @@ properties:
       Example: Eric Lloyd Wright is the grandchild of Frank Lloyd Wright
     inverseOf: ulan1514_gandparent_of
     kind: object
-    label: ulan1513_grandchild_of
+    label: 'grandchild of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1513_grandchild_of
@@ -3312,7 +3312,7 @@ properties:
       Example: Frank Lloyd Wright is the grandparent of Eric Lloyd Wright
     inverseOf: ulan1513_grandchild_of
     kind: object
-    label: ulan1514_gandparent_of
+    label: 'gandparent of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1514_gandparent_of
@@ -3322,7 +3322,7 @@ properties:
       Example: Albrecht Adam is the great-grandparent of Richard Benno Adam
     inverseOf: ulan1516_great-grandchild_of
     kind: object
-    label: ulan1515_great-grandparent_of
+    label: 'great-grandparent of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1515_great-grandparent_of
@@ -3332,7 +3332,7 @@ properties:
       Example: Richard Benno Adam is the great-grandchild of Albrecht Adam
     inverseOf: ulan1515_great-grandparent_of
     kind: object
-    label: ulan1516_great-grandchild_of
+    label: 'great-grandchild of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1516_great-grandchild_of
@@ -3341,7 +3341,7 @@ properties:
       person - cousin of - person.
       Example: Richard Meier and Frank Gehry are cousins
     kind: object
-    label: ulan1521_cousin_of
+    label: 'cousin of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1521_cousin_of
@@ -3352,7 +3352,7 @@ properties:
       Example: Jan Brueghel, the elder is the nephew/neice of  Pieter Coecke van Aeist, the younger
     inverseOf: ulan1532_uncle-aunt_of
     kind: object
-    label: ulan1531_nephew-niece_of
+    label: 'nephew/niece of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1531_nephew-niece_of
@@ -3371,7 +3371,7 @@ properties:
       person - spouse of - person.
       Example: Alfred Stieglitz and Georgia O'Keeffe were married to each other
     kind: object
-    label: ulan1541_spouse_of
+    label: 'spouse of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1541_spouse_of
@@ -3382,7 +3382,7 @@ properties:
       Example: Empress Livia was the consort of Augustus, Emperor of Rome
     inverseOf: ulan1543_consort_was
     kind: object
-    label: ulan1542_consort_of
+    label: 'consort of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1542_consort_of
@@ -3392,7 +3392,7 @@ properties:
       Example: Augustus, Emperor of Rome's consort was Empress Livia
     inverseOf: ulan1542_consort_of
     kind: object
-    label: ulan1543_consort_was
+    label: 'consort was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1543_consort_was
@@ -3401,7 +3401,7 @@ properties:
       person - significant other of - person.
       Example: Jeanne Hebuterne was the significant other of Amedeo Modigliani
     kind: object
-    label: ulan1544_significant_other_of
+    label: 'significant other of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1544_significant_other_of
@@ -3411,7 +3411,7 @@ properties:
       person - romantic partner of - person.
       Example: Pablo Picasso and Gaby Lespinasse were romantic partners; Vincent van Gogh and Clasina Hoornik were romantic partners
     kind: object
-    label: ulan1547_romantic_partner_of
+    label: 'romantic partner of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1547_romantic_partner_of
@@ -3419,7 +3419,7 @@ properties:
   ulan1548_domestic_partner_of:
     descr: 'person - domestic partner of - person'
     kind: object
-    label: ulan1548_domestic_partner_of
+    label: 'domestic partner of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1548_domestic_partner_of
@@ -3429,7 +3429,7 @@ properties:
       person - relative by marriage (in-law) - person.
       Example: Juana Galarza d Goicoechea and Francisco de Goya are related by marriage
     kind: object
-    label: ulan1550_relative_by_marriage
+    label: 'relative by marriage - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1550_relative_by_marriage
@@ -3439,7 +3439,7 @@ properties:
       person - sibling by marriage (step sibling) - person.
       Example: Peter Paul Rubens and Susanne Fourment are siblings by marriage
     kind: object
-    label: ulan1551_sibling_by_marriage_of
+    label: 'sibling by marriage of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1551_sibling_by_marriage_of
@@ -3450,7 +3450,7 @@ properties:
       Example: Frans Hals is a parent by marriage of Pieter Gerritsz van Roestraten
     inverseOf: ulan1553_child_by_marriage_of
     kind: object
-    label: ulan1552_parent_by_marriage_of
+    label: 'parent by marriage of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1552_parent_by_marriage_of
@@ -3460,7 +3460,7 @@ properties:
       Example: Pieter Gerritsz van Roestraten is the child by marriage of Frans Hals
     inverseOf: ulan1552_parent_by_marriage_of
     kind: object
-    label: ulan1553_child_by_marriage_of
+    label: 'child by marriage of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1553_child_by_marriage_of
@@ -3470,7 +3470,7 @@ properties:
       Example: Julius Caesar is the adoptive parent of Augustus, Emperor of Rome
     inverseOf: ulan1555_adopted_child_of
     kind: object
-    label: ulan1554_adoptive_parent_of
+    label: 'adoptive parent of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1554_adoptive_parent_of
@@ -3480,7 +3480,7 @@ properties:
       Example: Augusts, Emperor of Rome is the adopted child of Julius Caesar
     inverseOf: ulan1554_adoptive_parent_of
     kind: object
-    label: ulan1555_adopted_child_of
+    label: 'adopted child of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1555_adopted_child_of
@@ -3489,7 +3489,7 @@ properties:
       person - half-sibling of - person.
       Example: Juan Bautista Monegro and Luis de Carbajal are half siblings
     kind: object
-    label: ulan1556_half-sibling_of
+    label: 'half-sibling of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1556_half-sibling_of
@@ -3499,7 +3499,7 @@ properties:
       person - step-sibling of - person.
       Example: W. L. Wyllie and Lionel Percy Smythe are step-siblings
     kind: object
-    label: ulan1557_step-sibling_of
+    label: 'step-sibling of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1557_step-sibling_of
@@ -3510,7 +3510,7 @@ properties:
       Example: Hortense, Quene consort of Louis Bonaparte is the step-child of Napoleon I, Emperor of the French
     inverseOf: ulan1562_step-parent_of
     kind: object
-    label: ulan1561_step-child_of
+    label: 'step-child of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1561_step-child_of
@@ -3520,7 +3520,7 @@ properties:
       Example: Napoleon I, Emperor of the French is the step-parent of Hortense, Quene consort of Louis Bonaparte
     inverseOf: ulan1561_step-child_of
     kind: object
-    label: ulan1562_step-parent_of
+    label: 'step-parent of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1562_step-parent_of
@@ -3530,7 +3530,7 @@ properties:
       Example: John Hoskins, the elder was the guardian of Samuel Cooper
     inverseOf: ulan1573_ward_of
     kind: object
-    label: ulan1571_guardian_of
+    label: 'guardian of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1571_guardian_of
@@ -3550,7 +3550,7 @@ properties:
       Example: Jean-Baptiste Goy is godparent of Jean I Nocret
     inverseOf: ulan1575_godchild_of
     kind: object
-    label: ulan1574_godparent_of
+    label: 'godparent of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1574_godparent_of
@@ -3560,7 +3560,7 @@ properties:
       Example: Jean I Nocret is the godchild of Jean-Baptiste Goy
     inverseOf: ulan1574_godparent_of
     kind: object
-    label: ulan1575_godchild_of
+    label: 'godchild of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1575_godchild_of
@@ -3570,7 +3570,7 @@ properties:
       Example: Paolo Caliari is the descendant of Paolo Veronese
     inverseOf: ulan1582_ancestor_of
     kind: object
-    label: ulan1581_descendant_of
+    label: 'descendant of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1581_descendant_of
@@ -3580,7 +3580,7 @@ properties:
       Example: Paolo Veronese is the ancestor of Paolo Caliari
     inverseOf: ulan1581_descendant_of
     kind: object
-    label: ulan1582_ancestor_of
+    label: 'ancestor of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1582_ancestor_of
@@ -3589,7 +3589,7 @@ properties:
       person - possibly related to (familial relationship) - person.
       Example: A familial relationship between Ramon Destorrents, the younger and Ramon Destorrents, the elder is possible
     kind: object
-    label: ulan1590_possibly_related_to
+    label: 'possibly related to - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan1590_possibly_related_to
@@ -3599,7 +3599,7 @@ properties:
       person - friend of (personal relationship) - person.
       Example: Alfred Stieglitz and Frank Simon Herrmann were friends
     kind: object
-    label: ulan2550_friend_of
+    label: 'friend of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2550_friend_of
@@ -3610,7 +3610,7 @@ properties:
       Example: Louis Comfort Tiffany was the founder of Tiffany Glass & Decorating Company
     inverseOf: ulan2573_founded_by
     kind: object
-    label: ulan2572_founder_of
+    label: 'founder of - institution'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2572_founder_of
@@ -3620,7 +3620,7 @@ properties:
       Example: Tiffany Glass & Decorating Company was founded by Louis Comfort Tiffany
     inverseOf: ulan2572_founder_of
     kind: object
-    label: ulan2573_founded_by
+    label: 'founded by - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2573_founded_by
@@ -3630,7 +3630,7 @@ properties:
       Example: Jean Jans I directed Gobelins Tapestry Manufactory
     inverseOf: ulan2575_directed_by
     kind: object
-    label: ulan2574_director_of
+    label: 'director of - institution'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2574_director_of
@@ -3640,7 +3640,7 @@ properties:
       Example: Gobelins Tapestry Manufactory was directed by Jean Jans I
     inverseOf: ulan2574_director_of
     kind: object
-    label: ulan2575_directed_by
+    label: 'directed by - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2575_directed_by
@@ -3650,7 +3650,7 @@ properties:
       Example: The patron of William Chambers was James Caulfiel, Earl of Charlemont
     inverseOf: ulan2577_patron_was
     kind: object
-    label: ulan2576_patron_of
+    label: 'patron of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2576_patron_of
@@ -3660,7 +3660,7 @@ properties:
       Example: James Caulfiel, Earl of Charlemont was the patron of William Chambers
     inverseOf: ulan2576_patron_of
     kind: object
-    label: ulan2577_patron_was
+    label: 'patron was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2577_patron_was
@@ -3670,7 +3670,7 @@ properties:
       Example: George Douglas Haig was a trustee of the National Galleries of Scotland
     inverseOf: ulan2579_trustee_was
     kind: object
-    label: ulan2578_trustee_of
+    label: 'trustee of - institution'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2578_trustee_of
@@ -3680,7 +3680,7 @@ properties:
       Example: National Galleries of Scotland trustee was George Douglas Haig
     inverseOf: ulan2578_trustee_of
     kind: object
-    label: ulan2579_trustee_was
+    label: 'trustee was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2579_trustee_was
@@ -3690,7 +3690,7 @@ properties:
       Example: Georges Mathieu was the administrator of Societe nationale des chemins de fer Francais. Agence des gares
     inverseOf: ulan2582_administered_by
     kind: object
-    label: ulan2581_administrator_of
+    label: 'administrator of - institution'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2581_administrator_of
@@ -3700,7 +3700,7 @@ properties:
       Example: Societe nationale des chemins de fer Francais. Agence des gares was administered by Georges Mathieu
     inverseOf: ulan2581_administrator_of
     kind: object
-    label: ulan2582_administered_by
+    label: 'administered by - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2582_administered_by
@@ -3708,7 +3708,7 @@ properties:
     descr: 'person - chairman of - institution'
     inverseOf: ulan2584_chaired_by
     kind: object
-    label: ulan2583_chairman_of
+    label: 'chairman of - institution'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2583_chairman_of
@@ -3716,7 +3716,7 @@ properties:
     descr: 'institution - chaired by - person'
     inverseOf: ulan2583_chairman_of
     kind: object
-    label: ulan2584_chaired_by
+    label: 'chaired by - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2584_chaired_by
@@ -3726,7 +3726,7 @@ properties:
       Example: The publisher for Pierre Joseph Rossier was Negretti and Zambra
     inverseOf: ulan2651_publisher_of
     kind: object
-    label: ulan2650_publisher_was
+    label: 'publisher was - firm'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2650_publisher_was
@@ -3736,7 +3736,7 @@ properties:
       Example: Negretti and Zambra was the publisher of Pierre Joseph Rossier
     inverseOf: ulan2650_publisher_was
     kind: object
-    label: ulan2651_publisher_of
+    label: 'publisher of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2651_publisher_of
@@ -3746,7 +3746,7 @@ properties:
       Example: Paul Klee was a professor at Bauhaus
     inverseOf: ulan2675_professor_was
     kind: object
-    label: ulan2674_professor_at
+    label: 'professor at - institution'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2674_professor_at
@@ -3756,7 +3756,7 @@ properties:
       Example: A professor at Bauhaus was Paul Klee
     inverseOf: ulan2674_professor_at
     kind: object
-    label: ulan2675_professor_was
+    label: 'professor was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2675_professor_was
@@ -3766,7 +3766,7 @@ properties:
       Example: Willem De Kooning was a teacher at Black Mountain College
     inverseOf: ulan2677_teacher_was
     kind: object
-    label: ulan2676_teacher_at
+    label: 'teacher at - institution'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2676_teacher_at
@@ -3776,7 +3776,7 @@ properties:
       Example: A teacher at Black Mountain College was Willem De Kooning
     inverseOf: ulan2676_teacher_at
     kind: object
-    label: ulan2677_teacher_was
+    label: 'teacher was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2677_teacher_was
@@ -3786,7 +3786,7 @@ properties:
       Example: David K. E. Bruce was president of National Gallery of Art
     inverseOf: ulan2693_president_was
     kind: object
-    label: ulan2692_president_of
+    label: 'president of - institution'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2692_president_of
@@ -3796,7 +3796,7 @@ properties:
       Example: A president of National Gallery of Art was David K. E. Bruce
     inverseOf: ulan2692_president_of
     kind: object
-    label: ulan2693_president_was
+    label: 'president was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2693_president_was
@@ -3806,7 +3806,7 @@ properties:
       Example: Rush Harrison Kress was the leader of Samuel H. Kress Foundation
     inverseOf: ulan2697_leader_was
     kind: object
-    label: ulan2696_leader_of
+    label: 'leader of - institution'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2696_leader_of
@@ -3816,7 +3816,7 @@ properties:
       Example: The leader of Samuel H. Kress Foundation was Rush Harrison Kress
     inverseOf: ulan2696_leader_of
     kind: object
-    label: ulan2697_leader_was
+    label: 'leader was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2697_leader_was
@@ -3826,7 +3826,7 @@ properties:
       Example: Walter Scott Lenox was the owner of Lenox China Co
     inverseOf: ulan2779_owned_by
     kind: object
-    label: ulan2778_owner_of
+    label: 'owner of - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2778_owner_of
@@ -3836,7 +3836,7 @@ properties:
       Example: Walter Scott Lenox was owned by Lenox China Co
     inverseOf: ulan2778_owner_of
     kind: object
-    label: ulan2779_owned_by
+    label: 'owned by - firm'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2779_owned_by
@@ -3846,7 +3846,7 @@ properties:
       Example: Auguste Rodin is the dedicatee of The Rodin Museum in Philadelphia
     inverseOf: ulan2782_dedicated_to
     kind: object
-    label: ulan2781_dedicatee_of
+    label: 'dedicatee of - institution'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2781_dedicatee_of
@@ -3856,7 +3856,7 @@ properties:
       Example: The Rodin Museum in Philadelphia is didicated to Auguste Rodin
     inverseOf: ulan2781_dedicatee_of
     kind: object
-    label: ulan2782_dedicated_to
+    label: 'dedicated to - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2782_dedicated_to
@@ -3866,7 +3866,7 @@ properties:
       Example: The Noguch Museum - representative was Isamu Noguchi
     inverseOf: ulan2795_representative_was
     kind: object
-    label: ulan2794_representative_of
+    label: 'representative of - institution'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2794_representative_of
@@ -3876,7 +3876,7 @@ properties:
       Example: The Noguch Museum - representative was Isamu Noguchi
     inverseOf: ulan2794_representative_of
     kind: object
-    label: ulan2795_representative_was
+    label: 'representative was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2795_representative_was
@@ -3886,7 +3886,7 @@ properties:
       Example: Zdanek Rossman was a student at Bauhaus
     inverseOf: ulan2829_student_was
     kind: object
-    label: ulan2828_student_at
+    label: 'student at - institution'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2828_student_at
@@ -3896,7 +3896,7 @@ properties:
       Example: Bauhaus student was Zdanek Rossman
     inverseOf: ulan2828_student_at
     kind: object
-    label: ulan2829_student_was
+    label: 'student was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2829_student_was
@@ -3904,7 +3904,7 @@ properties:
     descr: 'person - performer with - group'
     inverseOf: ulan2841_performer_was
     kind: object
-    label: ulan2840_performer_with
+    label: 'performer with - group'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2840_performer_with
@@ -3912,7 +3912,7 @@ properties:
     descr: 'group - performer was - person'
     inverseOf: ulan2840_performer_with
     kind: object
-    label: ulan2841_performer_was
+    label: 'performer was - person'
     max: inf
     range: skos:Concept
     rdfProp: gvp:ulan2841_performer_was

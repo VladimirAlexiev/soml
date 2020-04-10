@@ -673,6 +673,7 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 10-Apr-2020
 - Fix regression in `@classes`: emitted props also as classes
 - Add option `-id` to set only the SOML id and not `vocab_prefix`
+- Sort labels before taking the first one, and descriptions before concatenating them.
 
 9-Apr-2020
 - Rewrite of `make_superClass, fix_superClasses` to `make_inherits, make_super, lift_super`: 

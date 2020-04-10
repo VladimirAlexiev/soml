@@ -259,9 +259,9 @@ sub query_select ($) {
 
 sub uniq_en_strings ($) {
   # in: iterator of Attean::API::Term
-  # out: array of IRIs, or strings (have no lang), or langString "@en", skipping duplicates
+  # out: array of IRIs, or strings (have no lang), or langString "@en", skipping duplicates, sorted
   my $iter = shift;
-  uniq (map $_->value,
+  uniq (sort map $_->value,
         grep !$_->can("has_language") || !$_->has_language || $_->language =~ "^en",
         $iter->elements)
 }
@@ -281,7 +281,7 @@ sub get_descr ($) {
   my $iri = shift;  # the node whose descriptions we're fetching: ontology, class or property
   my @descr = uniq_en_strings($model->objects($iri, [map IRI($_), @DESCR_PROPS]));
   map {s{\. *$}{}} @descr; # remove trailing dot...
-  join ". ", sort @descr; # ...because we add dot between values
+  join ". ", @descr; # ...because we add dot between values
 }
 
 sub one_value ($) {

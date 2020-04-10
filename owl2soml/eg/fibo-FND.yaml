@@ -1,5 +1,5 @@
 id: /soml/fibo-FND
-label: Annotation Vocabulary
+label: Classification Schemes Ontology
 objects:
   fibo-be-le-lei:ContractuallyCapableEntity:
     type: fibo-be-le-lei:ContractuallyCapableEntity
@@ -5269,4 +5269,4 @@ properties:
     max: inf
     range: string
 specialPrefixes:
-  ontology_iri: https://spec.edmcouncil.org/fibo/ontology/FND/Utilities/AnnotationVocabulary/
+  ontology_iri: https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/ClassificationSchemes/
