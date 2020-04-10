@@ -10,6 +10,7 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
     - [Features](#features)
         - [Ontologies](#ontologies)
         - [`vocab_prefix, vocab_iri`](#vocab_prefix-vocab_iri)
+        - [No `vocab_prefix`](#no-vocab_prefix)
         - [Classes](#classes)
             - [subClassOf](#subclassof)
         - [Properties](#properties)
@@ -41,7 +42,9 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
 ```
 owl2soml.pl ontology.(ttl|rdf) ... > ontology.yaml
 Options:
-  --vocab pfx     Uses "pfx" as the main vocab_prefix
+  -voc pfx     Use "pfx" as the main vocab_prefix and SOML ID.
+  -id  id      Use "id" as SOML ID and don't set a vocab_prefix.
+               Otherwise vocab_prefix and SOML ID are set from the ontology using various heuristics.
 ```
 
 The [Semantic Objects Modeling Language (SOML)](http://platform.ontotext.com/soml/index.html)
@@ -77,21 +80,22 @@ and the tool looks for an `owl:Ontology` node (optional) to extract metadata.
 
 The following ontology metadata is handled:
 - label (see [Labels and Descriptions](#labels-and-descriptions))
-- dct:created, dct:modified. If dateTime stamp is provided, only the date part is used.
-- dc:creator, dct:creator. It handles literal or IRI `creator` and concatenates if it finds multiple values.
-- owl:versionInfo
+- `dct:created, dct:modified`. If a `dateTime` stamp is provided, only the date part is used.
+- `dc:creator, dct:creator`. It handles literal or IRI and concatenates if it finds multiple values.
+- `owl:versionInfo`
+- `swc:BaseUrl` of `owl:Ontology` is used to set `base_iri`.
+  This is currently not used to shorten IRIs in GraphQL queries and responses, but may be in the future.
   
 ### `vocab_prefix, vocab_iri`
 
 `vocab_prefix` is the default prefix of a SOML schema, and `vocab_iri` is the corresponding namespace.
-It's convenient to have one for better GraphQL names:
+It's convenient to have one to shorten GraphQL names:
 - RDF elements (classes and props) in the `vocab_iri` namespace get nice names like `Class` and `prop`
 - RDF elements in other namespaces get longer names like `pfx_Class` and `pfx_prop`
 
 `vocab_prefix` and `vocab_iri` are searched in the following order:
 
-1. If the option `--vocab` is provided, it sets `vocab_prefix`
-   (it can also be shortened to `-voc`, `-v`, etc).
+1. If the option `-voc` is provided, it sets `vocab_prefix`.
    The same prefix must also be defined in the input RDF and is used to find `vocab_iri`.
 2. If the prop `swc:identifier` of `owl:Ontology` is defined, it sets `vocab_prefix`.
    A slash is appended to the ontology URL and used as `vocab_iri`.
@@ -105,15 +109,43 @@ It's convenient to have one for better GraphQL names:
    that is used as `vocab_prefix` and the corresponding namespace as `vocab_iri`.
 5. Otherwise the tool quits with an error.
 
-`vocab_prefix` is also used in the SOML identifier, 
+`vocab_prefix` is also used in the SOML id, 
 which is used for SOML operations (create, update, delete, bind) [by the SOaaS services](http://platform.ontotext.com/semantic-objects/semantic-objects.html#define-star-wars-semantic-objects):
 
 ```yaml
 id: /soml/$vocab_prefix
 ```
 
-Also, the prop `swc:BaseUrl` of `owl:Ontology` is used to set `base_iri`.
-This is currently not used to shorten IRIs in GraphQL queries and responses, but may be in the future.
+### No `vocab_prefix`
+
+If you have many ontologies and prefixes and none of them is "dominant", 
+you may not care for the `vocab_prefix` shortening described above.
+
+Eg FIBO consists of about 226 ontologies; the [eg/fibo-FND.ttl](eg/fibo-FND.ttl) subset consists of 55 ontologies.
+We don't want the first encountered ontology and its prefix to be treated specially, because they are not.
+
+Please note that the platform has default values (see [Special Prefixes](http://platform.ontotext.com/soml/preamble.html#special-prefixes)) as shown below,
+in order to make it easier to write small examples.
+This `vocan_iri` is not likely to appear in real ontologies, so it won't hurt.
+
+```
+specialPrefixes:
+  base_iri:     http://example.org/resource/
+  vocab_iri:    http://example.org/vocabulary/
+  vocab_prefix: voc
+```
+
+To disable the looking for `vocab_prefix`, specify the `-id` option to set only SOML id, eg:
+
+```sh
+perl owl2soml.pl -id fibo-FND fibo-FND.ttl
+```
+
+will result in 
+
+```yaml
+id: /soml/fibo-FND
+```
 
 ### Classes
 
@@ -121,7 +153,8 @@ The tool recognizes instances of `rdfs:Class` and/or `owl:Class` as classes:
 - If one instance has both types, it's processed only once
 - Anonymous (blank node) classes are ignored
 - It ignores instances of `schema:DataType` and that class itself (see [Datatypes](#datatypes) below)
-- Also ignores the classes `owl:Thing, owl:Nothing` that are not useful for querying
+- Also ignores classes `owl:Thing, owl:Nothing` that are not useful for querying.
+  (In contrast, it keeps `schema:Thing` which is the domain/nrage of useful props).
 
 Classes are processed as follows:
 - The chars `[-_.]` are removed from class & property local names in order to make valid GraphQL names.
@@ -222,7 +255,6 @@ The tool recognizes instances of the following as props: `rdf:Property, owl:Anno
   `owl:topObjectProperty owl:bottomObjectProperty owl:topDataProperty owl:bottomDataProperty`
 
 Properties are processed as follows:
-- The chars `[-_.]` are removed from class & property local names in order to make valid GraphQL names.
 - Gets prop [Labels and Descriptions](#labels-and-descriptions)
 - Assigns `kind: literal` or `kind: object` depending on property type and range: 
   see [Datatypes](#datatypes) for details
@@ -328,6 +360,7 @@ Related actions:<br/><br/>
 
 TODO:
 - Trim leading and trailing whitespace including spaces and newlines
+- If newlines are used in a description, use `".\n"` as delimiter when concatenting, rather than `". "`
 - Ignore empty labels/descriptions, which are found in some ontologies
 
 ## Limitations
@@ -371,24 +404,6 @@ To handle numerous related ontologies (eg like FIBO), these improvements could b
   (or in the case of FIBO I've concatenated Turtle files)
 - Takes metadata only from `owl:Ontology` of the first supplied RDF file.
   This is a minor limitation since you can always supply the relevant file first.
-- [`vocab_prefix, vocab_iri`](#vocab_prefix-vocab_iri) describes how the tool seeks to find a default `vocab_prefix`.
-  It's usually convenient to have one for better GraphQL names, but
-  if you have many ontologies and none of them is "dominant"
-  you may not care for a `vocab_prefix`.
-  - Eg in the case of FIBO the first encountered ontology
-  (https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Communications/) 
-  is treated specially: the `fibo-fnd-arr-com:` is treated as `vocab_prefix` 
-  and is stripped from GraphQL names.
-  - It would be better to run without `vocab_prefix` and afford it no such special treatment.
-  - The platform has default values (see [Special Prefixes](http://platform.ontotext.com/soml/preamble.html#special-prefixes)) as shown below, so they are optional in SOML.
-    We could add a special value `--voc NONE` to disable `vocab_prefix` processing.
-
-```
-specialPrefixes:
-  base_iri:     http://example.org/resource/
-  vocab_iri:    http://example.org/vocabulary/
-  vocab_prefix: voc
-```
 
 ### Handle Property Inheritance
 
@@ -655,12 +670,16 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 
 ## Change Log
 
+10-Apr-2020
+- Fix regression in `@classes`: emitted props also as classes
+- Add option `-id` to set only the SOML id and not `vocab_prefix`
+
 9-Apr-2020
 - Rewrite of `make_superClass, fix_superClasses` to `make_inherits, make_super, lift_super`: 
   lift `inherits` relation to abstract superclasses, if any
 - Sort `creator` in order to be deterministic
 - Print out all classes in warnings "Multiple superclasses/ranges found"
-- Filter out `schema:Thing` (add to `@NO_CLASSES`), print these ignored classes in `usage()`
+- List ignored classes in `@NO_CLASSES` and print them  in `usage()`
 
 6-Apr-2020
 - `make_superClass()`: fix `ERROR: Object 'lcclr:Arrangement' should have at least one type value`:

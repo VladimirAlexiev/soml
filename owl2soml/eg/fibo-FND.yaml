@@ -1,119 +1,6 @@
-id: /soml/fibo-fnd-plc-uspsa
-label: U.S. Postal Service Addresses Ontology
+id: /soml/fibo-FND
+label: Annotation Vocabulary
 objects:
-  CompleteAddress:
-    descr: 'QName: fibo-fnd-plc-uspsa:CompleteAddress. delivery address that has all the address elements necessary to allow an exact match with the current Postal Service ZIP+4 and City State files to obtain the finest level of ZIP+4 and delivery point codes for the delivery address'
-    inherits: StandardizedAddressInterface
-    label: complete address
-    type: fibo-fnd-plc-uspsa:CompleteAddress
-  DeliveryAddressCodeSet:
-    descr: 'QName: fibo-fnd-plc-uspsa:DeliveryAddressCodeSet. system of numeric codes that substitute for specified delivery point details according to the U.S. Postal Service Publication 28'
-    inherits: lcc-lr:CodeSetInterface
-    label: delivery point code set
-    type: fibo-fnd-plc-uspsa:DeliveryAddressCodeSet
-  DeliveryPointCode:
-    descr: 'QName: fibo-fnd-plc-uspsa:DeliveryPointCode. specific set of digits between 00 and 99 assigned to a delivery point'
-    inherits: lcc-lr:CodeElementInterface
-    label: delivery point code
-    type: fibo-fnd-plc-uspsa:DeliveryPointCode
-  DeliveryPointCodeSet:
-    descr: 'QName: fibo-fnd-plc-uspsa:DeliveryPointCodeSet. system of numeric codes that substitute for specified delivery point details according to the U.S. Postal Service Publication 28'
-    inherits: lcc-lr:CodeSetInterface
-    label: delivery point code set
-    type: fibo-fnd-plc-uspsa:DeliveryPointCodeSet
-  DepartmentOfStateAddress:
-    descr: "QName: fibo-fnd-plc-uspsa:DepartmentOfStateAddress. delivery address whose delivery address line uses 'UNIT' followed by the unit identifier, followed by 'BOX' followed by box number, in place of a street address, 'DPO' as the literal value for the city, and the appropriate armed forces subdivision code in place of a subdivision (state) code"
-    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
-    label: Department of State address
-    type: fibo-fnd-plc-uspsa:DepartmentOfStateAddress
-  DepartmentOfStateUnitComponent:
-    descr: "QName: fibo-fnd-plc-uspsa:DepartmentOfStateUnitComponent. component of a Department of State address that includes 'UNIT' followed by the unit identifier"
-    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
-    label: Department of State unit component
-    type: fibo-fnd-plc-uspsa:DepartmentOfStateUnitComponent
-  GeneralDeliveryAddress:
-    descr: "QName: fibo-fnd-plc-uspsa:GeneralDeliveryAddress. delivery address that uses the words 'GENERAL DELIVERY', uppercase preferred, spelled out (no abbreviation), in place of a street address"
-    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
-    label: general delivery address
-    type: fibo-fnd-plc-uspsa:GeneralDeliveryAddress
-  HighwayContractRoute:
-    descr: 'QName: fibo-fnd-plc-uspsa:HighwayContractRoute. highway contract route associated with an address'
-    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
-    label: highway contract route
-    type: fibo-fnd-plc-uspsa:HighwayContractRoute
-  HighwayContractRouteAddress:
-    descr: "QName: fibo-fnd-plc-uspsa:HighwayContractRouteAddress. delivery address whose delivery address line uses the abbreviation 'HC', followed by the route identifier, followed by 'BOX' followed by box number, in place of a street address"
-    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
-    label: highway contract address
-    type: fibo-fnd-plc-uspsa:HighwayContractRouteAddress
-  InternationalAddress:
-    descr: 'QName: fibo-fnd-plc-uspsa:InternationalAddress. physical address that explicitly includes a country'
-    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
-    label: international address
-    type: fibo-fnd-plc-uspsa:InternationalAddress
-  Mailbox:
-    descr: 'QName: fibo-fnd-plc-uspsa:Mailbox. mailbox, other than a U.S. Post Office box, associated with an address'
-    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
-    label: mailbox
-    type: fibo-fnd-plc-uspsa:Mailbox
-  OverseasMilitaryAddress:
-    descr: "QName: fibo-fnd-plc-uspsa:OverseasMilitaryAddress. delivery address whose delivery address line uses an abbreviation for the unit or command such as 'CMR', 'PSC', or 'UNIT', or  'HC', followed by the unit identifier, followed by 'BOX' followed by box number, in place of a street address, either 'APO' or 'FPO' as the literal value for the city and the appropriate armed forces subdivision code in place of a subdivision (state) code"
-    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
-    label: overseas military address
-    type: fibo-fnd-plc-uspsa:OverseasMilitaryAddress
-  PrivateMailBoxAddress:
-    descr: "QName: fibo-fnd-plc-uspsa:PrivateMailBoxAddress. delivery address provided by a commercial mail receiving company that includes a supplementary address line containing the abbreviation 'PMB' or the pound \"#\" symbol followed by the mailbox number; alternatively, 'PMB' or '#\" and the mailbox number can be appended to the street address"
-    inherits: fibo-fnd-plc-adr:ConventionalStreetAddressInterface
-    label: private mail box address
-    type: fibo-fnd-plc-uspsa:PrivateMailBoxAddress
-  PuertoRicoAddress:
-    descr: "QName: fibo-fnd-plc-uspsa:PuertoRicoAddress. delivery address for a delivery point in Puerto Rico that may include a supplementary address line containing the abbreviation 'URB' followed by the name of the urbanization area that is appropriate for that address"
-    inherits: fibo-fnd-plc-adr:ConventionalStreetAddressInterface
-    label: Puerto Rico address
-    type: fibo-fnd-plc-uspsa:PuertoRicoAddress
-  RuralRoute:
-    descr: 'QName: fibo-fnd-plc-uspsa:RuralRoute. mail route outside the city or township limits in a rural area associated with an address'
-    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
-    label: highway contract route address
-    type: fibo-fnd-plc-uspsa:RuralRoute
-  RuralRouteAddress:
-    descr: "QName: fibo-fnd-plc-uspsa:RuralRouteAddress. delivery address whose delivery address line uses the abbreviation 'RR', followed by the route identifier, followed by 'BOX' followed by box number, in place of a street address"
-    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
-    label: rural route address
-    type: fibo-fnd-plc-uspsa:RuralRouteAddress
-  StandardizedAddress:
-    descr: 'QName: fibo-fnd-plc-uspsa:StandardizedAddress. delivery address that is fully spelled out, abbreviated by using the Postal Service standard abbreviations or as given in the current Postal Service ZIP+4 file'
-    inherits: StandardizedAddressInterface
-    label: standardized address
-    type: fibo-fnd-plc-uspsa:StandardizedAddress
-  StandardizedAddressInterface:
-    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
-    kind: abstract
-  USPostalServiceAddressIdentifier:
-    descr: 'QName: fibo-fnd-plc-uspsa:USPostalServiceAddressIdentifier. combined with the ZIP + 4 code, the delivery point code provides a unique identifier for every deliverable address served by the USPS'
-    inherits: fibo-fnd-plc-adr:PhysicalAddressIdentifierInterface
-    label: U.S. Postal Service address identifier
-    type: fibo-fnd-plc-uspsa:USPostalServiceAddressIdentifier
-  Urbanization:
-    descr: 'QName: fibo-fnd-plc-uspsa:Urbanization. an area, sector, or development within a larger geographic area'
-    inherits: lcc-cr:CountrySubdivisionInterface
-    label: urbanization
-    type: fibo-fnd-plc-uspsa:Urbanization
-  ZIPCode:
-    descr: 'QName: fibo-fnd-plc-uspsa:ZIPCode. five-digit code code assigned to a delivery address indicating the state and post office or postal zone'
-    inherits: fibo-fnd-plc-adr:PostcodeInterface
-    label: Zip Code
-    type: fibo-fnd-plc-uspsa:ZIPCode
-  ZIPPlus4Code:
-    descr: 'QName: fibo-fnd-plc-uspsa:ZIPPlus4Code. nine-digit number consisting of five digits, a hyphen, and four digits, which the USPS describes by its trademark ZIP+4'
-    inherits: fibo-fnd-plc-adr:PostcodeInterface
-    label: ZIP+4 Code
-    type: fibo-fnd-plc-uspsa:ZIPPlus4Code
-  ZipCodeScheme:
-    descr: 'QName: fibo-fnd-plc-uspsa:ZipCodeScheme. system used in the U.S. to facilitate the delivery of mail, consisting of a five- or nine-digit code Zone Improvement Plan (ZIP) printed directly after the address, the first five digits (initial code) indicating the state and post office or postal zone, the last four (expanded code) the box section or number, portion of a rural route, building, or other specific delivery location'
-    inherits: lcc-lr:CodeSetInterface
-    label: zip code scheme
-    type: fibo-fnd-plc-uspsa:ZipCodeScheme
   fibo-be-le-lei:ContractuallyCapableEntity:
     type: fibo-be-le-lei:ContractuallyCapableEntity
   fibo-fbc-pas-caa:LedgerAccount:
@@ -1935,6 +1822,99 @@ objects:
     descr: 'QName: fibo-fnd-plc-loc:RealEstate. tract or plot of land including any fixed structures on it, as well as the natural resources of the land including uncultivated flora and fauna, farmed crops and livestock, water, and any additional mineral deposits'
     inherits: fibo-fnd-plc-loc:PhysicalLocationInterface
     label: real estate
+  fibo-fnd-plc-uspsa:CompleteAddress:
+    descr: 'QName: fibo-fnd-plc-uspsa:CompleteAddress. delivery address that has all the address elements necessary to allow an exact match with the current Postal Service ZIP+4 and City State files to obtain the finest level of ZIP+4 and delivery point codes for the delivery address'
+    inherits: fibo-fnd-plc-uspsa:StandardizedAddressInterface
+    label: complete address
+  fibo-fnd-plc-uspsa:DeliveryAddressCodeSet:
+    descr: 'QName: fibo-fnd-plc-uspsa:DeliveryAddressCodeSet. system of numeric codes that substitute for specified delivery point details according to the U.S. Postal Service Publication 28'
+    inherits: lcc-lr:CodeSetInterface
+    label: delivery point code set
+  fibo-fnd-plc-uspsa:DeliveryPointCode:
+    descr: 'QName: fibo-fnd-plc-uspsa:DeliveryPointCode. specific set of digits between 00 and 99 assigned to a delivery point'
+    inherits: lcc-lr:CodeElementInterface
+    label: delivery point code
+  fibo-fnd-plc-uspsa:DeliveryPointCodeSet:
+    descr: 'QName: fibo-fnd-plc-uspsa:DeliveryPointCodeSet. system of numeric codes that substitute for specified delivery point details according to the U.S. Postal Service Publication 28'
+    inherits: lcc-lr:CodeSetInterface
+    label: delivery point code set
+  fibo-fnd-plc-uspsa:DepartmentOfStateAddress:
+    descr: "QName: fibo-fnd-plc-uspsa:DepartmentOfStateAddress. delivery address whose delivery address line uses 'UNIT' followed by the unit identifier, followed by 'BOX' followed by box number, in place of a street address, 'DPO' as the literal value for the city, and the appropriate armed forces subdivision code in place of a subdivision (state) code"
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    label: Department of State address
+  fibo-fnd-plc-uspsa:DepartmentOfStateUnitComponent:
+    descr: "QName: fibo-fnd-plc-uspsa:DepartmentOfStateUnitComponent. component of a Department of State address that includes 'UNIT' followed by the unit identifier"
+    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
+    label: Department of State unit component
+  fibo-fnd-plc-uspsa:GeneralDeliveryAddress:
+    descr: "QName: fibo-fnd-plc-uspsa:GeneralDeliveryAddress. delivery address that uses the words 'GENERAL DELIVERY', uppercase preferred, spelled out (no abbreviation), in place of a street address"
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    label: general delivery address
+  fibo-fnd-plc-uspsa:HighwayContractRoute:
+    descr: 'QName: fibo-fnd-plc-uspsa:HighwayContractRoute. highway contract route associated with an address'
+    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
+    label: highway contract route
+  fibo-fnd-plc-uspsa:HighwayContractRouteAddress:
+    descr: "QName: fibo-fnd-plc-uspsa:HighwayContractRouteAddress. delivery address whose delivery address line uses the abbreviation 'HC', followed by the route identifier, followed by 'BOX' followed by box number, in place of a street address"
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    label: highway contract address
+  fibo-fnd-plc-uspsa:InternationalAddress:
+    descr: 'QName: fibo-fnd-plc-uspsa:InternationalAddress. physical address that explicitly includes a country'
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    label: international address
+  fibo-fnd-plc-uspsa:Mailbox:
+    descr: 'QName: fibo-fnd-plc-uspsa:Mailbox. mailbox, other than a U.S. Post Office box, associated with an address'
+    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
+    label: mailbox
+  fibo-fnd-plc-uspsa:OverseasMilitaryAddress:
+    descr: "QName: fibo-fnd-plc-uspsa:OverseasMilitaryAddress. delivery address whose delivery address line uses an abbreviation for the unit or command such as 'CMR', 'PSC', or 'UNIT', or  'HC', followed by the unit identifier, followed by 'BOX' followed by box number, in place of a street address, either 'APO' or 'FPO' as the literal value for the city and the appropriate armed forces subdivision code in place of a subdivision (state) code"
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    label: overseas military address
+  fibo-fnd-plc-uspsa:PrivateMailBoxAddress:
+    descr: "QName: fibo-fnd-plc-uspsa:PrivateMailBoxAddress. delivery address provided by a commercial mail receiving company that includes a supplementary address line containing the abbreviation 'PMB' or the pound \"#\" symbol followed by the mailbox number; alternatively, 'PMB' or '#\" and the mailbox number can be appended to the street address"
+    inherits: fibo-fnd-plc-adr:ConventionalStreetAddressInterface
+    label: private mail box address
+  fibo-fnd-plc-uspsa:PuertoRicoAddress:
+    descr: "QName: fibo-fnd-plc-uspsa:PuertoRicoAddress. delivery address for a delivery point in Puerto Rico that may include a supplementary address line containing the abbreviation 'URB' followed by the name of the urbanization area that is appropriate for that address"
+    inherits: fibo-fnd-plc-adr:ConventionalStreetAddressInterface
+    label: Puerto Rico address
+  fibo-fnd-plc-uspsa:RuralRoute:
+    descr: 'QName: fibo-fnd-plc-uspsa:RuralRoute. mail route outside the city or township limits in a rural area associated with an address'
+    inherits: fibo-fnd-plc-adr:SupplementalAddressComponentInterface
+    label: highway contract route address
+  fibo-fnd-plc-uspsa:RuralRouteAddress:
+    descr: "QName: fibo-fnd-plc-uspsa:RuralRouteAddress. delivery address whose delivery address line uses the abbreviation 'RR', followed by the route identifier, followed by 'BOX' followed by box number, in place of a street address"
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    label: rural route address
+  fibo-fnd-plc-uspsa:StandardizedAddress:
+    descr: 'QName: fibo-fnd-plc-uspsa:StandardizedAddress. delivery address that is fully spelled out, abbreviated by using the Postal Service standard abbreviations or as given in the current Postal Service ZIP+4 file'
+    inherits: fibo-fnd-plc-uspsa:StandardizedAddressInterface
+    label: standardized address
+    type: fibo-fnd-plc-uspsa:StandardizedAddress
+  fibo-fnd-plc-uspsa:StandardizedAddressInterface:
+    inherits: fibo-fnd-plc-adr:PhysicalAddressInterface
+    kind: abstract
+  fibo-fnd-plc-uspsa:USPostalServiceAddressIdentifier:
+    descr: 'QName: fibo-fnd-plc-uspsa:USPostalServiceAddressIdentifier. combined with the ZIP + 4 code, the delivery point code provides a unique identifier for every deliverable address served by the USPS'
+    inherits: fibo-fnd-plc-adr:PhysicalAddressIdentifierInterface
+    label: U.S. Postal Service address identifier
+  fibo-fnd-plc-uspsa:Urbanization:
+    descr: 'QName: fibo-fnd-plc-uspsa:Urbanization. an area, sector, or development within a larger geographic area'
+    inherits: lcc-cr:CountrySubdivisionInterface
+    label: urbanization
+    type: fibo-fnd-plc-uspsa:Urbanization
+  fibo-fnd-plc-uspsa:ZIPCode:
+    descr: 'QName: fibo-fnd-plc-uspsa:ZIPCode. five-digit code code assigned to a delivery address indicating the state and post office or postal zone'
+    inherits: fibo-fnd-plc-adr:PostcodeInterface
+    label: Zip Code
+  fibo-fnd-plc-uspsa:ZIPPlus4Code:
+    descr: 'QName: fibo-fnd-plc-uspsa:ZIPPlus4Code. nine-digit number consisting of five digits, a hyphen, and four digits, which the USPS describes by its trademark ZIP+4'
+    inherits: fibo-fnd-plc-adr:PostcodeInterface
+    label: ZIP+4 Code
+  fibo-fnd-plc-uspsa:ZipCodeScheme:
+    descr: 'QName: fibo-fnd-plc-uspsa:ZipCodeScheme. system used in the U.S. to facilitate the delivery of mail, consisting of a five- or nine-digit code Zone Improvement Plan (ZIP) printed directly after the address, the first five digits (initial code) indicating the state and post office or postal zone, the last four (expanded code) the box section or number, portion of a rural route, building, or other specific delivery location'
+    inherits: lcc-lr:CodeSetInterface
+    label: zip code scheme
   fibo-fnd-plc-vrt:ElectronicMailAddress:
     descr: 'QName: fibo-fnd-plc-vrt:ElectronicMailAddress. virtual address that defines an electronic messaging endpoint to which email messages can be delivered, typically via an Simple Mail Transfer Protocol (SMTP) based communications system'
     inherits: fibo-fnd-plc-adr:VirtualAddressInterface
@@ -4241,6 +4221,12 @@ properties:
     label: is located at
     max: inf
     range: lcc-cr:LocationInterface
+  fibo-fnd-plc-uspsa:hasUrbanization:
+    descr: 'QName: fibo-fnd-plc-uspsa:hasUrbanization. indicates  area, sector, or development within a geographic area relevant to a delivery address'
+    kind: object
+    label: has urbanization
+    max: inf
+    range: fibo-fnd-plc-uspsa:Urbanization
   fibo-fnd-plc-vrt:hasElectronicMailAddress:
     descr: 'QName: fibo-fnd-plc-vrt:hasElectronicMailAddress. specifies an electronic messaging endpoint at which some entity may be located or contacted or may receive correspondence'
     kind: object
@@ -5266,13 +5252,6 @@ properties:
     kind: literal
     label: has data value
     range: string
-  hasUrbanization:
-    descr: 'QName: fibo-fnd-plc-uspsa:hasUrbanization. indicates  area, sector, or development within a geographic area relevant to a delivery address'
-    kind: object
-    label: has urbanization
-    max: inf
-    range: Urbanization
-    rdfProp: fibo-fnd-plc-uspsa:hasUrbanization
   lcc-cr:classifies:
     kind: object
     max: inf
@@ -5290,6 +5269,4 @@ properties:
     max: inf
     range: string
 specialPrefixes:
-  ontology_iri: https://spec.edmcouncil.org/fibo/ontology/FND/Places/NorthAmerica/USPostalServiceAddresses/
-  vocab_iri: https://spec.edmcouncil.org/fibo/ontology/FND/Places/NorthAmerica/USPostalServiceAddresses/
-  vocab_prefix: fibo-fnd-plc-uspsa
+  ontology_iri: https://spec.edmcouncil.org/fibo/ontology/FND/Utilities/AnnotationVocabulary/

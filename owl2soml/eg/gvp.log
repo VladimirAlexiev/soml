@@ -1,285 +1,285 @@
 Found multiple superclasses for GroupConcept, using only the first one: Subject, skos:Concept
-Found multiple superclasses for AdminPlaceConcept, using only the first one: Subject, skos:Concept
-Found multiple superclasses for UnknownPersonConcept, using only the first one: Subject, skos:Concept
-Found multiple superclasses for GuideTerm, using only the first one: Subject, iso:ThesaurusArray
 Found multiple superclasses for Hierarchy, using only the first one: Subject, iso:ThesaurusArray
+Found multiple superclasses for Facet, using only the first one: Subject, iso:ThesaurusArray
+Found multiple superclasses for GuideTerm, using only the first one: Subject, iso:ThesaurusArray
+Found multiple superclasses for UnknownPersonConcept, using only the first one: Subject, skos:Concept
+Found multiple superclasses for PhysAdminPlaceConcept, using only the first one: Subject, skos:Concept
+Found multiple superclasses for AdminPlaceConcept, using only the first one: Subject, skos:Concept
 Found multiple superclasses for PhysPlaceConcept, using only the first one: Subject, skos:Concept
 Found multiple superclasses for PersonConcept, using only the first one: Subject, skos:Concept
-Found multiple superclasses for Facet, using only the first one: Subject, iso:ThesaurusArray
 Found multiple superclasses for Concept, using only the first one: Subject, skos:Concept
-Found multiple superclasses for PhysAdminPlaceConcept, using only the first one: Subject, skos:Concept
 Found multiple ranges for prop skos:member, using only the first one: skos:Collection, skos:Concept
-Found multiple labels for property gvp:aat2411_involved_in, using the first one: aat2411_involved_in, involved in - field/discipline
-Found multiple labels for property gvp:tgn3317_member_of, using the first one: tgn3317_member_of, member of - union
-Found multiple labels for property gvp:aat2846_locus-setting_for, using the first one: aat2846_locus-setting_for, locus/setting for - genus/species
-Found multiple labels for property gvp:ulan1108_influenced_by, using the first one: ulan1108_influenced_by, influenced by - person
-Found multiple labels for property gvp:aat2203_associated_with, using the first one: aat2203_associated_with, associated with - activity/event
-Found multiple labels for property gvp:tgn3005_possibly_identified_as, using the first one: tgn3005_possibly_identified_as, possibly identified as - place
-Found multiple labels for property gvp:tgn3102_coextensive_with, using the first one: tgn3102_coextensive_with, coextensive with - place
-Found multiple labels for property gvp:ulan1581_descendant_of, using the first one: ulan1581_descendant_of, descendant of - person
-Found multiple labels for property gvp:aat2211_produce, using the first one: aat2211_produce, produce - things
-Found multiple labels for property gvp:ulan1000_related_to, using the first one: ulan1000_related_to, related to - any
-Found multiple labels for property gvp:ulan2573_founded_by, using the first one: ulan2573_founded_by, founded by - person
-Found multiple labels for property gvp:aat2416_requires, using the first one: aat2416_requires, requires - material
-Found multiple labels for property gvp:aat2333_have_affiliates, using the first one: aat2333_have_affiliates, have affiliates - role
-Found multiple labels for property gvp:ulan1332_worker_was, using the first one: ulan1332_worker_was, worker was - any
-Found multiple labels for property gvp:aat2398_focuses_on, using the first one: aat2398_focuses_on, focuses on - any
-Found multiple labels for property gvp:aat2837_source_for, using the first one: aat2837_source_for, source for - things
-Found multiple labels for property gvp:aat2849_involves, using the first one: aat2849_involves, involves - genus/species
-Found multiple labels for property gvp:ulan1322_school_was, using the first one: ulan1322_school_was, school was - person
-Found multiple labels for property gvp:aat2807_derived_from_common_source, using the first one: aat2807_derived_from_common_source, derived from common source - material
-Found multiple labels for property gvp:aat2601_possessed_by-existing_in, using the first one: aat2601_possessed_by-existing_in, possessed by/existing in - role
-Found multiple labels for property gvp:aat2607_caused_by-requires, using the first one: aat2607_caused_by-requires, caused by/requires - activity/event
-Found multiple labels for property gvp:ulan1107_influenced, using the first one: ulan1107_influenced, influenced - person
-Found multiple labels for property gvp:aat2205_causes-is_required, using the first one: aat2205_causes-is_required, causes/is required - activity/event
-Found multiple labels for property gvp:ulan2841_performer_was, using the first one: ulan2841_performer_was, performer was - person
-Found multiple labels for property gvp:aat2325_created_by, using the first one: aat2325_created_by, created by - role
-Found multiple labels for property gvp:tgn3612_administrative_entity_for, using the first one: tgn3612_administrative_entity_for, administrative entity for - place
-Found multiple labels for property gvp:ulan1204_donor_was, using the first one: ulan1204_donor_was, donor was - person/firm/family
-Found multiple labels for property gvp:ulan1561_step-child_of, using the first one: ulan1561_step-child_of, step-child of - person
-Found multiple labels for property gvp:ulan1307_assistant_of, using the first one: ulan1307_assistant_of, assistant of - person
-Found multiple labels for property gvp:ulan2794_representative_of, using the first one: ulan2794_representative_of, representative of - institution
-Found multiple labels for property gvp:ulan1501_sibling_of, using the first one: ulan1501_sibling_of, sibling of - person
-Found multiple labels for property gvp:ulan1303_collaborated_with, using the first one: ulan1303_collaborated_with, collaborated with - person
-Found multiple labels for property gvp:aat2424_produced_by, using the first one: aat2424_produced_by, produced by - activity/event/process
-Found multiple labels for property gvp:aat2222_are_acted_upon, using the first one: aat2222_are_acted_upon, are acted upon - role
-Found multiple labels for property gvp:aat2803_example_of, using the first one: aat2803_example_of, example of - material
-Found multiple labels for property gvp:aat2809_coexisted_with, using the first one: aat2809_coexisted_with, coexisted with - style/period/culture
-Found multiple labels for property gvp:ulan1008_meaning_-usage_overlaps_with, using the first one: ulan1008_meaning_-usage_overlaps_with, meaning /usage overlaps with - any
-Found multiple labels for property gvp:ulan1101_teacher_of, using the first one: ulan1101_teacher_of, teacher of - person
-Found multiple labels for property gvp:ulan1308_assisted_by, using the first one: ulan1308_assisted_by, assisted by - person
-Found multiple labels for property gvp:aat2312_perform, using the first one: aat2312_perform, perform - activity/event
-Found multiple labels for property gvp:ulan1557_step-sibling_of, using the first one: ulan1557_step-sibling_of, step-sibling of - person
-Found multiple labels for property gvp:aat2415_required_for, using the first one: aat2415_required_for, required for - activity/event
-Found multiple labels for property gvp:aat2829_used-required_for, using the first one: aat2829_used-required_for, used/required for - things
-Found multiple labels for property gvp:aat2811_preceded, using the first one: aat2811_preceded, preceded - style/period/culture
-Found multiple labels for property gvp:aat2208_locus-setting_for, using the first one: aat2208_locus-setting_for, locus/setting for - things
-Found multiple labels for property gvp:ulan1548_domestic_partner_of, using the first one: ulan1548_domestic_partner_of, domestic partner of - person
-Found multiple labels for property gvp:ulan2581_administrator_of, using the first one: ulan2581_administrator_of, administrator of - institution
-Found multiple labels for property gvp:aat2891_exemplified_by, using the first one: aat2891_exemplified_by, exemplified by - brand name
-Found multiple labels for property gvp:tgn3000_related_to, using the first one: tgn3000_related_to, related to - any
-Found multiple labels for property gvp:aat2432_requires, using the first one: aat2432_requires, requires - things
-Found multiple labels for property gvp:aat2885_involves, using the first one: aat2885_involves, involves - attributes /associated concepts
-Found multiple labels for property gvp:tgn3301_ally_of, using the first one: tgn3301_ally_of, ally of - nation
-Found multiple labels for property gvp:ulan1411_successor_of, using the first one: ulan1411_successor_of, successor of - firm/group
-Found multiple labels for property gvp:aat2817_derived-made_from, using the first one: aat2817_derived-made_from, derived/made from - material
-Found multiple labels for property gvp:tgn3101_near-adjacent_to, using the first one: tgn3101_near-adjacent_to, near/adjacent to - any
-Found multiple labels for property gvp:ulan1305_worked_with, using the first one: ulan1305_worked_with, worked with - person
-Found multiple labels for property gvp:aat2316_use, using the first one: aat2316_use, use - material
-Found multiple labels for property gvp:tgn3001_distinguished_from, using the first one: tgn3001_distinguished_from, distinguished from - any
-Found multiple labels for property gvp:tgn3411_successor_of, using the first one: tgn3411_successor_of, successor of - nation
-Found multiple labels for property gvp:ulan1511_child_of, using the first one: ulan1511_child_of, child of - person
-Found multiple labels for property gvp:ulan2574_director_of, using the first one: ulan2574_director_of, director of - institution
-Found multiple labels for property gvp:ulan1571_guardian_of, using the first one: ulan1571_guardian_of, guardian of - person
-Found multiple labels for property gvp:aat2806_provide_context, using the first one: aat2806_provide_context, provide context - things
-Found multiple labels for property gvp:aat2434_contextualized_in, using the first one: aat2434_contextualized_in, contextualized in - activity/event/process
-Found multiple labels for property gvp:ulan1556_half-sibling_of, using the first one: ulan1556_half-sibling_of, half-sibling of - person
-Found multiple labels for property gvp:aat2613_possess-exist_in, using the first one: aat2613_possess-exist_in, possess/exist in - attributes /associated concepts
-Found multiple labels for property gvp:aat2435_context_for, using the first one: aat2435_context_for, context for - things
-Found multiple labels for property gvp:ulan1547_romantic_partner_of, using the first one: ulan1547_romantic_partner_of, romantic partner of - person
-Found multiple labels for property gvp:ulan2550_friend_of, using the first one: ulan2550_friend_of, friend of - person
-Found multiple labels for property gvp:ulan1551_sibling_by_marriage_of, using the first one: ulan1551_sibling_by_marriage_of, sibling by marriage of - person
-Found multiple labels for property gvp:ulan1590_possibly_related_to, using the first one: ulan1590_possibly_related_to, possibly related to - person
+Found multiple labels for property gvp:ulan1500_related_to, using the first one: ulan1500_related_to, related to - person
 Found multiple labels for property gvp:ulan1102_student_of, using the first one: ulan1102_student_of, student of - person
-Found multiple labels for property gvp:ulan1113_fellow_student_of, using the first one: ulan1113_fellow_student_of, fellow student of - person
-Found multiple labels for property gvp:aat2848_involved_in, using the first one: aat2848_involved_in, involved in - activity/event
-Found multiple labels for property gvp:ulan2693_president_was, using the first one: ulan2693_president_was, president was - person
-Found multiple labels for property gvp:aat2831_associated_with, using the first one: aat2831_associated_with, associated with - genus/species
-Found multiple labels for property gvp:ulan1313_partner_in, using the first one: ulan1313_partner_in, partner in - firm
-Found multiple labels for property gvp:ulan1112_master_was, using the first one: ulan1112_master_was, master was - person
-Found multiple labels for property gvp:aat2895_example_of, using the first one: aat2895_example_of, example of - activity/event
-Found multiple labels for property gvp:tgn3318_member_is, using the first one: tgn3318_member_is, member is - nation
-Found multiple labels for property gvp:aat2212_produced_by, using the first one: aat2212_produced_by, produced by - things
-Found multiple labels for property gvp:aat2884_involved_with, using the first one: aat2884_involved_with, involved with - any
-Found multiple labels for property gvp:ulan1212_artist_was, using the first one: ulan1212_artist_was, artist was - person
-Found multiple labels for property gvp:aat2502_material_for, using the first one: aat2502_material_for, material for - things
-Found multiple labels for property gvp:aat2219_have_form, using the first one: aat2219_have_form, have form - things
-Found multiple labels for property gvp:aat2814_constituent_of, using the first one: aat2814_constituent_of, constituent of - material
-Found multiple labels for property gvp:aat2833_ancestor_of, using the first one: aat2833_ancestor_of, ancestor of - genus/species
-Found multiple labels for property gvp:aat2431_required_for, using the first one: aat2431_required_for, required for - activity/event/process
-Found multiple labels for property gvp:ulan2582_administered_by, using the first one: ulan2582_administered_by, administered by - person
-Found multiple labels for property gvp:aat2505_locus-setting_for, using the first one: aat2505_locus-setting_for, locus/setting for - material
-Found multiple labels for property gvp:aat2562_locus-setting_for, using the first one: aat2562_locus-setting_for, locus/setting for - style/period/culture
-Found multiple labels for property gvp:aat2221_act_upon, using the first one: aat2221_act_upon, act upon - genus/species
-Found multiple labels for property gvp:ulan1543_consort_was, using the first one: ulan1543_consort_was, consort was - person
-Found multiple labels for property gvp:aat2554_reflects, using the first one: aat2554_reflects, reflects - style/period/culture
-Found multiple labels for property gvp:ulan2795_representative_was, using the first one: ulan2795_representative_was, representative was - person
-Found multiple labels for property gvp:ulan2677_teacher_was, using the first one: ulan2677_teacher_was, teacher was - person
-Found multiple labels for property gvp:aat2001_formerly_referred_to, using the first one: aat2001_formerly_referred_to, formerly referred to - any
-Found multiple labels for property gvp:ulan1521_cousin_of, using the first one: ulan1521_cousin_of, cousin of - person
-Found multiple labels for property gvp:ulan1531_nephew-niece_of, using the first one: ulan1531_nephew-niece_of, nephew/niece of - person
+Found multiple labels for property gvp:aat2424_produced_by, using the first one: aat2424_produced_by, produced by - activity/event/process
+Found multiple labels for property gvp:aat2419_used_for, using the first one: aat2419_used_for, used for - field/discipline
+Found multiple labels for property gvp:aat2801_conjuncted_with, using the first one: aat2801_conjuncted_with, conjuncted with - things
+Found multiple labels for property gvp:ulan1311_partner_of, using the first one: ulan1311_partner_of, partner of - person
+Found multiple labels for property gvp:ulan2782_dedicated_to, using the first one: ulan2782_dedicated_to, dedicated to - person
+Found multiple labels for property gvp:aat2286_practice-study, using the first one: aat2286_practice-study, practice/study - field/discipline
+Found multiple labels for property gvp:ulan2676_teacher_at, using the first one: ulan2676_teacher_at, teacher at - institution
+Found multiple labels for property gvp:aat2412_involves, using the first one: aat2412_involves, involves - activity/event
 Found multiple labels for property gvp:aat2826_used_with, using the first one: aat2826_used_with, used with - material
-Found multiple labels for property gvp:ulan1005_possibly_identified_with, using the first one: ulan1005_possibly_identified_with, possibly identified with - any
-Found multiple labels for property gvp:ulan2572_founder_of, using the first one: ulan2572_founder_of, founder of - institution
-Found multiple labels for property gvp:ulan2577_patron_was, using the first one: ulan2577_patron_was, patron was - person
-Found multiple labels for property gvp:ulan1309_advisor_of, using the first one: ulan1309_advisor_of, advisor of - person
-Found multiple labels for property gvp:aat2329_involves, using the first one: aat2329_involves, involves - role
-Found multiple labels for property gvp:ulan1516_great-grandchild_of, using the first one: ulan1516_great-grandchild_of, great-grandchild of - person
-Found multiple labels for property gvp:ulan1513_grandchild_of, using the first one: ulan1513_grandchild_of, grandchild of - person
-Found multiple labels for property gvp:aat2818_source_for, using the first one: aat2818_source_for, source for - material
-Found multiple labels for property gvp:ulan1213_court_artist_to, using the first one: ulan1213_court_artist_to, court artist to - person
-Found multiple labels for property gvp:aat2504_used-located_in, using the first one: aat2504_used-located_in, used/located in - locus/setting
-Found multiple labels for property gvp:aat2311_performed_by, using the first one: aat2311_performed_by, performed by - role
-Found multiple labels for property gvp:ulan1316_principal_was, using the first one: ulan1316_principal_was, principal was - person
-Found multiple labels for property gvp:ulan2674_professor_at, using the first one: ulan2674_professor_at, professor at - institution
-Found multiple labels for property gvp:aat2218_used-function_as, using the first one: aat2218_used-function_as, used/function as - things
+Found multiple labels for property gvp:ulan1321_school_of, using the first one: ulan1321_school_of, school of - firm/group
+Found multiple labels for property gvp:tgn3001_distinguished_from, using the first one: tgn3001_distinguished_from, distinguished from - any
+Found multiple labels for property gvp:aat2894_exemplified_by, using the first one: aat2894_exemplified_by, exemplified by - brand name
+Found multiple labels for property gvp:aat2409_takes_place_in, using the first one: aat2409_takes_place_in, takes place in - locus/setting
 Found multiple labels for property gvp:aat2822_basis_of, using the first one: aat2822_basis_of, basis of - any
-Found multiple labels for property gvp:ulan2583_chairman_of, using the first one: ulan2583_chairman_of, chairman of - institution
-Found multiple labels for property gvp:tgn3201_capital_of, using the first one: tgn3201_capital_of, capital of - nation
-Found multiple labels for property gvp:ulan1217_employee_of, using the first one: ulan1217_employee_of, employee of - person
-Found multiple labels for property gvp:aat2209_used-located_in, using the first one: aat2209_used-located_in, used/located in - locus/setting
-Found multiple labels for property gvp:aat2326_create, using the first one: aat2326_create, create - things
-Found multiple labels for property gvp:ulan2778_owner_of, using the first one: ulan2778_owner_of, owner of - person
-Found multiple labels for property gvp:ulan2584_chaired_by, using the first one: ulan2584_chaired_by, chaired by - person
+Found multiple labels for property gvp:aat2110_meaning-usage_overlaps_with, using the first one: aat2110_meaning-usage_overlaps_with, meaning/usage overlaps with - any
+Found multiple labels for property gvp:aat2285_practiced-studied_by, using the first one: aat2285_practiced-studied_by, practiced/studied by - role
+Found multiple labels for property gvp:tgn3412_predecessor_of, using the first one: tgn3412_predecessor_of, predecessor of - nation
+Found multiple labels for property gvp:aat2841_derived-made_from, using the first one: aat2841_derived-made_from, derived/made from - genus/species
+Found multiple labels for property gvp:aat2837_source_for, using the first one: aat2837_source_for, source for - things
+Found multiple labels for property gvp:ulan1303_collaborated_with, using the first one: ulan1303_collaborated_with, collaborated with - person
+Found multiple labels for property gvp:ulan1202_patron_was, using the first one: ulan1202_patron_was, patron was - person
+Found multiple labels for property gvp:aat2601_possessed_by-existing_in, using the first one: aat2601_possessed_by-existing_in, possessed by/existing in - role
+Found multiple labels for property gvp:aat2316_use, using the first one: aat2316_use, use - material
+Found multiple labels for property gvp:tgn3611_administrative_dependent_of, using the first one: tgn3611_administrative_dependent_of, administrative dependent of - place
+Found multiple labels for property gvp:ulan2576_patron_of, using the first one: ulan2576_patron_of, patron of - person
+Found multiple labels for property gvp:ulan1111_master_of, using the first one: ulan1111_master_of, master of - person
+Found multiple labels for property gvp:ulan1582_ancestor_of, using the first one: ulan1582_ancestor_of, ancestor of - person
+Found multiple labels for property gvp:aat2812_followed, using the first one: aat2812_followed, followed - style/period/culture
+Found multiple labels for property gvp:tgn3318_member_is, using the first one: tgn3318_member_is, member is - nation
+Found multiple labels for property gvp:aat2817_derived-made_from, using the first one: aat2817_derived-made_from, derived/made from - material
+Found multiple labels for property gvp:ulan1310_advised_by, using the first one: ulan1310_advised_by, advised by - person
+Found multiple labels for property gvp:ulan2550_friend_of, using the first one: ulan2550_friend_of, friend of - person
+Found multiple labels for property gvp:aat2879_followed-developed_from, using the first one: aat2879_followed-developed_from, followed/developed from - language
 Found multiple labels for property gvp:tgn3401_moved_from, using the first one: tgn3401_moved_from, moved from - place
-Found multiple labels for property gvp:ulan1206_client_was, using the first one: ulan1206_client_was, client was - person/firm/family
+Found multiple labels for property gvp:ulan2574_director_of, using the first one: ulan2574_director_of, director of - institution
+Found multiple labels for property gvp:aat2836_derived-made_from, using the first one: aat2836_derived-made_from, derived/made from - genus/species
+Found multiple labels for property gvp:ulan1532_uncle-aunt_of, using the first one: ulan1532_uncle-aunt_of, uncle/aunt of - person
+Found multiple labels for property gvp:ulan2829_student_was, using the first one: ulan2829_student_was, student was - person
+Found multiple labels for property gvp:aat2001_formerly_referred_to, using the first one: aat2001_formerly_referred_to, formerly referred to - any
+Found multiple labels for property gvp:ulan1414_joint_venture_with, using the first one: ulan1414_joint_venture_with, joint venture with - firm/group
+Found multiple labels for property gvp:aat2501_made_of-require, using the first one: aat2501_made_of-require, made of/require - material
+Found multiple labels for property gvp:aat2212_produced_by, using the first one: aat2212_produced_by, produced by - things
+Found multiple labels for property gvp:aat2432_requires, using the first one: aat2432_requires, requires - things
+Found multiple labels for property gvp:ulan1113_fellow_student_of, using the first one: ulan1113_fellow_student_of, fellow student of - person
+Found multiple labels for property gvp:ulan1205_client_of, using the first one: ulan1205_client_of, client of - person/firm/family
+Found multiple labels for property gvp:ulan1581_descendant_of, using the first one: ulan1581_descendant_of, descendant of - person
+Found multiple labels for property gvp:aat2885_involves, using the first one: aat2885_involves, involves - attributes /associated concepts
+Found multiple labels for property gvp:aat2312_perform, using the first one: aat2312_perform, perform - activity/event
+Found multiple labels for property gvp:aat2221_act_upon, using the first one: aat2221_act_upon, act upon - genus/species
+Found multiple labels for property gvp:tgn3103_located_on, using the first one: tgn3103_located_on, located on - place
 Found multiple labels for property gvp:aat2281_have_counterpart, using the first one: aat2281_have_counterpart, have counterpart - role
 Found multiple labels for property gvp:aat2291_locus-setting_for, using the first one: aat2291_locus-setting_for, locus/setting for - role
-Found multiple labels for property gvp:ulan1512_parent_of, using the first one: ulan1512_parent_of, parent of - person
-Found multiple labels for property gvp:ulan1532_uncle-aunt_of, using the first one: ulan1532_uncle-aunt_of, uncle/aunt of - person
-Found multiple labels for property gvp:aat2879_followed-developed_from, using the first one: aat2879_followed-developed_from, followed/developed from - language
-Found multiple labels for property gvp:aat2834_decendant_of, using the first one: aat2834_decendant_of, decendant of - genus/species
-Found multiple labels for property gvp:ulan1574_godparent_of, using the first one: ulan1574_godparent_of, godparent of - person
-Found multiple labels for property gvp:aat2892_example_of, using the first one: aat2892_example_of, example of - things
-Found multiple labels for property gvp:ulan2579_trustee_was, using the first one: ulan2579_trustee_was, trustee was - person
-Found multiple labels for property gvp:ulan1106_apprentice_was, using the first one: ulan1106_apprentice_was, apprentice was - person
-Found multiple labels for property gvp:aat2319_involves, using the first one: aat2319_involves, involves - role
-Found multiple labels for property gvp:aat2853_involve, using the first one: aat2853_involve, involve - genus/species
-Found multiple labels for property gvp:aat2336_has_associates, using the first one: aat2336_has_associates, has associates - role
-Found multiple labels for property gvp:ulan1318_member_was, using the first one: ulan1318_member_was, member was - firm/group
-Found multiple labels for property gvp:aat2821_based_on, using the first one: aat2821_based_on, based on - any
-Found multiple labels for property gvp:aat2812_followed, using the first one: aat2812_followed, followed - style/period/culture
-Found multiple labels for property gvp:aat2555_reflected_in, using the first one: aat2555_reflected_in, reflected in - activity/event
-Found multiple labels for property gvp:ulan1500_related_to, using the first one: ulan1500_related_to, related to - person
-Found multiple labels for property gvp:aat2292_work-live_in, using the first one: aat2292_work-live_in, work/live in - locus/setting
-Found multiple labels for property gvp:aat2604_possessed_by-existing_in, using the first one: aat2604_possessed_by-existing_in, possessed by/existing in - things
-Found multiple labels for property gvp:ulan2575_directed_by, using the first one: ulan2575_directed_by, directed by - person
-Found multiple labels for property gvp:ulan2697_leader_was, using the first one: ulan2697_leader_was, leader was - person
-Found multiple labels for property gvp:ulan1205_client_of, using the first one: ulan1205_client_of, client of - person/firm/family
-Found multiple labels for property gvp:ulan1412_predecessor_of, using the first one: ulan1412_predecessor_of, predecessor of - firm/group
-Found multiple labels for property gvp:ulan1006_formerly_identified_with, using the first one: ulan1006_formerly_identified_with, formerly identified with - any
-Found multiple labels for property gvp:ulan2676_teacher_at, using the first one: ulan2676_teacher_at, teacher at - institution
-Found multiple labels for property gvp:aat2507_produce-process, using the first one: aat2507_produce-process, produce/process - material
-Found multiple labels for property gvp:tgn3104_is_location_of, using the first one: tgn3104_is_location_of, is location of - place
-Found multiple labels for property gvp:aat2802_exemplified_by, using the first one: aat2802_exemplified_by, exemplified by - brand name
-Found multiple labels for property gvp:aat2428_produces, using the first one: aat2428_produces, produces - things
-Found multiple labels for property gvp:aat2397_focus_of, using the first one: aat2397_focus_of, focus of - field/discipline
-Found multiple labels for property gvp:ulan1562_step-parent_of, using the first one: ulan1562_step-parent_of, step-parent of - person
-Found multiple labels for property gvp:aat2100_distinguished_from, using the first one: aat2100_distinguished_from, distinguished from - any
-Found multiple labels for property gvp:aat2882_reflect, using the first one: aat2882_reflect, reflect - language
-Found multiple labels for property gvp:aat2501_made_of-require, using the first one: aat2501_made_of-require, made of/require - material
-Found multiple labels for property gvp:tgn3006_formerly_identified_as, using the first one: tgn3006_formerly_identified_as, formerly identified as - place
-Found multiple labels for property gvp:aat2295_located_in, using the first one: aat2295_located_in, located in - locus/setting
-Found multiple labels for property gvp:tgn3202_capital_is, using the first one: tgn3202_capital_is, capital is - city
-Found multiple labels for property gvp:ulan1413_administration_overlaps_with, using the first one: ulan1413_administration_overlaps_with, administration overlaps with - firm/group
-Found multiple labels for property gvp:ulan1201_patron_of, using the first one: ulan1201_patron_of, patron of - person/firm/family
-Found multiple labels for property gvp:aat2886_used-function_as, using the first one: aat2886_used-function_as, used/function as - material
-Found multiple labels for property gvp:aat2294_locus-setting_for, using the first one: aat2294_locus-setting_for, locus/setting for - locus/setting
-Found multiple labels for property gvp:aat2828_use-require, using the first one: aat2828_use-require, use/require - material
-Found multiple labels for property gvp:ulan1573_ward_of, using the first one: ulan1573_ward_of, ward of - person
-Found multiple labels for property gvp:aat2801_conjuncted_with, using the first one: aat2801_conjuncted_with, conjuncted with - things
-Found multiple labels for property gvp:ulan2828_student_at, using the first one: ulan2828_student_at, student at - institution
-Found multiple labels for property gvp:ulan2840_performer_with, using the first one: ulan2840_performer_with, performer with - group
-Found multiple labels for property gvp:aat2842_source_for, using the first one: aat2842_source_for, source for - material
-Found multiple labels for property gvp:aat2321_used_by, using the first one: aat2321_used_by, used by - role
-Found multiple labels for property gvp:aat2419_used_for, using the first one: aat2419_used_for, used for - field/discipline
-Found multiple labels for property gvp:aat2881_reflected_in, using the first one: aat2881_reflected_in, reflected in - things
-Found multiple labels for property gvp:aat2805_contextualized_in, using the first one: aat2805_contextualized_in, contextualized in - things
-Found multiple labels for property gvp:aat2409_takes_place_in, using the first one: aat2409_takes_place_in, takes place in - locus/setting
-Found multiple labels for property gvp:aat2563_located_in, using the first one: aat2563_located_in, located in - locus/setting
-Found multiple labels for property gvp:aat2427_produced_by, using the first one: aat2427_produced_by, produced by - activity/event/process
-Found multiple labels for property gvp:aat2824_has_parallels_with, using the first one: aat2824_has_parallels_with, has parallels with - style/period/culture
-Found multiple labels for property gvp:ulan1222_appointee_of, using the first one: ulan1222_appointee_of, appointee of - person
-Found multiple labels for property gvp:aat2408_locus-setting_for, using the first one: aat2408_locus-setting_for, locus/setting for - field/discipline
-Found multiple labels for property gvp:aat2900_miscellaneous_relationship, using the first one: aat2900_miscellaneous_relationship, miscellaneous relationship - any
-Found multiple labels for property gvp:aat2836_derived-made_from, using the first one: aat2836_derived-made_from, derived/made from - genus/species
-Found multiple labels for property gvp:aat2315_used_by, using the first one: aat2315_used_by, used by - role
-Found multiple labels for property gvp:ulan2829_student_was, using the first one: ulan2829_student_was, student was - person
-Found multiple labels for property gvp:ulan1555_adopted_child_of, using the first one: ulan1555_adopted_child_of, adopted child of - person
-Found multiple labels for property gvp:aat2605_possess-exist_in, using the first one: aat2605_possess-exist_in, possess/exist in - attributes /associated concepts
-Found multiple labels for property gvp:aat2875_characteristic_of, using the first one: aat2875_characteristic_of, characteristic of - style/period/culture
-Found multiple labels for property gvp:ulan1553_child_by_marriage_of, using the first one: ulan1553_child_by_marriage_of, child by marriage of - person
-Found multiple labels for property gvp:ulan1422_founded, using the first one: ulan1422_founded, founded - firm/group
-Found multiple labels for property gvp:aat2421_locus-setting_for, using the first one: aat2421_locus-setting_for, locus/setting for - activity/event
-Found multiple labels for property gvp:ulan1105_apprentice_of, using the first one: ulan1105_apprentice_of, apprentice of - person
-Found multiple labels for property gvp:tgn3412_predecessor_of, using the first one: tgn3412_predecessor_of, predecessor of - nation
-Found multiple labels for property gvp:aat2422_takes_place_in, using the first one: aat2422_takes_place_in, takes place in - locus/setting
-Found multiple labels for property gvp:aat2215_required_for, using the first one: aat2215_required_for, required for - things
-Found multiple labels for property gvp:aat2216_require, using the first one: aat2216_require, require - things
-Found multiple labels for property gvp:aat2206_caused_by-requires, using the first one: aat2206_caused_by-requires, caused by/requires - activity/event
-Found multiple labels for property gvp:ulan1515_great-grandparent_of, using the first one: ulan1515_great-grandparent_of, great-grandparent of - person
-Found multiple labels for property gvp:ulan1414_joint_venture_with, using the first one: ulan1414_joint_venture_with, joint venture with - firm/group
-Found multiple labels for property gvp:ulan1224_crowned, using the first one: ulan1224_crowned, crowned - person
-Found multiple labels for property gvp:ulan2650_publisher_was, using the first one: ulan2650_publisher_was, publisher was - firm
-Found multiple labels for property gvp:ulan1544_significant_other_of, using the first one: ulan1544_significant_other_of, significant other of - person
-Found multiple labels for property gvp:aat2110_meaning-usage_overlaps_with, using the first one: aat2110_meaning-usage_overlaps_with, meaning/usage overlaps with - any
-Found multiple labels for property gvp:ulan2779_owned_by, using the first one: ulan2779_owned_by, owned by - firm
-Found multiple labels for property gvp:ulan2578_trustee_of, using the first one: ulan2578_trustee_of, trustee of - institution
-Found multiple labels for property gvp:aat2318_involved_in, using the first one: aat2318_involved_in, involved in - activity/event
-Found multiple labels for property gvp:aat2878_preceded-source_for, using the first one: aat2878_preceded-source_for, preceded/source for - language
-Found multiple labels for property gvp:ulan2651_publisher_of, using the first one: ulan2651_publisher_of, publisher of - person
-Found multiple labels for property gvp:ulan1331_worked_with, using the first one: ulan1331_worked_with, worked with - person
-Found multiple labels for property gvp:ulan1315_principal_in, using the first one: ulan1315_principal_in, principal in - firm
-Found multiple labels for property gvp:aat2286_practice-study, using the first one: aat2286_practice-study, practice/study - field/discipline
-Found multiple labels for property gvp:aat2425_produces, using the first one: aat2425_produces, produces - material
-Found multiple labels for property gvp:ulan2576_patron_of, using the first one: ulan2576_patron_of, patron of - person
-Found multiple labels for property gvp:aat2815_composed_of, using the first one: aat2815_composed_of, composed of - material
-Found multiple labels for property gvp:ulan1306_performs_with, using the first one: ulan1306_performs_with, performs with - person
-Found multiple labels for property gvp:aat2612_possessed_by-existing_in, using the first one: aat2612_possessed_by-existing_in, possessed by/existing in - material
-Found multiple labels for property gvp:ulan1421_founded_by, using the first one: ulan1421_founded_by, founded by - firm/group
-Found multiple labels for property gvp:ulan1311_partner_of, using the first one: ulan1311_partner_of, partner of - person
-Found multiple labels for property gvp:aat2845_used-located_in, using the first one: aat2845_used-located_in, used/located in - locus/setting
-Found multiple labels for property gvp:aat2332_affiliated_with, using the first one: aat2332_affiliated_with, affiliated with - role
-Found multiple labels for property gvp:aat2285_practiced-studied_by, using the first one: aat2285_practiced-studied_by, practiced/studied by - role
-Found multiple labels for property gvp:ulan1554_adoptive_parent_of, using the first one: ulan1554_adoptive_parent_of, adoptive parent of - person
-Found multiple labels for property gvp:ulan1582_ancestor_of, using the first one: ulan1582_ancestor_of, ancestor of - person
-Found multiple labels for property gvp:ulan1514_gandparent_of, using the first one: ulan1514_gandparent_of, gandparent of - person
-Found multiple labels for property gvp:aat2418_uses, using the first one: aat2418_uses, uses - things
-Found multiple labels for property gvp:ulan1223_crowned_by, using the first one: ulan1223_crowned_by, crowned by - person
-Found multiple labels for property gvp:ulan1203_donor_of, using the first one: ulan1203_donor_of, donor of - person/firm/family
-Found multiple labels for property gvp:ulan1550_relative_by_marriage, using the first one: ulan1550_relative_by_marriage, relative by marriage - person
-Found multiple labels for property gvp:ulan1211_artist_to, using the first one: ulan1211_artist_to, artist to - person
-Found multiple labels for property gvp:aat2876_characterized_by, using the first one: aat2876_characterized_by, characterized by - language
-Found multiple labels for property gvp:aat2335_associated_with, using the first one: aat2335_associated_with, associated with - style/period/culture
-Found multiple labels for property gvp:ulan1003_associated_with, using the first one: ulan1003_associated_with, associated with - any
-Found multiple labels for property gvp:aat2887_exemplified_by, using the first one: aat2887_exemplified_by, exemplified by - material
-Found multiple labels for property gvp:ulan1302_associate_of, using the first one: ulan1302_associate_of, associate of - person
-Found multiple labels for property gvp:aat2412_involves, using the first one: aat2412_involves, involves - activity/event
-Found multiple labels for property gvp:aat2841_derived-made_from, using the first one: aat2841_derived-made_from, derived/made from - genus/species
-Found multiple labels for property gvp:ulan2692_president_of, using the first one: ulan2692_president_of, president of - institution
-Found multiple labels for property gvp:aat2602_possess-exist_in, using the first one: aat2602_possess-exist_in, possess/exist in - attributes /associated concepts
-Found multiple labels for property gvp:tgn3510_historical_connection, using the first one: tgn3510_historical_connection, historical connection - any
-Found multiple labels for property gvp:aat2852_involved_with, using the first one: aat2852_involved_with, involved with - things
-Found multiple labels for property gvp:aat2328_involved_with, using the first one: aat2328_involved_with, involved with - things
-Found multiple labels for property gvp:ulan2696_leader_of, using the first one: ulan2696_leader_of, leader of - institution
-Found multiple labels for property gvp:aat2322_use, using the first one: aat2322_use, use - things
-Found multiple labels for property gvp:tgn3110_meaning-usage_overlaps_with, using the first one: tgn3110_meaning-usage_overlaps_with, meaning/usage overlaps with - any
-Found multiple labels for property gvp:ulan1542_consort_of, using the first one: ulan1542_consort_of, consort of - person
+Found multiple labels for property gvp:aat2607_caused_by-requires, using the first one: aat2607_caused_by-requires, caused by/requires - activity/event
 Found multiple labels for property gvp:ulan2675_professor_was, using the first one: ulan2675_professor_was, professor was - person
-Found multiple labels for property gvp:aat2508_produced-processed_by, using the first one: aat2508_produced-processed_by, produced/processed by - things
-Found multiple labels for property gvp:tgn3611_administrative_dependent_of, using the first one: tgn3611_administrative_dependent_of, administrative dependent of - place
-Found multiple labels for property gvp:ulan1221_appointed_by, using the first one: ulan1221_appointed_by, appointed by - person
-Found multiple labels for property gvp:tgn3402_moved_to, using the first one: tgn3402_moved_to, moved to - place
-Found multiple labels for property gvp:ulan1214_court_artist_was, using the first one: ulan1214_court_artist_was, court artist was - person
-Found multiple labels for property gvp:ulan1317_member_of, using the first one: ulan1317_member_of, member of - person/firm/group
-Found multiple labels for property gvp:ulan2782_dedicated_to, using the first one: ulan2782_dedicated_to, dedicated to - person
-Found multiple labels for property gvp:ulan1007_distinguished_from, using the first one: ulan1007_distinguished_from, distinguished from - any
-Found multiple labels for property gvp:ulan1301_colleague_of, using the first one: ulan1301_colleague_of, colleague of - person
-Found multiple labels for property gvp:ulan1202_patron_was, using the first one: ulan1202_patron_was, patron was - person
-Found multiple labels for property gvp:ulan1321_school_of, using the first one: ulan1321_school_of, school of - firm/group
-Found multiple labels for property gvp:ulan1310_advised_by, using the first one: ulan1310_advised_by, advised by - person
-Found multiple labels for property gvp:ulan1314_partner_was, using the first one: ulan1314_partner_was, partner was - person
-Found multiple labels for property gvp:aat2558_reflected_in, using the first one: aat2558_reflected_in, reflected in - field/discipline
-Found multiple labels for property gvp:ulan1575_godchild_of, using the first one: ulan1575_godchild_of, godchild of - person
+Found multiple labels for property gvp:ulan1212_artist_was, using the first one: ulan1212_artist_was, artist was - person
+Found multiple labels for property gvp:aat2802_exemplified_by, using the first one: aat2802_exemplified_by, exemplified by - brand name
 Found multiple labels for property gvp:aat2000_related_to, using the first one: aat2000_related_to, related to - any
+Found multiple labels for property gvp:ulan1318_member_was, using the first one: ulan1318_member_was, member was - firm/group
+Found multiple labels for property gvp:ulan2841_performer_was, using the first one: ulan2841_performer_was, performer was - person
+Found multiple labels for property gvp:tgn3510_historical_connection, using the first one: tgn3510_historical_connection, historical connection - any
+Found multiple labels for property gvp:aat2833_ancestor_of, using the first one: aat2833_ancestor_of, ancestor of - genus/species
+Found multiple labels for property gvp:ulan1108_influenced_by, using the first one: ulan1108_influenced_by, influenced by - person
+Found multiple labels for property gvp:tgn3301_ally_of, using the first one: tgn3301_ally_of, ally of - nation
+Found multiple labels for property gvp:ulan1542_consort_of, using the first one: ulan1542_consort_of, consort of - person
+Found multiple labels for property gvp:ulan1548_domestic_partner_of, using the first one: ulan1548_domestic_partner_of, domestic partner of - person
+Found multiple labels for property gvp:tgn3101_near-adjacent_to, using the first one: tgn3101_near-adjacent_to, near/adjacent to - any
+Found multiple labels for property gvp:aat2558_reflected_in, using the first one: aat2558_reflected_in, reflected in - field/discipline
+Found multiple labels for property gvp:aat2215_required_for, using the first one: aat2215_required_for, required for - things
+Found multiple labels for property gvp:aat2882_reflect, using the first one: aat2882_reflect, reflect - language
+Found multiple labels for property gvp:ulan1571_guardian_of, using the first one: ulan1571_guardian_of, guardian of - person
+Found multiple labels for property gvp:ulan1513_grandchild_of, using the first one: ulan1513_grandchild_of, grandchild of - person
+Found multiple labels for property gvp:ulan1501_sibling_of, using the first one: ulan1501_sibling_of, sibling of - person
+Found multiple labels for property gvp:aat2295_located_in, using the first one: aat2295_located_in, located in - locus/setting
+Found multiple labels for property gvp:aat2891_exemplified_by, using the first one: aat2891_exemplified_by, exemplified by - brand name
+Found multiple labels for property gvp:ulan1322_school_was, using the first one: ulan1322_school_was, school was - person
+Found multiple labels for property gvp:tgn3402_moved_to, using the first one: tgn3402_moved_to, moved to - place
+Found multiple labels for property gvp:ulan1305_worked_with, using the first one: ulan1305_worked_with, worked with - person
+Found multiple labels for property gvp:ulan1313_partner_in, using the first one: ulan1313_partner_in, partner in - firm
+Found multiple labels for property gvp:ulan1204_donor_was, using the first one: ulan1204_donor_was, donor was - person/firm/family
+Found multiple labels for property gvp:ulan1206_client_was, using the first one: ulan1206_client_was, client was - person/firm/family
+Found multiple labels for property gvp:ulan1511_child_of, using the first one: ulan1511_child_of, child of - person
 Found multiple labels for property gvp:ulan2781_dedicatee_of, using the first one: ulan2781_dedicatee_of, dedicatee of - institution
-Found multiple labels for property gvp:aat2608_causes-required_for, using the first one: aat2608_causes-required_for, causes/required for - attributes /associated concepts
-Found multiple labels for property gvp:aat2551_reflect-produced_by, using the first one: aat2551_reflect-produced_by, reflect/produced by - style/period/culture
-Found multiple labels for property gvp:aat2552_reflected_in-produces, using the first one: aat2552_reflected_in-produces, reflected in/produces - things
-Found multiple labels for property gvp:ulan1111_master_of, using the first one: ulan1111_master_of, master of - person
-Found multiple labels for property gvp:ulan1552_parent_by_marriage_of, using the first one: ulan1552_parent_by_marriage_of, parent by marriage of - person
-Found multiple labels for property gvp:aat2894_exemplified_by, using the first one: aat2894_exemplified_by, exemplified by - brand name
+Found multiple labels for property gvp:ulan1314_partner_was, using the first one: ulan1314_partner_was, partner was - person
+Found multiple labels for property gvp:tgn3612_administrative_entity_for, using the first one: tgn3612_administrative_entity_for, administrative entity for - place
+Found multiple labels for property gvp:aat2318_involved_in, using the first one: aat2318_involved_in, involved in - activity/event
+Found multiple labels for property gvp:aat2325_created_by, using the first one: aat2325_created_by, created by - role
+Found multiple labels for property gvp:ulan1003_associated_with, using the first one: ulan1003_associated_with, associated with - any
+Found multiple labels for property gvp:ulan2778_owner_of, using the first one: ulan2778_owner_of, owner of - person
+Found multiple labels for property gvp:aat2292_work-live_in, using the first one: aat2292_work-live_in, work/live in - locus/setting
+Found multiple labels for property gvp:aat2321_used_by, using the first one: aat2321_used_by, used by - role
+Found multiple labels for property gvp:aat2828_use-require, using the first one: aat2828_use-require, use/require - material
+Found multiple labels for property gvp:aat2408_locus-setting_for, using the first one: aat2408_locus-setting_for, locus/setting for - field/discipline
+Found multiple labels for property gvp:ulan1105_apprentice_of, using the first one: ulan1105_apprentice_of, apprentice of - person
+Found multiple labels for property gvp:ulan2693_president_was, using the first one: ulan2693_president_was, president was - person
+Found multiple labels for property gvp:aat2554_reflects, using the first one: aat2554_reflects, reflects - style/period/culture
+Found multiple labels for property gvp:aat2508_produced-processed_by, using the first one: aat2508_produced-processed_by, produced/processed by - things
+Found multiple labels for property gvp:ulan1211_artist_to, using the first one: ulan1211_artist_to, artist to - person
+Found multiple labels for property gvp:aat2887_exemplified_by, using the first one: aat2887_exemplified_by, exemplified by - material
+Found multiple labels for property gvp:aat2605_possess-exist_in, using the first one: aat2605_possess-exist_in, possess/exist in - attributes /associated concepts
+Found multiple labels for property gvp:aat2294_locus-setting_for, using the first one: aat2294_locus-setting_for, locus/setting for - locus/setting
+Found multiple labels for property gvp:tgn3104_is_location_of, using the first one: tgn3104_is_location_of, is location of - place
+Found multiple labels for property gvp:aat2842_source_for, using the first one: aat2842_source_for, source for - material
+Found multiple labels for property gvp:aat2849_involves, using the first one: aat2849_involves, involves - genus/species
+Found multiple labels for property gvp:ulan1222_appointee_of, using the first one: ulan1222_appointee_of, appointee of - person
+Found multiple labels for property gvp:ulan1514_gandparent_of, using the first one: ulan1514_gandparent_of, gandparent of - person
+Found multiple labels for property gvp:aat2829_used-required_for, using the first one: aat2829_used-required_for, used/required for - things
+Found multiple labels for property gvp:aat2818_source_for, using the first one: aat2818_source_for, source for - material
+Found multiple labels for property gvp:aat2604_possessed_by-existing_in, using the first one: aat2604_possessed_by-existing_in, possessed by/existing in - things
+Found multiple labels for property gvp:aat2878_preceded-source_for, using the first one: aat2878_preceded-source_for, preceded/source for - language
 Found multiple labels for property gvp:ulan1218_employee_was, using the first one: ulan1218_employee_was, employee was - person/firm
+Found multiple labels for property gvp:aat2328_involved_with, using the first one: aat2328_involved_with, involved with - things
+Found multiple labels for property gvp:ulan1223_crowned_by, using the first one: ulan1223_crowned_by, crowned by - person
+Found multiple labels for property gvp:ulan1562_step-parent_of, using the first one: ulan1562_step-parent_of, step-parent of - person
+Found multiple labels for property gvp:ulan2572_founder_of, using the first one: ulan2572_founder_of, founder of - institution
+Found multiple labels for property gvp:ulan1550_relative_by_marriage, using the first one: ulan1550_relative_by_marriage, relative by marriage - person
+Found multiple labels for property gvp:ulan1590_possibly_related_to, using the first one: ulan1590_possibly_related_to, possibly related to - person
+Found multiple labels for property gvp:aat2208_locus-setting_for, using the first one: aat2208_locus-setting_for, locus/setting for - things
+Found multiple labels for property gvp:aat2211_produce, using the first one: aat2211_produce, produce - things
+Found multiple labels for property gvp:ulan1112_master_was, using the first one: ulan1112_master_was, master was - person
 Found multiple labels for property gvp:ulan1541_spouse_of, using the first one: ulan1541_spouse_of, spouse of - person
+Found multiple labels for property gvp:aat2216_require, using the first one: aat2216_require, require - things
+Found multiple labels for property gvp:ulan1006_formerly_identified_with, using the first one: ulan1006_formerly_identified_with, formerly identified with - any
+Found multiple labels for property gvp:ulan1512_parent_of, using the first one: ulan1512_parent_of, parent of - person
+Found multiple labels for property gvp:ulan2573_founded_by, using the first one: ulan2573_founded_by, founded by - person
+Found multiple labels for property gvp:ulan2651_publisher_of, using the first one: ulan2651_publisher_of, publisher of - person
+Found multiple labels for property gvp:aat2397_focus_of, using the first one: aat2397_focus_of, focus of - field/discipline
+Found multiple labels for property gvp:aat2333_have_affiliates, using the first one: aat2333_have_affiliates, have affiliates - role
+Found multiple labels for property gvp:aat2815_composed_of, using the first one: aat2815_composed_of, composed of - material
+Found multiple labels for property gvp:aat2803_example_of, using the first one: aat2803_example_of, example of - material
+Found multiple labels for property gvp:ulan1556_half-sibling_of, using the first one: ulan1556_half-sibling_of, half-sibling of - person
+Found multiple labels for property gvp:tgn3005_possibly_identified_as, using the first one: tgn3005_possibly_identified_as, possibly identified as - place
+Found multiple labels for property gvp:aat2311_performed_by, using the first one: aat2311_performed_by, performed by - role
+Found multiple labels for property gvp:aat2332_affiliated_with, using the first one: aat2332_affiliated_with, affiliated with - role
+Found multiple labels for property gvp:ulan1203_donor_of, using the first one: ulan1203_donor_of, donor of - person/firm/family
+Found multiple labels for property gvp:aat2886_used-function_as, using the first one: aat2886_used-function_as, used/function as - material
+Found multiple labels for property gvp:aat2805_contextualized_in, using the first one: aat2805_contextualized_in, contextualized in - things
+Found multiple labels for property gvp:ulan2677_teacher_was, using the first one: ulan2677_teacher_was, teacher was - person
+Found multiple labels for property gvp:tgn3201_capital_of, using the first one: tgn3201_capital_of, capital of - nation
+Found multiple labels for property gvp:ulan1422_founded, using the first one: ulan1422_founded, founded - firm/group
+Found multiple labels for property gvp:ulan1308_assisted_by, using the first one: ulan1308_assisted_by, assisted by - person
+Found multiple labels for property gvp:aat2613_possess-exist_in, using the first one: aat2613_possess-exist_in, possess/exist in - attributes /associated concepts
+Found multiple labels for property gvp:ulan1544_significant_other_of, using the first one: ulan1544_significant_other_of, significant other of - person
+Found multiple labels for property gvp:ulan1543_consort_was, using the first one: ulan1543_consort_was, consort was - person
+Found multiple labels for property gvp:ulan1317_member_of, using the first one: ulan1317_member_of, member of - person/firm/group
+Found multiple labels for property gvp:ulan2828_student_at, using the first one: ulan2828_student_at, student at - institution
+Found multiple labels for property gvp:aat2335_associated_with, using the first one: aat2335_associated_with, associated with - style/period/culture
+Found multiple labels for property gvp:ulan1107_influenced, using the first one: ulan1107_influenced, influenced - person
+Found multiple labels for property gvp:tgn3411_successor_of, using the first one: tgn3411_successor_of, successor of - nation
+Found multiple labels for property gvp:ulan1221_appointed_by, using the first one: ulan1221_appointed_by, appointed by - person
+Found multiple labels for property gvp:ulan1552_parent_by_marriage_of, using the first one: ulan1552_parent_by_marriage_of, parent by marriage of - person
+Found multiple labels for property gvp:aat2422_takes_place_in, using the first one: aat2422_takes_place_in, takes place in - locus/setting
+Found multiple labels for property gvp:ulan1007_distinguished_from, using the first one: ulan1007_distinguished_from, distinguished from - any
+Found multiple labels for property gvp:ulan2577_patron_was, using the first one: ulan2577_patron_was, patron was - person
+Found multiple labels for property gvp:aat2322_use, using the first one: aat2322_use, use - things
+Found multiple labels for property gvp:aat2504_used-located_in, using the first one: aat2504_used-located_in, used/located in - locus/setting
+Found multiple labels for property gvp:ulan1315_principal_in, using the first one: ulan1315_principal_in, principal in - firm
+Found multiple labels for property gvp:ulan2696_leader_of, using the first one: ulan2696_leader_of, leader of - institution
+Found multiple labels for property gvp:aat2806_provide_context, using the first one: aat2806_provide_context, provide context - things
+Found multiple labels for property gvp:aat2425_produces, using the first one: aat2425_produces, produces - material
+Found multiple labels for property gvp:aat2563_located_in, using the first one: aat2563_located_in, located in - locus/setting
+Found multiple labels for property gvp:aat2411_involved_in, using the first one: aat2411_involved_in, involved in - field/discipline
+Found multiple labels for property gvp:ulan2692_president_of, using the first one: ulan2692_president_of, president of - institution
+Found multiple labels for property gvp:aat2551_reflect-produced_by, using the first one: aat2551_reflect-produced_by, reflect/produced by - style/period/culture
+Found multiple labels for property gvp:aat2608_causes-required_for, using the first one: aat2608_causes-required_for, causes/required for - attributes /associated concepts
+Found multiple labels for property gvp:aat2315_used_by, using the first one: aat2315_used_by, used by - role
+Found multiple labels for property gvp:ulan1413_administration_overlaps_with, using the first one: ulan1413_administration_overlaps_with, administration overlaps with - firm/group
+Found multiple labels for property gvp:tgn3102_coextensive_with, using the first one: tgn3102_coextensive_with, coextensive with - place
+Found multiple labels for property gvp:ulan2840_performer_with, using the first one: ulan2840_performer_with, performer with - group
+Found multiple labels for property gvp:ulan1301_colleague_of, using the first one: ulan1301_colleague_of, colleague of - person
+Found multiple labels for property gvp:ulan1421_founded_by, using the first one: ulan1421_founded_by, founded by - firm/group
+Found multiple labels for property gvp:aat2319_involves, using the first one: aat2319_involves, involves - role
+Found multiple labels for property gvp:aat2505_locus-setting_for, using the first one: aat2505_locus-setting_for, locus/setting for - material
+Found multiple labels for property gvp:aat2209_used-located_in, using the first one: aat2209_used-located_in, used/located in - locus/setting
+Found multiple labels for property gvp:ulan1573_ward_of, using the first one: ulan1573_ward_of, ward of - person
+Found multiple labels for property gvp:ulan2674_professor_at, using the first one: ulan2674_professor_at, professor at - institution
+Found multiple labels for property gvp:aat2809_coexisted_with, using the first one: aat2809_coexisted_with, coexisted with - style/period/culture
+Found multiple labels for property gvp:aat2612_possessed_by-existing_in, using the first one: aat2612_possessed_by-existing_in, possessed by/existing in - material
+Found multiple labels for property gvp:ulan2578_trustee_of, using the first one: ulan2578_trustee_of, trustee of - institution
+Found multiple labels for property gvp:aat2398_focuses_on, using the first one: aat2398_focuses_on, focuses on - any
+Found multiple labels for property gvp:aat2507_produce-process, using the first one: aat2507_produce-process, produce/process - material
+Found multiple labels for property gvp:tgn3317_member_of, using the first one: tgn3317_member_of, member of - union
+Found multiple labels for property gvp:ulan1316_principal_was, using the first one: ulan1316_principal_was, principal was - person
+Found multiple labels for property gvp:aat2502_material_for, using the first one: aat2502_material_for, material for - things
+Found multiple labels for property gvp:ulan1557_step-sibling_of, using the first one: ulan1557_step-sibling_of, step-sibling of - person
+Found multiple labels for property gvp:ulan1000_related_to, using the first one: ulan1000_related_to, related to - any
+Found multiple labels for property gvp:ulan1201_patron_of, using the first one: ulan1201_patron_of, patron of - person/firm/family
+Found multiple labels for property gvp:aat2895_example_of, using the first one: aat2895_example_of, example of - activity/event
+Found multiple labels for property gvp:ulan2779_owned_by, using the first one: ulan2779_owned_by, owned by - firm
+Found multiple labels for property gvp:aat2900_miscellaneous_relationship, using the first one: aat2900_miscellaneous_relationship, miscellaneous relationship - any
+Found multiple labels for property gvp:ulan1555_adopted_child_of, using the first one: ulan1555_adopted_child_of, adopted child of - person
+Found multiple labels for property gvp:aat2834_decendant_of, using the first one: aat2834_decendant_of, decendant of - genus/species
+Found multiple labels for property gvp:ulan1561_step-child_of, using the first one: ulan1561_step-child_of, step-child of - person
+Found multiple labels for property gvp:tgn3110_meaning-usage_overlaps_with, using the first one: tgn3110_meaning-usage_overlaps_with, meaning/usage overlaps with - any
+Found multiple labels for property gvp:aat2876_characterized_by, using the first one: aat2876_characterized_by, characterized by - language
+Found multiple labels for property gvp:aat2562_locus-setting_for, using the first one: aat2562_locus-setting_for, locus/setting for - style/period/culture
+Found multiple labels for property gvp:ulan1331_worked_with, using the first one: ulan1331_worked_with, worked with - person
+Found multiple labels for property gvp:aat2845_used-located_in, using the first one: aat2845_used-located_in, used/located in - locus/setting
+Found multiple labels for property gvp:aat2435_context_for, using the first one: aat2435_context_for, context for - things
+Found multiple labels for property gvp:ulan1307_assistant_of, using the first one: ulan1307_assistant_of, assistant of - person
+Found multiple labels for property gvp:aat2336_has_associates, using the first one: aat2336_has_associates, has associates - role
+Found multiple labels for property gvp:ulan2795_representative_was, using the first one: ulan2795_representative_was, representative was - person
+Found multiple labels for property gvp:ulan1332_worker_was, using the first one: ulan1332_worker_was, worker was - any
+Found multiple labels for property gvp:aat2205_causes-is_required, using the first one: aat2205_causes-is_required, causes/is required - activity/event
+Found multiple labels for property gvp:ulan1551_sibling_by_marriage_of, using the first one: ulan1551_sibling_by_marriage_of, sibling by marriage of - person
+Found multiple labels for property gvp:aat2421_locus-setting_for, using the first one: aat2421_locus-setting_for, locus/setting for - activity/event
+Found multiple labels for property gvp:aat2881_reflected_in, using the first one: aat2881_reflected_in, reflected in - things
+Found multiple labels for property gvp:tgn3000_related_to, using the first one: tgn3000_related_to, related to - any
+Found multiple labels for property gvp:tgn3006_formerly_identified_as, using the first one: tgn3006_formerly_identified_as, formerly identified as - place
+Found multiple labels for property gvp:ulan2575_directed_by, using the first one: ulan2575_directed_by, directed by - person
+Found multiple labels for property gvp:ulan1554_adoptive_parent_of, using the first one: ulan1554_adoptive_parent_of, adoptive parent of - person
+Found multiple labels for property gvp:aat2831_associated_with, using the first one: aat2831_associated_with, associated with - genus/species
+Found multiple labels for property gvp:ulan1101_teacher_of, using the first one: ulan1101_teacher_of, teacher of - person
+Found multiple labels for property gvp:tgn3202_capital_is, using the first one: tgn3202_capital_is, capital is - city
+Found multiple labels for property gvp:aat2807_derived_from_common_source, using the first one: aat2807_derived_from_common_source, derived from common source - material
+Found multiple labels for property gvp:ulan1214_court_artist_was, using the first one: ulan1214_court_artist_was, court artist was - person
+Found multiple labels for property gvp:ulan1306_performs_with, using the first one: ulan1306_performs_with, performs with - person
+Found multiple labels for property gvp:aat2824_has_parallels_with, using the first one: aat2824_has_parallels_with, has parallels with - style/period/culture
+Found multiple labels for property gvp:aat2416_requires, using the first one: aat2416_requires, requires - material
+Found multiple labels for property gvp:ulan2584_chaired_by, using the first one: ulan2584_chaired_by, chaired by - person
+Found multiple labels for property gvp:aat2329_involves, using the first one: aat2329_involves, involves - role
+Found multiple labels for property gvp:ulan2579_trustee_was, using the first one: ulan2579_trustee_was, trustee was - person
 Found multiple labels for property gvp:aat2557_reflects, using the first one: aat2557_reflects, reflects - style/period/culture
-Found multiple labels for property gvp:tgn3103_located_on, using the first one: tgn3103_located_on, located on - place
+Found multiple labels for property gvp:ulan2581_administrator_of, using the first one: ulan2581_administrator_of, administrator of - institution
+Found multiple labels for property gvp:aat2418_uses, using the first one: aat2418_uses, uses - things
+Found multiple labels for property gvp:ulan1516_great-grandchild_of, using the first one: ulan1516_great-grandchild_of, great-grandchild of - person
+Found multiple labels for property gvp:ulan1309_advisor_of, using the first one: ulan1309_advisor_of, advisor of - person
+Found multiple labels for property gvp:aat2219_have_form, using the first one: aat2219_have_form, have form - things
+Found multiple labels for property gvp:ulan1521_cousin_of, using the first one: ulan1521_cousin_of, cousin of - person
+Found multiple labels for property gvp:ulan1515_great-grandparent_of, using the first one: ulan1515_great-grandparent_of, great-grandparent of - person
+Found multiple labels for property gvp:ulan1213_court_artist_to, using the first one: ulan1213_court_artist_to, court artist to - person
+Found multiple labels for property gvp:aat2811_preceded, using the first one: aat2811_preceded, preceded - style/period/culture
+Found multiple labels for property gvp:ulan1217_employee_of, using the first one: ulan1217_employee_of, employee of - person
+Found multiple labels for property gvp:aat2884_involved_with, using the first one: aat2884_involved_with, involved with - any
+Found multiple labels for property gvp:aat2853_involve, using the first one: aat2853_involve, involve - genus/species
+Found multiple labels for property gvp:aat2427_produced_by, using the first one: aat2427_produced_by, produced by - activity/event/process
+Found multiple labels for property gvp:aat2875_characteristic_of, using the first one: aat2875_characteristic_of, characteristic of - style/period/culture
+Found multiple labels for property gvp:aat2428_produces, using the first one: aat2428_produces, produces - things
+Found multiple labels for property gvp:aat2326_create, using the first one: aat2326_create, create - things
+Found multiple labels for property gvp:ulan1531_nephew-niece_of, using the first one: ulan1531_nephew-niece_of, nephew/niece of - person
+Found multiple labels for property gvp:ulan1005_possibly_identified_with, using the first one: ulan1005_possibly_identified_with, possibly identified with - any
+Found multiple labels for property gvp:ulan1106_apprentice_was, using the first one: ulan1106_apprentice_was, apprentice was - person
+Found multiple labels for property gvp:aat2848_involved_in, using the first one: aat2848_involved_in, involved in - activity/event
+Found multiple labels for property gvp:aat2434_contextualized_in, using the first one: aat2434_contextualized_in, contextualized in - activity/event/process
+Found multiple labels for property gvp:ulan1302_associate_of, using the first one: ulan1302_associate_of, associate of - person
+Found multiple labels for property gvp:aat2203_associated_with, using the first one: aat2203_associated_with, associated with - activity/event
+Found multiple labels for property gvp:ulan1553_child_by_marriage_of, using the first one: ulan1553_child_by_marriage_of, child by marriage of - person
+Found multiple labels for property gvp:ulan1574_godparent_of, using the first one: ulan1574_godparent_of, godparent of - person
+Found multiple labels for property gvp:aat2821_based_on, using the first one: aat2821_based_on, based on - any
+Found multiple labels for property gvp:ulan1412_predecessor_of, using the first one: ulan1412_predecessor_of, predecessor of - firm/group
+Found multiple labels for property gvp:aat2222_are_acted_upon, using the first one: aat2222_are_acted_upon, are acted upon - role
+Found multiple labels for property gvp:aat2218_used-function_as, using the first one: aat2218_used-function_as, used/function as - things
+Found multiple labels for property gvp:ulan2794_representative_of, using the first one: ulan2794_representative_of, representative of - institution
+Found multiple labels for property gvp:ulan2650_publisher_was, using the first one: ulan2650_publisher_was, publisher was - firm
+Found multiple labels for property gvp:aat2602_possess-exist_in, using the first one: aat2602_possess-exist_in, possess/exist in - attributes /associated concepts
+Found multiple labels for property gvp:ulan1224_crowned, using the first one: ulan1224_crowned, crowned - person
+Found multiple labels for property gvp:ulan2582_administered_by, using the first one: ulan2582_administered_by, administered by - person
+Found multiple labels for property gvp:aat2814_constituent_of, using the first one: aat2814_constituent_of, constituent of - material
+Found multiple labels for property gvp:ulan2697_leader_was, using the first one: ulan2697_leader_was, leader was - person
+Found multiple labels for property gvp:aat2846_locus-setting_for, using the first one: aat2846_locus-setting_for, locus/setting for - genus/species
+Found multiple labels for property gvp:aat2552_reflected_in-produces, using the first one: aat2552_reflected_in-produces, reflected in/produces - things
+Found multiple labels for property gvp:aat2415_required_for, using the first one: aat2415_required_for, required for - activity/event
+Found multiple labels for property gvp:ulan1547_romantic_partner_of, using the first one: ulan1547_romantic_partner_of, romantic partner of - person
+Found multiple labels for property gvp:aat2852_involved_with, using the first one: aat2852_involved_with, involved with - things
+Found multiple labels for property gvp:aat2100_distinguished_from, using the first one: aat2100_distinguished_from, distinguished from - any
+Found multiple labels for property gvp:ulan1575_godchild_of, using the first one: ulan1575_godchild_of, godchild of - person
+Found multiple labels for property gvp:ulan2583_chairman_of, using the first one: ulan2583_chairman_of, chairman of - institution
+Found multiple labels for property gvp:aat2892_example_of, using the first one: aat2892_example_of, example of - things
+Found multiple labels for property gvp:aat2431_required_for, using the first one: aat2431_required_for, required for - activity/event/process
+Found multiple labels for property gvp:aat2555_reflected_in, using the first one: aat2555_reflected_in, reflected in - activity/event
+Found multiple labels for property gvp:ulan1411_successor_of, using the first one: ulan1411_successor_of, successor of - firm/group
+Found multiple labels for property gvp:aat2206_caused_by-requires, using the first one: aat2206_caused_by-requires, caused by/requires - activity/event
+Found multiple labels for property gvp:ulan1008_meaning_-usage_overlaps_with, using the first one: ulan1008_meaning_-usage_overlaps_with, meaning /usage overlaps with - any

@@ -14,6 +14,7 @@ skos.yaml      : EXTRA = skos-fix.ttl
 gvp.yaml       : EXTRA = skos.ttl skos-fix.ttl skos-xl.ttl # skos-thes.ttl
 dct_owldl.yaml : EXTRA = -voc dcterms
 schema.yaml    : EXTRA = -voc schema
+fibo-FND.yaml  : EXTRA = -id fibo-FND
 
 ## Read more bytes than requested. Do you use an encoding-related PerlIO layer?
 # schema1.yaml : ../owl2soml.pl schema.rdf

@@ -23,6 +23,7 @@ our $ontology_iri;                     # as Attean::IRI
 our $ontology;                         # $ontology_iri as string
 our $vocab_iri;                        # vocab namespace as Attean::IRI
 our $vocab_prefix;                     # vocab prefix as string
+our $soml_id;
 our $map   = URI::NamespaceMap->new(); # prefixes in loaded ontologies
 our $MAP   = URI::NamespaceMap->new    # fixed prefixes used in mapping ("service" namespace)
   ({so     => "http://www.ontotext.com/semantic-object/",
@@ -48,7 +49,7 @@ our @PROP_CLASSES =
   qw(rdf:Property owl:AnnotationProperty owl:DatatypeProperty owl:ObjectProperty
    owl:FunctionalProperty owl:InverseFunctionalProperty owl:ReflexiveProperty
    owl:IrreflexiveProperty owl:SymmetricProperty owl:AsymmetricProperty owl:TransitiveProperty);
-our @NO_CLASSES = qw(owl:Thing schema:Thing owl:Nothing schema:DataType);
+our @NO_CLASSES = qw(owl:Thing owl:Nothing schema:DataType);
 our @NO_PROPS = qw(owl:topObjectProperty owl:bottomObjectProperty owl:topDataProperty owl:bottomDataProperty);
 our @LABEL_PROPS = qw(rdfs:label skos:prefLabel dc:title dct:title);
 our @DESCR_PROPS = qw(rdfs:comment skos:definition skos:description skos:scopeNote dc:description dct:description);
@@ -131,7 +132,9 @@ $0 - Generates SOML from supplied ontologies
 
 Usage: $0 ontology.(ttl|rdf) ... > ontology.yaml
 Options:
-  --vocab pfx     Uses "pfx" as the main vocab_prefix
+  -voc pfx     Use "pfx" as vocab_prefix and SOML ID.
+  -id  id      Use "id" as SOML ID and don't set a vocab_prefix.
+               Otherwise vocab_prefix and SOML ID are set from the ontology using various heuristics.
 
 Parses:
 - ontologies (owl:Ontology, dct:created, dct:modified, $creator_props),
@@ -161,7 +164,9 @@ Limitations:
 END
 }
 
-GetOptions ("vocab=s" => \$vocab_prefix) or usage();
+GetOptions ("vocab=s" => \$vocab_prefix,
+            "id=s" => \$soml_id)
+  or usage();
 
 sub first_ontology() {
   # get ontology metadata, and try to figure out vocab_iri and vocab_prefix
@@ -174,9 +179,11 @@ sub first_ontology() {
     $base = one_value($model->objects($ontology_iri, IRI("swc:BaseUrl")))
   };
   # try to find vocab_iri and vocab_prefix in various inter-dependent ways
-  if ($vocab_prefix) { # option --vocab $vocab_refix
+  if ($vocab_prefix) { # option -voc
     $vocab_iri = iri ($map->namespace_uri($vocab_prefix))
-      or my_die "can't find vocab_iri of --vocab prefix $vocab_prefix";
+      or my_die "can't find vocab_iri of -voc prefix $vocab_prefix";
+  } elsif ($soml_id) { # option -id
+    # Great! don't need to look for vocab_prefix
   } elsif ($ontology_iri and $vocab_prefix = one_value($model->objects($ontology_iri, IRI("swc:identifier")))) {
     $vocab_iri = iri ($map->namespace_uri($vocab_prefix)) || do {
       $map->add_mapping ($vocab_prefix => "$ontology/");
@@ -212,11 +219,12 @@ sub first_ontology() {
     $vocab_iri or my_die "can't find vocab_iri for $ontology amongst these namespaces:\n".
       (join"\n", sort map $_->as_string, $map->list_namespaces);
   } else {
-    my_die "can't find owl:Ontology (should be in first RDF file) and --vocab prefix not specified"
+    my_die "can't find owl:Ontology (should be in first RDF file) and neither -voc nor -id are specified"
   };
-  $soml{id} = "/soml/$vocab_prefix";
-  $soml{specialPrefixes}{vocab_prefix} = $vocab_prefix;
-  $soml{specialPrefixes}{vocab_iri}    = $vocab_iri->as_string;
+  $soml_id ||= $vocab_prefix;
+  $soml{id} = "/soml/$soml_id";
+  $soml{specialPrefixes}{vocab_prefix} = $vocab_prefix if $vocab_prefix;
+  $soml{specialPrefixes}{vocab_iri}    = $vocab_iri->as_string if $vocab_iri;
   $soml{specialPrefixes}{ontology_iri} = $ontology if $ontology;
   $soml{specialPrefixes}{base_iri}     = $base if $base;
 }
@@ -318,7 +326,7 @@ sub iri_name($) {
   my $rdf = $map->abbreviate(uri($iri))
     or my_die("No suitable prefix for IRI $iri");
   my $gql = $rdf;
-  $gql =~ s{^$vocab_prefix:}{};
+  $gql =~ s{^$vocab_prefix:}{} if $vocab_prefix;
   # PLATFORM-1625 Allow punctuation in local names and prefixes: replaces [-_.:] with "_" so we don't need to do it
   $gql_rdf{$gql} = $rdf;
   return $iri_name{$iri} = {gql=>$gql, rdf=>$rdf}
@@ -426,7 +434,7 @@ if ($ontology_iri) {
 # https://github.com/kasei/attean/issues/152: need to use uniq()
 # Ignore anonymous (blank node) classes
 my @classes = uniq (map $_->as_string, grep $_->isa("Attean::IRI"),
-                    $model->subjects([map IRI($_), qw(rdf:type rdfs:Class owl:Class)])->elements);
+                    $model->subjects(IRI("rdf:type"), [IRI("rdfs:Class"), IRI("owl:Class")])->elements);
 # Undesirable classes. Map to as_string else array_minus may miss the same IRI instantiated from the ontology vs using IRI()
 my @no_classes = map $_->as_string,
   ((map IRI($_), @NO_CLASSES),
