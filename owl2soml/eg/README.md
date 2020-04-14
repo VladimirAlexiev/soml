@@ -53,14 +53,12 @@ perl ../owl2soml.pl -voc dcterms dct_owldl.ttl > dct_owldl.yaml
 
 Download:
 - Location https://schema.org/docs/developers.html
-- Downloaded `jsonld`, `rdf` and `ttl`
-- `schema.nt` is not appropriate because it doesn't define prefixes, so we can't obtain GraphQL (developer-friendly) class and prop names.
-- `schemaorg.owl` is missing.
-  https://schema.org/docs/schemaorg.owl and https://webschemas.org/docs/schemaorg.owl give error 404 Not Found.
-  Posted [schemaorg#2472](https://github.com/schemaorg/schemaorg/issues/2472).
-  - Note: "Experimental/Unsupported: schema:domainIncludes and schema:rangeIncludes values are converted into rdfs:domain and rdfs:range values using owl:unionOf to capture the multiplicity of values. Included in the range values are the, implicit within the vocabulary, default values of Text, URL, and Role. As an experimental feature, there are no expectations as to its interpretation by any third party tools."
-- Should perhaps strip HTML tags from descriptions, eg `<br/><br/>\n\n  <ul>\n   <li><a class="localLink" href="http://schema.org/RejectAction">RejectAction</a>: The antonym of AcceptAction.</li>`
-- This is the largest ontology I've tested (508k ttl, 730k rdf, 808k jsonld; results in 428k yaml) and it takes substantial time to process: posted [attean#154](https://github.com/kasei/attean/issues/154)
+- You can download `jsonld`, `rdf` and `ttl` but:
+  - `schema.nt` is not appropriate because it doesn't define prefixes, so we can't obtain GraphQL (developer-friendly) class and prop names.
+  - `schemaorg.owl` is missing.
+    https://schema.org/docs/schemaorg.owl and https://webschemas.org/docs/schemaorg.owl give error 404 Not Found.
+    Posted [schemaorg#2472](https://github.com/schemaorg/schemaorg/issues/2472).
+    - Note: "Experimental/Unsupported: schema:domainIncludes and schema:rangeIncludes values are converted into rdfs:domain and rdfs:range values using owl:unionOf to capture the multiplicity of values. Included in the range values are the, implicit within the vocabulary, default values of Text, URL, and Role. As an experimental feature, there are no expectations as to its interpretation by any third party tools."
 - We have to specify the `-voc` prefix because schema.org doesn't define an `owl:Ontology`.
 
 ```sh
@@ -71,8 +69,12 @@ sys     0m0.078s
 ```
 
 - `schema.ttl`: worked ok, see [schema.yaml](schema.yaml)
+  - This is the largest ontology I've tested (508k ttl, 730k rdf, 808k jsonld; results in 428k yaml) and it takes substantial time to process: posted [attean#154](https://github.com/kasei/attean/issues/154)
   - SOML does not yet support multiple inheritance (issue PLATFORM-360), so we get a bunch of warnings like: `Multiple superclasses found for schema:PaymentCard, using only the first one: FinancialProduct`. 
   - Schema.org uses multiple domains and ranges pervasively. SOML supports the former but not the latter (issue PLATFORM-1493 to support multiple ranges), so we get a bunch of warnings like `Multiple ranges found for prop interestRate, using only the first one: QuantitativeValue`
+- Should perhaps strip HTML tags from descriptions, eg `<br/><br/>\n\n  <ul>\n   <li><a class="localLink" href="http://schema.org/RejectAction">RejectAction</a>: The antonym of AcceptAction.</li>`
+- [schema.ttl](https://schema.org/version/latest/schema.ttl) does not define all classes used as ranges (issue [schemaorg#2537](https://github.com/schemaorg/schemaorg/issues/2537)); [all-layers.ttl](https://schema.org/version/latest/all-layers.ttl) defines them.
+  This pertains to `CategoryCode CssSelectorType DefinedTerm EducationalOccupationalCredential GeospatialGeometry PhysicalActivityCategory XPathType`.
 - `schema.jsonld`: needs extra module `AtteanX::Parser::JSONLD`. 
   - Uses a very poor context and doesn't define the `schema:` namespace, so is not usable by the tool, posted [schemaorg#2477](https://github.com/schemaorg/schemaorg/issues/2477). Causes error `can't find vocab_iri of --vocab prefix schema`
 - `schema.rdf`: Caused error `Read more bytes than requested`, 
@@ -149,17 +151,13 @@ find latest/FND/* -type f ! -name "Metadata*" ! -name "All*" | xargs cat > fibo-
      So mapping to `xsd:decimal` won't really work
 - SOML currently does not allow punctuation (`_-.`) in prefixes or local names (issue PLATFORM-1625).
   So a prop like `fibo-fnd-acc-aeq:Equity` is mapped to `fibofndaccaeq:Equity`, which is not good.
-- FIBO does not have a dominant ontology. 
-  Currently the first encountered ontology
-  (https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Communications/) 
-  is treated specially: the `fibo-fnd-arr-com:` is treated as `vocab_prefix` 
-  and is stripped from GraphQL names.
-  It would be better to run without `vocab_prefix` and afford it no such special treatment.
+- FIBO does not have a dominant ontology, so we use `-id` and
+  run without `vocab_prefix` to avoid giving special treatment to any of the 55 fibo-FND ontologies.
 - Timing:
 
 ```sh
 make fibo-FND.yaml
-time perl ../owl2soml.pl fibo-FND.ttl > fibo-FND.yaml 2> fibo-FND.log
+time perl ../owl2soml.pl -id fibo-FND -label "FIBO Foundation" fibo-FND.ttl > fibo-FND.yaml 2> fibo-FND.log
 
 real    5m27.442s
 user    0m0.015s

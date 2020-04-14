@@ -1,6 +1,4 @@
 creator: 'Alistair Miles, Sean Bechhofer'
-id: /soml/skos
-label: SKOS Vocabulary
 objects:
   Collection:
     descr: A meaningful collection of concepts. Labelled collections can be used where you would like a set of concepts to be displayed under a 'node label' in the hierarchy
@@ -8,10 +6,10 @@ objects:
     label: Collection
     type: skos:Collection
   CollectionInterface:
+    descr: Abstract superclass of Collection
     kind: abstract
     props:
       member: {}
-    type: skos:Collection
   Concept:
     descr: An idea or notion; a unit of thought
     label: Concept

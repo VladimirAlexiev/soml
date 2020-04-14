@@ -1,6 +1,4 @@
 creator: http://simon-reinhardt.de/#me
-id: /soml/dcterms
-label: DCMI metadata terms
 objects:
   Agent:
     descr: 'A resource that acts or has the power to act. Examples of Agent include person, organization, and software agent'
@@ -48,6 +46,7 @@ objects:
     label: 'Location, Period, or Jurisdiction'
     type: dcterms:LocationPeriodOrJurisdiction
   LocationPeriodOrJurisdictionInterface:
+    descr: Abstract superclass of LocationPeriodOrJurisdiction
     kind: abstract
   MediaType:
     descr: A file format or physical medium
@@ -55,6 +54,7 @@ objects:
     label: Media Type
     type: dcterms:MediaType
   MediaTypeInterface:
+    descr: Abstract superclass of MediaType
     inherits: MediaTypeOrExtentInterface
     kind: abstract
   MediaTypeOrExtent:
@@ -63,6 +63,7 @@ objects:
     label: Media Type or Extent
     type: dcterms:MediaTypeOrExtent
   MediaTypeOrExtentInterface:
+    descr: Abstract superclass of MediaTypeOrExtent
     kind: abstract
   MethodOfAccrual:
     descr: A method by which resources are added to a collection
@@ -102,6 +103,7 @@ objects:
     label: Rights Statement
     type: dcterms:RightsStatement
   RightsStatementInterface:
+    descr: Abstract superclass of RightsStatement
     kind: abstract
   SizeOrDuration:
     descr: 'A dimension or extent, or a time taken to play or execute. Examples include a number of pages, a specification of length, width, and breadth, or a period in hours, minutes, and seconds'

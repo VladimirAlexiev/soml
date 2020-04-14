@@ -1,11 +1,10 @@
-id: /soml/cocktail-ontology
-label: Cocktail ontology
 objects:
   Alcoholic-Beverages:
     inherits: Alcoholic-BeveragesInterface
     label: Alcoholic Beverages
     type: cocktail-ontology:Alcoholic-Beverages
   Alcoholic-BeveragesInterface:
+    descr: Abstract superclass of Alcoholic-Beverages
     inherits: BeveragesInterface
     kind: abstract
   Beverages:
@@ -13,6 +12,7 @@ objects:
     label: Beverages
     type: cocktail-ontology:Beverages
   BeveragesInterface:
+    descr: Abstract superclass of Beverages
     kind: abstract
   Brandies:
     inherits: Alcoholic-BeveragesInterface
@@ -94,6 +94,7 @@ objects:
     label: Non-alcoholic Beverages
     type: cocktail-ontology:Non-alcoholic-Beverages
   Non-alcoholic-BeveragesInterface:
+    descr: Abstract superclass of Non-alcoholic-Beverages
     inherits: BeveragesInterface
     kind: abstract
   Rums:
@@ -113,6 +114,7 @@ objects:
     label: Sauces
     type: cocktail-ontology:Souces
   SoucesInterface:
+    descr: Abstract superclass of Souces
     kind: abstract
   Sweeteners:
     label: Sweeteners

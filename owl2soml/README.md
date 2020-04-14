@@ -43,8 +43,9 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
 owl2soml.pl ontology.(ttl|rdf) ... > ontology.yaml
 Options:
   -voc pfx     Use "pfx" as the main vocab_prefix and SOML ID.
-  -id  id      Use "id" as SOML ID and don't set a vocab_prefix.
+  -id  id      Use "id" as SOML ID and don't set vocab_prefix or ontology metadata.
                Otherwise vocab_prefix and SOML ID are set from the ontology using various heuristics.
+  -label label Set SOML label
 ```
 
 The [Semantic Objects Modeling Language (SOML)](http://platform.ontotext.com/soml/index.html)
@@ -200,6 +201,7 @@ objects:
       member: {}
   Collection:
     inherits: CollectionInterface
+    type: skos:Collection
   OrderedCollection:
     inherits: CollectionInterface
     props:
@@ -669,6 +671,14 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 
 
 ## Change Log
+
+14-Apr-2020
+- If `-id` then don't look for any ontology metadata
+- Add option `-label` to specify SOML label
+- Always emit RDF terms for objects and props (don't use defaults) for clarity
+- Domains "fix for referenced classes": emit "type" at concrete superclass, not at abstract
+- Add description to interfaces: `XInterface: {descr: "Abstract superclass of X"}`
+- `schema:Float` is a subclass of `Datatype` (not a datatype directly), but is in `%DATATYPES` map, so don't emit as class
 
 10-Apr-2020
 - Fix regression in `@classes`: emitted props also as classes

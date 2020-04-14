@@ -1,4 +1,3 @@
-id: /soml/schema
 objects:
   AMRadioChannel:
     descr: A radio channel that uses AM
@@ -43,6 +42,7 @@ objects:
     label: Accommodation
     type: schema:Accommodation
   AccommodationInterface:
+    descr: Abstract superclass of Accommodation
     inherits: PlaceInterface
     kind: abstract
     props:
@@ -51,7 +51,6 @@ objects:
       numberOfRooms: {}
       permittedUsage: {}
       petsAllowed: {}
-    type: schema:Accommodation
   AccountingService:
     descr: |-
       Accountancy business.<br/><br/>
@@ -66,6 +65,7 @@ objects:
     label: AchieveAction
     type: schema:AchieveAction
   AchieveActionInterface:
+    descr: Abstract superclass of AchieveAction
     inherits: ActionInterface
     kind: abstract
   Action:
@@ -89,6 +89,7 @@ objects:
       requiresSubscription: {}
     type: schema:ActionAccessSpecification
   ActionInterface:
+    descr: Abstract superclass of Action
     inherits: ThingInterface
     kind: abstract
     props:
@@ -103,7 +104,6 @@ objects:
       result: {}
       startTime: {}
       target: {}
-    type: schema:Action
   ActionStatusType:
     descr: The status of an Action
     inherits: EnumerationInterface
@@ -120,6 +120,7 @@ objects:
     label: AddAction
     type: schema:AddAction
   AddActionInterface:
+    descr: Abstract superclass of AddAction
     inherits: UpdateActionInterface
     kind: abstract
   AdministrativeArea:
@@ -128,6 +129,7 @@ objects:
     label: AdministrativeArea
     type: schema:AdministrativeArea
   AdministrativeAreaInterface:
+    descr: Abstract superclass of AdministrativeArea
     inherits: PlaceInterface
     kind: abstract
   AdultEntertainment:
@@ -154,13 +156,13 @@ objects:
     label: AggregateRating
     type: schema:AggregateRating
   AggregateRatingInterface:
+    descr: Abstract superclass of AggregateRating
     inherits: RatingInterface
     kind: abstract
     props:
       itemReviewed: {}
       ratingCount: {}
       reviewCount: {}
-    type: schema:AggregateRating
   AgreeAction:
     descr: 'The act of expressing a consistency of opinion with the object. An agent agrees to/about an object (a proposition, topic or theme) with participants'
     inherits: ReactActionInterface
@@ -199,6 +201,7 @@ objects:
     label: AllocateAction
     type: schema:AllocateAction
   AllocateActionInterface:
+    descr: Abstract superclass of AllocateAction
     inherits: OrganizeActionInterface
     kind: abstract
   AmusementPark:
@@ -228,6 +231,8 @@ objects:
     descr: 'Residence type: Apartment complex'
     inherits: ResidenceInterface
     label: ApartmentComplex
+    props:
+      petsAllowed: {}
     type: schema:ApartmentComplex
   AppendAction:
     descr: The act of inserting at the end if an ordered collection
@@ -270,6 +275,7 @@ objects:
     label: Article
     type: schema:Article
   ArticleInterface:
+    descr: Abstract superclass of Article
     inherits: CreativeWorkInterface
     kind: abstract
     props:
@@ -280,7 +286,6 @@ objects:
       pagination: {}
       speakable: {}
       wordCount: {}
-    type: schema:Article
   AskAction:
     descr: |
       The act of posing a question / favor to someone.<br/><br/>
@@ -301,6 +306,7 @@ objects:
     label: AssessAction
     type: schema:AssessAction
   AssessActionInterface:
+    descr: Abstract superclass of AssessAction
     inherits: ActionInterface
     kind: abstract
   AssignAction:
@@ -322,12 +328,12 @@ objects:
     label: Audience
     type: schema:Audience
   AudienceInterface:
+    descr: Abstract superclass of Audience
     inherits: IntangibleInterface
     kind: abstract
     props:
       audienceType: {}
       geographicArea: {}
-    type: schema:Audience
   AudioObject:
     descr: An audio file
     inherits: MediaObjectInterface
@@ -388,6 +394,7 @@ objects:
     label: AutomotiveBusiness
     type: schema:AutomotiveBusiness
   AutomotiveBusinessInterface:
+    descr: Abstract superclass of AutomotiveBusiness
     inherits: LocalBusinessInterface
     kind: abstract
   Bakery:
@@ -401,6 +408,7 @@ objects:
     label: BankAccount
     type: schema:BankAccount
   BankAccountInterface:
+    descr: Abstract superclass of BankAccount
     inherits: FinancialProductInterface
     kind: abstract
   BankOrCreditUnion:
@@ -481,6 +489,7 @@ objects:
     label: BlogPosting
     type: schema:BlogPosting
   BlogPostingInterface:
+    descr: Abstract superclass of BlogPosting
     inherits: SocialMediaPostingInterface
     kind: abstract
   BoardingPolicyType:
@@ -494,6 +503,7 @@ objects:
     label: BodyOfWater
     type: schema:BodyOfWater
   BodyOfWaterInterface:
+    descr: Abstract superclass of BodyOfWater
     inherits: LandformInterface
     kind: abstract
   Book:
@@ -580,6 +590,7 @@ objects:
     label: BroadcastChannel
     type: schema:BroadcastChannel
   BroadcastChannelInterface:
+    descr: Abstract superclass of BroadcastChannel
     inherits: IntangibleInterface
     kind: abstract
     props:
@@ -589,7 +600,6 @@ objects:
       genre: {}
       inBroadcastLineup: {}
       providesBroadcastService: {}
-    type: schema:BroadcastChannel
   BroadcastEvent:
     descr: An over the air or online broadcast event
     inherits: PublicationEventInterface
@@ -712,6 +722,10 @@ objects:
       vendor: {}
       warrantyPromise: {}
     type: schema:BuyAction
+  CDCPMDRecord:
+    props:
+      datePosted: {}
+    type: schema:CDCPMDRecord
   CableOrSatelliteService:
     descr: A service which provides access to media programming like TV or radio. Access may be via cable or satellite
     inherits: ServiceInterface
@@ -770,8 +784,6 @@ objects:
     inherits: EntertainmentBusinessInterface
     label: Casino
     type: schema:Casino
-  CategoryCode:
-    type: schema:CategoryCode
   CatholicChurch:
     descr: A Catholic church
     inherits: ChurchInterface
@@ -842,18 +854,19 @@ objects:
     label: ChooseAction
     type: schema:ChooseAction
   ChooseActionInterface:
+    descr: Abstract superclass of ChooseAction
     inherits: AssessActionInterface
     kind: abstract
     props:
       actionOption: {}
       option: {}
-    type: schema:ChooseAction
   Church:
     descr: A church
     inherits: ChurchInterface
     label: Church
     type: schema:Church
   ChurchInterface:
+    descr: Abstract superclass of Church
     inherits: PlaceOfWorshipInterface
     kind: abstract
   City:
@@ -872,11 +885,11 @@ objects:
     label: CivicStructure
     type: schema:CivicStructure
   CivicStructureInterface:
+    descr: Abstract superclass of CivicStructure
     inherits: PlaceInterface
     kind: abstract
     props:
       openingHours: {}
-    type: schema:CivicStructure
   ClaimReview:
     descr: A fact-checking review of claims made (or reported) in some creative work (referenced via itemReviewed)
     inherits: ReviewInterface
@@ -890,6 +903,7 @@ objects:
     label: Clip
     type: schema:Clip
   ClipInterface:
+    descr: Abstract superclass of Clip
     inherits: CreativeWorkInterface
     kind: abstract
     props:
@@ -902,7 +916,6 @@ objects:
       partOfEpisode: {}
       partOfSeason: {}
       partOfSeries: {}
-    type: schema:Clip
   ClothingStore:
     descr: A clothing store
     inherits: StoreInterface
@@ -919,6 +932,7 @@ objects:
     label: CollectionPage
     type: schema:CollectionPage
   CollectionPageInterface:
+    descr: Abstract superclass of CollectionPage
     inherits: WebPageInterface
     kind: abstract
   CollegeOrUniversity:
@@ -949,19 +963,20 @@ objects:
       resultComment: {}
     type: schema:CommentAction
   CommentInterface:
+    descr: Abstract superclass of Comment
     inherits: CreativeWorkInterface
     kind: abstract
     props:
       downvoteCount: {}
       parentItem: {}
       upvoteCount: {}
-    type: schema:Comment
   CommunicateAction:
     descr: 'The act of conveying information to another person via a communication medium (instrument) such as speech, email, or telephone conversation'
     inherits: CommunicateActionInterface
     label: CommunicateAction
     type: schema:CommunicateAction
   CommunicateActionInterface:
+    descr: Abstract superclass of CommunicateAction
     inherits: InteractActionInterface
     kind: abstract
     props:
@@ -969,7 +984,6 @@ objects:
       inLanguage: {}
       language: {}
       recipient: {}
-    type: schema:CommunicateAction
   CompoundPriceSpecification:
     descr: A compound price specification is one that bundles multiple prices that all apply in combination for different dimensions of consumption. Use the name property of the attached unit price specification for indicating the dimension of a price component (e.g. "electricity" or "final cleaning")
     inherits: PriceSpecificationInterface
@@ -1005,12 +1019,12 @@ objects:
     label: ConsumeAction
     type: schema:ConsumeAction
   ConsumeActionInterface:
+    descr: Abstract superclass of ConsumeAction
     inherits: ActionInterface
     kind: abstract
     props:
       actionAccessibilityRequirement: {}
       expectsAcceptanceOf: {}
-    type: schema:ConsumeAction
   ContactPage:
     descr: 'Web page type: Contact page'
     inherits: WebPageInterface
@@ -1022,6 +1036,7 @@ objects:
     label: ContactPoint
     type: schema:ContactPoint
   ContactPointInterface:
+    descr: Abstract superclass of ContactPoint
     inherits: StructuredValueInterface
     kind: abstract
     props:
@@ -1035,7 +1050,6 @@ objects:
       productSupported: {}
       serviceArea: {}
       telephone: {}
-    type: schema:ContactPoint
   ContactPointOption:
     descr: Enumerated options related to a ContactPoint
     inherits: EnumerationInterface
@@ -1052,6 +1066,7 @@ objects:
     label: ControlAction
     type: schema:ControlAction
   ControlActionInterface:
+    descr: Abstract superclass of ControlAction
     inherits: ActionInterface
     kind: abstract
   ConvenienceStore:
@@ -1114,6 +1129,7 @@ objects:
     label: CreateAction
     type: schema:CreateAction
   CreateActionInterface:
+    descr: Abstract superclass of CreateAction
     inherits: ActionInterface
     kind: abstract
   CreativeWork:
@@ -1122,6 +1138,7 @@ objects:
     label: CreativeWork
     type: schema:CreativeWork
   CreativeWorkInterface:
+    descr: Abstract superclass of CreativeWork
     inherits: ThingInterface
     kind: abstract
     props:
@@ -1210,13 +1227,13 @@ objects:
       version: {}
       video: {}
       workExample: {}
-    type: schema:CreativeWork
   CreativeWorkSeason:
     descr: 'A media season e.g. tv, radio, video game etc'
     inherits: CreativeWorkSeasonInterface
     label: CreativeWorkSeason
     type: schema:CreativeWorkSeason
   CreativeWorkSeasonInterface:
+    descr: Abstract superclass of CreativeWorkSeason
     inherits: CreativeWorkInterface
     kind: abstract
     props:
@@ -1231,7 +1248,6 @@ objects:
       seasonNumber: {}
       startDate: {}
       trailer: {}
-    type: schema:CreativeWorkSeason
   CreativeWorkSeries:
     descr: |-
       A CreativeWorkSeries in schema.org is a group of related items, typically but not necessarily of the same kind. CreativeWorkSeries are usually organized into some order, often chronological. Unlike <a class="localLink" href="http://schema.org/ItemList">ItemList</a> which is a general purpose data structure for lists of things, the emphasis with CreativeWorkSeries is on published materials (written e.g. books and periodicals, or media such as tv, radio and games).<br/><br/>
@@ -1243,13 +1259,13 @@ objects:
     label: CreativeWorkSeries
     type: schema:CreativeWorkSeries
   CreativeWorkSeriesInterface:
+    descr: Abstract superclass of CreativeWorkSeries
     inherits: CreativeWorkInterface
     kind: abstract
     props:
       endDate: {}
       issn: {}
       startDate: {}
-    type: schema:CreativeWorkSeries
   CreditCard:
     descr: |
       A card payment method of a particular brand or name.  Used to mark up a particular payment method and/or the financial product/service that supplies the card account.<br/><br/>
@@ -1324,6 +1340,7 @@ objects:
     label: Dataset
     type: schema:Dataset
   DatasetInterface:
+    descr: Abstract superclass of Dataset
     inherits: CreativeWorkInterface
     kind: abstract
     props:
@@ -1333,7 +1350,6 @@ objects:
       includedDataCatalog: {}
       includedInDataCatalog: {}
       issn: {}
-    type: schema:Dataset
   DatedMoneySpecification:
     descr: "A DatedMoneySpecification represents monetary values with optional start and end dates. For example, this could represent an employee's salary over a specific period of time. <strong>Note:</strong> This type has been superseded by <a class=\"localLink\" href=\"http://schema.org/MonetaryAmount\">MonetaryAmount</a> use of that type is recommended"
     inherits: StructuredValueInterface
@@ -1413,6 +1429,7 @@ objects:
     label: DeliveryMethod
     type: schema:DeliveryMethod
   DeliveryMethodInterface:
+    descr: Abstract superclass of DeliveryMethod
     inherits: EnumerationInterface
     kind: abstract
   Demand:
@@ -1482,11 +1499,11 @@ objects:
     label: DigitalDocument
     type: schema:DigitalDocument
   DigitalDocumentInterface:
+    descr: Abstract superclass of DigitalDocument
     inherits: CreativeWorkInterface
     kind: abstract
     props:
       hasDigitalDocumentPermission: {}
-    type: schema:DigitalDocument
   DigitalDocumentPermission:
     descr: A permission for a particular person or group to access a particular file
     inherits: IntangibleInterface
@@ -1608,11 +1625,11 @@ objects:
     label: EducationalOrganization
     type: schema:EducationalOrganization
   EducationalOrganizationInterface:
+    descr: Abstract superclass of EducationalOrganization
     inherits: OrganizationInterface
     kind: abstract
     props:
       alumni: {}
-    type: schema:EducationalOrganization
   Electrician:
     descr: An electrician
     inherits: HomeAndConstructionBusinessInterface
@@ -1697,6 +1714,7 @@ objects:
     label: EntertainmentBusiness
     type: schema:EntertainmentBusiness
   EntertainmentBusinessInterface:
+    descr: Abstract superclass of EntertainmentBusiness
     inherits: LocalBusinessInterface
     kind: abstract
   EntryPoint:
@@ -1718,6 +1736,7 @@ objects:
     label: Enumeration
     type: schema:Enumeration
   EnumerationInterface:
+    descr: Abstract superclass of Enumeration
     inherits: IntangibleInterface
     kind: abstract
   Episode:
@@ -1726,6 +1745,7 @@ objects:
     label: Episode
     type: schema:Episode
   EpisodeInterface:
+    descr: Abstract superclass of Episode
     inherits: CreativeWorkInterface
     kind: abstract
     props:
@@ -1739,13 +1759,13 @@ objects:
       partOfSeries: {}
       productionCompany: {}
       trailer: {}
-    type: schema:Episode
   Event:
     descr: 'An event happening at a certain time and location, such as a concert, lecture, or festival. Ticketing information may be added via the <a class="localLink" href="http://schema.org/offers">offers</a> property. Repeated events may be structured as separate Event objects'
     inherits: EventInterface
     label: Event
     type: schema:Event
   EventInterface:
+    descr: Abstract superclass of Event
     inherits: ThingInterface
     kind: abstract
     props:
@@ -1784,7 +1804,6 @@ objects:
       typicalAgeRange: {}
       workFeatured: {}
       workPerformed: {}
-    type: schema:Event
   EventReservation:
     descr: |-
       A reservation for an event like a concert, sporting event, or lecture.<br/><br/>
@@ -1863,24 +1882,24 @@ objects:
     label: FinancialProduct
     type: schema:FinancialProduct
   FinancialProductInterface:
+    descr: Abstract superclass of FinancialProduct
     inherits: ServiceInterface
     kind: abstract
     props:
       annualPercentageRate: {}
       feesAndCommissionsSpecification: {}
       interestRate: {}
-    type: schema:FinancialProduct
   FinancialService:
     descr: Financial services business
     inherits: FinancialServiceInterface
     label: FinancialService
     type: schema:FinancialService
   FinancialServiceInterface:
+    descr: Abstract superclass of FinancialService
     inherits: LocalBusinessInterface
     kind: abstract
     props:
       feesAndCommissionsSpecification: {}
-    type: schema:FinancialService
   FindAction:
     descr: |
       The act of finding an object.<br/><br/>
@@ -1894,6 +1913,7 @@ objects:
     label: FindAction
     type: schema:FindAction
   FindActionInterface:
+    descr: Abstract superclass of FindAction
     inherits: ActionInterface
     kind: abstract
   FireStation:
@@ -1935,13 +1955,12 @@ objects:
       passengerSequenceNumber: {}
       securityScreening: {}
     type: schema:FlightReservation
-  Float:
-    descr: 'Data type: Floating number'
-    label: Float
-    type: schema:Float
   FloorPlan:
     props:
+      amenityFeature: {}
+      floorSize: {}
       numberOfRooms: {}
+      petsAllowed: {}
     type: schema:FloorPlan
   Florist:
     descr: A florist
@@ -1972,6 +1991,7 @@ objects:
     label: FoodEstablishment
     type: schema:FoodEstablishment
   FoodEstablishmentInterface:
+    descr: Abstract superclass of FoodEstablishment
     inherits: LocalBusinessInterface
     kind: abstract
     props:
@@ -1980,7 +2000,6 @@ objects:
       menu: {}
       servesCuisine: {}
       starRating: {}
-    type: schema:FoodEstablishment
   FoodEstablishmentReservation:
     descr: |-
       A reservation to dine at a food-related business.<br/><br/>
@@ -2014,6 +2033,7 @@ objects:
     label: Game
     type: schema:Game
   GameInterface:
+    descr: Abstract superclass of Game
     inherits: CreativeWorkInterface
     kind: abstract
     props:
@@ -2022,7 +2042,6 @@ objects:
       gameLocation: {}
       numberOfPlayers: {}
       quest: {}
-    type: schema:Game
   GamePlayMode:
     descr: 'Indicates whether this game is multi-player, co-op or single-player'
     inherits: EnumerationInterface
@@ -2096,6 +2115,7 @@ objects:
     label: GeoShape
     type: schema:GeoShape
   GeoShapeInterface:
+    descr: Abstract superclass of GeoShape
     inherits: StructuredValueInterface
     kind: abstract
     props:
@@ -2107,7 +2127,6 @@ objects:
       line: {}
       polygon: {}
       postalCode: {}
-    type: schema:GeoShape
   GeospatialGeometry:
     props:
       geoContains: {}
@@ -2147,6 +2166,7 @@ objects:
     label: GovernmentBuilding
     type: schema:GovernmentBuilding
   GovernmentBuildingInterface:
+    descr: Abstract superclass of GovernmentBuilding
     inherits: CivicStructureInterface
     kind: abstract
   GovernmentOffice:
@@ -2155,6 +2175,7 @@ objects:
     label: GovernmentOffice
     type: schema:GovernmentOffice
   GovernmentOfficeInterface:
+    descr: Abstract superclass of GovernmentOffice
     inherits: LocalBusinessInterface
     kind: abstract
   GovernmentOrganization:
@@ -2208,6 +2229,7 @@ objects:
     label: HealthAndBeautyBusiness
     type: schema:HealthAndBeautyBusiness
   HealthAndBeautyBusinessInterface:
+    descr: Abstract superclass of HealthAndBeautyBusiness
     inherits: LocalBusinessInterface
     kind: abstract
   HealthClub:
@@ -2245,6 +2267,7 @@ objects:
     label: HomeAndConstructionBusiness
     type: schema:HomeAndConstructionBusiness
   HomeAndConstructionBusinessInterface:
+    descr: Abstract superclass of HomeAndConstructionBusiness
     inherits: LocalBusinessInterface
     kind: abstract
   HomeGoodsStore:
@@ -2290,11 +2313,11 @@ objects:
     label: House
     type: schema:House
   HouseInterface:
+    descr: Abstract superclass of House
     inherits: AccommodationInterface
     kind: abstract
     props:
       numberOfRooms: {}
-    type: schema:House
   HousePainter:
     descr: A house painting service
     inherits: HomeAndConstructionBusinessInterface
@@ -2320,6 +2343,7 @@ objects:
       totalTime: {}
     type: schema:HowToDirection
   HowToInterface:
+    descr: Abstract superclass of HowTo
     inherits: CreativeWorkInterface
     kind: abstract
     props:
@@ -2332,18 +2356,17 @@ objects:
       tool: {}
       totalTime: {}
       yield: {}
-    type: schema:HowTo
   HowToItem:
     descr: An item used as either a tool or supply when performing the instructions for how to to achieve a result
     inherits: HowToItemInterface
     label: HowToItem
     type: schema:HowToItem
   HowToItemInterface:
+    descr: Abstract superclass of HowToItem
     inherits: ListItemInterface
     kind: abstract
     props:
       requiredQuantity: {}
-    type: schema:HowToItem
   HowToSection:
     descr: A sub-grouping of steps in the instructions for how to achieve a result (e.g. steps for making a pie crust within a pie recipe)
     inherits: CreativeWorkInterface
@@ -2394,6 +2417,7 @@ objects:
     label: ImageObject
     type: schema:ImageObject
   ImageObjectInterface:
+    descr: Abstract superclass of ImageObject
     inherits: MediaObjectInterface
     kind: abstract
     props:
@@ -2401,7 +2425,6 @@ objects:
       exifData: {}
       representativeOfPage: {}
       thumbnail: {}
-    type: schema:ImageObject
   IndividualProduct:
     descr: 'A single, identifiable product instance (e.g. a laptop with a particular serial number)'
     inherits: ProductInterface
@@ -2415,22 +2438,22 @@ objects:
     label: InformAction
     type: schema:InformAction
   InformActionInterface:
+    descr: Abstract superclass of InformAction
     inherits: CommunicateActionInterface
     kind: abstract
     props:
       event: {}
-    type: schema:InformAction
   InsertAction:
     descr: The act of adding at a specific location in an ordered collection
     inherits: InsertActionInterface
     label: InsertAction
     type: schema:InsertAction
   InsertActionInterface:
+    descr: Abstract superclass of InsertAction
     inherits: AddActionInterface
     kind: abstract
     props:
       toLocation: {}
-    type: schema:InsertAction
   InstallAction:
     descr: The act of installing an application
     inherits: ConsumeActionInterface
@@ -2447,18 +2470,16 @@ objects:
     label: Intangible
     type: schema:Intangible
   IntangibleInterface:
+    descr: Abstract superclass of Intangible
     inherits: ThingInterface
     kind: abstract
-  Integer:
-    descr: 'Data type: Integer'
-    label: Integer
-    type: schema:Integer
   InteractAction:
     descr: The act of interacting with another person or organization
     inherits: InteractActionInterface
     label: InteractAction
     type: schema:InteractAction
   InteractActionInterface:
+    descr: Abstract superclass of InteractAction
     inherits: ActionInterface
     kind: abstract
   InteractionCounter:
@@ -2522,13 +2543,13 @@ objects:
     label: ItemList
     type: schema:ItemList
   ItemListInterface:
+    descr: Abstract superclass of ItemList
     inherits: IntangibleInterface
     kind: abstract
     props:
       itemListElement: {}
       itemListOrder: {}
       numberOfItems: {}
-    type: schema:ItemList
   ItemListOrderType:
     descr: Enumerated for values for itemListOrder for indicating how an ordered ItemList is organized
     inherits: EnumerationInterface
@@ -2561,7 +2582,6 @@ objects:
       industry: {}
       jobBenefits: {}
       jobLocation: {}
-      occupationalCategory: {}
       relevantOccupation: {}
       responsibilities: {}
       salaryCurrency: {}
@@ -2598,6 +2618,7 @@ objects:
     label: Landform
     type: schema:Landform
   LandformInterface:
+    descr: Abstract superclass of Landform
     inherits: PlaceInterface
     kind: abstract
   LandmarksOrHistoricalBuildings:
@@ -2634,6 +2655,7 @@ objects:
     label: LegalService
     type: schema:LegalService
   LegalServiceInterface:
+    descr: Abstract superclass of LegalService
     inherits: LocalBusinessInterface
     kind: abstract
   LegislativeBuilding:
@@ -2680,6 +2702,7 @@ objects:
     label: ListItem
     type: schema:ListItem
   ListItemInterface:
+    descr: Abstract superclass of ListItem
     inherits: IntangibleInterface
     kind: abstract
     props:
@@ -2687,7 +2710,6 @@ objects:
       nextItem: {}
       position: {}
       previousItem: {}
-    type: schema:ListItem
   ListenAction:
     descr: The act of consuming audio content
     inherits: ConsumeActionInterface
@@ -2713,6 +2735,7 @@ objects:
     label: LoanOrCredit
     type: schema:LoanOrCredit
   LoanOrCreditInterface:
+    descr: Abstract superclass of LoanOrCredit
     inherits: FinancialProductInterface
     kind: abstract
     props:
@@ -2720,13 +2743,13 @@ objects:
       currency: {}
       loanTerm: {}
       requiredCollateral: {}
-    type: schema:LoanOrCredit
   LocalBusiness:
     descr: 'A particular physical business or branch of an organization. Examples of LocalBusiness include a restaurant, a particular branch of a restaurant chain, a branch of a bank, a medical practice, a club, a bowling alley, etc'
     inherits: LocalBusinessInterface
     label: LocalBusiness
     type: schema:LocalBusiness
   LocalBusinessInterface:
+    descr: Abstract superclass of LocalBusiness
     inherits: OrganizationInterface
     kind: abstract
     props:
@@ -2735,7 +2758,6 @@ objects:
       openingHours: {}
       paymentAccepted: {}
       priceRange: {}
-    type: schema:LocalBusiness
   LocationFeatureSpecification:
     descr: Specifies a location feature by providing a structured value representing a feature of an accommodation as a property-value pair of varying degrees of formality
     inherits: PropertyValueInterface
@@ -2761,6 +2783,7 @@ objects:
     label: LodgingBusiness
     type: schema:LodgingBusiness
   LodgingBusinessInterface:
+    descr: Abstract superclass of LodgingBusiness
     inherits: LocalBusinessInterface
     kind: abstract
     props:
@@ -2772,7 +2795,6 @@ objects:
       numberOfRooms: {}
       petsAllowed: {}
       starRating: {}
-    type: schema:LodgingBusiness
   LodgingReservation:
     descr: |-
       A reservation for lodging at a hotel, motel, inn, etc.<br/><br/>
@@ -2823,6 +2845,7 @@ objects:
     label: MediaGallery
     type: schema:MediaGallery
   MediaGalleryInterface:
+    descr: Abstract superclass of MediaGallery
     inherits: CollectionPageInterface
     kind: abstract
   MediaObject:
@@ -2831,6 +2854,7 @@ objects:
     label: MediaObject
     type: schema:MediaObject
   MediaObjectInterface:
+    descr: Abstract superclass of MediaObject
     inherits: CreativeWorkInterface
     kind: abstract
     props:
@@ -2851,7 +2875,6 @@ objects:
       startTime: {}
       uploadDate: {}
       width: {}
-    type: schema:MediaObject
   MediaSubscription:
     descr: 'A subscription which allows a user to access media including audio, video, books, etc'
     inherits: IntangibleInterface
@@ -2864,6 +2887,7 @@ objects:
     inherits: MedicalBusinessInterface
     type: schema:MedicalBusiness
   MedicalBusinessInterface:
+    descr: Abstract superclass of MedicalBusiness
     kind: abstract
   MedicalOrganization:
     descr: 'A medical organization (physical or not), such as hospital, institution or clinic'
@@ -2919,6 +2943,7 @@ objects:
     label: Message
     type: schema:Message
   MessageInterface:
+    descr: Abstract superclass of Message
     inherits: CreativeWorkInterface
     kind: abstract
     props:
@@ -2931,7 +2956,6 @@ objects:
       recipient: {}
       sender: {}
       toRecipient: {}
-    type: schema:Message
   MiddleSchool:
     descr: 'A middle school (typically for children aged around 11-14, although this varies somewhat)'
     inherits: EducationalOrganizationInterface
@@ -3018,12 +3042,12 @@ objects:
     label: MoveAction
     type: schema:MoveAction
   MoveActionInterface:
+    descr: Abstract superclass of MoveAction
     inherits: ActionInterface
     kind: abstract
     props:
       fromLocation: {}
       toLocation: {}
-    type: schema:MoveAction
   Movie:
     descr: A movie
     inherits: CreativeWorkInterface
@@ -3138,13 +3162,13 @@ objects:
     label: MusicPlaylist
     type: schema:MusicPlaylist
   MusicPlaylistInterface:
+    descr: Abstract superclass of MusicPlaylist
     inherits: CreativeWorkInterface
     kind: abstract
     props:
       numTracks: {}
       track: {}
       tracks: {}
-    type: schema:MusicPlaylist
   MusicRecording:
     descr: 'A music recording (track), usually a single song'
     inherits: CreativeWorkInterface
@@ -3254,7 +3278,6 @@ objects:
       estimatedSalary: {}
       experienceRequirements: {}
       occupationLocation: {}
-      occupationalCategory: {}
       responsibilities: {}
       skills: {}
     type: schema:Occupation
@@ -3279,6 +3302,7 @@ objects:
     label: OfferCatalog
     type: schema:OfferCatalog
   OfferInterface:
+    descr: Abstract superclass of Offer
     inherits: IntangibleInterface
     kind: abstract
     props:
@@ -3322,7 +3346,6 @@ objects:
       validFrom: {}
       validThrough: {}
       warranty: {}
-    type: schema:Offer
   OfferItemCondition:
     descr: A list of possible conditions for the item
     inherits: EnumerationInterface
@@ -3411,6 +3434,7 @@ objects:
     label: Organization
     type: schema:Organization
   OrganizationInterface:
+    descr: Abstract superclass of Organization
     inherits: ThingInterface
     kind: abstract
     props:
@@ -3465,24 +3489,24 @@ objects:
       taxID: {}
       telephone: {}
       vatID: {}
-    type: schema:Organization
   OrganizationRole:
     descr: A subclass of Role used to describe roles within organizations
     inherits: OrganizationRoleInterface
     label: OrganizationRole
     type: schema:OrganizationRole
   OrganizationRoleInterface:
+    descr: Abstract superclass of OrganizationRole
     inherits: RoleInterface
     kind: abstract
     props:
       numberedPosition: {}
-    type: schema:OrganizationRole
   OrganizeAction:
     descr: The act of manipulating/administering/supervising/controlling one or more objects
     inherits: OrganizeActionInterface
     label: OrganizeAction
     type: schema:OrganizeAction
   OrganizeActionInterface:
+    descr: Abstract superclass of OrganizeAction
     inherits: ActionInterface
     kind: abstract
   OutletStore:
@@ -3621,6 +3645,7 @@ objects:
     label: PeopleAudience
     type: schema:PeopleAudience
   PeopleAudienceInterface:
+    descr: Abstract superclass of PeopleAudience
     inherits: AudienceInterface
     kind: abstract
     props:
@@ -3630,7 +3655,6 @@ objects:
       suggestedGender: {}
       suggestedMaxAge: {}
       suggestedMinAge: {}
-    type: schema:PeopleAudience
   PerformAction:
     descr: The act of participating in performance arts
     inherits: PlayActionInterface
@@ -3656,6 +3680,7 @@ objects:
     label: PerformingGroup
     type: schema:PerformingGroup
   PerformingGroupInterface:
+    descr: Abstract superclass of PerformingGroup
     inherits: OrganizationInterface
     kind: abstract
   Periodical:
@@ -3672,6 +3697,7 @@ objects:
     label: Permit
     type: schema:Permit
   PermitInterface:
+    descr: Abstract superclass of Permit
     inherits: IntangibleInterface
     kind: abstract
     props:
@@ -3682,7 +3708,6 @@ objects:
       validFrom: {}
       validIn: {}
       validUntil: {}
-    type: schema:Permit
   Person:
     descr: 'A person (alive, dead, undead, or fictional)'
     inherits: ThingInterface
@@ -3782,6 +3807,7 @@ objects:
     label: Place
     type: schema:Place
   PlaceInterface:
+    descr: Abstract superclass of Place
     inherits: ThingInterface
     kind: abstract
     props:
@@ -3827,13 +3853,13 @@ objects:
       smokingAllowed: {}
       specialOpeningHoursSpecification: {}
       telephone: {}
-    type: schema:Place
   PlaceOfWorship:
     descr: 'Place of worship, such as a church, synagogue, or mosque'
     inherits: PlaceOfWorshipInterface
     label: PlaceOfWorship
     type: schema:PlaceOfWorship
   PlaceOfWorshipInterface:
+    descr: Abstract superclass of PlaceOfWorship
     inherits: CivicStructureInterface
     kind: abstract
   PlanAction:
@@ -3842,11 +3868,11 @@ objects:
     label: PlanAction
     type: schema:PlanAction
   PlanActionInterface:
+    descr: Abstract superclass of PlanAction
     inherits: OrganizeActionInterface
     kind: abstract
     props:
       scheduledTime: {}
-    type: schema:PlanAction
   PlayAction:
     descr: |
       The act of playing/exercising/training/performing for enjoyment, leisure, recreation, Competition or exercise.<br/><br/>
@@ -3861,12 +3887,12 @@ objects:
     label: PlayAction
     type: schema:PlayAction
   PlayActionInterface:
+    descr: Abstract superclass of PlayAction
     inherits: ActionInterface
     kind: abstract
     props:
       audience: {}
       event: {}
-    type: schema:PlayAction
   Playground:
     descr: A playground
     inherits: CivicStructureInterface
@@ -3930,6 +3956,7 @@ objects:
     label: PriceSpecification
     type: schema:PriceSpecification
   PriceSpecificationInterface:
+    descr: Abstract superclass of PriceSpecification
     inherits: StructuredValueInterface
     kind: abstract
     props:
@@ -3942,13 +3969,13 @@ objects:
       validFrom: {}
       validThrough: {}
       valueAddedTaxIncluded: {}
-    type: schema:PriceSpecification
   Product:
     descr: 'Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online'
     inherits: ProductInterface
     label: Product
     type: schema:Product
   ProductInterface:
+    descr: Abstract superclass of Product
     inherits: ThingInterface
     kind: abstract
     props:
@@ -3987,7 +4014,6 @@ objects:
       slogan: {}
       weight: {}
       width: {}
-    type: schema:Product
   ProductModel:
     descr: A datasheet or vendor specification of a product (in the sense of a prototypical description)
     inherits: ProductInterface
@@ -4036,6 +4062,7 @@ objects:
     label: PropertyValue
     type: schema:PropertyValue
   PropertyValueInterface:
+    descr: Abstract superclass of PropertyValue
     inherits: StructuredValueInterface
     kind: abstract
     props:
@@ -4046,7 +4073,6 @@ objects:
       unitText: {}
       value: {}
       valueReference: {}
-    type: schema:PropertyValue
   PropertyValueSpecification:
     descr: A Property value specification
     inherits: IntangibleInterface
@@ -4075,13 +4101,13 @@ objects:
     label: PublicationEvent
     type: schema:PublicationEvent
   PublicationEventInterface:
+    descr: Abstract superclass of PublicationEvent
     inherits: EventInterface
     kind: abstract
     props:
       free: {}
       isAccessibleForFree: {}
       publishedOn: {}
-    type: schema:PublicationEvent
   PublicationIssue:
     descr: |-
       A part of a successively published publication such as a periodical or publication volume, often numbered, usually containing a grouping of works such as articles.<br/><br/>
@@ -4119,6 +4145,7 @@ objects:
     label: QualitativeValue
     type: schema:QualitativeValue
   QualitativeValueInterface:
+    descr: Abstract superclass of QualitativeValue
     inherits: EnumerationInterface
     kind: abstract
     props:
@@ -4130,7 +4157,6 @@ objects:
       lesserOrEqual: {}
       nonEqual: {}
       valueReference: {}
-    type: schema:QualitativeValue
   QuantitativeValue:
     descr: A point value or interval for product characteristics and other purposes
     inherits: StructuredValueInterface
@@ -4150,6 +4176,7 @@ objects:
     label: QuantitativeValueDistribution
     type: schema:QuantitativeValueDistribution
   QuantitativeValueDistributionInterface:
+    descr: Abstract superclass of QuantitativeValueDistribution
     inherits: StructuredValueInterface
     kind: abstract
     props:
@@ -4159,13 +4186,13 @@ objects:
       percentile25: {}
       percentile75: {}
       percentile90: {}
-    type: schema:QuantitativeValueDistribution
   Quantity:
     descr: "Quantities such as distance, time, mass, weight, etc. Particular instances of say Mass are entities like '3 Kg' or '4 milligrams'"
     inherits: QuantityInterface
     label: Quantity
     type: schema:Quantity
   QuantityInterface:
+    descr: Abstract superclass of Quantity
     inherits: IntangibleInterface
     kind: abstract
   Question:
@@ -4195,6 +4222,7 @@ objects:
     label: RadioChannel
     type: schema:RadioChannel
   RadioChannelInterface:
+    descr: Abstract superclass of RadioChannel
     inherits: BroadcastChannelInterface
     kind: abstract
   RadioClip:
@@ -4243,6 +4271,7 @@ objects:
     label: Rating
     type: schema:Rating
   RatingInterface:
+    descr: Abstract superclass of Rating
     inherits: IntangibleInterface
     kind: abstract
     props:
@@ -4251,13 +4280,13 @@ objects:
       ratingValue: {}
       reviewAspect: {}
       worstRating: {}
-    type: schema:Rating
   ReactAction:
     descr: 'The act of responding instinctively and emotionally to an object, expressing a sentiment'
     inherits: ReactActionInterface
     label: ReactAction
     type: schema:ReactAction
   ReactActionInterface:
+    descr: Abstract superclass of ReactAction
     inherits: AssessActionInterface
     kind: abstract
   ReadAction:
@@ -4400,6 +4429,7 @@ objects:
     label: Reservation
     type: schema:Reservation
   ReservationInterface:
+    descr: Abstract superclass of Reservation
     inherits: IntangibleInterface
     kind: abstract
     props:
@@ -4416,7 +4446,6 @@ objects:
       reservedTicket: {}
       totalPrice: {}
       underName: {}
-    type: schema:Reservation
   ReservationPackage:
     descr: A group of multiple reservations with common values for all sub-reservations
     inherits: ReservationInterface
@@ -4452,6 +4481,7 @@ objects:
     label: Residence
     type: schema:Residence
   ResidenceInterface:
+    descr: Abstract superclass of Residence
     inherits: PlaceInterface
     kind: abstract
   Resort:
@@ -4497,6 +4527,7 @@ objects:
       resultReview: {}
     type: schema:ReviewAction
   ReviewInterface:
+    descr: Abstract superclass of Review
     inherits: CreativeWorkInterface
     kind: abstract
     props:
@@ -4504,7 +4535,6 @@ objects:
       reviewAspect: {}
       reviewBody: {}
       reviewRating: {}
-    type: schema:Review
   RiverBodyOfWater:
     descr: 'A river (for example, the broad majestic Shannon)'
     inherits: BodyOfWaterInterface
@@ -4519,6 +4549,7 @@ objects:
     label: Role
     type: schema:Role
   RoleInterface:
+    descr: Abstract superclass of Role
     inherits: IntangibleInterface
     kind: abstract
     props:
@@ -4526,7 +4557,6 @@ objects:
       namedPosition: {}
       roleName: {}
       startDate: {}
-    type: schema:Role
   RoofingContractor:
     descr: A roofing contractor
     inherits: HomeAndConstructionBusinessInterface
@@ -4541,6 +4571,7 @@ objects:
     label: Room
     type: schema:Room
   RoomInterface:
+    descr: Abstract superclass of Room
     inherits: AccommodationInterface
     kind: abstract
   RsvpAction:
@@ -4565,6 +4596,8 @@ objects:
   Schedule:
     props:
       duration: {}
+      endDate: {}
+      startDate: {}
     type: schema:Schedule
   ScheduleAction:
     descr: |
@@ -4692,6 +4725,7 @@ objects:
       serviceUrl: {}
     type: schema:ServiceChannel
   ServiceInterface:
+    descr: Abstract superclass of Service
     inherits: IntangibleInterface
     kind: abstract
     props:
@@ -4718,7 +4752,6 @@ objects:
       serviceOutput: {}
       serviceType: {}
       slogan: {}
-    type: schema:Service
   ShareAction:
     descr: The act of distributing content to people for their amusement or edification
     inherits: CommunicateActionInterface
@@ -4763,17 +4796,18 @@ objects:
     label: SocialMediaPosting
     type: schema:SocialMediaPosting
   SocialMediaPostingInterface:
+    descr: Abstract superclass of SocialMediaPosting
     inherits: ArticleInterface
     kind: abstract
     props:
       sharedContent: {}
-    type: schema:SocialMediaPosting
   SoftwareApplication:
     descr: A software application
     inherits: SoftwareApplicationInterface
     label: SoftwareApplication
     type: schema:SoftwareApplication
   SoftwareApplicationInterface:
+    descr: Abstract superclass of SoftwareApplication
     inherits: CreativeWorkInterface
     kind: abstract
     props:
@@ -4801,7 +4835,6 @@ objects:
       softwareVersion: {}
       storageRequirements: {}
       supportingData: {}
-    type: schema:SoftwareApplication
   SoftwareSourceCode:
     descr: 'Computer programming source code. Example: Full (compile ready) solutions, code snippet samples, scripts, templates'
     inherits: CreativeWorkInterface
@@ -4830,6 +4863,11 @@ objects:
       cssSelector: {}
       xpath: {}
     type: schema:SpeakableSpecification
+  SpecialAnnouncement:
+    props:
+      category: {}
+      datePosted: {}
+    type: schema:SpecialAnnouncement
   Specialty:
     descr: 'Any branch of a field in which people typically develop specific expertise, usually after significant study, time, and effort'
     inherits: EnumerationInterface
@@ -4846,6 +4884,7 @@ objects:
     label: SportsActivityLocation
     type: schema:SportsActivityLocation
   SportsActivityLocationInterface:
+    descr: Abstract superclass of SportsActivityLocation
     inherits: LocalBusinessInterface
     kind: abstract
   SportsClub:
@@ -4868,6 +4907,7 @@ objects:
     label: SportsOrganization
     type: schema:SportsOrganization
   SportsOrganizationInterface:
+    descr: Abstract superclass of SportsOrganization
     inherits: OrganizationInterface
     kind: abstract
   SportsTeam:
@@ -4904,6 +4944,7 @@ objects:
     label: Store
     type: schema:Store
   StoreInterface:
+    descr: Abstract superclass of Store
     inherits: LocalBusinessInterface
     kind: abstract
   StructuredValue:
@@ -4912,6 +4953,7 @@ objects:
     label: StructuredValue
     type: schema:StructuredValue
   StructuredValueInterface:
+    descr: Abstract superclass of StructuredValue
     inherits: IntangibleInterface
     kind: abstract
   SubscribeAction:
@@ -5055,12 +5097,12 @@ objects:
     label: TechArticle
     type: schema:TechArticle
   TechArticleInterface:
+    descr: Abstract superclass of TechArticle
     inherits: ArticleInterface
     kind: abstract
     props:
       dependencies: {}
       proficiencyLevel: {}
-    type: schema:TechArticle
   TelevisionChannel:
     descr: A unique instance of a television BroadcastService on a CableOrSatelliteService lineup
     inherits: BroadcastChannelInterface
@@ -5097,6 +5139,7 @@ objects:
     label: Thing
     type: schema:Thing
   ThingInterface:
+    descr: Abstract superclass of Thing
     kind: abstract
     props:
       additionalType: {}
@@ -5111,7 +5154,6 @@ objects:
       sameAs: {}
       subjectOf: {}
       url: {}
-    type: schema:Thing
   Ticket:
     descr: 'Used to describe a ticket to an event, a flight, a bus ride, etc'
     inherits: IntangibleInterface
@@ -5190,13 +5232,13 @@ objects:
     label: TradeAction
     type: schema:TradeAction
   TradeActionInterface:
+    descr: Abstract superclass of TradeAction
     inherits: ActionInterface
     kind: abstract
     props:
       price: {}
       priceCurrency: {}
       priceSpecification: {}
-    type: schema:TradeAction
   TrainReservation:
     descr: |-
       A reservation for train travel.<br/><br/>
@@ -5228,12 +5270,12 @@ objects:
     label: TransferAction
     type: schema:TransferAction
   TransferActionInterface:
+    descr: Abstract superclass of TransferAction
     inherits: ActionInterface
     kind: abstract
     props:
       fromLocation: {}
       toLocation: {}
-    type: schema:TransferAction
   TravelAction:
     descr: 'The act of traveling from an fromLocation to a destination by a specified mode of transport, optionally with participants'
     inherits: MoveActionInterface
@@ -5252,6 +5294,7 @@ objects:
     label: Trip
     type: schema:Trip
   TripInterface:
+    descr: Abstract superclass of Trip
     inherits: IntangibleInterface
     kind: abstract
     props:
@@ -5259,7 +5302,6 @@ objects:
       departureTime: {}
       offers: {}
       provider: {}
-    type: schema:Trip
   TypeAndQuantityNode:
     descr: 'A structured value indicating the quantity, unit of measurement, and business function of goods included in a bundle offer'
     inherits: StructuredValueInterface
@@ -5272,8 +5314,8 @@ objects:
       unitText: {}
     type: schema:TypeAndQuantityNode
   URL:
-    descr: 'Data type: URL'
-    label: URL
+    props:
+      category: {}
     type: schema:URL
   UnRegisterAction:
     descr: |
@@ -5305,18 +5347,19 @@ objects:
     label: UpdateAction
     type: schema:UpdateAction
   UpdateActionInterface:
+    descr: Abstract superclass of UpdateAction
     inherits: ActionInterface
     kind: abstract
     props:
       collection: {}
       targetCollection: {}
-    type: schema:UpdateAction
   UseAction:
     descr: The act of applying an object to its intended purpose
     inherits: UseActionInterface
     label: UseAction
     type: schema:UseAction
   UseActionInterface:
+    descr: Abstract superclass of UseAction
     inherits: ConsumeActionInterface
     kind: abstract
   UserBlocks:
@@ -5351,6 +5394,7 @@ objects:
     label: UserInteraction
     type: schema:UserInteraction
   UserInteractionInterface:
+    descr: Abstract superclass of UserInteraction
     inherits: EventInterface
     kind: abstract
   UserLikes:
@@ -5384,6 +5428,7 @@ objects:
     label: Vehicle
     type: schema:Vehicle
   VehicleInterface:
+    descr: Abstract superclass of Vehicle
     inherits: ProductInterface
     kind: abstract
     props:
@@ -5411,7 +5456,6 @@ objects:
       vehicleModelDate: {}
       vehicleSeatingCapacity: {}
       vehicleTransmission: {}
-    type: schema:Vehicle
   VideoGallery:
     descr: 'Web page type: Video gallery page'
     inherits: MediaGalleryInterface
@@ -5599,13 +5643,14 @@ objects:
     label: WebPageElement
     type: schema:WebPageElement
   WebPageElementInterface:
+    descr: Abstract superclass of WebPageElement
     inherits: CreativeWorkInterface
     kind: abstract
     props:
       cssSelector: {}
       xpath: {}
-    type: schema:WebPageElement
   WebPageInterface:
+    descr: Abstract superclass of WebPage
     inherits: CreativeWorkInterface
     kind: abstract
     props:
@@ -5619,7 +5664,6 @@ objects:
       significantLinks: {}
       speakable: {}
       specialty: {}
-    type: schema:WebPage
   WebSite:
     descr: A WebSite is a set of related web pages and other items typically served from a single web domain and accessible via URLs
     inherits: CreativeWorkInterface
@@ -5644,10 +5688,6 @@ objects:
     inherits: FoodEstablishmentInterface
     label: Winery
     type: schema:Winery
-  WorkBasedProgram:
-    props:
-      occupationalCategory: {}
-    type: schema:WorkBasedProgram
   WorkersUnion:
     descr: 'A Workers Union (also known as a Labor Union, Labour Union, or Trade Union) is an organization that promotes the interests of its worker members by collectively bargaining with management, organizing, and political lobbying'
     inherits: OrganizationInterface
@@ -9605,16 +9645,6 @@ properties:
     max: inf
     range: AdministrativeAreaInterface
     rdfProp: schema:occupationLocation
-  occupationalCategory:
-    descr: |-
-      A category describing the job, preferably using a term from a taxonomy such as <a href="http://www.onetcenter.org/taxonomy.html">BLS O*NET-SOC</a>, <a href="https://www.ilo.org/public/english/bureau/stat/isco/isco08/">ISCO-08</a> or similar, with the property repeated for each applicable value. Ideally the taxonomy should be identified, and both the textual label and formal code for the category should be provided.<br/><br/>
-      
-      Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC
-    kind: object
-    label: occupationalCategory
-    max: inf
-    range: CategoryCode
-    rdfProp: schema:occupationalCategory
   offerCount:
     descr: The number of offers for the product
     kind: literal

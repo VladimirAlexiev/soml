@@ -24,6 +24,7 @@ our $ontology;                         # $ontology_iri as string
 our $vocab_iri;                        # vocab namespace as Attean::IRI
 our $vocab_prefix;                     # vocab prefix as string
 our $soml_id;
+our $soml_label;
 our $map   = URI::NamespaceMap->new(); # prefixes in loaded ontologies
 our $MAP   = URI::NamespaceMap->new    # fixed prefixes used in mapping ("service" namespace)
   ({so     => "http://www.ontotext.com/semantic-object/",
@@ -165,25 +166,26 @@ END
 }
 
 GetOptions ("vocab=s" => \$vocab_prefix,
-            "id=s" => \$soml_id)
+            "id=s" => \$soml_id,
+            "label=s" => \$soml_label)
   or usage();
 
 sub first_ontology() {
   # get ontology metadata, and try to figure out vocab_iri and vocab_prefix
-
   my $base;
   my $iter = $model->subjects(IRI("rdf:type"), IRI("owl:Ontology"));
   if ($ontology_iri = $iter->next) {
     $ontology = $ontology_iri->as_string;
-    $iter->next and my_warn("Found multiple ontologies, metadata only of the first one is used: $ontology");
+    $iter->next and my_warn <<EOF;
+Found multiple ontologies, metadata only of the first one is used: $ontology.
+Consider using -id, -label to not treat the first ontology specially.
+EOF
     $base = one_value($model->objects($ontology_iri, IRI("swc:BaseUrl")))
   };
   # try to find vocab_iri and vocab_prefix in various inter-dependent ways
   if ($vocab_prefix) { # option -voc
     $vocab_iri = iri ($map->namespace_uri($vocab_prefix))
       or my_die "can't find vocab_iri of -voc prefix $vocab_prefix";
-  } elsif ($soml_id) { # option -id
-    # Great! don't need to look for vocab_prefix
   } elsif ($ontology_iri and $vocab_prefix = one_value($model->objects($ontology_iri, IRI("swc:identifier")))) {
     $vocab_iri = iri ($map->namespace_uri($vocab_prefix)) || do {
       $map->add_mapping ($vocab_prefix => "$ontology/");
@@ -221,8 +223,6 @@ sub first_ontology() {
   } else {
     my_die "can't find owl:Ontology (should be in first RDF file) and neither -voc nor -id are specified"
   };
-  $soml_id ||= $vocab_prefix;
-  $soml{id} = "/soml/$soml_id";
   $soml{specialPrefixes}{vocab_prefix} = $vocab_prefix if $vocab_prefix;
   $soml{specialPrefixes}{vocab_iri}    = $vocab_iri->as_string if $vocab_iri;
   $soml{specialPrefixes}{ontology_iri} = $ontology if $ontology;
@@ -239,7 +239,7 @@ sub load_ontologies(@) {
     my $iter    = $parser->parse_iter_from_io($fh);
     my $quads   = $iter->as_quads($graph);
     $model->add_iter($quads);
-    first_ontology() unless $count++
+    first_ontology() unless $soml_id || $count++
   }
 }
 
@@ -332,7 +332,7 @@ sub iri_name($) {
   return $iri_name{$iri} = {gql=>$gql, rdf=>$rdf}
 }
 
-sub make_inherits($$) {
+sub make_inherits(\@\@) {
   # for each $class, pick its first superclass and make the %inherits matrix
   my ($classes, $no_classes) = @_;
   for my $class (@$classes) {
@@ -357,6 +357,7 @@ sub make_super() {
     my $super = $concrete."Interface";
     $super{$concrete} = $super;
     $soml{objects}{$super}{kind} = "abstract";
+    $soml{objects}{$super}{descr} = "Abstract superclass of $concrete";
     $soml{objects}{$concrete}{type} = $gql_rdf{$concrete};
     $soml{objects}{$concrete}{inherits} = $super;
   }
@@ -408,17 +409,16 @@ sub map_ranges ($$) {
 ##### main
 
 scalar(@ARGV) < 1 and usage(); # if there are no args, print usage() and die
+$soml_id && $vocab_prefix and my_die "-id causes no processing of ontology metadata and nor use of -voc";
+$soml_id && !$soml_label and my_warn "-id causes no processing of ontology metadata, please provide -label";
+
 load_ontologies(@ARGV);
 
-# prefixes
-while (my ($pfx,$iri) = $map->each_map) {
-  $soml{prefixes}{$pfx} = $iri->as_string
-};
-
 # ontology metadata
-if ($ontology_iri) {
-  my $label = get_label ($ontology_iri,"ontology");
-  $soml{label} = $label if $label;
+if ($soml_id) {
+  $soml{id} = "/soml/$soml_id";
+} elsif ($ontology_iri) {
+  my $soml_label = get_label ($ontology_iri,"ontology");
   my @creators = uniq_en_strings($model->objects($ontology_iri, [map IRI($_), @CREATOR_PROPS]));
   $soml{creator} = join ", ", sort @creators if @creators;
   my $created = date_part (one_value($model->objects($ontology_iri, IRI("dct:created"))));
@@ -427,7 +427,13 @@ if ($ontology_iri) {
   $soml{updated} = $updated if $updated;
   my $versionInfo = one_value($model->objects($ontology_iri, IRI("owl:versionInfo")));
   $soml{versionInfo} = $versionInfo if $versionInfo;
-}
+};
+$soml{label} = $soml_label if $soml_label;
+
+# prefixes
+while (my ($pfx,$iri) = $map->each_map) {
+  $soml{prefixes}{$pfx} = $iri->as_string
+};
 
 # classes (objects)
 
@@ -445,14 +451,15 @@ for my $class (@classes) {
   my $iri_name = iri_name($class);
   my $name = $iri_name->{gql};
   my $rdf = $iri_name->{rdf};
-  $soml{objects}{$name}{type} = $rdf if $name ne $rdf; # by default, "type: $name"
+  next if $DATATYPES{$rdf};
+  $soml{objects}{$name}{type} = $rdf; # if $name ne $rdf
   my $label = get_label ($class, "class $rdf");
   $soml{objects}{$name}{label} = $label if $label;
   my $descr = get_descr ($class);
   $soml{objects}{$name}{descr} = $descr if $descr;
 };
 
-make_inherits(\@classes, \@no_classes);
+make_inherits(@classes, @no_classes);
 make_super();
 lift_inherits();
 
@@ -465,7 +472,7 @@ for my $prop (map iri($_), @props) {
   my $iri_name = iri_name($prop);
   my $name = $iri_name->{gql};
   my $rdf = $iri_name->{rdf};
-  $soml{properties}{$name}{rdfProp} = $rdf if $name ne $rdf;
+  $soml{properties}{$name}{rdfProp} = $rdf; # if $name ne $rdf;
   my $label = get_label ($prop, "property $rdf");
   $soml{properties}{$name}{label} = $label if $label;
   my $descr = get_descr ($prop);
@@ -490,9 +497,9 @@ for my $prop (map iri($_), @props) {
   for my $domain (@domains) {
     my $class = iri_name($domain);
     $class and $class = $class->{gql} or next;
-    $class = $super{$class} if $super{$class};
     # fix for referenced classes that may not be defined in the ontology
     $soml{objects}{$class}{type} = iri_name($domain)->{rdf};
+    $class = $super{$class} if $super{$class};
     $soml{objects}{$class}{props}{$name} = {};
   };
 
