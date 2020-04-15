@@ -1,4 +1,4 @@
-﻿#################### This file consists of 5 sections. You can find them by searching for '###'
+#################### This file consists of 5 sections. You can find them by searching for '###'
 ## 1. Basic info about the ontology and GVP concept schemes
 ## 2. Hand-crafted properties
 ## 3. OWL Axioms (in addition to rdfs:subClassOf and rdfs:subPropertyOf
