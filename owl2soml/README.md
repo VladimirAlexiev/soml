@@ -672,13 +672,16 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 
 ## Change Log
 
+15-Apr-2020
+- `schema:URL` is domain of `schema:category` ([schemaorg#2536](https://github.com/schemaorg/schemaorg/issues/2536)), but is in `%DATATYPES` so filter it out
+
 14-Apr-2020
 - If `-id` then don't look for any ontology metadata
 - Add option `-label` to specify SOML label
 - Always emit RDF terms for objects and props (don't use defaults) for clarity
 - Domains "fix for referenced classes": emit "type" at concrete superclass, not at abstract
 - Add description to interfaces: `XInterface: {descr: "Abstract superclass of X"}`
-- `schema:Float` is a subclass of `Datatype` (not a datatype directly), but is in `%DATATYPES` map, so don't emit as class
+- `schema:Float` is a subclass of `DataType` (not a datatype directly), but is in `%DATATYPES` map, so don't emit as class
 
 10-Apr-2020
 - Fix regression in `@classes`: emitted props also as classes

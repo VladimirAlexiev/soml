@@ -495,10 +495,12 @@ for my $prop (map iri($_), @props) {
   # domains
   my @domains = expand_union ($model->objects ($prop, [IRI("rdfs:domain"), IRI("schema:domainIncludes")]));
   for my $domain (@domains) {
-    my $class = iri_name($domain);
-    $class and $class = $class->{gql} or next;
+    my $class = iri_name($domain) or next;
+    my $rdf = $class->{rdf};
+    $DATATYPES{$rdf} and next; # schema: URL is domain of category, https://github.com/schemaorg/schemaorg/issues/2536
+    $class = $class->{gql} or next;
     # fix for referenced classes that may not be defined in the ontology
-    $soml{objects}{$class}{type} = iri_name($domain)->{rdf};
+    $soml{objects}{$class}{type} = $rdf;
     $class = $super{$class} if $super{$class};
     $soml{objects}{$class}{props}{$name} = {};
   };
