@@ -133,9 +133,10 @@ $0 - Generates SOML from supplied ontologies
 
 Usage: $0 ontology.(ttl|rdf) ... > ontology.yaml
 Options:
-  -voc pfx     Use "pfx" as vocab_prefix and SOML ID.
-  -id  id      Use "id" as SOML ID and don't set a vocab_prefix.
-               Otherwise vocab_prefix and SOML ID are set from the ontology using various heuristics.
+  -voc pfx     Use "pfx" as vocab_prefix (and default SOML ID).
+  -voc NONE    Don't look for vocab_prefix in the first ontology using various heuristics.
+  -id  id      Set SOML ID
+  -label label Set SOML label
 
 Parses:
 - ontologies (owl:Ontology, dct:created, dct:modified, $creator_props),
@@ -183,7 +184,9 @@ EOF
     $base = one_value($model->objects($ontology_iri, IRI("swc:BaseUrl")))
   };
   # try to find vocab_iri and vocab_prefix in various inter-dependent ways
-  if ($vocab_prefix) { # option -voc
+  if ($vocab_prefix eq "NONE") { # option -voc NONE
+    $vocab_prefix = undef;
+  } elsif ($vocab_prefix) { # option -voc
     $vocab_iri = iri ($map->namespace_uri($vocab_prefix))
       or my_die "can't find vocab_iri of -voc prefix $vocab_prefix";
   } elsif ($ontology_iri and $vocab_prefix = one_value($model->objects($ontology_iri, IRI("swc:identifier")))) {
@@ -239,7 +242,7 @@ sub load_ontologies(@) {
     my $iter    = $parser->parse_iter_from_io($fh);
     my $quads   = $iter->as_quads($graph);
     $model->add_iter($quads);
-    first_ontology() unless $soml_id || $count++
+    first_ontology() unless $count++
   }
 }
 
@@ -409,8 +412,8 @@ sub map_ranges ($$) {
 ##### main
 
 scalar(@ARGV) < 1 and usage(); # if there are no args, print usage() and die
-$soml_id && $vocab_prefix and my_die "-id causes no processing of ontology metadata and nor use of -voc";
-$soml_id && !$soml_label and my_warn "-id causes no processing of ontology metadata, please provide -label";
+$vocab_prefix eq "NONE" && !$soml_id    and my_die  "'-voc NONE' causes no processing of ontology metadata, please provide -id";
+$vocab_prefix eq "NONE" && !$soml_label and my_warn "'-voc NONE' causes no processing of ontology metadata, please provide -label";
 
 load_ontologies(@ARGV);
 
@@ -482,7 +485,7 @@ for my $prop (map iri($_), @props) {
   my $isObjectProp = $model->holds ($prop, IRI("rdf:type"), IRI("owl:ObjectProperty"));
   my $isDataProp   = $model->holds ($prop, IRI("rdf:type"), [IRI("owl:AnnotationProperty"), IRI("owl:DatatypeProperty")]);
   my $isSymmetric  = $model->holds ($prop, IRI("rdf:type"), IRI("owl:SymmetricProperty"));
-  $soml{properties}{$name}{symmetric} = 1 if $isSymmetric;
+  $soml{properties}{$name}{symmetric} = "true" if $isSymmetric;
   my $isFunctional = $model->holds ($prop, IRI("rdf:type"), IRI("owl:FunctionalProperty"));
   $soml{properties}{$name}{max} = "inf" unless $isFunctional;
   my $inverseOf = one_value ($model->objects ($prop, [IRI("owl:inverseOf"), IRI("schema:inverseOf")]));

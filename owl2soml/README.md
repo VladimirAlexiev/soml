@@ -6,7 +6,7 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
 **Table of Contents**
 
 - [owl2soml](#owl2soml)
-- [Usage](#usage)
+    - [Usage](#usage)
     - [Features](#features)
         - [Ontologies](#ontologies)
         - [`vocab_prefix, vocab_iri`](#vocab_prefix-vocab_iri)
@@ -17,11 +17,12 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
             - [Domain and Range](#domain-and-range)
         - [Datatypes](#datatypes)
         - [Labels and Descriptions](#labels-and-descriptions)
+    - [Implemented as Platform Service](#implemented-as-platform-service)
+        - [Handle OWL Restrictions](#handle-owl-restrictions)
+        - [Handle OWL Cardinalities](#handle-owl-cardinalities)
     - [Limitations](#limitations)
         - [Better Handling of Multiple Ontologies](#better-handling-of-multiple-ontologies)
         - [Handle Property Inheritance](#handle-property-inheritance)
-        - [Handle OWL Restrictions](#handle-owl-restrictions)
-        - [Handle OWL Cardinalities](#handle-owl-cardinalities)
         - [Unusual Datatypes](#unusual-datatypes)
         - [owl:rational](#owl-rational)
         - [GeoSPARQL Serializations](#geosparql-serializations)
@@ -33,18 +34,17 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
     - [Tool Dependencies](#tool-dependencies)
         - [Dependency Problems](#dependency-problems)
     - [Change Log](#change-log)
-- [Platform Service](#platform-service)
 
 <!-- markdown-toc end -->
 
-# Usage
+## Usage
 
 ```
 owl2soml.pl ontology.(ttl|rdf) ... > ontology.yaml
 Options:
-  -voc pfx     Use "pfx" as the main vocab_prefix and SOML ID.
-  -id  id      Use "id" as SOML ID and don't set vocab_prefix or ontology metadata.
-               Otherwise vocab_prefix and SOML ID are set from the ontology using various heuristics.
+  -voc pfx     Use "pfx" as vocab_prefix (and default SOML ID).
+  -voc NONE    Don't look for vocab_prefix in the first ontology using various heuristics.
+  -id  id      Set SOML ID
   -label label Set SOML label
 ```
 
@@ -365,67 +365,29 @@ TODO:
 - If newlines are used in a description, use `".\n"` as delimiter when concatenting, rather than `". "`
 - Ignore empty labels/descriptions, which are found in some ontologies
 
-## Limitations
+## Implemented as Platform Service
 
-In addition to TODOs sprinkled above, `owl2soml` (or the Ontotext Platform) 
-has other limitations (thus ideas for improvement) that are described below.
-If one of these limitations is especially important for you, please send feedback.
-In some cases we've referenced the issue number in our internal issue tracker,
-so you can enquire about the status of that particular issue.
+Starting in version 3.1, the platform incorporates an experimental [owl2soml service](http://platform.ontotext.com/soml/owl2soml.html) implemented in Java.
+- It allows you to generate and save a schema using the usual `/soml` platform REST endpoint (see [Quickstart: Define Star Wars Semantic Objects](http://platform.ontotext.com/semantic-objects/semantic-objects.html#define-star-wars-semantic-objects))
+- Use `Content-Type: multipart/form-data` to pass several ontologies (and some optional parameters) to the REST endpoint.
+- There is a way to check validity (`dryrun`) and to get the generated SOML schema.
+- There is also a command-line version `owl2soml.jar` that can be provided upon request and has the following options;
 
-- The platform supports metadata (`label:` and `descr`) in only one language, 
-  so the tool uses only labels/descriptions without language tag,
-  or in Egnlish and "dialects" (`en`, `en-US`, `en-GB`, etc).
-- `owl:AnnotationProperty` and `owl:DatatypeProperty` are treated the same,
-  but there are some ontologies that use `owl:AnnotationProperty` with resources.
-- The platform does not yet support multiple inheritance, 
-  so only the first superclass is used (PLATFORM-360).
-- TODO: The platform does not yet support multiple prop ranges (union ranges), 
-  so only one is used (PLATFORM-1493).
-  The tool picks a random range, which is undeterministic.
-- The platform does not yet support `rdf:langString`,
-  so `rdf:langString` and `rdfs:Literal` are mapped to `xsd:string` (PLATFORM-1241).
-  We are planning powerful features to fetch only selected languages, 
-  language preference and fallback,
-  find objects having values in certain languages,
-  validation of languages on mutation, etc.
-- Currently the platform handles only these prop characteristics:
-  `owl:FunctionalProperty owl:SymmetricProperty` (and `inverseOf`)
-  It should process more prop characteristics: 
-  `owl:InverseFunctionalProperty owl:ReflexiveProperty owl:IrreflexiveProperty owl:AsymmetricProperty owl:TransitiveProperty`.
-- SOML currently does not allow punctuation (`_-.`) in prefixes or local names (issue PLATFORM-1625).
-  So a prop like `fibo-fnd-acc-aeq:Equity` is mapped to `fibofndaccaeq:Equity`, which is not good.
-  Such prefixes are prevalent in FIBO. 
-  Other ontologies (especially related to biology and life sciences) use punctuation (even `:`) in local names.
+```
+usage: java -jar owl2soml.jar
+ -i <arg>     input files
+ -id <arg>    soml id
+ -l <arg>     soml label
+ -o <arg>     output file
+ -v <arg>     validates a given schema
+ -voc <arg>   voc prefix
+```
 
-### Better Handling of Multiple Ontologies
-
-To handle numerous related ontologies (eg like FIBO), these improvements could be relevant:
-
-- The tool doesn't handle `owl:import`. Instead, provide multiple ontologies on input
-  (or in the case of FIBO I've concatenated Turtle files)
-- Takes metadata only from `owl:Ontology` of the first supplied RDF file.
-  This is a minor limitation since you can always supply the relevant file first.
-
-### Handle Property Inheritance
-
-Some ontologies (e.g. SKOS) expect that 
-a subProperty inherits its domain and range from its transitive ancestors 
-(e.g. none of the 10 subprops of `skos:semanticRelation` define their own domain and range,
-but expect to inherit it). 
-- Such inheritance is defined in OWL2, see [Web Ontology Language Profiles](https://www.w3.org/TR/owl2-profiles), 
-  Table 9 The Semantics of Schema Vocabulary, rules [scm-dom2](https://www.w3.org/TR/owl2-profiles/#scm-dom2), [scm-rng2](https://www.w3.org/TR/owl2-profiles/#scm-rng2)
-- Such inheritance is **not** defined in RDFS, see [RDF 1.1 Semantics](https://www.w3.org/TR/rdf11-mt), [Entailment](https://www.w3.org/TR/rdf11-mt/#rdfs-entailment)
-- The platform does not yet support property domain/range inheritance (PLATFORM-1500)
-
-One ontology that uses property inheritance is SKOS.
-All descendant props of `skos:semanticRelation` (including `skos:broader, narrower, broaderMatch, narrowerMatch, related` etc)
-do not define their own domain & range.
-As a workaround, the file `skos-fix.ttl` adds domain & range to these props.
+In addition to the features described above, the platform service implements a couple more described in the following subsections.
 
 ### Handle OWL Restrictions
 
-The tool should perhaps handle the following [Domain and Range](#domain-and-range) constructs:
+The tool should handle the following [Domain and Range](#domain-and-range) constructs:
 
 ```ttl
 :classX rdfs:subClassOf [a owl:Restriction; owl:onProperty :propP; owl:allValuesFrom  :classY]
@@ -514,6 +476,65 @@ Also map `:X owl:equivalentClass [owl:intersectionOf (:Y...)]` to `X inherits: Y
   as `max: 1` of an `inverseAlias` prop
   (see [Lack of Inverses](#lack-of-inverses))
 
+## Limitations
+
+In addition to TODOs sprinkled above, `owl2soml` (or the Ontotext Platform) 
+has other limitations (thus ideas for improvement) that are described below.
+If one of these limitations is especially important for you, please send feedback.
+In some cases we've referenced the issue number in our internal issue tracker,
+so you can enquire about the status of that particular issue.
+
+- The platform supports metadata (`label:` and `descr`) in only one language, 
+  so the tool uses only labels/descriptions without language tag,
+  or in Egnlish and "dialects" (`en`, `en-US`, `en-GB`, etc).
+- `owl:AnnotationProperty` and `owl:DatatypeProperty` are treated the same,
+  but there are some ontologies that use `owl:AnnotationProperty` with resources.
+- The platform does not yet support multiple inheritance, 
+  so only the first superclass is used (PLATFORM-360).
+- TODO: The platform does not yet support multiple prop ranges (union ranges), 
+  so only one is used (PLATFORM-1493).
+  The tool picks a random range, which is undeterministic.
+- The platform does not yet support `rdf:langString`,
+  so `rdf:langString` and `rdfs:Literal` are mapped to `xsd:string` (PLATFORM-1241).
+  We are planning powerful features to fetch only selected languages, 
+  language preference and fallback,
+  find objects having values in certain languages,
+  validation of languages on mutation, etc.
+- Currently the platform handles only these prop characteristics:
+  `owl:FunctionalProperty owl:SymmetricProperty` (and `inverseOf`)
+  It should process more prop characteristics: 
+  `owl:InverseFunctionalProperty owl:ReflexiveProperty owl:IrreflexiveProperty owl:AsymmetricProperty owl:TransitiveProperty`.
+- SOML currently does not allow punctuation (`_-.`) in prefixes or local names (issue PLATFORM-1625).
+  So a prop like `fibo-fnd-acc-aeq:Equity` is mapped to `fibofndaccaeq:Equity`, which is not good.
+  Such prefixes are prevalent in FIBO. 
+  Other ontologies (especially related to biology and life sciences) use punctuation (even `:`) in local names.
+
+### Better Handling of Multiple Ontologies
+
+To handle numerous related ontologies (eg like FIBO), these improvements could be relevant:
+
+- The tool doesn't handle `owl:import`. Instead, provide multiple ontologies on input
+  (or in the case of FIBO I've concatenated Turtle files)
+- Takes metadata only from `owl:Ontology` of the first supplied RDF file.
+  This is a minor limitation since you can always supply the relevant file first.
+
+### Handle Property Inheritance
+
+Some ontologies (e.g. SKOS) expect that 
+a subProperty inherits its domain and range from its transitive ancestors 
+(e.g. none of the 10 subprops of `skos:semanticRelation` define their own domain and range,
+but expect to inherit it). 
+- Such inheritance is defined in OWL2, see [Web Ontology Language Profiles](https://www.w3.org/TR/owl2-profiles), 
+  Table 9 The Semantics of Schema Vocabulary, rules [scm-dom2](https://www.w3.org/TR/owl2-profiles/#scm-dom2), [scm-rng2](https://www.w3.org/TR/owl2-profiles/#scm-rng2)
+- Such inheritance is **not** defined in RDFS, see [RDF 1.1 Semantics](https://www.w3.org/TR/rdf11-mt), [Entailment](https://www.w3.org/TR/rdf11-mt/#rdfs-entailment)
+- The platform does not yet support property domain/range inheritance (PLATFORM-1500)
+
+One ontology that uses property inheritance is SKOS.
+All descendant props of `skos:semanticRelation` (including `skos:broader, narrower, broaderMatch, narrowerMatch, related` etc)
+do not define their own domain & range.
+As a workaround, the file `skos-fix.ttl` adds domain & range to these props.
+
+
 ### Unusual Datatypes
 
 Currently the following unsupported datatypes are ignored with warning:
@@ -580,9 +601,12 @@ Inverses are in fact superfluous in RDF because you can always query in the oppo
 - The [PROV ontology deprecates inverses]( http://w3.org/TR/prov-o/#inverse-names): "When all inverses are defined for all properties, modelers may choose from two logically equivalent properties when making each assertion. Although the two options may be logically equivalent, developers consuming the assertions may need to exert extra effort to handle both (e.g., by either adding an OWL reasoner or writing code and queries to handle both cases). This extra effort can be reduced by preferring one inverse over another".
 - PROV defines `prov:inverse`, which declares what (string) name should be used for an inverse property,
   without triggering inverse inference (unlike `owl:inverseOf`)
-- However, it doesn't define the cardinality of that inverse property.
 
-We can use `prov:inverse` or a custom prop `soml:inverseAlias` to specify this.
+We consider using the following RDF props to specify this:
+- `prov:inverse` (string) that specifies the name of a virtual inverse, resolved against `vocab_prefix`. However, it doesn't define the cardinality of that inverse.
+- `so:inverseAliasOf` (property) that specifies a virtual inverse prop, with optional characteristics including cardinality.
+
+Please note that unlike `owl:inverseOf` these are **not** symmetric: they point from a real prop to a virtual inverse.
 
 ### Missing Cardinality Information
 
@@ -672,6 +696,10 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 
 ## Change Log
 
+4-May-2020;
+- Document Java version extensions
+- Option `-voc NONE`, so that `-id` and `-label` can be used independently
+
 15-Apr-2020
 - `schema:URL` is domain of `schema:category` ([schemaorg#2536](https://github.com/schemaorg/schemaorg/issues/2536)), but is in `%DATATYPES` so filter it out
 
@@ -728,30 +756,3 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 
 27-Feb-2020:
 - initial version
-
-# Platform Service
-
-TODO 
-
-We have plans to rewrite the tool to Java and as a platform service.
-We also need to design how it is invoked and how input/output/errors are handled.
-The best is to use the same soaas REST APIs, just with different content-type (application/rdf+xml, text/turtle, application/ld+json)
-Need to decide whether the posted ontologies are saved, or only the generated SOML
-It often needs to take several ontologies as input
-Often needs some extra options:
-For now just "-voc", but we could also add:
-bind props to classes. Eg the majority of DCT props are not attached, and the core SKOS props are not attached (except semanticRelations). [^skos-fix.ttl] is an RDF fix for this SKOS problem, is that how we'd like to proceed?
-"name" characteristic of classes
-declaring inverseAliases?
-tighten up properties cardinality to single-valued i.e. max=1 (very few ontologies use owl:FunctionalProperty)
-tighten up incoming prop cardinality, i.e. cardinality of inverseAlais (very few ontologies use owl:InverseFunctionalProperty)
-How would that be passed on?
-
-I definitely think there needs to be a command-line version of owl2soml. It's a utility, so it should be easily invocable as a utility.
- it will need to be re-engineered using JAVA (as part of SOaaS) and made available at existing /soml endpoints:
-We can build a CLI (or/and a GUI) that uses /soml Content-Type: text/turtle
-
-should be able to pass a few params (eg voc prefix)
-should also be available as command line tool
-should test on ontologies collected in owl2soml/eg and more:
-Skos, dct, schema, gvp; parts of FIBO...
