@@ -60,12 +60,12 @@ It is still evolving.
 - If you test it on more ontologies, please describe your experience in an issue or pull request
 - If you find problems or want to suggest a new feature, post an issue
 
-We also have plans to rewrite the tool in Java, as a [Platform Service](#platform-service).
+We have rewritten the tool in Java, see [Implemented as Platform Service](#implemented-as-platform-service).
 
 ## Features
 
 `owl2soml` can read ontologies in these RDF formats: RDF/XML, Turtle, JSONLD.
-It requires approprite prefixes to be defined, so it can obtain GraphQL (developer-friendly) class and prop names.
+It requires appropriate prefixes to be defined, so it can obtain GraphQL (developer-friendly) class and prop names.
 - NTriples is not an appropriate format because it doesn't define prefixes.
 - Some JSONLD ontologies do not define a good context and are not usable by the tool.
   For example, the [schema.org JSONLD distribution](https://schema.org/docs/developers.html) has a very poor context 
@@ -136,16 +136,18 @@ specialPrefixes:
   vocab_prefix: voc
 ```
 
-To disable the looking for `vocab_prefix`, specify the `-id` option to set only SOML id, eg:
+To disable the looking for `vocab_prefix`, specify `-voc NONE`
+and the `-id` and `-label` options to set SOML id and label, eg:
 
 ```sh
-perl owl2soml.pl -id fibo-FND fibo-FND.ttl
+perl owl2soml.pl -voc NONE -id fibo-FND -label "FIBO Foundational" fibo-FND.ttl
 ```
 
 will result in 
 
 ```yaml
 id: /soml/fibo-FND
+label: "FIBO Foundational"
 ```
 
 ### Classes
@@ -255,6 +257,12 @@ The tool recognizes instances of the following as props: `rdf:Property, owl:Anno
   each prop must have one of the above types.
 - It ignores the following, which are not useful for querying:
   `owl:topObjectProperty owl:bottomObjectProperty owl:topDataProperty owl:bottomDataProperty`
+
+Property IRIs:
+- SOML now allows punctuation (`_-.`) in prefixes or local names (issue PLATFORM-1625).
+  So a prop like `fibo-fnd-acc-aeq:Equity` is not mangled to `fibofndaccaeq:Equity` anymore.
+  Such prefixes are prevalent in FIBO. 
+  Other ontologies (especially related to biology and life sciences) use punctuation (even `:`) in local names.
 
 Properties are processed as follows:
 - Gets prop [Labels and Descriptions](#labels-and-descriptions)
@@ -371,7 +379,7 @@ Starting in version 3.1, the platform incorporates an experimental [owl2soml ser
 - It allows you to generate and save a schema using the usual `/soml` platform REST endpoint (see [Quickstart: Define Star Wars Semantic Objects](http://platform.ontotext.com/semantic-objects/semantic-objects.html#define-star-wars-semantic-objects))
 - Use `Content-Type: multipart/form-data` to pass several ontologies (and some optional parameters) to the REST endpoint.
 - There is a way to check validity (`dryrun`) and to get the generated SOML schema.
-- There is also a command-line version `owl2soml.jar` that can be provided upon request and has the following options;
+- There is also a command-line version `owl2soml.jar` that can be provided upon request and has the following options:
 
 ```
 usage: java -jar owl2soml.jar
@@ -401,8 +409,8 @@ objects:
   classX: {props: {propP: {range: classY}}}
 ```
 
-- Also handle variants with `owl:equivalentClass` instead of `rdfs:subClassOf`
-- Also handle variants with `owl:intersectionOf`, they are common in LifeSci ontologies.
+- TODO: Also handle variants with `owl:equivalentClass` instead of `rdfs:subClassOf`
+- TODO: Also handle variants with `owl:intersectionOf`, they are common in LifeSci ontologies.
   Eg see this variant from [Populous_tutorial_SWAT4LS_2011.zip::Output_ontology/cell_types.owl](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/owlpopulous/Populous_tutorial_SWAT4LS_2011.zip)
   (note: two of the intersections are superfluous since they have a single member).
 
@@ -504,10 +512,6 @@ so you can enquire about the status of that particular issue.
   `owl:FunctionalProperty owl:SymmetricProperty` (and `inverseOf`)
   It should process more prop characteristics: 
   `owl:InverseFunctionalProperty owl:ReflexiveProperty owl:IrreflexiveProperty owl:AsymmetricProperty owl:TransitiveProperty`.
-- SOML currently does not allow punctuation (`_-.`) in prefixes or local names (issue PLATFORM-1625).
-  So a prop like `fibo-fnd-acc-aeq:Equity` is mapped to `fibofndaccaeq:Equity`, which is not good.
-  Such prefixes are prevalent in FIBO. 
-  Other ontologies (especially related to biology and life sciences) use punctuation (even `:`) in local names.
 
 ### Better Handling of Multiple Ontologies
 
