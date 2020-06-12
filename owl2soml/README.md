@@ -13,8 +13,11 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
         - [No `vocab_prefix`](#no-vocab_prefix)
         - [Classes](#classes)
             - [subClassOf](#subclassof)
+            - [Superclass Interfaces](#superclass-interfaces)
         - [Properties](#properties)
             - [Domain and Range](#domain-and-range)
+            - [Real Inverses](#real-inverses)
+            - [TODO Virtual Inverses](#todo-virtual-inverses)
         - [Datatypes](#datatypes)
         - [Labels and Descriptions](#labels-and-descriptions)
     - [Implemented as Platform Service](#implemented-as-platform-service)
@@ -28,7 +31,6 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
         - [GeoSPARQL Serializations](#geosparql-serializations)
         - [PlainLiteral, XMLLiteral, HTMLLiteral](#plainliteral-xmlliteral-htmlliteral)
     - [Gaps in Ontologies](#gaps-in-ontologies)
-        - [Lack of Inverses](#lack-of-inverses)
         - [Missing Cardinality Information](#missing-cardinality-information)
         - [Unbound Props](#unbound-props)
     - [Tool Dependencies](#tool-dependencies)
@@ -40,12 +42,17 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
 ## Usage
 
 ```
-owl2soml.pl ontology.(ttl|rdf) ... > ontology.yaml
+owl2soml.pl [options] ontology.(ttl|rdf) ... > ontology.yaml
 Options:
-  -voc pfx     Use "pfx" as vocab_prefix (and default SOML ID).
-  -voc NONE    Don't look for vocab_prefix in the first ontology using various heuristics.
-  -id  id      Set SOML ID
-  -label label Set SOML label
+  -voc   pfx     Use "pfx" as vocab_prefix (and default SOML ID).
+  -voc   NONE    Don't look for vocab_prefix in the first ontology using various heuristics.
+  -id    id      Set SOML ID
+  -label label   Set SOML label
+  -super 0|1     Generate X and XInterface for every superclass X (default 0: Platform 3.3 does this internally)
+Options that are not yet implemented:
+  -name  p1,p2   Designate these props as class "name" characteristics (eg rdfs:label,skos:prefLabel)
+  -multi 0|1     Handle multiple parent classes (default 0: use the first one and warn; Platform doesn't yet do this)
+  -union 0|1     Handle union (multiple) ranges (default 0: use the first one and warn; Platform doesn't yet do this)
 ```
 
 The [Semantic Objects Modeling Language (SOML)](http://platform.ontotext.com/soml/index.html)
@@ -123,11 +130,11 @@ If you have many ontologies and prefixes and none of them is "dominant",
 you may not care for the `vocab_prefix` shortening described above.
 
 Eg FIBO consists of about 226 ontologies; the [eg/fibo-FND.ttl](eg/fibo-FND.ttl) subset consists of 55 ontologies.
-We don't want the first encountered ontology and its prefix to be treated specially, because they are not.
+We don't want the first encountered ontology and its prefix to be treated specially, because they are not special in any way.
 
 Please note that the platform has default values (see [Special Prefixes](http://platform.ontotext.com/soml/preamble.html#special-prefixes)) as shown below,
 in order to make it easier to write small examples.
-This `vocan_iri` is not likely to appear in real ontologies, so it won't hurt.
+This `vocab_iri` is not likely to appear in real ontologies, so it won't hurt.
 
 ```
 specialPrefixes:
@@ -136,8 +143,8 @@ specialPrefixes:
   vocab_prefix: voc
 ```
 
-To disable the looking for `vocab_prefix`, specify `-voc NONE`
-and the `-id` and `-label` options to set SOML id and label, eg:
+To disable the looking for `vocab_prefix`, specify `-voc NONE`.
+Then use the `-id` and `-label` options to set SOML id and label, eg:
 
 ```sh
 perl owl2soml.pl -voc NONE -id fibo-FND -label "FIBO Foundational" fibo-FND.ttl
@@ -157,10 +164,9 @@ The tool recognizes instances of `rdfs:Class` and/or `owl:Class` as classes:
 - Anonymous (blank node) classes are ignored
 - It ignores instances of `schema:DataType` and that class itself (see [Datatypes](#datatypes) below)
 - Also ignores classes `owl:Thing, owl:Nothing` that are not useful for querying.
-  (In contrast, it keeps `schema:Thing` which is the domain/nrage of useful props).
+  (In contrast, it keeps `schema:Thing` which is the domain/range of useful props).
 
 Classes are processed as follows:
-- The chars `[-_.]` are removed from class & property local names in order to make valid GraphQL names.
 - Gets class [Labels and Descriptions](#labels-and-descriptions)
 - If a property range is not defined in the ontology, it is emitted in SOML as a class without any props,
   otherwise the SOML schema would be invalid
@@ -170,12 +176,18 @@ Classes are processed as follows:
 
 `rdfs:subClassOf` is emitted in SOML as `inherits`.
 - Anonymous (blank node) classes are ignored
-- Currently the platform doesn't support multiple inheritance, so only the first superclass is used.
+- Currently the platform doesn't support multiple inheritance, so only the first superclass is used
+  (option `-multi` will change that)
+
+#### Superclass Interfaces
 
 GraphQL represents superclasses as interfaces, and interfaces cannot have instances.
 Also, it does not allow an interface and class (type) to have the same name as there would be a name conflict.
 
-`owl2soml` uses a trick to generate dual entities:
+Issue PLATFORM-1344 will implement Concrete Superclasses by generating 
+the dual superclass and corresponding interface automatically behind the scenes.
+
+Until this is done, use option `-super 1` to generate dual entities:
 a superclass `*` and a corresponding interface `*Interface`.
 Consider this example from SKOS:
 
@@ -193,7 +205,7 @@ skos:memberList a rdf:Property , owl:FunctionalProperty , owl:ObjectProperty ;
   rdfs:range rdf:List .
 ```
 
-It generates the following SOML schema:
+Option `-super 1` will generate the following SOML schema:
 
 ```yaml
 objects:
@@ -226,22 +238,20 @@ properties:
 - The properties referencing `Collection` as domain/range are also migrated to refer to `CollectionInterface`.
   In this case there's only one: `member` has domain `CollectionInterface`.
   
-By the way, this example shows two more aspects:
-- Since `rdf:List` is referenced as a range but is not defined in SKOS, 
-  it is declared as a class with no props.
-- Only the first range of `skos:member` is used (see [Limitations](#limitations))
-
 With this schema you can have instances of `Collection` and `OrderedCollection`
 and can make GraphQL queries referencing `collection` and `orderedCollection`.
 
 However, the generated GraphQL schema also has queries referencing `collectionInterface`,
 which is confusing 
 and if used, would require breaking changes to your queries if the class hierarchy changes.
-So we consider queries like `collectionInterface` to be parasitic and bad practice.
+We consider queries like `collectionInterface` to be parasitic and bad practice,
+so it's better to not use this option.
 
-Issue PLATFORM-1344 will implement Concrete Superclasses by generating 
-the dual superclass and corresponding interface automatically behind the scenes,
-and avoiding the parasitic queries.
+By the way, this example shows two more aspects:
+- Since `rdf:List` is referenced as a range but is not defined in SKOS, 
+  it is declared as a class with no props.
+- Only the first range of `skos:member` is used (see [Limitations](#limitations))
+
 
 ### Properties
 
@@ -275,20 +285,6 @@ Properties are processed as follows:
     which is significantly more expensive to query.
   - `owl:SymmetricProperty` is mapped to `symmetric: true`
 
-`X owl:inverseOf Y` and `X schema:inverseOf Y` are mapped to two SOML assertions:
-  
-```yaml
-properties:
-  X: {inverseOf: Y}
-  Y: {inverseOf: X}
-```
-
-- You must therefore have `Y` defined as a prop in the same ontology(ies),
-- You must not have more than 2 props be inverses of each other.
-- By the way, you don't need to have inverses actually stored in the RDF reposotory.
-  You could use `inverseAlias` to navigate the SOML Knowledge Graph in any direction,
-  without requiring the storage of inverse triples.
-
 #### Domain and Range
 
 The tool processes the following:
@@ -298,7 +294,7 @@ The tool processes the following:
 The tool also handles `owl:unionOf` constructs, eg (`a owl:Class` is not necessary):
 
 ```ttl
-:propP   rdfs:domain         [a owl:Class; owl:unionOf (:classX :classY :classZ].
+:propP   rdfs:domain         [a owl:Class; owl:unionOf (:classX :classY :classZ)].
 :propP schema:domainIncludes [a owl:Class; owl:unionOf (:classX :classY)], :classZ.
 :propP   rdfs:domain         [a owl:Class; owl:unionOf (:classX [a owl:Class; owl:unionOf (:classY :classZ)])].
 ```
@@ -310,6 +306,79 @@ objects:
   classX: {props: {propP: {}}}
   classY: {props: {propP: {}}}
   classZ: {props: {propP: {}}}
+```
+
+#### Real Inverses
+
+`X owl:inverseOf Y` and `X schema:inverseOf Y` are mapped to two SOML assertions:
+  
+```yaml
+properties:
+  X: {inverseOf: Y}
+  Y: {inverseOf: X}
+```
+
+- You must therefore have `Y` defined as a prop in the same ontology(ies)
+- You must not have more than 2 props be inverses of each other.
+
+Bidirectional navigation is essential in a Knowledge Graph, whereas GraphQL does not natively provide it.
+Considerations:
+- Most OWL ontologies have few `owl:inverseOf` props.
+  - Eg FIBO 2020-03 has 1465 object props but only 99 inverses (see [fibo#983](https://github.com/edmcouncil/fibo/issues/983) item 15); FIBO-FND has 535 object props but only 80 inverses.
+  - One exception is CIDOC-CRM that has a full complement of inverses (but ironically, uses RDFS so does not declare them)
+- Inverses are superfluous in RDF because you can always query in the opposite direction.
+  - The [PROV ontology deprecates inverses]( http://w3.org/TR/prov-o/#inverse-names): "When all inverses are defined for all properties, modelers may choose from two logically equivalent properties when making each assertion. Although the two options may be logically equivalent, developers consuming the assertions may need to exert extra effort to handle both (e.g., by either adding an OWL reasoner or writing code and queries to handle both cases). This extra effort can be reduced by preferring one inverse over another".
+  - PROV defines `prov:inverse`, which declares what (string) name should be used for an inverse property,
+    without triggering inverse inference (unlike `owl:inverseOf`)
+
+#### TODO Virtual Inverses
+The Ontotext Platform provides [inverseAlias](http://platform.ontotext.com/soml/properties.html#inverses) to create virtual inverses and enable bidirectional navigation in GraphQL.
+You don't need to have inverse reasoning or inverses stored in the RDF reposotory to use this feature.
+
+We consider using the following RDF props to specify inverse aliases.
+- `prov:inverse` (string) specifies the name of a virtual inverse, resolved against `vocab_prefix`. 
+  It doesn't allow changing the namespace of the inverse, nor defining the cardinality of that inverse.
+- `so:inverseAliasOf` (property) that specifies a virtual inverse prop, with optional characteristics including cardinality.
+Please note that unlike `owl:inverseOf` neither of these are symmetric.
+
+For example, consider the following ontology that describes multivalued relations from City & Company to Person.
+
+```ttl
+voc:City    a rdfs:Class.
+voc:Company a rdfs:Class.
+voc:Person  a rdfs:Class.
+voc:resident a owl:ObjectProperty;     rdfs:domain voc:City;    rdfs:range voc:Person; prov:inverse "livesIn".
+voc:employee a owl:ObjectProperty;     rdfs:domain voc:Company; rdfs:range voc:Person.
+voc:worksFor a owl:FunctionalProperty; rdfs:domain voc:Person;  rdfs:range voc:Company; so:inverseAliasOf voc:employee.
+voc:Person rdfs:subClassOf [
+  a owl:Restriction;
+  owl:onProperty voc:worksFor;
+  owl:onClass voc:Company;
+  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+].
+```
+
+It creates two virtual inverses:
+- `livesIn`, but cannot specify the cardinality of this prop (so by default it becomes multivalued)
+- `worksFor`, and also states the cardinality:
+  - mandatory (min: 1): `owl:minQualifiedCardinality`
+  - single-valued (max: 1): `owl:FunctionalProperty` (both could be handled with `owl:qualifiedCardinality`)
+You see that `so:inverseAliasOf` gives you more control than `prov:inverse` 
+
+It generates the following SOML schema. 
+
+```yaml
+objects:
+  City: 
+    props: 
+      resident: {range: Person, max: inf}
+  Company: 
+    props: 
+      employee: {range: Person, max: inf}
+  Person:
+    props: 
+      livesIn:  {range: City,    inverseAlias: resident, max: inf}
+      worksFor: {range: Company, inverseAlias: employee, min: 1, max: 1}
 ```
 
 ### Datatypes
@@ -509,7 +578,7 @@ so you can enquire about the status of that particular issue.
   find objects having values in certain languages,
   validation of languages on mutation, etc.
 - Currently the platform handles only these prop characteristics:
-  `owl:FunctionalProperty owl:SymmetricProperty` (and `inverseOf`)
+  `owl:FunctionalProperty owl:SymmetricProperty` (and `owl:inverseOf`)
   It should process more prop characteristics: 
   `owl:InverseFunctionalProperty owl:ReflexiveProperty owl:IrreflexiveProperty owl:AsymmetricProperty owl:TransitiveProperty`.
 
@@ -592,31 +661,11 @@ TODO
 
 ## Gaps in Ontologies
 
-### Lack of Inverses
-Most ontologies have few inverses.
-- Eg FIBO 2020-03 has 535...1465 object props, but only 80...99 inverses (see [fibo#983](https://github.com/edmcouncil/fibo/issues/983) item 14).
-- One exception is CIDOC-CRM that has a full complement of inverses
-
-However, bidirectional navigation is essential in a Knowledge Graph,
-whereas GraphQL does not natively provide it.
-The Ontotext Platform provides [inverseAlias](http://platform.ontotext.com/soml/properties.html#inverses) to create virtual inverses and enable such navigation in GraphQL.
-
-Inverses are in fact superfluous in RDF because you can always query in the opposite direction.
-- The [PROV ontology deprecates inverses]( http://w3.org/TR/prov-o/#inverse-names): "When all inverses are defined for all properties, modelers may choose from two logically equivalent properties when making each assertion. Although the two options may be logically equivalent, developers consuming the assertions may need to exert extra effort to handle both (e.g., by either adding an OWL reasoner or writing code and queries to handle both cases). This extra effort can be reduced by preferring one inverse over another".
-- PROV defines `prov:inverse`, which declares what (string) name should be used for an inverse property,
-  without triggering inverse inference (unlike `owl:inverseOf`)
-
-We consider using the following RDF props to specify this:
-- `prov:inverse` (string) that specifies the name of a virtual inverse, resolved against `vocab_prefix`. However, it doesn't define the cardinality of that inverse.
-- `so:inverseAliasOf` (property) that specifies a virtual inverse prop, with optional characteristics including cardinality.
-
-Please note that unlike `owl:inverseOf` these are **not** symmetric: they point from a real prop to a virtual inverse.
-
 ### Missing Cardinality Information
 
 - A major shortcoming of most ontologies is that fery few props are declared `owl:FunctionalProperty`, so most of them get cardinality `max: inf` in SOML.
   Such multi-valued props are considerably more expensive to query, and if used in a filter have an implicit `EXISTS` semantics.
-- The tool does not yet [Handle OWL Cardinalities](#handle-owl-cardinalities)
+- The tool does not yet [Handle OWL Cardinalities](#handle-owl-cardinalities) fully
   
 ### Unbound Props
 
