@@ -3,7 +3,7 @@
 #+options: inline:t num:nil p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2020-03-23>
+#+date: <2020-05-05>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
@@ -90,15 +90,15 @@ A number of schema languages have appeared recently that are based on YAML,
 express business-level object models that are somewhat independent of technological choices,
 and can render the models to a variety of schema technologies:
 
-- [[https://biolink.github.io/biolinkml/>][BioLink modeling language]].
+- [[https://biolink.github.io/biolinkml/][BioLink modeling language]].
   Models are authored in YAML. A variety of artefacts can be generated, including SHEX, JSON-Schema, OWL, Python dataclasses, ElasticSearch type definitions, 
   UML diagrams, Markdown pages for deployment in a GitHub pages site, etc.
-- [[https://www.hl7.org/fhir/>][HL7 FHIR]], which is a business-level language for expressing Health Care models 
+- [[https://www.hl7.org/fhir/][HL7 FHIR]], which is a business-level language for expressing Health Care models 
   and has renditions in UML, XML, JSON, Turtle, SHEX.
-- *a.ml*: [[https://a.ml/>][Anything Modeling Language]] (see [[https://a.ml/docbook/>][documentation]], [[https://a.ml/aml-spec/vocabularies/>][vocabularies]], [[https://a.ml/aml-spec/dialects/>][dialects]]),
+- *a.ml*: [[https://a.ml/][Anything Modeling Language]] (see [[https://a.ml/docbook/][documentation]], [[https://a.ml/aml-spec/vocabularies/][vocabularies]], [[https://a.ml/aml-spec/dialects/][dialects]]),
   which targets mapping of YAML schemas to ontologies and SHACL shapes, 
   and YAML documents to RDF graphs.
-- [[https://cloudinformationmodel.org/about.html>][Cloud Information Model (CIM)]], which targets
+- [[https://cloudinformationmodel.org/about.html][Cloud Information Model (CIM)]], which targets
   AML Vocabulary (conceptual model),
   AML Dialect (data shapes),
   RDFS (entities and relationships),
@@ -107,7 +107,7 @@ and can render the models to a variety of schema technologies:
   R2RML (mapping from relational schema to RDF),
   RAML (REST API data types),
   JSON Schema (data shapes)
-- The Uber Graph Schema Languag, a YAML language that is
+- The Uber Graph Schema Language, a YAML language that is
   used to generate various artefacts (ProtoBuf, Avro, RDFS ontology, etc) 
   and to integrate *200 thousand* datasets at Uber.
   While not publically available, it's described in presentations by [[https://www.slideshare.net/joshsh][Joshua Shinavier]] including:
