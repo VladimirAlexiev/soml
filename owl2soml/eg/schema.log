@@ -1,279 +1,279 @@
-Found multiple superclasses for LocalBusiness, using only the first one: Organization, Place
-Found multiple superclasses for Hospital, using only the first one: CivicStructure, EmergencyService, MedicalOrganization
-Found multiple superclasses for TVSeries, using only the first one: CreativeWork, CreativeWorkSeries
-Found multiple superclasses for HowToStep, using only the first one: CreativeWork, ItemList, ListItem
-Found multiple superclasses for StadiumOrArena, using only the first one: CivicStructure, SportsActivityLocation
-Found multiple superclasses for Dentist, using only the first one: LocalBusiness, MedicalBusiness, MedicalOrganization
-Found multiple superclasses for PoliceStation, using only the first one: CivicStructure, EmergencyService
-Found multiple superclasses for MovieTheater, using only the first one: CivicStructure, EntertainmentBusiness
-Found multiple superclasses for HowToTip, using only the first one: CreativeWork, ListItem
 Found multiple superclasses for Physician, using only the first one: MedicalBusiness, MedicalOrganization
+Found multiple superclasses for CreditCard, using only the first one: LoanOrCredit, PaymentCard
+Found multiple superclasses for TVSeries, using only the first one: CreativeWork, CreativeWorkSeries
+Found multiple superclasses for HowToDirection, using only the first one: CreativeWork, ListItem
+Found multiple superclasses for HealthClub, using only the first one: HealthAndBeautyBusiness, SportsActivityLocation
+Found multiple superclasses for LocalBusiness, using only the first one: Organization, Place
+Found multiple superclasses for Dentist, using only the first one: LocalBusiness, MedicalBusiness, MedicalOrganization
+Found multiple superclasses for FireStation, using only the first one: CivicStructure, EmergencyService
+Found multiple superclasses for PoliceStation, using only the first one: CivicStructure, EmergencyService
+Found multiple superclasses for HowToStep, using only the first one: CreativeWork, ItemList, ListItem
+Found multiple superclasses for MovieTheater, using only the first one: CivicStructure, EntertainmentBusiness
+Found multiple superclasses for Campground, using only the first one: CivicStructure, LodgingBusiness
 Found multiple superclasses for TVSeason, using only the first one: CreativeWork, CreativeWorkSeason
 Found multiple superclasses for AutoPartsStore, using only the first one: AutomotiveBusiness, Store
-Found multiple superclasses for Pharmacy, using only the first one: MedicalBusiness, MedicalOrganization
-Found multiple superclasses for FireStation, using only the first one: CivicStructure, EmergencyService
 Found multiple superclasses for HowToSection, using only the first one: CreativeWork, ItemList, ListItem
+Found multiple superclasses for Pharmacy, using only the first one: MedicalBusiness, MedicalOrganization
 Found multiple superclasses for DepositAccount, using only the first one: BankAccount, InvestmentOrDeposit
-Found multiple superclasses for VideoGame, using only the first one: Game, SoftwareApplication
-Found multiple superclasses for CreditCard, using only the first one: LoanOrCredit, PaymentCard
 Found multiple superclasses for PaymentCard, using only the first one: FinancialProduct, PaymentMethod
-Found multiple superclasses for Campground, using only the first one: CivicStructure, LodgingBusiness
-Found multiple superclasses for HealthClub, using only the first one: HealthAndBeautyBusiness, SportsActivityLocation
-Found multiple superclasses for HowToDirection, using only the first one: CreativeWork, ListItem
 Found multiple superclasses for CreativeWorkSeries, using only the first one: CreativeWork, Series
-Found multiple ranges for prop skills, using only the first one: DefinedTerm, string
-Found multiple ranges for prop bed, using only the first one: BedDetails, BedType, string
-Found multiple ranges for prop ticketToken, using only the first one: iri, string
-Found multiple ranges for prop address, using only the first one: PostalAddress, string
-Found multiple ranges for prop commentTime, using only the first one: date, dateTime
-Found multiple ranges for prop artworkSurface, using only the first one: iri, string
-Found multiple ranges for prop depth, using only the first one: Distance, QuantitativeValue
-Found multiple ranges for prop copyrightHolder, using only the first one: Organization, Person
-Found multiple ranges for prop dateModified, using only the first one: date, dateTime
-Found multiple ranges for prop alumniOf, using only the first one: EducationalOrganization, Organization
-Found multiple ranges for prop broadcastFrequencyValue, using only the first one: QuantitativeValue, decimal
-Found multiple ranges for prop agent, using only the first one: Organization, Person
-Found multiple ranges for prop numberOfAirbags, using only the first one: decimal, string
-Found multiple ranges for prop eligibleRegion, using only the first one: GeoShape, Place, string
-Found multiple ranges for prop geoIntersects, using only the first one: GeospatialGeometry, Place
-Found multiple ranges for prop ccRecipient, using only the first one: ContactPoint, Organization, Person
-Found multiple ranges for prop estimatedSalary, using only the first one: MonetaryAmount, MonetaryAmountDistribution, decimal
-Found multiple ranges for prop track, using only the first one: ItemList, MusicRecording
-Found multiple ranges for prop discount, using only the first one: decimal, string
-Found multiple ranges for prop option, using only the first one: Thing, string
-Found multiple ranges for prop isSimilarTo, using only the first one: Product, Service
-Found multiple ranges for prop performers, using only the first one: Organization, Person
-Found multiple ranges for prop gamePlatform, using only the first one: Thing, iri, string
-Found multiple ranges for prop funder, using only the first one: Organization, Person
-Found multiple ranges for prop speakable, using only the first one: SpeakableSpecification, iri
-Found multiple ranges for prop gameLocation, using only the first one: Place, PostalAddress, iri
-Found multiple ranges for prop storageRequirements, using only the first one: iri, string
-Found multiple ranges for prop location, using only the first one: Place, PostalAddress, VirtualLocation, string
-Found multiple ranges for prop attendee, using only the first one: Organization, Person
-Found multiple ranges for prop composer, using only the first one: Organization, Person
-Found multiple ranges for prop caption, using only the first one: MediaObject, string
+Found multiple superclasses for HowToTip, using only the first one: CreativeWork, ListItem
+Found multiple superclasses for VideoGame, using only the first one: Game, SoftwareApplication
+Found multiple superclasses for StadiumOrArena, using only the first one: CivicStructure, SportsActivityLocation
+Found multiple superclasses for Hospital, using only the first one: CivicStructure, EmergencyService, MedicalOrganization
+Found multiple ranges for prop coursePrerequisites, using only the first one: AlignmentObject, Course, stringOrLangString
 Found multiple ranges for prop availabilityEnds, using only the first one: date, dateTime, time
-Found multiple ranges for prop typeOfGood, using only the first one: Product, Service
-Found multiple ranges for prop vehicleTransmission, using only the first one: QualitativeValue, iri, string
-Found multiple ranges for prop subjectOf, using only the first one: CreativeWork, Event
-Found multiple ranges for prop vehicleSeatingCapacity, using only the first one: QuantitativeValue, decimal
-Found multiple ranges for prop hasMap, using only the first one: Map, iri
-Found multiple ranges for prop actionOption, using only the first one: Thing, string
-Found multiple ranges for prop estimatedCost, using only the first one: MonetaryAmount, string
-Found multiple ranges for prop mainEntityOfPage, using only the first one: CreativeWork, iri
-Found multiple ranges for prop datePosted, using only the first one: date, dateTime
-Found multiple ranges for prop bccRecipient, using only the first one: ContactPoint, Organization, Person
-Found multiple ranges for prop endDate, using only the first one: date, dateTime
-Found multiple ranges for prop step, using only the first one: CreativeWork, HowToSection, HowToStep, string
-Found multiple ranges for prop feesAndCommissionsSpecification, using only the first one: iri, string
-Found multiple ranges for prop producer, using only the first one: Organization, Person
-Found multiple ranges for prop identifier, using only the first one: PropertyValue, iri, string
-Found multiple ranges for prop unitCode, using only the first one: iri, string
-Found multiple ranges for prop itemListElement, using only the first one: ListItem, Thing, string
-Found multiple ranges for prop datePublished, using only the first one: date, dateTime
-Found multiple ranges for prop attendees, using only the first one: Organization, Person
-Found multiple ranges for prop acceptedAnswer, using only the first one: Answer, ItemList
-Found multiple ranges for prop itemListOrder, using only the first one: ItemListOrderType, string
-Found multiple ranges for prop isRelatedTo, using only the first one: Product, Service
-Found multiple ranges for prop artform, using only the first one: iri, string
-Found multiple ranges for prop temporal, using only the first one: dateTime, string
-Found multiple ranges for prop departureTime, using only the first one: dateTime, time
-Found multiple ranges for prop contentRating, using only the first one: Rating, string
-Found multiple ranges for prop encodingFormat, using only the first one: iri, string
-Found multiple ranges for prop interestRate, using only the first one: QuantitativeValue, decimal
-Found multiple ranges for prop doorTime, using only the first one: dateTime, time
-Found multiple ranges for prop license, using only the first one: CreativeWork, iri
-Found multiple ranges for prop requiredCollateral, using only the first one: Thing, string
-Found multiple ranges for prop valueReference, using only the first one: Enumeration, PropertyValue, QualitativeValue, QuantitativeValue, StructuredValue
-Found multiple ranges for prop owns, using only the first one: OwnershipInfo, Product
-Found multiple ranges for prop bestRating, using only the first one: decimal, string
-Found multiple ranges for prop geoOverlaps, using only the first one: GeospatialGeometry, Place
-Found multiple ranges for prop ratingValue, using only the first one: decimal, string
-Found multiple ranges for prop sponsor, using only the first one: Organization, Person
-Found multiple ranges for prop petsAllowed, using only the first one: boolean, string
-Found multiple ranges for prop temporalCoverage, using only the first one: dateTime, iri, string
-Found multiple ranges for prop geoRadius, using only the first one: Distance, decimal, string
-Found multiple ranges for prop applicationSubCategory, using only the first one: iri, string
-Found multiple ranges for prop bookingAgent, using only the first one: Organization, Person
-Found multiple ranges for prop touristType, using only the first one: Audience, string
-Found multiple ranges for prop productSupported, using only the first one: Product, string
-Found multiple ranges for prop propertyID, using only the first one: iri, string
-Found multiple ranges for prop publishingPrinciples, using only the first one: CreativeWork, iri
-Found multiple ranges for prop orderedItem, using only the first one: OrderItem, Product, Service
-Found multiple ranges for prop broadcastFrequency, using only the first one: BroadcastFrequencySpecification, string
-Found multiple ranges for prop arrivalTime, using only the first one: dateTime, time
-Found multiple ranges for prop lodgingUnitType, using only the first one: QualitativeValue, string
-Found multiple ranges for prop dateDeleted, using only the first one: date, dateTime
-Found multiple ranges for prop lender, using only the first one: Organization, Person
-Found multiple ranges for prop volumeNumber, using only the first one: integer, string
-Found multiple ranges for prop defaultValue, using only the first one: Thing, string
-Found multiple ranges for prop roleName, using only the first one: iri, string
-Found multiple ranges for prop organizer, using only the first one: Organization, Person
-Found multiple ranges for prop brand, using only the first one: Brand, Organization
-Found multiple ranges for prop arrivalBusStop, using only the first one: BusStation, BusStop
-Found multiple ranges for prop geoCrosses, using only the first one: GeospatialGeometry, Place
-Found multiple ranges for prop flightDistance, using only the first one: Distance, string
-Found multiple ranges for prop version, using only the first one: decimal, string
-Found multiple ranges for prop industry, using only the first one: DefinedTerm, string
-Found multiple ranges for prop customer, using only the first one: Organization, Person
-Found multiple ranges for prop netWorth, using only the first one: MonetaryAmount, PriceSpecification
-Found multiple ranges for prop geoEquals, using only the first one: GeospatialGeometry, Place
-Found multiple ranges for prop paymentDueDate, using only the first one: date, dateTime
-Found multiple ranges for prop checkoutTime, using only the first one: dateTime, time
-Found multiple ranges for prop underName, using only the first one: Organization, Person
-Found multiple ranges for prop category, using only the first one: PhysicalActivityCategory, Thing, string
-Found multiple ranges for prop screenshot, using only the first one: ImageObject, iri
-Found multiple ranges for prop validFrom, using only the first one: date, dateTime
-Found multiple ranges for prop beforeMedia, using only the first one: MediaObject, iri
-Found multiple ranges for prop logo, using only the first one: ImageObject, iri
-Found multiple ranges for prop pageStart, using only the first one: integer, string
-Found multiple ranges for prop recipeInstructions, using only the first one: CreativeWork, ItemList, string
-Found multiple ranges for prop requirements, using only the first one: iri, string
-Found multiple ranges for prop numChildren, using only the first one: QuantitativeValue, integer
-Found multiple ranges for prop pageEnd, using only the first one: integer, string
-Found multiple ranges for prop applicationCategory, using only the first one: iri, string
-Found multiple ranges for prop value, using only the first one: StructuredValue, boolean, decimal, string
-Found multiple ranges for prop orderDate, using only the first one: date, dateTime
-Found multiple ranges for prop foodEstablishment, using only the first one: FoodEstablishment, Place
-Found multiple ranges for prop areaServed, using only the first one: AdministrativeArea, GeoShape, Place, string
-Found multiple ranges for prop programmingLanguage, using only the first one: ComputerLanguage, string
-Found multiple ranges for prop memoryRequirements, using only the first one: iri, string
-Found multiple ranges for prop homeTeam, using only the first one: Person, SportsTeam
-Found multiple ranges for prop typeOfBed, using only the first one: BedType, string
-Found multiple ranges for prop expectedArrivalUntil, using only the first one: date, dateTime
-Found multiple ranges for prop latitude, using only the first one: decimal, string
-Found multiple ranges for prop hasMenu, using only the first one: Menu, iri, string
-Found multiple ranges for prop provider, using only the first one: Organization, Person
-Found multiple ranges for prop departureBusStop, using only the first one: BusStation, BusStop
-Found multiple ranges for prop geo, using only the first one: GeoCoordinates, GeoShape
 Found multiple ranges for prop author, using only the first one: Organization, Person
-Found multiple ranges for prop image, using only the first one: ImageObject, iri
-Found multiple ranges for prop sender, using only the first one: Audience, Organization, Person
-Found multiple ranges for prop endTime, using only the first one: dateTime, time
-Found multiple ranges for prop photo, using only the first one: ImageObject, Photograph
-Found multiple ranges for prop softwareRequirements, using only the first one: iri, string
-Found multiple ranges for prop creator, using only the first one: Organization, Person
-Found multiple ranges for prop participant, using only the first one: Organization, Person
-Found multiple ranges for prop passengerPriorityStatus, using only the first one: QualitativeValue, string
-Found multiple ranges for prop merchant, using only the first one: Organization, Person
-Found multiple ranges for prop landlord, using only the first one: Organization, Person
-Found multiple ranges for prop exifData, using only the first one: PropertyValue, string
-Found multiple ranges for prop followee, using only the first one: Organization, Person
-Found multiple ranges for prop elevation, using only the first one: decimal, string
+Found multiple ranges for prop acceptedAnswer, using only the first one: Answer, ItemList
+Found multiple ranges for prop episodeNumber, using only the first one: integer, stringOrLangString
+Found multiple ranges for prop itemListOrder, using only the first one: ItemListOrderType, stringOrLangString
+Found multiple ranges for prop awayTeam, using only the first one: Person, SportsTeam
+Found multiple ranges for prop identifier, using only the first one: PropertyValue, iri, stringOrLangString
+Found multiple ranges for prop doorTime, using only the first one: dateTime, time
+Found multiple ranges for prop hasMap, using only the first one: Map, iri
+Found multiple ranges for prop expectedArrivalFrom, using only the first one: date, dateTime
+Found multiple ranges for prop requiresSubscription, using only the first one: MediaSubscription, boolean
+Found multiple ranges for prop storageRequirements, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop acceptedPaymentMethod, using only the first one: LoanOrCredit, PaymentMethod
 Found multiple ranges for prop geoContains, using only the first one: GeospatialGeometry, Place
-Found multiple ranges for prop yield, using only the first one: QuantitativeValue, string
-Found multiple ranges for prop aircraft, using only the first one: Vehicle, string
+Found multiple ranges for prop producer, using only the first one: Organization, Person
+Found multiple ranges for prop acceptsReservations, using only the first one: boolean, iri, stringOrLangString
+Found multiple ranges for prop interactionService, using only the first one: SoftwareApplication, WebSite
+Found multiple ranges for prop vehicleSeatingCapacity, using only the first one: QuantitativeValue, decimal
+Found multiple ranges for prop geo, using only the first one: GeoCoordinates, GeoShape
+Found multiple ranges for prop performer, using only the first one: Organization, Person
+Found multiple ranges for prop roleName, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop addressCountry, using only the first one: Country, stringOrLangString
+Found multiple ranges for prop geoOverlaps, using only the first one: GeospatialGeometry, Place
+Found multiple ranges for prop menu, using only the first one: Menu, iri, stringOrLangString
+Found multiple ranges for prop citation, using only the first one: CreativeWork, stringOrLangString
+Found multiple ranges for prop typeOfBed, using only the first one: BedType, stringOrLangString
+Found multiple ranges for prop endorsee, using only the first one: Organization, Person
+Found multiple ranges for prop memoryRequirements, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop orderedItem, using only the first one: OrderItem, Product, Service
+Found multiple ranges for prop arrivalTime, using only the first one: dateTime, time
+Found multiple ranges for prop ticketToken, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop amount, using only the first one: MonetaryAmount, decimal
+Found multiple ranges for prop numberOfDoors, using only the first one: QuantitativeValue, decimal
+Found multiple ranges for prop eligibleRegion, using only the first one: GeoShape, Place, stringOrLangString
+Found multiple ranges for prop clipNumber, using only the first one: integer, stringOrLangString
+Found multiple ranges for prop gamePlatform, using only the first one: Thing, iri, stringOrLangString
+Found multiple ranges for prop startTime, using only the first one: dateTime, time
+Found multiple ranges for prop recipient, using only the first one: Audience, ContactPoint, Organization, Person
+Found multiple ranges for prop validThrough, using only the first one: date, dateTime
+Found multiple ranges for prop artEdition, using only the first one: integer, stringOrLangString
+Found multiple ranges for prop numberOfForwardGears, using only the first one: QuantitativeValue, decimal
+Found multiple ranges for prop encodingFormat, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop broadcastFrequency, using only the first one: BroadcastFrequencySpecification, stringOrLangString
+Found multiple ranges for prop owns, using only the first one: OwnershipInfo, Product
+Found multiple ranges for prop paymentDueDate, using only the first one: date, dateTime
+Found multiple ranges for prop requiredQuantity, using only the first one: QuantitativeValue, decimal, stringOrLangString
+Found multiple ranges for prop member, using only the first one: Organization, Person
+Found multiple ranges for prop image, using only the first one: ImageObject, iri
+Found multiple ranges for prop petsAllowed, using only the first one: boolean, stringOrLangString
+Found multiple ranges for prop width, using only the first one: Distance, QuantitativeValue
+Found multiple ranges for prop typeOfGood, using only the first one: Product, Service
+Found multiple ranges for prop courseMode, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop namedPosition, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop minimumPaymentDue, using only the first one: MonetaryAmount, PriceSpecification
+Found multiple ranges for prop seatingType, using only the first one: QualitativeValue, stringOrLangString
+Found multiple ranges for prop contributor, using only the first one: Organization, Person
+Found multiple ranges for prop endDate, using only the first one: date, dateTime
+Found multiple ranges for prop propertyID, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop educationalCredentialAwarded, using only the first one: EducationalOccupationalCredential, iri, stringOrLangString
+Found multiple ranges for prop valueReference, using only the first one: Enumeration, PropertyValue, QualitativeValue, QuantitativeValue, StructuredValue
+Found multiple ranges for prop annualPercentageRate, using only the first one: QuantitativeValue, decimal
+Found multiple ranges for prop yield, using only the first one: QuantitativeValue, stringOrLangString
+Found multiple ranges for prop landlord, using only the first one: Organization, Person
+Found multiple ranges for prop musicBy, using only the first one: MusicGroup, Person
+Found multiple ranges for prop value, using only the first one: StructuredValue, boolean, decimal, stringOrLangString
+Found multiple ranges for prop validFrom, using only the first one: date, dateTime
+Found multiple ranges for prop participant, using only the first one: Organization, Person
+Found multiple ranges for prop programmingLanguage, using only the first one: ComputerLanguage, stringOrLangString
+Found multiple ranges for prop highPrice, using only the first one: decimal, stringOrLangString
+Found multiple ranges for prop pageStart, using only the first one: integer, stringOrLangString
+Found multiple ranges for prop foodEstablishment, using only the first one: FoodEstablishment, Place
+Found multiple ranges for prop vehicleTransmission, using only the first one: QualitativeValue, iri, stringOrLangString
+Found multiple ranges for prop depth, using only the first one: Distance, QuantitativeValue
+Found multiple ranges for prop speakable, using only the first one: SpeakableSpecification, iri
+Found multiple ranges for prop performers, using only the first one: Organization, Person
+Found multiple ranges for prop supply, using only the first one: HowToSupply, stringOrLangString
+Found multiple ranges for prop issueNumber, using only the first one: integer, stringOrLangString
+Found multiple ranges for prop isBasedOnUrl, using only the first one: CreativeWork, Product, iri
+Found multiple ranges for prop tool, using only the first one: HowToTool, stringOrLangString
+Found multiple ranges for prop copyrightHolder, using only the first one: Organization, Person
+Found multiple ranges for prop ratingValue, using only the first one: decimal, stringOrLangString
+Found multiple ranges for prop longitude, using only the first one: decimal, stringOrLangString
+Found multiple ranges for prop screenshot, using only the first one: ImageObject, iri
+Found multiple ranges for prop geoRadius, using only the first one: Distance, decimal, stringOrLangString
+Found multiple ranges for prop discount, using only the first one: decimal, stringOrLangString
+Found multiple ranges for prop unitCode, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop totalPrice, using only the first one: PriceSpecification, decimal, stringOrLangString
+Found multiple ranges for prop dateCreated, using only the first one: date, dateTime
+Found multiple ranges for prop softwareRequirements, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop photos, using only the first one: ImageObject, Photograph
+Found multiple ranges for prop recipeYield, using only the first one: QuantitativeValue, stringOrLangString
+Found multiple ranges for prop season, using only the first one: CreativeWorkSeason, iri
+Found multiple ranges for prop attendee, using only the first one: Organization, Person
+Found multiple ranges for prop logo, using only the first one: ImageObject, iri
+Found multiple ranges for prop artform, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop worstRating, using only the first one: decimal, stringOrLangString
+Found multiple ranges for prop recipeInstructions, using only the first one: CreativeWork, ItemList, stringOrLangString
+Found multiple ranges for prop latitude, using only the first one: decimal, stringOrLangString
+Found multiple ranges for prop seller, using only the first one: Organization, Person
+Found multiple ranges for prop seasonNumber, using only the first one: integer, stringOrLangString
+Found multiple ranges for prop attendees, using only the first one: Organization, Person
+Found multiple ranges for prop departureBusStop, using only the first one: BusStation, BusStop
+Found multiple ranges for prop publisher, using only the first one: Organization, Person
+Found multiple ranges for prop bccRecipient, using only the first one: ContactPoint, Organization, Person
+Found multiple ranges for prop fileFormat, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop itemListElement, using only the first one: ListItem, Thing, stringOrLangString
+Found multiple ranges for prop memberOf, using only the first one: Organization, ProgramMembership
+Found multiple ranges for prop ccRecipient, using only the first one: ContactPoint, Organization, Person
+Found multiple ranges for prop translator, using only the first one: Organization, Person
+Found multiple ranges for prop areaServed, using only the first one: AdministrativeArea, GeoShape, Place, stringOrLangString
+Found multiple ranges for prop lodgingUnitType, using only the first one: QualitativeValue, stringOrLangString
+Found multiple ranges for prop contentRating, using only the first one: Rating, stringOrLangString
+Found multiple ranges for prop actionOption, using only the first one: Thing, stringOrLangString
+Found multiple ranges for prop followee, using only the first one: Organization, Person
+Found multiple ranges for prop aircraft, using only the first one: Vehicle, stringOrLangString
+Found multiple ranges for prop requiredCollateral, using only the first one: Thing, stringOrLangString
+Found multiple ranges for prop height, using only the first one: Distance, QuantitativeValue
+Found multiple ranges for prop isBasedOn, using only the first one: CreativeWork, Product, iri
+Found multiple ranges for prop commentTime, using only the first one: date, dateTime
+Found multiple ranges for prop reviewedBy, using only the first one: Organization, Person
+Found multiple ranges for prop industry, using only the first one: DefinedTerm, stringOrLangString
+Found multiple ranges for prop duringMedia, using only the first one: MediaObject, iri
+Found multiple ranges for prop featureList, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop productSupported, using only the first one: Product, stringOrLangString
+Found multiple ranges for prop volumeNumber, using only the first one: integer, stringOrLangString
+Found multiple ranges for prop totalPaymentDue, using only the first one: MonetaryAmount, PriceSpecification
+Found multiple ranges for prop temporalCoverage, using only the first one: dateTime, iri, stringOrLangString
+Found multiple ranges for prop requirements, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop grantee, using only the first one: Audience, ContactPoint, Organization, Person
+Found multiple ranges for prop creditedTo, using only the first one: Organization, Person
+Found multiple ranges for prop numAdults, using only the first one: QuantitativeValue, integer
+Found multiple ranges for prop workLocation, using only the first one: ContactPoint, Place
+Found multiple ranges for prop byArtist, using only the first one: MusicGroup, Person
+Found multiple ranges for prop checkoutTime, using only the first one: dateTime, time
+Found multiple ranges for prop skills, using only the first one: DefinedTerm, stringOrLangString
+Found multiple ranges for prop offeredBy, using only the first one: Organization, Person
+Found multiple ranges for prop homeTeam, using only the first one: Person, SportsTeam
+Found multiple ranges for prop touristType, using only the first one: Audience, stringOrLangString
+Found multiple ranges for prop model, using only the first one: ProductModel, stringOrLangString
+Found multiple ranges for prop video, using only the first one: Clip, VideoObject
+Found multiple ranges for prop geoIntersects, using only the first one: GeospatialGeometry, Place
+Found multiple ranges for prop caption, using only the first one: MediaObject, stringOrLangString
+Found multiple ranges for prop schemaVersion, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop subjectOf, using only the first one: CreativeWork, Event
+Found multiple ranges for prop availabilityStarts, using only the first one: date, dateTime, time
+Found multiple ranges for prop sender, using only the first one: Audience, Organization, Person
+Found multiple ranges for prop datePosted, using only the first one: date, dateTime
+Found multiple ranges for prop merchant, using only the first one: Organization, Person
 Found multiple ranges for prop afterMedia, using only the first one: MediaObject, iri
 Found multiple ranges for prop baseSalary, using only the first one: MonetaryAmount, PriceSpecification, decimal
-Found multiple ranges for prop breadcrumb, using only the first one: BreadcrumbList, string
-Found multiple ranges for prop estimatedFlightDuration, using only the first one: Duration, string
-Found multiple ranges for prop isPartOf, using only the first one: CreativeWork, iri
-Found multiple ranges for prop namedPosition, using only the first one: iri, string
-Found multiple ranges for prop performer, using only the first one: Organization, Person
-Found multiple ranges for prop annualPercentageRate, using only the first one: QuantitativeValue, decimal
-Found multiple ranges for prop artMedium, using only the first one: iri, string
-Found multiple ranges for prop itemOffered, using only the first one: AggregateOffer, CreativeWork, Event, MenuItem, Product, Service, Trip
-Found multiple ranges for prop serviceArea, using only the first one: AdministrativeArea, GeoShape, Place
-Found multiple ranges for prop duringMedia, using only the first one: MediaObject, iri
-Found multiple ranges for prop expectedArrivalFrom, using only the first one: date, dateTime
-Found multiple ranges for prop highPrice, using only the first one: decimal, string
-Found multiple ranges for prop grantee, using only the first one: Audience, ContactPoint, Organization, Person
-Found multiple ranges for prop paymentStatus, using only the first one: PaymentStatusType, string
-Found multiple ranges for prop coursePrerequisites, using only the first one: AlignmentObject, Course, string
-Found multiple ranges for prop model, using only the first one: ProductModel, string
-Found multiple ranges for prop supply, using only the first one: HowToSupply, string
-Found multiple ranges for prop homeLocation, using only the first one: ContactPoint, Place
-Found multiple ranges for prop member, using only the first one: Organization, Person
-Found multiple ranges for prop recipeYield, using only the first one: QuantitativeValue, string
-Found multiple ranges for prop genre, using only the first one: iri, string
-Found multiple ranges for prop broker, using only the first one: Organization, Person
-Found multiple ranges for prop educationalCredentialAwarded, using only the first one: EducationalOccupationalCredential, iri, string
-Found multiple ranges for prop endorsee, using only the first one: Organization, Person
-Found multiple ranges for prop seller, using only the first one: Organization, Person
-Found multiple ranges for prop offeredBy, using only the first one: Organization, Person
-Found multiple ranges for prop height, using only the first one: Distance, QuantitativeValue
-Found multiple ranges for prop requiredQuantity, using only the first one: QuantitativeValue, decimal, string
-Found multiple ranges for prop minimumPaymentDue, using only the first one: MonetaryAmount, PriceSpecification
-Found multiple ranges for prop clipNumber, using only the first one: integer, string
-Found multiple ranges for prop addressCountry, using only the first one: Country, string
-Found multiple ranges for prop lowPrice, using only the first one: decimal, string
-Found multiple ranges for prop isBasedOnUrl, using only the first one: CreativeWork, Product, iri
-Found multiple ranges for prop isBasedOn, using only the first one: CreativeWork, Product, iri
-Found multiple ranges for prop recipient, using only the first one: Audience, ContactPoint, Organization, Person
-Found multiple ranges for prop worstRating, using only the first one: decimal, string
-Found multiple ranges for prop toRecipient, using only the first one: Audience, ContactPoint, Organization, Person
-Found multiple ranges for prop actionPlatform, using only the first one: iri, string
-Found multiple ranges for prop dateRead, using only the first one: date, dateTime
-Found multiple ranges for prop acceptsReservations, using only the first one: boolean, iri, string
-Found multiple ranges for prop totalPrice, using only the first one: PriceSpecification, decimal, string
-Found multiple ranges for prop video, using only the first one: Clip, VideoObject
-Found multiple ranges for prop geoTouches, using only the first one: GeospatialGeometry, Place
-Found multiple ranges for prop availableLanguage, using only the first one: Language, string
-Found multiple ranges for prop numAdults, using only the first one: QuantitativeValue, integer
-Found multiple ranges for prop steps, using only the first one: CreativeWork, ItemList, string
-Found multiple ranges for prop artEdition, using only the first one: integer, string
-Found multiple ranges for prop dataFeedElement, using only the first one: DataFeedItem, Thing, string
-Found multiple ranges for prop dateIssued, using only the first one: date, dateTime
-Found multiple ranges for prop menuAddOn, using only the first one: MenuItem, MenuSection
-Found multiple ranges for prop episodeNumber, using only the first one: integer, string
-Found multiple ranges for prop acquiredFrom, using only the first one: Organization, Person
-Found multiple ranges for prop startDate, using only the first one: date, dateTime
-Found multiple ranges for prop byArtist, using only the first one: MusicGroup, Person
-Found multiple ranges for prop geoDisjoint, using only the first one: GeospatialGeometry, Place
-Found multiple ranges for prop dateCreated, using only the first one: date, dateTime
-Found multiple ranges for prop workLocation, using only the first one: ContactPoint, Place
-Found multiple ranges for prop competitor, using only the first one: Person, SportsTeam
-Found multiple ranges for prop checkinTime, using only the first one: dateTime, time
-Found multiple ranges for prop offers, using only the first one: Demand, Offer
-Found multiple ranges for prop season, using only the first one: CreativeWorkSeason, iri
-Found multiple ranges for prop members, using only the first one: Organization, Person
-Found multiple ranges for prop awayTeam, using only the first one: Person, SportsTeam
-Found multiple ranges for prop vendor, using only the first one: Organization, Person
-Found multiple ranges for prop suggestedAnswer, using only the first one: Answer, ItemList
-Found multiple ranges for prop startTime, using only the first one: dateTime, time
-Found multiple ranges for prop totalPaymentDue, using only the first one: MonetaryAmount, PriceSpecification
-Found multiple ranges for prop colleague, using only the first one: Person, iri
-Found multiple ranges for prop seasonNumber, using only the first one: integer, string
-Found multiple ranges for prop surface, using only the first one: iri, string
-Found multiple ranges for prop inLanguage, using only the first one: Language, string
-Found multiple ranges for prop availabilityStarts, using only the first one: date, dateTime, time
+Found multiple ranges for prop artworkSurface, using only the first one: iri, stringOrLangString
 Found multiple ranges for prop geoWithin, using only the first one: GeospatialGeometry, Place
-Found multiple ranges for prop memberOf, using only the first one: Organization, ProgramMembership
-Found multiple ranges for prop fileFormat, using only the first one: iri, string
-Found multiple ranges for prop requiresSubscription, using only the first one: MediaSubscription, boolean
+Found multiple ranges for prop position, using only the first one: integer, stringOrLangString
+Found multiple ranges for prop isRelatedTo, using only the first one: Product, Service
+Found multiple ranges for prop license, using only the first one: CreativeWork, iri
 Found multiple ranges for prop geoCovers, using only the first one: GeospatialGeometry, Place
-Found multiple ranges for prop musicBy, using only the first one: MusicGroup, Person
-Found multiple ranges for prop releaseNotes, using only the first one: iri, string
-Found multiple ranges for prop translator, using only the first one: Organization, Person
-Found multiple ranges for prop geoCoveredBy, using only the first one: GeospatialGeometry, Place
-Found multiple ranges for prop validThrough, using only the first one: date, dateTime
-Found multiple ranges for prop partySize, using only the first one: QuantitativeValue, integer
-Found multiple ranges for prop acceptedPaymentMethod, using only the first one: LoanOrCredit, PaymentMethod
-Found multiple ranges for prop driveWheelConfiguration, using only the first one: DriveWheelConfigurationValue, string
-Found multiple ranges for prop photos, using only the first one: ImageObject, Photograph
-Found multiple ranges for prop price, using only the first one: decimal, string
-Found multiple ranges for prop interactionService, using only the first one: SoftwareApplication, WebSite
-Found multiple ranges for prop tool, using only the first one: HowToTool, string
-Found multiple ranges for prop issueNumber, using only the first one: integer, string
-Found multiple ranges for prop citation, using only the first one: CreativeWork, string
-Found multiple ranges for prop creditedTo, using only the first one: Organization, Person
-Found multiple ranges for prop menu, using only the first one: Menu, iri, string
+Found multiple ranges for prop version, using only the first one: decimal, stringOrLangString
+Found multiple ranges for prop dataFeedElement, using only the first one: DataFeedItem, Thing, stringOrLangString
+Found multiple ranges for prop availableLanguage, using only the first one: Language, stringOrLangString
+Found multiple ranges for prop feesAndCommissionsSpecification, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop mainEntityOfPage, using only the first one: CreativeWork, iri
+Found multiple ranges for prop address, using only the first one: PostalAddress, stringOrLangString
+Found multiple ranges for prop lender, using only the first one: Organization, Person
+Found multiple ranges for prop pageEnd, using only the first one: integer, stringOrLangString
 Found multiple ranges for prop numberOfAxles, using only the first one: QuantitativeValue, decimal
+Found multiple ranges for prop numChildren, using only the first one: QuantitativeValue, integer
+Found multiple ranges for prop checkinTime, using only the first one: dateTime, time
+Found multiple ranges for prop exifData, using only the first one: PropertyValue, stringOrLangString
+Found multiple ranges for prop releaseNotes, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop homeLocation, using only the first one: ContactPoint, Place
+Found multiple ranges for prop step, using only the first one: CreativeWork, HowToSection, HowToStep, stringOrLangString
+Found multiple ranges for prop bookingAgent, using only the first one: Organization, Person
+Found multiple ranges for prop estimatedFlightDuration, using only the first one: Duration, stringOrLangString
+Found multiple ranges for prop numberOfAirbags, using only the first one: decimal, stringOrLangString
+Found multiple ranges for prop applicationCategory, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop netWorth, using only the first one: MonetaryAmount, PriceSpecification
 Found multiple ranges for prop numberOfPreviousOwners, using only the first one: QuantitativeValue, decimal
-Found multiple ranges for prop numberOfDoors, using only the first one: QuantitativeValue, decimal
-Found multiple ranges for prop courseMode, using only the first one: iri, string
-Found multiple ranges for prop contributor, using only the first one: Organization, Person
-Found multiple ranges for prop schemaVersion, using only the first one: iri, string
-Found multiple ranges for prop numberOfRooms, using only the first one: QuantitativeValue, decimal
+Found multiple ranges for prop geoTouches, using only the first one: GeospatialGeometry, Place
+Found multiple ranges for prop datePublished, using only the first one: date, dateTime
+Found multiple ranges for prop sponsor, using only the first one: Organization, Person
+Found multiple ranges for prop provider, using only the first one: Organization, Person
+Found multiple ranges for prop bed, using only the first one: BedDetails, BedType, stringOrLangString
+Found multiple ranges for prop applicationSubCategory, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop hasMenu, using only the first one: Menu, iri, stringOrLangString
+Found multiple ranges for prop competitor, using only the first one: Person, SportsTeam
+Found multiple ranges for prop passengerPriorityStatus, using only the first one: QualitativeValue, stringOrLangString
+Found multiple ranges for prop colleague, using only the first one: Person, iri
+Found multiple ranges for prop temporal, using only the first one: dateTime, stringOrLangString
+Found multiple ranges for prop artMedium, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop geoCoveredBy, using only the first one: GeospatialGeometry, Place
+Found multiple ranges for prop genre, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop dateIssued, using only the first one: date, dateTime
+Found multiple ranges for prop surface, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop underName, using only the first one: Organization, Person
+Found multiple ranges for prop arrivalBusStop, using only the first one: BusStation, BusStop
+Found multiple ranges for prop expectedArrivalUntil, using only the first one: date, dateTime
+Found multiple ranges for prop alumniOf, using only the first one: EducationalOrganization, Organization
+Found multiple ranges for prop isPartOf, using only the first one: CreativeWork, iri
+Found multiple ranges for prop estimatedSalary, using only the first one: MonetaryAmount, MonetaryAmountDistribution, decimal
+Found multiple ranges for prop geoDisjoint, using only the first one: GeospatialGeometry, Place
+Found multiple ranges for prop vendor, using only the first one: Organization, Person
+Found multiple ranges for prop dateRead, using only the first one: date, dateTime
+Found multiple ranges for prop organizer, using only the first one: Organization, Person
+Found multiple ranges for prop endTime, using only the first one: dateTime, time
+Found multiple ranges for prop partySize, using only the first one: QuantitativeValue, integer
+Found multiple ranges for prop funder, using only the first one: Organization, Person
+Found multiple ranges for prop publishingPrinciples, using only the first one: CreativeWork, iri
+Found multiple ranges for prop inLanguage, using only the first one: Language, stringOrLangString
+Found multiple ranges for prop actionPlatform, using only the first one: iri, stringOrLangString
+Found multiple ranges for prop menuAddOn, using only the first one: MenuItem, MenuSection
+Found multiple ranges for prop interestRate, using only the first one: QuantitativeValue, decimal
+Found multiple ranges for prop serviceArea, using only the first one: AdministrativeArea, GeoShape, Place
+Found multiple ranges for prop photo, using only the first one: ImageObject, Photograph
+Found multiple ranges for prop steps, using only the first one: CreativeWork, ItemList, stringOrLangString
+Found multiple ranges for prop acquiredFrom, using only the first one: Organization, Person
+Found multiple ranges for prop composer, using only the first one: Organization, Person
+Found multiple ranges for prop departureTime, using only the first one: dateTime, time
+Found multiple ranges for prop driveWheelConfiguration, using only the first one: DriveWheelConfigurationValue, stringOrLangString
+Found multiple ranges for prop flightDistance, using only the first one: Distance, stringOrLangString
+Found multiple ranges for prop fuelType, using only the first one: QualitativeValue, iri, stringOrLangString
+Found multiple ranges for prop agent, using only the first one: Organization, Person
+Found multiple ranges for prop dateDeleted, using only the first one: date, dateTime
+Found multiple ranges for prop brand, using only the first one: Brand, Organization
+Found multiple ranges for prop toRecipient, using only the first one: Audience, ContactPoint, Organization, Person
+Found multiple ranges for prop broker, using only the first one: Organization, Person
+Found multiple ranges for prop geoCrosses, using only the first one: GeospatialGeometry, Place
+Found multiple ranges for prop beforeMedia, using only the first one: MediaObject, iri
 Found multiple ranges for prop audio, using only the first one: AudioObject, Clip, MusicRecording
-Found multiple ranges for prop publisher, using only the first one: Organization, Person
-Found multiple ranges for prop amount, using only the first one: MonetaryAmount, decimal
-Found multiple ranges for prop featureList, using only the first one: iri, string
-Found multiple ranges for prop width, using only the first one: Distance, QuantitativeValue
-Found multiple ranges for prop position, using only the first one: integer, string
-Found multiple ranges for prop reviewedBy, using only the first one: Organization, Person
-Found multiple ranges for prop seatingType, using only the first one: QualitativeValue, string
-Found multiple ranges for prop material, using only the first one: Product, iri, string
-Found multiple ranges for prop fuelType, using only the first one: QualitativeValue, iri, string
-Found multiple ranges for prop numberOfForwardGears, using only the first one: QuantitativeValue, decimal
-Found multiple ranges for prop longitude, using only the first one: decimal, string
+Found multiple ranges for prop numberOfRooms, using only the first one: QuantitativeValue, decimal
+Found multiple ranges for prop paymentStatus, using only the first one: PaymentStatusType, stringOrLangString
+Found multiple ranges for prop startDate, using only the first one: date, dateTime
+Found multiple ranges for prop orderDate, using only the first one: date, dateTime
+Found multiple ranges for prop creator, using only the first one: Organization, Person
+Found multiple ranges for prop breadcrumb, using only the first one: BreadcrumbList, stringOrLangString
+Found multiple ranges for prop defaultValue, using only the first one: Thing, stringOrLangString
+Found multiple ranges for prop bestRating, using only the first one: decimal, stringOrLangString
+Found multiple ranges for prop gameLocation, using only the first one: Place, PostalAddress, iri
+Found multiple ranges for prop price, using only the first one: decimal, stringOrLangString
+Found multiple ranges for prop estimatedCost, using only the first one: MonetaryAmount, stringOrLangString
+Found multiple ranges for prop location, using only the first one: Place, PostalAddress, VirtualLocation, stringOrLangString
+Found multiple ranges for prop option, using only the first one: Thing, stringOrLangString
+Found multiple ranges for prop itemOffered, using only the first one: AggregateOffer, CreativeWork, Event, MenuItem, Product, Service, Trip
+Found multiple ranges for prop dateModified, using only the first one: date, dateTime
+Found multiple ranges for prop track, using only the first one: ItemList, MusicRecording
+Found multiple ranges for prop suggestedAnswer, using only the first one: Answer, ItemList
+Found multiple ranges for prop geoEquals, using only the first one: GeospatialGeometry, Place
+Found multiple ranges for prop customer, using only the first one: Organization, Person
+Found multiple ranges for prop elevation, using only the first one: decimal, stringOrLangString
+Found multiple ranges for prop isSimilarTo, using only the first one: Product, Service
+Found multiple ranges for prop broadcastFrequencyValue, using only the first one: QuantitativeValue, decimal
+Found multiple ranges for prop members, using only the first one: Organization, Person
+Found multiple ranges for prop material, using only the first one: Product, iri, stringOrLangString
+Found multiple ranges for prop category, using only the first one: PhysicalActivityCategory, Thing, stringOrLangString
+Found multiple ranges for prop lowPrice, using only the first one: decimal, stringOrLangString
+Found multiple ranges for prop offers, using only the first one: Demand, Offer

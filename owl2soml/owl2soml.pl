@@ -13,8 +13,7 @@ use URI::NamespaceMap;
 use List::MoreUtils qw(uniq);
 use Array::Utils qw(array_minus);
 #use autodie; # https://perldoc.perl.org/5.30.0/autodie.html
-#use Data::Dumper;
-use Getopt::Long;
+use Getopt::Long; # https://metacpan.org/pod/Getopt::Long
 
 our $store = Attean->get_store('Memory')->new();
 our $model = Attean::MutableQuadModel->new(store => $store);
@@ -23,8 +22,11 @@ our $ontology_iri;                     # as Attean::IRI
 our $ontology;                         # $ontology_iri as string
 our $vocab_iri;                        # vocab namespace as Attean::IRI
 our $vocab_prefix;                     # vocab prefix as string
-our $soml_id;
-our $soml_label;
+our $soml_id;                          # -id: SOML id
+our $soml_label;                       # -label: SOML label
+our $super_opt;                        # -super: whether to generate X and XInterface
+our $string_opt;                       # -string: how to handle langString, stringOrLangString, string
+our %name_char;                        # -name: hash of name props
 our $map   = URI::NamespaceMap->new(); # prefixes in loaded ontologies
 our $MAP   = URI::NamespaceMap->new    # fixed prefixes used in mapping ("service" namespace)
   ({so     => "http://www.ontotext.com/semantic-object/",
@@ -81,15 +83,12 @@ our %DATATYPES =
    "xsd:gYear"              => "year",
    "xsd:gYearMonth"         => "yearMonth",
    # other datatypes
-   "rdfs:Literal"           => "string",
-   "rdf:langString"         => "string",
    "schema:Boolean"         => "boolean",
    "schema:Date"            => "date",
    "schema:DateTime"        => "dateTime",
    "schema:Float"           => "double",
    "schema:Integer"         => "integer",
    "schema:Number"          => "decimal",
-   "schema:Text"            => "string",
    "schema:Time"            => "time",
    "schema:URL"             => "iri",
    "rdfs:Resource"          => "iri",
@@ -97,6 +96,12 @@ our %DATATYPES =
    # unusual datatypes
    "fibo-fnd-dt-fd:CombinedDateTime" => "dateOrYearOrMonth",
   );
+our @STRING_MAP =
+  ({"rdf:langString" => "langString", "rdfs:Literal" => "stringOrLangString", "schema:Text" => "stringOrLangString", "xsd:string" => "string"},
+   {"rdf:langString" => "langString", "rdfs:Literal" => "langString",         "schema:Text" => "langString",         "xsd:string" => "string"},
+   {"rdf:langString" => "string",     "rdfs:Literal" => "string",             "schema:Text" => "string",             "xsd:string" => "string"});
+our @UNDEFINED_STRING_MAP = # what to map undefined datatype to
+  ("stringOrLangString", "langString", "string");
 
 # datatypes ignored with warning
 our @NO_DATATYPES =
@@ -133,19 +138,24 @@ $0 - Generates SOML from supplied ontologies
 
 Usage: $0 ontology.(ttl|rdf) ... > ontology.yaml
 Options:
-  -voc pfx     Use "pfx" as vocab_prefix (and default SOML ID).
-  -voc NONE    Don't look for vocab_prefix in the first ontology using various heuristics.
-  -id  id      Set SOML ID
-  -label label Set SOML label
-
+  -voc    pfx    Use "pfx" as vocab_prefix (and default SOML ID).
+  -voc    NONE   Don't look for vocab_prefix in the first ontology using various heuristics.
+  -id     id     Set SOML ID
+  -label  label  Set SOML label
+  -super  0|1    Generate X and XInterface for every superclass X (default 0: Platform 3.3 does this internally)
+  -name   p1,p2  Designate these props as class "name" characteristics (eg rdfs:label,skos:prefLabel)
+  -string 0      Emit rdf:langString as langString; rdfs:Literal & schema:Text & undefined datatype as stringOrLangString; xsd:string as string
+          1      Emit rdf:langString & rdfs:Literal & schema:Text & undefined datatype as langString; xsd:string as string
+          2      Emit rdf:langString & rdfs:Literal & schema:Text & undefined datatype & xsd:string as string
 Parses:
 - ontologies (owl:Ontology, dct:created, dct:modified, $creator_props),
 - classes (rdfs:Class, owl:Class);
   - EXCLUDES schema:DataTypes and $no_classes;
-- class inheritance (rdfs:subClassOf). Generates concrete class and abstract superclass and patches the hierarchy;
+- class inheritance (rdfs:subClassOf). If -super 1 then generates concrete class and abstract superclass and patches the hierarchy;
 - props (rdf:Property, owl:AnnotationProperty, owl:DatatypeProperty, owl:ObjectProperty);
-- datatypes (default string; $datatypes);
+- datatypes ($datatypes);
   - EXCLUDES $no_datatypes
+  - Default is stringOrLangString, langString, or string depending on option -string
 - prop relations (owl:inverseOf, schema:inverseOf; but NOT rdfs:subPropertyOf);
 - prop domains (rdfs:domain, schema:domainIncludes, owl:unionOf). Multiple domains are allowed.
 - prop ranges (rdfs:range, schema:rangeIncludes, owl:unionOf). Object or datatype ranges are allowed.
@@ -161,15 +171,23 @@ Limitations:
 - Doesn't support multiple prop ranges (the first one is used). Enquire about the status of issue PLATFORM-1493
 - Doesn't handle owl:import. Instead, provide multiple ontologies on input
 - Doesn't strip HTML tags (eg in schema.org property rdfs:comments)
-- rdf:langString and rdfs:Literal are mapped to xsd:string
 - Doesn't inherit domain & range from a property's ancestor(s). Enquire about the status of issue PLATFORM-1500
 END
 }
 
-GetOptions ("vocab=s" => \$vocab_prefix,
-            "id=s" => \$soml_id,
-            "label=s" => \$soml_label)
+my @name_char;
+GetOptions ("vocab=s"  => \$vocab_prefix,
+            "id=s"     => \$soml_id,
+            "label=s"  => \$soml_label,
+            "super=i"  => \$super_opt,
+            "name=s"   => \@name_char,
+            "string=i" => \$string_opt)
   or usage();
+@name_char = split(/,/,join(',',@name_char)); # https://metacpan.org/pod/Getopt::Long#Options-with-multiple-values
+map {$name_char{$_} = 1} @name_char if @name_char;
+##use Data::Dumper; die Dumper(\@name_char,\%name_char);
+$string_opt = 0 unless $string_opt;
+my_die "-string must be between 0 and 2, found $string_opt\n" if $string_opt>2;
 
 sub first_ontology() {
   # get ontology metadata, and try to figure out vocab_iri and vocab_prefix
@@ -184,7 +202,7 @@ EOF
     $base = one_value($model->objects($ontology_iri, IRI("swc:BaseUrl")))
   };
   # try to find vocab_iri and vocab_prefix in various inter-dependent ways
-  if ($vocab_prefix eq "NONE") { # option -voc NONE
+  if ($vocab_prefix && $vocab_prefix eq "NONE") { # option -voc NONE
     $vocab_prefix = undef;
   } elsif ($vocab_prefix) { # option -voc
     $vocab_iri = iri ($map->namespace_uri($vocab_prefix))
@@ -352,7 +370,6 @@ sub make_inherits(\@\@) {
   }
 }
 
-# TODO: once we implement concrete superclass, eliminate this function
 sub make_super() {
   # make SOML statements to create dual pair "$concrete class - abstract $super interface"
   my %isSuper = reverse %inherits;
@@ -366,11 +383,11 @@ sub make_super() {
   }
 }
 
-sub lift_inherits () {
-  # lift the %inherits relation to the abstract superclasses, if any
+sub emit_inherits () {
+  # emit the %inherits relation, while lifting to the abstract superclasses, if applicable
   while (my ($subClass,$superClass) = each %inherits) {
-    $subClass   = $super{$subClass}   if $super{$subClass};
-    $superClass = $super{$superClass} if $super{$superClass};
+    $subClass   = $super{$subClass}   if $super_opt && $super{$subClass};
+    $superClass = $super{$superClass} if $super_opt && $super{$superClass};
     $soml{objects}{$subClass}{inherits} = $superClass
   }
 }
@@ -395,6 +412,7 @@ sub map_range ($$) {
   # gql is the prefixed name minus vocab_prefix
   my ($pname,$range) = @_;
   my $x = $MAP->abbreviate(uri($range));
+  $x && $STRING_MAP[$string_opt]{$x} and return {kind=>"datatype", gql => $STRING_MAP[$string_opt]{$x}};
   $x && $DATATYPES{$x} and return {kind=>"datatype", gql => $DATATYPES{$x}};
   $x && $NO_DATATYPES{$x} and do {my_warn("Prop $pname uses unsupported datatype $x, ignored"); return undef};
   my $y = iri_name($range);
@@ -412,8 +430,8 @@ sub map_ranges ($$) {
 ##### main
 
 scalar(@ARGV) < 1 and usage(); # if there are no args, print usage() and die
-$vocab_prefix eq "NONE" && !$soml_id    and my_die  "'-voc NONE' causes no processing of ontology metadata, please provide -id";
-$vocab_prefix eq "NONE" && !$soml_label and my_warn "'-voc NONE' causes no processing of ontology metadata, please provide -label";
+$vocab_prefix && $vocab_prefix eq "NONE" && !$soml_id    and my_die  "'-voc NONE' causes no processing of ontology metadata, please provide -id";
+$vocab_prefix && $vocab_prefix eq "NONE" && !$soml_label and my_warn "'-voc NONE' causes no processing of ontology metadata, please provide -label";
 
 load_ontologies(@ARGV);
 
@@ -463,8 +481,8 @@ for my $class (@classes) {
 };
 
 make_inherits(@classes, @no_classes);
-make_super();
-lift_inherits();
+make_super() if $super_opt;
+emit_inherits();
 
 # properties
 my @props = uniq (map $_->as_string,
@@ -495,19 +513,6 @@ for my $prop (map iri($_), @props) {
     $soml{properties}{$inverseOf}{inverseOf} = $name; # hope and pray $inverseOf is defined as a prop
   };
 
-  # domains
-  my @domains = expand_union ($model->objects ($prop, [IRI("rdfs:domain"), IRI("schema:domainIncludes")]));
-  for my $domain (@domains) {
-    my $class = iri_name($domain) or next;
-    my $rdf = $class->{rdf};
-    $DATATYPES{$rdf} and next; # schema: URL is domain of category, https://github.com/schemaorg/schemaorg/issues/2536
-    $class = $class->{gql} or next;
-    # fix for referenced classes that may not be defined in the ontology
-    $soml{objects}{$class}{type} = $rdf;
-    $class = $super{$class} if $super{$class};
-    $soml{objects}{$class}{props}{$name} = {};
-  };
-
   # ranges
   my ($datatype, $class);
   my @ranges = map_ranges($prop,$name);
@@ -526,11 +531,35 @@ for my $prop (map iri($_), @props) {
   };
   # defaults: "free-standing" URL vs string
   if (!$datatype && !$class) {
-    if ($isObjectProp) {$class = "iri"} else {$datatype = "string"}
+    if ($isObjectProp) {$class = "iri"}
+    else {$datatype = $UNDEFINED_STRING_MAP[$string_opt]}
   };
-  $class = $super{$class} if $class && $super{$class};
+  $class = $super{$class} if $class && $super_opt && $super{$class};
   $soml{properties}{$name}{range} = $datatype || $class;
   $soml{properties}{$name}{kind}  = $datatype ?  "literal" : "object";
+
+  # domains
+  my @domains = expand_union ($model->objects ($prop, [IRI("rdfs:domain"), IRI("schema:domainIncludes")]));
+  for my $domain (@domains) {
+    my $class = iri_name($domain) or next;
+    my $rdf = $class->{rdf};
+    $DATATYPES{$rdf} and next; # schema:URL is domain of category, https://github.com/schemaorg/schemaorg/issues/2536
+    $class = $class->{gql} or next;
+    # fix for referenced classes that may not be defined in the ontology
+    $soml{objects}{$class}{type} = $rdf;
+    $class = $super{$class} if $super_opt && $super{$class};
+    $soml{objects}{$class}{props}{$name} = {};
+
+    # "name" characteristic
+    if (exists $name_char{$name}) {
+      $soml{objects}{$class}{name} = $name;
+      $soml{objects}{$class}{props}{$name}{min} = 1;
+      $soml{objects}{$class}{props}{$name}{max} = 1
+        if $soml{objects}{$class}{props}{$name}{range} &&
+           $soml{objects}{$class}{props}{$name}{range} eq "string"
+    }
+  };
+
 };
 
 # print YAML

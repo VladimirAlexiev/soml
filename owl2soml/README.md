@@ -14,11 +14,13 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
         - [Classes](#classes)
             - [subClassOf](#subclassof)
             - [Superclass Interfaces](#superclass-interfaces)
+            - [Name Characteristic](#name-characteristic)
         - [Properties](#properties)
             - [Domain and Range](#domain-and-range)
             - [Real Inverses](#real-inverses)
             - [TODO Virtual Inverses](#todo-virtual-inverses)
         - [Datatypes](#datatypes)
+            - [String Handling](#string-handling)
         - [Labels and Descriptions](#labels-and-descriptions)
     - [Implemented as Platform Service](#implemented-as-platform-service)
         - [Handle OWL Restrictions](#handle-owl-restrictions)
@@ -44,15 +46,18 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
 ```
 owl2soml.pl [options] ontology.(ttl|rdf) ... > ontology.yaml
 Options:
-  -voc   pfx     Use "pfx" as vocab_prefix (and default SOML ID).
-  -voc   NONE    Don't look for vocab_prefix in the first ontology using various heuristics.
-  -id    id      Set SOML ID
-  -label label   Set SOML label
-  -super 0|1     Generate X and XInterface for every superclass X (default 0: Platform 3.3 does this internally)
+  -voc    pfx    Use "pfx" as vocab_prefix (and default SOML ID).
+  -voc    NONE   Don't look for vocab_prefix in the first ontology using various heuristics.
+  -id     id     Set SOML ID
+  -label  label  Set SOML label
+  -super  0|1    Generate X and XInterface for every superclass X (default 0: Platform 3.3 does this internally)
+  -name   p1,p2  Designate these props as class "name" characteristics (eg rdfs:label,skos:prefLabel)
+  -string 0      Emit rdf:langString as langString; rdfs:Literal & schema:Text & undefined datatype as stringOrLangString; xsd:string as string
+          1      Emit rdf:langString & rdfs:Literal & schema:Text & undefined datatype as langString; xsd:string as string
+          2      Emit rdf:langString & rdfs:Literal & schema:Text & undefined datatype & xsd:string as string
 Options that are not yet implemented:
-  -name  p1,p2   Designate these props as class "name" characteristics (eg rdfs:label,skos:prefLabel)
-  -multi 0|1     Handle multiple parent classes (default 0: use the first one and warn; Platform doesn't yet do this)
-  -union 0|1     Handle union (multiple) ranges (default 0: use the first one and warn; Platform doesn't yet do this)
+  -multi  0|1    Handle multiple parent classes (default 0: use the first one and warn; Platform doesn't yet do this)
+  -union  0|1    Handle union (multiple) ranges (default 0: use the first one and warn; Platform doesn't yet do this)
 ```
 
 The [Semantic Objects Modeling Language (SOML)](http://platform.ontotext.com/soml/index.html)
@@ -252,6 +257,23 @@ By the way, this example shows two more aspects:
   it is declared as a class with no props.
 - Only the first range of `skos:member` is used (see [Limitations](#limitations))
 
+#### Name Characteristic
+
+The Ontotext Platform has a feature that allows you to use a uniform GraphQL field (`name`) to access object names, regardless of the specific property used for storing the name.
+The `-name` option allows you to specify a list of properties to be treated in this special way.
+You can either use a comma-separated list, or use the option several times, eg:
+- `-name rdfs:label,skos:prefLabel`
+- `-name rdfs:label -name skos:prefLabel`
+
+If a class has one of these props, the prop is declared as its `name` characteristic.
+You cannot specify this treatment per-class.
+So a class should not have several of these props (should not be the domain of several of these props).
+
+The tool does some special processing related to the cardinality of these props:
+- (The Platform has a default behavior where a name prop, if not declared in the class, is assumed to be a mandatory single-valued string.)
+- The prop is forced to be mandatory in the class (`min: 1`)
+- If the prop is mapped to `string` then it's also forced to single-valued in the class (`max: 1`)
+- (Platform version 3.3 also allows a multi-valued `langString` to be used as `name` because a single value can be fetched using the lang fallback mechanism)
 
 ### Properties
 
@@ -384,20 +406,38 @@ objects:
 ### Datatypes
 
 The tool handles the following datatypes:
-- `xsd:` datatypes: `boolean, byte, date, dateTime, decimal, double, gYear, gYearMonth, int, integer, long, negativeInteger, nonNegativeInteger, nonPositiveInteger, positiveInteger, short, string, time, unsignedByte, unsignedInt, unsignedLong, unsignedShort`
+- `xsd:` datatypes: `boolean, byte, date, dateTime, decimal, double, gYear, gYearMonth, int, integer, long, negativeInteger, nonNegativeInteger, nonPositiveInteger, positiveInteger, short, time, unsignedByte, unsignedInt, unsignedLong, unsignedShort`
   - `xsd:dateTimeStamp` is mapped to `dateTime` which is not precise because the former requires timezone
 - `schema:` (schema.org) datatypes: `Boolean, Date, DateTime, Integer, Text, Time`
   - `schema:Float` is mapped to `double` because GraphQL `Float` is also in fact a double number
   - `schema:Number` is mapped to `decimal` which is not precise because it could be integer or decimal
+- You cannot use `owl:DatatypeProperty` or `owl:AnnotationProperty` with a class range.
+  - The default datatype of a prop that doesn't mention a range is controlled by the `-string` option, see next
+  - Other datatypes not supported by the platform are ignored with a warning.
 - `schema:URL, rdfs:Resource, xsd:anyURI` are mapped to `iri`, i.e. a "free-standing" IRI pointing to an external resource (not an instance stored in the platform).
 - You cannot use `owl:ObjectProperty` with a datatype range.
   - An `owl:ObjectProperty` without specified class range is mapped to `iri` (a "free-standing" IRI)
   - If a class is used as property range but not declared in the ontology, it's declared in SOML (without any props)
-- You cannot use `owl:DatatypeProperty` or `owl:AnnotationProperty` with a class range.
-  - The default datatype of a prop that doesn't mention a range is `string`
-    This applies to `rdf:Property, owl:DatatypeProperty, owl:AnnotationProperty`
-  - These datatypes are also mapped to string: `rdf:langString, rdfs:Literal`
-  - Other datatypes not supported by the platform are ignored with a warning.
+
+#### String Handling
+
+Ontotext Platform version 3.3 introduces comprehensive support for strings with lang tag (`langString`):
+you can validate lang tags on mutation, find objects with or without labels in certain langs, fetch only certain langs with fallback, etc.
+Before this version, lang strings were mapped to plain `string`.
+
+The `-string` option (possible values `0,1,2`) controls how to emit string-related datatypes:
+
+| Datatype                             | 0 (default)        | 1          | 2      |
+|--------------------------------------|--------------------|------------|--------|
+| rdf:langString                       | langString         | langString | string |
+| rdfs:Literal, schema:Text, undefined | stringOrLangString | langString | string |
+| xsd:string                           | string             | string     | string |
+
+Notes:
+- "undefined" refers to datatype props (`rdf:Property, owl:DatatypeProperty, owl:AnnotationProperty`) with no defined range
+- `langString` is treated as a GraphQL class `Literal` with fields `value, lang` (both are strings)
+- `stringOrLangString` refers to a union datatype that allows strings with or without lang tag but is otherwise treated as `langString`.
+  In particular, to get the value in GraphQL you need to use a query part like `field{value}`
 
 ### Labels and Descriptions
 
@@ -448,16 +488,14 @@ Starting in version 3.1, the platform incorporates an experimental [owl2soml ser
 - It allows you to generate and save a schema using the usual `/soml` platform REST endpoint (see [Quickstart: Define Star Wars Semantic Objects](http://platform.ontotext.com/semantic-objects/semantic-objects.html#define-star-wars-semantic-objects))
 - Use `Content-Type: multipart/form-data` to pass several ontologies (and some optional parameters) to the REST endpoint.
 - There is a way to check validity (`dryrun`) and to get the generated SOML schema.
-- There is also a command-line version `owl2soml.jar` that can be provided upon request and has the following options:
+- There is also a command-line version `owl2soml.jar` that can be provided upon request and has the following options
+  in addition to the Perl version (see [Usage](#usage) above)
 
 ```
 usage: java -jar owl2soml.jar
  -i <arg>     input files
- -id <arg>    soml id
- -l <arg>     soml label
  -o <arg>     output file
- -v <arg>     validates a given schema
- -voc <arg>   voc prefix
+ -v <arg>     validate the generated schema
 ```
 
 In addition to the features described above, the platform service implements a couple more described in the following subsections.
@@ -749,7 +787,14 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 
 ## Change Log
 
-4-May-2020;
+16-Jun-2020:
+- add option `-super`, see [Superclass Interfaces](#superclass-interfaces)
+- add option `-name`, see [Name Characteristic](#name-characteristic)
+- add option `-string`, see [String Handling](#string-handling): emit `stringOrLangString` vs `langString` vs `string`
+- add test versions `*.yaml` (without superclass interfaces) vs `*-super.yaml` (with superclass interfaces) 
+
+
+4-May-2020:
 - Document Java version extensions
 - Option `-voc NONE`, so that `-id` and `-label` can be used independently
 

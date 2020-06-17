@@ -14,7 +14,7 @@ objects:
     type: dcterms:BibliographicResource
   FileFormat:
     descr: A digital resource format. Examples include the formats defined by the list of Internet Media Types
-    inherits: MediaType
+    inherits: MediaTypeInterface
     label: File Format
     type: dcterms:FileFormat
   Frequency:
@@ -23,12 +23,12 @@ objects:
     type: dcterms:Frequency
   Jurisdiction:
     descr: 'The extent or range of judicial, law enforcement, or other authority'
-    inherits: LocationPeriodOrJurisdiction
+    inherits: LocationPeriodOrJurisdictionInterface
     label: Jurisdiction
     type: dcterms:Jurisdiction
   LicenseDocument:
     descr: A legal document giving official permission to do something with a Resource
-    inherits: RightsStatement
+    inherits: RightsStatementInterface
     label: License Document
     type: dcterms:LicenseDocument
   LinguisticSystem:
@@ -37,22 +37,34 @@ objects:
     type: dcterms:LinguisticSystem
   Location:
     descr: A spatial region or named place
-    inherits: LocationPeriodOrJurisdiction
+    inherits: LocationPeriodOrJurisdictionInterface
     label: Location
     type: dcterms:Location
   LocationPeriodOrJurisdiction:
     descr: 'A location, period of time, or jurisdiction'
+    inherits: LocationPeriodOrJurisdictionInterface
     label: 'Location, Period, or Jurisdiction'
     type: dcterms:LocationPeriodOrJurisdiction
+  LocationPeriodOrJurisdictionInterface:
+    descr: Abstract superclass of LocationPeriodOrJurisdiction
+    kind: abstract
   MediaType:
     descr: A file format or physical medium
-    inherits: MediaTypeOrExtent
+    inherits: MediaTypeInterface
     label: Media Type
     type: dcterms:MediaType
+  MediaTypeInterface:
+    descr: Abstract superclass of MediaType
+    inherits: MediaTypeOrExtentInterface
+    kind: abstract
   MediaTypeOrExtent:
     descr: A media type or extent
+    inherits: MediaTypeOrExtentInterface
     label: Media Type or Extent
     type: dcterms:MediaTypeOrExtent
+  MediaTypeOrExtentInterface:
+    descr: Abstract superclass of MediaTypeOrExtent
+    kind: abstract
   MethodOfAccrual:
     descr: A method by which resources are added to a collection
     label: Method of Accrual
@@ -63,12 +75,12 @@ objects:
     type: dcterms:MethodOfInstruction
   PeriodOfTime:
     descr: An interval of time that is named or defined by its start and end dates
-    inherits: LocationPeriodOrJurisdiction
+    inherits: LocationPeriodOrJurisdictionInterface
     label: Period of Time
     type: dcterms:PeriodOfTime
   PhysicalMedium:
     descr: 'A physical material or carrier. Examples include paper, canvas, or DVD'
-    inherits: MediaType
+    inherits: MediaTypeInterface
     label: Physical Medium
     type: dcterms:PhysicalMedium
   PhysicalResource:
@@ -87,11 +99,15 @@ objects:
     type: dcterms:ProvenanceStatement
   RightsStatement:
     descr: 'A statement about the intellectual property rights (IPR) held in or over a Resource, a legal document giving official permission to do something with a resource, or a statement about access rights'
+    inherits: RightsStatementInterface
     label: Rights Statement
     type: dcterms:RightsStatement
+  RightsStatementInterface:
+    descr: Abstract superclass of RightsStatement
+    kind: abstract
   SizeOrDuration:
     descr: 'A dimension or extent, or a time taken to play or execute. Examples include a number of pages, a specification of length, width, and breadth, or a period in hours, minutes, and seconds'
-    inherits: MediaTypeOrExtent
+    inherits: MediaTypeOrExtentInterface
     label: Size or Duration
     type: dcterms:SizeOrDuration
   Standard:
@@ -127,7 +143,7 @@ properties:
     kind: object
     label: Access Rights
     max: inf
-    range: RightsStatement
+    range: RightsStatementInterface
     rdfProp: dcterms:accessRights
   accrualMethod:
     descr: The method by which items are added to a collection
@@ -197,7 +213,7 @@ properties:
     kind: object
     label: Coverage
     max: inf
-    range: LocationPeriodOrJurisdiction
+    range: LocationPeriodOrJurisdictionInterface
     rdfProp: dcterms:coverage
   created:
     descr: Date of creation of the resource
@@ -267,7 +283,7 @@ properties:
     kind: object
     label: Format
     max: inf
-    range: MediaTypeOrExtent
+    range: MediaTypeOrExtentInterface
     rdfProp: dcterms:format
   hasFormat:
     descr: 'A related resource that is substantially the same as the pre-existing described resource, but in another format'
@@ -448,7 +464,7 @@ properties:
     kind: object
     label: Rights
     max: inf
-    range: RightsStatement
+    range: RightsStatementInterface
     rdfProp: dcterms:rights
   rightsHolder:
     descr: A person or organization owning or managing rights over the resource

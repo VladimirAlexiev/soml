@@ -2,10 +2,14 @@ creator: 'Alistair Miles, Sean Bechhofer'
 objects:
   Collection:
     descr: A meaningful collection of concepts. Labelled collections can be used where you would like a set of concepts to be displayed under a 'node label' in the hierarchy
+    inherits: CollectionInterface
     label: Collection
+    type: skos:Collection
+  CollectionInterface:
+    descr: Abstract superclass of Collection
+    kind: abstract
     props:
       member: {}
-    type: skos:Collection
   Concept:
     descr: An idea or notion; a unit of thought
     label: Concept
@@ -45,7 +49,7 @@ objects:
     type: skos:ConceptScheme
   OrderedCollection:
     descr: "An ordered collection of concepts, where both the grouping and the ordering are meaningful. Ordered collections can be used where you would like a set of concepts to be displayed in a specific order, and optionally under a 'node label'"
-    inherits: Collection
+    inherits: CollectionInterface
     label: Ordered Collection
     props:
       memberList: {}
@@ -176,7 +180,7 @@ properties:
     kind: object
     label: has member
     max: inf
-    range: Collection
+    range: CollectionInterface
     rdfProp: skos:member
   memberList:
     descr: |-

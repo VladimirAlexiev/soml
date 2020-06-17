@@ -5,7 +5,7 @@ objects:
     descr: |-
       Place defined by administrative boundaries and conditions, including inhabited places, nations, and empires. Used in TGN only. Place defined by administrative boundaries and conditions, including inhabited places, nations, and empires. Used in TGN only.
       Example: Burgundy region in France (TGN)
-    inherits: Subject
+    inherits: SubjectInterface
     label: AdminPlaceConcept
     type: gvp:AdminPlaceConcept
   Biography:
@@ -24,63 +24,63 @@ objects:
     descr: |-
       Proper concept. Used in AAT only; TGN & ULAN have their own, e.g. gvp:PhysPlaceConcept & gvp:PersonConcept. Used for indexing and cataloguing. Proper concept. Used in AAT only; TGN & ULAN have their own, e.g. gvp:PhysPlaceConcept & gvp:PersonConcept. Used for indexing and cataloguing.
       Example: rhyta (AAT)
-    inherits: Subject
+    inherits: SubjectInterface
     label: Concept
     type: gvp:Concept
   Facet:
     descr: |-
       One of the major divisions of a vocabulary. One of the major divisions of a vocabulary.
       Example: Objects Facet (AAT), World (TGN), Artists (ULAN)
-    inherits: Subject
+    inherits: SubjectInterface
     label: Facet
     type: gvp:Facet
   GroupConcept:
     descr: |-
       Two or more people who generally worked together to collectively create art. Not necessarily legally incorporated. A family of artists may be considered a "corporate body". Corresponds to crm:E74_Group, not its subclass crm:E40_Legal_Body. Two or more people who generally worked together to collectively create art. Not necessarily legally incorporated. A family of artists may be considered a "corporate body". Corresponds to crm:E74_Group, not its subclass crm:E40_Legal_Body.
       Example: 500356337 Albrecht Duerer Workshop (ULAN)
-    inherits: Subject
+    inherits: SubjectInterface
     label: GroupConcept
     type: gvp:GroupConcept
   GuideTerm:
     descr: |-
       Guide Term: place holder to create a level in the hierarchy. Used in AAT and ULAN. Not used for indexing or cataloguing. Guide Term: place holder to create a level in the hierarchy. Used in AAT and ULAN. Not used for indexing or cataloguing..
       Example: <vessels for serving and consuming food> (AAT), ulan:500353455 <named animals> under facet Non-Artists (ULAN)
-    inherits: Subject
+    inherits: SubjectInterface
     label: GuideTerm
     type: gvp:GuideTerm
   Hierarchy:
     descr: |-
       Top of a hierarchy. Used in AAT only. Not used for indexing or cataloguing. Top of a hierarchy. Used in AAT only. Not used for indexing or cataloguing.
       Example: Containers (Hierarchy Name) (AAT)
-    inherits: Subject
+    inherits: SubjectInterface
     label: Hierarchy
     type: gvp:Hierarchy
   ObsoleteSubject:
     descr: |-
       Obsolete subject: moved out of the publishable hierarchy, or merged to another (pointed by dct:isReplacedBy). Obsolete subject: moved out of the publishable hierarchy, or merged to another (pointed by dct:isReplacedBy).
       Example: 300375205 "shranks" (AAT) was merged to 300039264 "schranks" (AAT), so aat:300375205 dct:isReplacedBy aat:300039264
-    inherits: Subject
+    inherits: SubjectInterface
     label: ObsoleteSubject
     type: gvp:ObsoleteSubject
   PersonConcept:
     descr: |-
       A single individual. Usually people engaged in the design or creation of art or architecture ("Artists"); but may also include donors, patrons, rulers, sitters, art historians, etc ("Non-Artists"). A single individual. Usually people engaged in the design or creation of art or architecture ("Artists"); but may also include donors, patrons, rulers, sitters, art historians, etc ("Non-Artists").
       Example: 500115493 Duerer, Albrecht (ULAN)
-    inherits: Subject
+    inherits: SubjectInterface
     label: PersonConcept
     type: gvp:PersonConcept
   PhysAdminPlaceConcept:
     descr: |-
       Place that is both administrative and physical. Rarely used. Used in TGN only. Place that is both administrative and physical. Rarely used. Used in TGN only.
       Example: 6003090 Kiik-Koba (TGN)
-    inherits: Subject
+    inherits: SubjectInterface
     label: PhysAdminPlaceConcept
     type: gvp:PhysAdminPlaceConcept
   PhysPlaceConcept:
     descr: |-
       Physical feature, defined by its physical characteristics on planet Earth, including mountains, rivers, and oceans. Used in TGN only. Physical feature, defined by its physical characteristics on planet Earth, including mountains, rivers, and oceans. Used in TGN only.
       Example: Amazon River (TGN)
-    inherits: Subject
+    inherits: SubjectInterface
     label: PhysPlaceConcept
     type: gvp:PhysPlaceConcept
   ScopeNote:
@@ -106,7 +106,12 @@ objects:
       Node in a GVP vocabulary hierarchy. 
       May be Facet, GuideTerm, Hierarchy, Concept, AdminPlaceConcept, PhysPlaceConcept, PhysAdminPlaceConcept, or ObsoleteSubject.
       Implemented as skos:Concept or iso:ThesaurusArray and skos:Collection
+    inherits: SubjectInterface
     label: Subject
+    type: gvp:Subject
+  SubjectInterface:
+    descr: Abstract superclass of Subject
+    kind: abstract
     props:
       agentType: {}
       agentTypeNonPreferred: {}
@@ -130,12 +135,11 @@ objects:
       placeTypePreferred: {}
       prefLabelGVP: {}
       prefLabelLoC: {}
-    type: gvp:Subject
   UnknownPersonConcept:
     descr: |-
       Unknown person representing a nationality/culture (the Unknown People by Culture facet). Unknown person representing a nationality/culture (the Unknown People by Culture facet).
       Example: 500355202 Unknown Bulgarian (modern) (ULAN)
-    inherits: Subject
+    inherits: SubjectInterface
     label: UnknownPersonConcept
     type: gvp:UnknownPersonConcept
   bibo:Document:
@@ -154,10 +158,14 @@ objects:
     type: schema:Place
   skos:Collection:
     descr: A meaningful collection of concepts. Labelled collections can be used where you would like a set of concepts to be displayed under a 'node label' in the hierarchy
+    inherits: skos:CollectionInterface
     label: Collection
+    type: skos:Collection
+  skos:CollectionInterface:
+    descr: Abstract superclass of skos:Collection
+    kind: abstract
     props:
       skos:member: {}
-    type: skos:Collection
   skos:Concept:
     descr: An idea or notion; a unit of thought
     label: Concept
@@ -472,7 +480,7 @@ objects:
     type: skos:ConceptScheme
   skos:OrderedCollection:
     descr: "An ordered collection of concepts, where both the grouping and the ordering are meaningful. Ordered collections can be used where you would like a set of concepts to be displayed in a specific order, and optionally under a 'node label'"
-    inherits: skos:Collection
+    inherits: skos:CollectionInterface
     label: Ordered Collection
     props:
       skos:memberList: {}
@@ -1859,7 +1867,7 @@ properties:
     kind: object
     label: agentType
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:agentType
   agentTypeNonPreferred:
     descr: |-
@@ -1868,7 +1876,7 @@ properties:
     kind: object
     label: agentTypeNonPreferred
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:agentTypeNonPreferred
   agentTypePreferred:
     descr: |-
@@ -1877,7 +1885,7 @@ properties:
     kind: object
     label: agentTypePreferred
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:agentTypePreferred
   biography:
     descr: 'Biography of an ULAN agent. Domain is schema:Person/Organization, range is gvp:Biography. The preferred biography fields are also directly available in the Person/Organization'
@@ -1905,7 +1913,7 @@ properties:
     kind: object
     label: broader
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:broader
   broaderExtended:
     descr: |-
@@ -1915,7 +1923,7 @@ properties:
     kind: object
     label: broaderExtended
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:broaderExtended
   broaderGeneric:
     descr: |-
@@ -1924,7 +1932,7 @@ properties:
     kind: object
     label: broaderGeneric
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:broaderGeneric
   broaderGenericExtended:
     descr: |-
@@ -1934,7 +1942,7 @@ properties:
     kind: object
     label: broaderGenericExtended
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:broaderGenericExtended
   broaderInstantial:
     descr: |-
@@ -1943,14 +1951,14 @@ properties:
     kind: object
     label: broaderInstantial
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:broaderInstantial
   broaderInstantialExtended:
     descr: Ancestors (Instantial). Meaningful closure of gvp:broaderInstantial. Infers iso:broaderInstantial for pairs of directly related skos:Concepts
     kind: object
     label: broaderInstantialExtended
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:broaderInstantialExtended
   broaderNonConcept:
     descr: 'Chain of gvp:broader from Concept to GuideTerms, without intervening Concept'
@@ -1966,7 +1974,7 @@ properties:
     kind: object
     label: broaderNonPreferred
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:broaderNonPreferred
   broaderPartitive:
     descr: |-
@@ -1975,7 +1983,7 @@ properties:
     kind: object
     label: broaderPartitive
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:broaderPartitive
   broaderPartitiveExtended:
     descr: |-
@@ -1985,7 +1993,7 @@ properties:
     kind: object
     label: broaderPartitiveExtended
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:broaderPartitiveExtended
   broaderPreferred:
     descr: |-
@@ -1994,7 +2002,7 @@ properties:
     kind: object
     label: broaderPreferred
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:broaderPreferred
   broaderPreferredExtended:
     descr: |-
@@ -2004,7 +2012,7 @@ properties:
     kind: object
     label: broaderPreferredExtended
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:broaderPreferredExtended
   contributorAlternatePreferred:
     descr: Contributor for which the term is Alternate Preferred. Range is foaf:Agent
@@ -2089,14 +2097,14 @@ properties:
     kind: object
     label: nationalityNonPreferred
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:nationalityNonPreferred
   nationalityPreferred:
     descr: 'Preferred nationality/culture/race/ethnicity/religion/sexual orientation of an ULAN agent. Domain is schema:Person/Organization, range is AAT concept'
     kind: object
     label: nationalityPreferred
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:nationalityPreferred
   parentString:
     descr: |-
@@ -2125,7 +2133,7 @@ properties:
     kind: object
     label: placeType
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:placeType
   placeTypeNonPreferred:
     descr: |-
@@ -2134,7 +2142,7 @@ properties:
     kind: object
     label: placeTypeNonPreferred
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:placeTypeNonPreferred
   placeTypePreferred:
     descr: |-
@@ -2143,7 +2151,7 @@ properties:
     kind: object
     label: placeTypePreferred
     max: inf
-    range: Subject
+    range: SubjectInterface
     rdfProp: gvp:placeTypePreferred
   prefLabelGVP:
     descr: 'Term preferred by the Getty Vocabulary Program. The language is usually English. Applicable to AAT, ULAN, TGN. Used with skosxl:prefLabel'
@@ -2300,7 +2308,7 @@ properties:
     kind: object
     label: has member
     max: inf
-    range: skos:Collection
+    range: skos:CollectionInterface
     rdfProp: skos:member
   skos:memberList:
     descr: |-

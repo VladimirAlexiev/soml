@@ -1,13 +1,21 @@
 objects:
   Alcoholic-Beverages:
-    inherits: Beverages
+    inherits: Alcoholic-BeveragesInterface
     label: Alcoholic Beverages
     type: cocktail-ontology:Alcoholic-Beverages
+  Alcoholic-BeveragesInterface:
+    descr: Abstract superclass of Alcoholic-Beverages
+    inherits: BeveragesInterface
+    kind: abstract
   Beverages:
+    inherits: BeveragesInterface
     label: Beverages
     type: cocktail-ontology:Beverages
+  BeveragesInterface:
+    descr: Abstract superclass of Beverages
+    kind: abstract
   Brandies:
-    inherits: Alcoholic-Beverages
+    inherits: Alcoholic-BeveragesInterface
     label: Brandies
     type: cocktail-ontology:Brandies
   Cocktail:
@@ -25,15 +33,15 @@ objects:
       uses_2: {}
     type: cocktail-ontology:Cocktail
   Coconut-milks:
-    inherits: Non-alcoholic-Beverages
+    inherits: Non-alcoholic-BeveragesInterface
     label: Coconut milks
     type: cocktail-ontology:Coconut-milks
   Coffees:
-    inherits: Non-alcoholic-Beverages
+    inherits: Non-alcoholic-BeveragesInterface
     label: Coffees
     type: cocktail-ontology:Coffees
   Dairy-products:
-    inherits: Non-alcoholic-Beverages
+    inherits: Non-alcoholic-BeveragesInterface
     label: Dairy products
     type: cocktail-ontology:Dairy-products
   Drinkware:
@@ -43,11 +51,11 @@ objects:
       is-used-by: {}
     type: cocktail-ontology:Drinkware
   Fortified-wines:
-    inherits: Alcoholic-Beverages
+    inherits: Alcoholic-BeveragesInterface
     label: Fortified wines
     type: cocktail-ontology:Fortified-wines
   From-eggs:
-    inherits: Non-alcoholic-Beverages
+    inherits: Non-alcoholic-BeveragesInterface
     label: From eggs
     type: cocktail-ontology:From-eggs
   Garnish:
@@ -57,15 +65,15 @@ objects:
       isOppositeOf: {}
     type: cocktail-ontology:Garnish
   Gins:
-    inherits: Alcoholic-Beverages
+    inherits: Alcoholic-BeveragesInterface
     label: Gins
     type: cocktail-ontology:Gins
   Herbal-distillates:
-    inherits: Non-alcoholic-Beverages
+    inherits: Non-alcoholic-BeveragesInterface
     label: Herbal distillates
     type: cocktail-ontology:Herbal-distillates
   Hot-souces:
-    inherits: Souces
+    inherits: SoucesInterface
     type: cocktail-ontology:Hot-souces
   Ingredients:
     label: Ingredients
@@ -74,53 +82,61 @@ objects:
       is-part-of: {}
     type: cocktail-ontology:Ingredients
   Juices:
-    inherits: Non-alcoholic-Beverages
+    inherits: Non-alcoholic-BeveragesInterface
     label: Juices
     type: cocktail-ontology:Juices
   Liqueurs:
-    inherits: Alcoholic-Beverages
+    inherits: Alcoholic-BeveragesInterface
     label: Liqueurs
     type: cocktail-ontology:Liqueurs
   Non-alcoholic-Beverages:
-    inherits: Beverages
+    inherits: Non-alcoholic-BeveragesInterface
     label: Non-alcoholic Beverages
     type: cocktail-ontology:Non-alcoholic-Beverages
+  Non-alcoholic-BeveragesInterface:
+    descr: Abstract superclass of Non-alcoholic-Beverages
+    inherits: BeveragesInterface
+    kind: abstract
   Rums:
-    inherits: Alcoholic-Beverages
+    inherits: Alcoholic-BeveragesInterface
     label: Rums
     type: cocktail-ontology:Rums
   Schnapps:
-    inherits: Alcoholic-Beverages
+    inherits: Alcoholic-BeveragesInterface
     label: Schnapps'
     type: cocktail-ontology:Schnapps
   Soft-drinks:
-    inherits: Non-alcoholic-Beverages
+    inherits: Non-alcoholic-BeveragesInterface
     label: Soft drinks
     type: cocktail-ontology:Soft-drinks
   Souces:
+    inherits: SoucesInterface
     label: Sauces
     type: cocktail-ontology:Souces
+  SoucesInterface:
+    descr: Abstract superclass of Souces
+    kind: abstract
   Sweeteners:
     label: Sweeteners
     type: cocktail-ontology:Sweeteners
   Tequilas:
-    inherits: Alcoholic-Beverages
+    inherits: Alcoholic-BeveragesInterface
     label: Tequilas
     type: cocktail-ontology:Tequilas
   Vodkas:
-    inherits: Alcoholic-Beverages
+    inherits: Alcoholic-BeveragesInterface
     label: Vodkas
     type: cocktail-ontology:Vodkas
   Whiskie:
-    inherits: Alcoholic-Beverages
+    inherits: Alcoholic-BeveragesInterface
     label: Whiskies
     type: cocktail-ontology:Whiskie
   Wines:
-    inherits: Alcoholic-Beverages
+    inherits: Alcoholic-BeveragesInterface
     label: Wines
     type: cocktail-ontology:Wines
   Worcestershire-sauce:
-    inherits: Souces
+    inherits: SoucesInterface
     label: Worcestershire sauce
     type: cocktail-ontology:Worcestershire-sauce
 prefixes:

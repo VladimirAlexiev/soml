@@ -1,0 +1,817 @@
+# -------------------------------------------------------------------------
+# Star Wars Ontology (SWAPI and WikiData)
+# -------------------------------------------------------------------------
+
+@prefix voc: <https://swapi.co/vocabulary/> .
+
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+<https://swapi.co/vocabulary/> a owl:Ontology ;
+  rdfs:label "Ontotext Star Wars Ontology" ;
+  rdfs:comment "An ontology to represent Star Wars data from SWAPI and Wikidata" ;
+  dct:creator <http://www.linkedin.com/company/ontotext-ad> ;
+  dct:contributor <http://uk.linkedin.com/pub/jem-rayfield/27/b19/757>, <https://www.linkedin.com/in/valexiev> ;
+  dct:created "2020-01-01"^^xsd:date;
+  dct:modified "2020-04-30"^^xsd:date;
+  vann:preferredNamespaceUri "https://swapi.co/vocabulary/";
+  vann:preferredNamespacePrefix "voc";
+  owl:versionInfo "0.1" .
+
+<http://www.linkedin.com/company/ontotext-ad> a foaf:Organization  ;
+  foaf:name "Ontotext" ;
+  rdfs:label "Ontotext" .
+
+<http://uk.linkedin.com/pub/jem-rayfield/27/b19/757> a foaf:Person ;
+  foaf:name "Jem Rayfield" ;
+  rdfs:label "Jem Rayfield" .
+
+<https://www.linkedin.com/in/valexiev> a foaf:Person;
+  foaf:name "Vladimir Alexiev";
+  rdfs:label "Vladimir Alexiev".
+
+# -------------------------------------------------------------------------
+# Classes
+# -------------------------------------------------------------------------
+
+voc:Species a rdfs:Class;
+  rdfs:label "Species";
+  rdfs:isDefinedBy voc: ;
+  rdfs:subClassOf rdfs:Class ;
+  rdfs:comment "A group of living organisms consisting of similar individuals capable of exchanging genes or interbreeding. Meta-class: has individual species as instances".
+
+voc:Character a rdfs:Class;
+  rdfs:label "Character";
+  rdfs:isDefinedBy voc: ;
+  rdfs:comment "A character in a Star Wars film. Each instance also has type corresponding to its species".
+
+voc:Film a rdfs:Class;
+  rdfs:label "Film";
+  rdfs:isDefinedBy voc: ;
+  rdfs:comment "Star Wars is an American epic space-opera media franchise created by George Lucas. The franchise began with the eponymous 1977 film and quickly became a worldwide pop-culture phenomenon, with many more films.".
+
+voc:Planet a rdfs:Class;
+  rdfs:label "Planet";
+  rdfs:isDefinedBy voc: ;
+  rdfs:comment "The fictional universe of the Star Wars franchise features multiple planets and moons".
+
+voc:Vehicle a rdfs:Class;
+  rdfs:label "Vehicle";
+  rdfs:isDefinedBy voc: ;
+  rdfs:comment "Fictional Star Wars terrestrial vehicles, including armoured fighting vehicles, military aircraft, and naval ships.".
+
+voc:Starship a rdfs:Class;
+  rdfs:label "Starship";
+  rdfs:isDefinedBy voc: ;
+  rdfs:comment "Fictional Star Wars starship, or simply referred to as a ship, was a manned vehicle used for travelling in real-space or hyperspace".
+
+# Kinds of species. One species may have several kinds. We don't yet use this so don't expose them as classes
+# voc:Amphibian a rdfs:Class .
+# voc:Artificial a rdfs:Class .
+# voc:Gastropod a rdfs:Class .
+# voc:Insectoid a rdfs:Class .
+# voc:Mammal a rdfs:Class .
+# voc:Reptile a rdfs:Class .
+# voc:Reptilian a rdfs:Class .
+# voc:Sentient a rdfs:Class .
+# voc:Unknown a rdfs:Class .
+
+### Individual species
+
+voc:Aleena a rdfs:Class, voc:Species;
+  rdfs:label "Aleena";
+  rdfs:comment "Aleena species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Besalisk a rdfs:Class, voc:Species;
+  rdfs:label "Besalisk";
+  rdfs:comment "Besalisk species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Cerean a rdfs:Class, voc:Species;
+  rdfs:label "Cerean";
+  rdfs:comment "Cerean species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Chagrian a rdfs:Class, voc:Species;
+  rdfs:label "Chagrian";
+  rdfs:comment "Chagrian species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Clawdite a rdfs:Class, voc:Species;
+  rdfs:label "Clawdite";
+  rdfs:comment "Clawdite species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Droid a rdfs:Class, voc:Species;
+  rdfs:label "Droid";
+  rdfs:comment "Droid species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc:;
+  rdfs:comment "A droid is a fictional robot possessing some degree of artificial intelligence in the Star Wars science fiction franchise. Coined by special effects artist John Stears, the term is a clipped form of \"android\", a word originally reserved for robots designed to look and act like a human. Has been a registered trademark of Lucasfilm Ltd since 1977".
+
+voc:Dug a rdfs:Class, voc:Species;
+  rdfs:label "Dug";
+  rdfs:comment "Dug species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Ewok a rdfs:Class, voc:Species;
+  rdfs:label "Ewok";
+  rdfs:comment "Ewok species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc:;
+  rdfs:comment "Ewoks are a fictional race of small, mammaloid bipeds that appear in the Star Wars universe. They are hunter-gatherers resembling teddy bears that inhabit the forest moon of Endor and live in various arboreal huts and other simple dwellings. They first appeared in the 1983 film Return of the Jedi and have since appeared in two made-for-television films, Caravan of Courage: An Ewok Adventure (1984) and Ewoks: The Battle for Endor (1985), as well as a short-lived animated series and several books and games.".
+
+voc:Geonosian a rdfs:Class, voc:Species;
+  rdfs:label "Geonosian";
+  rdfs:comment "Geonosian species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Gungan a rdfs:Class, voc:Species;
+  rdfs:label "Gungan";
+  rdfs:comment "Gungan species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Human a rdfs:Class, voc:Species;
+  rdfs:label "Human";
+  rdfs:comment "Human species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc:;
+  rdfs:comment "Modern humans (Homo sapiens, primarily ssp. Homo sapiens sapiens) are the only extant members of the subtribe Hominina, a branch of the tribe Hominini belonging to the family of great apes. They are characterized by erect posture and bipedal locomotion; high manual dexterity and heavy tool use compared to other animals; and a general trend toward larger, more complex brains and societies.".
+
+voc:Hutt a rdfs:Class, voc:Species;
+  rdfs:label "Hutt";
+  rdfs:comment "Hutt species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc:;
+  rdfs:comment "The Hutts are a fictional alien race in the Star Wars universe. They appear in The Phantom Menace, Return of the Jedi and The Clone Wars, as well as the special edition release of a New Hope. They also appear in various Star Wars games, including those based on the movies, and the Knights of the Old Republic series. None of these are very friendly and all are criminally involved.1 In the comic book series Tales of the Jedi: Golden Age of the Sith and Tales of the Jedi: The Fall of the Sith Empire, however, there is a Hutt character named Aarrba who is sympathetic to the main characters, Gav and Jori Daragon.".
+
+voc:Iktotchi a rdfs:Class, voc:Species;
+  rdfs:label "Iktotchi";
+  rdfs:comment "Iktotchi species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Kaleesh a rdfs:Class, voc:Species;
+  rdfs:label "Kaleesh";
+  rdfs:comment "Kaleesh species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Kaminoan a rdfs:Class, voc:Species;
+  rdfs:label "Kaminoan";
+  rdfs:comment "Kaminoan species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Keldor a rdfs:Class, voc:Species;
+  rdfs:label "Keldor";
+  rdfs:comment "Keldor species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Mirialan a rdfs:Class, voc:Species;
+  rdfs:label "Mirialan";
+  rdfs:comment "Mirialan species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Moncalamari a rdfs:Class, voc:Species;
+  rdfs:label "Moncalamari";
+  rdfs:comment "Moncalamari species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Muun a rdfs:Class, voc:Species;
+  rdfs:label "Muun";
+  rdfs:comment "Muun species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Nautolan a rdfs:Class, voc:Species;
+  rdfs:label "Nautolan";
+  rdfs:comment "Nautolan species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Neimodian a rdfs:Class, voc:Species;
+  rdfs:label "Neimodian";
+  rdfs:comment "Neimodian species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Pauan a rdfs:Class, voc:Species;
+  rdfs:label "Pauan";
+  rdfs:comment "Pauan species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Quermian a rdfs:Class, voc:Species;
+  rdfs:label "Quermian";
+  rdfs:comment "Quermian species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Rodian a rdfs:Class, voc:Species;
+  rdfs:label "Rodian";
+  rdfs:comment "Rodian species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Skakoan a rdfs:Class, voc:Species;
+  rdfs:label "Skakoan";
+  rdfs:comment "Skakoan species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Sullustan a rdfs:Class, voc:Species;
+  rdfs:label "Sullustan";
+  rdfs:comment "Sullustan species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Tholothian a rdfs:Class, voc:Species;
+  rdfs:label "Tholothian";
+  rdfs:comment "Tholothian species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Togruta a rdfs:Class, voc:Species;
+  rdfs:label "Togruta";
+  rdfs:comment "Togruta species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Toong a rdfs:Class, voc:Species;
+  rdfs:label "Toong";
+  rdfs:comment "Toong species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Toydarian a rdfs:Class, voc:Species;
+  rdfs:label "Toydarian";
+  rdfs:comment "Toydarian species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Trandoshan a rdfs:Class, voc:Species;
+  rdfs:label "Trandoshan";
+  rdfs:comment "Trandoshan species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Twilek a rdfs:Class, voc:Species;
+  rdfs:label "Twilek";
+  rdfs:comment "Twilek species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Umbaran a rdfs:Class, voc:Species;
+  rdfs:label "Umbaran";
+  rdfs:comment "Umbaran species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Vulptereen a rdfs:Class, voc:Species;
+  rdfs:label "Vulptereen";
+  rdfs:comment "Vulptereen species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Wookiee a rdfs:Class, voc:Species;
+  rdfs:label "Wookiee";
+  rdfs:comment "Wookiee species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc:;
+  rdfs:comment "Wookiees are a fictional species of intelligent bipeds from the planet Kashyyyk in the Star Wars universe. They are taller, stronger, and hairier than humans and most (if not all) other humanoid species. The most notable Wookiee is Chewbacca, the copilot of Han Solo, who first appeared in the 1977 film Star Wars Episode IV: a New Hope.".
+
+voc:Xexto a rdfs:Class, voc:Species;
+  rdfs:label "Xexto";
+  rdfs:comment "Xexto species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Yodasspecies a rdfs:Class, voc:Species;
+  rdfs:label "Yodasspecies";
+  rdfs:comment "Yodasspecies species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+voc:Zabrak a rdfs:Class, voc:Species;
+  rdfs:label "Zabrak";
+  rdfs:comment "Zabrak species";
+  rdfs:subClassOf voc:Character;
+  rdfs:isDefinedBy voc: .
+
+# -------------------------------------------------------------------------
+# Properties
+# -------------------------------------------------------------------------
+
+rdf:type a owl:ObjectProperty, owl:FunctionalProperty;
+  schema:domainIncludes voc:Character;
+  rdfs:label "Character's species";
+  schema:rangeIncludes voc:Species. # GraphQL name: species, rangeCheck: true.
+
+rdfs:label a owl:DatatypeProperty, owl:FunctionalProperty;
+  schema:domainIncludes voc:Character, voc:Film, voc:Planet, voc:Species, voc:Starship, voc:Vehicle,
+    voc:Person, voc:FilmRelease, voc:Location, voc:Country, voc:Award;
+  rdfs:label "Name".
+
+voc:desc a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Character, voc:Film, voc:Planet, voc:Species, voc:Starship, voc:Vehicle, voc:Person;
+  rdfs:label "Description".
+
+voc:averageHeight a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Species;
+  rdfs:comment "Average height of the species";
+  schema:rangeIncludes xsd:decimal.
+
+voc:averageLifespan a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Species;
+  rdfs:comment "Lifespan of the species".
+
+voc:birthYear a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Character;
+  schema:rangeIncludes xsd:string;
+  rdfs:comment "In BBY (Before the Battle of Yalvin) or ABY (After the battle of Yalvin".
+
+voc:cargoCapacity a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Starship, voc:Vehicle;
+  rdfs:label "Cargo capacity in tons";
+  schema:rangeIncludes xsd:integer.
+
+voc:character a owl:ObjectProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Film, voc:FilmRole, voc:Species;
+  rdfs:comment "Characters in film or instances of species  (multiple). Or the Character portrayed by a FilmRole" ;
+  schema:rangeIncludes voc:Character. # inverseAlias: "species", rangeCheck: true
+
+voc:climate a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Planet;
+  rdfs:label "Climate";
+  rdfs:comment "Planet's climate".
+
+voc:consumables a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Starship, voc:Vehicle;
+  rdfs:label "Consumables".
+
+voc:costInCredits a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Starship, voc:Vehicle;
+  rdfs:label "Cost in credits";
+  schema:rangeIncludes xsd:integer.
+
+voc:crew a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Starship, voc:Vehicle;
+  rdfs:label "Number of crew";
+  rdfs:comment "Number of crew required to pilot vehicle";
+  schema:rangeIncludes xsd:integer.
+
+voc:diameter a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Planet;
+  rdfs:label "Diameter in Km";
+  schema:rangeIncludes xsd:integer.
+
+voc:episodeId a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Film;
+  rdfs:label "episode id";
+  rdfs:comment "Sequential number of a Film within its series";
+  # TODO: A Film can be part of several series and have different "ordinal number" in each.
+  schema:rangeIncludes xsd:integer.
+
+voc:eyeColor a owl:DatatypeProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Character, voc:Species;
+  rdfs:comment "Eye colour of character (one) or species (many). Including Droid eyes, such as R2-D2's red eye!".
+
+voc:film a owl:ObjectProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Character, voc:Planet, voc:Species, voc:Starship, voc:Vehicle, voc:FilmRole, voc:FilmRelease, voc:AwardRecognition;
+  rdfs:comment "Star Wars Films that a character, planet, species, starship or vehicle appeared in (multiple). The Film involved in a FilmRole or AwardRecognition (single).";
+  schema:rangeIncludes voc:Film.
+
+voc:friend a owl:ObjectProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Human;
+  schema:rangeIncludes voc:Character.
+
+voc:friend a owl:ObjectProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Human;
+  schema:rangeIncludes voc:Character.
+
+voc:gender a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Character, voc:Person;
+  rdfs:label "Gender";
+  rdfs:comment "Gender/sex of character or real person".
+  
+voc:gravity a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Planet;
+  rdfs:label "Gravitational pressure m/s squared".
+
+voc:hairColor a owl:DatatypeProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Character;
+  rdfs:comment "Hair colour of character (one) or Species (many)".
+
+voc:height a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Character;
+  rdfs:label "Height in meters";
+  schema:rangeIncludes xsd:decimal.
+
+voc:homeworld a owl:ObjectProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Character;
+  rdfs:label "Home world";
+  rdfs:comment "Character's home world (planet)";
+  schema:rangeIncludes voc:Planet.
+
+voc:hyperdriveRating a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Starship;
+  rdfs:comment "The class of this starship's hyper-drive";
+  schema:rangeIncludes xsd:decimal.
+
+voc:language a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Species;
+  rdfs:comment "Species language".
+
+voc:length a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Starship, voc:Vehicle;
+  rdfs:comment "Length of starship/vehicle in meters.";
+  schema:rangeIncludes xsd:decimal.
+
+voc:manufacturer a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Starship, voc:Vehicle;
+  rdfs:comment "Manufacturer of this starship/vehicle. Comma separated if more than one" .
+
+voc:mass a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Character;
+  rdfs:label "Mass in kg";
+  schema:rangeIncludes xsd:decimal.
+
+voc:maxAtmospheringSpeed a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Starship, voc:Vehicle;
+  rdfs:comment "Maximum speed of starship/vehicle in the atmosphere (km/hour). Missing if this starship is incapable of atmospheric flight.";
+  schema:rangeIncludes xsd:integer.
+
+voc:mglt a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Starship;
+  rdfs:label "The megalight per hour (abbreviated MGLT) was a unit used to measure the relative sublight speed of starships in realspace. For example, the RZ-1 A-wing interceptor was markedly faster 120 MGLT than the BTL-A4 Y-wing assault starfighter-bomber 70 MGLT";
+  schema:rangeIncludes xsd:integer.
+
+voc:model a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Starship, voc:Vehicle;
+  rdfs:comment "Model or official name of starship/vehicle. Such as \"T-65 X-wing\" or \"DS-1 Orbital Battle Station\".".
+
+voc:openingCrawl a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Film;
+  rdfs:comment "Opening Crawl or intro".
+
+voc:orbitalPeriod a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Planet;
+  rdfs:label "Orbital period in days";
+  schema:rangeIncludes xsd:integer.
+
+voc:passengers a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Starship, voc:Vehicle;
+  rdfs:label "Total number of passengers";
+  schema:rangeIncludes xsd:integer.
+
+voc:pilot a owl:ObjectProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Starship, voc:Vehicle;
+  rdfs:comment "Characters who piloted a starship or vehicle";
+  schema:rangeIncludes voc:Character.
+
+voc:planet a owl:ObjectProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Film, voc:Species;
+  rdfs:comment "Planets of film or species";
+  schema:rangeIncludes voc:Planet.
+
+voc:population a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Planet;
+  schema:rangeIncludes xsd:integer.
+
+voc:primaryFunction a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Droid;
+  rdfs:comment "Droid's primary function".
+
+voc:releaseDate a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Film, voc:FilmRelease;
+  rdfs:label "Date";
+  rdfs:comment "Release date of a FilmRelease (in a location), earliest release date of Film, or date/year of award recognition";
+  schema:rangeIncludes xsd:date.
+
+voc:resident a owl:ObjectProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Planet;
+  rdfs:comment "Characters which are resident on the planet";
+  schema:rangeIncludes voc:Character.
+
+voc:rotationPeriod a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Planet;
+  rdfs:label "Rotation period in hours";
+  schema:rangeIncludes xsd:integer.
+
+voc:skinColor a owl:DatatypeProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Character, voc:Species;
+  rdfs:comment "Skin color of character (one) or species (multiple) ".
+
+voc:starship a owl:ObjectProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Character, voc:Film;
+  rdfs:label "Starships in film or piloted by character";
+  schema:rangeIncludes voc:Starship.
+
+voc:starshipClass a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Starship;
+  rdfs:comment "The class of this starship, such as \"Starfighter\" or \"Deep Space Mobile Battlestation\"".
+
+voc:surfaceWater a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Planet;
+  rdfs:label "Surface water in percent";
+  schema:rangeIncludes xsd:decimal.
+
+voc:terrain a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Planet;
+  rdfs:label "Planets terrain".
+
+voc:vehicle a owl:ObjectProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Character, voc:Film;
+  rdfs:comment "Vehicles in film or driven by character";
+  schema:rangeIncludes voc:Vehicle.
+
+voc:vehicleClass a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Vehicle;
+  rdfs:label "Vehicle class".
+
+# -------------------------------------------------------------------------
+# Linking to Wikidata
+# -------------------------------------------------------------------------
+
+voc:HasWikidataLink a rdfs:Class;
+  rdfs:isDefinedBy voc: ;
+  rdfs:label "Has Wikidata Link";
+  rdfs:comment "Object that has a link to Wikidata and at least some of its info come from Wikidata".
+
+voc:wikidataLink a owl:ObjectProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc: ;
+  schema:domainIncludes voc:HasWikidataLink;
+  rdfs:label "wikidata link";
+  rdfs:comment """Link to Wikidata entity or statement. 
+For Person, FilmRole, Award, AwardRecognition we use the Wikidata link also as semantic node URL""";
+  skos:example """
+http://www.wikidata.org/entity/Q17738: Star Wars Episode IV: A New Hope;
+http://www.wikidata.org/entity/statement/Q17738-0183F730-30F8-4464-87DF-FEB9287171FC: Star Wars Episode IV: A New Hope: nominated for: Academy Award for Best Supporting Actor; nominee: Alec Guinness; statement is subject of: 50th Academy Awards
+""".
+
+voc:Award            rdfs:subClassOf voc:HasWikidataLink.
+voc:AwardRecognition rdfs:subClassOf voc:HasWikidataLink.
+voc:Character        rdfs:subClassOf voc:HasWikidataLink.
+voc:Film             rdfs:subClassOf voc:HasWikidataLink.
+voc:FilmRelease      rdfs:subClassOf voc:HasWikidataLink.
+voc:FilmRole         rdfs:subClassOf voc:HasWikidataLink.
+voc:Location         rdfs:subClassOf voc:HasWikidataLink.
+voc:Person           rdfs:subClassOf voc:HasWikidataLink.
+
+# Not Yet Linked
+# voc:Planet      rdfs:subClassOf voc:HasWikidataLink.
+# voc:Starship    rdfs:subClassOf voc:HasWikidataLink.
+# voc:Vehicle     rdfs:subClassOf voc:HasWikidataLink.
+
+# -------------------------------------------------------------------------
+# Classes Coming From Wikidata
+# -------------------------------------------------------------------------
+
+voc:Person a rdfs:Class;
+  rdfs:isDefinedBy voc: ;
+  rdfs:label "Person";
+  rdfs:comment "Real person related to a Star Wars film".
+
+voc:FilmRole a rdfs:Class;
+  rdfs:isDefinedBy voc: ;
+  rdfs:label "Film Role";
+  rdfs:comment "Relation of Person having some \"role\" in a Film, either generic or related to a Character";
+  skos:example """
+<filmRoleUrl01> a FilmRole; film <EpisodeV>;   role "director";                person <Irvin_Kershner>.
+<filmRoleUrl03> a FilmRole; film <EpisodeV>;   role "screenwriter";            person <Leigh_Brackett>.
+<filmRoleUrl04> a FilmRole; film <EpisodeV>;   role "screenwriter";            person <Lawrence_Kasdan>.
+<filmRoleUrl05> a FilmRole; film <EpisodeV>;   role "screenwriter";            person <George_Lucas>.
+<filmRoleUrl06> a FilmRole; film <EpisodeV>;   role "cast member";             person <Harrison_Ford>; character <Han_Solo>.
+<filmRoleUrl07> a FilmRole; film <EpisodeV>;   role "voice actor";             person <Frank_Oz>;      character <Yoda>.
+<filmRoleUrl08> a FilmRole; film <EpisodeV>;   role "executive producer";      person <Gary_Kurtz>.
+<filmRoleUrl09> a FilmRole; film <EpisodeV>;   role "director of photography"; person <Peter_Suschitzky>.
+<filmRoleUrl10> a FilmRole; film <EpisodeV>;   role "film editor";             person <George_Lucas>.
+<filmRoleUrl11> a FilmRole; film <EpisodeV>;   role "production designer";     person <Norman_Reynolds>.
+<filmRoleUrl12> a FilmRole; film <EpisodeV>;   role "costume designer";        person <John_Mollo>.
+<filmRoleUrl13> a FilmRole; film <EpisodeV>;   role "stunt double";            person <Bob_Anderson>;  character <Darth_Vader>.
+<filmRoleUrl14> a FilmRole; film <EpisodeV>;   role "film editor";             person <Paul_Hirsch>.
+<filmRoleUrl15> a FilmRole; film <EpisodeV>;   role "film editor";             person <George_Lucas>.
+
+<filmRoleUrl21> a FilmRole; film <EpisodeIII>; role "cast member";             person <Hayden_Christensen>; character <Anakin_Skywalker>, <Darth_Vader>.
+<filmRoleUrl22> a FilmRole; film <EpisodeIII>; role "cast member";             person <Silas_Carson>;       character <Nute_Gunray>, <Ki-Adi-Mundi>.
+""".
+
+voc:FilmRelease a rdfs:Class;
+  rdfs:isDefinedBy voc: ;
+  rdfs:label "Film Release";
+  rdfs:comment "Release of a film. Has releaseDate (mandatory) and Location (multiple optional)";
+  skos:example """
+<release10> a FilmRelease; film <EpisodeV>; releaseDate "1980-05-17"^^xsd:date; location <Washington_DC>.
+<release11> a FilmRelease; film <EpisodeV>; releaseDate "1980-05-21"^^xsd:date; location <USA>, <UK>.
+<release12> a FilmRelease; film <EpisodeV>; releaseDate "1980-02-11"^^xsd:date; location <Germany>.
+""".
+
+voc:Location a rdfs:Class;
+  rdfs:isDefinedBy voc: ;
+  rdfs:label "Location";
+  rdfs:comment """A real-world place: country, state/province/region, city/town/village.
+For person birth places, could be something more exotic, eg a hospital, ocean, or airline flight""".
+
+voc:Country a rdfs:Class;
+  rdfs:subClassOf voc:Location ;
+  rdfs:label "Country";
+  rdfs:isDefinedBy voc: ;
+  rdfs:comment "Political state, nation or territory".
+
+voc:Award a rdfs:Class;
+  rdfs:label "Award";
+  rdfs:isDefinedBy voc: ;
+  rdfs:comment "An Academy Award (so-called Oscar)".
+
+voc:AwardRecognition a rdfs:Class;
+  rdfs:label "Award Recognition";
+  rdfs:isDefinedBy voc: ;
+  rdfs:comment "Recognition of a Person/Film with an Academy Award (so-called Oscar)";
+  skos:example """
+<recognition10> a AwardRecognition; award <Best_Director>;       awardDate "1974-04-02"^^xsd:date; person <George_Lucas>; awardStatus "nominated"; forWork "American Graffiti".
+<recognition11> a AwardRecognition; award <Best_Director>;       awardDate "1978-04-03"^^xsd:date; person <George_Lucas>; awardStatus "nominated"; forWork "A New Hope"; film <A_New_Hope>.
+<recognition12> a AwardRecognition; award <Best_Writing>;        awardDate "1978-04-03"^^xsd:date; person <George_Lucas>; awardStatus "nominated"; forWork "A New Hope"; film <A_New_Hope>.
+<recognition20> a AwardRecognition; award <Special_Achievement>; awardDate "1978-01-01"^^xsd:date; person <Ben_Burtt>;    awardStatus "awarded".
+<recognition21> a AwardRecognition; award <Special_Achievement>; awardDate "1982-01-01"^^xsd:date; person <Ben_Burtt>;    awardStatus "awarded".
+<recognition30> a AwardRecognition; award <Best_Sound_Mixing>;   awardDate "1980-01-01"^^xsd:date; person <Bill_Varney>, <Steve_Maslow...>; 
+                                                                                                                          awardStatus "awarded"; forWork "The Empire Strikes Back"; film <The_Empire_Strikes_Back>.
+""".
+
+# -------------------------------------------------------------------------
+# Properties Coming From Wikidata
+# -------------------------------------------------------------------------
+
+voc:award a owl:ObjectProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:AwardRecognition;
+  schema:rangeIncludes voc:Award;
+  rdfs:label "award";
+  rdfs:comment "The award involved in a recognition".
+
+voc:awardDate a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:AwardRecognition;
+  schema:rangeIncludes xsd:date;
+  rdfs:comment "Award recognition date or year".
+
+voc:awardStatus a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:AwardRecognition;
+  schema:rangeIncludes xsd:string;
+  rdfs:label "award status";
+  rdfs:comment """Status of award recognition: "nominated" or "awarded". 
+Although the latter is stronger, there are some cases when we record both""".
+
+voc:birthDate a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Person;
+  schema:rangeIncludes xsd:date;
+  rdfs:comment "Birth date of a Person".
+
+voc:birthPlace a owl:ObjectProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Person;
+  schema:rangeIncludes voc:Location;
+  rdfs:comment "Birth place of a Person".
+
+voc:boxOffice a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Film;
+  schema:rangeIncludes xsd:decimal;
+  rdfs:label "box office";
+  rdfs:comment "Film revenue in USD".
+
+voc:citizenOf a owl:ObjectProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Person;
+  rdfs:label "citizen of";
+  rdfs:comment "Country of citizenship";
+  schema:rangeIncludes voc:Country.
+
+voc:cost a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Film;
+  schema:rangeIncludes xsd:decimal;
+  rdfs:label "cost";
+  rdfs:comment "Filming cost in USD".
+
+voc:country a owl:ObjectProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Location;
+  rdfs:comment "Country of a location";
+  schema:rangeIncludes voc:Country.
+
+voc:forWork a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:AwardRecognition;
+  schema:rangeIncludes xsd:string;
+  rdfs:label "work recognized for";
+  rdfs:comment """Work (film) that the award recognition is for, as a string. 
+If the Film is from the Star Wars universe then we also record it as an object (voc:film property)""".
+
+voc:image a owl:ObjectProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Film, voc:Person, voc:Character ;
+  rdfs:label "image";
+  rdfs:comment "Image/logo of Film, Person or Character".
+
+voc:location a owl:ObjectProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Film, voc:FilmRelease;
+  schema:rangeIncludes voc:Location;
+  rdfs:label "Location";
+  rdfs:comment "Location of Film shooting or FilmRelease".
+
+voc:person a owl:ObjectProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:FilmRole, voc:AwardRecognition;
+  schema:rangeIncludes voc:Person;
+  rdfs:label "person";
+  rdfs:comment "The Person playing a Role in a Film or recognized with an Award".
+
+voc:residentOf a owl:ObjectProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Person;
+  rdfs:label "resident of";
+  rdfs:comment "Location of residence";
+  schema:rangeIncludes voc:Location.
+
+voc:returnOnInvestment a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:Film;
+  schema:rangeIncludes xsd:decimal;
+  rdfs:label "return on investment";
+  rdfs:comment "Film ROI as the ratio: box office / cost".
+
+voc:role a owl:DatatypeProperty, owl:FunctionalProperty;
+  rdfs:isDefinedBy voc:;
+  schema:domainIncludes voc:FilmRole;
+  schema:rangeIncludes xsd:string;
+  rdfs:label "role";
+  rdfs:comment "The Role of a person in a Film. May be general (eg \"director\") or character-related (eg \"cast member\", \"voice actor\")".
