@@ -21,6 +21,7 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
             - [TODO Virtual Inverses](#todo-virtual-inverses)
         - [Datatypes](#datatypes)
             - [String Handling](#string-handling)
+            - [Lang Specs](#lang-specs)
         - [Labels and Descriptions](#labels-and-descriptions)
     - [Implemented as Platform Service](#implemented-as-platform-service)
         - [Handle OWL Restrictions](#handle-owl-restrictions)
@@ -55,6 +56,7 @@ Options:
   -string 0      Emit rdf:langString as langString; rdfs:Literal & schema:Text & undefined datatype as stringOrLangString; xsd:string as string
           1      Emit rdf:langString & rdfs:Literal & schema:Text & undefined datatype as langString; xsd:string as string
           2      Emit rdf:langString & rdfs:Literal & schema:Text & undefined datatype & xsd:string as string
+  -lang   str    Set schema-level lang spec. Doesn't make sense if "-string 2" is specified
 Options that are not yet implemented:
   -multi  0|1    Handle multiple parent classes (default 0: use the first one and warn; Platform doesn't yet do this)
   -union  0|1    Handle union (multiple) ranges (default 0: use the first one and warn; Platform doesn't yet do this)
@@ -439,6 +441,33 @@ Notes:
 - `stringOrLangString` refers to a union datatype that allows strings with or without lang tag but is otherwise treated as `langString`.
   In particular, to get the value in GraphQL you need to use a query part like `field{value}`
 
+#### Lang Specs
+
+TODO: fix the links to point to documentation rather than branch PLATFORM-1241.
+
+If your schema uses `langString` (and you haven't specified `-string 2` as per the previous section)
+then you may want to provide a schema-level lang spec to control how lang strings are handled:
+- [fetch](https://gitlab.ontotext.com/platform/platform/blob/PLATFORM-1241-langString/soaas/architecture/includes/literal.md#lang-specs-for-fetching) controls which lang variants to fetch, and a priority/fallback order
+- [validate](https://gitlab.ontotext.com/platform/platform/blob/PLATFORM-1241-langString/soaas/architecture/includes/literal.md#lang-specs-for-validation) controls which langs are allowed in mutations, and `UNIQ` of values per lang
+- [implicit](https://gitlab.ontotext.com/platform/platform/blob/PLATFORM-1241-langString/soaas/architecture/includes/literal.md#implicit-lang) specifies an implicit lang for `langStrings` in mutations that don't provide a lang
+
+Some examples of [combining lang specs](https://gitlab.ontotext.com/platform/platform/blob/PLATFORM-1241-langString/soaas/architecture/includes/literal.md#combining-lang-specs):
+
+| `-lang`                            | effect                                                                                   |
+|------------------------------------+------------------------------------------------------------------------------------------|
+| ALL                                | fetch all langs                                                                          |
+| ALL,-en-US                         | fetch all langs except American English                                                  |
+| BROWSER                            | fetch one lang according to browser's `Accept-Language` heading                          |
+| fetch: en                          | fetch only English                                                                       |
+| fetch: en~                         | fetch English or any English dialect                                                     |
+| fetch: -en-US, implicit: en        | fetch any except American English, use implicit English lang tag                         |
+| fetch: fr,en, validate: en,fr;UNIQ | fetch French or English (first one), allow only English or French, unique value per lang |
+
+You should use either a string with no spaces (which sets `fetch`),
+`key1: val1, key2: val2, ...` where 
+the keys are `fetch, validate, implicit`
+and the values include no spaces.
+
 ### Labels and Descriptions
 
 The tool handles the following descriptive attributes of schema elements (Ontology, Classes and Properties):
@@ -787,12 +816,14 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 
 ## Change Log
 
+30-Jun-2020:
+- add option `-lang`, see [Lang Specs](#lang-specs)
+
 16-Jun-2020:
 - add option `-super`, see [Superclass Interfaces](#superclass-interfaces)
 - add option `-name`, see [Name Characteristic](#name-characteristic)
 - add option `-string`, see [String Handling](#string-handling): emit `stringOrLangString` vs `langString` vs `string`
 - add test versions `*.yaml` (without superclass interfaces) vs `*-super.yaml` (with superclass interfaces) 
-
 
 4-May-2020:
 - Document Java version extensions

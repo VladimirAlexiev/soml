@@ -26,6 +26,7 @@ our $soml_id;                          # -id: SOML id
 our $soml_label;                       # -label: SOML label
 our $super_opt;                        # -super: whether to generate X and XInterface
 our $string_opt;                       # -string: how to handle langString, stringOrLangString, string
+our $lang_opt;                         # -lang: lang spec
 our %name_char;                        # -name: hash of name props
 our $map   = URI::NamespaceMap->new(); # prefixes in loaded ontologies
 our $MAP   = URI::NamespaceMap->new    # fixed prefixes used in mapping ("service" namespace)
@@ -109,6 +110,8 @@ our @NO_DATATYPES =
 our %NO_DATATYPES;
 map {$NO_DATATYPES{$_} = 1} @NO_DATATYPES;
 
+our @LANG_SPECS = qw(fetch validate implicit);
+
 sub my_exit() {
   # quash warnings "(in cleanup) at URI/Namespace.pm line 104 during global destruction"
   $map = $MAP = undef;
@@ -147,6 +150,8 @@ Options:
   -string 0      Emit rdf:langString as langString; rdfs:Literal & schema:Text & undefined datatype as stringOrLangString; xsd:string as string
           1      Emit rdf:langString & rdfs:Literal & schema:Text & undefined datatype as langString; xsd:string as string
           2      Emit rdf:langString & rdfs:Literal & schema:Text & undefined datatype & xsd:string as string
+  -lang   str    Set schema-level lang spec. Doesn't make sense if "-string 2" is specified
+
 Parses:
 - ontologies (owl:Ontology, dct:created, dct:modified, $creator_props),
 - classes (rdfs:Class, owl:Class);
@@ -156,6 +161,7 @@ Parses:
 - datatypes ($datatypes);
   - EXCLUDES $no_datatypes
   - Default is stringOrLangString, langString, or string depending on option -string
+- lang specs for handling langString
 - prop relations (owl:inverseOf, schema:inverseOf; but NOT rdfs:subPropertyOf);
 - prop domains (rdfs:domain, schema:domainIncludes, owl:unionOf). Multiple domains are allowed.
 - prop ranges (rdfs:range, schema:rangeIncludes, owl:unionOf). Object or datatype ranges are allowed.
@@ -181,7 +187,8 @@ GetOptions ("vocab=s"  => \$vocab_prefix,
             "label=s"  => \$soml_label,
             "super=i"  => \$super_opt,
             "name=s"   => \@name_char,
-            "string=i" => \$string_opt)
+            "string=i" => \$string_opt,
+            "lang=s"   => \$lang_opt)
   or usage();
 @name_char = split(/,/,join(',',@name_char)); # https://metacpan.org/pod/Getopt::Long#Options-with-multiple-values
 map {$name_char{$_} = 1} @name_char if @name_char;
@@ -427,6 +434,29 @@ sub map_ranges ($$) {
     grep $_, map map_range($name,$_), @ranges
 }
 
+sub langSpec() {
+  $lang_opt or return;
+  $lang_opt && $string_opt==2 and
+    my_die("-lang doesn't make sense if '-string 2' is specified");
+  my $lang;
+  if ($lang_opt !~ / /) {$lang = $lang_opt} # simple string
+  else {
+    $lang = {}; # empty hash
+    my %langSpecs;
+    @langSpecs{@LANG_SPECS} = 1;
+    for (split(/, /, $lang_opt)) {
+      my ($key,$val) = split(/: /, $_);
+      exists $langSpecs{$key} or
+        my_die("For -lang use either a simple string (no spaces) or 'key: val, ...' with keys '".
+               join(", ",@LANG_SPECS)."'");
+      $val =~ m{ } and
+        my_die("Don't use spaces in value in -lang '$key: $val'");
+      $lang->{$key} = $val;
+    }
+  };
+  $soml{config}{lang} = $lang;
+}
+
 ##### main
 
 scalar(@ARGV) < 1 and usage(); # if there are no args, print usage() and die
@@ -434,6 +464,7 @@ $vocab_prefix && $vocab_prefix eq "NONE" && !$soml_id    and my_die  "'-voc NONE
 $vocab_prefix && $vocab_prefix eq "NONE" && !$soml_label and my_warn "'-voc NONE' causes no processing of ontology metadata, please provide -label";
 
 load_ontologies(@ARGV);
+langSpec();
 
 # ontology metadata
 if ($soml_id) {
