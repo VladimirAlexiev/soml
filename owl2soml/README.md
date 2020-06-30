@@ -454,7 +454,7 @@ then you may want to provide a schema-level lang spec to control how lang string
 Some examples of [combining lang specs](https://gitlab.ontotext.com/platform/platform/blob/PLATFORM-1241-langString/soaas/architecture/includes/literal.md#combining-lang-specs):
 
 | `-lang`                            | effect                                                                                   |
-|------------------------------------+------------------------------------------------------------------------------------------|
+|------------------------------------|------------------------------------------------------------------------------------------|
 | ALL                                | fetch all langs                                                                          |
 | ALL,-en-US                         | fetch all langs except American English                                                  |
 | BROWSER                            | fetch one lang according to browser's `Accept-Language` heading                          |
