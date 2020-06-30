@@ -455,13 +455,13 @@ Some examples of [combining lang specs](https://gitlab.ontotext.com/platform/pla
 
 | `-lang`                            | effect                                                                                   |
 |------------------------------------|------------------------------------------------------------------------------------------|
-| ALL                                | fetch all langs                                                                          |
-| ALL,-en-US                         | fetch all langs except American English                                                  |
-| BROWSER                            | fetch one lang according to browser's `Accept-Language` heading                          |
-| fetch: en                          | fetch only English                                                                       |
-| fetch: en~                         | fetch English or any English dialect                                                     |
-| fetch: -en-US, implicit: en        | fetch any except American English, use implicit English lang tag                         |
-| fetch: fr,en, validate: en,fr;UNIQ | fetch French or English (first one), allow only English or French, unique value per lang |
+| `ALL`                               | fetch all langs                                                                          |
+| `ALL,-en-US`                        | fetch all langs except American English                                                  |
+| `BROWSER`                           | fetch one lang according to browser's `Accept-Language` heading                          |
+| `fetch: en`                         | fetch only English                                                                       |
+| `fetch: en~`                        | fetch English or any English dialect                                                     |
+| `fetch: -en-US, implicit: en`       | fetch any except American English, use implicit English lang tag                         |
+| `fetch: fr,en, validate: en,fr;UNIQ` | fetch French or English (first one), allow only English or French, unique value per lang |
 
 You should use either a string with no spaces (which sets `fetch`),
 `key1: val1, key2: val2, ...` where 
