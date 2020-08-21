@@ -98,9 +98,9 @@ our %DATATYPES =
    "fibo-fnd-dt-fd:CombinedDateTime" => "dateOrYearOrMonth",
   );
 our @STRING_MAP =
-  ({"rdf:langString" => "langString", "rdfs:Literal" => "stringOrLangString", "schema:Text" => "stringOrLangString", "xsd:string" => "string"},
-   {"rdf:langString" => "langString", "rdfs:Literal" => "langString",         "schema:Text" => "langString",         "xsd:string" => "string"},
-   {"rdf:langString" => "string",     "rdfs:Literal" => "string",             "schema:Text" => "string",             "xsd:string" => "string"});
+  ({"rdf:langString" => "langString", "rdfs:Literal" => "stringOrLangString", "rdf:PlainLiteral" => "stringOrLangString", "schema:Text" => "stringOrLangString", "xsd:string" => "string"},
+   {"rdf:langString" => "langString", "rdfs:Literal" => "langString",         "rdf:PlainLiteral" => "langString",         "schema:Text" => "langString",         "xsd:string" => "string"},
+   {"rdf:langString" => "string",     "rdfs:Literal" => "string",             "rdf:PlainLiteral" => "string",             "schema:Text" => "string",             "xsd:string" => "string"});
 our @UNDEFINED_STRING_MAP = # what to map undefined datatype to
   ("stringOrLangString", "langString", "string");
 

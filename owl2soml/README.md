@@ -816,6 +816,9 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 
 ## Change Log
 
+21-Aug-2020:
+- map `rdf:PlainLiteral` same as `rdfs:Literal` (to `string`, `langString` or `stringOrLangString` depending on `-string` option)
+
 30-Jun-2020:
 - add option `-lang`, see [Lang Specs](#lang-specs)
 
