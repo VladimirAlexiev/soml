@@ -30,9 +30,11 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
         - [Better Handling of Multiple Ontologies](#better-handling-of-multiple-ontologies)
         - [Handle Property Inheritance](#handle-property-inheritance)
         - [Unusual Datatypes](#unusual-datatypes)
+        - [xsd:float](#xsd-float)
+        - [owl:real](#owl-real)
         - [owl:rational](#owl-rational)
         - [GeoSPARQL Serializations](#geosparql-serializations)
-        - [PlainLiteral, XMLLiteral, HTMLLiteral](#plainliteral-xmlliteral-htmlliteral)
+        - [XMLLiteral, HTMLLiteral](#xmlliteral-htmlliteral)
     - [Gaps in Ontologies](#gaps-in-ontologies)
         - [Missing Cardinality Information](#missing-cardinality-information)
         - [Unbound Props](#unbound-props)
@@ -53,9 +55,9 @@ Options:
   -label  label  Set SOML label
   -super  0|1    Generate X and XInterface for every superclass X (default 0: Platform 3.3 does this internally)
   -name   p1,p2  Designate these props as class "name" characteristics (eg rdfs:label,skos:prefLabel)
-  -string 0      Emit rdf:langString as langString; rdfs:Literal & schema:Text & undefined datatype as stringOrLangString; xsd:string as string
-          1      Emit rdf:langString & rdfs:Literal & schema:Text & undefined datatype as langString; xsd:string as string
-          2      Emit rdf:langString & rdfs:Literal & schema:Text & undefined datatype & xsd:string as string
+  -string 0      Emit rdf:langString as langString; rdf:PlainLiteral & rdfs:Literal & schema:Text & undefined datatype as stringOrLangString; xsd:string as string
+          1      Emit rdf:langString & rdf:PlainLiteral & rdfs:Literal & schema:Text & undefined datatype as langString; xsd:string as string
+          2      Emit rdf:langString & rdf:PlainLiteral & rdfs:Literal & schema:Text & undefined datatype & xsd:string as string
   -lang   str    Set schema-level lang spec. Doesn't make sense if "-string 2" is specified
 Options that are not yet implemented:
   -multi  0|1    Handle multiple parent classes (default 0: use the first one and warn; Platform doesn't yet do this)
@@ -429,17 +431,18 @@ Before this version, lang strings were mapped to plain `string`.
 
 The `-string` option (possible values `0,1,2`) controls how to emit string-related datatypes:
 
-| Datatype                             | 0 (default)        | 1          | 2      |
-|--------------------------------------|--------------------|------------|--------|
-| rdf:langString                       | langString         | langString | string |
-| rdfs:Literal, schema:Text, undefined | stringOrLangString | langString | string |
-| xsd:string                           | string             | string     | string |
+| Datatype                                               | 0 (default)        | 1          | 2      |
+|--------------------------------------------------------|--------------------|------------|--------|
+| rdf:langString                                         | langString         | langString | string |
+| rdf:PlainLiteral, rdfs:Literal, schema:Text, undefined | stringOrLangString | langString | string |
+| xsd:string                                             | string             | string     | string |
 
 Notes:
 - "undefined" refers to datatype props (`rdf:Property, owl:DatatypeProperty, owl:AnnotationProperty`) with no defined range
-- `langString` is treated as a GraphQL class `Literal` with fields `value, lang` (both are strings)
+- `langString` is treated as a GraphQL class `Literal` with fields `{value, lang}` (both are strings)
 - `stringOrLangString` refers to a union datatype that allows strings with or without lang tag but is otherwise treated as `langString`.
-  In particular, to get the value in GraphQL you need to use a query part like `field{value}`
+  In particular, to get the value in GraphQL you need to use a query part like `FIELD {value}` 
+  where `FIELD` is the field name and `value` accesses the string value.
 
 #### Lang Specs
 
@@ -679,7 +682,7 @@ As a workaround, the file `skos-fix.ttl` adds domain & range to these props.
 
 Currently the following unsupported datatypes are ignored with warning:
 
-`xsd:duration xsd:gMonthDay xsd:gDay xsd:gMonth xsd:base64Binary xsd:hexBinary xsd:float
+`xsd:duration xsd:gMonthDay xsd:gDay xsd:gMonth xsd:base64Binary xsd:hexBinary
 xsd:QName xsd:NOTATION xsd:normalizedString xsd:token xsd:language
 xsd:Name xsd:NCName xsd:ID xsd:IDREF xsd:IDREFS xsd:ENTITY xsd:ENTITIES xsd:NMTOKEN xsd:NMTOKENS
 owl:rational owl:real`
@@ -689,10 +692,21 @@ As we find platform users who wish to use some of these types, we'll gradually a
 
 Below we have notes on some of these types, plus some extras that are not even in the black-list above.
 
-### owl:rational
+### xsd:float
+
+GraphQL's `float` is in fact `xsd:double`, so we map `xsd:float` to `double`.
+The two have the same lexical representation and `double` has a bigger range and precision,
+so such mapping is lossless.
+
+But if you have a need  to handle single-precision `float` specifically, please talk to us.
+We'd need to map it to a custom type, since GraphQL doesn't have such native type.
+
+### owl:real
 
 `owl:real` is defined in OWL2 sec [4.1 Real Numbers, Decimal Numbers, and Integers](https://www.w3.org/TR/owl2-syntax/#Real_Numbers.2C_Decimal_Numbers.2C_and_Integers).
 It is only of theoretical interest since it doesn't have a lexical representation.
+
+### owl:rational
 
 `owl:rational` is defined in the same section.
 as an exact ratio of two integers (eg `"1/3"^^owl:rational`).
@@ -722,7 +736,7 @@ The only implementation I've been able to find is
 
 TODO: `geo:asWKT, geo:asGML`.
 
-### PlainLiteral, XMLLiteral, HTMLLiteral
+### XMLLiteral, HTMLLiteral
 
 TODO
 
@@ -818,6 +832,7 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 
 21-Aug-2020:
 - map `rdf:PlainLiteral` same as `rdfs:Literal` (to `string`, `langString` or `stringOrLangString` depending on `-string` option)
+- map `xsd:float` to `xsd:double` (previously it was downgraded to string)
 
 30-Jun-2020:
 - add option `-lang`, see [Lang Specs](#lang-specs)

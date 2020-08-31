@@ -62,6 +62,7 @@ our %DATATYPES =
   (# XSD datatypes
    "xsd:string"             => "string",
    "xsd:double"             => "double",
+   "xsd:float"              => "double",
    "xsd:boolean"            => "boolean",
    "xsd:byte"               => "byte",
    "xsd:short"              => "short",
@@ -106,7 +107,7 @@ our @UNDEFINED_STRING_MAP = # what to map undefined datatype to
 
 # datatypes ignored with warning
 our @NO_DATATYPES =
-  qw(xsd:duration xsd:gMonthDay xsd:gDay xsd:gMonth xsd:base64Binary xsd:hexBinary xsd:float xsd:QName xsd:NOTATION xsd:normalizedString xsd:token xsd:language xsd:Name xsd:NCName xsd:ID xsd:IDREF xsd:IDREFS xsd:ENTITY xsd:ENTITIES xsd:NMTOKEN xsd:NMTOKENS owl:rational owl:real);
+  qw(xsd:duration xsd:gMonthDay xsd:gDay xsd:gMonth xsd:base64Binary xsd:hexBinary xsd:QName xsd:NOTATION xsd:normalizedString xsd:token xsd:language xsd:Name xsd:NCName xsd:ID xsd:IDREF xsd:IDREFS xsd:ENTITY xsd:ENTITIES xsd:NMTOKEN xsd:NMTOKENS owl:rational owl:real);
 our %NO_DATATYPES;
 map {$NO_DATATYPES{$_} = 1} @NO_DATATYPES;
 
@@ -147,9 +148,9 @@ Options:
   -label  label  Set SOML label
   -super  0|1    Generate X and XInterface for every superclass X (default 0: Platform 3.3 does this internally)
   -name   p1,p2  Designate these props as class "name" characteristics (eg rdfs:label,skos:prefLabel)
-  -string 0      Emit rdf:langString as langString; rdfs:Literal & schema:Text & undefined datatype as stringOrLangString; xsd:string as string
-          1      Emit rdf:langString & rdfs:Literal & schema:Text & undefined datatype as langString; xsd:string as string
-          2      Emit rdf:langString & rdfs:Literal & schema:Text & undefined datatype & xsd:string as string
+  -string 0      Emit rdf:langString as langString; rdf:PlainLiteral & rdfs:Literal & schema:Text & undefined datatype as stringOrLangString; xsd:string as string
+          1      Emit rdf:langString & rdf:PlainLiteral & rdfs:Literal & schema:Text & undefined datatype as langString; xsd:string as string
+          2      Emit rdf:langString & rdf:PlainLiteral & rdfs:Literal & schema:Text & undefined datatype & xsd:string as string
   -lang   str    Set schema-level lang spec. Doesn't make sense if "-string 2" is specified
 
 Parses:
