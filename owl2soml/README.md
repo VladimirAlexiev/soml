@@ -830,6 +830,10 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 
 ## Change Log
 
+10-Nov-2020:
+- CIM additions (internal file `owl2soml-CIM-additions.md`, may publish later)
+- option `-shorten` does not yet work
+
 21-Aug-2020:
 - map `rdf:PlainLiteral` same as `rdfs:Literal` (to `string`, `langString` or `stringOrLangString` depending on `-string` option)
 - map `xsd:float` to `xsd:double` (previously it was downgraded to string)
