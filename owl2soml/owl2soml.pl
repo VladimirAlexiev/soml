@@ -27,10 +27,13 @@ our $soml_label;                       # -label: SOML label
 our $super_opt;                        # -super: whether to generate X and XInterface
 our $string_opt;                       # -string: how to handle langString, stringOrLangString, string
 our $lang_opt;                         # -lang: lang spec
+our $shorten_opt;                      # -shorten: shorten prop names
 our %name_char;                        # -name: hash of name props
 our $map   = URI::NamespaceMap->new(); # prefixes in loaded ontologies
 our $MAP   = URI::NamespaceMap->new    # fixed prefixes used in mapping ("service" namespace)
   ({so     => "http://www.ontotext.com/semantic-object/",
+    cims   => "http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#",
+    cim    => "http://iec.ch/TC57/2013/CIM-schema-cim16#",
     dc     => "http://purl.org/dc/elements/1.1/",
     dct    => "http://purl.org/dc/terms/",
     owl    => "http://www.w3.org/2002/07/owl#",
@@ -84,7 +87,10 @@ our %DATATYPES =
    "xsd:date"               => "date",
    "xsd:gYear"              => "year",
    "xsd:gYearMonth"         => "yearMonth",
-   # other datatypes
+   # unbound resources
+   "rdfs:Resource"          => "iri",
+   "xsd:anyURI"             => "iri",
+   # Schema datatypes
    "schema:Boolean"         => "boolean",
    "schema:Date"            => "date",
    "schema:DateTime"        => "dateTime",
@@ -93,11 +99,59 @@ our %DATATYPES =
    "schema:Number"          => "decimal",
    "schema:Time"            => "time",
    "schema:URL"             => "iri",
-   "rdfs:Resource"          => "iri",
-   "xsd:anyURI"             => "iri",
-   # unusual datatypes
+   # domain-specific datatypes
+   ## FIBO
    "fibo-fnd-dt-fd:CombinedDateTime" => "dateOrYearOrMonth",
+   ## CIM primitive
+   "cim:Boolean"  => "boolean",
+   "cim:Date"     => "date",
+   "cim:DateTime" => "dateTime",
+   "cim:Decimal"  => "decimal",  # infinite precision
+   "cim:Float"    => "double",   # or maybe "float"? But that's not standard in GraphQL
+   "cim:Integer"  => "int",      # or maybe "integer" for infinite precision?
+   "cim:String"   => "string",
+   ## CIM non-primitive
+   "cim:ActivePower"                => "double",   # cim:Float
+   "cim:ActivePowerPerCurrentFlow"  => "double",   # cim:Float
+   "cim:ActivePowerPerFrequency"    => "double",   # cim:Float
+   "cim:AngleDegrees"               => "double",   # cim:Float
+   "cim:AngleRadians"               => "double",   # cim:Float
+   "cim:ApparentPower"              => "double",   # cim:Float
+   "cim:Area"                       => "double",   # cim:Float
+   "cim:Capacitance"                => "double",   # cim:Float
+   "cim:CapacitancePerLength"       => "double",   # cim:Float
+   "cim:Conductance"                => "double",   # cim:Float
+   "cim:CurrentFlow"                => "double",   # cim:Float
+   "cim:Frequency"                  => "double",   # cim:Float
+   "cim:Inductance"                 => "double",   # cim:Float
+   "cim:InductancePerLength"        => "double",   # cim:Float
+   "cim:Length"                     => "double",   # cim:Float
+   "cim:Money"                      => "decimal",  # cim:Decimal
+   "cim:PerCent"                    => "double",   # cim:Float
+   "cim:PU"                         => "double",   # cim:Float
+   "cim:Reactance"                  => "double",   # cim:Float
+   "cim:ReactivePower"              => "double",   # cim:Float
+   "cim:Resistance"                 => "double",   # cim:Float
+   "cim:ResistancePerLength"        => "double",   # cim:Float
+   "cim:RotationSpeed"              => "double",   # cim:Float
+   "cim:Seconds"                    => "double",   # cim:Float
+   "cim:Simple_Float"               => "double",   # cim:Float
+   "cim:Susceptance"                => "double",   # cim:Float
+   "cim:Temperature"                => "double",   # cim:Float
+   "cim:Voltage"                    => "double",   # cim:Float
+   "cim:VoltagePerReactivePower"    => "double",   # cim:Float
+   "cim:VolumeFlowRate"             => "double",   # cim:Float
   );
+our %MULTIPLICITY =
+  ("cims:M:0..1" => {min => 0, max => 1},
+   "cims:M:0..2" => {min => 0, max => 2},
+   "cims:M:0..n" => {min => 0, max => "inf"},
+   "cims:M:1"    => {min => 1, max => 1},
+   "cims:M:1..1" => {min => 1, max => 1},
+   "cims:M:1..n" => {min => 1, max => "inf"},
+   "cims:M:2..n" => {min => 2, max => "inf"},
+  );
+
 our @STRING_MAP =
   ({"rdf:langString" => "langString", "rdfs:Literal" => "stringOrLangString", "rdf:PlainLiteral" => "stringOrLangString", "schema:Text" => "stringOrLangString", "xsd:string" => "string"},
    {"rdf:langString" => "langString", "rdfs:Literal" => "langString",         "rdf:PlainLiteral" => "langString",         "schema:Text" => "langString",         "xsd:string" => "string"},
@@ -105,9 +159,10 @@ our @STRING_MAP =
 our @UNDEFINED_STRING_MAP = # what to map undefined datatype to
   ("stringOrLangString", "langString", "string");
 
-# datatypes ignored with warning
+# datatypes ignored with warning, not yet supported by the platform
+
 our @NO_DATATYPES =
-  qw(xsd:duration xsd:gMonthDay xsd:gDay xsd:gMonth xsd:base64Binary xsd:hexBinary xsd:QName xsd:NOTATION xsd:normalizedString xsd:token xsd:language xsd:Name xsd:NCName xsd:ID xsd:IDREF xsd:IDREFS xsd:ENTITY xsd:ENTITIES xsd:NMTOKEN xsd:NMTOKENS owl:rational owl:real);
+  qw(xsd:duration xsd:gMonthDay cim:MonthDay xsd:gDay xsd:gMonth xsd:base64Binary xsd:hexBinary xsd:QName xsd:NOTATION xsd:normalizedString xsd:token xsd:language xsd:Name xsd:NCName xsd:ID xsd:IDREF xsd:IDREFS xsd:ENTITY xsd:ENTITIES xsd:NMTOKEN xsd:NMTOKENS owl:rational owl:real);
 our %NO_DATATYPES;
 map {$NO_DATATYPES{$_} = 1} @NO_DATATYPES;
 
@@ -142,30 +197,33 @@ $0 - Generates SOML from supplied ontologies
 
 Usage: $0 ontology.(ttl|rdf) ... > ontology.yaml
 Options:
-  -voc    pfx    Use "pfx" as vocab_prefix (and default SOML ID).
-  -voc    NONE   Don't look for vocab_prefix in the first ontology using various heuristics.
-  -id     id     Set SOML ID
-  -label  label  Set SOML label
-  -super  0|1    Generate X and XInterface for every superclass X (default 0: Platform 3.3 does this internally)
-  -name   p1,p2  Designate these props as class "name" characteristics (eg rdfs:label,skos:prefLabel)
-  -string 0      Emit rdf:langString as langString; rdf:PlainLiteral & rdfs:Literal & schema:Text & undefined datatype as stringOrLangString; xsd:string as string
-          1      Emit rdf:langString & rdf:PlainLiteral & rdfs:Literal & schema:Text & undefined datatype as langString; xsd:string as string
-          2      Emit rdf:langString & rdf:PlainLiteral & rdfs:Literal & schema:Text & undefined datatype & xsd:string as string
-  -lang   str    Set schema-level lang spec. Doesn't make sense if "-string 2" is specified
+  -voc     pfx    Use "pfx" as vocab_prefix (and default SOML ID).
+  -voc     NONE   Don't look for vocab_prefix in the first ontology using various heuristics.
+  -id      id     Set SOML ID
+  -label   label  Set SOML label
+  -super   0|1    Generate X and XInterface for every superclass X (default 0: Platform 3.3 does this internally)
+  -name    p1,p2  Designate these props as class "name" characteristics (eg rdfs:label,skos:prefLabel)
+  -string  0      Emit rdf:langString as langString; rdf:PlainLiteral & rdfs:Literal & schema:Text & undefined datatype as stringOrLangString; xsd:string as string
+           1      Emit rdf:langString & rdf:PlainLiteral & rdfs:Literal & schema:Text & undefined datatype as langString; xsd:string as string
+           2      Emit rdf:langString & rdf:PlainLiteral & rdfs:Literal & schema:Text & undefined datatype & xsd:string as string
+  -lang    str    Set schema-level lang spec. Doesn't make sense if "-string 2" is specified
+  TODO: -shorten 0|1    Shorten CIM prop names that repeat the domain, eg entsoe2:CurrentLimit.normalValue -> entsoe2:normalValue; cim:Equipment.EquipmentContainer -> cim:EquipmentContainer
 
 Parses:
 - ontologies (owl:Ontology, dct:created, dct:modified, $creator_props),
 - classes (rdfs:Class, owl:Class);
-  - EXCLUDES schema:DataTypes and $no_classes;
+  - EXCLUDES schema:DataTypes, CIM datatypes (cims:stereotype "Primitive", "CIMDatatype"), and $no_classes;
 - class inheritance (rdfs:subClassOf). If -super 1 then generates concrete class and abstract superclass and patches the hierarchy;
 - props (rdf:Property, owl:AnnotationProperty, owl:DatatypeProperty, owl:ObjectProperty);
+  - EXCLUDES props whose domain is a CIM datatype
+- prop cardinality (owl:FunctionalProperty, cims:multiplicity; but NOT owl:InverseFunctionalProperty)
 - datatypes ($datatypes);
   - EXCLUDES $no_datatypes
   - Default is stringOrLangString, langString, or string depending on option -string
 - lang specs for handling langString
-- prop relations (owl:inverseOf, schema:inverseOf; but NOT rdfs:subPropertyOf);
+- prop relations (owl:inverseOf, schema:inverseOf, cims:inverseRoleName; but NOT rdfs:subPropertyOf);
 - prop domains (rdfs:domain, schema:domainIncludes, owl:unionOf). Multiple domains are allowed.
-- prop ranges (rdfs:range, schema:rangeIncludes, owl:unionOf). Object or datatype ranges are allowed.
+- prop ranges (rdfs:range, schema:rangeIncludes, cims:dataType, owl:unionOf). Object or datatype ranges are allowed.
 - labels ($label_props),
 - descriptions ($descr_props).
 - if a range class (eg rdf:List) is not defined in the ontology, it's defined in SOML without any props
@@ -183,17 +241,19 @@ END
 }
 
 my @name_char;
-GetOptions ("vocab=s"  => \$vocab_prefix,
-            "id=s"     => \$soml_id,
-            "label=s"  => \$soml_label,
-            "super=i"  => \$super_opt,
-            "name=s"   => \@name_char,
-            "string=i" => \$string_opt,
-            "lang=s"   => \$lang_opt)
+GetOptions ("vocab=s"   => \$vocab_prefix,
+            "id=s"      => \$soml_id,
+            "label=s"   => \$soml_label,
+            "super=i"   => \$super_opt,
+            "name=s"    => \@name_char,
+            "string=i"  => \$string_opt,
+            "lang=s"    => \$lang_opt,
+            "shorten=i" => \$shorten_opt,
+           )
   or usage();
 @name_char = split(/,/,join(',',@name_char)); # https://metacpan.org/pod/Getopt::Long#Options-with-multiple-values
 map {$name_char{$_} = 1} @name_char if @name_char;
-##use Data::Dumper; die Dumper(\@name_char,\%name_char);
+##use Data::Dumper; my_die Dumper(\@name_char,\%name_char);
 $string_opt = 0 unless $string_opt;
 my_die "-string must be between 0 and 2, found $string_opt\n" if $string_opt>2;
 
@@ -325,6 +385,11 @@ sub date_part ($) {
   $dateTime
 }
 
+sub LIT ($) {
+  my $str = shift;
+  Attean::Literal->new(value => $str);
+}
+
 # https://github.com/kasei/attean/issues/151
 # Attean::IRI is not compatible with URI
 
@@ -346,14 +411,25 @@ sub IRI ($) {
   $iri
 }
 
+sub abbr($) {
+  # Return abbreviated string (pname) through $map
+  my $iri = shift;
+  $map->abbreviate(uri($iri))
+}
+
+sub ABBR($) {
+  # Return abbreviated string (pname) through $MAP
+  my $iri = shift;
+  $MAP->abbreviate(uri($iri))
+}
+
 sub iri_name($) {
   # given an IRI, return hash of 3 names:
   #  "gql" (GraphQL), "rdf" (RDF prefixed name), eventually "super" (gql+"Interface")
   my $iri = shift;
-  $iri = $iri->as_string if ref($iri);
+  $iri = ref($iri) ? $iri->as_string : $iri;
   return $iri_name{$iri} if $iri_name{$iri}; # memoization
-  my $rdf = $map->abbreviate(uri($iri))
-    or my_die("No suitable prefix for IRI $iri");
+  my $rdf = abbr($iri) or my_die("No suitable prefix for IRI $iri");
   my $gql = $rdf;
   $gql =~ s{^$vocab_prefix:}{} if $vocab_prefix;
   # PLATFORM-1625 Allow punctuation in local names and prefixes: replaces [-_.:] with "_" so we don't need to do it
@@ -419,7 +495,7 @@ sub map_range ($$) {
   # rdf is the prefixed name (applies only for "class")
   # gql is the prefixed name minus vocab_prefix
   my ($pname,$range) = @_;
-  my $x = $MAP->abbreviate(uri($range));
+  my $x = ABBR($range);
   $x && $STRING_MAP[$string_opt]{$x} and return {kind=>"datatype", gql => $STRING_MAP[$string_opt]{$x}};
   $x && $DATATYPES{$x} and return {kind=>"datatype", gql => $DATATYPES{$x}};
   $x && $NO_DATATYPES{$x} and do {my_warn("Prop $pname uses unsupported datatype $x, ignored"); return undef};
@@ -430,7 +506,8 @@ sub map_range ($$) {
 
 sub map_ranges ($$) {
   my ($prop,$name) = @_;
-  my @ranges = expand_union ($model->objects ($prop, [IRI("rdfs:range"), IRI("schema:rangeIncludes")]));
+  my @ranges = expand_union ($model->objects ($prop,
+    [map IRI($_), qw(rdfs:range schema:rangeIncludes cims:dataType)]));
   sort {$a->{gql} cmp $b->{gql}}
     grep $_, map map_range($name,$_), @ranges
 }
@@ -456,6 +533,22 @@ sub langSpec() {
     }
   };
   $soml{config}{lang} = $lang;
+}
+
+sub multiplicity($$) {
+  my ($prop,$name) = @_;
+  if (my $multiplicity = one_value ($model->objects ($prop, IRI("cims:multiplicity")))) {
+    $multiplicity = ABBR($multiplicity);
+    my $mult = $MULTIPLICITY{$multiplicity} or my_die "Unknown cims:multiplicity $multiplicity\n";
+    # https://perldoc.perl.org/perlfaq4#How-do-I-merge-two-hashes?
+    # @{...}{...} is a hash slice: all these keys ... get all those values
+    @{$soml{properties}{$name}}{keys %$mult} = values %$mult;
+    ##use Data::Dumper; my_die Dumper($soml{properties}{$name});
+  } elsif (my $isFunctional = $model->holds ($prop, IRI("rdf:type"), IRI("owl:FunctionalProperty"))) {
+    # $soml{properties}{$name}{max} = 1 # this is default
+  } else {
+    $soml{properties}{$name}{max} = "inf"
+  }
 }
 
 ##### main
@@ -488,6 +581,14 @@ while (my ($pfx,$iri) = $map->each_map) {
   $soml{prefixes}{$pfx} = $iri->as_string
 };
 
+our @CIM_DATATYPES =
+  $model->subjects(IRI("cims:stereotype"),
+                   [map LIT($_), qw(Primitive CIMDatatype)])->elements;
+map {
+  my $dt = ABBR($_);
+  $DATATYPES{$dt} || $NO_DATATYPES{$dt} or my_die "Datatype $dt not mapped\n";
+} @CIM_DATATYPES;
+
 # classes (objects)
 
 # https://github.com/kasei/attean/issues/152: need to use uniq()
@@ -497,7 +598,8 @@ my @classes = uniq (map $_->as_string, grep $_->isa("Attean::IRI"),
 # Undesirable classes. Map to as_string else array_minus may miss the same IRI instantiated from the ontology vs using IRI()
 my @no_classes = map $_->as_string,
   ((map IRI($_), @NO_CLASSES),
-   $model->subjects(IRI("rdf:type"), IRI("schema:DataType"))->elements);
+   $model->subjects(IRI("rdf:type"), IRI("schema:DataType"))->elements,
+   @CIM_DATATYPES);
 @classes = array_minus (@classes, @no_classes);
 for my $class (@classes) {
   $class = iri($class);
@@ -519,8 +621,14 @@ emit_inherits();
 # properties
 my @props = uniq (map $_->as_string,
                   $model->subjects (IRI("rdf:type"), [map IRI($_), @PROP_CLASSES]) ->elements);
-my @no_props = map IRI($_)->as_string, @NO_PROPS;
+my @no_props = map $_->as_string,
+  ((map IRI($_), @NO_PROPS),
+   # CIM datatype characteristics (value, unit, multiplier, denominatorUnit, denominatorMultiplier) are unused in data
+   $model->subjects(IRI("rdfs:domain"),[@CIM_DATATYPES])->elements);
+## my_die join ", ", map $_->as_string, @CIM_DATATYPES);
+## my_die @no_props,"\n";
 @props = array_minus (@props, @no_props);
+
 for my $prop (map iri($_), @props) {
   my $iri_name = iri_name($prop);
   my $name = $iri_name->{gql};
@@ -536,9 +644,8 @@ for my $prop (map iri($_), @props) {
   my $isDataProp   = $model->holds ($prop, IRI("rdf:type"), [IRI("owl:AnnotationProperty"), IRI("owl:DatatypeProperty")]);
   my $isSymmetric  = $model->holds ($prop, IRI("rdf:type"), IRI("owl:SymmetricProperty"));
   $soml{properties}{$name}{symmetric} = "true" if $isSymmetric;
-  my $isFunctional = $model->holds ($prop, IRI("rdf:type"), IRI("owl:FunctionalProperty"));
-  $soml{properties}{$name}{max} = "inf" unless $isFunctional;
-  my $inverseOf = one_value ($model->objects ($prop, [IRI("owl:inverseOf"), IRI("schema:inverseOf")]));
+  multiplicity($prop,$name);
+  my $inverseOf = one_value ($model->objects ($prop, [map IRI($_), qw(owl:inverseOf schema:inverseOf cims:inverseRoleName)]));
   if ($inverseOf) { # emit bidirectionally
     $inverseOf = iri_name($inverseOf)->{gql};
     $soml{properties}{$name}{inverseOf} = $inverseOf;
@@ -580,6 +687,10 @@ for my $prop (map iri($_), @props) {
     # fix for referenced classes that may not be defined in the ontology
     $soml{objects}{$class}{type} = $rdf;
     $class = $super{$class} if $super_opt && $super{$class};
+
+    if ($shorten_opt) {
+      # TODO: the difficulty is that once we shorten the prop name, it's local so we must put it under {$class}{props}. But above we already put it in the global {properties}
+    };
     $soml{objects}{$class}{props}{$name} = {};
 
     # "name" characteristic
