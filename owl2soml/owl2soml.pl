@@ -423,16 +423,23 @@ sub ABBR($) {
   $MAP->abbreviate(uri($iri))
 }
 
-sub iri_name($) {
-  # given an IRI, return hash of 3 names:
+sub iri_name($$) {
+  # Given an IRI, return hash of 3 names:
   #  "gql" (GraphQL), "rdf" (RDF prefixed name), eventually "super" (gql+"Interface")
+  # Arg "isProp" says whether the IRI is a property: the first letter (after prefix) is lowercased
+  #  TODO: this assumes that a class and prop will never have the same IRI. Which is usually true but some people do crazy shit
   my $iri = shift;
+  my $isProp = shift;
   $iri = ref($iri) ? $iri->as_string : $iri;
   return $iri_name{$iri} if $iri_name{$iri}; # memoization
   my $rdf = abbr($iri) or my_die("No suitable prefix for IRI $iri");
   my $gql = $rdf;
-  $gql =~ s{^$vocab_prefix:}{} if $vocab_prefix;
-  # PLATFORM-1625 Allow punctuation in local names and prefixes: replaces [-_.:] with "_" so we don't need to do it
+  my ($pfx,$pname) = $gql =~ m{^(.*?):(.*)$};
+  $pname or my_die("Can't parse $gql into $pfx:$pname ?!");
+  # https://ontotext.atlassian.net/browse/PLATFORM-3046 Allow props to start with uppercase
+  $pname = lcfirst($pname) if $isProp;
+  $gql = $vocab_prefix && $pfx eq $vocab_prefix ? $pname : "$pfx:$pname";
+  # https://ontotext.atlassian.net/browse/PLATFORM-1625 Allow punctuation in local names and prefixes: replaces [-_.:] with "_" so we don't need to do it
   $gql_rdf{$gql} = $rdf;
   return $iri_name{$iri} = {gql=>$gql, rdf=>$rdf}
 }
@@ -444,9 +451,9 @@ sub make_inherits(\@\@) {
     # Ignore anonymous (blank node) super-classes
     my @inherits = map $_->as_string, grep $_->isa("Attean::IRI"),
       $model->objects ($class, IRI("rdfs:subClassOf"))->elements;
-    $class = iri_name($class) and $class = $class->{gql} or next;
+    $class = iri_name($class,0) and $class = $class->{gql} or next;
     @inherits = array_minus (@inherits, @$no_classes);
-    @inherits = sort map $_->{gql}, grep $_, map iri_name($_), @inherits;
+    @inherits = sort map $_->{gql}, grep $_, map iri_name($_,0), @inherits;
     $inherits{$class} = $inherits[0] if @inherits;
     my_warn("Found multiple superclasses for $class, using only the first one: ".
             join(", ",@inherits))
@@ -499,7 +506,7 @@ sub map_range ($$) {
   $x && $STRING_MAP[$string_opt]{$x} and return {kind=>"datatype", gql => $STRING_MAP[$string_opt]{$x}};
   $x && $DATATYPES{$x} and return {kind=>"datatype", gql => $DATATYPES{$x}};
   $x && $NO_DATATYPES{$x} and do {my_warn("Prop $pname uses unsupported datatype $x, ignored"); return undef};
-  my $y = iri_name($range);
+  my $y = iri_name($range,0);
   $y and return {kind => "class", gql => $y->{gql}, rdf => $y->{rdf}};
   return undef
 }
@@ -603,7 +610,7 @@ my @no_classes = map $_->as_string,
 @classes = array_minus (@classes, @no_classes);
 for my $class (@classes) {
   $class = iri($class);
-  my $iri_name = iri_name($class);
+  my $iri_name = iri_name($class,0);
   my $name = $iri_name->{gql};
   my $rdf = $iri_name->{rdf};
   next if $DATATYPES{$rdf};
@@ -630,7 +637,7 @@ my @no_props = map $_->as_string,
 @props = array_minus (@props, @no_props);
 
 for my $prop (map iri($_), @props) {
-  my $iri_name = iri_name($prop);
+  my $iri_name = iri_name($prop,1);
   my $name = $iri_name->{gql};
   my $rdf = $iri_name->{rdf};
   $soml{properties}{$name}{rdfProp} = $rdf; # if $name ne $rdf;
@@ -647,7 +654,7 @@ for my $prop (map iri($_), @props) {
   multiplicity($prop,$name);
   my $inverseOf = one_value ($model->objects ($prop, [map IRI($_), qw(owl:inverseOf schema:inverseOf cims:inverseRoleName)]));
   if ($inverseOf) { # emit bidirectionally
-    $inverseOf = iri_name($inverseOf)->{gql};
+    $inverseOf = iri_name($inverseOf,1)->{gql};
     $soml{properties}{$name}{inverseOf} = $inverseOf;
     $soml{properties}{$inverseOf}{inverseOf} = $name; # hope and pray $inverseOf is defined as a prop
   };
@@ -680,7 +687,7 @@ for my $prop (map iri($_), @props) {
   # domains
   my @domains = expand_union ($model->objects ($prop, [IRI("rdfs:domain"), IRI("schema:domainIncludes")]));
   for my $domain (@domains) {
-    my $class = iri_name($domain) or next;
+    my $class = iri_name($domain,0) or next;
     my $rdf = $class->{rdf};
     $DATATYPES{$rdf} and next; # schema:URL is domain of category, https://github.com/schemaorg/schemaorg/issues/2536
     $class = $class->{gql} or next;

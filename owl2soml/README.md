@@ -830,6 +830,9 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 
 ## Change Log
 
+13-Nov-2020:
+- lowercase the first letter of prop names
+
 10-Nov-2020:
 - CIM additions (internal file `owl2soml-CIM-additions.md`, may publish later)
 - option `-shorten` does not yet work
