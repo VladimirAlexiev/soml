@@ -1,64 +1,76 @@
 Read more bytes than requested. Do you use an encoding-related PerlIO layer? at C:/Strawberry/perl/site/lib/XML/LibXML.pm line 883.
 	eval {...} called at C:/Strawberry/perl/site/lib/XML/LibXML.pm line 883
-	XML::LibXML::parse_fh(XML::LibXML=HASH(0x71112f0), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 99
-	eval {...} called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 98
-	XML::LibXML::SAX::_parse(XML::LibXML::SAX=HASH(0x7100f68)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 55
-	XML::LibXML::SAX::_parse_bytestream(XML::LibXML::SAX=HASH(0x7100f68), GLOB(0x64c5f28)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2611
-	XML::SAX::Base::parse(XML::LibXML::SAX=HASH(0x7100f68), HASH(0x710dc90)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2635
-	XML::SAX::Base::parse_file(XML::LibXML::SAX=HASH(0x7100f68), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 130
+	XML::LibXML::parse_fh(XML::LibXML=HASH(0x6b8a440), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 106
+	eval {...} called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 105
+	XML::LibXML::SAX::_parse(XML::LibXML::SAX=HASH(0x6b863a0)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 62
+	XML::LibXML::SAX::_parse_bytestream(XML::LibXML::SAX=HASH(0x6b863a0), GLOB(0x66228b0)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2611
+	XML::SAX::Base::parse(XML::LibXML::SAX=HASH(0x6b863a0), HASH(0x662f200)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2635
+	XML::SAX::Base::parse_file(XML::LibXML::SAX=HASH(0x6b863a0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 130
 	eval {...} called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 129
-	AtteanX::Parser::RDFXML::_parse(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 97
-	AtteanX::Parser::RDFXML::parse_cb_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 153
-	Attean::API::PushParser::parse_list_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 113
-	Attean::API::PushParser::parse_iter_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at ../owl2soml.pl line 193
-	main::load_ontologies("schema.rdf") called at ../owl2soml.pl line 316 at C:/Strawberry/perl/site/lib/XML/LibXML.pm line 889.
-	XML::LibXML::parse_fh(XML::LibXML=HASH(0x71112f0), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 99
-	eval {...} called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 98
-	XML::LibXML::SAX::_parse(XML::LibXML::SAX=HASH(0x7100f68)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 55
-	XML::LibXML::SAX::_parse_bytestream(XML::LibXML::SAX=HASH(0x7100f68), GLOB(0x64c5f28)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2611
-	XML::SAX::Base::parse(XML::LibXML::SAX=HASH(0x7100f68), HASH(0x710dc90)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2635
-	XML::SAX::Base::parse_file(XML::LibXML::SAX=HASH(0x7100f68), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 130
+	AtteanX::Parser::RDFXML::_parse(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 97
+	AtteanX::Parser::RDFXML::parse_cb_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 153
+	Attean::API::PushParser::parse_list_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 113
+	Attean::API::PushParser::parse_iter_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at ../owl2soml.pl line 328
+	main::load_ontologies("schema.rdf") called at ../owl2soml.pl line 567 at C:/Strawberry/perl/site/lib/XML/LibXML.pm line 889.
+	XML::LibXML::parse_fh(XML::LibXML=HASH(0x6b8a440), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 106
+	eval {...} called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 105
+	XML::LibXML::SAX::_parse(XML::LibXML::SAX=HASH(0x6b863a0)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 62
+	XML::LibXML::SAX::_parse_bytestream(XML::LibXML::SAX=HASH(0x6b863a0), GLOB(0x66228b0)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2611
+	XML::SAX::Base::parse(XML::LibXML::SAX=HASH(0x6b863a0), HASH(0x662f200)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2635
+	XML::SAX::Base::parse_file(XML::LibXML::SAX=HASH(0x6b863a0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 130
 	eval {...} called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 129
-	AtteanX::Parser::RDFXML::_parse(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 97
-	AtteanX::Parser::RDFXML::parse_cb_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 153
-	Attean::API::PushParser::parse_list_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 113
-	Attean::API::PushParser::parse_iter_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at ../owl2soml.pl line 193
+	AtteanX::Parser::RDFXML::_parse(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 97
+	AtteanX::Parser::RDFXML::parse_cb_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 153
+	Attean::API::PushParser::parse_list_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 113
+	Attean::API::PushParser::parse_iter_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at ../owl2soml.pl line 328
 	main::load_ontologies("schema.rdf") called at C:/Strawberry/perl/site/lib/XML/LibXML.pm line 889.
-	XML::LibXML::parse_fh(XML::LibXML=HASH(0x71112f0), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 99
-	eval {...} called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 98
-	XML::LibXML::SAX::_parse(XML::LibXML::SAX=HASH(0x7100f68)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 55
-	XML::LibXML::SAX::_parse_bytestream(XML::LibXML::SAX=HASH(0x7100f68), GLOB(0x64c5f28)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2611
-	XML::SAX::Base::parse(XML::LibXML::SAX=HASH(0x7100f68), HASH(0x710dc90)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2635
-	XML::SAX::Base::parse_file(XML::LibXML::SAX=HASH(0x7100f68), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 130
+	XML::LibXML::parse_fh(XML::LibXML=HASH(0x6b8a440), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 106
+	eval {...} called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 105
+	XML::LibXML::SAX::_parse(XML::LibXML::SAX=HASH(0x6b863a0)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 62
+	XML::LibXML::SAX::_parse_bytestream(XML::LibXML::SAX=HASH(0x6b863a0), GLOB(0x66228b0)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2611
+	XML::SAX::Base::parse(XML::LibXML::SAX=HASH(0x6b863a0), HASH(0x662f200)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2635
+	XML::SAX::Base::parse_file(XML::LibXML::SAX=HASH(0x6b863a0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 130
 	eval {...} called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 129
-	AtteanX::Parser::RDFXML::_parse(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 97
-	AtteanX::Parser::RDFXML::parse_cb_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 153
-	Attean::API::PushParser::parse_list_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 113
-	Attean::API::PushParser::parse_iter_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at ../owl2soml.pl line 193
-	main::load_ontologies("schema.rdf") called at ../owl2soml.pl line 316
- at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 109.
-	XML::LibXML::SAX::_parse(XML::LibXML::SAX=HASH(0x7100f68)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 55
-	XML::LibXML::SAX::_parse_bytestream(XML::LibXML::SAX=HASH(0x7100f68), GLOB(0x64c5f28)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2611
-	XML::SAX::Base::parse(XML::LibXML::SAX=HASH(0x7100f68), HASH(0x710dc90)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2635
-	XML::SAX::Base::parse_file(XML::LibXML::SAX=HASH(0x7100f68), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 130
+	AtteanX::Parser::RDFXML::_parse(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 97
+	AtteanX::Parser::RDFXML::parse_cb_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 153
+	Attean::API::PushParser::parse_list_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 113
+	Attean::API::PushParser::parse_iter_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at ../owl2soml.pl line 328
+	main::load_ontologies("schema.rdf") called at ../owl2soml.pl line 567
+ at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 116.
+	XML::LibXML::SAX::_parse(XML::LibXML::SAX=HASH(0x6b863a0)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 62
+	XML::LibXML::SAX::_parse_bytestream(XML::LibXML::SAX=HASH(0x6b863a0), GLOB(0x66228b0)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2611
+	XML::SAX::Base::parse(XML::LibXML::SAX=HASH(0x6b863a0), HASH(0x662f200)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2635
+	XML::SAX::Base::parse_file(XML::LibXML::SAX=HASH(0x6b863a0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 130
 	eval {...} called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 129
-	AtteanX::Parser::RDFXML::_parse(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 97
-	AtteanX::Parser::RDFXML::parse_cb_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 153
-	Attean::API::PushParser::parse_list_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 113
-	Attean::API::PushParser::parse_iter_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at ../owl2soml.pl line 193
-	main::load_ontologies("schema.rdf") called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 109.
-	XML::LibXML::SAX::_parse(XML::LibXML::SAX=HASH(0x7100f68)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 55
-	XML::LibXML::SAX::_parse_bytestream(XML::LibXML::SAX=HASH(0x7100f68), GLOB(0x64c5f28)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2611
-	XML::SAX::Base::parse(XML::LibXML::SAX=HASH(0x7100f68), HASH(0x710dc90)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2635
-	XML::SAX::Base::parse_file(XML::LibXML::SAX=HASH(0x7100f68), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 130
+	AtteanX::Parser::RDFXML::_parse(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 97
+	AtteanX::Parser::RDFXML::parse_cb_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 153
+	Attean::API::PushParser::parse_list_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 113
+	Attean::API::PushParser::parse_iter_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at ../owl2soml.pl line 328
+	main::load_ontologies("schema.rdf") called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 116.
+	XML::LibXML::SAX::_parse(XML::LibXML::SAX=HASH(0x6b863a0)) called at C:/Strawberry/perl/site/lib/XML/LibXML/SAX.pm line 62
+	XML::LibXML::SAX::_parse_bytestream(XML::LibXML::SAX=HASH(0x6b863a0), GLOB(0x66228b0)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2611
+	XML::SAX::Base::parse(XML::LibXML::SAX=HASH(0x6b863a0), HASH(0x662f200)) called at C:/Strawberry/perl/vendor/lib/XML/SAX/Base.pm line 2635
+	XML::SAX::Base::parse_file(XML::LibXML::SAX=HASH(0x6b863a0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 130
 	eval {...} called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 129
-	AtteanX::Parser::RDFXML::_parse(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 97
-	AtteanX::Parser::RDFXML::parse_cb_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 153
-	Attean::API::PushParser::parse_list_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 113
-	Attean::API::PushParser::parse_iter_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at ../owl2soml.pl line 193
+	AtteanX::Parser::RDFXML::_parse(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 97
+	AtteanX::Parser::RDFXML::parse_cb_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 153
+	Attean::API::PushParser::parse_list_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 113
+	Attean::API::PushParser::parse_iter_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at ../owl2soml.pl line 328
 	main::load_ontologies("schema.rdf") called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 143.
-	AtteanX::Parser::RDFXML::_parse(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 97
-	AtteanX::Parser::RDFXML::parse_cb_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 153
-	Attean::API::PushParser::parse_list_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 113
-	Attean::API::PushParser::parse_iter_from_io(AtteanX::Parser::RDFXML=HASH(0x6e87098), GLOB(0x64c5f28)) called at ../owl2soml.pl line 193
-	main::load_ontologies("schema.rdf") called at ../owl2soml.pl line 316
+	AtteanX::Parser::RDFXML::_parse(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/AtteanX/Parser/RDFXML.pm line 97
+	AtteanX::Parser::RDFXML::parse_cb_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 153
+	Attean::API::PushParser::parse_list_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at C:/Strawberry/perl/site/lib/Attean/API/Parser.pm line 113
+	Attean::API::PushParser::parse_iter_from_io(AtteanX::Parser::RDFXML=HASH(0x663f3c0), GLOB(0x66228b0)) called at ../owl2soml.pl line 328
+	main::load_ontologies("schema.rdf") called at ../owl2soml.pl line 567
+	(in cleanup) 	(in cleanup)  at C:/Strawberry/perl/site/lib/URI/Namespace.pm line 104 during global destruction.
+	(in cleanup) 	(in cleanup)  at C:/Strawberry/perl/site/lib/URI/Namespace.pm line 104 during global destruction.
+	(in cleanup) 	(in cleanup)  at C:/Strawberry/perl/site/lib/URI/Namespace.pm line 104 during global destruction.
+	(in cleanup) 	(in cleanup)  at C:/Strawberry/perl/site/lib/URI/Namespace.pm line 104 during global destruction.
+	(in cleanup) 	(in cleanup)  at C:/Strawberry/perl/site/lib/URI/Namespace.pm line 104 during global destruction.
+	(in cleanup) 	(in cleanup)  at C:/Strawberry/perl/site/lib/URI/Namespace.pm line 104 during global destruction.
+	(in cleanup) 	(in cleanup)  at C:/Strawberry/perl/site/lib/URI/Namespace.pm line 104 during global destruction.
+	(in cleanup) 	(in cleanup)  at C:/Strawberry/perl/site/lib/URI/Namespace.pm line 104 during global destruction.
+	(in cleanup) 	(in cleanup)  at C:/Strawberry/perl/site/lib/URI/Namespace.pm line 104 during global destruction.
+	(in cleanup) 	(in cleanup)  at C:/Strawberry/perl/site/lib/URI/Namespace.pm line 104 during global destruction.
+	(in cleanup) 	(in cleanup)  at C:/Strawberry/perl/site/lib/URI/Namespace.pm line 104 during global destruction.
+	(in cleanup) 	(in cleanup)  at C:/Strawberry/perl/site/lib/URI/Namespace.pm line 104 during global destruction.
