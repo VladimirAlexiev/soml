@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Semantic Objects Modeling Language</title>
-<meta name="generator" content="Org mode" />
 <meta name="author" content="Vladimir Alexiev" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -30,8 +30,9 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -39,22 +40,22 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
+    overflow: auto;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
+    top: -8px;
+    right: 12px;
     padding: 3px;
-    border: 1px solid black;
+    color: #555;
+    background-color: #f2f2f299;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -190,105 +191,56 @@
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
-  /*]]>*/-->
 </style>
-<style type='text/css'> h1,h2,h3,h4,h5,h6,h7 {font-family: Arial} .author, .date, .creator {-webkit-margin-before: 0em; -webkit-margin-after: 0em} .abstract {margin: 1em; padding: 1em; border: 1px solid black} .abstract:before {content: 'Abstract: '; font-weight: bold} #preamble p {font-size: 110%%; margin-left: auto; margin-right: auto; text-align: center} th.left {text-align:left} th.right {text-align:right} th, td {line-height: 1em; border-width: 1px; border-style: solid solid; border-spacing: 2px 2px; padding: 2px 1px} .CANCELED {color: blue} .MAYBE {color: blue} .POSTPONED {color: blue} .SAME {color: blue} .APPLIED {color: orange} .FOLLOW {color: orange} .INPROGRESS {color: orange} .NEXT {color: orange} .IER {color: orange}.underline {text-decoration:underline} </style>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
+<style type='text/css'> #content {max-width: 120em; margin: auto} h1,h2,h3,h4,h5,h6,h7 {font-family: Arial} .author, .date, .creator {-webkit-margin-before: 0em; -webkit-margin-after: 0em} .abstract {margin: 1em; padding: 1em; border: 1px solid black} .abstract:before {content: 'Abstract: '; font-weight: bold} #preamble p {font-size: 110%%; margin-left: auto; margin-right: auto; text-align: center} th.org-left   {text-align:left} th.org-right  {text-align:right} th.org-center {text-align:center} th, td {line-height: 1em; border-width: 1px; border-style: solid solid; border-spacing: 2px 2px; padding: 2px 1px} .CANCELED {color: blue} .MAYBE {color: blue} .POSTPONED {color: blue} .SAME {color: blue} .APPLIED {color: orange} .FOLLOW {color: orange} .INPROGRESS {color: orange} .NEXT {color: orange} .IER {color: orange}.underline {text-decoration:underline} </style>
 </head>
 <body>
-<div id="content">
+<div id="content" class="content">
 <h1 class="title">Semantic Objects Modeling Language</h1>
-<div id="table-of-contents">
+<div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb38028f">Intro</a>
+<li><a href="#org7daa208">1. Intro</a>
 <ul>
-<li><a href="#org559ae9f">Why SOML?</a></li>
-<li><a href="#org1e942f6">Similar Schema Languages</a></li>
-<li><a href="#org9466d6d">What is SOML</a></li>
+<li><a href="#org59372f1">1.1. Why SOML?</a></li>
+<li><a href="#orge2ec93c">1.2. Similar Schema Languages</a></li>
+<li><a href="#orgdfe4cd7">1.3. What is SOML</a></li>
 </ul>
 </li>
-<li><a href="#org89956a1">Complex Schema (Company Graph)</a>
+<li><a href="#org75c120e">2. Complex Schema (Company Graph)</a>
 <ul>
-<li><a href="#org57936a4">Example Class:</a></li>
-<li><a href="#org6b550ad">Example Inverse Alias</a></li>
-<li><a href="#orgb3f78d3">Example Diagram: Exchange Listing</a></li>
+<li><a href="#org41e6cd2">2.1. Example Class:</a></li>
+<li><a href="#org296a5be">2.2. Example Inverse Alias</a></li>
+<li><a href="#orgab96e37">2.3. Example Diagram: Exchange Listing SOML</a></li>
+<li><a href="#orgabd3998">2.4. Example Diagram: Exchange Listing RDF</a></li>
 </ul>
 </li>
-<li><a href="#org3c424ab">SOML Tooling</a>
+<li><a href="#orgac6848e">3. SOML Tooling</a>
 <ul>
-<li><a href="#orgae2c348">tsv2soml</a></li>
-<li><a href="#org893dfe5">soml-map</a></li>
+<li><a href="#orgc8164f3">3.1. owl2soml</a></li>
+<li><a href="#orgb2307b3">3.2. tsv2soml</a></li>
+<li><a href="#org97b48fc">3.3. soml-map</a></li>
 </ul>
 </li>
-<li><a href="#orga0f12e8">Tricky Points and Deficiencies</a>
+<li><a href="#org3774715">4. Tricky Points and Deficiencies</a>
 <ul>
-<li><a href="#org15d8bbf">GraphQL Type vs rdf:type</a></li>
-<li><a href="#org9fce966">No Multiple Typing</a></li>
-<li><a href="#orgf0fb16a">Single vs Multiple-Value Props</a></li>
-<li><a href="#org2812962">Inverse Aliases</a></li>
-<li><a href="#orgd69d00d">Literals (langString, union datatypes)</a></li>
-<li><a href="#orgd2e987c">Extended Pattern (Prefix + Regex)</a></li>
-<li><a href="#org019f209">IRI Generation</a></li>
-<li><a href="#orgde99a22">Schema Inclusion/Modularity</a></li>
-<li><a href="#orgeee9558">Concrete Superclass</a></li>
-<li><a href="#org9e001b9">Covariant Range</a></li>
-<li><a href="#org8e2065f">Multiple Inheritance</a></li>
+<li><a href="#org9b1d93d">4.1. GraphQL Type vs rdf:type</a></li>
+<li><a href="#org69d40a6">4.2. Single vs Multiple-Value Props</a></li>
+<li><a href="#org1cd0864">4.3. Inverse Aliases</a></li>
+<li><a href="#org73707b7">4.4. Literals</a></li>
+<li><a href="#orgb9a9dff">4.5. Extended Pattern (Prefix + Regex)</a></li>
+<li><a href="#orgf799c44">4.6. IRI Generation</a></li>
+<li><a href="#orga3392a6">4.7. Schema Inclusion/Modularity</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb38028f" class="outline-2">
-<h2 id="orgb38028f">Intro</h2>
-<div class="outline-text-2" id="text-orgb38028f">
+<div id="outline-container-org7daa208" class="outline-2">
+<h2 id="org7daa208"><span class="section-number-2">1.</span> Intro</h2>
+<div class="outline-text-2" id="text-1">
 <p>
 The Semantic Objects Modeling Language (SOML)
 is a simple YAML-based language for describing business objects (business entities, domain objects) 
@@ -303,7 +255,7 @@ and enabling better search, exploration, classification, and recommendation acro
 </p>
 
 <p>
-The platform was released at the end of 2019 and is under active develoment and evolution.
+Version 3.0 of the Platform was released at the end of 2019 and is under active develoment and evolution.
 </p>
 <ul class="org-ul">
 <li>It is documented at <a href="http://platform.ontotext.com/">http://platform.ontotext.com/</a>, including:
@@ -329,9 +281,9 @@ generating SOML (<code>tsv2soml</code>) and mapping RDF data (<code>soml-map</co
 </p>
 </div>
 
-<div id="outline-container-org559ae9f" class="outline-3">
-<h3 id="org559ae9f">Why SOML?</h3>
-<div class="outline-text-3" id="text-org559ae9f">
+<div id="outline-container-org59372f1" class="outline-3">
+<h3 id="org59372f1"><span class="section-number-3">1.1.</span> Why SOML?</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
 We often are asked why we had to introduce yet another object modeling language?
 Why didn't we use existing semantic web mechanisms such as 
@@ -376,9 +328,9 @@ we need to be able to generate a number of technical artefacts from the same bus
 </div>
 </div>
 
-<div id="outline-container-org1e942f6" class="outline-3">
-<h3 id="org1e942f6">Similar Schema Languages</h3>
-<div class="outline-text-3" id="text-org1e942f6">
+<div id="outline-container-orge2ec93c" class="outline-3">
+<h3 id="orge2ec93c"><span class="section-number-3">1.2.</span> Similar Schema Languages</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
 A number of schema languages have appeared recently that are based on YAML,
 express business-level object models that are somewhat independent of technological choices,
@@ -386,15 +338,15 @@ and can render the models to a variety of schema technologies:
 </p>
 
 <ul class="org-ul">
-<li><a href="https://biolink.github.io/biolinkml/%3E">BioLink modeling language</a>.
+<li><a href="https://biolink.github.io/biolinkml/">BioLink modeling language</a>.
 Models are authored in YAML. A variety of artefacts can be generated, including SHEX, JSON-Schema, OWL, Python dataclasses, ElasticSearch type definitions, 
 UML diagrams, Markdown pages for deployment in a GitHub pages site, etc.</li>
-<li><a href="https://www.hl7.org/fhir/%3E">HL7 FHIR</a>, which is a business-level language for expressing Health Care models 
+<li><a href="https://www.hl7.org/fhir/">HL7 FHIR</a>, which is a business-level language for expressing Health Care models 
 and has renditions in UML, XML, JSON, Turtle, SHEX.</li>
-<li><b>a.ml</b>: <a href="https://a.ml/%3E">Anything Modeling Language</a> (see <a href="https://a.ml/docbook/%3E">documentation</a>, <a href="https://a.ml/aml-spec/vocabularies/%3E">vocabularies</a>, <a href="https://a.ml/aml-spec/dialects/%3E">dialects</a>),
+<li><b>a.ml</b>: <a href="https://a.ml/">Anything Modeling Language</a> (see <a href="https://a.ml/docbook/">documentation</a>, <a href="https://a.ml/aml-spec/vocabularies/">vocabularies</a>, <a href="https://a.ml/aml-spec/dialects/">dialects</a>),
 which targets mapping of YAML schemas to ontologies and SHACL shapes, 
 and YAML documents to RDF graphs.</li>
-<li><a href="https://cloudinformationmodel.org/about.html%3E">Cloud Information Model (CIM)</a>, which targets
+<li><a href="https://cloudinformationmodel.org/about.html">Cloud Information Model (CIM)</a>, which targets
 AML Vocabulary (conceptual model),
 AML Dialect (data shapes),
 RDFS (entities and relationships),
@@ -403,7 +355,7 @@ SQL DDL (relational database schema),
 R2RML (mapping from relational schema to RDF),
 RAML (REST API data types),
 JSON Schema (data shapes)</li>
-<li>The Uber Graph Schema Languag, a YAML language that is
+<li>The Uber Graph Schema Language, a YAML language that is
 used to generate various artefacts (ProtoBuf, Avro, RDFS ontology, etc) 
 and to integrate <b>200 thousand</b> datasets at Uber.
 While not publically available, it's described in presentations by <a href="https://www.slideshare.net/joshsh">Joshua Shinavier</a> including:
@@ -415,9 +367,9 @@ While not publically available, it's described in presentations by <a href="http
 </div>
 </div>
 
-<div id="outline-container-org9466d6d" class="outline-3">
-<h3 id="org9466d6d">What is SOML</h3>
-<div class="outline-text-3" id="text-org9466d6d">
+<div id="outline-container-orgdfe4cd7" class="outline-3">
+<h3 id="orgdfe4cd7"><span class="section-number-3">1.3.</span> What is SOML</h3>
+<div class="outline-text-3" id="text-1-3">
 <p>
 At present SOML is very simple, but will evolve to include more features.
 The overall structure of a SOML file (schema) is shown below.
@@ -478,9 +430,9 @@ some tricky points of SOML usage and GraphQL deficiencies, and some tooling.
 </div>
 </div>
 
-<div id="outline-container-org89956a1" class="outline-2">
-<h2 id="org89956a1">Complex Schema (Company Graph)</h2>
-<div class="outline-text-2" id="text-org89956a1">
+<div id="outline-container-org75c120e" class="outline-2">
+<h2 id="org75c120e"><span class="section-number-2">2.</span> Complex Schema (Company Graph)</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 To introduce the proper context for this blog (working with complex SOML schemas),
 we'll describe the Ontotext Company Graph (ONTO CG) ontology and model.
@@ -683,13 +635,13 @@ In addition to the above new classes, ONTO-CG adds:
 </ul>
 
 <p>
-The full CG schema is included: <a href="./img/CG.yaml">CG.yaml</a>. Below we show a couple of typical examples.
+The full CG schema is included: <a href="./schemas/CG.yaml">CG.yaml</a>. Below we show a couple of typical examples.
 </p>
 </div>
 
-<div id="outline-container-org57936a4" class="outline-3">
-<h3 id="org57936a4">Example Class:</h3>
-<div class="outline-text-3" id="text-org57936a4">
+<div id="outline-container-org41e6cd2" class="outline-3">
+<h3 id="org41e6cd2"><span class="section-number-3">2.1.</span> Example Class:</h3>
+<div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #a0522d;">ExchangeListing</span>:
   <span style="color: #a0522d;">label</span>: <span style="color: #8b2252;">"Exchange Listing"</span>
@@ -748,9 +700,9 @@ A more appropriate <code>descr</code> is given at the object level, overriding t
 </div>
 </div>
 
-<div id="outline-container-org6b550ad" class="outline-3">
-<h3 id="org6b550ad">Example Inverse Alias</h3>
-<div class="outline-text-3" id="text-org6b550ad">
+<div id="outline-container-org296a5be" class="outline-3">
+<h3 id="org296a5be"><span class="section-number-3">2.2.</span> Example Inverse Alias</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 A Position is an associative node between Person and Organization that adds more data (not shown):
 </p>
@@ -782,33 +734,72 @@ To allow navigation in any direction (not just from Position out, but also in), 
 </div>
 </div>
 
-<div id="outline-container-orgb3f78d3" class="outline-3">
-<h3 id="orgb3f78d3">Example Diagram: Exchange Listing</h3>
-<div class="outline-text-3" id="text-orgb3f78d3">
+<div id="outline-container-orgab96e37" class="outline-3">
+<h3 id="orgab96e37"><span class="section-number-3">2.3.</span> Example Diagram: Exchange Listing SOML</h3>
+<div class="outline-text-3" id="text-2-3">
 <p>
-For example, the figure below shows the stock exchange listing (IPO) of Apple on the Tokyo exchange and NASDAQ, and the listing of Nasdaq Inc (the company) on NASDAQ (the stock exchange). The data is integrated from Wikidata. This figure is generated from RDF Turtle using <a href="https://github.com/VladimirAlexiev/rdf2rml">rdfpuml</a> (see V.Alexiev, <a href="http://rawgit2.com/VladimirAlexiev/my/master/pres/20161128-rdfpuml-rdf2rml/index.html">RDF by Example: rdfpuml for True RDF Diagrams, rdf2rml for R2RML Generation</a>, Semantic Web in Libraries (SWIB), Nov 2016.
+For example, the figure below shows the stock exchange listing (IPO) of Apple on the Tokyo exchange and NASDAQ, and the listing of Nasdaq Inc (the company) on NASDAQ (the stock exchange).
 </p>
+<ul class="org-ul">
+<li>The data is integrated from Wikidata.</li>
+<li>This figure is generated from RDF Turtle using <a href="https://github.com/VladimirAlexiev/rdf2rml">rdfpuml</a> (see V.Alexiev, <a href="http://rawgit2.com/VladimirAlexiev/my/master/pres/20161128-rdfpuml-rdf2rml/index.html">RDF by Example: rdfpuml for True RDF Diagrams, rdf2rml for R2RML Generation</a>, Semantic Web in Libraries (SWIB), Nov 2016.</li>
+<li>This version of the diagram uses original SOML (GraphQL) property and class names, i.e. all of them share the same namespace (expressed using the empty) prefix.</li>
+<li>It can be considered as a "logical" data model of how data should be queried with GraphQL</li>
+</ul>
 
 <p>
-<a href="./img/model-exchange-listing-mapped.ttl">./img/model-exchange-listing-mapped.ttl</a>
+<a href="./eg/model-exchange-listing.ttl">./eg/model-exchange-listing.ttl</a>
 </p>
 
 
-<div class="figure">
-<p><img src="./img/model-exchange-listing-mapped.png" alt="model-exchange-listing-mapped.png" />
+<div id="org55b2dbd" class="figure">
+<p><img src="./eg/model-exchange-listing.png" alt="model-exchange-listing.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgabd3998" class="outline-3">
+<h3 id="orgabd3998"><span class="section-number-3">2.4.</span> Example Diagram: Exchange Listing RDF</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+This version of the diagram uses <a href="#org97b48fc">soml-map</a> to map SOML names to RDF names in specific namespaces.
+</p>
+<ul class="org-ul">
+<li>So this can be considered the "physical" data model of data as it's stored in the semantic database</li>
+</ul>
+
+<p>
+<a href="./eg/model-exchange-listing-mapped.ttl">./eg/model-exchange-listing-mapped.ttl</a>
+</p>
+
+
+<div id="org7a0afe3" class="figure">
+<p><img src="./eg/model-exchange-listing-mapped.png" alt="model-exchange-listing-mapped.png" />
 </p>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3c424ab" class="outline-2">
-<h2 id="org3c424ab">SOML Tooling</h2>
-<div class="outline-text-2" id="text-org3c424ab">
+<div id="outline-container-orgac6848e" class="outline-2">
+<h2 id="orgac6848e"><span class="section-number-2">3.</span> SOML Tooling</h2>
+<div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgae2c348" class="outline-3">
-<h3 id="orgae2c348">tsv2soml</h3>
-<div class="outline-text-3" id="text-orgae2c348">
+<div id="outline-container-orgc8164f3" class="outline-3">
+<h3 id="orgc8164f3"><span class="section-number-3">3.1.</span> owl2soml</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+This tool (written in Perl) generates SOML schemas from ontologies (that use RDFS, OWL and/or schema.org constructs).
+It handles numerous features and has been integrated in the Ontotext Platform (reimplemented in Java).
+See its own README.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb2307b3" class="outline-3">
+<h3 id="orgb2307b3"><span class="section-number-3">3.2.</span> tsv2soml</h3>
+<div class="outline-text-3" id="text-3-2">
 <p>
 Editing large schemas is often easier to do in a table, even when the schema language is simple.
 (Also, this enables domain experts to participate in schema authoring, even if only editing the descriptions.)
@@ -824,8 +815,8 @@ Here's the beginning of the sheet:
 </p>
 
 
-<div class="figure">
-<p><img src="./img/CG-sheet.png" alt="CG-sheet.png" />
+<div id="org386c371" class="figure">
+<p><img src="./eg/CG-sheet.png" alt="CG-sheet.png" />
 </p>
 </div>
 
@@ -835,71 +826,108 @@ as distinct business classes
 </p>
 
 
-<div class="figure">
-<p><img src="./img/CG-sheet2.png" alt="CG-sheet2.png" />
+<div id="org47ca51c" class="figure">
+<p><img src="./eg/CG-sheet2.png" alt="CG-sheet2.png" />
+</p>
+</div>
+
+<p>
+To generate a SOML schema from the google sheet <a href="https://docs.google.com/spreadsheets/d/1_-bn9Y-9rtysnvKiVus6BkFKXqHhiV4vCjYeiRmb6XU/edit#gid=0">CG-data-model</a>, call it like this:
+</p>
+<pre class="example">
+curl -s "https://docs.google.com/spreadsheets/d/1_-bn9Y-9rtysnvKiVus6BkFKXqHhiV4vCjYeiRmb6XU/export?format=tsv" | perl tsv2soml.pl | cat CG-preamble.yaml - &gt; CG.yaml
+</pre>
+
+
+<p>
+Here <a href="./schemas/CG-preamble.yaml">CG-preamble.yaml</a> is some fixed SOML metadata (a header).
+</p>
+
+<p>
+Options:
+</p>
+<ul class="org-ul">
+<li><code>-p</code>: don't emit <code>pattern</code> (this feature restricts URLs to a certain pattern)</li>
+<li><code>-l</code>: downgrade Literals: <code>stringOrLangString, langString</code> -&gt; <code>string</code>, <code>dateOrYearOrMonth</code> -&gt; <code>date</code>.
+This can be used to simplify the schema not to use <code>langString</code> and union datatypes</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org97b48fc" class="outline-3">
+<h3 id="org97b48fc"><span class="section-number-3">3.3.</span> soml-map</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+<code>tsv2soml</code> writes out a file <code>soml-map.tsv</code> (see exmaple <a href="./schemas/soml-map.tsv">soml-map.tsv</a>) with columns "class, prop (optional), rdf"
+</p>
+<ul class="org-ul">
+<li>For props without <code>RDF</code> value, it uses the RDF name from the shared first occurrence of the same prop name</li>
+</ul>
+
+<p>
+It can be used to map from SOML names to RDF names (class/prop URLs) in specific namespaces.
+Eg compare <a href="#orgab96e37">Example Diagram: Exchange Listing SOML</a> vs <a href="#orgabd3998">Example Diagram: Exchange Listing RDF</a>.
+</p>
+
+<p>
+It can be used to map examples (models) or conversion scripts (TARQL, or SPARQL Update for OpenRefine)
+from a "logical" representation using uniform GraphQL names
+to a "physical" representaiton using specific RDF names.
+</p>
+
+<p>
+Usage:
+</p>
+<pre class="example">
+perl soml-map.pl &lt; file.(tarql|ru|ttl) &gt; file-mapped.(tarql|ru|ttl)
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org3774715" class="outline-2">
+<h2 id="org3774715"><span class="section-number-2">4.</span> Tricky Points and Deficiencies</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org9b1d93d" class="outline-3">
+<h3 id="org9b1d93d"><span class="section-number-3">4.1.</span> GraphQL Type vs rdf:type</h3>
+</div>
+
+<div id="outline-container-org69d40a6" class="outline-3">
+<h3 id="org69d40a6"><span class="section-number-3">4.2.</span> Single vs Multiple-Value Props</h3>
+</div>
+
+<div id="outline-container-org1cd0864" class="outline-3">
+<h3 id="org1cd0864"><span class="section-number-3">4.3.</span> Inverse Aliases</h3>
+</div>
+
+<div id="outline-container-org73707b7" class="outline-3">
+<h3 id="org73707b7"><span class="section-number-3">4.4.</span> Literals</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+(langString, union datatypes)
 </p>
 </div>
 </div>
+
+<div id="outline-container-orgb9a9dff" class="outline-3">
+<h3 id="orgb9a9dff"><span class="section-number-3">4.5.</span> Extended Pattern (Prefix + Regex)</h3>
 </div>
 
-<div id="outline-container-org893dfe5" class="outline-3">
-<h3 id="org893dfe5">soml-map</h3>
-</div>
-</div>
-
-<div id="outline-container-orga0f12e8" class="outline-2">
-<h2 id="orga0f12e8">Tricky Points and Deficiencies</h2>
-<div class="outline-text-2" id="text-orga0f12e8">
-</div>
-<div id="outline-container-org15d8bbf" class="outline-3">
-<h3 id="org15d8bbf">GraphQL Type vs rdf:type</h3>
+<div id="outline-container-orgf799c44" class="outline-3">
+<h3 id="orgf799c44"><span class="section-number-3">4.6.</span> IRI Generation</h3>
 </div>
 
-<div id="outline-container-org9fce966" class="outline-3">
-<h3 id="org9fce966">No Multiple Typing</h3>
-</div>
-
-<div id="outline-container-orgf0fb16a" class="outline-3">
-<h3 id="orgf0fb16a">Single vs Multiple-Value Props</h3>
-</div>
-
-<div id="outline-container-org2812962" class="outline-3">
-<h3 id="org2812962">Inverse Aliases</h3>
-</div>
-
-<div id="outline-container-orgd69d00d" class="outline-3">
-<h3 id="orgd69d00d">Literals (langString, union datatypes)</h3>
-</div>
-
-<div id="outline-container-orgd2e987c" class="outline-3">
-<h3 id="orgd2e987c">Extended Pattern (Prefix + Regex)</h3>
-</div>
-
-<div id="outline-container-org019f209" class="outline-3">
-<h3 id="org019f209">IRI Generation</h3>
-</div>
-
-<div id="outline-container-orgde99a22" class="outline-3">
-<h3 id="orgde99a22">Schema Inclusion/Modularity</h3>
-</div>
-
-<div id="outline-container-orgeee9558" class="outline-3">
-<h3 id="orgeee9558">Concrete Superclass</h3>
-</div>
-
-<div id="outline-container-org9e001b9" class="outline-3">
-<h3 id="org9e001b9">Covariant Range</h3>
-</div>
-
-<div id="outline-container-org8e2065f" class="outline-3">
-<h3 id="org8e2065f">Multiple Inheritance</h3>
+<div id="outline-container-orga3392a6" class="outline-3">
+<h3 id="orga3392a6"><span class="section-number-3">4.7.</span> Schema Inclusion/Modularity</h3>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2020-02-12 Wed 00:00</p>
+<p class="date">Date: 2022-06-21 Tue 00:00</p>
 <p class="author">Author: Vladimir Alexiev</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

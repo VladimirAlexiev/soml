@@ -1,5 +1,5 @@
 #!perl -wn
-# curl -s "https://docs.google.com/spreadsheets/d/1_-bn9Y-9rtysnvKiVus6BkFKXqHhiV4vCjYeiRmb6XU/export?format=tsv" | perl soml-gen.pl | cat CG-preamble.yaml - > CG.yaml
+# curl -s "https://docs.google.com/spreadsheets/d/1_-bn9Y-9rtysnvKiVus6BkFKXqHhiV4vCjYeiRmb6XU/export?format=tsv" | perl tsv2soml.pl | cat CG-preamble.yaml - > CG.yaml
 # Also writes out soml-map.tsv with cols "class, prop (optional), rdf" to map from SOML names to RDF classes/props.
 # For props without rdf, uses the rdf name from the shared first occurrence of the same prop name
 # Options:

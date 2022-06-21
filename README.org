@@ -1,9 +1,9 @@
 #+options: ':nil *:t -:t ::t <:t H:5 \n:nil ^:{} anchor:nil arch:headline author:t
 #+options: broken-links:nil c:nil creator:nil d:(not "LOGBOOK") date:t e:t email:nil f:t
-#+options: inline:t num:nil p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2020-05-05>
+#+date: <2022-06-21>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
@@ -234,7 +234,7 @@ In addition to the above new classes, ONTO-CG adds:
 - Various flags, e.g. for Organization (~cg:isResearch~), Position (~cg:isCurrent, cg:isPrimary~), AcademicQualification (~cg:isCompleted~), ExchangeListing, OrganizationRelation (~cg:isCurrent~)
 - Business nomenclatures (~skos:ConceptScheme~): ~Organization Type, Legal Form, Organization Status, Industry, Investor Type, Geo Coordinate Resolution, Address Type, Observation Type, Gender, Event Type, Event Appearance Type, Position Type, Transaction Type, Relation Type~
 
-The full CG schema is included: [[./img/CG.yaml][CG.yaml]]. Below we show a couple of typical examples.
+The full CG schema is included: [[./schemas/CG.yaml][CG.yaml]]. Below we show a couple of typical examples.
 
 ** Example Class: 
 
@@ -313,15 +313,34 @@ To allow navigation in any direction (not just from Position out, but also in), 
       position: {label: "position", range: Position, inverseAlias: organization}
 #+end_src
 
-** Example Diagram: Exchange Listing
+** Example Diagram: Exchange Listing SOML
 
-For example, the figure below shows the stock exchange listing (IPO) of Apple on the Tokyo exchange and NASDAQ, and the listing of Nasdaq Inc (the company) on NASDAQ (the stock exchange). The data is integrated from Wikidata. This figure is generated from RDF Turtle using [[https://github.com/VladimirAlexiev/rdf2rml][rdfpuml]] (see V.Alexiev, [[http://rawgit2.com/VladimirAlexiev/my/master/pres/20161128-rdfpuml-rdf2rml/index.html][RDF by Example: rdfpuml for True RDF Diagrams, rdf2rml for R2RML Generation]], Semantic Web in Libraries (SWIB), Nov 2016.
+For example, the figure below shows the stock exchange listing (IPO) of Apple on the Tokyo exchange and NASDAQ, and the listing of Nasdaq Inc (the company) on NASDAQ (the stock exchange).
+- The data is integrated from Wikidata.
+- This figure is generated from RDF Turtle using [[https://github.com/VladimirAlexiev/rdf2rml][rdfpuml]] (see V.Alexiev, [[http://rawgit2.com/VladimirAlexiev/my/master/pres/20161128-rdfpuml-rdf2rml/index.html][RDF by Example: rdfpuml for True RDF Diagrams, rdf2rml for R2RML Generation]], Semantic Web in Libraries (SWIB), Nov 2016.
+- This version of the diagram uses original SOML (GraphQL) property and class names, i.e. all of them share the same namespace (expressed using the empty) prefix.
+- It can be considered as a "logical" data model of how data should be queried with GraphQL
 
-[[./img/model-exchange-listing-mapped.ttl]]
+[[./eg/model-exchange-listing.ttl]]
 
-[[./img/model-exchange-listing-mapped.png]]
+[[./eg/model-exchange-listing.png]]
+
+** Example Diagram: Exchange Listing RDF
+
+This version of the diagram uses [[*soml-map][soml-map]] to map SOML names to RDF names in specific namespaces.
+- So this can be considered the "physical" data model of data as it's stored in the semantic database
+
+[[./eg/model-exchange-listing-mapped.ttl]]
+
+[[./eg/model-exchange-listing-mapped.png]]
 
 * SOML Tooling
+
+** owl2soml
+
+This tool (written in Perl) generates SOML schemas from ontologies (that use RDFS, OWL and/or schema.org constructs).
+It handles numerous features and has been integrated in the Ontotext Platform (reimplemented in Java).
+See its own README.
 
 ** tsv2soml
 
@@ -333,15 +352,39 @@ The CG model was not written by hand, it was generated from a TSV (google sheet)
 The sheet has 300 rows, and the generated SOML is 1176 lines.
 Here's the beginning of the sheet:
 
-[[./img/CG-sheet.png]]
+[[./eg/CG-sheet.png]]
 
 Here is the end of the sheet, which exposes various thesauri (~ConceptSchemes~) 
 as distinct business classes
 
-[[./img/CG-sheet2.png]]
+[[./eg/CG-sheet2.png]]
+
+To generate a SOML schema from the google sheet [[https://docs.google.com/spreadsheets/d/1_-bn9Y-9rtysnvKiVus6BkFKXqHhiV4vCjYeiRmb6XU/edit#gid=0][CG-data-model]], call it like this:
+: curl -s "https://docs.google.com/spreadsheets/d/1_-bn9Y-9rtysnvKiVus6BkFKXqHhiV4vCjYeiRmb6XU/export?format=tsv" | perl tsv2soml.pl | cat CG-preamble.yaml - > CG.yaml
+
+Here [[./schemas/CG-preamble.yaml][CG-preamble.yaml]] is some fixed SOML metadata (a header).
+
+Options:
+- ~-p~: don't emit ~pattern~ (this feature restricts URLs to a certain pattern)
+- ~-l~: downgrade Literals: ~stringOrLangString, langString~ -> ~string~, ~dateOrYearOrMonth~ -> ~date~.
+  This can be used to simplify the schema not to use ~langString~ and union datatypes
 
 ** soml-map
 
+~tsv2soml~ writes out a file ~soml-map.tsv~ (see exmaple [[./schemas/soml-map.tsv][soml-map.tsv]]) with columns "class, prop (optional), rdf"
+- For props without ~RDF~ value, it uses the RDF name from the shared first occurrence of the same prop name
+
+It can be used to map from SOML names to RDF names (class/prop URLs) in specific namespaces.
+Eg compare [[*Example Diagram: Exchange Listing SOML][Example Diagram: Exchange Listing SOML]] vs [[*Example Diagram: Exchange Listing RDF][Example Diagram: Exchange Listing RDF]].
+
+It can be used to map examples (models) or conversion scripts (TARQL, or SPARQL Update for OpenRefine)
+from a "logical" representation using uniform GraphQL names
+to a "physical" representaiton using specific RDF names.
+
+Usage:
+: perl soml-map.pl < file.(tarql|ru|ttl) > file-mapped.(tarql|ru|ttl)
+
+ 
 * Tricky Points and Deficiencies
 
 ** GraphQL Type vs rdf:type

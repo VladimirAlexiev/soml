@@ -1,6 +1,6 @@
 #!perl -wp
-# perl soml-map.pl < file.(tarql|ttl) > file-mapped.(tarql|ttl)
-# First run soml-gen.pl to create soml-map.tsv
+# perl soml-map.pl < file.(tarql|ru|ttl) > file-mapped.(tarql|ru|ttl)
+# First run tsv2soml.pl to create soml-map.tsv
 
 our (%map_class, %map_prop_class, $class);
 
