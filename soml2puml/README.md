@@ -37,7 +37,7 @@ There are two modes:
 
 ![](img/bsdd-graphql-voyager-overview.png)
 
-- Full view
+- Full view (only 2 classes are shown here)
 
 ![](img/bsdd-graphql-voyager.png)
 
@@ -107,11 +107,10 @@ The PlantUML Server uses URLs that encode the diagram text, see [text-encoding](
 - Change `svg` to `uml` to see the PlantUML editor
 
 SOML now includes keys at schema level (`diagram.full, diagram.overview`: see below) 
-where you can put these URLs.
+where you can store these URLs.
 
-I wanted to use perl module [UML::PlantUML::Encoder](https://metacpan.org/pod/UML::PlantUML::Encoder) in the script to
-print on STDERR the PlantUML Server URL of the diagram for inclusion in SOML.
-But due to [bug 148220](https://rt.cpan.org/Ticket/Display.html?id=148220) I now do this using PlantUML itself
+I wanted to use perl module [UML::PlantUML::Encoder](https://metacpan.org/pod/UML::PlantUML::Encoder) to compute the encoded URL.
+But due to [bug 148220](https://rt.cpan.org/Ticket/Display.html?id=148220), I now do this using PlantUML itself.
 
 Take a look at [Makefile](img/Makefile) for some examples:
 ```Makefile
@@ -121,7 +120,7 @@ Take a look at [Makefile](img/Makefile) for some examples:
 	@puml -encodeurl $@
 ```
 
-`puml` is a simple script:
+Here `puml` is a simple script:
 ```sh
 #!/bin/sh
 java -jar c:/prog/plantuml/plantuml.jar -charset UTF-8 $*
@@ -145,37 +144,32 @@ The following diagram-related additions to SOML are proposed.
 3 URLs that capture the 3 kinds of diagrams.
 
 ```yaml
-id: /soml/bsdd
-label: SOML schema for buildingSMART Data Dictionary (bSDD)
 diagram:
   dynamic: https://rawgit2.com/Accord-Project/bsdd/main/bsdd-graphql-voyager-refact.html
-  overview: http://www.plantuml.com/plantuml/svg/fLF1Qjmm4BtxAuIFXJL9Zai9WUROGmcqfuAPbSPhaP5anZ9B_hwMNTKxQvijH2VjctdlpTEEN_e870T7HMiDAdHT_50EtGcvdo5jMHCMX4rKCIYsvpOgOnbrjC4NXIReUrL-FJQMi6u26UJZi_gMODjO3QcjLD3VG0kn1UUGQ_2clZ1wtQxeFpXqoF53oCZI8aVMlwyKtf3MWyZIee30iQt18OyjVT8AWuyysUVxbH-SaCQcr-30pWRpTMavKpXXVR6ZQX8r5doI_Gx-FC0P9qx-iR3-FOQ8lniu5qHK0OgGlUP0TCNx1JHW8abaOPn2U4zZls63QJHy3Nfmw6CYhT656DccS0HSyq3JUlpqTgQbIo7_47LzoeUg-bAgms6yFbRLO_dtSTNMEIep5NzxfONa_peyJ0wxpScX0qOVPKloQoqPYHRRcxgETTzKh-osFuBjpLuvFbNLqnr7JbmqenNdrH41nCaPHl7iivTTnX75qQlBGJ8c8gYT87Am-q7sPyldS7ZEFk9Zk1K7ed11CzLstkVJiY_epU3e3m00
-  full: http://www.plantuml.com/plantuml/svg/xLXVRnD747_tfpYbRrM94jed2o5GaafHWT2Gj2-LhBdTiM_A_hdEpeLOTRzxRsqMSdWvBo55eEQUpdk_t_oPdPsTyPCWmD9PCsb8OuMsbMLbqTR8OREaY9N1YS6vLE8hfaKZbIP69UJTH1a8eTfxD9sJmTdS6uqyVLmTnMMQauA8sgiWVB1K_Jrvz9qmkD02evCVRlvul7eqLM3GQUY5hK09NQrPno1uAMfLQH2y88khwd1__t0rwGcrzwzxi1gekLYsFUOeitQGUA4b1ZDpNh057ILutNyFmkGMINuUrpdXvTdyZ6b1xZtbO3VbCk00__r7y8mWdf-1MtImm2ElSKlD85GQduu4QyGoZNDo56abVcXi6JVHFBbk3JWePdhLMNHoZdDaT0fBI0viqOvm4feFL8vWG52VpjM94vBb2x15-yBO6b2ep-e_KKdKLixgGIEqmMuoNb7OiPE73t_ywGRqHHVFxgeY9sEE1m7fGabCGrThsiWkJjkmTDujRGcq8psUqLV8PI58o7m43BdN4KEX0tCUqpUWatNQNZBrQAQ4_cVolgerO2to39oUlOcPrMpLjfViMsHPPcfS-dIdjUxRhrbvcWQ1M9c_zVg6GJ6rnN2ow48U7DFw9kIfZJjnDd_LrK70AHpaU8PmOb09aphgE6RQBlWpT0jfTg8wIyvtuTH9N93bBi9p264Nvg91jbul7LXI5sXRP92ESIUFRCBSyPNprfQNm61HaDDPBgtrU0ssDJbLDHZZPLRxwzaRacQc6bInD54utkXSLRNt1i6bWpnAEiU_EcBKxrX5gdvd4gWDvbWOMxnPQFrhr3C8WamXiYnSdrmhqmMwwdaQ5LamPRnJb-VbOsTH6g_FviyHGiSOzox5iKGTkTkPIMxCpDjt9Is881ULWxPP1b9WVkrWtOyKSHZNnGtrRs0wBADialaLPWAR6ka4MalzXLoVOI-tboBhLZtIVOzaQszATalmMdxsR466jfGsL7cO8ncQ-NKrNf6srMkTeydFa-bJmLoPdm7IM3W8yD0Y19Pc1XQP58HeswOnYiQazsBjvOtRIB4Pn0jgDBrHnzu2RGAqURsDIUroFUQ_y49bjwN9Ddk7cGREG93BDkQIBcvk3IbqeSIG1BraKuAsdl7KpVquV6GFjekHGGWOpynDrqfhp0Wo7RAn75WON-FcfezPgWbSpDFKYQ-J8ltuzBIWuEygMT-DKeFXwQiSbvn39QX7sx-xdxFkvwpxEUj-pWfVSD3wweQV--7dIuucuPQpIVYcXfEGlrmAPuw3_ydCaL9fC6sanVz-pWYAlOcj_22ben73bK-te0vQJwyYjwptqVZPDt7Qhk1PjlTgu7Sysx5TVNTz7B-zJwBhswkVqYN6D2fh34lBcf2OqLqKfjYO6U0PTmQvT-pIqSQN-F9b9yNYFo2Y3yF1khhvxCL3krSzUD2_HibxQSZCFTDAhp_-uIer45cguM2jOGGyhJRn6aAYleQCFXfJcevItgrnfMfBNLRq9FyFnPR6X_lx3tTevCX5tQjALMGoS63m91zwuKdFYE_JZrZVwsgJ8rl5BpqvHuQ6ZJeolY_fwOK_Jdg65V03uR7VUuDw_MqiFfyZzWawtLap-HS0
+  overview: http://www.plantuml.com/plantuml/svg/fLCzRy8m4DtpAquPAn4Lf2weOe6nGuNKJfKYOryI2yUEBeuG_xvsFWWE40OodS_ltRjtlXHI861PsJEKM1wGwgZmAIw9AumKPXQi0P9vOK58GcwbqL5zbBfYn4hGHc2D5NoyHn5NhAuX_bnRaapdZMAKKgEGrXluqTB6mEes6978o1OfAv4aPxN3RKsZBPrRQ1-Fw5oP0wOdwIYU8PoAvtnvCPPZIneE8-jWpD73zfWXeUQuCxmfKNVzt6H7ec87L8wuCoMJkaLtuGWvUMhXCDzaAYJRDJuSHbmc5QQPKQ8TnjQdPUOi-sbsNeFKLGzI7syOUrIFcCFLJOMXfu0xJOwiWfLkn2dJ8hru39K2n_UlmZUuQkANgGQ33jfCr8qNxdtnCacMCIp4OWFnUvAynHFH0Bq67bp-QH3TqysG-h9EeekNJoJS7-3sPJiLueLKOlAUSwgh95avLNfaR7YSNfNwerDgGnIprP-DRNY0ksCRBhshq510WsU6fdiMZF6EeRdg5qFmcg5gMD8PiVwxdbwmi33P2AQKEQ7ebdcchLVg_WC0
+  full: http://www.plantuml.com/plantuml/svg/xLbBR-Cs4BxxLmZkhMY2E6qlHX1WuQH0q6oIPkFsie11YIEB3KMg99LOMFU_ToZ9NibwqN6xcosYWo5HCvptp4ShOXGyY1EJUJ74FYWzYknIm5J0OSGXD9wHdcBBo7YKAGWCasAa7vb8Y2An9oG53Odtyybe572YjJS-c_fIFkhfkNSF8IWG0Lp888r1cB57T7FL-pGw-yue8ZJkYSy_L1_ErsVJW70GbAZf-PeI0slF_Zwm6EycnyUJzGXfTC8KuGiX3II48gKWzhqsYebb7vrXXZS8_wvOi-JIXyKpCz4Y1iKeGztGk6iYbYbPGcxJvc7Gb8PufcM0FdJHjCsYggBumgh1YLgeb0EwoviBLZZTtkolt26QjT7fBFOb_qnvqh01Y48_4-leW5WtpsGgZCfo8yhxBsj7LJjEVE2er8MC2HEvJiNjIrHAihoiRgHX0Upwf8s5bqasQxUcKYMehvadjahet0HkzS9H2w7T52b8vugxKCTImPK8fIDvHovLh5F0WMYus6a5tLjgGqogNOG_OGV41jUN0o7Zi0Wbftc1pUmo2p5PRMCiihIsj4zp8zXTdt8kQrjNv6ntjGbK4_EG9KWpQrdhDjQrAeAYx6x3MqnO9bpyk6MPxsJKzntq2eYHwhermqzQSe32kpvdTMj68MJO2sj1xgDESERbKYvN2HOWSUOiXzjssXsG-mqwjTcqmr4j3DmsWwimk1GuyBARcg3kk2X0emEWj_wVEFeRqdgvaAYNhLRHJqmFH79o-kDF5TARrCALjSU4sQVqUsPJwbDMxEsSjZeJKcIn2sdAQ7z6bwt7mGKbPRi7E1EsEw0XAU7tDdqrPc6UjdF5aDh-DEVkiqsd21lQdP89A5CCtCt3lz_43cX6Gc1E0TtevfgKhwQBDLi5CQJerTzsnmCTA9OuawFQGhSJbuc-9NaNsqZSXXzI7miwRwRrhDzbkEIO8mWXPwcoAJf4VWrYQQ91gZHcGgRwIXYxOB8XXlTON4Cq3n6eMD8CMpyB7l0e1WexbXgqi8ZwGFTxqH0gTRcpvpimeAg5fbtA05OaJdYRB9zmBit2bwlYF1L443pcXw2BGkZQGtI3w4vKMW1ObBpGYNm4ka1WYqS3RPbYihfS1JpLxCdYG0XOJ7X5M0_VbUZXQm9OC96aj-5xH9qOcJXFg8PjdUAOU9cQJEodfYjuI8X18KurcaIPHZ39Vqj93XlQGbgWqQHCajy9J-5N9d3OtJMN-W3ABj3GBqGQ-fk26jfvk1XOcL-aYebnYLmxt6YIuM3ezzVNXIK5spQLxYsCtPopTXVtFuEhahC-V2TTMjHFLpLTsb_zTnf598v1BOYWYorog-jGmt7jhruLgdi3Ps_Wx0sS7GJElW8swsQwXxzIfe1Mk1n4_Q6O8RxLhydrXWDVCmviyc3mRNC3cWD0DvOYcJ-0-P98y-qlhS5FDAw0TF9_1wH54jOpheP6yvNzWP-lAPq-rGl55LQzTEgNRj9IcHOVeTNbjwssQsoL6tj7zEZS6zimZNU_UrIlgLV_Ml5HU3JVUzJ3D2XYYsFRH6nUegZwYrwHXHWKMTnF1gmg0ZhRjIs86ASpTwcdnyUdA5KTUUs6RiyJXTJD8G4bbV_hZsgky3fstxgnSNAgshJdxjiWUOS5QTFM-uILLpKZwcMt4nuBCvxB-JFgKUkGVVy1
 ```
 
 - This is mostly for use by ChatGPT, so it can show them back to a user
 - The examples above are deployed at external servers (`plantuml.com` and `rawgit2.com`) but should be deployed at the Ontotext Platform
 - TODO: SVG or PNG? How to size for display?
-- The PlantUML URLs [encode the text](https://plantuml.com/text-encoding) of the diagram. Such function is available in the PlantUML code, and from the command line:
-```
-java -jar plantuml.jar -charset UTF-8 -encodeurl schema-diagram.puml
-```
 
 ### At Object Level
 
 Characteristics to specify object (class) emoji and rank.
+Take a look at this example (apologies to all basketball players!)
 
 ```yaml
 objects:
   Judoist:
     diagram: {rank: 2, emoji: martial_arts_uniform}
     props:
-      uses:  {range: Nunchaku}
-      beats: {range: BasketballPlayer}
+      uses:  {range: Nunchaku, max: 2}
+      beats: {range: BasketballPlayer, max:inf}
   Nunchaku:
     diagram: {rank: 2.1, emoji: chains}
     props:
-      boughtFrom: {range: Japan}
+      boughtFrom: {range: Japan, min: 1}
   Japan:
     diagram: {rank: 2.2, emoji: japan}
   BasketballPlayer:
@@ -187,8 +181,10 @@ objects:
 - `rank` orders classes from left to right
   - Classes with rank difference less than 1 are ordered from top to bottom
   - Classes with no rank come last, ordered alphabetically
-  - Rank is taken in account only if there's a relation between the concerned classes
+  - Rank is taken in account only when there's a relation between the concerned classes
 - `emoji` visualizes an icon to the left of the class name
-  - Pick emoji from the [emoji-cheat-sheet](https://github.com/ikatyang/emoji-cheat-sheet/), [Unicode full-emoji-list](https://unicode.org/emoji/charts/full-emoji-list.html), or [emoji.txt](https://github.com/plantuml/plantuml/blob/master/src/net/sourceforge/plantuml/emoji/data/emoji.txt)
+  - Pick emoji from the [emoji-cheat-sheet](https://github.com/ikatyang/emoji-cheat-sheet/) or [Unicode full-emoji-list](https://unicode.org/emoji/charts/full-emoji-list.html).
+    Check existence in PlantUML's [emoji.txt](https://github.com/plantuml/plantuml/blob/master/src/net/sourceforge/plantuml/emoji/data/emoji.txt)
   - If you don't specify emoji for a class, a default one is picked from a list
-  - Use ChatGPT to pick better emoji for you! But make sure they exist, e.g. it picked `hash` (to visualize an integer), which doesn't exist
+  - Use ChatGPT to pick better emoji for you! But make sure they exist, 
+    e.g. it picked `hash` (to visualize an integer), which didn't exist, so I used `1234`
