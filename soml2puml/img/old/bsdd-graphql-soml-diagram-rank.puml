@@ -1,0 +1,24 @@
+@startuml
+hide empty members
+hide circle
+left to right direction
+class "<:file_folder:> Classification" as Classification
+class "<:hammer_and_wrench:> ClassificationProperty" as ClassificationProperty
+class "<:link:> ClassificationRelation" as ClassificationRelation
+class "<:earth_americas:> Country" as Country
+class "<:label:> Domain" as Domain
+class "<:globe_with_meridians:> Language" as Language
+class "<:wrench:> Property" as Property
+class "<:link:> PropertyRelation" as PropertyRelation
+class "<:book:> PropertyValue" as PropertyValue
+class "<:books:> ReferenceDocument" as ReferenceDocument
+class "<:triangular_ruler:> Unit" as Unit
+Classification             "0..*" -u-  "1..1" Domain                     : domain\n classification
+Classification             "0..*" -d-  "0..1" Classification             : parentClassification\n childClassification
+ClassificationProperty     "0..*" -u-  "1..1" Classification             : classification\n classificationProperty
+ClassificationRelation     "0..*" -l-  "2..2" Classification             : related\n relation
+Property                   "1..1" -d-  "0..*" ClassificationProperty     : classificationProperty\n property
+PropertyRelation           "0..*" -l-  "2..2" Property                   : related\n relation
+ClassificationProperty            -d-> "0..*" PropertyValue              : allowedValue
+Property                          -d-> "0..*" PropertyValue              : allowedValue
+@enduml

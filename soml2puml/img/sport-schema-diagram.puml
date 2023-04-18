@@ -1,0 +1,14 @@
+@startuml
+hide empty members
+hide circle
+left to right direction
+skinparam nodesep 50
+
+class "<:martial_arts_uniform:> Judoist" as Judoist
+class "<:chains:> Nunchaku" as Nunchaku
+class "<:japan:> Japan" as Japan
+class "<:basketball:> BasketballPlayer" as BasketballPlayer
+Judoist                           -d-> "0..1" BasketballPlayer           : beats
+Judoist                           -r-> "0..1" Nunchaku                   : uses
+Nunchaku                          -r-> "0..1" Japan                      : boughtFrom
+@enduml

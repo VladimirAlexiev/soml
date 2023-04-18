@@ -1,0 +1,478 @@
+id: /soml/bsdd
+label: SOML schema for buildingSMART Data Dictionary (bSDD)
+creator: Vladimir Alexiev, Mihail Radkov
+created: 2022-01-13
+updated: 2022-02-24
+versionInfo: 1.0
+diagram:
+  dynamic: https://rawgit2.com/Accord-Project/bsdd/main/bsdd-graphql-voyager-refact.html
+  overview: http://www.plantuml.com/plantuml/svg/fLCzRy8m4DtpAquPAn4Lf2weOe6nGuNKJfKYOryI2yUEBeuG_xvsFWWE40OodS_ltRjtlXHI861PsJEKM1wGwgZmAIw9AumKPXQi0P9vOK58GcwbqL5zbBfYn4hGHc2D5NoyHn5NhAuX_bnRaapdZMAKKgEGrXluqTB6mEes6978o1OfAv4aPxN3RKsZBPrRQ1-Fw5oP0wOdwIYU8PoAvtnvCPPZIneE8-jWpD73zfWXeUQuCxmfKNVzt6H7ec87L8wuCoMJkaLtuGWvUMhXCDzaAYJRDJuSHbmc5QQPKQ8TnjQdPUOi-sbsNeFKLGzI7syOUrIFcCFLJOMXfu0xJOwiWfLkn2dJ8hru39K2n_UlmZUuQkANgGQ33jfCr8qNxdtnCacMCIp4OWFnUvAynHFH0Bq67bp-QH3TqysG-h9EeekNJoJS7-3sPJiLueLKOlAUSwgh95avLNfaR7YSNfNwerDgGnIprP-DRNY0ksCRBhshq510WsU6fdiMZF6EeRdg5qFmcg5gMD8PiVwxdbwmi33P2AQKEQ7ebdcchLVg_WC0
+  full: http://www.plantuml.com/plantuml/svg/xLbBR-Cs4BxxLmZkhMY2E6qlHX1WuQH0q6oIPkFsie11YIEB3KMg99LOMFU_ToZ9NibwqN6xcosYWo5HCvptp4ShOXGyY1EJUJ74FYWzYknIm5J0OSGXD9wHdcBBo7YKAGWCasAa7vb8Y2An9oG53Odtyybe572YjJS-c_fIFkhfkNSF8IWG0Lp888r1cB57T7FL-pGw-yue8ZJkYSy_L1_ErsVJW70GbAZf-PeI0slF_Zwm6EycnyUJzGXfTC8KuGiX3II48gKWzhqsYebb7vrXXZS8_wvOi-JIXyKpCz4Y1iKeGztGk6iYbYbPGcxJvc7Gb8PufcM0FdJHjCsYggBumgh1YLgeb0EwoviBLZZTtkolt26QjT7fBFOb_qnvqh01Y48_4-leW5WtpsGgZCfo8yhxBsj7LJjEVE2er8MC2HEvJiNjIrHAihoiRgHX0Upwf8s5bqasQxUcKYMehvadjahet0HkzS9H2w7T52b8vugxKCTImPK8fIDvHovLh5F0WMYus6a5tLjgGqogNOG_OGV41jUN0o7Zi0Wbftc1pUmo2p5PRMCiihIsj4zp8zXTdt8kQrjNv6ntjGbK4_EG9KWpQrdhDjQrAeAYx6x3MqnO9bpyk6MPxsJKzntq2eYHwhermqzQSe32kpvdTMj68MJO2sj1xgDESERbKYvN2HOWSUOiXzjssXsG-mqwjTcqmr4j3DmsWwimk1GuyBARcg3kk2X0emEWj_wVEFeRqdgvaAYNhLRHJqmFH79o-kDF5TARrCALjSU4sQVqUsPJwbDMxEsSjZeJKcIn2sdAQ7z6bwt7mGKbPRi7E1EsEw0XAU7tDdqrPc6UjdF5aDh-DEVkiqsd21lQdP89A5CCtCt3lz_43cX6Gc1E0TtevfgKhwQBDLi5CQJerTzsnmCTA9OuawFQGhSJbuc-9NaNsqZSXXzI7miwRwRrhDzbkEIO8mWXPwcoAJf4VWrYQQ91gZHcGgRwIXYxOB8XXlTON4Cq3n6eMD8CMpyB7l0e1WexbXgqi8ZwGFTxqH0gTRcpvpimeAg5fbtA05OaJdYRB9zmBit2bwlYF1L443pcXw2BGkZQGtI3w4vKMW1ObBpGYNm4ka1WYqS3RPbYihfS1JpLxCdYG0XOJ7X5M0_VbUZXQm9OC96aj-5xH9qOcJXFg8PjdUAOU9cQJEodfYjuI8X18KurcaIPHZ39Vqj93XlQGbgWqQHCajy9J-5N9d3OtJMN-W3ABj3GBqGQ-fk26jfvk1XOcL-aYebnYLmxt6YIuM3ezzVNXIK5spQLxYsCtPopTXVtFuEhahC-V2TTMjHFLpLTsb_zTnf598v1BOYWYorog-jGmt7jhruLgdi3Ps_Wx0sS7GJElW8swsQwXxzIfe1Mk1n4_Q6O8RxLhydrXWDVCmviyc3mRNC3cWD0DvOYcJ-0-P98y-qlhS5FDAw0TF9_1wH54jOpheP6yvNzWP-lAPq-rGl55LQzTEgNRj9IcHOVeTNbjwssQsoL6tj7zEZS6zimZNU_UrIlgLV_Ml5HU3JVUzJ3D2XYYsFRH6nUegZwYrwHXHWKMTnF1gmg0ZhRjIs86ASpTwcdnyUdA5KTUUs6RiyJXTJD8G4bbV_hZsgky3fstxgnSNAgshJdxjiWUOS5QTFM-uILLpKZwcMt4nuBCvxB-JFgKUkGVVy1
+
+types:
+  ClassificationType:
+    values:
+      - name: CLASS
+      - name: COMPOSED_PROPERTY
+      - name: DOMAIN
+      - name: GROUP_OF_PROPERTIES
+      - name: REFERENCE_DOCUMENT
+      - name: ALTERNATIVE_USE
+      - name: MATERIAL
+  PropertyValueKind:
+    values:
+      - name: SINGLE
+      - name: RANGE
+      - name: LIST
+      - name: COMPLEX
+      - name: COMPLEX_LIST
+
+prefixes:
+  bsdd: http://bsdd.buildingsmart.org/def#
+
+specialPrefixes:
+  base_iri: https://identifier.buildingsmart.org/uri/
+  vocab_iri: http://bsdd.buildingsmart.org/def#
+  vocab_prefix: bsdd
+
+objects:
+  Country:
+    type: bsdd:Country
+    name: bsdd:name
+    diagram: {rank: 0, emoji: earth_americas}
+    props:
+      code:
+        min: 1
+        range: string
+      name:
+        min: 1
+        range: string
+  Classification:
+    type: bsdd:Classification
+    name: bsdd:name
+    diagram: {rank: 2, emoji: file_folder}
+    props:
+      classificationType:
+        range: ClassificationType
+      relatedIfcEntityName:
+        max: inf
+        range: string
+      synonym:
+        max: inf
+        range: string
+      referenceCode:
+        range: string
+      classificationProperty:
+        max: inf
+        range: ClassificationProperty
+      relation:
+        max: inf
+        range: ClassificationRelation
+      parentClassification:
+        range: Classification
+        max: 1
+        inverseAlias: childClassification
+      childClassification:
+        max: inf
+        range: Classification
+      activationDateUtc:
+        min: 1
+        range: dateTime
+      code:
+        min: 1
+        range: string
+      creatorLanguageCode:
+        range: string
+      countryOfUse:
+        max: inf
+        range: string
+      countryOfOrigin:
+        range: string
+      deActivationDateUtc:
+        range: dateTime
+      definition:
+        range: string
+      deprecationExplanation:
+        range: string
+      documentReference:
+        range: string
+      name:
+        min: 1
+        range: string
+      replacedObjectCode:
+        max: inf
+        range: string
+      replacingObjectCode:
+        max: inf
+        range: string
+      revisionDateUtc:
+        range: dateTime
+      revisionNumber:
+        range: int
+      status:
+        min: 1
+        range: string
+      subdivisionOfUse:
+        max: inf
+        range: string
+      uid:
+        range: string
+      versionDateUtc:
+        range: dateTime
+      versionNumber:
+        range: int
+      visualRepresentationUri:
+        range: iri
+      domain:
+        min: 1
+        range: Domain
+        inverseAlias: classification
+  ClassificationProperty:
+    type: bsdd:ClassificationProperty
+    name: bsdd:name
+    diagram: {rank: 3, emoji: hammer_and_wrench}
+    props:
+      allowedValue:
+        max: inf
+        range: PropertyValue
+      classification:
+        min: 1
+        range: Classification
+        inverseAlias: classificationProperty
+      dataType:
+        range: string
+      description:
+        range: string
+      dimension:
+        range: string
+      dimensionLength:
+        range: int
+      dimensionMass:
+        range: int
+      dimensionTime:
+        range: int
+      dimensionElectricCurrent:
+        range: int
+      dimensionThermodynamicTemperature:
+        range: int
+      dimensionAmountOfSubstance:
+        range: int
+      dimensionLuminousIntensity:
+        range: int
+      dynamicParameterPropertyCode:
+        max: inf
+        range: string
+      example:
+        range: string
+      isDynamic:
+        min: 1
+        range: boolean
+      isRequired:
+        range: boolean
+      isWritable:
+        range: boolean
+      maxExclusive:
+        range: decimal
+      maxInclusive:
+        range: decimal
+      methodOfMeasurement:
+        range: string
+      minExclusive:
+        range: decimal
+      minInclusive:
+        range: decimal
+      pattern:
+        range: string
+      physicalQuantity:
+        range: string
+      predefinedValue:
+        range: string
+      property:
+        min: 1
+        range: Property
+      propertySet:
+        range: string
+      propertyValueKind:
+        range: PropertyValueKind
+      symbol:
+        range: string
+      textFormat:
+        min: 1
+        range: string
+      unit:
+        max: inf
+        range: string
+      activationDateUtc:
+        min: 1
+        range: dateTime
+      code:
+        min: 1
+        range: string
+      creatorLanguageCode:
+        range: string
+      countryOfUse:
+        max: inf
+        range: string
+      countryOfOrigin:
+        range: string
+      deActivationDateUtc:
+        range: dateTime
+      definition:
+        range: string
+      deprecationExplanation:
+        range: string
+      documentReference:
+        range: string
+      name:
+        min: 1
+        range: string
+      replacedObjectCode:
+        max: inf
+        range: string
+      replacingObjectCode:
+        max: inf
+        range: string
+      revisionDateUtc:
+        range: dateTime
+      revisionNumber:
+        range: int
+      status:
+        min: 1
+        range: string
+      subdivisionOfUse:
+        max: inf
+        range: string
+      uid:
+        range: string
+      versionDateUtc:
+        range: dateTime
+      versionNumber:
+        range: int
+      visualRepresentationUri:
+        range: iri
+  ClassificationRelation:
+    type: bsdd:ClassificationRelation
+    name: relationType
+    diagram: {rank: 2.1, emoji: link}
+    props:
+      related:
+        min: 2
+        max: 2
+        range: Classification
+        inverseOf: relation
+      relationType:
+        min: 1
+        range: string
+  Domain:
+    type: bsdd:Domain
+    name: bsdd:name
+    diagram: {rank: 1, emoji: label}
+    props:
+      name:
+        min: 1
+        range: string
+      version:
+        min: 1
+        range: string
+      status:
+        range: string
+      releaseDate:
+        range: dateTime
+      license:
+        range: string
+      licenseUrl:
+        range: string
+      copyrightNotice:
+        range: string
+      moreInfoUrl:
+        range: string
+      lastUpdatedUtc:
+        min: 1
+        range: dateTime
+      languageCode:
+        min: 1
+        range: string
+      classification:
+        max: inf
+        range: Classification
+  Language:
+    type: bsdd:Language
+    name: bsdd:name
+    diagram: {rank: 0, emoji: globe_with_meridians}
+    props:
+      isocode:
+        min: 1
+        range: string
+      name:
+        min: 1
+        range: string
+  Property:
+    type: bsdd:Property
+    name: bsdd:name
+    diagram: {rank: 2, emoji: wrench}
+    props:
+      allowedValue:
+        max: inf
+        range: PropertyValue
+      connectedPropertyCode:
+        max: inf
+        range: string
+      dataType:
+        range: string
+      description:
+        range: string
+      dimension:
+        range: string
+      dimensionLength:
+        range: int
+      dimensionMass:
+        range: int
+      dimensionTime:
+        range: int
+      dimensionElectricCurrent:
+        range: int
+      dimensionThermodynamicTemperature:
+        range: int
+      dimensionAmountOfSubstance:
+        range: int
+      dimensionLuminousIntensity:
+        range: int
+      dynamicParameterPropertyCodes:
+        max: inf
+        range: string
+      example:
+        range: string
+      isDynamic:
+        min: 1
+        range: boolean
+      maxExclusive:
+        range: decimal
+      maxInclusive:
+        range: decimal
+      methodOfMeasurement:
+        range: string
+      minExclusive:
+        range: decimal
+      minInclusive:
+        range: decimal
+      pattern:
+        range: string
+      physicalQuantity:
+        range: string
+      propertyValueKind:
+        range: PropertyValueKind
+      relation:
+        max: inf
+        range: PropertyRelation
+      textFormat:
+        range: string
+      unit:
+        max: inf
+        range: string
+      activationDateUtc:
+        min: 1
+        range: dateTime
+      classificationProperty:
+        max: inf
+        range: ClassificationProperty
+        inverseAlias: property
+      code:
+        min: 1
+        range: string
+      creatorLanguageCode:
+        range: string
+      countryOfUse:
+        max: inf
+        range: string
+      countryOfOrigin:
+        range: string
+      deActivationDateUtc:
+        range: dateTime
+      definition:
+        range: string
+      deprecationExplanation:
+        range: string
+      documentReference:
+        range: string
+      name:
+        min: 1
+        range: string
+      replacedObjectCodes:
+        max: inf
+        range: string
+      replacingObjectCodes:
+        max: inf
+        range: string
+      revisionDateUtc:
+        range: dateTime
+      revisionNumber:
+        range: int
+      status:
+        min: 1
+        range: string
+      subdivisionsOfUse:
+        max: inf
+        range: string
+      uid:
+        range: string
+      versionDateUtc:
+        range: dateTime
+      versionNumber:
+        range: int
+      visualRepresentationUri:
+        range: iri
+  PropertyValue:
+    type: bsdd:PropertyValue
+    name: bsdd:name
+    diagram: {rank: 4, emoji: book}
+    props:
+      code:
+        range: string
+      description:
+        range: string
+      bsdd:value:
+        min: 1
+        range: string
+      sortNumber:
+        range: int
+  PropertyRelation:
+    type: bsdd:PropertyRelation
+    name: relationType
+    diagram: {rank: 2.1, emoji: link}
+    props:
+      related:
+        min: 2
+        max: 2
+        range: Property
+        inverseOf: relation
+      relationType:
+        min: 1
+        range: string
+  ReferenceDocument:
+    type: bsdd:ReferenceDocument
+    name: bsdd:name
+    diagram: {rank: 0, emoji: books}
+    props:
+      title:
+        min: 1
+        range: string
+      name:
+        min: 1
+        range: string
+      date:
+        min: 1
+        range: dateTime
+  Unit:
+    type: bsdd:Unit
+    name: bsdd:name
+    diagram: {rank: 0, emoji: triangular_ruler}
+    props:
+      code:
+        min: 1
+        range: string
+      name:
+        min: 1
+        range: string
+      symbol:
+        range: string
+
