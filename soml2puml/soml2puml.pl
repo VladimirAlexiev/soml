@@ -156,18 +156,19 @@ sub objects_str {
     $str .= qq{class "<:$object->{diagram}{emoji}:> $obj" as $obj};
     unless ($opt->{overview}) {
       # print attributes
-      my $has_attr = 0;
+      $str .= " {\n<#transparent,#transparent>|<:$datatype_emoji{iri}:>| id| iri| 1..1|\n";
+      $str .= "|<:$datatype_emoji{string}:>| name ($object->{name})| string| 1..1|\n" if $object->{name};
       for my $attr (sort keys %{$object->{props}}) {
         my $attribute = $object->{props}{$attr};
-        next unless $attribute->{isAttr};
+        next unless $attribute->{isAttr} # skip relations
+          && !($object->{name} && $object->{name} eq $attr); # and skip the prop already mapped to "name"
         my $range = $attribute->{range};
         my $datatype = $attribute->{isEnum} ? "enum" : $range;
         my $emoji = $datatype_emoji{$datatype} or die "Don't know emoji for datatype $datatype\n";
         # creole table: https://plantuml.com/creole#51c45b795d5d18a3 with transparent border and background
-        $str .= " {\n<#transparent,#transparent>" if !$has_attr++;
-        $str .= "|<:$emoji:>|$attr| $range| $attribute->{cardinality}|\n";
+        $str .= "|<:$emoji:>| $attr| $range| $attribute->{cardinality}|\n";
       };
-      $str .= "}\n" if $has_attr;
+      $str .= "}\n";
     };
     $str .= "\n";
   };
@@ -183,7 +184,10 @@ sub orient_rels {
   # - {isDeleted} for the recessive relation in a pair of inverses (inverseOf or inverseAlias)
   # - {inverse} to hold the name of the recessive relation in a pair of inverses
   # - {cardinality2} to hold the inverse cardinality
-  while (my ($obj,$object) = each %$objects) {
+  for my $obj (sort {$objects->{$a}{diagram}{rank} <=> $objects->{$b}{diagram}{rank}
+                       || $a cmp $b} # sort by rank, else alphabetically
+               keys %$objects) {
+    my $object = $objects->{$obj};
     while (my ($rel, $relation) = each %{$object->{props}}) {
       next if $relation->{isAttr} || $relation->{isDeleted} || $relation->{isInverted};
       my $obj2 = $relation->{range};

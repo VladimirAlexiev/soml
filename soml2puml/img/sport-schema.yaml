@@ -2,12 +2,12 @@ objects:
   Judoist:
     diagram: {rank: 2, emoji: martial_arts_uniform}
     props:
-      uses:  {range: Nunchaku}
-      beats: {range: BasketballPlayer}
+      uses:  {range: Nunchaku, min: 2, max: 2}
+      beats: {range: BasketballPlayer, max: inf}
   Nunchaku:
     diagram: {rank: 2.1, emoji: chains}
     props:
-      boughtFrom: {range: Japan}
+      boughtFrom: {range: Japan, min: 1}
   Japan:
     diagram: {rank: 2.2, emoji: japan}
   BasketballPlayer:

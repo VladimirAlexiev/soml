@@ -8,7 +8,7 @@ class "<:martial_arts_uniform:> Judoist" as Judoist
 class "<:chains:> Nunchaku" as Nunchaku
 class "<:japan:> Japan" as Japan
 class "<:basketball:> BasketballPlayer" as BasketballPlayer
-Judoist                           -r-> "0..1" Nunchaku                   : uses
-Judoist                           -d-> "0..1" BasketballPlayer           : beats
-Nunchaku                          -r-> "0..1" Japan                      : boughtFrom
+Judoist                           -d-> "0..*" BasketballPlayer           : beats
+Judoist                           -r-> "2..2" Nunchaku                   : uses
+Nunchaku                          -r-> "1..1" Japan                      : boughtFrom
 @enduml
