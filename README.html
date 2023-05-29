@@ -190,56 +190,61 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
-<style type='text/css'> #content {max-width: 120em; margin: auto} h1,h2,h3,h4,h5,h6,h7 {font-family: Arial} .author, .date, .creator {-webkit-margin-before: 0em; -webkit-margin-after: 0em} .abstract {margin: 1em; padding: 1em; border: 1px solid black} .abstract:before {content: 'Abstract: '; font-weight: bold} #preamble p {font-size: 110%%; margin-left: auto; margin-right: auto; text-align: center} th.org-left   {text-align:left} th.org-right  {text-align:right} th.org-center {text-align:center} th, td {line-height: 1em; border-width: 1px; border-style: solid solid; border-spacing: 2px 2px; padding: 2px 1px} .CANCELED {color: blue} .MAYBE {color: blue} .POSTPONED {color: blue} .SAME {color: blue} .APPLIED {color: orange} .FOLLOW {color: orange} .INPROGRESS {color: orange} .NEXT {color: orange} .IER {color: orange}.underline {text-decoration:underline} </style>
+<style> #content {max-width: 120em; margin: auto} h1,h2,h3,h4,h5,h6,h7 {font-family: Arial} .author, .date, .creator {-webkit-margin-before: 0em; -webkit-margin-after: 0em} .abstract {margin: 1em; padding: 1em; border: 1px solid black} .abstract:before {content: 'Abstract: '; font-weight: bold} #preamble p {font-size: 110%%; margin-left: auto; margin-right: auto; text-align: center} th.org-left   {text-align:left} th.org-right  {text-align:right} th.org-center {text-align:center} th, td {line-height: 1em; border-width: 1px; border-style: solid solid; border-spacing: 2px 2px; padding: 2px 1px} .CANCELED {color: blue} .MAYBE {color: blue} .POSTPONED {color: blue} .SAME {color: blue} .APPLIED {color: orange} .FOLLOW {color: orange} .INPROGRESS {color: orange} .NEXT {color: orange} .IER {color: orange}.underline {text-decoration:underline} </style>
 </head>
 <body>
+<div id="preamble" class="status">
+<p class="author">Author: Vladimir Alexiev (<a href="mailto:vladimir.alexiev@ontotext.com">vladimir.alexiev@ontotext.com</a>)</p>
+<p class="date">Date: 2023-04-17</p>
+</div>
 <div id="content" class="content">
 <h1 class="title">Semantic Objects Modeling Language</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7daa208">1. Intro</a>
+<li><a href="#org6897e7f">1. Intro</a>
 <ul>
-<li><a href="#org59372f1">1.1. Why SOML?</a></li>
-<li><a href="#orge2ec93c">1.2. Similar Schema Languages</a></li>
-<li><a href="#orgdfe4cd7">1.3. What is SOML</a></li>
+<li><a href="#org032fe41">1.1. Why SOML?</a></li>
+<li><a href="#org0a30f7e">1.2. Similar Schema Languages</a></li>
+<li><a href="#org6af1cf0">1.3. What is SOML</a></li>
 </ul>
 </li>
-<li><a href="#org75c120e">2. Complex Schema (Company Graph)</a>
+<li><a href="#org80ca8aa">2. Complex Schema (Company Graph)</a>
 <ul>
-<li><a href="#org41e6cd2">2.1. Example Class:</a></li>
-<li><a href="#org296a5be">2.2. Example Inverse Alias</a></li>
-<li><a href="#orgab96e37">2.3. Example Diagram: Exchange Listing SOML</a></li>
-<li><a href="#orgabd3998">2.4. Example Diagram: Exchange Listing RDF</a></li>
+<li><a href="#orgf7353b4">2.1. Example Class:</a></li>
+<li><a href="#org93282f9">2.2. Example Inverse Alias</a></li>
+<li><a href="#org490ed9c">2.3. Example Diagram: Exchange Listing SOML</a></li>
+<li><a href="#org17aca8d">2.4. Example Diagram: Exchange Listing RDF</a></li>
 </ul>
 </li>
-<li><a href="#orgac6848e">3. SOML Tooling</a>
+<li><a href="#orgf792558">3. SOML Tooling</a>
 <ul>
-<li><a href="#orgc8164f3">3.1. owl2soml</a></li>
-<li><a href="#orgb2307b3">3.2. tsv2soml</a></li>
-<li><a href="#org97b48fc">3.3. soml-map</a></li>
+<li><a href="#org6cf7483">3.1. owl2soml</a></li>
+<li><a href="#orgfe17e65">3.2. tsv2soml</a></li>
+<li><a href="#org8cf260a">3.3. soml-map</a></li>
+<li><a href="#org3340128">3.4. soml2puml</a></li>
 </ul>
 </li>
-<li><a href="#org3774715">4. Tricky Points and Deficiencies</a>
+<li><a href="#orgd608d13">4. Tricky Points and Deficiencies</a>
 <ul>
-<li><a href="#org9b1d93d">4.1. GraphQL Type vs rdf:type</a></li>
-<li><a href="#org69d40a6">4.2. Single vs Multiple-Value Props</a></li>
-<li><a href="#org1cd0864">4.3. Inverse Aliases</a></li>
-<li><a href="#org73707b7">4.4. Literals</a></li>
-<li><a href="#orgb9a9dff">4.5. Extended Pattern (Prefix + Regex)</a></li>
-<li><a href="#orgf799c44">4.6. IRI Generation</a></li>
-<li><a href="#orga3392a6">4.7. Schema Inclusion/Modularity</a></li>
+<li><a href="#org0a085d8">4.1. GraphQL Type vs rdf:type</a></li>
+<li><a href="#org4dd1930">4.2. Single vs Multiple-Value Props</a></li>
+<li><a href="#org83cb9c9">4.3. Inverse Aliases</a></li>
+<li><a href="#org0290c6f">4.4. Literals</a></li>
+<li><a href="#orge819968">4.5. Extended Pattern (Prefix + Regex)</a></li>
+<li><a href="#org294954a">4.6. IRI Generation</a></li>
+<li><a href="#org6aecf2d">4.7. Schema Inclusion/Modularity</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7daa208" class="outline-2">
-<h2 id="org7daa208"><span class="section-number-2">1.</span> Intro</h2>
+<div id="outline-container-org6897e7f" class="outline-2">
+<h2 id="org6897e7f"><span class="section-number-2">1.</span> Intro</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The Semantic Objects Modeling Language (SOML)
@@ -281,8 +286,8 @@ generating SOML (<code>tsv2soml</code>) and mapping RDF data (<code>soml-map</co
 </p>
 </div>
 
-<div id="outline-container-org59372f1" class="outline-3">
-<h3 id="org59372f1"><span class="section-number-3">1.1.</span> Why SOML?</h3>
+<div id="outline-container-org032fe41" class="outline-3">
+<h3 id="org032fe41"><span class="section-number-3">1.1.</span> Why SOML?</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 We often are asked why we had to introduce yet another object modeling language?
@@ -328,8 +333,8 @@ we need to be able to generate a number of technical artefacts from the same bus
 </div>
 </div>
 
-<div id="outline-container-orge2ec93c" class="outline-3">
-<h3 id="orge2ec93c"><span class="section-number-3">1.2.</span> Similar Schema Languages</h3>
+<div id="outline-container-org0a30f7e" class="outline-3">
+<h3 id="org0a30f7e"><span class="section-number-3">1.2.</span> Similar Schema Languages</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 A number of schema languages have appeared recently that are based on YAML,
@@ -367,8 +372,8 @@ While not publically available, it's described in presentations by <a href="http
 </div>
 </div>
 
-<div id="outline-container-orgdfe4cd7" class="outline-3">
-<h3 id="orgdfe4cd7"><span class="section-number-3">1.3.</span> What is SOML</h3>
+<div id="outline-container-org6af1cf0" class="outline-3">
+<h3 id="org6af1cf0"><span class="section-number-3">1.3.</span> What is SOML</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 At present SOML is very simple, but will evolve to include more features.
@@ -430,8 +435,8 @@ some tricky points of SOML usage and GraphQL deficiencies, and some tooling.
 </div>
 </div>
 
-<div id="outline-container-org75c120e" class="outline-2">
-<h2 id="org75c120e"><span class="section-number-2">2.</span> Complex Schema (Company Graph)</h2>
+<div id="outline-container-org80ca8aa" class="outline-2">
+<h2 id="org80ca8aa"><span class="section-number-2">2.</span> Complex Schema (Company Graph)</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 To introduce the proper context for this blog (working with complex SOML schemas),
@@ -639,8 +644,8 @@ The full CG schema is included: <a href="./schemas/CG.yaml">CG.yaml</a>. Below w
 </p>
 </div>
 
-<div id="outline-container-org41e6cd2" class="outline-3">
-<h3 id="org41e6cd2"><span class="section-number-3">2.1.</span> Example Class:</h3>
+<div id="outline-container-orgf7353b4" class="outline-3">
+<h3 id="orgf7353b4"><span class="section-number-3">2.1.</span> Example Class:</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #a0522d;">ExchangeListing</span>:
@@ -700,8 +705,8 @@ A more appropriate <code>descr</code> is given at the object level, overriding t
 </div>
 </div>
 
-<div id="outline-container-org296a5be" class="outline-3">
-<h3 id="org296a5be"><span class="section-number-3">2.2.</span> Example Inverse Alias</h3>
+<div id="outline-container-org93282f9" class="outline-3">
+<h3 id="org93282f9"><span class="section-number-3">2.2.</span> Example Inverse Alias</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 A Position is an associative node between Person and Organization that adds more data (not shown):
@@ -734,8 +739,8 @@ To allow navigation in any direction (not just from Position out, but also in), 
 </div>
 </div>
 
-<div id="outline-container-orgab96e37" class="outline-3">
-<h3 id="orgab96e37"><span class="section-number-3">2.3.</span> Example Diagram: Exchange Listing SOML</h3>
+<div id="outline-container-org490ed9c" class="outline-3">
+<h3 id="org490ed9c"><span class="section-number-3">2.3.</span> Example Diagram: Exchange Listing SOML</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 For example, the figure below shows the stock exchange listing (IPO) of Apple on the Tokyo exchange and NASDAQ, and the listing of Nasdaq Inc (the company) on NASDAQ (the stock exchange).
@@ -752,18 +757,18 @@ For example, the figure below shows the stock exchange listing (IPO) of Apple on
 </p>
 
 
-<div id="org55b2dbd" class="figure">
+<div id="org08f530f" class="figure">
 <p><img src="./eg/model-exchange-listing.png" alt="model-exchange-listing.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgabd3998" class="outline-3">
-<h3 id="orgabd3998"><span class="section-number-3">2.4.</span> Example Diagram: Exchange Listing RDF</h3>
+<div id="outline-container-org17aca8d" class="outline-3">
+<h3 id="org17aca8d"><span class="section-number-3">2.4.</span> Example Diagram: Exchange Listing RDF</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
-This version of the diagram uses <a href="#org97b48fc">soml-map</a> to map SOML names to RDF names in specific namespaces.
+This version of the diagram uses <a href="#org8cf260a">soml-map</a> to map SOML names to RDF names in specific namespaces.
 </p>
 <ul class="org-ul">
 <li>So this can be considered the "physical" data model of data as it's stored in the semantic database</li>
@@ -774,7 +779,7 @@ This version of the diagram uses <a href="#org97b48fc">soml-map</a> to map SOML 
 </p>
 
 
-<div id="org7a0afe3" class="figure">
+<div id="org20b7673" class="figure">
 <p><img src="./eg/model-exchange-listing-mapped.png" alt="model-exchange-listing-mapped.png" />
 </p>
 </div>
@@ -782,12 +787,12 @@ This version of the diagram uses <a href="#org97b48fc">soml-map</a> to map SOML 
 </div>
 </div>
 
-<div id="outline-container-orgac6848e" class="outline-2">
-<h2 id="orgac6848e"><span class="section-number-2">3.</span> SOML Tooling</h2>
+<div id="outline-container-orgf792558" class="outline-2">
+<h2 id="orgf792558"><span class="section-number-2">3.</span> SOML Tooling</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgc8164f3" class="outline-3">
-<h3 id="orgc8164f3"><span class="section-number-3">3.1.</span> owl2soml</h3>
+<div id="outline-container-org6cf7483" class="outline-3">
+<h3 id="org6cf7483"><span class="section-number-3">3.1.</span> owl2soml</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 This tool (written in Perl) generates SOML schemas from ontologies (that use RDFS, OWL and/or schema.org constructs).
@@ -797,8 +802,8 @@ See its own README.
 </div>
 </div>
 
-<div id="outline-container-orgb2307b3" class="outline-3">
-<h3 id="orgb2307b3"><span class="section-number-3">3.2.</span> tsv2soml</h3>
+<div id="outline-container-orgfe17e65" class="outline-3">
+<h3 id="orgfe17e65"><span class="section-number-3">3.2.</span> tsv2soml</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Editing large schemas is often easier to do in a table, even when the schema language is simple.
@@ -815,7 +820,7 @@ Here's the beginning of the sheet:
 </p>
 
 
-<div id="org386c371" class="figure">
+<div id="orgfae957b" class="figure">
 <p><img src="./eg/CG-sheet.png" alt="CG-sheet.png" />
 </p>
 </div>
@@ -826,7 +831,7 @@ as distinct business classes
 </p>
 
 
-<div id="org47ca51c" class="figure">
+<div id="orgbaab0c5" class="figure">
 <p><img src="./eg/CG-sheet2.png" alt="CG-sheet2.png" />
 </p>
 </div>
@@ -854,8 +859,8 @@ This can be used to simplify the schema not to use <code>langString</code> and u
 </div>
 </div>
 
-<div id="outline-container-org97b48fc" class="outline-3">
-<h3 id="org97b48fc"><span class="section-number-3">3.3.</span> soml-map</h3>
+<div id="outline-container-org8cf260a" class="outline-3">
+<h3 id="org8cf260a"><span class="section-number-3">3.3.</span> soml-map</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 <code>tsv2soml</code> writes out a file <code>soml-map.tsv</code> (see exmaple <a href="./schemas/soml-map.tsv">soml-map.tsv</a>) with columns "class, prop (optional), rdf"
@@ -866,7 +871,7 @@ This can be used to simplify the schema not to use <code>langString</code> and u
 
 <p>
 It can be used to map from SOML names to RDF names (class/prop URLs) in specific namespaces.
-Eg compare <a href="#orgab96e37">Example Diagram: Exchange Listing SOML</a> vs <a href="#orgabd3998">Example Diagram: Exchange Listing RDF</a>.
+Eg compare <a href="#org490ed9c">Example Diagram: Exchange Listing SOML</a> vs <a href="#org17aca8d">Example Diagram: Exchange Listing RDF</a>.
 </p>
 
 <p>
@@ -883,27 +888,36 @@ perl soml-map.pl &lt; file.(tarql|ru|ttl) &gt; file-mapped.(tarql|ru|ttl)
 </pre>
 </div>
 </div>
+
+<div id="outline-container-org3340128" class="outline-3">
+<h3 id="org3340128"><span class="section-number-3">3.4.</span> soml2puml</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Generate nice PlantUML diagrams from SOML models.
+See its own README.
+</p>
+</div>
+</div>
 </div>
 
-
-<div id="outline-container-org3774715" class="outline-2">
-<h2 id="org3774715"><span class="section-number-2">4.</span> Tricky Points and Deficiencies</h2>
+<div id="outline-container-orgd608d13" class="outline-2">
+<h2 id="orgd608d13"><span class="section-number-2">4.</span> Tricky Points and Deficiencies</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org9b1d93d" class="outline-3">
-<h3 id="org9b1d93d"><span class="section-number-3">4.1.</span> GraphQL Type vs rdf:type</h3>
+<div id="outline-container-org0a085d8" class="outline-3">
+<h3 id="org0a085d8"><span class="section-number-3">4.1.</span> GraphQL Type vs rdf:type</h3>
 </div>
 
-<div id="outline-container-org69d40a6" class="outline-3">
-<h3 id="org69d40a6"><span class="section-number-3">4.2.</span> Single vs Multiple-Value Props</h3>
+<div id="outline-container-org4dd1930" class="outline-3">
+<h3 id="org4dd1930"><span class="section-number-3">4.2.</span> Single vs Multiple-Value Props</h3>
 </div>
 
-<div id="outline-container-org1cd0864" class="outline-3">
-<h3 id="org1cd0864"><span class="section-number-3">4.3.</span> Inverse Aliases</h3>
+<div id="outline-container-org83cb9c9" class="outline-3">
+<h3 id="org83cb9c9"><span class="section-number-3">4.3.</span> Inverse Aliases</h3>
 </div>
 
-<div id="outline-container-org73707b7" class="outline-3">
-<h3 id="org73707b7"><span class="section-number-3">4.4.</span> Literals</h3>
+<div id="outline-container-org0290c6f" class="outline-3">
+<h3 id="org0290c6f"><span class="section-number-3">4.4.</span> Literals</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 (langString, union datatypes)
@@ -911,22 +925,21 @@ perl soml-map.pl &lt; file.(tarql|ru|ttl) &gt; file-mapped.(tarql|ru|ttl)
 </div>
 </div>
 
-<div id="outline-container-orgb9a9dff" class="outline-3">
-<h3 id="orgb9a9dff"><span class="section-number-3">4.5.</span> Extended Pattern (Prefix + Regex)</h3>
+<div id="outline-container-orge819968" class="outline-3">
+<h3 id="orge819968"><span class="section-number-3">4.5.</span> Extended Pattern (Prefix + Regex)</h3>
 </div>
 
-<div id="outline-container-orgf799c44" class="outline-3">
-<h3 id="orgf799c44"><span class="section-number-3">4.6.</span> IRI Generation</h3>
+<div id="outline-container-org294954a" class="outline-3">
+<h3 id="org294954a"><span class="section-number-3">4.6.</span> IRI Generation</h3>
 </div>
 
-<div id="outline-container-orga3392a6" class="outline-3">
-<h3 id="orga3392a6"><span class="section-number-3">4.7.</span> Schema Inclusion/Modularity</h3>
+<div id="outline-container-org6aecf2d" class="outline-3">
+<h3 id="org6aecf2d"><span class="section-number-3">4.7.</span> Schema Inclusion/Modularity</h3>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2022-06-21 Tue 00:00</p>
-<p class="author">Author: Vladimir Alexiev</p>
+<p class="creator">Exported by Emacs 26.1 (Org mode 9.2.2)</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

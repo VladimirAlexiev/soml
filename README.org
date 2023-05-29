@@ -3,7 +3,7 @@
 #+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2022-06-21>
+#+date: <2023-04-17>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
@@ -384,7 +384,10 @@ to a "physical" representaiton using specific RDF names.
 Usage:
 : perl soml-map.pl < file.(tarql|ru|ttl) > file-mapped.(tarql|ru|ttl)
 
- 
+** soml2puml
+Generate nice PlantUML diagrams from SOML models.
+See its own README.
+
 * Tricky Points and Deficiencies
 
 ** GraphQL Type vs rdf:type
