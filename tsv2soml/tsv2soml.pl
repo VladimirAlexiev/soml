@@ -3,7 +3,7 @@
 # Also writes out soml-map.tsv with cols "class, prop (optional), rdf" to map from SOML names to RDF classes/props.
 # For props without rdf, uses the rdf name from the shared first occurrence of the same prop name
 # Options:
-#  -p: don't emit "pattern"
+#  -p: don't emit "pattern/regex"
 #  -l: downgrade Literals (stringOrLangString, langString -> string, dateOrYearOrMonth -> date)
 
 use strict;
@@ -11,7 +11,8 @@ our ($opt_p, $opt_l);
 our %DOWNGRADE_LITERAL = (stringOrLangString=>"string", langString=>"string", dateOrYearOrMonth=>"date");
 our (%properties, %propUse, %map_class, %map_class_prop, %map_prop, $class);
 use DateTime; # now, ymd
-use constant HEADER => "Class/prop\tlabel\tInherits/range\tchar\tRDF\tpattern\tdescr";
+our $HEADER = "Class/prop\tlabel\tInherits/range\tchar\tRDF\t(pattern|regex)\tdescr";
+our $use_regex; # whether to use "regex:" or "pattern:"
 use Getopt::Std;
 
 BEGIN {
@@ -38,7 +39,8 @@ sub char ($$) {
 
 chomp;
 if ($. == 1) {
-  substr($_,0,length(HEADER)) eq HEADER or die "expect header: |", HEADER, "|\nfound  header: |$_|\nDid you remember to make the gsheet public?\n";
+  m{$HEADER} or die "expect header: |", $HEADER, "|\nfound  header: |$_|\nDid you remember to make the gsheet public?\n";
+  $use_regex = m{\tregex\t}; # else use "pattern:"
   next
 }
 
@@ -68,7 +70,7 @@ if ($name =~ m{^([a-z]+:)?[A-Z]}) {
   $range &&= qq{inherits: $range};
   $rdf &&= qq{type: [$rdf]};
   $pattern = undef if $opt_p;
-  $pattern &&= qq{pattern: '$pattern'};
+  $pattern &&= ($use_regex ? "regex" : "pattern") . ": '" . $pattern . "'";
   my $spaces = " "x4;
   print "  $name:", chars ($spaces, $label, $range, char($spaces,$char), $rdf, $pattern, $descr, "props:"),"\n";
   # we always print "props:" even when the class has none, SOML allows that
