@@ -1,0 +1,2100 @@
+@prefix adms:   <http://www.w3.org/ns/adms#> .
+@prefix dc:     <http://purl.org/dc/elements/1.1/> .
+@prefix dct:    <http://purl.org/dc/terms/> .
+@prefix k2:     <https://data.stratesphere.com/kognetics2.0/ontology/> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix puml:   <http://plantuml.com/ontology#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix void:   <http://rdfs.org/ns/void#> .
+@prefix xml:    <http://www.w3.org/XML/1998/namespace/> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+k2:     rdf:type         owl:Ontology ;
+        rdfs:label       "Stratesphere Ontology" ;
+        dct:created      "2022-03-16"^^xsd:date ;
+        dct:creator      <http://ontotext.com> ;
+        dct:updated      "2022-06-16"^^xsd:date ;
+        owl:versionInfo  "1.0" .
+
+k2:Acquisition  rdf:type  rdfs:Class ;
+        rdfs:comment      "Act of purchasing most of the shares of a company" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Acquisition" ;
+        rdfs:subClassOf   k2:CbObject ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:acquiree
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:priceUsd
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:price
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:acquiredOn
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:acquirer
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:acquisitionType
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:priceCurrencyCode
+                          ] .
+
+k2:AcquisitionType  rdf:type  rdfs:Class ;
+        rdfs:comment      "Organization acquisition type, eg acquihire, lbo" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Acquisition Type" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:Agent  rdf:type        rdfs:Class ;
+        rdfs:comment      "Person or Organization (and either can be Investor)" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Agent" ;
+        rdfs:subClassOf   k2:CbObject ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:description
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:linkedinUrl
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:facebookUrl
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:logoUrl
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:twitterUrl
+                          ] .
+
+k2:AlternativeInput  rdf:type  rdfs:Class ;
+        rdfs:comment      "Alternative of products or materials to be used in a work cell" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Alternative Input" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:input
+                          ] .
+
+k2:AppearanceType  rdf:type  rdfs:Class ;
+        rdfs:comment      "Event participant type, eg sponsor, organizer" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Appearance Type" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:CanAcquireKind  rdf:type  rdfs:Class ;
+        rdfs:comment      "Kind (logic) of acquisition: scale, scope" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Can Acquire Kind" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:CanAcquireScore  rdf:type  rdfs:Class ;
+        rdfs:comment      "Score for a number of factors suggesting potential acquisition interest" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:justification
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:type
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:acquirer
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:isSatisfied
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:acquiree
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:score
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:kind
+                          ] .
+
+k2:CanAcquireType  rdf:type  rdfs:Class ;
+        rdfs:comment      "Type of score: sharedIndustries, sharedSubindustries, affiliations, size, ..., total" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Can Acquire Type" ;
+        rdfs:subClassOf   skos:Concept ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:threshold
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:justification
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:isSymmetric
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  2 ;
+                            owl:onProperty      k2:kind
+                          ] .
+
+k2:CbIndustry  rdf:type   rdfs:Class ;
+        rdfs:comment      "Crunchbase Industry classification (called 'category')" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Crunchbase Industry" ;
+        rdfs:subClassOf   k2:CbObject , skos:Concept .
+k2:CbObject  rdf:type     rdfs:Class ;
+        rdfs:comment      "Crunchbase object with common properties: CB UUID, name, permalink, CB URL, rank, created/updated timestamps" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Crunchbase object" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:cbId
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:rank
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:cbUrl
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:updatedAt
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:createdAt
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:name
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:cbPermalink
+                          ] .
+
+k2:CompanyType  rdf:type  rdfs:Class ;
+        rdfs:comment      "Company Type: acquired, subsidiary, private, public" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Company Type" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:Converged  rdf:type    rdfs:Class ;
+        rdfs:comment      "A pair of converged industries" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Converged" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:convergedStage
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:count
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  2 ;
+                            owl:minCardinality  2 ;
+                            owl:onProperty      k2:industry
+                          ] .
+
+k2:ConvergedCompany  rdf:type  rdfs:Class ;
+        rdfs:comment      "A pair of industries in which a company works, directly or through subsidiaries" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:count
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  2 ;
+                            owl:minCardinality  2 ;
+                            owl:onProperty      k2:industry
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:company
+                          ] .
+
+k2:ConvergedStage  rdf:type  rdfs:Class ;
+        rdfs:comment      "Stage of Industry Convergence: from very_low to very_high" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Converged Stage" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:Degree  rdf:type       rdfs:Class ;
+        rdfs:comment      "Academic study leading to a degree" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Degree" ;
+        rdfs:subClassOf   k2:CbObject ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:isCompleted
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:institution
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:person
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:completedOn
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:startedOn
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:subject
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:degreeType
+                          ] .
+
+k2:EmployeeCount  rdf:type  rdfs:Class ;
+        rdfs:comment      "Range of organization employee count, eg 51-100" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Employee Count" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:Event  rdf:type        rdfs:Class ;
+        rdfs:comment      "Event details" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Event" ;
+        rdfs:subClassOf   k2:CbObject ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:eventRole
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:region
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:city
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:shortDescription
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:stateCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:startedOn
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:eventUrl
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:registrationUrl
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:venueName
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:countryCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:logoUrl
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:description
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:endedOn
+                          ] .
+
+k2:EventAppearance  rdf:type  rdfs:Class ;
+        rdfs:comment      "Participation of an Agent in an Event" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Event Appearance" ;
+        rdfs:subClassOf   k2:CbObject ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:shortDescription
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:appearanceType
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:participant
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:event
+                          ] .
+
+k2:EventRole  rdf:type    rdfs:Class ;
+        rdfs:comment      "Event type, eg conference, webinar" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Event Role" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:Fund  rdf:type         rdfs:Class ;
+        rdfs:comment      "Pool of funds raised for a particular investment purpose" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Fund" ;
+        rdfs:subClassOf   k2:CbObject ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:announcedOn
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:entity
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:raisedAmount
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:raisedAmountCurrencyCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:raisedAmountUsd
+                          ] .
+
+k2:FundingRound  rdf:type  rdfs:Class ;
+        rdfs:comment      "Funding by one or more Investors provided to a Company" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Funding Round" ;
+        rdfs:subClassOf   k2:CbObject ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:raisedAmountUsd
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:organization
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:investorCount
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:investmentType
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:postMoneyValuationCurrencyCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:postMoneyValuationUsd
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:raisedAmountCurrencyCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:raisedAmount
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:postMoneyValuation
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:announcedOn
+                          ] .
+
+k2:Gender  rdf:type       rdfs:Class ;
+        rdfs:comment      "Gender identity of a person, eg female" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Gender" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:IPO  rdf:type          rdfs:Class ;
+        rdfs:comment      "Listing of a company on a stock exchange" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Initial Public Offering" ;
+        rdfs:subClassOf   k2:CbObject ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:sharePriceCurrencyCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:sharePriceUsd
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:valuationPriceCurrencyCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:exchangeSymbol
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:organization
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:stockSymbol
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:valuationPriceUsd
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:sharePrice
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:wentPublicOn
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:moneyRaisedCurrencyCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:moneyRaisedUsd
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:moneyRaised
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:valuationPrice
+                          ] .
+
+k2:Industry  rdf:type     rdfs:Class ;
+        rdfs:comment      "Stratesphere Industry classification, eg. technology, 3d_printing" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Stratesphere Industry" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:Investment  rdf:type   rdfs:Class ;
+        rdfs:comment      "Participation of an investor in a funding round" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Investment" ;
+        rdfs:subClassOf   k2:CbObject ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:isLeadInvestor
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:investor
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:fundingRound
+                          ] .
+
+k2:InvestmentType  rdf:type  rdfs:Class ;
+        rdfs:comment      "Type of investment in a company, eg corporate round" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Investment Type" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:Investor  rdf:type     rdfs:Class ;
+        rdfs:comment      "Person or organization who invests in companies" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Investor" ;
+        rdfs:subClassOf   k2:Agent ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:totalFundingCurrencyCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:totalFundingUsd
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:organizationRole
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:investmentCount
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:domain
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:totalFunding
+                          ] .
+
+k2:InvestorType  rdf:type  rdfs:Class ;
+        rdfs:comment      "Type of investmentor which makes an investment, eg hedge fund, private equity firm" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Investor Type" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:Job  rdf:type          rdfs:Class ;
+        rdfs:comment      "Employment or affiliation of a person with an organization" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Job" ;
+        rdfs:subClassOf   k2:CbObject ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:title
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:endedOn
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:isCurrent
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:person
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:organization
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:startedOn
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:jobType
+                          ] .
+
+k2:JobType  rdf:type      rdfs:Class ;
+        rdfs:comment      "Type of job a person has in a company, eg employee, executive" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Job Type" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:Material  rdf:type     rdfs:Class ;
+        rdfs:comment      "A material or material grade" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Material" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      skos:broader
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:grade
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:name
+                          ] .
+
+k2:Momentum  rdf:type     rdfs:Class ;
+        rdfs:comment      "Business Momentum" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Momentum" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:momentumScore
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:year
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:industry
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:momentumType
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:momentumCategory
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:company
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:investor
+                          ] .
+
+k2:MomentumCategory  rdf:type  rdfs:Class ;
+        rdfs:comment      "Stratesphere Momentum category, eg. very_low, medium, high" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Momentum Category" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:MomentumType  rdf:type  rdfs:Class ;
+        rdfs:comment      "Stratesphere Momentum type, eg. acquisition, early-funding" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Momentum Type" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:Organization  rdf:type  rdfs:Class ;
+        rdfs:comment      "Organization: company, investor, academic institution, etc" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Organization" ;
+        rdfs:subClassOf   k2:CbObject ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:stateCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:isGrowthCompany
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:latestFundingRoundDate
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:numAcqured
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:numInvestors
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:isDueForExit
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:numFundingRounds
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:companyType
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:numExits
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:postalCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:acquisitionValueUsd
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:closedOn
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:legalName
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:earliestFundingRoundDate
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:employeeCount
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:region
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:homepageUrl
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:status
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:parentOrganization
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:foundedOn
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:sizeUsd
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:city
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:enterpriseValueUsd
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:totalFunding
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:totalFundingUsd
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:domain
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:shortDescription
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:lastFundingOn
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:email
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:address
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:countryCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:isPrivateEquityAcquired
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:phone
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:totalFundingCurrencyCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:primaryRole
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:organizationRole
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:ltmRevenueUsd
+                          ] .
+
+k2:OrganizationRole  rdf:type  rdfs:Class ;
+        rdfs:comment      "Type of organization, eg company, investor" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Organization Role" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:OrganizationStatus
+        rdf:type          rdfs:Class ;
+        rdfs:comment      "Status of the organization, eg closed, acquired, operating" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Organization Status" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:Person  rdf:type       rdfs:Class ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Person" ;
+        rdfs:subClassOf   k2:Agent ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:firstName
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:region
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:featuredJobTitle
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:featuredJobOrganization
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:gender
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:countryCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:lastName
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:stateCode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:city
+                          ] .
+
+k2:Process  rdf:type      rdfs:Class ;
+        rdfs:comment      "A production process" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Process" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:name
+                          ] .
+
+k2:Product  rdf:type      rdfs:Class ;
+        rdfs:comment      "A product, part or assembly" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Product" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:name
+                          ] .
+
+k2:ProductInstance  rdf:type  rdfs:Class ;
+        rdfs:comment      "A product, part or assembly in the context of a particular value chain (and work cell)" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Product Instance" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:product
+                          ] .
+
+k2:Signal  rdf:type       rdfs:Class ;
+        rdfs:comment      "Business Signal" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Signal" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:date
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      k2:signalType
+                          ] .
+
+k2:SignalNature  rdf:type  rdfs:Class ;
+        rdfs:comment      "Stratesphere Business Signal Nature: negative, positive, neutral" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Business Signal Nature" ;
+        rdfs:subClassOf   skos:Concept .
+
+k2:SignalType  rdf:type   rdfs:Class ;
+        rdfs:comment      "Business Signal Type" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "SignalType" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:signalWeight
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:signalNature
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:name
+                          ] .
+
+k2:ValueChain  rdf:type   rdfs:Class ;
+        rdfs:comment      "Process of producing some product; which coincides with a lowest-level subindustry (eg Steering Wheel)" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Value Chain" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:industry
+                          ] .
+
+k2:WorkCell  rdf:type     rdfs:Class ;
+        rdfs:comment      "Part of a value chain. Has steps, inputs and outputs" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Work Cell" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:output
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:valueChain
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:name
+                          ] .
+
+k2:WorkStep  rdf:type     rdfs:Class ;
+        rdfs:comment      "A process within a work cell" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Work Step" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:order
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      k2:process
+                          ] .
+
+k2:acquired  rdf:type          owl:ObjectProperty ;
+        rdfs:comment           "Companies acquired by this one" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "acquired companies" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   k2:Agent .
+
+k2:acquiredOn  rdf:type        owl:DatatypeProperty ;
+        rdfs:comment           "Date of acquisition" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "acquired on" ;
+        schema:domainIncludes  k2:Acquisition ;
+        schema:rangeIncludes   xsd:dateTime .
+
+k2:acquiree  rdf:type          owl:ObjectProperty ;
+        rdfs:comment           "Agent (company) that (was/may be) acquired" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "acquiree" ;
+        schema:domainIncludes  k2:CanAcquireScore , k2:Acquisition ;
+        schema:rangeIncludes   k2:Agent .
+
+k2:acquirer  rdf:type          owl:ObjectProperty ;
+        rdfs:comment           "Agent (company) that (potentially) acquires" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "acquirer" ;
+        schema:domainIncludes  k2:CanAcquireScore , k2:Acquisition ;
+        schema:rangeIncludes   k2:Agent .
+
+k2:acquisitionType  rdf:type   owl:ObjectProperty ;
+        rdfs:comment           "Organization acquisition type, eg acquihire, lbo" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "acquisition type" ;
+        schema:domainIncludes  k2:Acquisition ;
+        schema:rangeIncludes   k2:AcquisitionType .
+
+k2:acquisitionValueUsd
+        rdf:type               owl:DatatypeProperty ;
+        rdfs:comment           "Price of the last acquisition of the company" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "acquisition value (USD)" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:address  rdf:type           owl:DatatypeProperty ;
+        rdfs:comment           "Office address" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "address" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:string .
+
+k2:alias  rdf:type             owl:DatatypeProperty ;
+        rdfs:comment           "Alternate or previous names for the organization" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "alias" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:string .
+
+k2:altInput  rdf:type          owl:ObjectProperty ;
+        rdfs:comment           "Alternative products or materials that are used by the cell" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "alt input" ;
+        schema:domainIncludes  k2:WorkCell ;
+        schema:rangeIncludes   k2:AlternativeInput .
+
+k2:announcedOn  rdf:type       owl:DatatypeProperty ;
+        rdfs:comment           "Date when publicly announced" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "announced on" ;
+        schema:domainIncludes  k2:Fund , k2:FundingRound ;
+        schema:rangeIncludes   xsd:dateTime .
+
+k2:appearanceType  rdf:type    owl:ObjectProperty ;
+        rdfs:comment           "Event participant type, eg sponsor, organizer" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "appearance type" ;
+        schema:domainIncludes  k2:EventAppearance ;
+        schema:rangeIncludes   k2:AppearanceType .
+
+k2:cbId  rdf:type              owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "Crunchbase UUID" ;
+        schema:domainIncludes  k2:CbObject ;
+        schema:rangeIncludes   xsd:string .
+
+k2:cbIndustry  rdf:type        owl:ObjectProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "Crunchbase industry" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   k2:CbIndustry .
+
+k2:cbPermalink  rdf:type       owl:DatatypeProperty ;
+        rdfs:comment           "Suffix of cbUrl. A bit ambiguous since Investor permalinks are coupled with either 'person' or 'organization'" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "Crunchbase permalink" ;
+        schema:domainIncludes  k2:CbObject ;
+        schema:rangeIncludes   xsd:string .
+
+k2:cbUrl  rdf:type             owl:DatatypeProperty ;
+        rdfs:comment           "Full Crunchbase URL. Carries the object type, eg 'person', 'organization', etc" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "Crunchbase URL" ;
+        schema:domainIncludes  k2:CbObject ;
+        schema:rangeIncludes   xsd:anyURI .
+
+k2:city  rdf:type              owl:DatatypeProperty ;
+        rdfs:comment           "City of office location" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "city" ;
+        schema:domainIncludes  k2:Person , k2:Organization , k2:Event ;
+        schema:rangeIncludes   xsd:string .
+
+k2:closedOn  rdf:type          owl:DatatypeProperty ;
+        rdfs:comment           "Date when the Organization closed" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "closed on" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:date .
+
+k2:company  rdf:type           owl:ObjectProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "company" ;
+        schema:domainIncludes  k2:ConvergedCompany , k2:Momentum ;
+        schema:rangeIncludes   k2:Organization , k2:Agent .
+
+k2:companyType  rdf:type       owl:ObjectProperty ;
+        rdfs:comment           "Basic 'business situation' of the company: acquired, subsidiary, public, private" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "company type" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   k2:CompanyType ;
+        skos:scopeNote         "Now computed from CrunchBase info, thus totally populated" .
+
+k2:completedOn  rdf:type       owl:DatatypeProperty ;
+        rdfs:comment           "Date when the study degree was completed" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "completed on" ;
+        schema:domainIncludes  k2:Degree ;
+        schema:rangeIncludes   xsd:dateTime .
+
+k2:convergedStage  rdf:type    owl:ObjectProperty ;
+        rdfs:comment           "Stage of Industry Convergence: from very_low to very_high" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "converged stage" ;
+        schema:domainIncludes  k2:Converged ;
+        schema:rangeIncludes   k2:ConvergedStage .
+
+k2:count  rdf:type             owl:DatatypeProperty ;
+        rdfs:comment           "Strength of evidence" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "count" ;
+        schema:domainIncludes  k2:ConvergedCompany , k2:Converged ;
+        schema:rangeIncludes   xsd:integer .
+
+k2:countryCode  rdf:type       owl:DatatypeProperty ;
+        rdfs:comment           "Country code of office location" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "country code" ;
+        schema:domainIncludes  k2:Person , k2:Organization , k2:Event ;
+        schema:rangeIncludes   xsd:string .
+
+k2:createdAt  rdf:type         owl:DatatypeProperty ;
+        rdfs:comment           "When the Crunchbase record was created" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "created at" ;
+        schema:domainIncludes  k2:CbObject ;
+        schema:rangeIncludes   xsd:dateTime .
+
+k2:date  rdf:type              owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "date" ;
+        schema:domainIncludes  k2:Signal ;
+        schema:rangeIncludes   xsd:date .
+
+k2:degreeType  rdf:type        owl:DatatypeProperty ;
+        rdfs:comment           "Academic degree type. Free text: may include more than one degree or non-relevant data" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "degree Type" ;
+        schema:domainIncludes  k2:Degree ;
+        schema:rangeIncludes   xsd:string .
+
+k2:description  rdf:type       owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "description" ;
+        schema:domainIncludes  k2:Event , k2:Agent ;
+        schema:rangeIncludes   xsd:string .
+
+k2:domain  rdf:type            owl:DatatypeProperty ;
+        rdfs:comment           "Domain of organization website and emails" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "web domain" ;
+        schema:domainIncludes  k2:Organization , k2:Investor ;
+        schema:rangeIncludes   xsd:string .
+
+k2:earliestFundingRoundDate
+        rdf:type               owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "earliest funding round date" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:date .
+
+k2:email  rdf:type             owl:DatatypeProperty ;
+        rdfs:comment           "Contact email" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "email" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:string .
+
+k2:employeeCount  rdf:type     owl:ObjectProperty ;
+        rdfs:comment           "Range of organization employee count, eg 51-100" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "employee count" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   k2:EmployeeCount .
+
+k2:endedOn  rdf:type           owl:DatatypeProperty ;
+        rdfs:comment           "End date (if known)" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "ended on" ;
+        schema:domainIncludes  k2:Job , k2:Event ;
+        schema:rangeIncludes   xsd:dateTime .
+
+k2:enterpriseValueUsd
+        rdf:type               owl:DatatypeProperty ;
+        rdfs:comment           "Amount (postMoneyValuationUsd, priceUsd, valuationPriceUsd) of the latest financial transaction (FundingRound, Acquisition, IPO) targeting the company" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "enterprise value (USD)" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:entity  rdf:type            owl:ObjectProperty ;
+        rdfs:comment           "Organization that created and manages the fund" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "entity" ;
+        schema:domainIncludes  k2:Fund ;
+        schema:rangeIncludes   k2:Agent .
+
+k2:event  rdf:type             owl:ObjectProperty ;
+        rdfs:comment           "Event where participation occurred" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "event" ;
+        schema:domainIncludes  k2:EventAppearance ;
+        schema:rangeIncludes   k2:Event .
+
+k2:eventRole  rdf:type         owl:ObjectProperty ;
+        rdfs:comment           "Event type, eg conference, webinar" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "event role" ;
+        schema:domainIncludes  k2:Event ;
+        schema:rangeIncludes   k2:EventRole .
+
+k2:eventUrl  rdf:type          owl:DatatypeProperty ;
+        rdfs:comment           "Event home page" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "event URL" ;
+        schema:domainIncludes  k2:Event ;
+        schema:rangeIncludes   xsd:anyURI .
+
+k2:exchangeSymbol  rdf:type    owl:DatatypeProperty ;
+        rdfs:comment           "Exchange code. Uses internal Crunchbase codes that are ambiguous, should better use MIC" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "exchange symbol" ;
+        schema:domainIncludes  k2:IPO ;
+        schema:rangeIncludes   xsd:string .
+
+k2:facebookUrl  rdf:type       owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "Facebook URL" ;
+        schema:domainIncludes  k2:Agent ;
+        schema:rangeIncludes   xsd:anyURI .
+
+k2:featuredJobOrganization
+        rdf:type               owl:ObjectProperty ;
+        rdfs:comment           "Most important organization to which the person is affiliated (would be better to have a flag Job.isFeatured, since then the start/end dates could be recorded)" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "featured job organization" ;
+        schema:domainIncludes  k2:Person ;
+        schema:rangeIncludes   k2:Agent .
+
+k2:featuredJobTitle  rdf:type  owl:DatatypeProperty ;
+        rdfs:comment           "Title of the most important job of the person (would be better to have a flag Job.isFeatured, since then the start/end dates could be recorded)" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "featured job title" ;
+        schema:domainIncludes  k2:Person ;
+        schema:rangeIncludes   xsd:string .
+
+k2:firstName  rdf:type         owl:DatatypeProperty ;
+        rdfs:comment           "messy values: might include other data in addition to name" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "first name" ;
+        schema:domainIncludes  k2:Person ;
+        schema:rangeIncludes   xsd:string .
+
+k2:foundedOn  rdf:type         owl:DatatypeProperty ;
+        rdfs:comment           "Date the Organization was founded" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "founded on" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:date .
+
+k2:fundingRound  rdf:type      owl:ObjectProperty ;
+        rdfs:comment           "Funding round where the Investment is made" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "fundingRound" ;
+        schema:domainIncludes  k2:Investment ;
+        schema:rangeIncludes   k2:FundingRound .
+
+k2:gender  rdf:type            owl:ObjectProperty ;
+        rdfs:comment           "Gender identity of a person, eg female" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "gender" ;
+        schema:domainIncludes  k2:Person ;
+        schema:rangeIncludes   k2:Gender .
+
+k2:grade  rdf:type             owl:ObjectProperty ;
+        rdfs:comment           "Optional grade" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "grade" ;
+        schema:domainIncludes  k2:Material ;
+        schema:rangeIncludes   xsd:string .
+
+k2:homepageUrl  rdf:type       owl:DatatypeProperty ;
+        rdfs:comment           "Organization homepage (website)" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "homepage URL" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:anyURI .
+
+k2:industry  rdf:type          owl:ObjectProperty ;
+        rdfs:comment           "Industry (final product) of the value chain" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "industry" ;
+        schema:domainIncludes  k2:ValueChain , k2:ConvergedCompany , k2:Converged , k2:Momentum ;
+        schema:rangeIncludes   k2:Industry .
+
+k2:input  rdf:type             owl:ObjectProperty ;
+        rdfs:comment           "Products or Materials that are used by the cell" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "input" ;
+        schema:domainIncludes  k2:AlternativeInput , k2:WorkCell ;
+        schema:rangeIncludes   k2:Material , k2:Product .
+
+k2:institution  rdf:type       owl:ObjectProperty ;
+        rdfs:comment           "Academic institution" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "institution" ;
+        schema:domainIncludes  k2:Degree ;
+        schema:rangeIncludes   k2:Agent .
+
+k2:investmentCount  rdf:type   owl:DatatypeProperty ;
+        rdfs:comment           "Amount of Investments made by Investor" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "investment count" ;
+        schema:domainIncludes  k2:Investor ;
+        schema:rangeIncludes   xsd:integer .
+
+k2:investmentType  rdf:type    owl:ObjectProperty ;
+        rdfs:comment           "Type of investment in a company, eg corporate round" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "investment type" ;
+        schema:domainIncludes  k2:FundingRound ;
+        schema:rangeIncludes   k2:InvestmentType .
+
+k2:investor  rdf:type          owl:ObjectProperty ;
+        rdfs:comment           "Person or organization who invests" , "Investor(s) who participated in the Investment" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "investor" ;
+        schema:domainIncludes  k2:Momentum , k2:Investment ;
+        schema:rangeIncludes   k2:Agent .
+
+k2:investorCount  rdf:type     owl:DatatypeProperty ;
+        rdfs:comment           "Total number of Investors in the Funding Round" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "investor count" ;
+        schema:domainIncludes  k2:FundingRound ;
+        schema:rangeIncludes   xsd:integer .
+
+k2:investorType  rdf:type      owl:ObjectProperty ;
+        rdfs:comment           "Type of investmentor which makes an investment, eg hedge fund, private equity firm" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "investor type" ;
+        schema:domainIncludes  k2:Investor ;
+        schema:rangeIncludes   k2:InvestorType .
+
+k2:isCompleted  rdf:type       owl:DatatypeProperty ;
+        rdfs:comment           "Whether the study was was completed, and the degree was granted" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "is completed" ;
+        schema:domainIncludes  k2:Degree ;
+        schema:rangeIncludes   xsd:boolean .
+
+k2:isCurrent  rdf:type         owl:DatatypeProperty ;
+        rdfs:comment           "Whether the job is current. Compare to Person.featuredJobOrganization" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "is current" ;
+        schema:domainIncludes  k2:Job ;
+        schema:rangeIncludes   xsd:boolean .
+
+k2:isDueForExit  rdf:type      owl:DatatypeProperty ;
+        rdfs:comment           "Whether the company is due for exit (acquisition)" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "is due for exit" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:boolean ;
+        skos:scopeNote         "Funding rounds > 3, earliest more than 5y ago, latest more than 1y ago, total funding > 30 MUSD" .
+
+k2:isGrowthCompany  rdf:type   owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "is growth company" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:boolean .
+
+k2:isLeadInvestor  rdf:type    owl:DatatypeProperty ;
+        rdfs:comment           "Whether the investor was one of the leads of the funding round" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "isLeadInvestor" ;
+        schema:domainIncludes  k2:Investment ;
+        schema:rangeIncludes   xsd:boolean .
+
+k2:isPrivateEquityAcquired
+        rdf:type               owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "is private equity acquired" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:boolean .
+
+k2:isSatisfied  rdf:type       owl:DatatypeProperty ;
+        rdfs:comment           "Whether the score has passed its respective threshold" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "isSatisfied" ;
+        schema:domainIncludes  k2:CanAcquireScore ;
+        schema:rangeIncludes   xsd:integer .
+
+k2:isSymmetric  rdf:type       owl:DatatypeProperty ;
+        rdfs:comment           "Whether the score is symmetric in relation to the two companies, and can be copied from one to the other" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "is symmetric" ;
+        schema:domainIncludes  k2:CanAcquireType ;
+        schema:rangeIncludes   xsd:boolean .
+
+k2:jobType  rdf:type           owl:ObjectProperty ;
+        rdfs:comment           "Type of job a person has in a company, eg employee, executive" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "job type" ;
+        schema:domainIncludes  k2:Job ;
+        schema:rangeIncludes   k2:JobType .
+
+k2:justification  rdf:type     owl:DatatypeProperty ;
+        rdfs:comment           "Text explaining the score (or template from which it is formed)" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "justification" ;
+        schema:domainIncludes  k2:CanAcquireType , k2:CanAcquireScore ;
+        schema:rangeIncludes   xsd:string .
+
+k2:kind  rdf:type              owl:ObjectProperty ;
+        rdfs:comment           "Kind (logic) of acquisition: scale, scope" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "kind" ;
+        schema:domainIncludes  k2:CanAcquireType , k2:CanAcquireScore ;
+        schema:rangeIncludes   k2:CanAcquireKind .
+
+k2:lastFundingOn  rdf:type     owl:DatatypeProperty ;
+        rdfs:comment           "Date of most recent Funding Round" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "last funding on" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:date .
+
+k2:lastName  rdf:type          owl:DatatypeProperty ;
+        rdfs:comment           "messy values: might include other data in addition to name" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "last name" ;
+        schema:domainIncludes  k2:Person ;
+        schema:rangeIncludes   xsd:string .
+
+k2:latestFundingRoundDate
+        rdf:type               owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "latest funding round date" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:date .
+
+k2:legalName  rdf:type         owl:DatatypeProperty ;
+        rdfs:comment           "Legal name of the organization" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "legal name" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:string .
+
+k2:linkedinUrl  rdf:type       owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "LinkedIn URL" ;
+        schema:domainIncludes  k2:Agent ;
+        schema:rangeIncludes   xsd:anyURI .
+
+k2:logoUrl  rdf:type           owl:DatatypeProperty ;
+        rdfs:comment           "URL of event logo (image)" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "logo URL" ;
+        schema:domainIncludes  k2:Event , k2:Agent ;
+        schema:rangeIncludes   xsd:anyURI .
+
+k2:ltmRevenueUsd  rdf:type     owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "Last twelve months Revenue" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:momentumCategory  rdf:type  owl:ObjectProperty ;
+        rdfs:comment           "Qualitative measure of the momentum, eg. very_low, medium, high" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "Momentum category" ;
+        schema:domainIncludes  k2:Momentum ;
+        schema:rangeIncludes   k2:MomentumCategory .
+
+k2:momentumScore  rdf:type     owl:DatatypeProperty ;
+        rdfs:comment           "Quantitative measure of the momentum" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "Momentum score" ;
+        schema:domainIncludes  k2:Momentum ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:momentumType  rdf:type      owl:ObjectProperty ;
+        rdfs:comment           "Momentum type, eg. acquisition, earlyfunding" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "Momentum type" ;
+        schema:domainIncludes  k2:Momentum ;
+        schema:rangeIncludes   k2:MomentumType .
+
+k2:moneyRaised  rdf:type       owl:DatatypeProperty ;
+        rdfs:comment           "Total amount raised from the IPO, in local currency" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "money raised in local currency" ;
+        schema:domainIncludes  k2:IPO ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:moneyRaisedCurrencyCode
+        rdf:type               owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "money raised currency code" ;
+        schema:domainIncludes  k2:IPO ;
+        schema:rangeIncludes   xsd:string .
+
+k2:moneyRaisedUsd  rdf:type    owl:DatatypeProperty ;
+        rdfs:comment           "Total amount raised from the IPO, in US dollars" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "money raised in US dollars" ;
+        schema:domainIncludes  k2:IPO ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:name  rdf:type              owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "name" ;
+        schema:domainIncludes  k2:Material , k2:WorkCell , k2:CbObject , k2:Process , k2:Product , k2:SignalType ;
+        schema:rangeIncludes   xsd:string ;
+        skos:scopeNote         "Optional since IPO instances have no name" .
+
+k2:numAcqured  rdf:type        owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "number of acquired companies" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:integer .
+
+k2:numExits  rdf:type          owl:DatatypeProperty ;
+        rdfs:comment           "Total number of Exits" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "number of exits" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:integer ;
+        skos:scopeNote         "Investor Exit occurs when a company is acquired or IPOs, so the investor recoups his money. Company exit is when the company sells itself (even multiple times)" .
+
+k2:numFundingRounds  rdf:type  owl:DatatypeProperty ;
+        rdfs:comment           "Total number of Funding Rounds the company has received" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "number of funding rounds" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:integer .
+
+k2:numInvestors  rdf:type      owl:DatatypeProperty ;
+        rdfs:comment           "Number of distinct investors across all funding rounds" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "number of investors" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:integer .
+
+k2:order  rdf:type             owl:DatatypeProperty ;
+        rdfs:comment           "Order of execution compared to sibling steps in the same work cell" , "Sort order amongst its siblings" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "order" ;
+        schema:domainIncludes  k2:WorkStep , skos:Concept ;
+        schema:rangeIncludes   xsd:integer .
+
+k2:organization  rdf:type      owl:ObjectProperty ;
+        rdfs:comment           "Organization involved" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "organization" ;
+        schema:domainIncludes  k2:Job , k2:IPO , k2:FundingRound ;
+        schema:rangeIncludes   k2:Agent .
+
+k2:organizationRole  rdf:type  owl:ObjectProperty ;
+        rdfs:comment           "Type of organization, eg company, investor" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "organization role" ;
+        schema:domainIncludes  k2:Organization , k2:Investor ;
+        schema:rangeIncludes   k2:OrganizationRole .
+
+k2:output  rdf:type            owl:ObjectProperty ;
+        rdfs:comment           "The output product of the cell. TODO: is it always single? TODO: can it be Material?" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "output" ;
+        schema:domainIncludes  k2:WorkCell ;
+        schema:rangeIncludes   k2:Product .
+
+k2:parentOrganization
+        rdf:type               owl:ObjectProperty ;
+        rdfs:comment           "Parent of this organization" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "parent organization" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   k2:Organization .
+
+k2:participant  rdf:type       owl:ObjectProperty ;
+        rdfs:comment           "Who participated in the event" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "participant" ;
+        schema:domainIncludes  k2:EventAppearance ;
+        schema:rangeIncludes   k2:Agent .
+
+k2:partner  rdf:type           owl:ObjectProperty ;
+        rdfs:comment           "Partner(s) in the investor that made the funding decision" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "partner" ;
+        schema:domainIncludes  k2:Investment ;
+        schema:rangeIncludes   k2:Person .
+
+k2:person  rdf:type            owl:ObjectProperty ;
+        rdfs:comment           "Person directly involved" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "person" ;
+        schema:domainIncludes  k2:Job , k2:Degree ;
+        schema:rangeIncludes   k2:Agent .
+
+k2:phone  rdf:type             owl:DatatypeProperty ;
+        rdfs:comment           "Contact phone" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "phone" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:string .
+
+k2:postMoneyValuation
+        rdf:type               owl:DatatypeProperty ;
+        rdfs:comment           "Valuation of the Company after the Funding Round, in local currency" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "post money valuation in local currency" ;
+        schema:domainIncludes  k2:FundingRound ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:postMoneyValuationCurrencyCode
+        rdf:type               owl:DatatypeProperty ;
+        rdfs:comment           "Local currency of valuation" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "post money valuation currency code" ;
+        schema:domainIncludes  k2:FundingRound ;
+        schema:rangeIncludes   xsd:string .
+
+k2:postMoneyValuationUsd
+        rdf:type               owl:DatatypeProperty ;
+        rdfs:comment           "Valuation of the Company after the Funding Round, in US dollars" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "post money valuation in US dollars" ;
+        schema:domainIncludes  k2:FundingRound ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:postalCode  rdf:type        owl:DatatypeProperty ;
+        rdfs:comment           "Postal code of office location" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "postal code" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:string .
+
+k2:price  rdf:type             owl:DatatypeProperty ;
+        rdfs:comment           "Price of the acquisition" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "price in local currency" ;
+        schema:domainIncludes  k2:Acquisition ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:priceCurrencyCode  rdf:type  owl:DatatypeProperty ;
+        rdfs:comment           "Local currency of acquistion price" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "price currency code" ;
+        schema:domainIncludes  k2:Acquisition ;
+        schema:rangeIncludes   xsd:string .
+
+k2:priceUsd  rdf:type          owl:DatatypeProperty ;
+        rdfs:comment           "Price of the acquisition in USD" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "price in US dollars" ;
+        schema:domainIncludes  k2:Acquisition ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:primaryRole  rdf:type       owl:ObjectProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "primary role" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   k2:OrganizationRole .
+
+k2:process  rdf:type           owl:ObjectProperty ;
+        rdfs:comment           "Process executed by this step" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "process" ;
+        schema:domainIncludes  k2:WorkStep ;
+        schema:rangeIncludes   k2:Process .
+
+k2:product  rdf:type           owl:ObjectProperty ;
+        rdfs:comment           "The product" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "product" ;
+        schema:domainIncludes  k2:ProductInstance ;
+        schema:rangeIncludes   k2:Product .
+
+k2:raisedAmount  rdf:type      owl:DatatypeProperty ;
+        rdfs:comment           "Amount of money raised, in local currency" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "raised amount in local currency" ;
+        schema:domainIncludes  k2:Fund , k2:FundingRound ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:raisedAmountCurrencyCode
+        rdf:type               owl:DatatypeProperty ;
+        rdfs:comment           "Local currency code for money raised" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "raised amount currency code" ;
+        schema:domainIncludes  k2:Fund , k2:FundingRound ;
+        schema:rangeIncludes   xsd:string .
+
+k2:raisedAmountUsd  rdf:type   owl:DatatypeProperty ;
+        rdfs:comment           "Amount of money raised, in US dollars" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "raised amount in US dollars" ;
+        schema:domainIncludes  k2:Fund , k2:FundingRound ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:rank  rdf:type              owl:DatatypeProperty ;
+        rdfs:comment           "Crunchbase rank (smaller is 'more important'). Optional since many Crunchbase entities don't have a rank (but the main ones do)" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "rank" ;
+        schema:domainIncludes  k2:CbObject ;
+        schema:rangeIncludes   xsd:integer .
+
+k2:region  rdf:type            owl:DatatypeProperty ;
+        rdfs:comment           "Region of office location" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "region" ;
+        schema:domainIncludes  k2:Person , k2:Organization , k2:Event ;
+        schema:rangeIncludes   xsd:string .
+
+k2:registrationUrl  rdf:type   owl:DatatypeProperty ;
+        rdfs:comment           "Event registration page" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "registration URL" ;
+        schema:domainIncludes  k2:Event ;
+        schema:rangeIncludes   xsd:anyURI .
+
+k2:score  rdf:type             owl:DatatypeProperty ;
+        rdfs:comment           "Number of witnesses or ratio of company sizes" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "score" ;
+        schema:domainIncludes  k2:CanAcquireScore ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:sharePrice  rdf:type        owl:DatatypeProperty ;
+        rdfs:comment           "The share price for the stock at the time of IPO, in local currency" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "share price in local currency" ;
+        schema:domainIncludes  k2:IPO ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:sharePriceCurrencyCode
+        rdf:type               owl:DatatypeProperty ;
+        rdfs:comment           "Local currency of share price" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "share price currency code" ;
+        schema:domainIncludes  k2:IPO ;
+        schema:rangeIncludes   xsd:string .
+
+k2:sharePriceUsd  rdf:type     owl:DatatypeProperty ;
+        rdfs:comment           "The share price for the stock at the time of IPO, in US dollars" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "share price in US dollars" ;
+        schema:domainIncludes  k2:IPO ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:shortDescription  rdf:type  owl:DatatypeProperty ;
+        rdfs:comment           "Short free-text description" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "short description" ;
+        schema:domainIncludes  k2:Organization , k2:Event , k2:EventAppearance ;
+        schema:rangeIncludes   xsd:string .
+
+k2:signal  rdf:type            owl:ObjectProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "signal" ;
+        schema:domainIncludes  k2:Agent ;
+        schema:rangeIncludes   k2:Signal .
+
+k2:signalNature  rdf:type      owl:ObjectProperty ;
+        rdfs:comment           "Nature of Business Signal, eg. positive, neutral, negative. Co-related to signalWeight" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "signal nature" ;
+        schema:domainIncludes  k2:SignalType ;
+        schema:rangeIncludes   k2:SignalNature .
+
+k2:signalType  rdf:type        owl:SignalType ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "signal type" ;
+        schema:domainIncludes  k2:Signal ;
+        schema:rangeIncludes   k2:SignalType .
+
+k2:signalWeight  rdf:type      owl:DatatypeProperty ;
+        rdfs:comment           "Weight of Business Signal, eg. 2,0,-1" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "signal weight" ;
+        schema:domainIncludes  k2:SignalType ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:sizeUsd  rdf:type           owl:DatatypeProperty ;
+        rdfs:comment           "Synthetic measure of the financial size of the company, computed from ltmRevenueUsd, acquisitionValueUsd, enterpriseValueUsd, totalFundingUsd depending on companyType" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "size (USD)" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:startedOn  rdf:type         owl:DatatypeProperty ;
+        rdfs:comment           "Start date (if known)" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "started on" ;
+        schema:domainIncludes  k2:Job , k2:Event , k2:Degree ;
+        schema:rangeIncludes   xsd:dateTime .
+
+k2:stateCode  rdf:type         owl:DatatypeProperty ;
+        rdfs:comment           "State code of office location" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "state code" ;
+        schema:domainIncludes  k2:Person , k2:Organization , k2:Event ;
+        schema:rangeIncludes   xsd:string .
+
+k2:status  rdf:type            owl:ObjectProperty ;
+        rdfs:comment           "Status of the organization, eg closed, acquired, operating" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "status" ;
+        schema:domainIncludes  k2:Organization ;
+        schema:rangeIncludes   k2:OrganizationStatus .
+
+k2:step  rdf:type              owl:ObjectProperty ;
+        rdfs:comment           "(Sequence of) steps comprising the work cell" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "step" ;
+        schema:domainIncludes  k2:WorkCell ;
+        schema:rangeIncludes   k2: .
+
+k2:stockSymbol  rdf:type       owl:DatatypeProperty ;
+        rdfs:comment           "Ticker on the exchange" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "stock symbol" ;
+        schema:domainIncludes  k2:IPO ;
+        schema:rangeIncludes   xsd:string .
+
+k2:subject  rdf:type           owl:DatatypeProperty ;
+        rdfs:comment           "Academic subject. Free text" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "subject" ;
+        schema:domainIncludes  k2:Degree ;
+        schema:rangeIncludes   xsd:string .
+
+k2:threshold  rdf:type         owl:DatatypeProperty ;
+        rdfs:comment           "Threshold required to satisfy this score factor" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "threshold" ;
+        schema:domainIncludes  k2:CanAcquireType ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:title  rdf:type             owl:DatatypeProperty ;
+        rdfs:comment           "Job title. Free text: may include more than one title or non-relevant data" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "title" ;
+        schema:domainIncludes  k2:Job ;
+        schema:rangeIncludes   xsd:string .
+
+k2:totalFunding  rdf:type      owl:DatatypeProperty ;
+        rdfs:comment           "Total amount of funding, in local currency" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "total funding in local currency" ;
+        schema:domainIncludes  k2:Organization , k2:Investor ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:totalFundingCurrencyCode
+        rdf:type               owl:DatatypeProperty ;
+        rdfs:comment           "Local currency code for funding amount" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "total funding currency code" ;
+        schema:domainIncludes  k2:Organization , k2:Investor ;
+        schema:rangeIncludes   xsd:string .
+
+k2:totalFundingUsd  rdf:type   owl:DatatypeProperty ;
+        rdfs:comment           "Total amount of funding, in US dollars" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "total funding in US dollars" ;
+        schema:domainIncludes  k2:Organization , k2:Investor ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:twitterUrl  rdf:type        owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "Twitter URL" ;
+        schema:domainIncludes  k2:Agent ;
+        schema:rangeIncludes   xsd:anyURI .
+
+k2:type  rdf:type              owl:ObjectProperty ;
+        rdfs:comment           "Type of score: sharedIndustries, sharedSubindustries, affiliations, size, ..., total" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "type" ;
+        schema:domainIncludes  k2:CanAcquireScore ;
+        schema:rangeIncludes   k2:CanAcquireType .
+
+k2:updatedAt  rdf:type         owl:DatatypeProperty ;
+        rdfs:comment           "When the Crunchbase record was updated. This is the basis for Crunchbase data updating" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "updated at" ;
+        schema:domainIncludes  k2:CbObject ;
+        schema:rangeIncludes   xsd:dateTime .
+
+k2:valuationPrice  rdf:type    owl:DatatypeProperty ;
+        rdfs:comment           "Valuation of the Organization at IPO, in local currency" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "valuation price in local currency" ;
+        schema:domainIncludes  k2:IPO ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:valuationPriceCurrencyCode
+        rdf:type               owl:DatatypeProperty ;
+        rdfs:comment           "Local currency of the valuation" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "valuation price currency code" ;
+        schema:domainIncludes  k2:IPO ;
+        schema:rangeIncludes   xsd:string .
+
+k2:valuationPriceUsd  rdf:type  owl:DatatypeProperty ;
+        rdfs:comment           "Valuation of the Organization at IPO, in US dollars" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "valuation price in US dollars" ;
+        schema:domainIncludes  k2:IPO ;
+        schema:rangeIncludes   xsd:decimal .
+
+k2:valueChain  rdf:type        owl:ObjectProperty ;
+        rdfs:comment           "Value chain that this work cell is part of" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "value chain" ;
+        schema:domainIncludes  k2:WorkCell ;
+        schema:rangeIncludes   k2:ValueChain .
+
+k2:venueName  rdf:type         owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "venue name" ;
+        schema:domainIncludes  k2:Event ;
+        schema:rangeIncludes   xsd:string .
+
+k2:wentPublicOn  rdf:type      owl:DatatypeProperty ;
+        rdfs:comment           "When the company went public (IPO date)" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "went public on" ;
+        schema:domainIncludes  k2:IPO ;
+        schema:rangeIncludes   xsd:dateTime .
+
+k2:witness  rdf:type           owl:ObjectProperty ;
+        rdfs:comment           "Nodes that 'witness' the score factor: shared industries, shared subindustries, shared affiliated persons, relevant acquisitions, etc" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "witness" ;
+        schema:domainIncludes  k2:CanAcquireScore ;
+        schema:rangeIncludes   k2:CbObject .
+
+k2:year  rdf:type              owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "year" ;
+        schema:domainIncludes  k2:Momentum ;
+        schema:rangeIncludes   xsd:gYear .
+
+skos:Concept  rdf:type    rdfs:Class ;
+        rdfs:comment      "A code value in a thesaurus" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Concept" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      skos:editorialNote
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      skos:scopeNote
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      skos:prefLabel
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      skos:inScheme
+                          ] .
+
+skos:ConceptScheme  rdf:type  rdfs:Class ;
+        rdfs:comment      "A thesaurus of fixed code values (Concepts)" ;
+        rdfs:isDefinedBy  k2: ;
+        rdfs:label        "Concept Scheme" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      skos:prefLabel
+                          ] .
+
+skos:broader  rdf:type         owl:ObjectProperty ;
+        rdfs:comment           "Base material, if 'grade' is present" , "Parent concept. Can be multiple (eg Crunchbase Industries are multi-parented)" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "has broader" , "broader" ;
+        schema:domainIncludes  k2:Material , skos:Concept ;
+        schema:rangeIncludes   k2:Material , skos:Concept .
+
+skos:editorialNote  rdf:type   owl:DatatypeProperty ;
+        rdfs:comment           "Editorial notes, eg former name of this concept" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "editorial note" ;
+        schema:domainIncludes  skos:Concept ;
+        schema:rangeIncludes   xsd:string .
+
+skos:inScheme  rdf:type        owl:ObjectProperty ;
+        rdfs:comment           "Thesaurus scheme to which this concept belongs" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "in scheme" ;
+        schema:domainIncludes  skos:Concept ;
+        schema:rangeIncludes   skos:ConceptScheme .
+
+skos:prefLabel  rdf:type       owl:DatatypeProperty ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "preferred label" ;
+        schema:domainIncludes  skos:Concept , skos:ConceptScheme ;
+        schema:rangeIncludes   xsd:string .
+
+skos:scopeNote  rdf:type       owl:DatatypeProperty ;
+        rdfs:comment           "Explains the use and meaning of this concept" ;
+        rdfs:isDefinedBy       k2: ;
+        rdfs:label             "scope note" ;
+        schema:domainIncludes  skos:Concept ;
+        schema:rangeIncludes   xsd:string .
+

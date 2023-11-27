@@ -3,7 +3,7 @@
 #+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2023-04-17>
+#+date: <2023-11-27>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
@@ -383,6 +383,179 @@ to a "physical" representaiton using specific RDF names.
 
 Usage:
 : perl soml-map.pl < file.(tarql|ru|ttl) > file-mapped.(tarql|ru|ttl)
+
+** tsv2owl
+This tool uses the same sheets that drive ~tsv2soml~ to generate an OWL ontology.
+You can run it with a Makefile like this (see [[./tsv2owl/Makefile][tsv2owl/Makefile]]):
+#+begin_src Makefile
+ontology.ttl ::
+	curl -Ls "https://docs.google.com/spreadsheets/d/.../export?format=tsv" | \
+      perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
+      cat ontology-preamble.ttl - > ontology-unformatted.ttl
+	riot --formatted=ttl ontology-unformatted.ttl | perl -00e '@a=<>; print sort @a' > ontology.ttl
+	# rm ontology-unformatted.ttl # keep for debugging
+#+end_src
+
+It works like this:
+- Generates term definitions from the sheet
+- Prepends the preamble
+- Formats the result with Jena ~riot~
+- Sorts the file by term (Turtle block: such "paragraphs" are separated by a double newline)
+
+Use an ontology preamble, eg like this ~otkg-preamble.ttl~:
+
+#+begin_src ttl
+@prefix otkg: <https://kg.ontotext.com/resource/ontology/>.
+@prefix s:    <http://schema.org/> .
+
+<https://kg.ontotext.com/resource/ontology> a owl:Ontology ;
+  rdfs:label      "OTKG Ontology" ;
+  dct:created     "2023-01-25"^^xsd:date ;
+  dct:creator     <http://ontotext.com> ;
+  owl:versionInfo "1.0" .
+#+end_src
+
+It has these options. 
+- ~-v~: default namespace for classes and props that don't have a specific URL in the RDF column.
+  - By default is the empty prefix ~:~ (you must define this prefix in the preamble).
+  For example, for the Ontotext KG (OTKG), we use  ~-v s: -o otkg:~ i.e. schema.org (s:) as vocabulary namespace but otkg: as the ontology URL. Then eg:
+    - ~keywords~ will be emitted as ~s:keywords~ because it doesn't have an RDF value
+    - ~buyersJourney~ will be emitted as ~otkg:buyersJourney~ because that is its RDF value
+- ~-o:~: ontology URL (optional).
+  - Should match the ~owl:Ontology~ that you use in the preamble
+  - Can be a prefixed URL (eg ~otkg:~, in this case the URL has a slash at the end)
+    or a full URL (eg <https://kg.ontotext.com/resource/ontology> without slash at the end)
+  - For each term (class and prop), adds ~rdfs:isDefinedBy~ pointing to the ontology.
+    This is a common practice and is used eg by MetaPhactory when collecting properties to generate forms.
+  - Adds the current date as ~dct:modified~ of the ontology
+- ~-l~: downgrade literal datatypes.
+  - Datatypes are mapped as follows:
+#+begin_src 
+langString            rdf:langString
+stringOrLangString    rdf:langString
+literal               rdf:Literal
+dateOrYearOrMonth     xsd:date
+dateOrTimeOrTimeStamp xsd:dateTimeStamp
+<datatype>            xsd:<datatype>
+#+end_src
+  - With this option, the following downgrading (simplification) is also done:
+#+begin_src 
+rdf:langString        xsd:string
+rdf:Literal           xsd:string
+#+end_src
+     
+It uses the following sheet columns:
+- ~Class/prop~: class (if capitalized) or property belonging to the class above (if lowercase)
+- ~label~: emits ~rdfs:label~, by default same as the first column
+- ~Inherits/range~: superclass (if it's a class row) or property range
+- ~char~: SOML characteristics:
+  - Class: ~kind, typeProp, name, search~: ignored
+    - If it's ~kind: abstract~, you'll want to use ~RDF Replacement~ (see below)
+  - Prop:
+    - ~inverseAlias~: this is a  virtual property, so it's omitted
+    - ~min, max~: mapped to ~owl:minCardinality, owl:maxCardinality~ restrictions on the containing class
+      (but see https://github.com/VladimirAlexiev/soml/issues/1 for unimplemented features)
+    - ~inverseOf~ (prop with or without namespace): mapped to ~owl:inverseOf~
+    - ~symmetric~ (only "true"): mapped to ~owl:SymmetricProperty~
+    - ~subPropertyOf~: mapped to ~rdfs:subPropertyOf~
+    - ~transitiveOver~: mapped to ~psys:transitiveOver~
+    - ~search: {...}~: ignored
+    - Not yet handled: ~owl:FunctionalProperty~
+- ~RDF~: RDF URL used for this class/prop. By default is uses the first column
+- ~(regex|pattern)~: ignored (these are used by SOML only)
+- ~descr~: emits ~rdfs:comment~
+- ~RDF replacement~: optional. See next section
+
+Features and limitations:
+- Prop definitions (characteristics, label, descr, range; but not cardinality)
+  must conform in each use of a property.
+  This is not checked !!!
+  Use ~riot --formatted ttl~ to collect them in "paragraphs"
+  so you can check whether you have consistent definitions.
+- Emits ~schema:domainIncludes~ for each prop to accommodate props used sevreral times.
+- Emits type ~owl:ObjectProperty~ vs ~owl:DatatypeProperty~ for each prop, depending on range:
+  - If ~iri~ then ~ObjectProperty~
+  - If lowercase then ~DatatypeProperty~ (and prepend ~xsd:~ to the range)
+  - Else (the range is a class) then ~ObjectProperty~
+- Map only the data ranges indicated above: currently doesn't support rdf:HTML, sysont:Markdown
+  
+*** RDF replacement
+The column ~RDF~ is used when you need to specify something different from ~Class/name~.
+Eg if you have this in the SOML preamble:
+#+begin_src yaml
+prefixes:
+  vocab_iri: http://schema.org/
+  vocab_prefix: s
+  #+end_src
+The following tabular schema excerpt (leading dashes indicate the class hierarchy):
+| Class/prop          | range/inherits | RDF                    |
+|---------------------+----------------+------------------------|
+| Event               |                |                        |
+| -EventSeries        | Event          |                        |
+| -EventParticipation | Event          | otkg:EventPartcipation |
+generates ~s:Event~, ~s:EventSeries~ and ~otkg:EventPartcipation~ respectively.
+
+Semantic Objects currently supports only abstract superclasses,
+so if we want to use all 3 classes with instance data, 
+we need to add an abstract parent like this:
+| Class/prop          | range/inherits | char           | RDF                    |
+|---------------------+----------------+----------------+------------------------|
+| EventCommon         |                | kind: abstract |                        |
+| -Event              | EventCommon    |                |                        |
+| -EventSeries        | EventCommon    |                |                        |
+| -EventParticipation | EventCommon    |                | otkg:EventPartcipation |
+
+It's quite common for one of the children (in this case ~Event~) not to have any props of its own, 
+just to inherit the props of the parent.
+
+This works fine for ~tsv2soml~, but ~tsv2owl~ would generate a parasitic (non-existent) RDF class ~s:EventCommon~.
+I thought of using the value ~RDF: none~ to signal that such class should be omitted.
+But then I'd need to carry over the properties and parent of that parasitic class to one of its children (in this case ~Event~).
+
+So instead, I add an extra column ~RDF replacement~ that indicates which RDF class is used instead of the parasitic class:
+| Class/prop          | range/inherits | char           | RDF                    | RDF replacement |
+|---------------------+----------------+----------------+------------------------+-----------------|
+| EventCommon         |                | kind: abstract |                        | Event           |
+| -Event              | EventCommon    |                |                        |                 |
+| -EventSeries        | EventCommon    |                |                        |                 |
+| -EventParticipation | EventCommon    |                | otkg:EventPartcipation |                 |
+This replaces all references to ~EventCommon~ with ~Event~: domain (prop attachment), range (prop target), superclass (parent), subclasses (children).
+
+Notes:
+- It uses the fact that RDFS/OWL triples can be emitted in any order
+- It emits an extra reflexive triple ~s:Event rdfs:subClassOf s:Event~, which is harmless and in fact is part of the RDFS semantics
+- It uses the RDF expression of the replacement class: in this case ~s:Event~ because the ~RDF~ column is not used, but you can specify something else in ~RDF~
+- ~label~ and ~descr~ of the parasitic class are ignored to avoid emitting multiple labels/descriptions for the replacement class
+
+You can also use replacement on leaf-level classes.
+Consider the following example from OTKG (two leading dashes indicate the properties attached to the prev class):
+| Class/prop       | range/inherits | char                            | RDF                 | RDF replacement |
+|------------------+----------------+---------------------------------+---------------------+-----------------|
+| Concept          |                | name: prefLabel, kind: abstract | skos:Concept        |                 |
+| --prefLabel      | string         | min: 1                          | skos:prefLabel      |                 |
+| --inScheme       | ConceptScheme  |                                 | skos:inScheme       |                 |
+| -Audience        | Concept        | typeProp: inScheme              | OTKG:audience       | skos:Concept    |
+| -ContentType     | Concept        | typeProp: inScheme              | OTKG:contentType    | skos:Concept    |
+| --appliesToClass | iri            |                                 | otkg:appliesToClass |                 |
+| PersonCommon     | Thing          | kind: abstract                  |                     | Person          |
+| --jobTitle       | string         |                                 |                     |                 |
+| --worksFor       | Organization   | min: 1                          |                     |                 |
+| --sameAs         | iri            | max: inf                        |                     |                 |
+| -Person          | PersonCommon   |                                 |                     |                 |
+| -OntotextPerson  | PersonCommon   | typeProp: worksFor              | OTKG-agent:Ontotext | none            |
+| --sameAs         | iri            | min: 1                          |                     |                 |
+Several sub-classes have an additional type discriminator designated by ~typeProp~ (in addition to the standard ~rdf:type~):
+- ~ContentType~ is a ~skos:Concept~ that is further distinguished by ~skos:inScheme~.
+  It has extra prop ~otkg:appliesToClass~, so we specify ~replacement=skos:Concept~ to carry over this prop to that parent class.
+  Note: this prop indicates which concept goes with which Schema class, eg ~OTKG:contentType/blog_post~ goes with ~s:BlogPosting~
+- ~Audience~ adds no props compared to ~Concept~, but we still set ~replacement=skos:Concept~
+  to ensure that its incoming link ~s:audience~ will obtain ~range=skos:Concept~
+- ~PersonCommon~ is a parasitic (abstract) parent class, so we replace it with ~Person~ (which is emitted in RDF as ~s:Person~).
+  We already such replacement case in the previous example.
+- ~OntotextPerson~ is a class that is the same as ~Person~, but with fixed ~s:worksFor=OTKG-agent:Ontotext~
+  and with stronger information requirements (we demand that it has at least one ~s:sameAs~, the default in ~Person~ is ~min: 0~).
+  There's neither RDF class ~s:OntotextPerson~ nor ~otkg:OntotextPerson~, and it doesn't add any extra prop.
+  So we use ~replacement=none~ to omit it from RDF altogether.
 
 ** soml2puml
 Generate nice PlantUML diagrams from SOML models.
