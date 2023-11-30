@@ -12,6 +12,8 @@
 #+exclude_tags: noexport
 #+creator: Emacs 26.1 (Org mode 9.2.2)
 
+(You can read this [[https://github.com/VladimirAlexiev/soml/][rendered by github]] or [[https://rawgit2.com/VladimirAlexiev/soml/master/README.html][rendered as HTML]])
+
 * Table of Contents                                 :TOC:noexport:
 :PROPERTIES:
 :TOC:      :include all
