@@ -197,7 +197,7 @@
 <body>
 <div id="preamble" class="status">
 <p class="author">Author: Vladimir Alexiev (<a href="mailto:vladimir.alexiev@ontotext.com">vladimir.alexiev@ontotext.com</a>)</p>
-<p class="date">Date: 2023-04-17</p>
+<p class="date">Date: 2023-11-30</p>
 </div>
 <div id="content" class="content">
 <h1 class="title">Semantic Objects Modeling Language</h1>
@@ -205,47 +205,56 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6897e7f">1. Intro</a>
+<li><a href="#intro">Intro</a>
 <ul>
-<li><a href="#org032fe41">1.1. Why SOML?</a></li>
-<li><a href="#org0a30f7e">1.2. Similar Schema Languages</a></li>
-<li><a href="#org6af1cf0">1.3. What is SOML</a></li>
+<li><a href="#why-soml">Why SOML?</a></li>
+<li><a href="#similar-schema-languages">Similar Schema Languages</a></li>
+<li><a href="#what-is-soml">What is SOML</a></li>
 </ul>
 </li>
-<li><a href="#org80ca8aa">2. Complex Schema (Company Graph)</a>
+<li><a href="#complex-schema-company-graph">Complex Schema (Company Graph)</a>
 <ul>
-<li><a href="#orgf7353b4">2.1. Example Class:</a></li>
-<li><a href="#org93282f9">2.2. Example Inverse Alias</a></li>
-<li><a href="#org490ed9c">2.3. Example Diagram: Exchange Listing SOML</a></li>
-<li><a href="#org17aca8d">2.4. Example Diagram: Exchange Listing RDF</a></li>
+<li><a href="#example-class">Example Class:</a></li>
+<li><a href="#example-inverse-alias">Example Inverse Alias</a></li>
+<li><a href="#example-diagram-exchange-listing-soml">Example Diagram: Exchange Listing SOML</a></li>
+<li><a href="#example-diagram-exchange-listing-rdf">Example Diagram: Exchange Listing RDF</a></li>
 </ul>
 </li>
-<li><a href="#orgf792558">3. SOML Tooling</a>
+<li><a href="#soml-tooling">SOML Tooling</a>
 <ul>
-<li><a href="#org6cf7483">3.1. owl2soml</a></li>
-<li><a href="#orgfe17e65">3.2. tsv2soml</a></li>
-<li><a href="#org8cf260a">3.3. soml-map</a></li>
-<li><a href="#org3340128">3.4. soml2puml</a></li>
+<li><a href="#owl2soml">owl2soml</a></li>
+<li><a href="#tsv2soml">tsv2soml</a>
+<ul>
+<li><a href="#reusing-property-characteristics">Reusing Property Characteristics</a></li>
 </ul>
 </li>
-<li><a href="#orgd608d13">4. Tricky Points and Deficiencies</a>
+<li><a href="#soml-map">soml-map</a></li>
+<li><a href="#tsv2owl">tsv2owl</a>
 <ul>
-<li><a href="#org0a085d8">4.1. GraphQL Type vs rdf:type</a></li>
-<li><a href="#org4dd1930">4.2. Single vs Multiple-Value Props</a></li>
-<li><a href="#org83cb9c9">4.3. Inverse Aliases</a></li>
-<li><a href="#org0290c6f">4.4. Literals</a></li>
-<li><a href="#orge819968">4.5. Extended Pattern (Prefix + Regex)</a></li>
-<li><a href="#org294954a">4.6. IRI Generation</a></li>
-<li><a href="#org6aecf2d">4.7. Schema Inclusion/Modularity</a></li>
+<li><a href="#rdf-replacement">RDF replacement</a></li>
+</ul>
+</li>
+<li><a href="#soml2puml">soml2puml</a></li>
+</ul>
+</li>
+<li><a href="#tricky-points-and-deficiencies">Tricky Points and Deficiencies</a>
+<ul>
+<li><a href="#graphql-type-vs-rdf-type">GraphQL Type vs rdf:type</a></li>
+<li><a href="#single-vs-multiple-value-props">Single vs Multiple-Value Props</a></li>
+<li><a href="#inverse-aliases">Inverse Aliases</a></li>
+<li><a href="#literals">Literals</a></li>
+<li><a href="#extended-pattern-prefix-regex">Extended Pattern (Prefix + Regex)</a></li>
+<li><a href="#iri-generation">IRI Generation</a></li>
+<li><a href="#schema-inclusion-modularity">Schema Inclusion/Modularity</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6897e7f" class="outline-2">
-<h2 id="org6897e7f"><span class="section-number-2">1.</span> Intro</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-intro" class="outline-2">
+<h2 id="intro">Intro</h2>
+<div class="outline-text-2" id="text-intro">
 <p>
 The Semantic Objects Modeling Language (SOML)
 is a simple YAML-based language for describing business objects (business entities, domain objects) 
@@ -286,9 +295,9 @@ generating SOML (<code>tsv2soml</code>) and mapping RDF data (<code>soml-map</co
 </p>
 </div>
 
-<div id="outline-container-org032fe41" class="outline-3">
-<h3 id="org032fe41"><span class="section-number-3">1.1.</span> Why SOML?</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-why-soml" class="outline-3">
+<h3 id="why-soml">Why SOML?</h3>
+<div class="outline-text-3" id="text-why-soml">
 <p>
 We often are asked why we had to introduce yet another object modeling language?
 Why didn't we use existing semantic web mechanisms such as 
@@ -333,9 +342,9 @@ we need to be able to generate a number of technical artefacts from the same bus
 </div>
 </div>
 
-<div id="outline-container-org0a30f7e" class="outline-3">
-<h3 id="org0a30f7e"><span class="section-number-3">1.2.</span> Similar Schema Languages</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-similar-schema-languages" class="outline-3">
+<h3 id="similar-schema-languages">Similar Schema Languages</h3>
+<div class="outline-text-3" id="text-similar-schema-languages">
 <p>
 A number of schema languages have appeared recently that are based on YAML,
 express business-level object models that are somewhat independent of technological choices,
@@ -372,9 +381,9 @@ While not publically available, it's described in presentations by <a href="http
 </div>
 </div>
 
-<div id="outline-container-org6af1cf0" class="outline-3">
-<h3 id="org6af1cf0"><span class="section-number-3">1.3.</span> What is SOML</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-what-is-soml" class="outline-3">
+<h3 id="what-is-soml">What is SOML</h3>
+<div class="outline-text-3" id="text-what-is-soml">
 <p>
 At present SOML is very simple, but will evolve to include more features.
 The overall structure of a SOML file (schema) is shown below.
@@ -435,9 +444,9 @@ some tricky points of SOML usage and GraphQL deficiencies, and some tooling.
 </div>
 </div>
 
-<div id="outline-container-org80ca8aa" class="outline-2">
-<h2 id="org80ca8aa"><span class="section-number-2">2.</span> Complex Schema (Company Graph)</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-complex-schema-company-graph" class="outline-2">
+<h2 id="complex-schema-company-graph">Complex Schema (Company Graph)</h2>
+<div class="outline-text-2" id="text-complex-schema-company-graph">
 <p>
 To introduce the proper context for this blog (working with complex SOML schemas),
 we'll describe the Ontotext Company Graph (ONTO CG) ontology and model.
@@ -644,9 +653,9 @@ The full CG schema is included: <a href="./schemas/CG.yaml">CG.yaml</a>. Below w
 </p>
 </div>
 
-<div id="outline-container-orgf7353b4" class="outline-3">
-<h3 id="orgf7353b4"><span class="section-number-3">2.1.</span> Example Class:</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-example-class" class="outline-3">
+<h3 id="example-class">Example Class:</h3>
+<div class="outline-text-3" id="text-example-class">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #a0522d;">ExchangeListing</span>:
   <span style="color: #a0522d;">label</span>: <span style="color: #8b2252;">"Exchange Listing"</span>
@@ -705,9 +714,9 @@ A more appropriate <code>descr</code> is given at the object level, overriding t
 </div>
 </div>
 
-<div id="outline-container-org93282f9" class="outline-3">
-<h3 id="org93282f9"><span class="section-number-3">2.2.</span> Example Inverse Alias</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-example-inverse-alias" class="outline-3">
+<h3 id="example-inverse-alias">Example Inverse Alias</h3>
+<div class="outline-text-3" id="text-example-inverse-alias">
 <p>
 A Position is an associative node between Person and Organization that adds more data (not shown):
 </p>
@@ -739,9 +748,9 @@ To allow navigation in any direction (not just from Position out, but also in), 
 </div>
 </div>
 
-<div id="outline-container-org490ed9c" class="outline-3">
-<h3 id="org490ed9c"><span class="section-number-3">2.3.</span> Example Diagram: Exchange Listing SOML</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-example-diagram-exchange-listing-soml" class="outline-3">
+<h3 id="example-diagram-exchange-listing-soml">Example Diagram: Exchange Listing SOML</h3>
+<div class="outline-text-3" id="text-example-diagram-exchange-listing-soml">
 <p>
 For example, the figure below shows the stock exchange listing (IPO) of Apple on the Tokyo exchange and NASDAQ, and the listing of Nasdaq Inc (the company) on NASDAQ (the stock exchange).
 </p>
@@ -757,18 +766,18 @@ For example, the figure below shows the stock exchange listing (IPO) of Apple on
 </p>
 
 
-<div id="org08f530f" class="figure">
+<div id="org2ff0685" class="figure">
 <p><img src="./eg/model-exchange-listing.png" alt="model-exchange-listing.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org17aca8d" class="outline-3">
-<h3 id="org17aca8d"><span class="section-number-3">2.4.</span> Example Diagram: Exchange Listing RDF</h3>
-<div class="outline-text-3" id="text-2-4">
+<div id="outline-container-example-diagram-exchange-listing-rdf" class="outline-3">
+<h3 id="example-diagram-exchange-listing-rdf">Example Diagram: Exchange Listing RDF</h3>
+<div class="outline-text-3" id="text-example-diagram-exchange-listing-rdf">
 <p>
-This version of the diagram uses <a href="#org8cf260a">soml-map</a> to map SOML names to RDF names in specific namespaces.
+This version of the diagram uses <a href="#soml-map">soml-map</a> to map SOML names to RDF names in specific namespaces.
 </p>
 <ul class="org-ul">
 <li>So this can be considered the "physical" data model of data as it's stored in the semantic database</li>
@@ -779,7 +788,7 @@ This version of the diagram uses <a href="#org8cf260a">soml-map</a> to map SOML 
 </p>
 
 
-<div id="org20b7673" class="figure">
+<div id="org124d38f" class="figure">
 <p><img src="./eg/model-exchange-listing-mapped.png" alt="model-exchange-listing-mapped.png" />
 </p>
 </div>
@@ -787,13 +796,14 @@ This version of the diagram uses <a href="#org8cf260a">soml-map</a> to map SOML 
 </div>
 </div>
 
-<div id="outline-container-orgf792558" class="outline-2">
-<h2 id="orgf792558"><span class="section-number-2">3.</span> SOML Tooling</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-soml-tooling" class="outline-2">
+<h2 id="soml-tooling">SOML Tooling</h2>
+<div class="outline-text-2" id="text-soml-tooling">
 </div>
-<div id="outline-container-org6cf7483" class="outline-3">
-<h3 id="org6cf7483"><span class="section-number-3">3.1.</span> owl2soml</h3>
-<div class="outline-text-3" id="text-3-1">
+
+<div id="outline-container-owl2soml" class="outline-3">
+<h3 id="owl2soml">owl2soml</h3>
+<div class="outline-text-3" id="text-owl2soml">
 <p>
 This tool (written in Perl) generates SOML schemas from ontologies (that use RDFS, OWL and/or schema.org constructs).
 It handles numerous features and has been integrated in the Ontotext Platform (reimplemented in Java).
@@ -802,9 +812,9 @@ See its own README.
 </div>
 </div>
 
-<div id="outline-container-orgfe17e65" class="outline-3">
-<h3 id="orgfe17e65"><span class="section-number-3">3.2.</span> tsv2soml</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-tsv2soml" class="outline-3">
+<h3 id="tsv2soml">tsv2soml</h3>
+<div class="outline-text-3" id="text-tsv2soml">
 <p>
 Editing large schemas is often easier to do in a table, even when the schema language is simple.
 (Also, this enables domain experts to participate in schema authoring, even if only editing the descriptions.)
@@ -820,7 +830,7 @@ Here's the beginning of the sheet:
 </p>
 
 
-<div id="orgfae957b" class="figure">
+<div id="org3bac267" class="figure">
 <p><img src="./eg/CG-sheet.png" alt="CG-sheet.png" />
 </p>
 </div>
@@ -831,7 +841,7 @@ as distinct business classes
 </p>
 
 
-<div id="orgbaab0c5" class="figure">
+<div id="orgefa7911" class="figure">
 <p><img src="./eg/CG-sheet2.png" alt="CG-sheet2.png" />
 </p>
 </div>
@@ -857,11 +867,132 @@ Options:
 This can be used to simplify the schema not to use <code>langString</code> and union datatypes</li>
 </ul>
 </div>
+
+<div id="outline-container-reusing-property-characteristics" class="outline-4">
+<h4 id="reusing-property-characteristics">Reusing Property Characteristics</h4>
+<div class="outline-text-4" id="text-reusing-property-characteristics">
+<ul class="org-ul">
+<li>The script counts how many times each prop is used in objects</li>
+<li>For props used more than once, the script emits the <b>first occurrence</b> of each prop
+in the common <code>properties</code> section:</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #a0522d;">properties</span>: <span style="color: #b22222;"># </span><span style="color: #b22222;">reused props</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>This allows you to omit common details (eg <code>label, descr, range</code>) on subsequent occurrences</li>
+<li>But it also means that characteristics given in the first occurrence override the defaults
+for subsequent occurrences, which may lead to unintended consequences.</li>
+</ul>
+
+<p>
+Consider a SOML based on schema.org where we allow multiple <code>sameAs</code> values
+(e.g. the item's Wikipedia page, Wikidata entry, Linkedin profile, YouTube profile, etc),
+and want the field to be mandatory for <code>Organization</code> but optional for <code>Person</code>.
+</p>
+
+<p>
+We write the details on the first occurrence and then just mention the prop on the second occurrence:
+</p>
+
+<table border="1" cellspacing="0" cellpadding="2" rules="all" frame="box">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Class/prop</th>
+<th scope="col" class="org-left">label</th>
+<th scope="col" class="org-left">Inherits/range</th>
+<th scope="col" class="org-left">char</th>
+<th scope="col" class="org-left">descr</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Organization</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">sameAs</td>
+<td class="org-left">same as</td>
+<td class="org-left">iri</td>
+<td class="org-left">min: 1, max: inf</td>
+<td class="org-left">URL that unambiguously indicates the thing's identity</td>
+</tr>
+
+<tr>
+<td class="org-left">Person</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">sameAs</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+This results in a SOML like this:
+</p>
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #a0522d;">objects</span>:
+  <span style="color: #a0522d;">Organization</span>:
+    <span style="color: #a0522d;">props</span>:
+      <span style="color: #a0522d;">sameAs</span>:
+        <span style="color: #a0522d;">range</span>: iri
+        <span style="color: #a0522d;">min</span>: 1
+        <span style="color: #a0522d;">max</span>: inf
+        <span style="color: #a0522d;">descr</span>: URL that unambiguously indicates the thing's identity
+  <span style="color: #a0522d;">Person</span>:
+    <span style="color: #a0522d;">props</span>:
+      <span style="color: #a0522d;">sameAs</span>:
+<span style="color: #a0522d;">properties</span>: <span style="color: #b22222;"># </span><span style="color: #b22222;">reused props</span>
+  <span style="color: #a0522d;">sameAs</span>:
+    <span style="color: #a0522d;">range</span>: iri
+    <span style="color: #a0522d;">min</span>: 1
+    <span style="color: #a0522d;">max</span>: inf
+    <span style="color: #a0522d;">descr</span>: URL that unambiguously indicates the thing's identity
+</pre>
+</div>
+<p>
+The prop characteristics are copied from <code>properties</code> into <code>Person.props</code>,
+which means that the default cardinality <code>min: 0</code> is overridden by <code>min: 1</code>,
+which doesn't match the requirement "optional for <code>Person</code>".
+</p>
+
+<p>
+To fix this, you need to specify <code>min: 0</code> explicitly in the <code>Person.sameAs</code> table row.
+</p>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org8cf260a" class="outline-3">
-<h3 id="org8cf260a"><span class="section-number-3">3.3.</span> soml-map</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-soml-map" class="outline-3">
+<h3 id="soml-map">soml-map</h3>
+<div class="outline-text-3" id="text-soml-map">
 <p>
 <code>tsv2soml</code> writes out a file <code>soml-map.tsv</code> (see exmaple <a href="./schemas/soml-map.tsv">soml-map.tsv</a>) with columns "class, prop (optional), rdf"
 </p>
@@ -871,7 +1002,7 @@ This can be used to simplify the schema not to use <code>langString</code> and u
 
 <p>
 It can be used to map from SOML names to RDF names (class/prop URLs) in specific namespaces.
-Eg compare <a href="#org490ed9c">Example Diagram: Exchange Listing SOML</a> vs <a href="#org17aca8d">Example Diagram: Exchange Listing RDF</a>.
+Eg compare <a href="#example-diagram-exchange-listing-soml">Example Diagram: Exchange Listing SOML</a> vs <a href="#example-diagram-exchange-listing-rdf">Example Diagram: Exchange Listing RDF</a>.
 </p>
 
 <p>
@@ -889,9 +1020,502 @@ perl soml-map.pl &lt; file.(tarql|ru|ttl) &gt; file-mapped.(tarql|ru|ttl)
 </div>
 </div>
 
-<div id="outline-container-org3340128" class="outline-3">
-<h3 id="org3340128"><span class="section-number-3">3.4.</span> soml2puml</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-tsv2owl" class="outline-3">
+<h3 id="tsv2owl">tsv2owl</h3>
+<div class="outline-text-3" id="text-tsv2owl">
+<p>
+This tool uses the same sheets that drive <code>tsv2soml</code> to generate an OWL ontology.
+You can run it with a Makefile like this (see <a href="./tsv2owl/Makefile">tsv2owl/Makefile</a>):
+</p>
+<div class="org-src-container">
+<pre class="src src-Makefile">ontology.ttl ::
+	curl -Ls "https://docs.google.com/spreadsheets/d/.../export?format=tsv" | \
+      perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
+      cat ontology-preamble.ttl - &gt; ontology-unformatted.ttl
+	riot --formatted=ttl ontology-unformatted.ttl | perl -00e '@a=&lt;&gt;; print sort @a' &gt; ontology.ttl
+	# rm ontology-unformatted.ttl # keep for debugging
+</pre>
+</div>
+
+<p>
+It works like this:
+</p>
+<ul class="org-ul">
+<li>Generates term definitions from the sheet</li>
+<li>Prepends the preamble</li>
+<li>Formats the result with Jena <code>riot</code></li>
+<li>Sorts the file by term (Turtle block: such "paragraphs" are separated by a double newline)</li>
+</ul>
+
+<p>
+Use an ontology preamble, eg like this <code>otkg-preamble.ttl</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ttl">@prefix otkg: &lt;https://kg.ontotext.com/resource/ontology/&gt;.
+@prefix s:    &lt;http://schema.org/&gt; .
+
+&lt;https://kg.ontotext.com/resource/ontology&gt; a owl:Ontology ;
+  rdfs:label      "OTKG Ontology" ;
+  dct:created     "2023-01-25"^^xsd:date ;
+  dct:creator     &lt;http://ontotext.com&gt; ;
+  owl:versionInfo "1.0" .
+</pre>
+</div>
+
+<p>
+It has these options. 
+</p>
+<ul class="org-ul">
+<li><p>
+<code>-v</code>: default namespace for classes and props that don't have a specific URL in the RDF column.
+</p>
+<ul class="org-ul">
+<li>By default is the empty prefix <code>:</code> (you must define this prefix in the preamble).</li>
+</ul>
+<p>
+For example, for the Ontotext KG (OTKG), we use  <code>-v s: -o otkg:</code> i.e. schema.org (s:) as vocabulary namespace but otkg: as the ontology URL. Then eg:
+</p>
+<ul class="org-ul">
+<li><code>keywords</code> will be emitted as <code>s:keywords</code> because it doesn't have an RDF value</li>
+<li><code>buyersJourney</code> will be emitted as <code>otkg:buyersJourney</code> because that is its RDF value</li>
+</ul></li>
+<li><code>-o:</code>: ontology URL (optional).
+<ul class="org-ul">
+<li>Should match the <code>owl:Ontology</code> that you use in the preamble</li>
+<li>Can be a prefixed URL (eg <code>otkg:</code>, in this case the URL has a slash at the end)
+or a full URL (eg <a href="https://kg.ontotext.com/resource/ontology">https://kg.ontotext.com/resource/ontology</a> without slash at the end)</li>
+<li>For each term (class and prop), adds <code>rdfs:isDefinedBy</code> pointing to the ontology.
+This is a common practice and is used eg by MetaPhactory when collecting properties to generate forms.</li>
+<li>Adds the current date as <code>dct:modified</code> of the ontology</li>
+</ul></li>
+<li><code>-l</code>: downgrade literal datatypes.
+<ul class="org-ul">
+<li>Datatypes are mapped as follows:</li>
+</ul></li>
+</ul>
+<pre class="example">
+langString            rdf:langString
+stringOrLangString    rdf:langString
+literal               rdf:Literal
+dateOrYearOrMonth     xsd:date
+dateOrTimeOrTimeStamp xsd:dateTimeStamp
+&lt;datatype&gt;            xsd:&lt;datatype&gt;
+</pre>
+<ul class="org-ul">
+<li>With this option, the following downgrading (simplification) is also done:</li>
+</ul>
+<pre class="example">
+rdf:langString        xsd:string
+rdf:Literal           xsd:string
+</pre>
+
+<p>
+It uses the following sheet columns:
+</p>
+<ul class="org-ul">
+<li><code>Class/prop</code>: class (if capitalized) or property belonging to the class above (if lowercase)</li>
+<li><code>label</code>: emits <code>rdfs:label</code>, by default same as the first column</li>
+<li><code>Inherits/range</code>: superclass (if it's a class row) or property range</li>
+<li><code>char</code>: SOML characteristics:
+<ul class="org-ul">
+<li>Class: <code>kind, typeProp, name, search</code>: ignored
+<ul class="org-ul">
+<li>If it's <code>kind: abstract</code>, you'll want to use <code>RDF Replacement</code> (see below)</li>
+</ul></li>
+<li>Prop:
+<ul class="org-ul">
+<li><code>inverseAlias</code>: this is a  virtual property, so it's omitted</li>
+<li><code>min, max</code>: mapped to <code>owl:minCardinality, owl:maxCardinality</code> restrictions on the containing class
+(but see <a href="https://github.com/VladimirAlexiev/soml/issues/1">https://github.com/VladimirAlexiev/soml/issues/1</a> for unimplemented features)</li>
+<li><code>inverseOf</code> (prop with or without namespace): mapped to <code>owl:inverseOf</code></li>
+<li><code>symmetric</code> (only "true"): mapped to <code>owl:SymmetricProperty</code></li>
+<li><code>subPropertyOf</code>: mapped to <code>rdfs:subPropertyOf</code></li>
+<li><code>transitiveOver</code>: mapped to <code>psys:transitiveOver</code></li>
+<li><code>search: {...}</code>: ignored</li>
+<li>Not yet handled: <code>owl:FunctionalProperty</code></li>
+</ul></li>
+</ul></li>
+<li><code>RDF</code>: RDF URL used for this class/prop. By default is uses the first column</li>
+<li><code>(regex|pattern)</code>: ignored (these are used by SOML only)</li>
+<li><code>descr</code>: emits <code>rdfs:comment</code></li>
+<li><code>RDF replacement</code>: optional. See next section</li>
+</ul>
+
+<p>
+Features and limitations:
+</p>
+<ul class="org-ul">
+<li>Prop definitions (characteristics, label, descr, range; but not cardinality)
+must conform in each use of a property.
+This is not checked !!!
+Use <code>riot --formatted ttl</code> to collect them in "paragraphs"
+so you can check whether you have consistent definitions.</li>
+<li>Emits <code>schema:domainIncludes</code> for each prop to accommodate props used sevreral times.</li>
+<li>Emits type <code>owl:ObjectProperty</code> vs <code>owl:DatatypeProperty</code> for each prop, depending on range:
+<ul class="org-ul">
+<li>If <code>iri</code> then <code>ObjectProperty</code></li>
+<li>If lowercase then <code>DatatypeProperty</code> (and prepend <code>xsd:</code> to the range)</li>
+<li>Else (the range is a class) then <code>ObjectProperty</code></li>
+</ul></li>
+<li>Map only the data ranges indicated above: currently doesn't support rdf:HTML, sysont:Markdown</li>
+</ul>
+</div>
+
+<div id="outline-container-rdf-replacement" class="outline-4">
+<h4 id="rdf-replacement">RDF replacement</h4>
+<div class="outline-text-4" id="text-rdf-replacement">
+<p>
+The column <code>RDF</code> is used when you need to specify something different from <code>Class/name</code>.
+Eg if you have this in the SOML preamble:
+</p>
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #a0522d;">prefixes</span>:
+  <span style="color: #a0522d;">vocab_iri</span>: http://schema.org/
+  <span style="color: #a0522d;">vocab_prefix</span>: s
+</pre>
+</div>
+<p>
+The following tabular schema excerpt (leading dashes indicate the class hierarchy):
+</p>
+<table border="1" cellspacing="0" cellpadding="2" rules="all" frame="box">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Class/prop</th>
+<th scope="col" class="org-left">range/inherits</th>
+<th scope="col" class="org-left">RDF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Event</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">-EventSeries</td>
+<td class="org-left">Event</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">-EventParticipation</td>
+<td class="org-left">Event</td>
+<td class="org-left">otkg:EventPartcipation</td>
+</tr>
+</tbody>
+</table>
+<p>
+generates <code>s:Event</code>, <code>s:EventSeries</code> and <code>otkg:EventPartcipation</code> respectively.
+</p>
+
+<p>
+Semantic Objects currently supports only abstract superclasses,
+so if we want to use all 3 classes with instance data, 
+we need to add an abstract parent like this:
+</p>
+<table border="1" cellspacing="0" cellpadding="2" rules="all" frame="box">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Class/prop</th>
+<th scope="col" class="org-left">range/inherits</th>
+<th scope="col" class="org-left">char</th>
+<th scope="col" class="org-left">RDF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">EventCommon</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">kind: abstract</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">-Event</td>
+<td class="org-left">EventCommon</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">-EventSeries</td>
+<td class="org-left">EventCommon</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">-EventParticipation</td>
+<td class="org-left">EventCommon</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">otkg:EventPartcipation</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+It's quite common for one of the children (in this case <code>Event</code>) not to have any props of its own, 
+just to inherit the props of the parent.
+</p>
+
+<p>
+This works fine for <code>tsv2soml</code>, but <code>tsv2owl</code> would generate a parasitic (non-existent) RDF class <code>s:EventCommon</code>.
+I thought of using the value <code>RDF: none</code> to signal that such class should be omitted.
+But then I'd need to carry over the properties and parent of that parasitic class to one of its children (in this case <code>Event</code>).
+</p>
+
+<p>
+So instead, I add an extra column <code>RDF replacement</code> that indicates which RDF class is used instead of the parasitic class:
+</p>
+<table border="1" cellspacing="0" cellpadding="2" rules="all" frame="box">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Class/prop</th>
+<th scope="col" class="org-left">range/inherits</th>
+<th scope="col" class="org-left">char</th>
+<th scope="col" class="org-left">RDF</th>
+<th scope="col" class="org-left">RDF replacement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">EventCommon</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">kind: abstract</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Event</td>
+</tr>
+
+<tr>
+<td class="org-left">-Event</td>
+<td class="org-left">EventCommon</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">-EventSeries</td>
+<td class="org-left">EventCommon</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">-EventParticipation</td>
+<td class="org-left">EventCommon</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">otkg:EventPartcipation</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+<p>
+This replaces all references to <code>EventCommon</code> with <code>Event</code>: domain (prop attachment), range (prop target), superclass (parent), subclasses (children).
+</p>
+
+<p>
+Notes:
+</p>
+<ul class="org-ul">
+<li>It uses the fact that RDFS/OWL triples can be emitted in any order</li>
+<li>It emits an extra reflexive triple <code>s:Event rdfs:subClassOf s:Event</code>, which is harmless and in fact is part of the RDFS semantics</li>
+<li>It uses the RDF expression of the replacement class: in this case <code>s:Event</code> because the <code>RDF</code> column is not used, but you can specify something else in <code>RDF</code></li>
+<li><code>label</code> and <code>descr</code> of the parasitic class are ignored to avoid emitting multiple labels/descriptions for the replacement class</li>
+</ul>
+
+<p>
+You can also use replacement on leaf-level classes.
+Consider the following example from OTKG (two leading dashes indicate the properties attached to the prev class):
+</p>
+<table border="1" cellspacing="0" cellpadding="2" rules="all" frame="box">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Class/prop</th>
+<th scope="col" class="org-left">range/inherits</th>
+<th scope="col" class="org-left">char</th>
+<th scope="col" class="org-left">RDF</th>
+<th scope="col" class="org-left">RDF replacement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Concept</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">name: prefLabel, kind: abstract</td>
+<td class="org-left">skos:Concept</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;prefLabel</td>
+<td class="org-left">string</td>
+<td class="org-left">min: 1</td>
+<td class="org-left">skos:prefLabel</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;inScheme</td>
+<td class="org-left">ConceptScheme</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">skos:inScheme</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">-Audience</td>
+<td class="org-left">Concept</td>
+<td class="org-left">typeProp: inScheme</td>
+<td class="org-left">OTKG:audience</td>
+<td class="org-left">skos:Concept</td>
+</tr>
+
+<tr>
+<td class="org-left">-ContentType</td>
+<td class="org-left">Concept</td>
+<td class="org-left">typeProp: inScheme</td>
+<td class="org-left">OTKG:contentType</td>
+<td class="org-left">skos:Concept</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;appliesToClass</td>
+<td class="org-left">iri</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">otkg:appliesToClass</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">PersonCommon</td>
+<td class="org-left">Thing</td>
+<td class="org-left">kind: abstract</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Person</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;jobTitle</td>
+<td class="org-left">string</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;worksFor</td>
+<td class="org-left">Organization</td>
+<td class="org-left">min: 1</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;sameAs</td>
+<td class="org-left">iri</td>
+<td class="org-left">max: inf</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">-Person</td>
+<td class="org-left">PersonCommon</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">-OntotextPerson</td>
+<td class="org-left">PersonCommon</td>
+<td class="org-left">typeProp: worksFor</td>
+<td class="org-left">OTKG-agent:Ontotext</td>
+<td class="org-left">none</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;sameAs</td>
+<td class="org-left">iri</td>
+<td class="org-left">min: 1</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+<p>
+Several sub-classes have an additional type discriminator designated by <code>typeProp</code> (in addition to the standard <code>rdf:type</code>):
+</p>
+<ul class="org-ul">
+<li><code>ContentType</code> is a <code>skos:Concept</code> that is further distinguished by <code>skos:inScheme</code>.
+It has extra prop <code>otkg:appliesToClass</code>, so we specify <code>replacement=skos:Concept</code> to carry over this prop to that parent class.
+Note: this prop indicates which concept goes with which Schema class, eg <code>OTKG:contentType/blog_post</code> goes with <code>s:BlogPosting</code></li>
+<li><code>Audience</code> adds no props compared to <code>Concept</code>, but we still set <code>replacement=skos:Concept</code>
+to ensure that its incoming link <code>s:audience</code> will obtain <code>range=skos:Concept</code></li>
+<li><code>PersonCommon</code> is a parasitic (abstract) parent class, so we replace it with <code>Person</code> (which is emitted in RDF as <code>s:Person</code>).
+We already such replacement case in the previous example.</li>
+<li><code>OntotextPerson</code> is a class that is the same as <code>Person</code>, but with fixed <code>s:worksFor=OTKG-agent:Ontotext</code>
+and with stronger information requirements (we demand that it has at least one <code>s:sameAs</code>, the default in <code>Person</code> is <code>min: 0</code>).
+There's neither RDF class <code>s:OntotextPerson</code> nor <code>otkg:OntotextPerson</code>, and it doesn't add any extra prop.
+So we use <code>replacement=none</code> to omit it from RDF altogether.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-soml2puml" class="outline-3">
+<h3 id="soml2puml">soml2puml</h3>
+<div class="outline-text-3" id="text-soml2puml">
 <p>
 Generate nice PlantUML diagrams from SOML models.
 See its own README.
@@ -900,41 +1524,54 @@ See its own README.
 </div>
 </div>
 
-<div id="outline-container-orgd608d13" class="outline-2">
-<h2 id="orgd608d13"><span class="section-number-2">4.</span> Tricky Points and Deficiencies</h2>
-<div class="outline-text-2" id="text-4">
-</div>
-<div id="outline-container-org0a085d8" class="outline-3">
-<h3 id="org0a085d8"><span class="section-number-3">4.1.</span> GraphQL Type vs rdf:type</h3>
+<div id="outline-container-tricky-points-and-deficiencies" class="outline-2">
+<h2 id="tricky-points-and-deficiencies">Tricky Points and Deficiencies</h2>
+<div class="outline-text-2" id="text-tricky-points-and-deficiencies">
 </div>
 
-<div id="outline-container-org4dd1930" class="outline-3">
-<h3 id="org4dd1930"><span class="section-number-3">4.2.</span> Single vs Multiple-Value Props</h3>
+<div id="outline-container-graphql-type-vs-rdf-type" class="outline-3">
+<h3 id="graphql-type-vs-rdf-type">GraphQL Type vs rdf:type</h3>
+<div class="outline-text-3" id="text-graphql-type-vs-rdf-type">
+</div>
 </div>
 
-<div id="outline-container-org83cb9c9" class="outline-3">
-<h3 id="org83cb9c9"><span class="section-number-3">4.3.</span> Inverse Aliases</h3>
+<div id="outline-container-single-vs-multiple-value-props" class="outline-3">
+<h3 id="single-vs-multiple-value-props">Single vs Multiple-Value Props</h3>
+<div class="outline-text-3" id="text-single-vs-multiple-value-props">
+</div>
 </div>
 
-<div id="outline-container-org0290c6f" class="outline-3">
-<h3 id="org0290c6f"><span class="section-number-3">4.4.</span> Literals</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-inverse-aliases" class="outline-3">
+<h3 id="inverse-aliases">Inverse Aliases</h3>
+<div class="outline-text-3" id="text-inverse-aliases">
+</div>
+</div>
+
+<div id="outline-container-literals" class="outline-3">
+<h3 id="literals">Literals</h3>
+<div class="outline-text-3" id="text-literals">
 <p>
 (langString, union datatypes)
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge819968" class="outline-3">
-<h3 id="orge819968"><span class="section-number-3">4.5.</span> Extended Pattern (Prefix + Regex)</h3>
+<div id="outline-container-extended-pattern-prefix-regex" class="outline-3">
+<h3 id="extended-pattern-prefix-regex">Extended Pattern (Prefix + Regex)</h3>
+<div class="outline-text-3" id="text-extended-pattern-prefix-regex">
+</div>
 </div>
 
-<div id="outline-container-org294954a" class="outline-3">
-<h3 id="org294954a"><span class="section-number-3">4.6.</span> IRI Generation</h3>
+<div id="outline-container-iri-generation" class="outline-3">
+<h3 id="iri-generation">IRI Generation</h3>
+<div class="outline-text-3" id="text-iri-generation">
+</div>
 </div>
 
-<div id="outline-container-org6aecf2d" class="outline-3">
-<h3 id="org6aecf2d"><span class="section-number-3">4.7.</span> Schema Inclusion/Modularity</h3>
+<div id="outline-container-schema-inclusion-modularity" class="outline-3">
+<h3 id="schema-inclusion-modularity">Schema Inclusion/Modularity</h3>
+<div class="outline-text-3" id="text-schema-inclusion-modularity">
+</div>
 </div>
 </div>
 </div>

@@ -1,9 +1,10 @@
-#+options: ':nil *:t -:t ::t <:t H:5 \n:nil ^:{} anchor:nil arch:headline author:t
+#+startup: nonum
+#+options: ':nil *:t -:t ::t <:t H:5 \n:nil ^:{} anchor:t arch:headline author:t
 #+options: broken-links:nil c:nil creator:nil d:(not "LOGBOOK") date:t e:t email:nil f:t
-#+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: inline:t num:nil p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2023-11-27>
+#+date: <2023-11-30>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
@@ -11,7 +12,44 @@
 #+exclude_tags: noexport
 #+creator: Emacs 26.1 (Org mode 9.2.2)
 
+* Table of Contents                                 :TOC:noexport:
+:PROPERTIES:
+:TOC:      :include all
+:CUSTOM_ID: table-of-contents
+:END:
+
+:CONTENTS:
+- [[#intro][Intro]]
+  - [[#why-soml][Why SOML?]]
+  - [[#similar-schema-languages][Similar Schema Languages]]
+  - [[#what-is-soml][What is SOML]]
+- [[#complex-schema-company-graph][Complex Schema (Company Graph)]]
+  - [[#example-class][Example Class:]]
+  - [[#example-inverse-alias][Example Inverse Alias]]
+  - [[#example-diagram-exchange-listing-soml][Example Diagram: Exchange Listing SOML]]
+  - [[#example-diagram-exchange-listing-rdf][Example Diagram: Exchange Listing RDF]]
+- [[#soml-tooling][SOML Tooling]]
+  - [[#owl2soml][owl2soml]]
+  - [[#tsv2soml][tsv2soml]]
+    - [[#reusing-property-characteristics][Reusing Property Characteristics]]
+  - [[#soml-map][soml-map]]
+  - [[#tsv2owl][tsv2owl]]
+    - [[#rdf-replacement][RDF replacement]]
+  - [[#soml2puml][soml2puml]]
+- [[#tricky-points-and-deficiencies][Tricky Points and Deficiencies]]
+  - [[#graphql-type-vs-rdftype][GraphQL Type vs rdf:type]]
+  - [[#single-vs-multiple-value-props][Single vs Multiple-Value Props]]
+  - [[#inverse-aliases][Inverse Aliases]]
+  - [[#literals][Literals]]
+  - [[#extended-pattern-prefix--regex][Extended Pattern (Prefix + Regex)]]
+  - [[#iri-generation][IRI Generation]]
+  - [[#schema-inclusionmodularity][Schema Inclusion/Modularity]]
+:END:
+
 * Intro
+:PROPERTIES:
+:CUSTOM_ID: intro
+:END:
 
 The Semantic Objects Modeling Language (SOML)
 is a simple YAML-based language for describing business objects (business entities, domain objects) 
@@ -41,6 +79,9 @@ and introduces some SOML tooling for
 generating SOML (~tsv2soml~) and mapping RDF data (~soml-map~)
 
 ** Why SOML?
+:PROPERTIES:
+:CUSTOM_ID: why-soml
+:END:
 
 We often are asked why we had to introduce yet another object modeling language?
 Why didn't we use existing semantic web mechanisms such as 
@@ -85,6 +126,9 @@ The answer is multi-fold:
   we need to be able to generate a number of technical artefacts from the same business-level model.
 
 ** Similar Schema Languages
+:PROPERTIES:
+:CUSTOM_ID: similar-schema-languages
+:END:
 
 A number of schema languages have appeared recently that are based on YAML,
 express business-level object models that are somewhat independent of technological choices,
@@ -115,6 +159,9 @@ and can render the models to a variety of schema technologies:
   - [[https://www.slideshare.net/joshsh/building-an-enterprise-knowledge-graph-uber-lessons-from-reality][Building an Enterprise Knowledge Graph @Uber: Lessons from Reality]] (May 2019)
 
 ** What is SOML
+:PROPERTIES:
+:CUSTOM_ID: what-is-soml
+:END:
 
 At present SOML is very simple, but will evolve to include more features.
 The overall structure of a SOML file (schema) is shown below.
@@ -167,6 +214,9 @@ You can find details in the [[http://platform.ontotext.com/soml/index.html][SOML
 some tricky points of SOML usage and GraphQL deficiencies, and some tooling.
 
 * Complex Schema (Company Graph)
+:PROPERTIES:
+:CUSTOM_ID: complex-schema-company-graph
+:END:
 
 To introduce the proper context for this blog (working with complex SOML schemas),
 we'll describe the Ontotext Company Graph (ONTO CG) ontology and model.
@@ -237,6 +287,9 @@ In addition to the above new classes, ONTO-CG adds:
 The full CG schema is included: [[./schemas/CG.yaml][CG.yaml]]. Below we show a couple of typical examples.
 
 ** Example Class: 
+:PROPERTIES:
+:CUSTOM_ID: example-class
+:END:
 
 #+begin_src yaml
   ExchangeListing:
@@ -289,6 +342,9 @@ properties: # reused props
 A more appropriate ~descr~ is given at the object level, overriding the generic description.
 
 ** Example Inverse Alias
+:PROPERTIES:
+:CUSTOM_ID: example-inverse-alias
+:END:
 
 A Position is an associative node between Person and Organization that adds more data (not shown):
 #+begin_src yaml
@@ -314,6 +370,9 @@ To allow navigation in any direction (not just from Position out, but also in), 
 #+end_src
 
 ** Example Diagram: Exchange Listing SOML
+:PROPERTIES:
+:CUSTOM_ID: example-diagram-exchange-listing-soml
+:END:
 
 For example, the figure below shows the stock exchange listing (IPO) of Apple on the Tokyo exchange and NASDAQ, and the listing of Nasdaq Inc (the company) on NASDAQ (the stock exchange).
 - The data is integrated from Wikidata.
@@ -326,6 +385,9 @@ For example, the figure below shows the stock exchange listing (IPO) of Apple on
 [[./eg/model-exchange-listing.png]]
 
 ** Example Diagram: Exchange Listing RDF
+:PROPERTIES:
+:CUSTOM_ID: example-diagram-exchange-listing-rdf
+:END:
 
 This version of the diagram uses [[*soml-map][soml-map]] to map SOML names to RDF names in specific namespaces.
 - So this can be considered the "physical" data model of data as it's stored in the semantic database
@@ -335,14 +397,23 @@ This version of the diagram uses [[*soml-map][soml-map]] to map SOML names to RD
 [[./eg/model-exchange-listing-mapped.png]]
 
 * SOML Tooling
+:PROPERTIES:
+:CUSTOM_ID: soml-tooling
+:END:
 
 ** owl2soml
+:PROPERTIES:
+:CUSTOM_ID: owl2soml
+:END:
 
 This tool (written in Perl) generates SOML schemas from ontologies (that use RDFS, OWL and/or schema.org constructs).
 It handles numerous features and has been integrated in the Ontotext Platform (reimplemented in Java).
 See its own README.
 
 ** tsv2soml
+:PROPERTIES:
+:CUSTOM_ID: tsv2soml
+:END:
 
 Editing large schemas is often easier to do in a table, even when the schema language is simple.
 (Also, this enables domain experts to participate in schema authoring, even if only editing the descriptions.)
@@ -369,7 +440,63 @@ Options:
 - ~-l~: downgrade Literals: ~stringOrLangString, langString~ -> ~string~, ~dateOrYearOrMonth~ -> ~date~.
   This can be used to simplify the schema not to use ~langString~ and union datatypes
 
+*** Reusing Property Characteristics
+:PROPERTIES:
+:CUSTOM_ID: reusing-property-characteristics
+:END:
+- The script counts how many times each prop is used in objects
+- For props used more than once, the script emits the *first occurrence* of each prop
+  in the common ~properties~ section:
+#+begin_src yaml
+properties: # reused props
+#+end_src
+- This allows you to omit common details (eg ~label, descr, range~) on subsequent occurrences
+- But it also means that characteristics given in the first occurrence override the defaults
+  for subsequent occurrences, which may lead to unintended consequences.
+
+Consider a SOML based on schema.org where we allow multiple ~sameAs~ values
+(e.g. the item's Wikipedia page, Wikidata entry, Linkedin profile, YouTube profile, etc),
+and want the field to be mandatory for ~Organization~ but optional for ~Person~.
+
+We write the details on the first occurrence and then just mention the prop on the second occurrence:
+
+| Class/prop   | label   | Inherits/range | char             | descr                                                 |
+|--------------+---------+----------------+------------------+-------------------------------------------------------|
+| Organization |         |                |                  |                                                       |
+| sameAs       | same as | iri            | min: 1, max: inf | URL that unambiguously indicates the thing's identity |
+| Person       |         |                |                  |                                                       |
+| sameAs       |         |                |                  |                                                       |
+
+This results in a SOML like this:
+#+begin_src yaml
+  objects:
+    Organization:
+      props:
+        sameAs:
+          range: iri
+          min: 1
+          max: inf
+          descr: URL that unambiguously indicates the thing's identity
+    Person:
+      props:
+        sameAs:
+  properties: # reused props
+    sameAs:
+      range: iri
+      min: 1
+      max: inf
+      descr: URL that unambiguously indicates the thing's identity
+#+end_src
+The prop characteristics are copied from ~properties~ into ~Person.props~,
+which means that the default cardinality ~min: 0~ is overridden by ~min: 1~,
+which doesn't match the requirement "optional for ~Person~".
+
+To fix this, you need to specify ~min: 0~ explicitly in the ~Person.sameAs~ table row.
+
 ** soml-map
+:PROPERTIES:
+:CUSTOM_ID: soml-map
+:END:
 
 ~tsv2soml~ writes out a file ~soml-map.tsv~ (see exmaple [[./schemas/soml-map.tsv][soml-map.tsv]]) with columns "class, prop (optional), rdf"
 - For props without ~RDF~ value, it uses the RDF name from the shared first occurrence of the same prop name
@@ -385,6 +512,9 @@ Usage:
 : perl soml-map.pl < file.(tarql|ru|ttl) > file-mapped.(tarql|ru|ttl)
 
 ** tsv2owl
+:PROPERTIES:
+:CUSTOM_ID: tsv2owl
+:END:
 This tool uses the same sheets that drive ~tsv2soml~ to generate an OWL ontology.
 You can run it with a Makefile like this (see [[./tsv2owl/Makefile][tsv2owl/Makefile]]):
 #+begin_src Makefile
@@ -480,6 +610,9 @@ Features and limitations:
 - Map only the data ranges indicated above: currently doesn't support rdf:HTML, sysont:Markdown
   
 *** RDF replacement
+:PROPERTIES:
+:CUSTOM_ID: rdf-replacement
+:END:
 The column ~RDF~ is used when you need to specify something different from ~Class/name~.
 Eg if you have this in the SOML preamble:
 #+begin_src yaml
@@ -558,23 +691,50 @@ Several sub-classes have an additional type discriminator designated by ~typePro
   So we use ~replacement=none~ to omit it from RDF altogether.
 
 ** soml2puml
+:PROPERTIES:
+:CUSTOM_ID: soml2puml
+:END:
 Generate nice PlantUML diagrams from SOML models.
 See its own README.
 
 * Tricky Points and Deficiencies
+:PROPERTIES:
+:CUSTOM_ID: tricky-points-and-deficiencies
+:END:
 
 ** GraphQL Type vs rdf:type
+:PROPERTIES:
+:CUSTOM_ID: graphql-type-vs-rdf-type
+:END:
 
 ** Single vs Multiple-Value Props
+:PROPERTIES:
+:CUSTOM_ID: single-vs-multiple-value-props
+:END:
 
 ** Inverse Aliases
+:PROPERTIES:
+:CUSTOM_ID: inverse-aliases
+:END:
 
 ** Literals 
+:PROPERTIES:
+:CUSTOM_ID: literals
+:END:
 (langString, union datatypes)
 
 ** Extended Pattern (Prefix + Regex)
+:PROPERTIES:
+:CUSTOM_ID: extended-pattern-prefix-regex
+:END:
 
 ** IRI Generation
+:PROPERTIES:
+:CUSTOM_ID: iri-generation
+:END:
 
 ** Schema Inclusion/Modularity
+:PROPERTIES:
+:CUSTOM_ID: schema-inclusion-modularity
+:END:
 
