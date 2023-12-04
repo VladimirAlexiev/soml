@@ -7,6 +7,7 @@ Generate SOML schema from RDFS/OWL/Schema ontologies
 
 - [owl2soml](#owl2soml)
     - [Usage](#usage)
+    - [CIM Additions](#cim-additions)
     - [Features](#features)
         - [Ontologies](#ontologies)
         - [`vocab_prefix, vocab_iri`](#vocab_prefix-vocab_iri)
@@ -77,6 +78,9 @@ It is still evolving.
 - If you find problems or want to suggest a new feature, post an issue
 
 We have rewritten the tool in Java, see [Implemented as Platform Service](#implemented-as-platform-service).
+
+## CIM Additions
+See [CIM-additions.md](CIM-additions.md) for special processing of electrical Common Information Model (CIM) ontologies.
 
 ## Features
 
@@ -834,8 +838,7 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
 - lowercase the first letter of prop names
 
 10-Nov-2020:
-- CIM additions (internal file `owl2soml-CIM-additions.md`, may publish later)
-- option `-shorten` does not yet work
+- CIM additions: see [CIM-additions.md](CIM-additions.md)
 
 21-Aug-2020:
 - map `rdf:PlainLiteral` same as `rdfs:Literal` (to `string`, `langString` or `stringOrLangString` depending on `-string` option)

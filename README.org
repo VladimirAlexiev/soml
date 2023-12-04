@@ -4,7 +4,7 @@
 #+options: inline:t num:nil p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2023-11-30>
+#+date: <2023-12-04>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
@@ -35,6 +35,7 @@
   - [[#tsv2soml][tsv2soml]]
     - [[#reusing-property-characteristics][Reusing Property Characteristics]]
   - [[#soml-map][soml-map]]
+  - [[#soml-simplify][soml-simplify]]
   - [[#tsv2owl][tsv2owl]]
     - [[#rdf-replacement][RDF replacement]]
   - [[#soml2puml][soml2puml]]
@@ -513,6 +514,16 @@ to a "physical" representaiton using specific RDF names.
 Usage:
 : perl soml-map.pl < file.(tarql|ru|ttl) > file-mapped.(tarql|ru|ttl)
 
+** soml-simplify
+:PROPERTIES:
+:CUSTOM_ID: soml-simplify
+:END:
+
+The purpose of this script is to simplify a SOML entity schema significantly,
+so it can be communicated more easily to LLM for querying (NLQ to GraphQL).
+
+See its own [[soml-simplify/README.org][soml-simplify/README.org]]
+
 ** tsv2owl
 :PROPERTIES:
 :CUSTOM_ID: tsv2owl
@@ -697,7 +708,7 @@ Several sub-classes have an additional type discriminator designated by ~typePro
 :CUSTOM_ID: soml2puml
 :END:
 Generate nice PlantUML diagrams from SOML models.
-See its own README.
+See its own [[soml2puml/README]].
 
 * Tricky Points and Deficiencies
 :PROPERTIES:

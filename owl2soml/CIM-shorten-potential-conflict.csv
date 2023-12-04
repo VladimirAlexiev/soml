@@ -1,0 +1,505 @@
+localName,domains
+AsynchronousMachineDynamics,cim:AsynchronousMachine cim:MechanicalLoadDynamics cim:TurbineGovernorDynamics cim:WindTurbineType1or2Dynamics
+BaseVoltage,cim:ConductingEquipment cim:TopologicalNode cim:TransformerEnd cim:VoltageLevel
+BusNameMarker,cim:ACDCTerminal cim:ReportingGroup
+ConductingEquipment,cim:BaseVoltage cim:SvStatus cim:Terminal icim:ProtectiveActionAdjustment
+ConnectivityNodeContainer,cim:ConnectivityNode cim:TopologicalNode
+ConnectivityNodes,cim:ConnectivityNodeContainer cim:TopologicalNode
+ControlArea,cim:ControlAreaGeneratingUnit cim:EnergyArea cim:TieFlow pti:EnergySchedulingArea
+ControlAreaGeneratingUnit,cim:ControlArea cim:GeneratingUnit
+DCConductingEquipment,cim:ACDCConverterDCTerminal cim:DCTerminal
+DCEquipmentContainer,cim:DCNode cim:DCTopologicalNode
+DCNodes,cim:DCEquipmentContainer cim:DCTopologicalNode
+DCTerminals,cim:ACDCConverter cim:DCConductingEquipment cim:DCNode cim:DCTopologicalNode
+DCTopologicalNode,cim:DCBaseTerminal cim:DCEquipmentContainer cim:DCNode
+DependentOn,fw:ModelSpecification md:Model
+Diagram,cim:DiagramObject cim:DiagramStyle pid:DiagramObjectGluePoint
+DiagramObject,cim:DiagramObjectPoint pid:TextDiagramObject
+DiagramObjectPoints,cim:DiagramObject cim:DiagramObjectGluePoint
+DiscontinuousExcitationControlDynamics,cim:ExcitationSystemDynamics cim:RemoteInputSignal
+EnergyCongestionZone,entsoe2:EnergySchedulingArea pti:ControlAreaGeneratingUnit
+EnergyConsumer,cim:LoadDynamics cim:LoadResponseCharacteristic
+EnergyConsumers,cim:ConformLoadGroup cim:NonConformLoadGroup
+EnergySource,cim:WindTurbineType3or4Dynamics entsoe:EnergySchedulingType
+Equipment,cim:OperationalLimitSet icim:PinEquipment icim:ProtectiveActionEquipment
+ExcitationSystemDynamics,cim:DiscontinuousExcitationControlDynamics cim:OverexcitationLimiterDynamics cim:PFVArControllerType1Dynamics cim:PFVArControllerType2Dynamics cim:PowerSystemStabilizerDynamics cim:SynchronousMachineDynamics cim:UnderexcitationLimiterDynamics cim:VoltageCompensatorDynamics
+GenICompensationForGenJ,cim:SynchronousMachineDynamics cim:VCompIEEEType2
+GeneratingUnit,cim:ControlAreaGeneratingUnit cim:GrossToNetActivePowerCurve cim:RotatingMachine
+HydroPowerPlant,cim:HydroGeneratingUnit cim:HydroPump
+LimitSet,cim:AccumulatorLimit cim:AnalogLimit
+LimitSets,cim:Accumulator cim:Analog
+Limits,cim:AccumulatorLimitSet cim:AnalogLimitSet
+LoadAggregate,cim:LoadMotor cim:LoadStatic
+LoadGroup,cim:ConformLoad cim:NonConformLoad
+Location,cim:CoordinateSystem cim:PositionPoint cim:PowerSystemResource
+Measurements,cim:ACDCTerminal cim:AccumulatorLimitSet cim:AnalogLimitSet cim:PowerSystemResource
+MechanicalLoadDynamics,cim:AsynchronousMachineDynamics cim:SynchronousMachineDynamics
+OperationalLimitSet,cim:ACDCTerminal cim:Equipment cim:OperationalLimit
+PFVArControllerType1Dynamics,cim:ExcitationSystemDynamics cim:RemoteInputSignal cim:VoltageAdjusterDynamics
+PhaseTapChangerTable,cim:PhaseTapChangerTablePoint cim:PhaseTapChangerTabular
+PowerSystemResource,cim:Control cim:Measurement cim:OperatingShare
+PowerSystemStabilizerDynamics,cim:ExcitationSystemDynamics cim:RemoteInputSignal
+PowerTransferCorridor,entsoe2:CircuitShare entsoe2:OperationalLimitSet
+ProprietaryParameterDynamics,cim:AsynchronousMachineUserDefined cim:DiscontinuousExcitationControlUserDefined cim:ExcitationSystemUserDefined cim:LoadUserDefined cim:MechanicalLoadUserDefined cim:OverexcitationLimiterUserDefined cim:PFVArControllerType1UserDefined cim:PFVArControllerType2UserDefined cim:PowerSystemStabilizerUserDefined cim:SynchronousMachineUserDefined cim:TurbineGovernorUserDefined cim:TurbineLoadControllerUserDefined cim:UnderexcitationLimiterUserDefined cim:VoltageAdjusterUserDefined cim:VoltageCompensatorUserDefined cim:WindPlantUserDefined cim:WindType1or2UserDefined cim:WindType3or4UserDefined
+ProtectiveActionCollection,icim:ProtectiveAction icim:StageTrigger
+RatioTapChanger,cim:RatioTapChangerTable cim:TransformerEnd
+RatioTapChangerTable,cim:RatioTapChanger cim:RatioTapChangerTablePoint
+Region,cim:DCLine cim:Line cim:SubGeographicalRegion cim:Substation
+RegulatingControl,cim:RegulatingCondEq cim:RegulationSchedule cim:Terminal
+RemoteInputSignal,cim:DiscontinuousExcitationControlDynamics cim:PFVArControllerType1Dynamics cim:PowerSystemStabilizerDynamics cim:Terminal cim:UnderexcitationLimiterDynamics cim:VoltageCompensatorDynamics cim:WindPlantDynamics cim:WindTurbineType1or2Dynamics cim:WindTurbineType3or4Dynamics
+ReportingGroup,cim:BusNameMarker cim:TopologicalNode
+RotatingMachine,cim:GeneratingUnit cim:HydroPump
+SeasonDayTypeSchedules,cim:DayType cim:Season
+SituationSpecification,fw:Situation fw:SituationOperationSpecification
+Substation,cim:DCConverterUnit cim:VoltageLevel
+SynchronousMachineDynamics,cim:ExcitationSystemDynamics cim:GenICompensationForGenJ cim:MechanicalLoadDynamics cim:SynchronousMachine cim:TurbineGovernorDynamics
+TapChanger,cim:SvTapStep cim:TapChangerControl cim:TapSchedule
+Terminal,cim:BusNameMarker cim:Measurement cim:OperationalLimitSet cim:RegulatingControl cim:RemoteInputSignal cim:SvPowerFlow cim:TieFlow cim:TopologicalNode cim:TransformerEnd entsoe2:Circuit icim:PinTerminal pti:ShuntCompensator
+Terminals,cim:ConductingEquipment cim:ConnectivityNode
+TieFlow,cim:ControlArea cim:Terminal
+TopologicalNode,cim:BaseVoltage cim:ConnectivityNode cim:ConnectivityNodeContainer cim:ReportingGroup cim:SvInjection cim:SvVoltage cim:Terminal
+TransformerEnd,cim:PhaseTapChanger cim:RatioTapChanger cim:Terminal
+TurbineGovernorDynamics,cim:AsynchronousMachineDynamics cim:SynchronousMachineDynamics cim:TurbineLoadControllerDynamics
+UnderexcitationLimiterDynamics,cim:ExcitationSystemDynamics cim:RemoteInputSignal
+ValueAliasSet,cim:Command cim:Discrete cim:RaiseLowerCommand cim:ValueToAlias
+VoltageCompensatorDynamics,cim:ExcitationSystemDynamics cim:RemoteInputSignal
+VoltageLevel,cim:BaseVoltage cim:Bay
+WindContCurrLimIEC,cim:WindDynamicsLookupTable cim:WindTurbineType3or4IEC
+WindContPType3IEC,cim:WindDynamicsLookupTable cim:WindGenTurbineType3IEC
+WindContRotorRIEC,cim:WindDynamicsLookupTable cim:WindGenTurbineType2IEC
+WindDynamicsLookupTable,cim:WindContCurrLimIEC cim:WindContPType3IEC cim:WindContRotorRIEC cim:WindPlantFreqPcontrolIEC
+WindGenTurbineType2IEC,cim:WindContRotorRIEC cim:WindPitchContEmulIEC
+WindGenTurbineType3IEC,cim:WindAeroLinearIEC cim:WindContPType3IEC cim:WindContPitchAngleIEC cim:WindMechIEC
+WindMechIEC,cim:WindGenTurbineType3IEC cim:WindTurbineType1or2IEC cim:WindTurbineType4bIEC
+WindPlantDynamics,cim:RemoteInputSignal cim:WindTurbineType3or4Dynamics
+WindPlantFreqPcontrolIEC,cim:WindDynamicsLookupTable cim:WindPlantIEC
+WindPlantIEC,cim:WindPlantFreqPcontrolIEC cim:WindPlantReactiveControlIEC
+WindProtectionIEC,cim:WindTurbineType1or2IEC cim:WindTurbineType3or4IEC
+WindTurbineType1or2Dynamics,cim:AsynchronousMachineDynamics cim:RemoteInputSignal
+WindTurbineType1or2IEC,cim:WindMechIEC cim:WindProtectionIEC
+WindTurbineType3or4Dynamics,cim:EnergySource cim:RemoteInputSignal cim:WindPlantDynamics
+WindTurbineType3or4IEC,cim:WindContCurrLimIEC cim:WindContQIEC cim:WindProtectionIEC
+WindTurbineType4bIEC,cim:WindContPType4bIEC cim:WindMechIEC
+a,cim:ExcAC5A cim:GovGAST1 cim:GovGAST2 cim:GovGASTWD cim:MechLoad1 cim:Pss2B
+a1,cim:ExcAVR7 cim:Pss1A cim:PssIEEE1A cim:PssIEEE3B cim:PssPTIST3
+a2,cim:ExcAVR7 cim:Pss1A cim:PssIEEE1A cim:PssIEEE3B cim:PssPTIST3
+a3,cim:ExcAVR7 cim:Pss1A cim:PssIEEE3B cim:PssPTIST3
+a4,cim:ExcAVR7 cim:Pss1A cim:PssIEEE3B cim:PssPTIST3
+a5,cim:ExcAVR7 cim:Pss1A cim:PssIEEE3B cim:PssPTIST3
+a6,cim:ExcAVR7 cim:Pss1A cim:PssIEEE3B
+a7,cim:Pss1A cim:PssIEEE3B
+a8,cim:Pss1A cim:PssIEEE3B
+af1,cim:GovGAST2 cim:GovGASTWD
+af2,cim:GovGAST2 cim:GovGASTWD
+angle,cim:PhaseTapChangerTablePoint cim:SvVoltage
+armed,icim:RemedialActionScheme icim:StageTrigger
+aset,cim:GovCT1 cim:GovCT2
+at,cim:GovGAST cim:GovHydro1 cim:GovHydro3 cim:GovHydro4 cim:GovHydroR
+aturb,cim:GovHydro2 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID
+av0,cim:GovHydroFrancis cim:GovHydroPelton
+av1,cim:GovHydroFrancis cim:GovHydroPelton
+b,cim:EquivalentShunt cim:GovGAST1 cim:GovGAST2 cim:GovGASTWD cim:MechLoad1 cim:NonlinearShuntCompensatorPoint cim:PowerTransformerEnd cim:TapChangerTablePoint
+b0,cim:NonlinearShuntCompensatorPoint cim:PowerTransformerEnd cim:PssPTIST3
+b0ch,cim:ACLineSegment cim:MutualCoupling
+baseUML,entsoe:DiagramLayoutVersion entsoe:DynamicsVersion entsoe:EquipmentBoundaryVersion entsoe:EquipmentVersion entsoe:GeographicalLocationVersion entsoe:StateVariablesVersion entsoe:SteadyStateHypothesisVersion entsoe:TopologyBoundaryVersion entsoe:TopologyVersion
+baseURI,entsoe:DiagramLayoutVersion entsoe:DynamicsVersion entsoe:EquipmentBoundaryVersion entsoe:GeographicalLocationVersion entsoe:StateVariablesVersion entsoe:SteadyStateHypothesisVersion entsoe:TopologyBoundaryVersion entsoe:TopologyVersion
+bf1,cim:GovGAST2 cim:GovGASTWD
+bf2,cim:GovGAST2 cim:GovGASTWD
+boundaryPoint,entsoe:ConnectivityNode entsoe:TopologicalNode
+bp,cim:GovGAST3 cim:GovGAST4 cim:GovHydroFrancis cim:GovHydroPelton
+bturb,cim:GovHydro2 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID
+c,cim:GovGAST2 cim:GovGASTWD
+capacitance,cim:DCLineSegment cim:DCShunt cim:PerLengthDCLineParameter
+cf2,cim:GovGAST2 cim:GovGASTWD
+controlEnabled,cim:RegulatingCondEq cim:TapChanger
+created,fw:FrameworkVersionObject md:Model
+d,cim:GovHydroPID2 cim:GovHydroWPID cim:LoadMotor cim:MechLoad1
+date,entsoe:DiagramLayoutVersion entsoe:DynamicsVersion entsoe:EquipmentBoundaryVersion entsoe:EquipmentVersion entsoe:GeographicalLocationVersion entsoe:StateVariablesVersion entsoe:SteadyStateHypothesisVersion entsoe:TopologyBoundaryVersion entsoe:TopologyVersion
+db,cim:GovCT1 cim:GovCT2 cim:GovHydroWEH cim:TurbLCFB1
+db1,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroFrancis cim:GovHydroPID cim:GovHydroPelton cim:GovHydroR cim:GovSteam1 cim:GovSteamEU
+db2,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroPID cim:GovHydroPelton cim:GovHydroR cim:GovSteam1 cim:GovSteamEU
+denominatorMultiplier,cim:ActivePowerPerCurrentFlow cim:ActivePowerPerFrequency cim:CapacitancePerLength cim:InductancePerLength cim:ResistancePerLength cim:RotationSpeed cim:VoltagePerReactivePower cim:VolumeFlowRate
+denominatorUnit,cim:ActivePowerPerCurrentFlow cim:ActivePowerPerFrequency cim:CapacitancePerLength cim:InductancePerLength cim:ResistancePerLength cim:RotationSpeed cim:VoltagePerReactivePower cim:VolumeFlowRate
+description,cim:IdentifiedObject fw:FrameworkIdentifiedObject md:Model
+differenceModelURI,entsoe:DiagramLayoutVersion entsoe:DynamicsVersion entsoe:EquipmentBoundaryVersion entsoe:EquipmentVersion entsoe:GeographicalLocationVersion entsoe:StateVariablesVersion entsoe:SteadyStateHypothesisVersion entsoe:TopologyBoundaryVersion entsoe:TopologyVersion
+dipmax,cim:WindGenTurbineType3IEC cim:WindGenType4IEC
+diqmax,cim:WindGenTurbineType3IEC cim:WindGenType4IEC
+dm,cim:GovCT1 cim:GovCT2
+dpmax,cim:WindContPType3IEC cim:WindContPType4aIEC cim:WindContPType4bIEC
+drawingOrder,cim:DiagramObject cim:VisibilityLayer
+dt,cim:GovSteam0 cim:GovSteamFV2
+dtc,cim:GovGAST3 cim:PssPTIST1 cim:PssPTIST3
+dtf,cim:PssPTIST1 cim:PssPTIST3
+dtp,cim:PssPTIST1 cim:PssPTIST3
+dturb,cim:GovGAST cim:GovHydro1 cim:GovHydro3 cim:GovHydro4 cim:GovHydroR cim:GovHydroWEH
+e1,cim:ExcAVR1 cim:ExcAVR2 cim:ExcAVR3 cim:ExcOEX3T cim:ExcPIC cim:ExcREXS
+e2,cim:ExcAVR1 cim:ExcAVR2 cim:ExcAVR3 cim:ExcOEX3T cim:ExcPIC cim:ExcREXS
+ecr,cim:GovGAST2 cim:GovGASTWD
+edfmax,cim:ExcDC1A cim:ExcDC3A
+efd1,cim:ExcAC5A cim:ExcDC1A cim:ExcDC2A cim:ExcDC3A cim:ExcIEEEAC5A cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEDC3A cim:ExcIEEEDC4B cim:OverexcLimX1 cim:OverexcLimX2
+efd2,cim:ExcAC5A cim:ExcDC1A cim:ExcDC2A cim:ExcDC3A cim:ExcIEEEAC5A cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEDC3A cim:ExcIEEEDC4B cim:OverexcLimX1 cim:OverexcLimX2
+efd3,cim:OverexcLimX1 cim:OverexcLimX2
+efddes,cim:OverexcLimX1 cim:OverexcLimX2
+efdmax,cim:ExcBBC cim:ExcCZ cim:ExcIEEEST2A cim:ExcPIC cim:ExcSEXS cim:ExcSK cim:ExcST2A cim:ExcST3A
+efdmin,cim:ExcBBC cim:ExcCZ cim:ExcDC1A cim:ExcDC3A cim:ExcPIC cim:ExcSEXS cim:ExcSK
+efdn,cim:ExcAC3A cim:ExcIEEEAC3A
+efdrated,cim:OverexcLimX1 cim:OverexcLimX2
+emax,cim:ExcHU cim:ExcSCRX cim:ExcSEXS cim:ExcSK cim:TurbLCFB1
+emin,cim:ExcHU cim:ExcSCRX cim:ExcSEXS cim:ExcSK
+enabled,cim:DynamicsFunctionBlock cim:RegulatingControl icim:PowerTransferCorridor icim:ProtectiveAction
+entsoeUML,entsoe:DiagramLayoutVersion entsoe:DynamicsVersion entsoe:EquipmentBoundaryVersion entsoe:EquipmentVersion entsoe:GeographicalLocationVersion entsoe:StateVariablesVersion entsoe:SteadyStateHypothesisVersion entsoe:TopologyBoundaryVersion entsoe:TopologyVersion
+entsoeURI,entsoe:DiagramLayoutVersion entsoe:DynamicsVersion entsoe:GeographicalLocationVersion entsoe:StateVariablesVersion entsoe:SteadyStateHypothesisVersion entsoe:TopologyBoundaryVersion entsoe:TopologyVersion
+entsoeURIcore,entsoe:EquipmentBoundaryVersion entsoe:EquipmentVersion
+entsoeURIoperation,entsoe:EquipmentBoundaryVersion entsoe:EquipmentVersion
+eps,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroPID cim:GovHydroR cim:GovSteam1
+etd,cim:GovGAST2 cim:GovGASTWD
+exclim,cim:ExcDC1A cim:ExcDC2A cim:ExcDC3A cim:ExcDC3A1 cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEDC3A
+exlon,cim:PFVArType2IEEEPFController cim:PFVArType2IEEEVArController
+fbf,cim:ExcREXS cim:TurbLCFB1
+feedbackSignal,cim:GovHydroPID2 cim:GovHydroWEH
+fromEndIsoCode,entsoe:ConnectivityNode entsoe:TopologicalNode
+fromEndName,entsoe:ConnectivityNode entsoe:TopologicalNode
+fromEndNameTso,entsoe:ConnectivityNode entsoe:TopologicalNode
+g,cim:EquivalentShunt cim:NonlinearShuntCompensatorPoint cim:PowerTransformerEnd cim:TapChangerTablePoint
+g0,cim:GovHydroPID2 cim:NonlinearShuntCompensatorPoint cim:PowerTransformerEnd
+g0ch,cim:ACLineSegment cim:MutualCoupling
+gmax,cim:GovHydro1 cim:GovHydro4 cim:GovHydroDD cim:GovHydroPID2 cim:GovHydroR cim:GovHydroWEH
+gmin,cim:GovHydro1 cim:GovHydro4 cim:GovHydroDD cim:GovHydroPID2 cim:GovHydroR cim:GovHydroWEH
+governorControl,cim:GovHydro3 cim:GovHydroFrancis
+governorSCD,cim:ExternalNetworkInjection cim:GeneratingUnit
+grounded,cim:ShuntCompensator cim:TransformerEnd
+gv1,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovHydroWEH cim:GovHydroWPID cim:GovSteam1
+gv2,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovHydroWEH cim:GovHydroWPID cim:GovSteam1
+gv3,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovHydroWEH cim:GovHydroWPID cim:GovSteam1
+gv4,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovHydroWEH cim:GovSteam1
+gv5,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovHydroWEH cim:GovSteam1
+gv6,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovSteam1
+h,cim:LoadComposite cim:LoadMotor
+h0,cim:GovHydro3 cim:GovHydroR
+h1,cim:GovHydroFrancis cim:GovHydroPelton
+h2,cim:GovHydroFrancis cim:GovHydroPelton
+hdam,cim:GovHydro1 cim:GovHydro4
+hn,cim:GovHydroFrancis cim:GovHydroPelton
+ifdlim,cim:OverexcLim2 cim:OverexcLimIEEE
+ilr,cim:ExcIEEEST1A cim:ExcIEEEST6B cim:ExcST1A cim:ExcST6B
+imax,cim:ExcHU cim:WindContCurrLimIEC
+inService,cim:SvStatus entsoe2:Equipment icim:ProtectiveActionEquipment
+inductance,cim:DCGround cim:DCLineSegment cim:DCSeriesDevice cim:PerLengthDCLineParameter
+inputSignal,cim:GovHydroDD cim:GovHydroPID cim:GovHydroR
+inputSignal1Type,cim:Pss2B cim:Pss2ST cim:PssIEEE2B cim:PssIEEE3B cim:PssWECC
+inputSignal2Type,cim:Pss2B cim:Pss2ST cim:PssIEEE2B cim:PssIEEE3B cim:PssWECC
+inputSignalType,cim:Pss1A cim:PssIEEE1A
+k,cim:ExcBBC cim:ExcSCRX cim:ExcSEXS cim:ExcSK cim:GovHydroIEEE0 cim:GovSteam1 cim:GovSteam2 cim:GovSteamFV2 cim:GovSteamFV3 cim:GovSteamIEEE1 cim:PssPTIST1 cim:PssPTIST3 cim:PssSH cim:UnderexcLimX1
+k1,cim:ExcAVR7 cim:ExcELIN2 cim:ExcSK cim:ExcST6B cim:GovHydro3 cim:GovHydroDD cim:GovSteam1 cim:GovSteamFV3 cim:GovSteamIEEE1 cim:GovSteamSGO cim:Pss2ST cim:PssSH cim:PssSK cim:PssWECC cim:UnderexcLimIEEE2
+k2,cim:ExcANS cim:ExcELIN2 cim:ExcSK cim:GovHydro3 cim:GovHydroDD cim:GovSteam1 cim:GovSteamFV3 cim:GovSteamIEEE1 cim:GovSteamSGO cim:Pss2ST cim:PssSH cim:PssSK cim:PssWECC cim:UnderexcLimIEEE2
+k3,cim:ExcANS cim:ExcAVR7 cim:ExcELIN2 cim:GovGAST2 cim:GovGASTWD cim:GovSteam1 cim:GovSteamFV3 cim:GovSteamIEEE1 cim:GovSteamSGO cim:PssSH cim:PssSK
+k4,cim:ExcELIN2 cim:GovGAST2 cim:GovGASTWD cim:GovSteam1 cim:GovSteamIEEE1 cim:PssSH
+k5,cim:ExcAVR7 cim:GovGAST2 cim:GovGASTWD cim:GovSteam1 cim:GovSteamIEEE1
+k6,cim:GovGAST2 cim:GovGASTWD cim:GovSteam1 cim:GovSteamIEEE1
+k7,cim:GovSteam1 cim:GovSteamIEEE1
+k8,cim:GovSteam1 cim:GovSteamIEEE1
+ka,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC4A cim:ExcAC5A cim:ExcAC6A cim:ExcAC8B cim:ExcAVR1 cim:ExcAVR2 cim:ExcAVR3 cim:ExcAVR4 cim:ExcAVR5 cim:ExcCZ cim:ExcDC1A cim:ExcDC2A cim:ExcDC3A1 cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC4A cim:ExcIEEEAC5A cim:ExcIEEEAC6A cim:ExcIEEEAC8B cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEDC4B cim:ExcIEEEST1A cim:ExcIEEEST2A cim:ExcIEEEST3A cim:ExcOEX3T cim:ExcPIC cim:ExcST1A cim:ExcST2A cim:GovCT1 cim:GovCT2 cim:GovGAST1 cim:GovGAST3
+kb,cim:ExcAC2A cim:ExcIEEEAC2A
+kc,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC4A cim:ExcAC6A cim:ExcAC8B cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC4A cim:ExcIEEEAC6A cim:ExcIEEEAC7B cim:ExcIEEEAC8B cim:ExcIEEEST1A cim:ExcIEEEST2A cim:ExcIEEEST3A cim:ExcIEEEST4B cim:ExcIEEEST5B cim:ExcOEX3T cim:ExcPIC cim:ExcREXS cim:ExcSEXS cim:ExcSK cim:ExcST1A cim:ExcST2A cim:ExcST3A cim:ExcST4B cim:GovHydroFrancis cim:GovHydroPelton
+kce,cim:ExcANS cim:ExcSK
+kd,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC6A cim:ExcAC8B cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC6A cim:ExcIEEEAC7B cim:ExcIEEEAC8B cim:ExcIEEEDC4B cim:ExcOEX3T cim:ExcREXS cim:ExcSK cim:GovGASTWD cim:GovHydroPID cim:GovHydroPID2 cim:GovHydroWEH cim:GovHydroWPID cim:Pss1A
+kdgov,cim:GovCT1 cim:GovCT2
+kdr,cim:ExcAC8B cim:ExcIEEEAC7B cim:ExcIEEEAC8B
+kdroop,cim:GovGASTWD cim:WindPitchContEmulIEC
+ke,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC5A cim:ExcAC6A cim:ExcAC8B cim:ExcAVR4 cim:ExcCZ cim:ExcDC1A cim:ExcDC2A cim:ExcDC3A cim:ExcDC3A1 cim:ExcHU cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC5A cim:ExcIEEEAC6A cim:ExcIEEEAC7B cim:ExcIEEEAC8B cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEDC3A cim:ExcIEEEDC4B cim:ExcIEEEST2A cim:ExcOEX3T cim:ExcPIC cim:ExcREXS cim:ExcST2A cim:GovSteamEU
+kf,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC5A cim:ExcAVR1 cim:ExcAVR2 cim:ExcDC1A cim:ExcDC2A cim:ExcDC3A1 cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC5A cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEDC4B cim:ExcIEEEST1A cim:ExcIEEEST2A cim:ExcOEX3T cim:ExcPIC cim:ExcREXS cim:ExcST1A cim:ExcST2A cim:GovGAST2 cim:GovGASTWD cim:Pss1 cim:Pss5
+kf1,cim:ExcAC1A cim:ExcAC3A cim:ExcIEEEAC7B cim:GovSteamFV4
+kf2,cim:ExcAC1A cim:ExcAC3A cim:ExcIEEEAC7B cim:UnderexcLimX1 cim:UnderexcLimX2
+kf3,cim:ExcIEEEAC7B cim:GovSteamFV4
+kff,cim:ExcIEEEST6B cim:ExcST6B
+kg,cim:ExcIEEEST3A cim:ExcIEEEST4B cim:ExcIEEEST6B cim:ExcST3A cim:ExcST4B cim:ExcST6B cim:GovHydro3 cim:GovHydroDD cim:GovHydroFrancis cim:GovHydroPID cim:GovHydroPelton cim:GovHydroR
+kh,cim:ExcAC2A cim:ExcAC6A cim:ExcIEEEAC2A cim:ExcIEEEAC6A cim:ExcIEEEST7B cim:ExcREXS cim:ExcST7B cim:PssIEEE4B
+khp,cim:GovSteamEU cim:GovSteamFV4
+ki,cim:ExcDC3A1 cim:ExcHU cim:ExcIEEEDC4B cim:ExcIEEEST2A cim:ExcIEEEST3A cim:ExcIEEEST4B cim:ExcPIC cim:ExcST2A cim:ExcST3A cim:ExcST4B cim:GovGASTWD cim:GovHydro3 cim:GovHydroDD cim:GovHydroPID cim:GovHydroPID2 cim:GovHydroR cim:GovHydroWEH cim:GovHydroWPID cim:PFVArType2Common1 cim:PFVArType2IEEEPFController cim:PFVArType2IEEEVArController cim:PssIEEE4B cim:TurbLCFB1
+kia,cim:ExcIEEEAC7B cim:ExcIEEEST6B cim:ExcIEEEST7B cim:ExcST6B cim:ExcST7B
+kic,cim:GovSteamFV4 cim:WindContPitchAngleIEC
+kigov,cim:GovCT1 cim:GovCT2
+kiload,cim:GovCT1 cim:GovCT2
+kim,cim:ExcIEEEST4B cim:ExcST4B
+kimw,cim:GovCT1 cim:GovCT2
+kind,fw:TopologyProcessing icim:Gate icim:PinEquipment icim:PinTerminal icim:ProtectiveActionAdjustment icim:RemedialActionScheme
+kip,cim:ExcREXS cim:GovSteamFV4 cim:WindContPType3IEC
+kir,cim:ExcAC8B cim:ExcIEEEAC7B cim:ExcIEEEAC8B cim:ExcIEEEST4B cim:ExcST4B
+kl,cim:ExcAC2A cim:ExcIEEEAC7B cim:ExcIEEEST7B cim:ExcST7B cim:PssIEEE4B
+kl1,cim:ExcAC2A cim:PssIEEE4B
+klr,cim:ExcIEEEST1A cim:ExcIEEEST6B cim:ExcST1A cim:ExcST6B
+km,cim:ExcIEEEST3A cim:ExcIEEEST6B cim:ExcST3A cim:ExcST6B cim:UnderexcLimX1 cim:UnderexcLimX2
+kmx,cim:OverexcLimX1 cim:OverexcLimX2
+kn,cim:ExcAC3A cim:ExcIEEEAC3A
+kp,cim:ExcCZ cim:ExcDC3A1 cim:ExcIEEEAC7B cim:ExcIEEEDC4B cim:ExcIEEEST2A cim:ExcIEEEST3A cim:ExcIEEEST4B cim:ExcPIC cim:ExcSK cim:ExcST2A cim:ExcST3A cim:ExcST4B cim:GovGASTWD cim:GovHydroPID cim:GovHydroPID2 cim:GovHydroWEH cim:GovHydroWPID cim:PFVArType2Common1 cim:PFVArType2IEEEPFController cim:PFVArType2IEEEVArController cim:TurbLCFB1
+kpa,cim:ExcIEEEAC7B cim:ExcIEEEST6B cim:ExcIEEEST7B cim:ExcST6B cim:ExcST7B
+kpc,cim:GovSteamFV4 cim:WindContPitchAngleIEC cim:WindGenTurbineType3aIEC
+kpe,cim:Pss1 cim:Pss5
+kpgov,cim:GovCT1 cim:GovCT2
+kpload,cim:GovCT1 cim:GovCT2
+kpm,cim:ExcIEEEST4B cim:ExcST4B
+kpp,cim:GovSteamFV4 cim:WindContPType3IEC
+kpr,cim:ExcAC8B cim:ExcIEEEAC7B cim:ExcIEEEAC8B cim:ExcIEEEST4B cim:ExcST4B
+kr,cim:ExcAC3A cim:ExcDC3A cim:ExcIEEEAC3A cim:ExcIEEEST5B
+ks,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC5A cim:ExcAC6A cim:ExcAC8B cim:ExcDC1A cim:ExcDC2A cim:ExcDC3A cim:ExcREXS cim:ExcST3A cim:Pss1 cim:Pss1A cim:PssIEEE1A cim:SynchronousMachineTimeConstantReactance
+ks1,cim:ExcELIN1 cim:ExcST3A cim:Pss2B cim:PssELIN2 cim:PssIEEE2B cim:PssIEEE3B
+ks2,cim:ExcELIN1 cim:Pss2B cim:PssELIN2 cim:PssIEEE2B cim:PssIEEE3B
+ks3,cim:Pss2B cim:PssIEEE2B
+kt,cim:GovGAST cim:GovGAST1 cim:GovHydroFrancis
+kturb,cim:GovCT1 cim:GovCT2 cim:GovHydro2 cim:GovHydroIEEE2
+kuf,cim:UnderexcLimIEEE1 cim:UnderexcLimIEEE2
+kui,cim:UnderexcLim2Simplified cim:UnderexcLimIEEE1 cim:UnderexcLimIEEE2
+kul,cim:UnderexcLimIEEE1 cim:UnderexcLimIEEE2
+kv,cim:ExcDC3A cim:ExcIEEEDC3A
+ldref,cim:GovCT1 cim:GovCT2
+length,cim:Conductor cim:DCLineSegment
+limitType,entsoe2:OperationalLimitType entsoe:OperationalLimitType
+ls,cim:LoadGenericNonLinear cim:LoadMotor
+lvgate,cim:ExcAC2A cim:ExcST4B
+m,cim:OverexcLimX2 cim:Pss2B cim:PssIEEE2B cim:PssPTIST1 cim:PssPTIST3
+marketCode,pti:EnergyCongestionZone pti:ScheduleResource
+maxP,cim:EquivalentInjection cim:ExternalNetworkInjection
+maxQ,cim:EquivalentInjection cim:ExternalNetworkInjection cim:SynchronousMachine
+maxerr,cim:GovCT1 cim:GovCT2
+melmax,cim:UnderexcLimX1 cim:UnderexcLimX2
+minP,cim:EquivalentInjection cim:ExternalNetworkInjection
+minQ,cim:EquivalentInjection cim:ExternalNetworkInjection cim:SynchronousMachine
+minerr,cim:GovCT1 cim:GovCT2
+mnef,cim:GovGAST3 cim:GovGAST4 cim:GovSteam2 cim:GovSteamFV4
+mode,cim:PetersenCoil cim:RegulatingControl
+modelDescriptionURI,entsoe:DiagramLayoutVersion entsoe:DynamicsVersion entsoe:EquipmentBoundaryVersion entsoe:EquipmentVersion entsoe:GeographicalLocationVersion entsoe:StateVariablesVersion entsoe:SteadyStateHypothesisVersion entsoe:TopologyBoundaryVersion entsoe:TopologyVersion
+multiplier,cim:ActivePower cim:ActivePowerPerCurrentFlow cim:ActivePowerPerFrequency cim:AngleDegrees cim:AngleRadians cim:ApparentPower cim:Area cim:Capacitance cim:CapacitancePerLength cim:Conductance cim:CurrentFlow cim:Frequency cim:Inductance cim:InductancePerLength cim:Length cim:Money cim:PU cim:PerCent cim:Reactance cim:ReactivePower cim:Resistance cim:ResistancePerLength cim:RotationSpeed cim:Seconds cim:Susceptance cim:Temperature cim:Voltage cim:VoltagePerReactivePower cim:VolumeFlowRate
+mwbase,cim:GovCT1 cim:GovCT2 cim:GovGAST cim:GovGAST1 cim:GovGAST2 cim:GovGASTWD cim:GovHydro1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroIEEE0 cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroPID2 cim:GovHydroR cim:GovHydroWEH cim:GovHydroWPID cim:GovSteam0 cim:GovSteam1 cim:GovSteamCC cim:GovSteamEU cim:GovSteamFV2 cim:GovSteamFV3 cim:GovSteamIEEE1 cim:GovSteamSGO cim:TurbLCFB1
+mxef,cim:GovGAST3 cim:GovGAST4 cim:GovSteam2 cim:GovSteamFV4
+n,cim:Pss2B cim:PssIEEE2B
+name,cim:IdentifiedObject fw:FrameworkIdentifiedObject
+namespaceRDF,entsoe:DiagramLayoutVersion entsoe:DynamicsVersion entsoe:EquipmentBoundaryVersion entsoe:EquipmentVersion entsoe:GeographicalLocationVersion entsoe:StateVariablesVersion entsoe:SteadyStateHypothesisVersion entsoe:TopologyBoundaryVersion entsoe:TopologyVersion
+namespaceUML,entsoe:DiagramLayoutVersion entsoe:DynamicsVersion entsoe:EquipmentBoundaryVersion entsoe:EquipmentVersion entsoe:GeographicalLocationVersion entsoe:StateVariablesVersion entsoe:SteadyStateHypothesisVersion entsoe:TopologyBoundaryVersion entsoe:TopologyVersion
+nominalVoltage,cim:BaseVoltage cim:EnergySource
+normalArmed,icim:RemedialActionScheme icim:StageTrigger
+normalEnabled,icim:ProtectiveAction icim:StageTrigger
+normalValue,cim:Command cim:SetPoint entsoe2:ActivePowerLimit entsoe2:CurrentLimit entsoe2:VoltageLimit
+oelin,cim:ExcIEEEDC4B cim:ExcIEEEST6B cim:ExcIEEEST7B cim:ExcST6B cim:ExcST7B
+operatingMode,cim:CsConverter cim:SynchronousMachine
+p,cim:ACDCConverter cim:EnergyConsumer cim:EquivalentInjection cim:ExternalNetworkInjection cim:RotatingMachine cim:SvPowerFlow
+p0,cim:UnderexcLim2Simplified cim:UnderexcLimIEEE2
+p1,cim:GovHydroPID2 cim:UnderexcLim2Simplified cim:UnderexcLimIEEE2
+p2,cim:GovHydroPID2 cim:UnderexcLimIEEE2
+p3,cim:GovHydroPID2 cim:UnderexcLimIEEE2
+pPccControl,cim:CsConverter cim:VsConverter
+pTolerance,cim:ControlArea fw:PowerFlowOperation
+pfrac,cim:LoadComposite cim:LoadMotor
+pgv1,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovHydroWPID cim:GovSteam1
+pgv2,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovHydroWPID cim:GovSteam1
+pgv3,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovHydroWPID cim:GovSteam1
+pgv4,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovSteam1
+pgv5,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovSteam1
+pgv6,cim:GovGAST1 cim:GovHydro2 cim:GovHydro3 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovSteam1
+phases,cim:Measurement cim:Terminal
+pmax,cim:GovHydro2 cim:GovHydro3 cim:GovHydroDD cim:GovHydroIEEE0 cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovHydroWPID cim:GovSteam1 cim:GovSteam2 cim:GovSteamEU cim:GovSteamFV3 cim:GovSteamIEEE1 cim:GovSteamSGO
+pmin,cim:GovHydro2 cim:GovHydro3 cim:GovHydroDD cim:GovHydroIEEE0 cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovHydroWPID cim:GovSteam1 cim:GovSteam2 cim:GovSteamFV3 cim:GovSteamIEEE1 cim:GovSteamSGO cim:Pss1 cim:PssPTIST3
+positiveFlowIn,cim:Analog cim:TieFlow
+priority,cim:BusNameMarker icim:Stage
+profile,fw:Model md:Model
+proprietary,cim:AsynchronousMachineUserDefined cim:DiscontinuousExcitationControlUserDefined cim:ExcitationSystemUserDefined cim:LoadUserDefined cim:MechanicalLoadUserDefined cim:OverexcitationLimiterUserDefined cim:PFVArControllerType1UserDefined cim:PFVArControllerType2UserDefined cim:PowerSystemStabilizerUserDefined cim:SynchronousMachineUserDefined cim:TurbineGovernorUserDefined cim:TurbineLoadControllerUserDefined cim:UnderexcitationLimiterUserDefined cim:VoltageAdjusterUserDefined cim:VoltageCompensatorUserDefined cim:WindPlantUserDefined cim:WindType1or2UserDefined cim:WindType3or4UserDefined
+q,cim:ACDCConverter cim:EnergyConsumer cim:EquivalentInjection cim:ExternalNetworkInjection cim:RotatingMachine cim:StaticVarCompensator cim:SvPowerFlow
+q0,cim:UnderexcLim2Simplified cim:UnderexcLimIEEE2
+q1,cim:UnderexcLim2Simplified cim:UnderexcLimIEEE2
+qc0,cim:GovHydroFrancis cim:GovHydroPelton
+qn,cim:GovHydroFrancis cim:GovHydroPelton
+qnl,cim:GovHydro1 cim:GovHydro3 cim:GovHydroR
+r,cim:ACLineSegment cim:DCGround cim:EarthFaultCompensator cim:EnergySource cim:EquivalentBranch cim:EquivalentInjection cim:GovCT1 cim:GovCT2 cim:GovGAST cim:GovGAST1 cim:GovHydroDD cim:GovHydroPID cim:GovHydroR cim:GovSteam0 cim:GovSteamFV2 cim:PowerTransformerEnd cim:SeriesCompensator cim:SynchronousMachine cim:TapChangerTablePoint cim:UnderexcLimX2
+r0,cim:ACLineSegment cim:EnergySource cim:EquivalentInjection cim:MutualCoupling cim:PowerTransformerEnd cim:SeriesCompensator cim:SynchronousMachine
+r2,cim:EquivalentInjection cim:SynchronousMachine
+ratedS,cim:PowerTransformerEnd cim:RotatingMachine
+ratedU,cim:PowerTransformerEnd cim:RotatingMachine
+ratedUdc,cim:ACDCConverter cim:DCSeriesDevice cim:DCShunt
+rclose,cim:GovCT1 cim:GovCT2
+rdown,cim:GovCT1 cim:GovCT2
+referencePriority,cim:ExternalNetworkInjection cim:SynchronousMachine
+resistance,cim:DCLineSegment cim:DCSeriesDevice cim:DCShunt cim:PerLengthDCLineParameter
+rmax,cim:GovGAST1 cim:WindContRotorRIEC
+ropen,cim:GovCT1 cim:GovCT2
+rperm,cim:GovHydro1 cim:GovHydro2 cim:GovHydro4 cim:GovHydroIEEE2 cim:GovHydroPID2
+rselect,cim:GovCT1 cim:GovCT2
+rtemp,cim:GovHydro1 cim:GovHydro2 cim:GovHydro4 cim:GovHydroIEEE2
+rup,cim:GovCT1 cim:GovCT2
+se1,cim:ExcAVR1 cim:ExcAVR2 cim:ExcAVR3 cim:ExcPIC cim:ExcREXS
+se2,cim:ExcAVR1 cim:ExcAVR2 cim:ExcAVR3 cim:ExcPIC cim:ExcREXS
+sections,cim:ShuntCompensator cim:SvShuntCompensatorSections
+seefd1,cim:ExcAC5A cim:ExcDC1A cim:ExcDC2A cim:ExcDC3A cim:ExcIEEEAC5A cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEDC3A cim:ExcIEEEDC4B
+seefd2,cim:ExcAC5A cim:ExcDC1A cim:ExcDC2A cim:ExcDC3A cim:ExcIEEEAC5A cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEDC3A cim:ExcIEEEDC4B
+sequenceNumber,cim:ACDCTerminal cim:DiagramObjectPoint cim:PositionPoint cim:RegularTimePoint
+seve1,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC6A cim:ExcAC8B cim:ExcELIN2 cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC6A cim:ExcIEEEAC7B cim:ExcIEEEAC8B
+seve2,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC6A cim:ExcAC8B cim:ExcELIN2 cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC6A cim:ExcIEEEAC7B cim:ExcIEEEAC8B
+shortName,entsoe:DiagramLayoutVersion entsoe:DynamicsVersion entsoe:EquipmentBoundaryVersion entsoe:EquipmentVersion entsoe:GeographicalLocationVersion entsoe:IdentifiedObject entsoe:StateVariablesVersion entsoe:SteadyStateHypothesisVersion entsoe:TopologyBoundaryVersion entsoe:TopologyVersion
+step,cim:TapChanger cim:TapChangerTablePoint
+t,cim:GovGAST2 cim:GovGASTWD
+t1,cim:ExcANS cim:ExcAVR3 cim:ExcAVR4 cim:ExcAVR7 cim:ExcBBC cim:ExcIEEEST5B cim:ExcOEX3T cim:GovGAST cim:GovGAST1 cim:GovHydroIEEE0 cim:GovHydroR cim:GovSteam0 cim:GovSteam1 cim:GovSteam2 cim:GovSteamFV2 cim:GovSteamFV3 cim:GovSteamIEEE1 cim:GovSteamSGO cim:OverexcLimX1 cim:OverexcLimX2 cim:Pss1A cim:Pss2B cim:Pss2ST cim:PssIEEE1A cim:PssIEEE2B cim:PssIEEE3B cim:PssPTIST1 cim:PssPTIST3 cim:PssSH cim:PssSK cim:PssWECC cim:WindPitchContEmulIEC
+t10,cim:Pss1 cim:Pss2B cim:Pss2ST cim:PssIEEE2B cim:PssWECC
+t11,cim:Pss2B cim:PssIEEE2B
+t2,cim:ExcANS cim:ExcAVR3 cim:ExcAVR4 cim:ExcAVR7 cim:ExcBBC cim:ExcOEX3T cim:GovGAST cim:GovGAST1 cim:GovHydroIEEE0 cim:GovHydroR cim:GovSteam0 cim:GovSteam1 cim:GovSteam2 cim:GovSteamFV3 cim:GovSteamIEEE1 cim:GovSteamSGO cim:OverexcLimX1 cim:OverexcLimX2 cim:Pss1A cim:Pss2B cim:Pss2ST cim:PssIEEE1A cim:PssIEEE2B cim:PssIEEE3B cim:PssPTIST1 cim:PssPTIST3 cim:PssSH cim:PssSK cim:PssWECC cim:WindPitchContEmulIEC
+t3,cim:ExcANS cim:ExcAVR3 cim:ExcAVR4 cim:ExcAVR7 cim:ExcBBC cim:ExcOEX3T cim:GovGAST cim:GovGAST1 cim:GovGAST2 cim:GovGASTWD cim:GovHydroIEEE0 cim:GovHydroR cim:GovSteam0 cim:GovSteam1 cim:GovSteamFV2 cim:GovSteamFV3 cim:GovSteamIEEE1 cim:GovSteamSGO cim:OverexcLimX1 cim:OverexcLimX2 cim:Pss1A cim:Pss2B cim:Pss2ST cim:PssIEEE1A cim:PssIEEE2B cim:PssPTIST1 cim:PssPTIST3 cim:PssSH cim:PssSK cim:PssWECC
+t4,cim:ExcAVR3 cim:ExcAVR4 cim:ExcAVR7 cim:ExcBBC cim:ExcOEX3T cim:GovGAST1 cim:GovGAST2 cim:GovGASTWD cim:GovHydroIEEE0 cim:GovHydroR cim:GovSteam1 cim:GovSteamFV3 cim:GovSteamIEEE1 cim:GovSteamSGO cim:Pss1A cim:Pss2B cim:Pss2ST cim:PssIEEE1A cim:PssIEEE2B cim:PssPTIST1 cim:PssPTIST3 cim:PssSH cim:PssSK cim:PssWECC
+t5,cim:ExcAVR7 cim:ExcOEX3T cim:GovGAST1 cim:GovGAST2 cim:GovGASTWD cim:GovHydroR cim:GovSteam1 cim:GovSteamFV3 cim:GovSteamIEEE1 cim:GovSteamSGO cim:Pss1 cim:Pss1A cim:Pss2ST cim:PssIEEE1A cim:PssPTIST3 cim:PssSK cim:PssWECC
+t6,cim:ExcAVR7 cim:ExcOEX3T cim:GovHydroR cim:GovSteam1 cim:GovSteamFV3 cim:GovSteamIEEE1 cim:GovSteamSGO cim:Pss1 cim:Pss1A cim:Pss2B cim:Pss2ST cim:PssIEEE1A cim:PssIEEE2B cim:PssPTIST3 cim:PssSK cim:PssWECC
+t7,cim:GovHydroR cim:GovSteam1 cim:GovSteamIEEE1 cim:Pss1 cim:Pss2B cim:Pss2ST cim:PssIEEE2B cim:PssWECC
+t8,cim:GovHydroR cim:Pss1 cim:Pss2B cim:Pss2ST cim:PssIEEE2B cim:PssWECC
+t9,cim:Pss1 cim:Pss2B cim:Pss2ST cim:PssIEEE2B cim:PssWECC
+ta,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC4A cim:ExcAC5A cim:ExcAC6A cim:ExcAC8B cim:ExcAVR1 cim:ExcAVR2 cim:ExcAVR5 cim:ExcCZ cim:ExcDC1A cim:ExcDC2A cim:ExcDC3A1 cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC4A cim:ExcIEEEAC5A cim:ExcIEEEAC6A cim:ExcIEEEAC8B cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEDC4B cim:ExcIEEEST1A cim:ExcIEEEST2A cim:ExcIEEEST3A cim:ExcIEEEST4B cim:ExcREXS cim:ExcST1A cim:ExcST2A cim:ExcST4B cim:GovCT1 cim:GovCT2 cim:GovGAST4 cim:GovHydroFrancis cim:GovHydroPID2 cim:GovHydroPelton cim:GovHydroWPID cim:GovSteamFV2 cim:GovSteamFV3 cim:GovSteamFV4 cim:Pss2B cim:PssSB4
+tact,cim:GovCT1 cim:GovCT2
+tatb,cim:ExcSCRX cim:ExcSEXS
+tb,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC4A cim:ExcAC5A cim:ExcAC6A cim:ExcANS cim:ExcAVR1 cim:ExcAVR2 cim:ExcDC1A cim:ExcDC2A cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC4A cim:ExcIEEEAC6A cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEST1A cim:ExcIEEEST3A cim:ExcIEEEST7B cim:ExcSCRX cim:ExcSEXS cim:ExcST1A cim:ExcST2A cim:ExcST3A cim:ExcST7B cim:GovCT1 cim:GovCT2 cim:GovHydroPID2 cim:GovHydroWPID cim:GovSteamEU cim:GovSteamFV2 cim:GovSteamFV3 cim:Pss2B cim:PssSB4
+tb1,cim:ExcELIN2 cim:ExcIEEEST1A cim:ExcIEEEST5B cim:ExcREXS cim:ExcST1A
+tb2,cim:ExcIEEEST5B cim:ExcREXS
+tc,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC4A cim:ExcAC5A cim:ExcAC6A cim:ExcCZ cim:ExcDC1A cim:ExcDC2A cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC4A cim:ExcIEEEAC6A cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEST1A cim:ExcIEEEST3A cim:ExcIEEEST7B cim:ExcSEXS cim:ExcSK cim:ExcST1A cim:ExcST2A cim:ExcST3A cim:ExcST7B cim:GovCT1 cim:GovCT2 cim:GovGAST2 cim:GovGAST3 cim:GovGAST4 cim:GovGASTWD cim:GovSteamFV2 cim:GovSteamFV3 cim:GovSteamFV4 cim:PssSB4 cim:SynchronousMachineTimeConstantReactance
+tc1,cim:ExcIEEEST1A cim:ExcIEEEST5B cim:ExcREXS cim:ExcST1A
+tc2,cim:ExcIEEEST5B cim:ExcREXS
+tcd,cim:GovGAST2 cim:GovGASTWD
+tcm,cim:GovGAST4 cim:GovSteamFV4
+td,cim:DiscExcContIEEEDEC1A cim:ExcIEEEDC4B cim:GovGAST3 cim:GovGASTWD cim:GovHydro3 cim:GovHydroDD cim:GovHydroFrancis cim:GovHydroPID cim:GovHydroR cim:GovHydroWEH cim:PssSB4 cim:PssSH
+tdgov,cim:GovCT1 cim:GovCT2
+tdr,cim:DiscExcContIEEEDEC3A cim:ExcAC8B cim:ExcIEEEAC7B cim:ExcIEEEAC8B
+te,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC5A cim:ExcAC6A cim:ExcAC8B cim:ExcAVR1 cim:ExcAVR2 cim:ExcAVR3 cim:ExcCZ cim:ExcDC1A cim:ExcDC2A cim:ExcDC3A cim:ExcDC3A1 cim:ExcELIN2 cim:ExcHU cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC5A cim:ExcIEEEAC6A cim:ExcIEEEAC7B cim:ExcIEEEAC8B cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEDC3A cim:ExcIEEEDC4B cim:ExcIEEEST2A cim:ExcOEX3T cim:ExcPIC cim:ExcREXS cim:ExcSCRX cim:ExcSEXS cim:ExcSK cim:ExcST2A cim:PssSB4
+teng,cim:GovCT1 cim:GovCT2
+tf,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAVR1 cim:ExcDC1A cim:ExcDC2A cim:ExcDC3A1 cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC7B cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEDC4B cim:ExcIEEEST1A cim:ExcIEEEST2A cim:ExcIEEEST7B cim:ExcOEX3T cim:ExcREXS cim:ExcST1A cim:ExcST2A cim:ExcST7B cim:GovGAST2 cim:GovGASTWD cim:GovHydro1 cim:GovHydro3 cim:GovHydroDD cim:GovHydroPID cim:GovSteamEU cim:PssPTIST1 cim:PssPTIST3
+tf1,cim:ExcAC5A cim:ExcAVR2 cim:ExcDC2A cim:ExcIEEEAC5A cim:ExcPIC cim:ExcREXS cim:GovSteamFV4
+tf2,cim:ExcAC5A cim:ExcAVR2 cim:ExcIEEEAC5A cim:ExcPIC cim:ExcREXS cim:GovSteamFV4 cim:UnderexcLimX1 cim:UnderexcLimX2
+tf3,cim:ExcAC5A cim:ExcIEEEAC5A
+tfload,cim:GovCT1 cim:GovCT2
+tg,cim:ExcIEEEST6B cim:ExcIEEEST7B cim:ExcST6B cim:ExcST7B cim:GovGAST3 cim:GovHydro1 cim:GovHydro2 cim:GovHydro4 cim:GovHydroIEEE2 cim:GovHydroWEH cim:WindGenTurbineType3bIEC cim:WindGenType4IEC
+th,cim:ExcAC6A cim:ExcIEEEAC6A
+thetap,cim:ExcIEEEST3A cim:ExcIEEEST4B cim:ExcST3A cim:ExcST4B
+thp,cim:GovSteamEU cim:GovSteamFV4
+ti,cim:ExcHU cim:ExcSK cim:GovSteamFV2
+ti1,cim:ExcELIN2 cim:PssIEEE4B
+ti3,cim:ExcELIN2 cim:PssIEEE4B
+ti4,cim:ExcELIN2 cim:PssIEEE4B
+tia,cim:ExcIEEEST7B cim:ExcST7B
+timeStamp,cim:Control cim:MeasurementValue
+tj,cim:ExcAC6A cim:ExcIEEEAC6A
+tk,cim:ExcAC6A cim:ExcIEEEAC6A
+tl1,cim:DiscExcContIEEEDEC1A cim:Pss5 cim:PssIEEE4B
+tl2,cim:DiscExcContIEEEDEC1A cim:Pss5 cim:PssIEEE4B
+tl3,cim:Pss5 cim:PssIEEE4B
+tl4,cim:Pss5 cim:PssIEEE4B
+tm,cim:ExcIEEEST3A cim:ExcST3A cim:GovGAST4 cim:UnderexcLimX1 cim:UnderexcLimX2
+tmax,cim:GovGAST2 cim:GovGASTWD
+tmin,cim:GovGAST2 cim:GovGASTWD
+toEndIsoCode,entsoe:ConnectivityNode entsoe:TopologicalNode
+toEndName,entsoe:ConnectivityNode entsoe:TopologicalNode
+toEndNameTso,entsoe:ConnectivityNode entsoe:TopologicalNode
+tomegafilt,cim:WindContPType3IEC cim:WindContRotorRIEC
+tp,cim:ExcREXS cim:ExcSK cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroDD cim:GovHydroIEEE2 cim:GovHydroPID cim:GovHydroR cim:GovHydroWEH cim:GovSteamEU cim:LoadGenericNonLinear cim:PssPTIST1 cim:PssPTIST3
+tpe,cim:GovHydroWEH cim:Pss1 cim:Pss5 cim:WindPitchContEmulIEC
+tpelec,cim:GovCT1 cim:GovCT2 cim:TurbLCFB1
+tpfilt,cim:WindContPType3IEC cim:WindContQIEC cim:WindContRotorRIEC
+tpo,cim:AsynchronousMachineTimeConstantReactance cim:LoadMotor
+tpord,cim:WindContPType3IEC cim:WindContPType4aIEC cim:WindContPType4bIEC
+tppo,cim:AsynchronousMachineTimeConstantReactance cim:LoadMotor
+tr,cim:ExcHU cim:ExcSK cim:GovGAST2 cim:GovGASTWD cim:GovHydro1 cim:GovHydro2 cim:GovHydro4 cim:GovHydroIEEE2 cim:VCompIEEEType1 cim:VCompIEEEType2
+trate,cim:GovGAST2 cim:GovGASTWD
+treg,cim:GovHydroPID2 cim:GovHydroWPID
+trh,cim:ExcDC3A cim:ExcIEEEDC3A cim:GovSteamEU cim:GovSteamFV4
+ts,cim:ExcST6B cim:ExcST7B cim:GovHydroFrancis cim:GovHydroPelton
+ts1,cim:ExcELIN1 cim:PssELIN2
+ts2,cim:ExcELIN1 cim:PssELIN2
+tsa,cim:GovCT1 cim:GovCT2
+tsb,cim:GovCT1 cim:GovCT2
+tt,cim:GovGAST2 cim:GovGAST3 cim:GovGASTWD cim:GovHydro3 cim:GovHydroDD cim:GovHydroPID cim:GovHydroR cim:GovSteamFV2 cim:PssSB4
+tturb,cim:GovHydroDD cim:GovHydroPID
+tu1,cim:UnderexcLimIEEE1 cim:UnderexcLimIEEE2
+tu2,cim:UnderexcLimIEEE1 cim:UnderexcLimIEEE2
+tu3,cim:UnderexcLimIEEE1 cim:UnderexcLimIEEE2
+tu4,cim:UnderexcLimIEEE1 cim:UnderexcLimIEEE2
+tufilt,cim:WindContCurrLimIEC cim:WindContPType3IEC cim:WindContPType4aIEC cim:WindContPType4bIEC cim:WindContQIEC
+tv,cim:GovGAST4 cim:GovHydroPelton cim:GovSteamFV4 cim:LoadMotor
+tw,cim:GovHydro1 cim:GovHydro2 cim:GovHydro3 cim:GovHydro4 cim:GovHydroIEEE2 cim:GovHydroPID2 cim:GovHydroR cim:GovHydroWEH cim:GovHydroWPID cim:GovSteamEU
+tw1,cim:Pss2B cim:Pss5 cim:PssIEEE2B cim:PssIEEE3B
+tw2,cim:Pss2B cim:Pss5 cim:PssIEEE2B cim:PssIEEE3B
+tw3,cim:Pss2B cim:PssIEEE2B cim:PssIEEE3B
+tw4,cim:Pss2B cim:PssIEEE2B
+twnc,cim:GovHydroFrancis cim:GovHydroPelton
+twng,cim:GovHydroFrancis cim:GovHydroPelton
+twppfilt,cim:WindPlantFreqPcontrolIEC cim:WindPlantReactiveControlIEC
+tx,cim:GovHydroFrancis cim:GovHydroPelton
+ty,cim:GovGAST3 cim:GovSteamFV4
+type,cim:ControlArea cim:SynchronousMachine fw:ModelSpecification fw:Situation pti:Diagram
+uc,cim:ACDCConverter cim:GovHydro2 cim:GovHydro4 cim:GovHydroIEEE2 cim:GovSteam1 cim:GovSteamFV3 cim:GovSteamIEEE1
+uelin,cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEDC4B cim:ExcIEEEST1A cim:ExcIEEEST2A cim:ExcIEEEST7B cim:ExcST2A cim:ExcST7B
+unit,cim:ActivePower cim:ActivePowerPerCurrentFlow cim:ActivePowerPerFrequency cim:AngleDegrees cim:AngleRadians cim:ApparentPower cim:Area cim:Capacitance cim:CapacitancePerLength cim:Conductance cim:CurrentFlow cim:Frequency cim:Inductance cim:InductancePerLength cim:Length cim:Money cim:PU cim:PerCent cim:Reactance cim:ReactivePower cim:Resistance cim:ResistancePerLength cim:RotationSpeed cim:Seconds cim:Susceptance cim:Temperature cim:Voltage cim:VoltagePerReactivePower cim:VolumeFlowRate
+unitMultiplier,cim:Control cim:Measurement
+unitSymbol,cim:Control cim:Measurement
+uo,cim:GovHydro2 cim:GovHydro4 cim:GovHydroIEEE2 cim:GovSteam1 cim:GovSteamFV3 cim:GovSteamIEEE1
+va,cim:GovHydroFrancis cim:GovHydroPelton
+vadat,cim:Pss1 cim:Pss5
+value,cim:AccumulatorLimit cim:AccumulatorValue cim:ActivePower cim:ActivePowerLimit cim:ActivePowerPerCurrentFlow cim:ActivePowerPerFrequency cim:AnalogLimit cim:AnalogValue cim:AngleDegrees cim:AngleRadians cim:ApparentPower cim:ApparentPowerLimit cim:Area cim:Capacitance cim:CapacitancePerLength cim:Command cim:Conductance cim:CurrentFlow cim:CurrentLimit cim:DiscreteValue cim:Frequency cim:Inductance cim:InductancePerLength cim:Length cim:Money cim:PU cim:PerCent cim:Reactance cim:ReactivePower cim:Resistance cim:ResistancePerLength cim:RotationSpeed cim:Seconds cim:SetPoint cim:Simple_Float cim:StringMeasurementValue cim:Susceptance cim:Temperature cim:ValueToAlias cim:Voltage cim:VoltageLimit cim:VoltagePerReactivePower cim:VolumeFlowRate entsoe2:ProtectiveActionAdjustment entsoe2:RateTemperature
+valvmax,cim:GovHydroFrancis cim:GovHydroPelton
+valvmin,cim:GovHydroFrancis cim:GovHydroPelton
+vamax,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC6A cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC6A cim:ExcIEEEAC7B cim:ExcIEEEST1A cim:ExcIEEEST6B cim:ExcST1A cim:ExcST6B
+vamin,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC6A cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC6A cim:ExcIEEEAC7B cim:ExcIEEEST1A cim:ExcIEEEST6B cim:ExcST1A cim:ExcST6B
+vbmax,cim:ExcDC3A1 cim:ExcIEEEST3A cim:ExcIEEEST4B cim:ExcST3A cim:ExcST4B
+vc,cim:GovHydroFrancis cim:GovHydroPelton
+vcl,cim:Pss1A cim:Pss2ST cim:PssWECC
+vclmt,cim:PFVArType2IEEEPFController cim:PFVArType2IEEEVArController
+vcu,cim:Pss1A cim:Pss2ST cim:PssWECC
+ve1,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC6A cim:ExcAC8B cim:ExcELIN2 cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC6A cim:ExcIEEEAC7B cim:ExcIEEEAC8B
+ve2,cim:ExcAC1A cim:ExcAC2A cim:ExcAC3A cim:ExcAC6A cim:ExcAC8B cim:ExcELIN2 cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC6A cim:ExcIEEEAC7B cim:ExcIEEEAC8B
+velcl,cim:GovHydro3 cim:GovHydroDD cim:GovHydroPID cim:GovHydroR
+velmax,cim:GovHydroPID2 cim:GovHydroWPID
+velmin,cim:GovHydroPID2 cim:GovHydroWPID
+velop,cim:GovHydro3 cim:GovHydroDD cim:GovHydroPID cim:GovHydroR
+vemin,cim:ExcAC3A cim:ExcAC8B cim:ExcIEEEAC3A cim:ExcIEEEAC7B cim:ExcIEEEAC8B cim:ExcIEEEDC4B
+version,fw:FrameworkVersionObject md:Model
+vfelim,cim:ExcAC6A cim:ExcIEEEAC6A
+vfemax,cim:ExcAC2A cim:ExcAC3A cim:ExcAC8B cim:ExcIEEEAC2A cim:ExcIEEEAC3A cim:ExcIEEEAC7B cim:ExcIEEEAC8B
+vgmax,cim:ExcIEEEST3A cim:ExcST3A cim:ExcST4B
+vhmax,cim:ExcAC6A cim:ExcIEEEAC6A cim:PssIEEE4B
+vimax,cim:ExcAC4A cim:ExcAC8B cim:ExcIEEEAC4A cim:ExcIEEEST1A cim:ExcIEEEST3A cim:ExcREXS cim:ExcST1A cim:ExcST3A cim:ExcST6B cim:PssIEEE4B
+vimin,cim:ExcAC4A cim:ExcAC8B cim:ExcIEEEAC4A cim:ExcIEEEST1A cim:ExcIEEEST3A cim:ExcST1A cim:ExcST3A cim:ExcST6B cim:PssIEEE4B
+vlow,cim:OverexcLimX1 cim:OverexcLimX2
+vmax,cim:ExcIEEEST7B cim:ExcST7B cim:GovCT1 cim:GovCT2 cim:GovGAST cim:GovGAST1 cim:GovSteam0 cim:GovSteamFV2
+vmin,cim:ExcIEEEST7B cim:ExcST7B cim:GovCT1 cim:GovCT2 cim:GovGAST cim:GovGAST1 cim:GovSteam0 cim:GovSteamFV2
+vmmax,cim:ExcIEEEST3A cim:ExcIEEEST4B cim:ExcST4B
+vmmin,cim:ExcIEEEST3A cim:ExcIEEEST4B cim:ExcST4B
+vref,cim:PFVArType2IEEEPFController cim:PFVArType2IEEEVArController
+vrmax,cim:ExcAC1A cim:ExcAC2A cim:ExcAC4A cim:ExcAC5A cim:ExcAC6A cim:ExcAC8B cim:ExcBBC cim:ExcCZ cim:ExcDC1A cim:ExcDC2A cim:ExcDC3A cim:ExcDC3A1 cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC4A cim:ExcIEEEAC5A cim:ExcIEEEAC6A cim:ExcIEEEAC7B cim:ExcIEEEAC8B cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEDC3A cim:ExcIEEEDC4B cim:ExcIEEEST1A cim:ExcIEEEST2A cim:ExcIEEEST3A cim:ExcIEEEST4B cim:ExcIEEEST5B cim:ExcIEEEST6B cim:ExcIEEEST7B cim:ExcOEX3T cim:ExcPIC cim:ExcREXS cim:ExcST1A cim:ExcST2A cim:ExcST3A cim:ExcST4B cim:ExcST6B cim:ExcST7B cim:Pss1A cim:PssIEEE1A
+vrmin,cim:ExcAC1A cim:ExcAC2A cim:ExcAC4A cim:ExcAC5A cim:ExcAC6A cim:ExcAC8B cim:ExcBBC cim:ExcCZ cim:ExcDC1A cim:ExcDC2A cim:ExcDC3A cim:ExcDC3A1 cim:ExcIEEEAC1A cim:ExcIEEEAC2A cim:ExcIEEEAC4A cim:ExcIEEEAC5A cim:ExcIEEEAC6A cim:ExcIEEEAC7B cim:ExcIEEEAC8B cim:ExcIEEEDC1A cim:ExcIEEEDC2A cim:ExcIEEEDC3A cim:ExcIEEEDC4B cim:ExcIEEEST1A cim:ExcIEEEST2A cim:ExcIEEEST3A cim:ExcIEEEST4B cim:ExcIEEEST5B cim:ExcIEEEST6B cim:ExcIEEEST7B cim:ExcOEX3T cim:ExcPIC cim:ExcREXS cim:ExcST1A cim:ExcST2A cim:ExcST3A cim:ExcST4B cim:ExcST6B cim:ExcST7B cim:Pss1A cim:PssIEEE1A
+vrmn,cim:ExcANS cim:ExcAVR1 cim:ExcAVR2 cim:ExcAVR3 cim:ExcAVR4
+vrmx,cim:ExcANS cim:ExcAVR1 cim:ExcAVR2 cim:ExcAVR3 cim:ExcAVR4
+vs,cim:PFVArType2IEEEPFController cim:PFVArType2IEEEVArController
+vsi1max,cim:Pss2B cim:PssIEEE2B
+vsi1min,cim:Pss2B cim:PssIEEE2B
+vsi2max,cim:Pss2B cim:PssIEEE2B
+vsi2min,cim:Pss2B cim:PssIEEE2B
+vsmax,cim:DiscExcContIEEEDEC1A cim:PssSB4 cim:PssSH cim:PssSK cim:PssWECC
+vsmin,cim:DiscExcContIEEEDEC1A cim:PssSB4 cim:PssSH cim:PssSK cim:PssWECC
+vsmn,cim:Pss1 cim:Pss5
+vsmx,cim:Pss1 cim:Pss5
+vstmax,cim:Pss2B cim:PssIEEE2B cim:PssIEEE3B cim:PssIEEE4B
+vstmin,cim:Pss2B cim:PssIEEE2B cim:PssIEEE3B cim:PssIEEE4B
+vtmin,cim:DiscExcContIEEEDEC3A cim:ExcSK
+vuimax,cim:UnderexcLim2Simplified cim:UnderexcLimIEEE1 cim:UnderexcLimIEEE2
+vuimin,cim:UnderexcLim2Simplified cim:UnderexcLimIEEE1 cim:UnderexcLimIEEE2
+vulmax,cim:UnderexcLimIEEE1 cim:UnderexcLimIEEE2
+vulmin,cim:UnderexcLimIEEE1 cim:UnderexcLimIEEE2
+vvtmax,cim:PFVArType1IEEEPFController cim:PFVArType1IEEEVArController
+vvtmin,cim:PFVArType1IEEEPFController cim:PFVArType1IEEEVArController
+waterTunnelSurgeChamberSimulation,cim:GovHydroFrancis cim:GovHydroPelton
+wfnl,cim:GovCT1 cim:GovCT2
+wfspd,cim:GovCT1 cim:GovCT2
+x,cim:ACLineSegment cim:EnergySource cim:EquivalentBranch cim:EquivalentInjection cim:GovGAST2 cim:GroundingImpedance cim:PowerTransformerEnd cim:SeriesCompensator cim:TapChangerTablePoint pti:SynchronousMachine
+x0,cim:ACLineSegment cim:EnergySource cim:EquivalentInjection cim:MutualCoupling cim:PowerTransformerEnd cim:SeriesCompensator cim:SynchronousMachine
+x2,cim:EquivalentInjection cim:SynchronousMachine
+xMax,cim:PhaseTapChangerLinear cim:PhaseTapChangerNonLinear
+xMin,cim:PhaseTapChangerLinear cim:PhaseTapChangerNonLinear
+xPosition,cim:DiagramObjectPoint cim:PositionPoint
+xc,cim:ExcREXS cim:ExcST6B cim:VCompIEEEType1
+xe,cim:ExcBBC cim:ExcELIN1 cim:ExcST1A
+xl,cim:ExcIEEEST3A cim:ExcIEEEST4B cim:ExcST3A cim:ExcST4B
+xp,cim:AsynchronousMachineTimeConstantReactance cim:ExcELIN2
+xs,cim:AsynchronousMachineTimeConstantReactance cim:WindGenTurbineType3aIEC cim:WindGenTurbineType3bIEC
+y,cim:GovGAST2 cim:GovSteamFV4
+yPosition,cim:DiagramObjectPoint cim:PositionPoint
+zPosition,cim:DiagramObjectPoint cim:PositionPoint
+zsfc,cim:GovHydroFrancis cim:GovHydroPelton
