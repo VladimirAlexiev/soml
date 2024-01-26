@@ -98,8 +98,10 @@ while (<>) {
   my ($name,$label,$range,$char,$rdf,$regex,$descr,$replacement) = split(/\t/, $_);
   $replacement = $use_replacement && $replacement; # only use the last col if it's in the header
 
-  if (!$name) {next};                              # blank line
-  if ($name =~ m{^\s*#}) {print "\n$name"; next};  # comment; will be lost by riot reformatting. Oh well.
+  if (!$name) {next};                                # blank line
+  if ($name =~ m{^\s*# }) {print "\n$name\n"; next}; # print "# HEADER" first cell surrounded by newlines; will be lost by riot reformatting. Oh well.
+  if ($name =~ m{^\s*#}) {next};                     # skip "#commented out" line
+
   $label ||= $name;
   $label = qq{rdfs:label "$label"};
   $descr &&= qq{rdfs:comment "$descr"};

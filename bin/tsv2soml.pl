@@ -46,7 +46,8 @@ if ($. == 1) {
 
 my ($name,$label,$range,$char,$rdf,$pattern,$descr) = split/\t/;
 if (!$name) {next};
-if ($name =~ m{^\s*#}) {print "\n$name\n"; next};
+if ($name =~ m{^\s*# }) {print "\n$name\n"; next}; # print "# HEADER" first cell surrounded by newlines
+if ($name =~ m{^\s*#}) {next}; # skip "#commented out" line
 $label &&= qq{label: "$label"};
 
 $descr &&= qq{descr: "$descr"}; # TODO handle newlines in $descr:

@@ -775,7 +775,7 @@ For example, the figure below shows the stock exchange listing (IPO) of Apple on
 </p>
 
 
-<div id="orga8d6822" class="figure">
+<div id="org8f5182f" class="figure">
 <p><img src="./eg/model-exchange-listing.png" alt="model-exchange-listing.png" />
 </p>
 </div>
@@ -797,7 +797,7 @@ This version of the diagram uses <a href="#soml-map">soml-map</a> to map SOML na
 </p>
 
 
-<div id="org47f98a7" class="figure">
+<div id="orgbe27528" class="figure">
 <p><img src="./eg/model-exchange-listing-mapped.png" alt="model-exchange-listing-mapped.png" />
 </p>
 </div>
@@ -839,7 +839,7 @@ Here's the beginning of the sheet:
 </p>
 
 
-<div id="org212f679" class="figure">
+<div id="orgd59c5af" class="figure">
 <p><img src="./eg/CG-sheet.png" alt="CG-sheet.png" />
 </p>
 </div>
@@ -850,7 +850,7 @@ as distinct business classes
 </p>
 
 
-<div id="orged60a57" class="figure">
+<div id="org3045568" class="figure">
 <p><img src="./eg/CG-sheet2.png" alt="CG-sheet2.png" />
 </p>
 </div>
@@ -874,6 +874,14 @@ Options:
 <li><code>-p</code>: don't emit <code>pattern</code> (this feature restricts URLs to a certain pattern)</li>
 <li><code>-l</code>: downgrade Literals: <code>stringOrLangString, langString</code> -&gt; <code>string</code>, <code>dateOrYearOrMonth</code> -&gt; <code>date</code>.
 This can be used to simplify the schema not to use <code>langString</code> and union datatypes</li>
+</ul>
+
+<p>
+Comment lines start with hash (<code>#</code>) in the first column
+</p>
+<ul class="org-ul">
+<li><code># HEADER</code>: if there is a space after the hash, the first cell is printed surrounded by newlines</li>
+<li><code>#commented out</code>: if there is no space, the whole line is skipped</li>
 </ul>
 </div>
 
@@ -1148,14 +1156,21 @@ It works like this:
 </ul>
 
 <p>
-Use an ontology preamble, eg like this <code>otkg-preamble.ttl</code>:
+Use an ontology preamble, eg like this <code>otkg-preamble.ttl</code>.
+Include all "system" prefixes after the newline!
 </p>
-
 <div class="org-src-container">
-<pre class="src src-ttl">@prefix otkg: &lt;https://kg.ontotext.com/resource/ontology/&gt;.
-@prefix s:    &lt;http://schema.org/&gt; .
+<pre class="src src-ttl">@prefix otkg:   &lt;https://kg.ontotext.com/resource/ontology/&gt;.
+@prefix s:      &lt;http://schema.org/&gt; .
 
-&lt;https://kg.ontotext.com/resource/ontology&gt; a owl:Ontology ;
+@prefix dct:    &lt;http://purl.org/dc/terms/&gt; .
+@prefix owl:    &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix rdf:    &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs:   &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix schema: &lt;http://schema.org/&gt; .
+@prefix xsd:    &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+otkg: a owl:Ontology ;
   rdfs:label      "OTKG Ontology" ;
   dct:created     "2023-01-25"^^xsd:date ;
   dct:creator     &lt;http://ontotext.com&gt; ;
@@ -1259,6 +1274,11 @@ so you can check whether you have consistent definitions.</li>
 <li>Else (the range is a class) then <code>ObjectProperty</code></li>
 </ul></li>
 <li>Map only the data ranges indicated above: currently doesn't support rdf:HTML, sysont:Markdown</li>
+<li>Comment lines start with hash (<code>#</code>) in the first column
+<ul class="org-ul">
+<li><code># HEADER</code>: if there is a space after the hash, the first cell is printed surrounded by newlines</li>
+<li><code>#commented out</code>: if there is no space, the whole line is skipped</li>
+</ul></li>
 </ul>
 </div>
 
