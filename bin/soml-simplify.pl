@@ -12,7 +12,7 @@ sub graphql_name($) {
 
 # Load YAML file
 my $yaml = YAML::PP->new (indent => 2, header => 0);
-my $data = $yaml->load_file(\*STDIN);
+my $data = $yaml->load_file(shift // \*STDIN);
 my $properties = $data->{properties} // {};
 my $objects    = $data->{objects} // {};
 my $simplified = {};
