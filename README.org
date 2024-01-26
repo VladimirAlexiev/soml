@@ -1,10 +1,10 @@
-#+startup: nonum
+#+startup: num
 #+options: ':nil *:t -:t ::t <:t H:5 \n:nil ^:{} anchor:t arch:headline author:t
 #+options: broken-links:nil c:nil creator:nil d:(not "LOGBOOK") date:t e:t email:nil f:t
-#+options: inline:t num:nil p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2023-12-04>
+#+date: <2024-01-26>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
@@ -522,7 +522,74 @@ Usage:
 The purpose of this script is to simplify a SOML entity schema significantly,
 so it can be communicated more easily to LLM for querying (NLQ to GraphQL).
 
-See its own [[soml-simplify/README.org][soml-simplify/README.org]]
+Note: we need to preserve abstract classes (interfaces) because:
+- This saves on the description of common props.
+  We don't expand ~props~ inherited from superclasses, but hope that LLM can track this 
+- Sometimes the range of a prop is an abstract class
+
+A draft script was made by GPT-4 following the specfication below, then improved by me.
+- Make a perl script ~soml-simplify.pl~ to simplify a YAML object schema, as shown in the Examples below
+- Give me only code, not any explanations
+- Use an appropriate CPAN module like ~YAML~ or ~YAML::PP~
+- Use ~properties~ to collect global prop characteristics, then combine with per-object ~props~ definitions
+- Render only ~objects~, skip all other major sections
+- Render ~inherits, props, range~ directly, not as YAML sub-objects
+- The default ~range~ is ~string~
+- The default is ~max: 1~. If a prop has a greater max cardinality, show it as array: ~[...]~
+- Omit descriptions and other characteristics
+
+*** Example Source (SOML schema)
+:PROPERTIES:
+:CUSTOM_ID: example-source-soml-schema
+:END:
+#+begin_src yaml
+objects:
+  AccumulatorReset:
+    descr: This command reset the counter value to zero
+    inherits: ControlInterface
+    label: AccumulatorReset
+    props:
+      accumulatorReset.AccumulatorValue: {}
+    type: cim:AccumulatorReset
+  ControlInterface:
+    descr: Abstract superclass of Control
+    inherits: IdentifiedObjectInterface
+    kind: abstract
+    search: {nested: true}
+    props:
+      control.PowerSystemResource: {}
+properties:
+  accumulatorReset.AccumulatorValue:
+    descr: The accumulator value that is reset by the command
+    inverseOf: accumulatorValue.AccumulatorReset
+    kind: object
+    label: AccumulatorValue
+    max: 1
+    min: 1
+    range: AccumulatorValue
+    rdfProp: cim:AccumulatorReset.AccumulatorValue
+  control.PowerSystemResource:
+    descr: 'The controller outputs used to...'
+    inverseOf: powerSystemResource.Controls
+    kind: object
+    label: PowerSystemResource
+    max: inf
+    min: 0
+    range: PowerSystemResourceInterface
+    rdfProp: cim:Control.PowerSystemResource
+#+end_src
+*** Example Target (Simplified)
+:PROPERTIES:
+:CUSTOM_ID: example-target-simplified
+:END:
+#+begin_src yaml
+   AccumulatorReset:
+     ISA: ControlInterface
+     accumulatorReset.AccumulatorValue: AccumulatorValue
+   ControlInterface:
+     ISA: IdentifiedObjectInterface
+     control.PowerSystemResource: [PowerSystemResourceInterface]
+#+end_src
 
 ** tsv2owl
 :PROPERTIES:
@@ -533,8 +600,8 @@ You can run it with a Makefile like this (see [[./tsv2owl/Makefile][tsv2owl/Make
 #+begin_src Makefile
 ontology.ttl ::
 	curl -Ls "https://docs.google.com/spreadsheets/d/.../export?format=tsv" | \
-      perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
-      cat ontology-preamble.ttl - > ontology-unformatted.ttl
+	  perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
+	  cat ontology-preamble.ttl - > ontology-unformatted.ttl
 	riot --formatted=ttl ontology-unformatted.ttl | perl -00e '@a=<>; print sort @a' > ontology.ttl
 	# rm ontology-unformatted.ttl # keep for debugging
 #+end_src
@@ -708,7 +775,7 @@ Several sub-classes have an additional type discriminator designated by ~typePro
 :CUSTOM_ID: soml2puml
 :END:
 Generate nice PlantUML diagrams from SOML models.
-See its own [[soml2puml/README]].
+See its own README.
 
 * Tricky Points and Deficiencies
 :PROPERTIES:
