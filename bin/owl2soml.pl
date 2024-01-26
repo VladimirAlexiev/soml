@@ -207,7 +207,11 @@ Options:
            1      Emit rdf:langString & rdf:PlainLiteral & rdfs:Literal & schema:Text & undefined datatype as langString; xsd:string as string
            2      Emit rdf:langString & rdf:PlainLiteral & rdfs:Literal & schema:Text & undefined datatype & xsd:string as string
   -lang    str    Set schema-level lang spec. Doesn't make sense if "-string 2" is specified
-  TODO: -shorten 0|1    Shorten CIM prop names that repeat the domain, eg entsoe2:CurrentLimit.normalValue -> entsoe2:normalValue; cim:Equipment.EquipmentContainer -> cim:EquipmentContainer
+  -shorten        Shorten CIM prop names that repeat the domain, eg entsoe2:CurrentLimit.normalValue -> entsoe2:normalValue; cim:Equipment.EquipmentContainer -> cim:equipmentContainer
+                  Lowercases the prop name even for object props. Then uses only per-object "props" but not use global "properties".
+           1      When the prop name matches its domain
+           2      When the prop has no domain, or its name matches the domain
+           3      Always
 
 Parses:
 - ontologies (owl:Ontology, dct:created, dct:modified, $creator_props),
@@ -689,7 +693,8 @@ for my $prop (map iri($_), @props) {
   for my $domain (@domains) {
     my $class = iri_name($domain,0) or next;
     my $rdf = $class->{rdf};
-    $DATATYPES{$rdf} and next; # schema:URL is domain of category, https://github.com/schemaorg/schemaorg/issues/2536
+    $DATATYPES{$rdf} # schema:URL was domain of category, https://github.com/schemaorg/schemaorg/issues/2536: fixed 14 Apr 2020
+      and warn "$rdf is a datatype but listed as domain of $name";
     $class = $class->{gql} or next;
     # fix for referenced classes that may not be defined in the ontology
     $soml{objects}{$class}{type} = $rdf;
