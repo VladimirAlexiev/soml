@@ -197,7 +197,7 @@
 <body>
 <div id="preamble" class="status">
 <p class="author">Author: Vladimir Alexiev (<a href="mailto:vladimir.alexiev@ontotext.com">vladimir.alexiev@ontotext.com</a>)</p>
-<p class="date">Date: 2024-01-26</p>
+<p class="date">Date: 2024-01-31</p>
 </div>
 <div id="content" class="content">
 <h1 class="title">Semantic Objects Modeling Language</h1>
@@ -775,7 +775,7 @@ For example, the figure below shows the stock exchange listing (IPO) of Apple on
 </p>
 
 
-<div id="org8f5182f" class="figure">
+<div id="org057a179" class="figure">
 <p><img src="./eg/model-exchange-listing.png" alt="model-exchange-listing.png" />
 </p>
 </div>
@@ -797,7 +797,7 @@ This version of the diagram uses <a href="#soml-map">soml-map</a> to map SOML na
 </p>
 
 
-<div id="orgbe27528" class="figure">
+<div id="org6d65d67" class="figure">
 <p><img src="./eg/model-exchange-listing-mapped.png" alt="model-exchange-listing-mapped.png" />
 </p>
 </div>
@@ -839,7 +839,7 @@ Here's the beginning of the sheet:
 </p>
 
 
-<div id="orgd59c5af" class="figure">
+<div id="org989415d" class="figure">
 <p><img src="./eg/CG-sheet.png" alt="CG-sheet.png" />
 </p>
 </div>
@@ -850,7 +850,7 @@ as distinct business classes
 </p>
 
 
-<div id="org3045568" class="figure">
+<div id="org392573a" class="figure">
 <p><img src="./eg/CG-sheet2.png" alt="CG-sheet2.png" />
 </p>
 </div>
@@ -1266,7 +1266,8 @@ must conform in each use of a property.
 This is not checked !!!
 Use <code>riot --formatted ttl</code> to collect them in "paragraphs"
 so you can check whether you have consistent definitions.</li>
-<li>Emits <code>schema:domainIncludes</code> for each prop to accommodate props used sevreral times.</li>
+<li>Emits <code>a rdfs:Class, owl:Class</code> for each class</li>
+<li>Emits <code>schema:domainIncludes</code> for each prop to accommodate props used several times.</li>
 <li>Emits type <code>owl:ObjectProperty</code> vs <code>owl:DatatypeProperty</code> for each prop, depending on range:
 <ul class="org-ul">
 <li>If <code>iri</code> then <code>ObjectProperty</code></li>

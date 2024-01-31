@@ -4,7 +4,7 @@
 #+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2024-01-26>
+#+date: <2024-01-31>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
@@ -693,7 +693,8 @@ Features and limitations:
   This is not checked !!!
   Use ~riot --formatted ttl~ to collect them in "paragraphs"
   so you can check whether you have consistent definitions.
-- Emits ~schema:domainIncludes~ for each prop to accommodate props used sevreral times.
+- Emits ~a rdfs:Class, owl:Class~ for each class
+- Emits ~schema:domainIncludes~ for each prop to accommodate props used several times.
 - Emits type ~owl:ObjectProperty~ vs ~owl:DatatypeProperty~ for each prop, depending on range:
   - If ~iri~ then ~ObjectProperty~
   - If lowercase then ~DatatypeProperty~ (and prepend ~xsd:~ to the range)

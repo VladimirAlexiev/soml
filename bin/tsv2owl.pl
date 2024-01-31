@@ -119,7 +119,7 @@ while (<>) {
       # TODO: not sure why I allow multiple superclasses, they are not supported by SOML but are present in STRAT-ontology sheet
       $inherits{$class} = [split/,/, $range]
     };
-    print "$rdf_class a rdfs:Class; $label; $descr.";
+    print "$rdf_class a rdfs:Class, owl:Class; $label; $descr.";
     print "$rdf_class rdfs:isDefinedBy $opt_o." if $opt_o
   } else {                            # lowercase: prop
     my $prop = $rdf || rdf_name($name);
