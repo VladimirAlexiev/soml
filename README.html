@@ -197,7 +197,7 @@
 <body>
 <div id="preamble" class="status">
 <p class="author">Author: Vladimir Alexiev (<a href="mailto:vladimir.alexiev@ontotext.com">vladimir.alexiev@ontotext.com</a>)</p>
-<p class="date">Date: 2024-01-31</p>
+<p class="date">Date: 2024-02-07</p>
 </div>
 <div id="content" class="content">
 <h1 class="title">Semantic Objects Modeling Language</h1>
@@ -775,7 +775,7 @@ For example, the figure below shows the stock exchange listing (IPO) of Apple on
 </p>
 
 
-<div id="org057a179" class="figure">
+<div id="org531d23c" class="figure">
 <p><img src="./eg/model-exchange-listing.png" alt="model-exchange-listing.png" />
 </p>
 </div>
@@ -797,7 +797,7 @@ This version of the diagram uses <a href="#soml-map">soml-map</a> to map SOML na
 </p>
 
 
-<div id="org6d65d67" class="figure">
+<div id="org16fd978" class="figure">
 <p><img src="./eg/model-exchange-listing-mapped.png" alt="model-exchange-listing-mapped.png" />
 </p>
 </div>
@@ -839,7 +839,7 @@ Here's the beginning of the sheet:
 </p>
 
 
-<div id="org989415d" class="figure">
+<div id="org5448e12" class="figure">
 <p><img src="./eg/CG-sheet.png" alt="CG-sheet.png" />
 </p>
 </div>
@@ -850,7 +850,7 @@ as distinct business classes
 </p>
 
 
-<div id="org392573a" class="figure">
+<div id="orgc862d46" class="figure">
 <p><img src="./eg/CG-sheet2.png" alt="CG-sheet2.png" />
 </p>
 </div>
@@ -1203,6 +1203,11 @@ or a full URL (eg <a href="https://kg.ontotext.com/resource/ontology">https://kg
 <li>For each term (class and prop), adds <code>rdfs:isDefinedBy</code> pointing to the ontology.
 This is a common practice and is used eg by MetaPhactory when collecting properties to generate forms.</li>
 <li>Adds the current date as <code>dct:modified</code> of the ontology</li>
+</ul></li>
+<li><code>-t</code>: add <code>rdfs:range owl:Thing</code> to props with range <code>iri</code>
+(this is needed for Metaphactory to be able to edit "free URLs").
+<ul class="org-ul">
+<li>Without this option, they are still mapped to <code>owl:ObjectProperty</code>, but without any <code>rdfs:range</code>.</li>
 </ul></li>
 <li><code>-l</code>: downgrade literal datatypes.
 <ul class="org-ul">

@@ -1,0 +1,765 @@
+@base         <https://data.stratesphere.com/kognetics2.0/cb/> .
+@prefix k2:   <https://data.stratesphere.com/kognetics2.0/ontology/>.
+
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix puml: <http://plantuml.com/ontology#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xml:  <http://www.w3.org/XML/1998/namespace/> .
+@prefix adms:  <http://www.w3.org/ns/adms#> .
+@prefix dc:     <http://purl.org/dc/elements/1.1/> .
+@prefix dct:    <http://purl.org/dc/terms/> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://schema.org/> .
+@prefix void:   <http://rdfs.org/ns/void#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+k2:             rdf:type owl:Ontology ;
+rdfs:label      "Stratesphere Ontology" ;
+dct:created     "2022-03-16"^^xsd:date ;
+dct:creator     <http://ontotext.com> ;
+owl:versionInfo "1.0" .
+
+
+# CrunchBase objects (some with added derived fields)
+
+k2:CbObject a rdfs:Class, owl:Class; rdfs:label "Crunchbase object"; rdfs:comment "Crunchbase object with common properties: CB UUID, name, permalink, CB URL, rank, created/updated timestamps".
+k2:CbObject rdfs:isDefinedBy k2:.
+k2:cbId a owl:DatatypeProperty; rdfs:label "Crunchbase UUID"; ; schema:domainIncludes k2:CbObject.
+k2:cbId rdfs:isDefinedBy k2:.
+k2:CbObject rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:cbId; owl:minCardinality 1; owl:maxCardinality 1].
+k2:name a owl:DatatypeProperty; rdfs:label "name"; rdfs:comment "Object name. Optional since IPO instances have no name"; schema:domainIncludes k2:CbObject.
+k2:name rdfs:isDefinedBy k2:.
+k2:CbObject rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:name; ; owl:maxCardinality 1].
+k2:cbPermalink a owl:DatatypeProperty; rdfs:label "Crunchbase permalink"; rdfs:comment "Suffix of crunchbaseUrl. A bit ambiguous since Investor permalinks are coupled with either 'person' or 'organization'"; schema:domainIncludes k2:CbObject.
+k2:cbPermalink rdfs:isDefinedBy k2:.
+k2:CbObject rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:cbPermalink; owl:minCardinality 1; owl:maxCardinality 1].
+k2:cbUrl a owl:DatatypeProperty; rdfs:label "Crunchbase URL"; rdfs:comment "Full Crunchbase URL. Carries the object type, eg 'person', 'organization', etc"; schema:domainIncludes k2:CbObject.
+k2:cbUrl rdfs:isDefinedBy k2:.
+k2:CbObject rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:cbUrl; owl:minCardinality 1; owl:maxCardinality 1].
+k2:rank a owl:DatatypeProperty; rdfs:label "rank"; rdfs:comment "Crunchbase rank (smaller is 'more important'). Optional since many Crunchbase entities don't have a rank (but the main ones do)"; schema:domainIncludes k2:CbObject.
+k2:rank rdfs:isDefinedBy k2:.
+k2:CbObject rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:rank; ; owl:maxCardinality 1].
+k2:createdAt a owl:DatatypeProperty; rdfs:label "created at"; rdfs:comment "When the Crunchbase record was created"; schema:domainIncludes k2:CbObject.
+k2:createdAt rdfs:isDefinedBy k2:.
+k2:CbObject rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:createdAt; owl:minCardinality 1; owl:maxCardinality 1].
+k2:updatedAt a owl:DatatypeProperty; rdfs:label "updated at"; rdfs:comment "When the Crunchbase record was updated. This is the basis for Crunchbase data updating"; schema:domainIncludes k2:CbObject.
+k2:updatedAt rdfs:isDefinedBy k2:.
+k2:CbObject rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:updatedAt; owl:minCardinality 1; owl:maxCardinality 1].
+k2:Agent a rdfs:Class, owl:Class; rdfs:label "Agent"; rdfs:comment "Person or Organization (and either can be Investor)".
+k2:Agent rdfs:isDefinedBy k2:.
+k2:description a owl:DatatypeProperty; rdfs:label "description"; ; schema:domainIncludes k2:Agent.
+k2:description rdfs:isDefinedBy k2:.
+k2:Agent rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:description; ; owl:maxCardinality 1].
+k2:facebookUrl a owl:DatatypeProperty; rdfs:label "Facebook URL"; ; schema:domainIncludes k2:Agent.
+k2:facebookUrl rdfs:isDefinedBy k2:.
+k2:Agent rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:facebookUrl; ; owl:maxCardinality 1].
+k2:linkedinUrl a owl:DatatypeProperty; rdfs:label "LinkedIn URL"; ; schema:domainIncludes k2:Agent.
+k2:linkedinUrl rdfs:isDefinedBy k2:.
+k2:Agent rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:linkedinUrl; ; owl:maxCardinality 1].
+k2:twitterUrl a owl:DatatypeProperty; rdfs:label "Twitter URL"; ; schema:domainIncludes k2:Agent.
+k2:twitterUrl rdfs:isDefinedBy k2:.
+k2:Agent rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:twitterUrl; ; owl:maxCardinality 1].
+k2:logoUrl a owl:DatatypeProperty; rdfs:label "logo URL"; ; schema:domainIncludes k2:Agent.
+k2:logoUrl rdfs:isDefinedBy k2:.
+k2:Agent rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:logoUrl; ; owl:maxCardinality 1].
+k2:signal a owl:ObjectProperty; rdfs:label "signal"; ; schema:domainIncludes k2:Agent.
+k2:signal rdfs:isDefinedBy k2:.
+k2:Acquisition a rdfs:Class, owl:Class; rdfs:label "Acquisition"; rdfs:comment "Act of purchasing most of the shares of a company".
+k2:Acquisition rdfs:isDefinedBy k2:.
+k2:acquiree a owl:ObjectProperty; rdfs:label "acquiree"; rdfs:comment "Agent (company) that (was/may be) acquired"; schema:domainIncludes k2:Acquisition.
+k2:acquiree rdfs:isDefinedBy k2:.
+k2:Acquisition rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:acquiree; owl:minCardinality 1; owl:maxCardinality 1].
+k2:acquirer a owl:ObjectProperty; rdfs:label "acquirer"; rdfs:comment "Agent (company) that (potentially) acquires"; schema:domainIncludes k2:Acquisition.
+k2:acquirer rdfs:isDefinedBy k2:.
+k2:Acquisition rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:acquirer; owl:minCardinality 1; owl:maxCardinality 1].
+k2:acquisitionType a owl:ObjectProperty; rdfs:label "acquisition type"; rdfs:comment "Organization acquisition type, eg acquihire, lbo"; schema:domainIncludes k2:Acquisition.
+k2:acquisitionType rdfs:isDefinedBy k2:.
+k2:Acquisition rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:acquisitionType; ; owl:maxCardinality 1].
+k2:acquiredOn a owl:DatatypeProperty; rdfs:label "acquired on"; rdfs:comment "Date of acquisition"; schema:domainIncludes k2:Acquisition.
+k2:acquiredOn rdfs:isDefinedBy k2:.
+k2:Acquisition rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:acquiredOn; owl:minCardinality 1; owl:maxCardinality 1].
+k2:priceUsd a owl:DatatypeProperty; rdfs:label "price in US dollars"; rdfs:comment "Price of the acquisition in USD"; schema:domainIncludes k2:Acquisition.
+k2:priceUsd rdfs:isDefinedBy k2:.
+k2:Acquisition rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:priceUsd; ; owl:maxCardinality 1].
+k2:price a owl:DatatypeProperty; rdfs:label "price in local currency"; rdfs:comment "Price of the acquisition"; schema:domainIncludes k2:Acquisition.
+k2:price rdfs:isDefinedBy k2:.
+k2:Acquisition rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:price; ; owl:maxCardinality 1].
+k2:priceCurrencyCode a owl:DatatypeProperty; rdfs:label "price currency code"; rdfs:comment "Local currency of acquistion price"; schema:domainIncludes k2:Acquisition.
+k2:priceCurrencyCode rdfs:isDefinedBy k2:.
+k2:Acquisition rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:priceCurrencyCode; ; owl:maxCardinality 1].
+k2:Degree a rdfs:Class, owl:Class; rdfs:label "Degree"; rdfs:comment "Academic study leading to a degree".
+k2:Degree rdfs:isDefinedBy k2:.
+k2:person a owl:ObjectProperty; rdfs:label "person"; rdfs:comment "Person directly involved"; schema:domainIncludes k2:Degree.
+k2:person rdfs:isDefinedBy k2:.
+k2:Degree rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:person; owl:minCardinality 1; owl:maxCardinality 1].
+k2:institution a owl:ObjectProperty; rdfs:label "institution"; rdfs:comment "Academic institution"; schema:domainIncludes k2:Degree.
+k2:institution rdfs:isDefinedBy k2:.
+k2:Degree rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:institution; owl:minCardinality 1; owl:maxCardinality 1].
+k2:degreeType a owl:DatatypeProperty; rdfs:label "degree Type"; rdfs:comment "Academic degree type. Free text: may include more than one degree or non-relevant data"; schema:domainIncludes k2:Degree.
+k2:degreeType rdfs:isDefinedBy k2:.
+k2:Degree rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:degreeType; ; owl:maxCardinality 1].
+k2:subject a owl:DatatypeProperty; rdfs:label "subject"; rdfs:comment "Academic subject. Free text"; schema:domainIncludes k2:Degree.
+k2:subject rdfs:isDefinedBy k2:.
+k2:Degree rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:subject; ; owl:maxCardinality 1].
+k2:startedOn a owl:DatatypeProperty; rdfs:label "started on"; rdfs:comment "Start date (if known)"; schema:domainIncludes k2:Degree.
+k2:startedOn rdfs:isDefinedBy k2:.
+k2:Degree rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:startedOn; ; owl:maxCardinality 1].
+k2:completedOn a owl:DatatypeProperty; rdfs:label "completed on"; rdfs:comment "Date when the study degree was completed"; schema:domainIncludes k2:Degree.
+k2:completedOn rdfs:isDefinedBy k2:.
+k2:Degree rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:completedOn; ; owl:maxCardinality 1].
+k2:isCompleted a owl:DatatypeProperty; rdfs:label "is completed"; rdfs:comment "Whether the study was was completed, and the degree was granted"; schema:domainIncludes k2:Degree.
+k2:isCompleted rdfs:isDefinedBy k2:.
+k2:Degree rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:isCompleted; ; owl:maxCardinality 1].
+k2:EventAppearance a rdfs:Class, owl:Class; rdfs:label "Event Appearance"; rdfs:comment "Participation of an Agent in an Event".
+k2:EventAppearance rdfs:isDefinedBy k2:.
+k2:event a owl:ObjectProperty; rdfs:label "event"; rdfs:comment "Event where participation occurred"; schema:domainIncludes k2:EventAppearance.
+k2:event rdfs:isDefinedBy k2:.
+k2:EventAppearance rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:event; owl:minCardinality 1; owl:maxCardinality 1].
+k2:participant a owl:ObjectProperty; rdfs:label "participant"; rdfs:comment "Who participated in the event"; schema:domainIncludes k2:EventAppearance.
+k2:participant rdfs:isDefinedBy k2:.
+k2:EventAppearance rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:participant; owl:minCardinality 1; owl:maxCardinality 1].
+k2:appearanceType a owl:ObjectProperty; rdfs:label "appearance type"; rdfs:comment "Event participant type, eg sponsor, organizer"; schema:domainIncludes k2:EventAppearance.
+k2:appearanceType rdfs:isDefinedBy k2:.
+k2:EventAppearance rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:appearanceType; owl:minCardinality 1; owl:maxCardinality 1].
+k2:shortDescription a owl:DatatypeProperty; rdfs:label "short description"; rdfs:comment "Short free-text description"; schema:domainIncludes k2:EventAppearance.
+k2:shortDescription rdfs:isDefinedBy k2:.
+k2:EventAppearance rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:shortDescription; ; owl:maxCardinality 1].
+k2:Event a rdfs:Class, owl:Class; rdfs:label "Event"; rdfs:comment "Event details".
+k2:Event rdfs:isDefinedBy k2:.
+k2:shortDescription a owl:DatatypeProperty; rdfs:label "short description"; ; schema:domainIncludes k2:Event.
+k2:shortDescription rdfs:isDefinedBy k2:.
+k2:Event rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:shortDescription; ; owl:maxCardinality 1].
+k2:startedOn a owl:DatatypeProperty; rdfs:label "started on"; ; schema:domainIncludes k2:Event.
+k2:startedOn rdfs:isDefinedBy k2:.
+k2:Event rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:startedOn; owl:minCardinality 1; owl:maxCardinality 1].
+k2:endedOn a owl:DatatypeProperty; rdfs:label "ended on"; rdfs:comment "End date (if known)"; schema:domainIncludes k2:Event.
+k2:endedOn rdfs:isDefinedBy k2:.
+k2:Event rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:endedOn; owl:minCardinality 1; owl:maxCardinality 1].
+k2:eventUrl a owl:DatatypeProperty; rdfs:label "event URL"; rdfs:comment "Event home page"; schema:domainIncludes k2:Event.
+k2:eventUrl rdfs:isDefinedBy k2:.
+k2:Event rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:eventUrl; owl:minCardinality 1; owl:maxCardinality 1].
+k2:registrationUrl a owl:DatatypeProperty; rdfs:label "registration URL"; rdfs:comment "Event registration page"; schema:domainIncludes k2:Event.
+k2:registrationUrl rdfs:isDefinedBy k2:.
+k2:Event rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:registrationUrl; owl:minCardinality 1; owl:maxCardinality 1].
+k2:venueName a owl:DatatypeProperty; rdfs:label "venue name"; ; schema:domainIncludes k2:Event.
+k2:venueName rdfs:isDefinedBy k2:.
+k2:Event rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:venueName; ; owl:maxCardinality 1].
+k2:description a owl:DatatypeProperty; rdfs:label "description"; ; schema:domainIncludes k2:Event.
+k2:description rdfs:isDefinedBy k2:.
+k2:Event rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:description; ; owl:maxCardinality 1].
+k2:countryCode a owl:DatatypeProperty; rdfs:label "country code"; ; schema:domainIncludes k2:Event.
+k2:countryCode rdfs:isDefinedBy k2:.
+k2:Event rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:countryCode; ; owl:maxCardinality 1].
+k2:stateCode a owl:DatatypeProperty; rdfs:label "state code"; ; schema:domainIncludes k2:Event.
+k2:stateCode rdfs:isDefinedBy k2:.
+k2:Event rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:stateCode; ; owl:maxCardinality 1].
+k2:region a owl:DatatypeProperty; rdfs:label "region"; ; schema:domainIncludes k2:Event.
+k2:region rdfs:isDefinedBy k2:.
+k2:Event rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:region; ; owl:maxCardinality 1].
+k2:city a owl:DatatypeProperty; rdfs:label "city"; ; schema:domainIncludes k2:Event.
+k2:city rdfs:isDefinedBy k2:.
+k2:Event rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:city; ; owl:maxCardinality 1].
+k2:logoUrl a owl:DatatypeProperty; rdfs:label "logo URL"; rdfs:comment "URL of event logo (image)"; schema:domainIncludes k2:Event.
+k2:logoUrl rdfs:isDefinedBy k2:.
+k2:Event rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:logoUrl; ; owl:maxCardinality 1].
+k2:eventRole a owl:ObjectProperty; rdfs:label "event role"; rdfs:comment "Event type, eg conference, webinar"; schema:domainIncludes k2:Event.
+k2:eventRole rdfs:isDefinedBy k2:.
+k2:Event rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:eventRole; owl:minCardinality 1; ].
+k2:FundingRound a rdfs:Class, owl:Class; rdfs:label "Funding Round"; rdfs:comment "Funding by one or more Investors provided to a Company".
+k2:FundingRound rdfs:isDefinedBy k2:.
+k2:investmentType a owl:ObjectProperty; rdfs:label "investment type"; rdfs:comment "Type of investment in a company, eg corporate round"; schema:domainIncludes k2:FundingRound.
+k2:investmentType rdfs:isDefinedBy k2:.
+k2:FundingRound rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:investmentType; owl:minCardinality 1; owl:maxCardinality 1].
+k2:announcedOn a owl:DatatypeProperty; rdfs:label "announced on"; rdfs:comment "Date when publicly announced"; schema:domainIncludes k2:FundingRound.
+k2:announcedOn rdfs:isDefinedBy k2:.
+k2:FundingRound rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:announcedOn; ; owl:maxCardinality 1].
+k2:raisedAmountUsd a owl:DatatypeProperty; rdfs:label "raised amount in US dollars"; rdfs:comment "Amount of money raised, in US dollars"; schema:domainIncludes k2:FundingRound.
+k2:raisedAmountUsd rdfs:isDefinedBy k2:.
+k2:FundingRound rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:raisedAmountUsd; ; owl:maxCardinality 1].
+k2:raisedAmount a owl:DatatypeProperty; rdfs:label "raised amount in local currency"; rdfs:comment "Amount of money raised, in local currency"; schema:domainIncludes k2:FundingRound.
+k2:raisedAmount rdfs:isDefinedBy k2:.
+k2:FundingRound rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:raisedAmount; ; owl:maxCardinality 1].
+k2:raisedAmountCurrencyCode a owl:DatatypeProperty; rdfs:label "raised amount currency code"; rdfs:comment "Local currency code for money raised"; schema:domainIncludes k2:FundingRound.
+k2:raisedAmountCurrencyCode rdfs:isDefinedBy k2:.
+k2:FundingRound rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:raisedAmountCurrencyCode; ; owl:maxCardinality 1].
+k2:postMoneyValuationUsd a owl:DatatypeProperty; rdfs:label "post money valuation in US dollars"; rdfs:comment "Valuation of the Company after the Funding Round, in US dollars"; schema:domainIncludes k2:FundingRound.
+k2:postMoneyValuationUsd rdfs:isDefinedBy k2:.
+k2:FundingRound rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:postMoneyValuationUsd; ; owl:maxCardinality 1].
+k2:postMoneyValuation a owl:DatatypeProperty; rdfs:label "post money valuation in local currency"; rdfs:comment "Valuation of the Company after the Funding Round, in local currency"; schema:domainIncludes k2:FundingRound.
+k2:postMoneyValuation rdfs:isDefinedBy k2:.
+k2:FundingRound rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:postMoneyValuation; ; owl:maxCardinality 1].
+k2:postMoneyValuationCurrencyCode a owl:DatatypeProperty; rdfs:label "post money valuation currency code"; rdfs:comment "Local currency of valuation"; schema:domainIncludes k2:FundingRound.
+k2:postMoneyValuationCurrencyCode rdfs:isDefinedBy k2:.
+k2:FundingRound rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:postMoneyValuationCurrencyCode; ; owl:maxCardinality 1].
+k2:investorCount a owl:DatatypeProperty; rdfs:label "investor count"; rdfs:comment "Total number of Investors in the Funding Round"; schema:domainIncludes k2:FundingRound.
+k2:investorCount rdfs:isDefinedBy k2:.
+k2:FundingRound rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:investorCount; ; owl:maxCardinality 1].
+k2:organization a owl:ObjectProperty; rdfs:label "organization"; rdfs:comment "Organization involved"; schema:domainIncludes k2:FundingRound.
+k2:organization rdfs:isDefinedBy k2:.
+k2:FundingRound rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:organization; owl:minCardinality 1; owl:maxCardinality 1].
+k2:Fund a rdfs:Class, owl:Class; rdfs:label "Fund"; rdfs:comment "Pool of funds raised for a particular investment purpose".
+k2:Fund rdfs:isDefinedBy k2:.
+k2:entity a owl:ObjectProperty; rdfs:label "entity"; rdfs:comment "Organization that created and manages the fund"; schema:domainIncludes k2:Fund.
+k2:entity rdfs:isDefinedBy k2:.
+k2:Fund rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:entity; owl:minCardinality 1; owl:maxCardinality 1].
+k2:announcedOn a owl:DatatypeProperty; rdfs:label "announced on"; ; schema:domainIncludes k2:Fund.
+k2:announcedOn rdfs:isDefinedBy k2:.
+k2:Fund rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:announcedOn; ; owl:maxCardinality 1].
+k2:raisedAmountUsd a owl:DatatypeProperty; rdfs:label "raised amount in US dollars"; ; schema:domainIncludes k2:Fund.
+k2:raisedAmountUsd rdfs:isDefinedBy k2:.
+k2:Fund rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:raisedAmountUsd; ; owl:maxCardinality 1].
+k2:raisedAmount a owl:DatatypeProperty; rdfs:label "raised amount in local currency"; ; schema:domainIncludes k2:Fund.
+k2:raisedAmount rdfs:isDefinedBy k2:.
+k2:Fund rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:raisedAmount; ; owl:maxCardinality 1].
+k2:raisedAmountCurrencyCode a owl:DatatypeProperty; rdfs:label "raised amount currency code"; ; schema:domainIncludes k2:Fund.
+k2:raisedAmountCurrencyCode rdfs:isDefinedBy k2:.
+k2:Fund rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:raisedAmountCurrencyCode; ; owl:maxCardinality 1].
+k2:Investment a rdfs:Class, owl:Class; rdfs:label "Investment"; rdfs:comment "Participation of an investor in a funding round".
+k2:Investment rdfs:isDefinedBy k2:.
+k2:fundingRound a owl:ObjectProperty; rdfs:label "fundingRound"; rdfs:comment "Funding round where the Investment is made"; schema:domainIncludes k2:Investment.
+k2:fundingRound rdfs:isDefinedBy k2:.
+k2:Investment rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:fundingRound; owl:minCardinality 1; owl:maxCardinality 1].
+k2:investor a owl:ObjectProperty; rdfs:label "investor"; rdfs:comment "Investor(s) who participated in the Investment"; schema:domainIncludes k2:Investment.
+k2:investor rdfs:isDefinedBy k2:.
+k2:Investment rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:investor; owl:minCardinality 1; owl:maxCardinality 1].
+k2:partner a owl:ObjectProperty; rdfs:label "partner"; rdfs:comment "Partner(s) in the investor that made the funding decision"; schema:domainIncludes k2:Investment.
+k2:partner rdfs:isDefinedBy k2:.
+k2:isLeadInvestor a owl:DatatypeProperty; rdfs:label "isLeadInvestor"; rdfs:comment "Whether the investor was one of the leads of the funding round"; schema:domainIncludes k2:Investment.
+k2:isLeadInvestor rdfs:isDefinedBy k2:.
+k2:Investment rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:isLeadInvestor; ; owl:maxCardinality 1].
+k2:Investor a rdfs:Class, owl:Class; rdfs:label "Investor"; rdfs:comment "Person or organization who invests in companies".
+k2:Investor rdfs:isDefinedBy k2:.
+k2:organizationRole a owl:ObjectProperty; rdfs:label "organization role"; rdfs:comment "Type of organization, eg company, investor"; schema:domainIncludes k2:Investor.
+k2:organizationRole rdfs:isDefinedBy k2:.
+k2:Investor rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:organizationRole; owl:minCardinality 1; ].
+k2:domain a owl:DatatypeProperty; rdfs:label "web domain"; rdfs:comment "Domain of organization website and emails"; schema:domainIncludes k2:Investor.
+k2:domain rdfs:isDefinedBy k2:.
+k2:Investor rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:domain; ; owl:maxCardinality 1].
+k2:investorType a owl:ObjectProperty; rdfs:label "investor type"; rdfs:comment "Type of investmentor which makes an investment, eg hedge fund, private equity firm"; schema:domainIncludes k2:Investor.
+k2:investorType rdfs:isDefinedBy k2:.
+k2:investmentCount a owl:DatatypeProperty; rdfs:label "investment count"; rdfs:comment "Amount of Investments made by Investor"; schema:domainIncludes k2:Investor.
+k2:investmentCount rdfs:isDefinedBy k2:.
+k2:Investor rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:investmentCount; ; owl:maxCardinality 1].
+k2:totalFundingUsd a owl:DatatypeProperty; rdfs:label "total funding in US dollars"; ; schema:domainIncludes k2:Investor.
+k2:totalFundingUsd rdfs:isDefinedBy k2:.
+k2:Investor rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:totalFundingUsd; ; owl:maxCardinality 1].
+k2:totalFunding a owl:DatatypeProperty; rdfs:label "total funding in local currency"; ; schema:domainIncludes k2:Investor.
+k2:totalFunding rdfs:isDefinedBy k2:.
+k2:Investor rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:totalFunding; ; owl:maxCardinality 1].
+k2:totalFundingCurrencyCode a owl:DatatypeProperty; rdfs:label "total funding currency code"; ; schema:domainIncludes k2:Investor.
+k2:totalFundingCurrencyCode rdfs:isDefinedBy k2:.
+k2:Investor rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:totalFundingCurrencyCode; ; owl:maxCardinality 1].
+k2:IPO a rdfs:Class, owl:Class; rdfs:label "Initial Public Offering"; rdfs:comment "Listing of a company on a stock exchange".
+k2:IPO rdfs:isDefinedBy k2:.
+k2:organization a owl:ObjectProperty; rdfs:label "organization"; ; schema:domainIncludes k2:IPO.
+k2:organization rdfs:isDefinedBy k2:.
+k2:IPO rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:organization; owl:minCardinality 1; owl:maxCardinality 1].
+k2:exchangeSymbol a owl:DatatypeProperty; rdfs:label "exchange symbol"; rdfs:comment "Exchange code. Uses internal Crunchbase codes that are ambiguous, should better use MIC"; schema:domainIncludes k2:IPO.
+k2:exchangeSymbol rdfs:isDefinedBy k2:.
+k2:IPO rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:exchangeSymbol; ; owl:maxCardinality 1].
+k2:stockSymbol a owl:DatatypeProperty; rdfs:label "stock symbol"; rdfs:comment "Ticker on the exchange"; schema:domainIncludes k2:IPO.
+k2:stockSymbol rdfs:isDefinedBy k2:.
+k2:IPO rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:stockSymbol; ; owl:maxCardinality 1].
+k2:wentPublicOn a owl:DatatypeProperty; rdfs:label "went public on"; rdfs:comment "When the company went public (IPO date)"; schema:domainIncludes k2:IPO.
+k2:wentPublicOn rdfs:isDefinedBy k2:.
+k2:IPO rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:wentPublicOn; owl:minCardinality 1; owl:maxCardinality 1].
+k2:sharePriceUsd a owl:DatatypeProperty; rdfs:label "share price in US dollars"; rdfs:comment "The share price for the stock at the time of IPO, in US dollars"; schema:domainIncludes k2:IPO.
+k2:sharePriceUsd rdfs:isDefinedBy k2:.
+k2:IPO rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:sharePriceUsd; ; owl:maxCardinality 1].
+k2:sharePrice a owl:DatatypeProperty; rdfs:label "share price in local currency"; rdfs:comment "The share price for the stock at the time of IPO, in local currency"; schema:domainIncludes k2:IPO.
+k2:sharePrice rdfs:isDefinedBy k2:.
+k2:IPO rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:sharePrice; ; owl:maxCardinality 1].
+k2:sharePriceCurrencyCode a owl:DatatypeProperty; rdfs:label "share price currency code"; rdfs:comment "Local currency of share price"; schema:domainIncludes k2:IPO.
+k2:sharePriceCurrencyCode rdfs:isDefinedBy k2:.
+k2:IPO rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:sharePriceCurrencyCode; ; owl:maxCardinality 1].
+k2:valuationPriceUsd a owl:DatatypeProperty; rdfs:label "valuation price in US dollars"; rdfs:comment "Valuation of the Organization at IPO, in US dollars"; schema:domainIncludes k2:IPO.
+k2:valuationPriceUsd rdfs:isDefinedBy k2:.
+k2:IPO rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:valuationPriceUsd; ; owl:maxCardinality 1].
+k2:valuationPrice a owl:DatatypeProperty; rdfs:label "valuation price in local currency"; rdfs:comment "Valuation of the Organization at IPO, in local currency"; schema:domainIncludes k2:IPO.
+k2:valuationPrice rdfs:isDefinedBy k2:.
+k2:IPO rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:valuationPrice; ; owl:maxCardinality 1].
+k2:valuationPriceCurrencyCode a owl:DatatypeProperty; rdfs:label "valuation price currency code"; rdfs:comment "Local currency of the valuation"; schema:domainIncludes k2:IPO.
+k2:valuationPriceCurrencyCode rdfs:isDefinedBy k2:.
+k2:IPO rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:valuationPriceCurrencyCode; ; owl:maxCardinality 1].
+k2:moneyRaisedUsd a owl:DatatypeProperty; rdfs:label "money raised in US dollars"; rdfs:comment "Total amount raised from the IPO, in US dollars"; schema:domainIncludes k2:IPO.
+k2:moneyRaisedUsd rdfs:isDefinedBy k2:.
+k2:IPO rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:moneyRaisedUsd; ; owl:maxCardinality 1].
+k2:moneyRaised a owl:DatatypeProperty; rdfs:label "money raised in local currency"; rdfs:comment "Total amount raised from the IPO, in local currency"; schema:domainIncludes k2:IPO.
+k2:moneyRaised rdfs:isDefinedBy k2:.
+k2:IPO rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:moneyRaised; ; owl:maxCardinality 1].
+k2:moneyRaisedCurrencyCode a owl:DatatypeProperty; rdfs:label "money raised currency code"; ; schema:domainIncludes k2:IPO.
+k2:moneyRaisedCurrencyCode rdfs:isDefinedBy k2:.
+k2:IPO rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:moneyRaisedCurrencyCode; ; owl:maxCardinality 1].
+k2:Job a rdfs:Class, owl:Class; rdfs:label "Job"; rdfs:comment "Employment or affiliation of a person with an organization".
+k2:Job rdfs:isDefinedBy k2:.
+k2:person a owl:ObjectProperty; rdfs:label "person"; ; schema:domainIncludes k2:Job.
+k2:person rdfs:isDefinedBy k2:.
+k2:Job rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:person; owl:minCardinality 1; owl:maxCardinality 1].
+k2:organization a owl:ObjectProperty; rdfs:label "organization"; ; schema:domainIncludes k2:Job.
+k2:organization rdfs:isDefinedBy k2:.
+k2:Job rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:organization; owl:minCardinality 1; owl:maxCardinality 1].
+k2:startedOn a owl:DatatypeProperty; rdfs:label "started on"; ; schema:domainIncludes k2:Job.
+k2:startedOn rdfs:isDefinedBy k2:.
+k2:Job rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:startedOn; ; owl:maxCardinality 1].
+k2:endedOn a owl:DatatypeProperty; rdfs:label "ended on"; ; schema:domainIncludes k2:Job.
+k2:endedOn rdfs:isDefinedBy k2:.
+k2:Job rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:endedOn; ; owl:maxCardinality 1].
+k2:isCurrent a owl:DatatypeProperty; rdfs:label "is current"; rdfs:comment "Whether the job is current. Compare to Person.featuredJobOrganization"; schema:domainIncludes k2:Job.
+k2:isCurrent rdfs:isDefinedBy k2:.
+k2:Job rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:isCurrent; ; owl:maxCardinality 1].
+k2:title a owl:DatatypeProperty; rdfs:label "title"; rdfs:comment "Job title. Free text: may include more than one title or non-relevant data"; schema:domainIncludes k2:Job.
+k2:title rdfs:isDefinedBy k2:.
+k2:Job rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:title; owl:minCardinality 1; owl:maxCardinality 1].
+k2:jobType a owl:ObjectProperty; rdfs:label "job type"; rdfs:comment "Type of job a person has in a company, eg employee, executive"; schema:domainIncludes k2:Job.
+k2:jobType rdfs:isDefinedBy k2:.
+k2:Job rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:jobType; owl:minCardinality 1; owl:maxCardinality 1].
+k2:Organization a rdfs:Class, owl:Class; rdfs:label "Organization"; rdfs:comment "Organization: company, investor, academic institution, etc".
+k2:Organization rdfs:isDefinedBy k2:.
+k2:legalName a owl:DatatypeProperty; rdfs:label "legal name"; rdfs:comment "Legal name of the organization"; schema:domainIncludes k2:Organization.
+k2:legalName rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:legalName; ; owl:maxCardinality 1].
+k2:organizationRole a owl:ObjectProperty; rdfs:label "organization role"; ; schema:domainIncludes k2:Organization.
+k2:organizationRole rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:organizationRole; owl:minCardinality 1; ].
+k2:parentOrganization a owl:ObjectProperty; rdfs:label "parent organization"; rdfs:comment "Parent of this organization"; schema:domainIncludes k2:Organization.
+k2:parentOrganization rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:parentOrganization; ; owl:maxCardinality 1].
+k2:domain a owl:DatatypeProperty; rdfs:label "web domain"; ; schema:domainIncludes k2:Organization.
+k2:domain rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:domain; ; owl:maxCardinality 1].
+k2:homepageUrl a owl:DatatypeProperty; rdfs:label "homepage URL"; rdfs:comment "Organization homepage (website)"; schema:domainIncludes k2:Organization.
+k2:homepageUrl rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:homepageUrl; ; owl:maxCardinality 1].
+k2:countryCode a owl:DatatypeProperty; rdfs:label "country code"; rdfs:comment "Country code of office location"; schema:domainIncludes k2:Organization.
+k2:countryCode rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:countryCode; ; owl:maxCardinality 1].
+k2:stateCode a owl:DatatypeProperty; rdfs:label "state code"; rdfs:comment "State code of office location"; schema:domainIncludes k2:Organization.
+k2:stateCode rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:stateCode; ; owl:maxCardinality 1].
+k2:region a owl:DatatypeProperty; rdfs:label "region"; rdfs:comment "Region of office location"; schema:domainIncludes k2:Organization.
+k2:region rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:region; ; owl:maxCardinality 1].
+k2:city a owl:DatatypeProperty; rdfs:label "city"; rdfs:comment "City of office location"; schema:domainIncludes k2:Organization.
+k2:city rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:city; ; owl:maxCardinality 1].
+k2:address a owl:DatatypeProperty; rdfs:label "address"; rdfs:comment "Office address"; schema:domainIncludes k2:Organization.
+k2:address rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:address; ; owl:maxCardinality 1].
+k2:postalCode a owl:DatatypeProperty; rdfs:label "postal code"; rdfs:comment "Postal code of office location"; schema:domainIncludes k2:Organization.
+k2:postalCode rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:postalCode; ; owl:maxCardinality 1].
+k2:status a owl:ObjectProperty; rdfs:label "status"; rdfs:comment "Status of the organization, eg closed, acquired, operating"; schema:domainIncludes k2:Organization.
+k2:status rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:status; owl:minCardinality 1; owl:maxCardinality 1].
+k2:shortDescription a owl:DatatypeProperty; rdfs:label "short description"; ; schema:domainIncludes k2:Organization.
+k2:shortDescription rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:shortDescription; ; owl:maxCardinality 1].
+k2:cbIndustry a owl:ObjectProperty; rdfs:label "Crunchbase industry"; ; schema:domainIncludes k2:Organization.
+k2:cbIndustry rdfs:isDefinedBy k2:.
+k2:totalFundingUsd a owl:DatatypeProperty; rdfs:label "total funding in US dollars"; rdfs:comment "Total amount of funding, in US dollars"; schema:domainIncludes k2:Organization.
+k2:totalFundingUsd rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:totalFundingUsd; ; owl:maxCardinality 1].
+k2:totalFunding a owl:DatatypeProperty; rdfs:label "total funding in local currency"; rdfs:comment "Total amount of funding, in local currency"; schema:domainIncludes k2:Organization.
+k2:totalFunding rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:totalFunding; ; owl:maxCardinality 1].
+k2:totalFundingCurrencyCode a owl:DatatypeProperty; rdfs:label "total funding currency code"; rdfs:comment "Local currency code for funding amount"; schema:domainIncludes k2:Organization.
+k2:totalFundingCurrencyCode rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:totalFundingCurrencyCode; ; owl:maxCardinality 1].
+k2:foundedOn a owl:DatatypeProperty; rdfs:label "founded on"; rdfs:comment "Date the Organization was founded"; schema:domainIncludes k2:Organization.
+k2:foundedOn rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:foundedOn; ; owl:maxCardinality 1].
+k2:lastFundingOn a owl:DatatypeProperty; rdfs:label "last funding on"; rdfs:comment "Date of most recent Funding Round"; schema:domainIncludes k2:Organization.
+k2:lastFundingOn rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:lastFundingOn; ; owl:maxCardinality 1].
+k2:closedOn a owl:DatatypeProperty; rdfs:label "closed on"; rdfs:comment "Date when the Organization closed"; schema:domainIncludes k2:Organization.
+k2:closedOn rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:closedOn; ; owl:maxCardinality 1].
+k2:employeeCount a owl:ObjectProperty; rdfs:label "employee count"; rdfs:comment "Range of organization employee count, eg 51-100"; schema:domainIncludes k2:Organization.
+k2:employeeCount rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:employeeCount; owl:minCardinality 1; owl:maxCardinality 1].
+k2:email a owl:DatatypeProperty; rdfs:label "email"; rdfs:comment "Contact email"; schema:domainIncludes k2:Organization.
+k2:email rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:email; ; owl:maxCardinality 1].
+k2:phone a owl:DatatypeProperty; rdfs:label "phone"; rdfs:comment "Contact phone"; schema:domainIncludes k2:Organization.
+k2:phone rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:phone; ; owl:maxCardinality 1].
+k2:alias a owl:DatatypeProperty; rdfs:label "alias"; rdfs:comment "Alternate or previous names for the organization"; schema:domainIncludes k2:Organization.
+k2:alias rdfs:isDefinedBy k2:.
+k2:primaryRole a owl:ObjectProperty; rdfs:label "primary role"; ; schema:domainIncludes k2:Organization.
+k2:primaryRole rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:primaryRole; owl:minCardinality 1; owl:maxCardinality 1].
+k2:numExits a owl:DatatypeProperty; rdfs:label "number of exits"; rdfs:comment "Total number of Exits. Investor Exit occurs when a company is acquired or IPOs, so the investor recoups his money. Company exit is when the company sells itself (even multiple times)"; schema:domainIncludes k2:Organization.
+k2:numExits rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:numExits; ; owl:maxCardinality 1].
+k2:companyType a owl:ObjectProperty; rdfs:label "company type"; rdfs:comment "Basic 'business situation' of the company: acquired, subsidiary, public, private. Now computed from CrunchBase info, thus totally populated"; schema:domainIncludes k2:Organization.
+k2:companyType rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:companyType; owl:minCardinality 1; owl:maxCardinality 1].
+k2:isPrivateEquityAcquired a owl:DatatypeProperty; rdfs:label "is private equity acquired"; ; schema:domainIncludes k2:Organization.
+k2:isPrivateEquityAcquired rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:isPrivateEquityAcquired; ; owl:maxCardinality 1].
+k2:isGrowthCompany a owl:DatatypeProperty; rdfs:label "is growth company"; ; schema:domainIncludes k2:Organization.
+k2:isGrowthCompany rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:isGrowthCompany; ; owl:maxCardinality 1].
+k2:acquired a owl:ObjectProperty; rdfs:label "acquired companies"; rdfs:comment "Companies acquired by this one"; schema:domainIncludes k2:Organization.
+k2:acquired rdfs:isDefinedBy k2:.
+k2:investor a owl:ObjectProperty; rdfs:label "investors"; ; schema:domainIncludes k2:Organization.
+k2:investor rdfs:isDefinedBy k2:.
+k2:numAcqured a owl:DatatypeProperty; rdfs:label "number of acquired companies"; ; schema:domainIncludes k2:Organization.
+k2:numAcqured rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:numAcqured; ; owl:maxCardinality 1].
+k2:numInvestors a owl:DatatypeProperty; rdfs:label "number of investors"; rdfs:comment "Number of distinct investors across all funding rounds"; schema:domainIncludes k2:Organization.
+k2:numInvestors rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:numInvestors; ; owl:maxCardinality 1].
+k2:numFundingRounds a owl:DatatypeProperty; rdfs:label "number of funding rounds"; rdfs:comment "Total number of Funding Rounds the company has received"; schema:domainIncludes k2:Organization.
+k2:numFundingRounds rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:numFundingRounds; ; owl:maxCardinality 1].
+k2:ltmRevenueUsd a owl:DatatypeProperty; rdfs:label "Last twelve months Revenue"; ; schema:domainIncludes k2:Organization.
+k2:ltmRevenueUsd rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:ltmRevenueUsd; ; owl:maxCardinality 1].
+k2:acquisitionValueUsd a owl:DatatypeProperty; rdfs:label "acquisition value (USD)"; rdfs:comment "Price of the last acquisition of the company"; schema:domainIncludes k2:Organization.
+k2:acquisitionValueUsd rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:acquisitionValueUsd; ; owl:maxCardinality 1].
+k2:enterpriseValueUsd a owl:DatatypeProperty; rdfs:label "enterprise value (USD)"; rdfs:comment "Amount (postMoneyValuationUsd, priceUsd, valuationPriceUsd) of the latest financial transaction (FundingRound, Acquisition, IPO) targeting the company"; schema:domainIncludes k2:Organization.
+k2:enterpriseValueUsd rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:enterpriseValueUsd; ; owl:maxCardinality 1].
+k2:sizeUsd a owl:DatatypeProperty; rdfs:label "size (USD)"; rdfs:comment "Synthetic measure of the financial size of the company, computed from ltmRevenueUsd, acquisitionValueUsd, enterpriseValueUsd, totalFundingUsd depending on companyType"; schema:domainIncludes k2:Organization.
+k2:sizeUsd rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:sizeUsd; ; owl:maxCardinality 1].
+k2:earliestFundingRoundDate a owl:DatatypeProperty; rdfs:label "earliest funding round date"; ; schema:domainIncludes k2:Organization.
+k2:earliestFundingRoundDate rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:earliestFundingRoundDate; ; owl:maxCardinality 1].
+k2:latestFundingRoundDate a owl:DatatypeProperty; rdfs:label "latest funding round date"; ; schema:domainIncludes k2:Organization.
+k2:latestFundingRoundDate rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:latestFundingRoundDate; ; owl:maxCardinality 1].
+k2:isDueForExit a owl:DatatypeProperty; rdfs:label "is due for exit"; rdfs:comment "Whether the company is due for exit (acquisition): Funding rounds > 3, earliest round > 5y ago, latest round > 1y ago, total funding > 30 MUSD"; schema:domainIncludes k2:Organization.
+k2:isDueForExit rdfs:isDefinedBy k2:.
+k2:Organization rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:isDueForExit; ; owl:maxCardinality 1].
+k2:Person a rdfs:Class, owl:Class; rdfs:label "Person"; .
+k2:Person rdfs:isDefinedBy k2:.
+k2:firstName a owl:DatatypeProperty; rdfs:label "first name"; rdfs:comment "messy values: might include other data in addition to name"; schema:domainIncludes k2:Person.
+k2:firstName rdfs:isDefinedBy k2:.
+k2:Person rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:firstName; owl:minCardinality 1; owl:maxCardinality 1].
+k2:lastName a owl:DatatypeProperty; rdfs:label "last name"; rdfs:comment "messy values: might include other data in addition to name"; schema:domainIncludes k2:Person.
+k2:lastName rdfs:isDefinedBy k2:.
+k2:Person rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:lastName; owl:minCardinality 1; owl:maxCardinality 1].
+k2:gender a owl:ObjectProperty; rdfs:label "gender"; rdfs:comment "Gender identity of a person, eg female"; schema:domainIncludes k2:Person.
+k2:gender rdfs:isDefinedBy k2:.
+k2:Person rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:gender; ; owl:maxCardinality 1].
+k2:countryCode a owl:DatatypeProperty; rdfs:label "country code"; ; schema:domainIncludes k2:Person.
+k2:countryCode rdfs:isDefinedBy k2:.
+k2:Person rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:countryCode; ; owl:maxCardinality 1].
+k2:stateCode a owl:DatatypeProperty; rdfs:label "state code"; ; schema:domainIncludes k2:Person.
+k2:stateCode rdfs:isDefinedBy k2:.
+k2:Person rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:stateCode; ; owl:maxCardinality 1].
+k2:region a owl:DatatypeProperty; rdfs:label "region"; ; schema:domainIncludes k2:Person.
+k2:region rdfs:isDefinedBy k2:.
+k2:Person rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:region; ; owl:maxCardinality 1].
+k2:city a owl:DatatypeProperty; rdfs:label "city"; ; schema:domainIncludes k2:Person.
+k2:city rdfs:isDefinedBy k2:.
+k2:Person rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:city; ; owl:maxCardinality 1].
+k2:featuredJobOrganization a owl:ObjectProperty; rdfs:label "featured job organization"; rdfs:comment "Most important organization to which the person is affiliated (would be better to have a flag Job.isFeatured, since then the start/end dates could be recorded)"; schema:domainIncludes k2:Person.
+k2:featuredJobOrganization rdfs:isDefinedBy k2:.
+k2:Person rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:featuredJobOrganization; ; owl:maxCardinality 1].
+k2:featuredJobTitle a owl:DatatypeProperty; rdfs:label "featured job title"; rdfs:comment "Title of the most important job of the person (would be better to have a flag Job.isFeatured, since then the start/end dates could be recorded)"; schema:domainIncludes k2:Person.
+k2:featuredJobTitle rdfs:isDefinedBy k2:.
+k2:Person rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:featuredJobTitle; ; owl:maxCardinality 1].
+
+# Stratesphere Objects
+
+k2:Signal a rdfs:Class, owl:Class; rdfs:label "Signal"; rdfs:comment "Business Signal".
+k2:Signal rdfs:isDefinedBy k2:.
+k2:signalType a owl:ObjectProperty; rdfs:label "signal type"; ; schema:domainIncludes k2:Signal.
+k2:signalType rdfs:isDefinedBy k2:.
+k2:Signal rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:signalType; ; owl:maxCardinality 1].
+k2:date a owl:DatatypeProperty; rdfs:label "date"; ; schema:domainIncludes k2:Signal.
+k2:date rdfs:isDefinedBy k2:.
+k2:Signal rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:date; ; owl:maxCardinality 1].
+k2:SignalType a rdfs:Class, owl:Class; rdfs:label "SignalType"; rdfs:comment "Business Signal Type".
+k2:SignalType rdfs:isDefinedBy k2:.
+k2:name a owl:DatatypeProperty; rdfs:label "name"; ; schema:domainIncludes k2:SignalType.
+k2:name rdfs:isDefinedBy k2:.
+k2:SignalType rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:name; owl:minCardinality 1; owl:maxCardinality 1].
+k2:signalNature a owl:ObjectProperty; rdfs:label "signal nature"; rdfs:comment "Nature of Business Signal, eg. positive, neutral, negative. Co-related to signalWeight"; schema:domainIncludes k2:SignalType.
+k2:signalNature rdfs:isDefinedBy k2:.
+k2:SignalType rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:signalNature; owl:minCardinality 1; owl:maxCardinality 1].
+k2:signalWeight a owl:DatatypeProperty; rdfs:label "signal weight"; rdfs:comment "Weight of Business Signal, eg. 2,0,-1"; schema:domainIncludes k2:SignalType.
+k2:signalWeight rdfs:isDefinedBy k2:.
+k2:SignalType rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:signalWeight; owl:minCardinality 1; owl:maxCardinality 1].
+k2:Momentum a rdfs:Class, owl:Class; rdfs:label "Momentum"; rdfs:comment "Business Momentum".
+k2:Momentum rdfs:isDefinedBy k2:.
+k2:company a owl:ObjectProperty; rdfs:label "company"; ; schema:domainIncludes k2:Momentum.
+k2:company rdfs:isDefinedBy k2:.
+k2:Momentum rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:company; ; owl:maxCardinality 1].
+k2:industry a owl:ObjectProperty; rdfs:label "industry"; ; schema:domainIncludes k2:Momentum.
+k2:industry rdfs:isDefinedBy k2:.
+k2:Momentum rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:industry; ; owl:maxCardinality 1].
+k2:investor a owl:ObjectProperty; rdfs:label "investor"; rdfs:comment "Person or organization who invests"; schema:domainIncludes k2:Momentum.
+k2:investor rdfs:isDefinedBy k2:.
+k2:Momentum rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:investor; ; owl:maxCardinality 1].
+k2:year a owl:DatatypeProperty; rdfs:label "year"; ; schema:domainIncludes k2:Momentum.
+k2:year rdfs:isDefinedBy k2:.
+k2:Momentum rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:year; owl:minCardinality 1; owl:maxCardinality 1].
+k2:momentumCategory a owl:ObjectProperty; rdfs:label "Momentum category"; rdfs:comment "Qualitative measure of the momentum, eg. very_low, medium, high"; schema:domainIncludes k2:Momentum.
+k2:momentumCategory rdfs:isDefinedBy k2:.
+k2:Momentum rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:momentumCategory; owl:minCardinality 1; owl:maxCardinality 1].
+k2:momentumScore a owl:DatatypeProperty; rdfs:label "Momentum score"; rdfs:comment "Quantitative measure of the momentum"; schema:domainIncludes k2:Momentum.
+k2:momentumScore rdfs:isDefinedBy k2:.
+k2:Momentum rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:momentumScore; owl:minCardinality 1; owl:maxCardinality 1].
+k2:momentumType a owl:ObjectProperty; rdfs:label "Momentum type"; rdfs:comment "Momentum type, eg. acquisition, earlyfunding"; schema:domainIncludes k2:Momentum.
+k2:momentumType rdfs:isDefinedBy k2:.
+k2:Momentum rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:momentumType; owl:minCardinality 1; owl:maxCardinality 1].
+k2:Converged a rdfs:Class, owl:Class; rdfs:label "Converged"; rdfs:comment "A pair of converged industries".
+k2:Converged rdfs:isDefinedBy k2:.
+k2:industry a owl:ObjectProperty; rdfs:label "industry"; ; schema:domainIncludes k2:Converged.
+k2:industry rdfs:isDefinedBy k2:.
+k2:Converged rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:industry; owl:minCardinality 2; owl:maxCardinality 2].
+k2:count a owl:DatatypeProperty; rdfs:label "count"; rdfs:comment "Strength of evidence"; schema:domainIncludes k2:Converged.
+k2:count rdfs:isDefinedBy k2:.
+k2:Converged rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:count; owl:minCardinality 1; owl:maxCardinality 1].
+k2:convergedStage a owl:ObjectProperty; rdfs:label "converged stage"; rdfs:comment "Stage of Industry Convergence: from very_low to very_high"; schema:domainIncludes k2:Converged.
+k2:convergedStage rdfs:isDefinedBy k2:.
+k2:Converged rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:convergedStage; owl:minCardinality 1; owl:maxCardinality 1].
+k2:ConvergedCompany a rdfs:Class, owl:Class; rdfs:label "ConvergedCompany"; rdfs:comment "A pair of industries in which a company works, directly or through subsidiaries".
+k2:ConvergedCompany rdfs:isDefinedBy k2:.
+k2:company a owl:ObjectProperty; rdfs:label "company"; ; schema:domainIncludes k2:ConvergedCompany.
+k2:company rdfs:isDefinedBy k2:.
+k2:ConvergedCompany rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:company; owl:minCardinality 1; owl:maxCardinality 1].
+k2:industry a owl:ObjectProperty; rdfs:label "industry"; ; schema:domainIncludes k2:ConvergedCompany.
+k2:industry rdfs:isDefinedBy k2:.
+k2:ConvergedCompany rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:industry; owl:minCardinality 2; owl:maxCardinality 2].
+k2:count a owl:DatatypeProperty; rdfs:label "count"; rdfs:comment "Strength of evidence"; schema:domainIncludes k2:ConvergedCompany.
+k2:count rdfs:isDefinedBy k2:.
+k2:ConvergedCompany rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:count; owl:minCardinality 1; owl:maxCardinality 1].
+k2:CanAcquireScore a rdfs:Class, owl:Class; rdfs:label "CanAcquireScore"; rdfs:comment "Score for a number of factors suggesting potential acquisition interest".
+k2:CanAcquireScore rdfs:isDefinedBy k2:.
+k2:acquirer a owl:ObjectProperty; rdfs:label "acquirer"; ; schema:domainIncludes k2:CanAcquireScore.
+k2:acquirer rdfs:isDefinedBy k2:.
+k2:CanAcquireScore rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:acquirer; owl:minCardinality 1; owl:maxCardinality 1].
+k2:acquiree a owl:ObjectProperty; rdfs:label "acquiree"; ; schema:domainIncludes k2:CanAcquireScore.
+k2:acquiree rdfs:isDefinedBy k2:.
+k2:CanAcquireScore rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:acquiree; owl:minCardinality 1; owl:maxCardinality 1].
+k2:kind a owl:ObjectProperty; rdfs:label "kind"; rdfs:comment "Kind (logic) of acquisition: scale, scope"; schema:domainIncludes k2:CanAcquireScore.
+k2:kind rdfs:isDefinedBy k2:.
+k2:CanAcquireScore rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:kind; owl:minCardinality 1; owl:maxCardinality 1].
+k2:type a owl:ObjectProperty; rdfs:label "type"; rdfs:comment "Type of score: sharedIndustries, sharedSubindustries, affiliations, size, ..., total"; schema:domainIncludes k2:CanAcquireScore.
+k2:type rdfs:isDefinedBy k2:.
+k2:CanAcquireScore rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:type; owl:minCardinality 1; owl:maxCardinality 1].
+k2:witness a owl:ObjectProperty; rdfs:label "witness"; rdfs:comment "Nodes that 'witness' the score factor: shared industries, shared subindustries, shared affiliated persons, relevant acquisitions, etc"; schema:domainIncludes k2:CanAcquireScore.
+k2:witness rdfs:isDefinedBy k2:.
+k2:score a owl:DatatypeProperty; rdfs:label "score"; rdfs:comment "Number of witnesses or ratio of company sizes"; schema:domainIncludes k2:CanAcquireScore.
+k2:score rdfs:isDefinedBy k2:.
+k2:CanAcquireScore rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:score; owl:minCardinality 1; owl:maxCardinality 1].
+k2:isSatisfied a owl:DatatypeProperty; rdfs:label "isSatisfied"; rdfs:comment "Whether the score has passed its respective threshold"; schema:domainIncludes k2:CanAcquireScore.
+k2:isSatisfied rdfs:isDefinedBy k2:.
+k2:CanAcquireScore rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:isSatisfied; owl:minCardinality 1; owl:maxCardinality 1].
+k2:justification a owl:DatatypeProperty; rdfs:label "justification"; rdfs:comment "Text explaining the score (or template from which it is formed)"; schema:domainIncludes k2:CanAcquireScore.
+k2:justification rdfs:isDefinedBy k2:.
+k2:CanAcquireScore rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:justification; ; owl:maxCardinality 1].
+
+# Nomenclatures
+
+skos:ConceptScheme a rdfs:Class, owl:Class; rdfs:label "Concept Scheme"; rdfs:comment "A thesaurus of fixed code values (Concepts)".
+skos:ConceptScheme rdfs:isDefinedBy k2:.
+skos:prefLabel a owl:DatatypeProperty; rdfs:label "preferred label"; ; schema:domainIncludes skos:ConceptScheme.
+skos:prefLabel rdfs:isDefinedBy k2:.
+skos:ConceptScheme rdfs:subClassOf [a owl:Restriction; owl:onProperty skos:prefLabel; ; owl:maxCardinality 1].
+skos:Concept a rdfs:Class, owl:Class; rdfs:label "Concept"; rdfs:comment "A code value in a thesaurus".
+skos:Concept rdfs:isDefinedBy k2:.
+skos:inScheme a owl:ObjectProperty; rdfs:label "in scheme"; rdfs:comment "Thesaurus scheme to which this concept belongs"; schema:domainIncludes skos:Concept.
+skos:inScheme rdfs:isDefinedBy k2:.
+skos:Concept rdfs:subClassOf [a owl:Restriction; owl:onProperty skos:inScheme; owl:minCardinality 1; owl:maxCardinality 1].
+skos:prefLabel a owl:DatatypeProperty; rdfs:label "preferred label"; ; schema:domainIncludes skos:Concept.
+skos:prefLabel rdfs:isDefinedBy k2:.
+skos:Concept rdfs:subClassOf [a owl:Restriction; owl:onProperty skos:prefLabel; owl:minCardinality 1; owl:maxCardinality 1].
+skos:scopeNote a owl:DatatypeProperty; rdfs:label "scope note"; rdfs:comment "Explains the use and meaning of this concept"; schema:domainIncludes skos:Concept.
+skos:scopeNote rdfs:isDefinedBy k2:.
+skos:Concept rdfs:subClassOf [a owl:Restriction; owl:onProperty skos:scopeNote; ; owl:maxCardinality 1].
+skos:editorialNote a owl:DatatypeProperty; rdfs:label "editorial note"; rdfs:comment "Editorial notes, eg former name of this concept"; schema:domainIncludes skos:Concept.
+skos:editorialNote rdfs:isDefinedBy k2:.
+skos:Concept rdfs:subClassOf [a owl:Restriction; owl:onProperty skos:editorialNote; ; owl:maxCardinality 1].
+skos:broader a owl:ObjectProperty; rdfs:label "has broader"; rdfs:comment "Parent concept. Can be multiple (eg Crunchbase Industries are multi-parented)"; schema:domainIncludes skos:Concept.
+skos:broader rdfs:isDefinedBy k2:.
+k2:order a owl:DatatypeProperty; rdfs:label "order"; rdfs:comment "Sort order amongst its siblings"; schema:domainIncludes skos:Concept.
+k2:order rdfs:isDefinedBy k2:.
+k2:CbIndustry a rdfs:Class, owl:Class; rdfs:label "Crunchbase Industry"; rdfs:comment "Crunchbase Industry classification (called 'category')".
+k2:CbIndustry rdfs:isDefinedBy k2:.
+k2:AcquisitionType a rdfs:Class, owl:Class; rdfs:label "Acquisition Type"; rdfs:comment "Organization acquisition type, eg acquihire, lbo".
+k2:AcquisitionType rdfs:isDefinedBy k2:.
+k2:AppearanceType a rdfs:Class, owl:Class; rdfs:label "Appearance Type"; rdfs:comment "Event participant type, eg sponsor, organizer".
+k2:AppearanceType rdfs:isDefinedBy k2:.
+k2:EmployeeCount a rdfs:Class, owl:Class; rdfs:label "Employee Count"; rdfs:comment "Range of organization employee count, eg 51-100".
+k2:EmployeeCount rdfs:isDefinedBy k2:.
+k2:EventRole a rdfs:Class, owl:Class; rdfs:label "Event Role"; rdfs:comment "Event type, eg conference, webinar".
+k2:EventRole rdfs:isDefinedBy k2:.
+k2:Gender a rdfs:Class, owl:Class; rdfs:label "Gender"; rdfs:comment "Gender identity of a person, eg female".
+k2:Gender rdfs:isDefinedBy k2:.
+k2:InvestmentType a rdfs:Class, owl:Class; rdfs:label "Investment Type"; rdfs:comment "Type of investment in a company, eg corporate round".
+k2:InvestmentType rdfs:isDefinedBy k2:.
+k2:InvestorType a rdfs:Class, owl:Class; rdfs:label "Investor Type"; rdfs:comment "Type of investmentor which makes an investment, eg hedge fund, private equity firm".
+k2:InvestorType rdfs:isDefinedBy k2:.
+k2:JobType a rdfs:Class, owl:Class; rdfs:label "Job Type"; rdfs:comment "Type of job a person has in a company, eg employee, executive".
+k2:JobType rdfs:isDefinedBy k2:.
+k2:OrganizationRole a rdfs:Class, owl:Class; rdfs:label "Organization Role"; rdfs:comment "Type of organization, eg company, investor".
+k2:OrganizationRole rdfs:isDefinedBy k2:.
+k2:OrganizationStatus a rdfs:Class, owl:Class; rdfs:label "Organization Status"; rdfs:comment "Status of the organization, eg closed, acquired, operating".
+k2:OrganizationStatus rdfs:isDefinedBy k2:.
+k2:Industry a rdfs:Class, owl:Class; rdfs:label "Stratesphere Industry"; rdfs:comment "Stratesphere Industry classification, eg. technology, 3d_printing".
+k2:Industry rdfs:isDefinedBy k2:.
+k2:MomentumType a rdfs:Class, owl:Class; rdfs:label "Momentum Type"; rdfs:comment "Stratesphere Momentum type, eg. acquisition, early-funding".
+k2:MomentumType rdfs:isDefinedBy k2:.
+k2:MomentumCategory a rdfs:Class, owl:Class; rdfs:label "Momentum Category"; rdfs:comment "Stratesphere Momentum category, eg. very_low, medium, high".
+k2:MomentumCategory rdfs:isDefinedBy k2:.
+k2:CompanyType a rdfs:Class, owl:Class; rdfs:label "Company Type"; rdfs:comment "Company Type: acquired, subsidiary, private, public".
+k2:CompanyType rdfs:isDefinedBy k2:.
+k2:SignalNature a rdfs:Class, owl:Class; rdfs:label "Business Signal Nature"; rdfs:comment "Stratesphere Business Signal Nature: negative, positive, neutral".
+k2:SignalNature rdfs:isDefinedBy k2:.
+k2:ConvergedStage a rdfs:Class, owl:Class; rdfs:label "Converged Stage"; rdfs:comment "Stage of Industry Convergence: from very_low to very_high".
+k2:ConvergedStage rdfs:isDefinedBy k2:.
+k2:CanAcquireKind a rdfs:Class, owl:Class; rdfs:label "Can Acquire Kind"; rdfs:comment "Kind (logic) of acquisition: scale, scope".
+k2:CanAcquireKind rdfs:isDefinedBy k2:.
+k2:CanAcquireType a rdfs:Class, owl:Class; rdfs:label "Can Acquire Type"; rdfs:comment "Type of score: sharedIndustries, sharedSubindustries, affiliations, size, ..., total".
+k2:CanAcquireType rdfs:isDefinedBy k2:.
+k2:kind a owl:ObjectProperty; rdfs:label "kind"; ; schema:domainIncludes k2:CanAcquireType.
+k2:kind rdfs:isDefinedBy k2:.
+k2:CanAcquireType rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:kind; ; owl:maxCardinality 2].
+k2:isSymmetric a owl:DatatypeProperty; rdfs:label "is symmetric"; rdfs:comment "Whether the score is symmetric in relation to the two companies, and can be copied from one to the other"; schema:domainIncludes k2:CanAcquireType.
+k2:isSymmetric rdfs:isDefinedBy k2:.
+k2:CanAcquireType rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:isSymmetric; owl:minCardinality 1; owl:maxCardinality 1].
+k2:justification a owl:DatatypeProperty; rdfs:label "justification"; rdfs:comment "Text explaining the score (or template from which it is formed)"; schema:domainIncludes k2:CanAcquireType.
+k2:justification rdfs:isDefinedBy k2:.
+k2:CanAcquireType rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:justification; ; owl:maxCardinality 1].
+k2:threshold a owl:DatatypeProperty; rdfs:label "threshold"; rdfs:comment "Threshold required to satisfy this score factor"; schema:domainIncludes k2:CanAcquireType.
+k2:threshold rdfs:isDefinedBy k2:.
+k2:CanAcquireType rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:threshold; ; owl:maxCardinality 1].
+
+# Stratesphere Value Chain Objects
+
+k2:ValueChain a rdfs:Class, owl:Class; rdfs:label "Value Chain"; rdfs:comment "Process of producing some product; which coincides with a lowest-level subindustry (eg Steering Wheel)".
+k2:ValueChain rdfs:isDefinedBy k2:.
+k2:industry a owl:ObjectProperty; rdfs:label "industry"; rdfs:comment "Industry (final product) of the value chain"; schema:domainIncludes k2:ValueChain.
+k2:industry rdfs:isDefinedBy k2:.
+k2:ValueChain rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:industry; owl:minCardinality 1; owl:maxCardinality 1].
+k2:WorkCell a rdfs:Class, owl:Class; rdfs:label "Work Cell"; rdfs:comment "Part of a value chain. Has steps, inputs and outputs".
+k2:WorkCell rdfs:isDefinedBy k2:.
+k2:name a owl:DatatypeProperty; rdfs:label "name"; ; schema:domainIncludes k2:WorkCell.
+k2:name rdfs:isDefinedBy k2:.
+k2:WorkCell rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:name; owl:minCardinality 1; owl:maxCardinality 1].
+k2:valueChain a owl:ObjectProperty; rdfs:label "value chain"; rdfs:comment "Value chain that this work cell is part of"; schema:domainIncludes k2:WorkCell.
+k2:valueChain rdfs:isDefinedBy k2:.
+k2:WorkCell rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:valueChain; owl:minCardinality 1; owl:maxCardinality 1].
+k2:step a owl:ObjectProperty; rdfs:label "step"; rdfs:comment "(Sequence of) steps comprising the work cell"; schema:domainIncludes k2:WorkCell.
+k2:step rdfs:isDefinedBy k2:.
+k2:input a owl:ObjectProperty; rdfs:label "input"; rdfs:comment "Products or Materials that are used by the cell"; schema:domainIncludes k2:WorkCell.
+k2:input rdfs:isDefinedBy k2:.
+k2:altInput a owl:ObjectProperty; rdfs:label "alt input"; rdfs:comment "Alternative products or materials that are used by the cell"; schema:domainIncludes k2:WorkCell.
+k2:altInput rdfs:isDefinedBy k2:.
+k2:output a owl:ObjectProperty; rdfs:label "output"; rdfs:comment "The output product of the cell. TODO: is it always single? TODO: can it be Material?"; schema:domainIncludes k2:WorkCell.
+k2:output rdfs:isDefinedBy k2:.
+k2:WorkCell rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:output; owl:minCardinality 1; owl:maxCardinality 1].
+k2:WorkStep a rdfs:Class, owl:Class; rdfs:label "Work Step"; rdfs:comment "A process within a work cell".
+k2:WorkStep rdfs:isDefinedBy k2:.
+k2:process a owl:ObjectProperty; rdfs:label "process"; rdfs:comment "Process executed by this step"; schema:domainIncludes k2:WorkStep.
+k2:process rdfs:isDefinedBy k2:.
+k2:WorkStep rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:process; owl:minCardinality 1; owl:maxCardinality 1].
+k2:order a owl:DatatypeProperty; rdfs:label "order"; rdfs:comment "Order of execution compared to sibling steps in the same work cell"; schema:domainIncludes k2:WorkStep.
+k2:order rdfs:isDefinedBy k2:.
+k2:WorkStep rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:order; owl:minCardinality 1; owl:maxCardinality 1].
+k2:Material a rdfs:Class, owl:Class; rdfs:label "Material"; rdfs:comment "A material or material grade".
+k2:Material rdfs:isDefinedBy k2:.
+k2:name a owl:DatatypeProperty; rdfs:label "name"; ; schema:domainIncludes k2:Material.
+k2:name rdfs:isDefinedBy k2:.
+k2:Material rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:name; owl:minCardinality 1; owl:maxCardinality 1].
+k2:grade a owl:DatatypeProperty; rdfs:label "grade"; rdfs:comment "Optional grade"; schema:domainIncludes k2:Material.
+k2:grade rdfs:isDefinedBy k2:.
+k2:Material rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:grade; ; owl:maxCardinality 1].
+skos:broader a owl:ObjectProperty; rdfs:label "broader"; rdfs:comment "Base material, if 'grade' is present"; schema:domainIncludes k2:Material.
+skos:broader rdfs:isDefinedBy k2:.
+k2:Material rdfs:subClassOf [a owl:Restriction; owl:onProperty skos:broader; ; owl:maxCardinality 1].
+k2:Product a rdfs:Class, owl:Class; rdfs:label "Product"; rdfs:comment "A product, part or assembly".
+k2:Product rdfs:isDefinedBy k2:.
+k2:name a owl:DatatypeProperty; rdfs:label "name"; ; schema:domainIncludes k2:Product.
+k2:name rdfs:isDefinedBy k2:.
+k2:Product rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:name; owl:minCardinality 1; owl:maxCardinality 1].
+k2:ProductInstance a rdfs:Class, owl:Class; rdfs:label "Product Instance"; rdfs:comment "A product, part or assembly in the context of a particular value chain (and work cell)".
+k2:ProductInstance rdfs:isDefinedBy k2:.
+k2:product a owl:ObjectProperty; rdfs:label "product"; rdfs:comment "The product"; schema:domainIncludes k2:ProductInstance.
+k2:product rdfs:isDefinedBy k2:.
+k2:ProductInstance rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:product; owl:minCardinality 1; owl:maxCardinality 1].
+k2:AlternativeInput a rdfs:Class, owl:Class; rdfs:label "Alternative Input"; rdfs:comment "Alternative of products or materials to be used in a work cell".
+k2:AlternativeInput rdfs:isDefinedBy k2:.
+k2:input a owl:ObjectProperty; rdfs:label "input"; rdfs:comment "Products or Materials that are used by the cell"; schema:domainIncludes k2:AlternativeInput.
+k2:input rdfs:isDefinedBy k2:.
+k2:AlternativeInput rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:input; owl:minCardinality 1; ].
+k2:Process a rdfs:Class, owl:Class; rdfs:label "Process"; rdfs:comment "A production process".
+k2:Process rdfs:isDefinedBy k2:.
+k2:name a owl:DatatypeProperty; rdfs:label "name"; ; schema:domainIncludes k2:Process.
+k2:name rdfs:isDefinedBy k2:.
+k2:Process rdfs:subClassOf [a owl:Restriction; owl:onProperty k2:name; owl:minCardinality 1; owl:maxCardinality 1].
+
+## Class hierarchy
+k2:Person rdfs:subClassOf k2:Agent.
+k2:AppearanceType rdfs:subClassOf skos:Concept.
+k2:Investor rdfs:subClassOf k2:Agent.
+k2:InvestmentType rdfs:subClassOf skos:Concept.
+k2:Fund rdfs:subClassOf k2:CbObject.
+k2:Gender rdfs:subClassOf skos:Concept.
+k2:SignalNature rdfs:subClassOf skos:Concept.
+k2:Investment rdfs:subClassOf k2:CbObject.
+k2:Organization rdfs:subClassOf k2:CbObject.
+k2:CbIndustry rdfs:subClassOf skos:Concept,k2:CbObject.
+k2:Agent rdfs:subClassOf k2:CbObject.
+k2:Event rdfs:subClassOf k2:CbObject.
+k2:CanAcquireKind rdfs:subClassOf skos:Concept.
+k2:OrganizationRole rdfs:subClassOf skos:Concept.
+k2:MomentumType rdfs:subClassOf skos:Concept.
+k2:Degree rdfs:subClassOf k2:CbObject.
+k2:MomentumCategory rdfs:subClassOf skos:Concept.
+k2:EmployeeCount rdfs:subClassOf skos:Concept.
+k2:Acquisition rdfs:subClassOf k2:CbObject.
+k2:EventRole rdfs:subClassOf skos:Concept.
+k2:IPO rdfs:subClassOf k2:CbObject.
+k2:CompanyType rdfs:subClassOf skos:Concept.
+k2:OrganizationStatus rdfs:subClassOf skos:Concept.
+k2:FundingRound rdfs:subClassOf k2:CbObject.
+k2:InvestorType rdfs:subClassOf skos:Concept.
+k2:JobType rdfs:subClassOf skos:Concept.
+k2:EventAppearance rdfs:subClassOf k2:CbObject.
+k2:Job rdfs:subClassOf k2:CbObject.
+k2:CanAcquireType rdfs:subClassOf skos:Concept.
+k2:AcquisitionType rdfs:subClassOf skos:Concept.
+k2:Industry rdfs:subClassOf skos:Concept.
+k2:ConvergedStage rdfs:subClassOf skos:Concept.
+
+## Property ranges
+k2:cbUrl schema:rangeIncludes xsd:anyURI.
+k2:threshold schema:rangeIncludes xsd:decimal.
+k2:shortDescription schema:rangeIncludes xsd:string,xsd:string,xsd:string.
+k2:kind schema:rangeIncludes k2:CanAcquireKind,k2:CanAcquireKind.
+k2:entity schema:rangeIncludes k2:Agent.
+k2:numExits schema:rangeIncludes xsd:integer.
+k2:altInput schema:rangeIncludes k2:AlternativeInput.
+k2:isSymmetric schema:rangeIncludes xsd:boolean.
+k2:convergedStage schema:rangeIncludes k2:ConvergedStage.
+k2:twitterUrl schema:rangeIncludes xsd:anyURI.
+k2:lastFundingOn schema:rangeIncludes xsd:date.
+k2:process schema:rangeIncludes k2:Process.
+k2:isCompleted schema:rangeIncludes xsd:boolean.
+k2:investorCount schema:rangeIncludes xsd:integer.
+k2:companyType schema:rangeIncludes k2:CompanyType.
+k2:moneyRaisedUsd schema:rangeIncludes xsd:decimal.
+k2:parentOrganization schema:rangeIncludes k2:Organization.
+k2:eventRole schema:rangeIncludes k2:EventRole.
+k2:numAcqured schema:rangeIncludes xsd:integer.
+skos:inScheme schema:rangeIncludes skos:ConceptScheme.
+k2:homepageUrl schema:rangeIncludes xsd:anyURI.
+k2:lastName schema:rangeIncludes xsd:string.
+k2:price schema:rangeIncludes xsd:decimal.
+k2:isLeadInvestor schema:rangeIncludes xsd:boolean.
+k2:investor schema:rangeIncludes k2:Agent,k2:Agent,k2:Agent.
+k2:featuredJobTitle schema:rangeIncludes xsd:string.
+k2:logoUrl schema:rangeIncludes xsd:anyURI,xsd:anyURI.
+k2:linkedinUrl schema:rangeIncludes xsd:anyURI.
+k2:stateCode schema:rangeIncludes xsd:string,xsd:string,xsd:string.
+k2:postMoneyValuationUsd schema:rangeIncludes xsd:decimal.
+k2:employeeCount schema:rangeIncludes k2:EmployeeCount.

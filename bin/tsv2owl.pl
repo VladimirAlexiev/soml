@@ -4,7 +4,7 @@
 use strict;
 use Getopt::Std;
 use Carp;                       # https://perldoc.perl.org/Carp
-our ($opt_v, $opt_o, $opt_l);   # vocab, ontology, downgrade literals
+our ($opt_v, $opt_o, $opt_t, $opt_l);   # vocab, ontology, emit owl:Thing for "iri", downgrade literals
 our %MAP_LITERAL =              # from SOML literal ranges to rdf/xsd
   qw(langString            rdf:langString
      stringOrLangString    rdf:langString
@@ -62,7 +62,7 @@ sub range_kind($$) {
   my $kind;
   if ($range eq "iri") {
     $kind = "owl:ObjectProperty";
-    $range = undef; # free URL: unbound range
+    $range = $opt_t && ($rdf_replaced{"owl:Thing"} = "owl:Thing"); # free URL: unbound range
   } elsif ($range =~ m{^[a-z][a-zA-Z]+$}) {
     $kind = "owl:DatatypeProperty";
     $range = $MAP_LITERAL{$range}       if exists $MAP_LITERAL{$range};
@@ -80,7 +80,7 @@ sub range_kind($$) {
 binmode(STDOUT); # output \n not \r\n
 $\ = "\n"; # each print outputs a newline
 
-getopts("v:o:l"); # -v and -o get argument, -l is just a flag
+getopts("v:o:tl"); # -v and -o get argument, -t and -l are just flags
 $opt_v ||= ":";
 
 $_ = <>; # get first row

@@ -4,7 +4,7 @@
 #+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2024-01-31>
+#+date: <2024-02-07>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
@@ -649,6 +649,9 @@ It has these options.
   - For each term (class and prop), adds ~rdfs:isDefinedBy~ pointing to the ontology.
     This is a common practice and is used eg by MetaPhactory when collecting properties to generate forms.
   - Adds the current date as ~dct:modified~ of the ontology
+- ~-t~: add ~rdfs:range owl:Thing~ to props with range ~iri~
+    (this is needed for Metaphactory to be able to edit "free URLs").
+  - Without this option, they are still mapped to ~owl:ObjectProperty~, but without any ~rdfs:range~.
 - ~-l~: downgrade literal datatypes.
   - Datatypes are mapped as follows:
 #+begin_src 
