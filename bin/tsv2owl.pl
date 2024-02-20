@@ -135,7 +135,7 @@ while (<>) {
       $range{$prop} ||= []; # intialize empty array of ranges for that prop
       push @{$range{$prop}}, $range
     };
-    print "$prop a $kind; $label; $descr; schema:domainIncludes $rdf_class.";
+    print "$prop a $kind; $label; $descr; s:domainIncludes $rdf_class.";
     print "$prop rdfs:isDefinedBy $opt_o." if $opt_o;
     chars($char,$prop,$rdf_class);
   };
@@ -152,7 +152,7 @@ print "\n## Property ranges";
 while (my ($prop,$range) = each %range) {
   map {croak "Prop $prop: range $_ has no rdf_replaced" unless defined $rdf_replaced{$_}} @$range;
   $range = join ',', grep $_, map $rdf_replaced{$_}, @$range;
-  print "$prop schema:rangeIncludes $range." if $range; # at least one non-empty range
+  print "$prop s:rangeIncludes $range." if $range; # at least one non-empty range
 };
 # print ontology updated datestamp
 print "$opt_o dct:updated '", DateTime->now->ymd, "'^^xsd:date."

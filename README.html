@@ -197,7 +197,7 @@
 <body>
 <div id="preamble" class="status">
 <p class="author">Author: Vladimir Alexiev (<a href="mailto:vladimir.alexiev@ontotext.com">vladimir.alexiev@ontotext.com</a>)</p>
-<p class="date">Date: 2024-02-07</p>
+<p class="date">Date: 2024-02-20</p>
 </div>
 <div id="content" class="content">
 <h1 class="title">Semantic Objects Modeling Language</h1>
@@ -214,7 +214,7 @@
 </li>
 <li><a href="#complex-schema-company-graph">2. Complex Schema (Company Graph)</a>
 <ul>
-<li><a href="#example-class">2.1. Example Class:</a></li>
+<li><a href="#example-class">2.1. Example Class</a></li>
 <li><a href="#example-inverse-alias">2.2. Example Inverse Alias</a></li>
 <li><a href="#example-diagram-exchange-listing-soml">2.3. Example Diagram: Exchange Listing SOML</a></li>
 <li><a href="#example-diagram-exchange-listing-rdf">2.4. Example Diagram: Exchange Listing RDF</a></li>
@@ -237,7 +237,11 @@
 </li>
 <li><a href="#tsv2owl">3.5. tsv2owl</a>
 <ul>
-<li><a href="#rdf-replacement">3.5.1. RDF replacement</a></li>
+<li><a href="#ontology-preamble">3.5.1. Ontology Preamble</a></li>
+<li><a href="#tsv2owl-options">3.5.2. tsv2owl Options</a></li>
+<li><a href="#tsv2owl-columns-and-features">3.5.3. tsv2owl Columns and Features</a></li>
+<li><a href="#rdf-replacement">3.5.4. RDF Replacement</a></li>
+<li><a href="#running-tsv2owl">3.5.5. Running tsv2owl</a></li>
 </ul>
 </li>
 <li><a href="#soml2puml">3.6. soml2puml</a></li>
@@ -663,7 +667,7 @@ The full CG schema is included: <a href="./schemas/CG.yaml">CG.yaml</a>. Below w
 </div>
 
 <div id="outline-container-example-class" class="outline-3">
-<h3 id="example-class"><span class="section-number-3">2.1.</span> Example Class:</h3>
+<h3 id="example-class"><span class="section-number-3">2.1.</span> Example Class</h3>
 <div class="outline-text-3" id="text-example-class">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #a0522d;">ExchangeListing</span>:
@@ -775,7 +779,7 @@ For example, the figure below shows the stock exchange listing (IPO) of Apple on
 </p>
 
 
-<div id="org531d23c" class="figure">
+<div id="org4a48e9b" class="figure">
 <p><img src="./eg/model-exchange-listing.png" alt="model-exchange-listing.png" />
 </p>
 </div>
@@ -797,7 +801,7 @@ This version of the diagram uses <a href="#soml-map">soml-map</a> to map SOML na
 </p>
 
 
-<div id="org16fd978" class="figure">
+<div id="orge1d91d3" class="figure">
 <p><img src="./eg/model-exchange-listing-mapped.png" alt="model-exchange-listing-mapped.png" />
 </p>
 </div>
@@ -839,7 +843,7 @@ Here's the beginning of the sheet:
 </p>
 
 
-<div id="org5448e12" class="figure">
+<div id="org91577a9" class="figure">
 <p><img src="./eg/CG-sheet.png" alt="CG-sheet.png" />
 </p>
 </div>
@@ -850,7 +854,7 @@ as distinct business classes
 </p>
 
 
-<div id="orgc862d46" class="figure">
+<div id="orgbdbbec6" class="figure">
 <p><img src="./eg/CG-sheet2.png" alt="CG-sheet2.png" />
 </p>
 </div>
@@ -1133,31 +1137,22 @@ A draft script was made by GPT-4 following the specfication below, then improved
 <div class="outline-text-3" id="text-tsv2owl">
 <p>
 This tool uses the same sheets that drive <code>tsv2soml</code> to generate an OWL ontology.
-You can run it with a Makefile like this (see <a href="./tsv2owl/Makefile">tsv2owl/Makefile</a>):
-</p>
-<div class="org-src-container">
-<pre class="src src-Makefile">ontology.ttl ::
-	curl -Ls "https://docs.google.com/spreadsheets/d/.../export?format=tsv" | \
-	  perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
-	  cat ontology-preamble.ttl - &gt; ontology-unformatted.ttl
-	riot --formatted=ttl ontology-unformatted.ttl | perl -00e '@a=&lt;&gt;; print sort @a' &gt; ontology.ttl
-	# rm ontology-unformatted.ttl # keep for debugging
-</pre>
-</div>
-
-<p>
 It works like this:
 </p>
 <ul class="org-ul">
 <li>Generates term definitions from the sheet</li>
-<li>Prepends the preamble</li>
-<li>Formats the result with Jena <code>riot</code></li>
+<li>Prepends a preamble</li>
+<li>Formats the result with Jena <code>riot</code> or <code>update</code></li>
 <li>Sorts the file by term (Turtle block: such "paragraphs" are separated by a double newline)</li>
 </ul>
+</div>
 
+<div id="outline-container-ontology-preamble" class="outline-4">
+<h4 id="ontology-preamble"><span class="section-number-4">3.5.1.</span> Ontology Preamble</h4>
+<div class="outline-text-4" id="text-ontology-preamble">
 <p>
 Use an ontology preamble, eg like this <code>otkg-preamble.ttl</code>.
-Include all "system" prefixes after the newline!
+Include all "system" prefixes that are shown after the newline (in particular, use <code>s:</code> instead of <code>schema:</code>)!
 </p>
 <div class="org-src-container">
 <pre class="src src-ttl">@prefix otkg:   &lt;https://kg.ontotext.com/resource/ontology/&gt;.
@@ -1167,7 +1162,7 @@ Include all "system" prefixes after the newline!
 @prefix owl:    &lt;http://www.w3.org/2002/07/owl#&gt; .
 @prefix rdf:    &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
 @prefix rdfs:   &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
-@prefix schema: &lt;http://schema.org/&gt; .
+@prefix s:      &lt;http://schema.org/&gt; .
 @prefix xsd:    &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 
 otkg: a owl:Ontology ;
@@ -1177,7 +1172,12 @@ otkg: a owl:Ontology ;
   owl:versionInfo "1.0" .
 </pre>
 </div>
+</div>
+</div>
 
+<div id="outline-container-tsv2owl-options" class="outline-4">
+<h4 id="tsv2owl-options"><span class="section-number-4">3.5.2.</span> tsv2owl Options</h4>
+<div class="outline-text-4" id="text-tsv2owl-options">
 <p>
 It has these options. 
 </p>
@@ -1229,9 +1229,14 @@ dateOrTimeOrTimeStamp xsd:dateTimeStamp
 rdf:langString        xsd:string
 rdf:Literal           xsd:string
 </pre>
+</div>
+</div>
 
+<div id="outline-container-tsv2owl-columns-and-features" class="outline-4">
+<h4 id="tsv2owl-columns-and-features"><span class="section-number-4">3.5.3.</span> tsv2owl Columns and Features</h4>
+<div class="outline-text-4" id="text-tsv2owl-columns-and-features">
 <p>
-It uses the following sheet columns:
+The tool uses the following sheet columns:
 </p>
 <ul class="org-ul">
 <li><code>Class/prop</code>: class (if capitalized) or property belonging to the class above (if lowercase)</li>
@@ -1272,14 +1277,16 @@ This is not checked !!!
 Use <code>riot --formatted ttl</code> to collect them in "paragraphs"
 so you can check whether you have consistent definitions.</li>
 <li>Emits <code>a rdfs:Class, owl:Class</code> for each class</li>
-<li>Emits <code>schema:domainIncludes</code> for each prop to accommodate props used several times.</li>
+<li>Emits <code>s:domainIncludes</code> for each prop to accommodate props used several times.
+You have an option to convert this to <code>rdfs:domain</code> for props that have a single domain.</li>
 <li>Emits type <code>owl:ObjectProperty</code> vs <code>owl:DatatypeProperty</code> for each prop, depending on range:
 <ul class="org-ul">
-<li>If <code>iri</code> then <code>ObjectProperty</code></li>
+<li>If <code>iri</code> then <code>ObjectProperty</code>
+(and with option <code>-t</code>, add <code>rdfs:range owl:Thing</code>)</li>
 <li>If lowercase then <code>DatatypeProperty</code> (and prepend <code>xsd:</code> to the range)</li>
 <li>Else (the range is a class) then <code>ObjectProperty</code></li>
 </ul></li>
-<li>Map only the data ranges indicated above: currently doesn't support rdf:HTML, sysont:Markdown</li>
+<li>Map only the data ranges indicated above: currently doesn't support <code>rdf:HTML, sysont:Markdown</code></li>
 <li>Comment lines start with hash (<code>#</code>) in the first column
 <ul class="org-ul">
 <li><code># HEADER</code>: if there is a space after the hash, the first cell is printed surrounded by newlines</li>
@@ -1287,9 +1294,10 @@ so you can check whether you have consistent definitions.</li>
 </ul></li>
 </ul>
 </div>
+</div>
 
 <div id="outline-container-rdf-replacement" class="outline-4">
-<h4 id="rdf-replacement"><span class="section-number-4">3.5.1.</span> RDF replacement</h4>
+<h4 id="rdf-replacement"><span class="section-number-4">3.5.4.</span> RDF Replacement</h4>
 <div class="outline-text-4" id="text-rdf-replacement">
 <p>
 The column <code>RDF</code> is used when you need to specify something different from <code>Class/name</code>.
@@ -1637,8 +1645,51 @@ So we use <code>replacement=none</code> to omit it from RDF altogether.</li>
 </ul>
 </div>
 </div>
+
+<div id="outline-container-running-tsv2owl" class="outline-4">
+<h4 id="running-tsv2owl"><span class="section-number-4">3.5.5.</span> Running tsv2owl</h4>
+<div class="outline-text-4" id="text-running-tsv2owl">
+<p>
+You can run the tool with a <code>Makefile</code> like this (see <a href="./tsv2owl">tsv2owl</a>), feeding from a Google Sheet:
+</p>
+<div class="org-src-container">
+<pre class="src src-Makefile">ontology.ttl ::
+	curl -Ls "https://docs.google.com/spreadsheets/d/.../export?format=tsv" | \
+	  perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
+	  cat ontology-preamble.ttl - &gt; ontology-unformatted.ttl
+	riot --formatted=ttl ontology-unformatted.ttl | \
+   perl -00e '@a=&lt;&gt;; print sort @a' &gt; ontology.ttl
+	# rm ontology-unformatted.ttl # keep for debugging
+</pre>
 </div>
 
+<p>
+If you need to emit the more traditional domain/range characteristics,
+use the SPARQL update <code>tsv2owl-domain-range.ru</code> that does this:
+</p>
+<ul class="org-ul">
+<li>If a prop has a single s:domainIncludes, convert it to rdfs:domain</li>
+<li>If a prop has a single s:rangeIncludes, convert it to rdfs:range</li>
+</ul>
+<p>
+For this to happen, just replace <code>riot</code> with <code>update</code> (which is also part of Jena):
+</p>
+<div class="org-src-container">
+<pre class="src src-Makefile">ontology.ttl ::
+	curl -Ls "https://docs.google.com/spreadsheets/d/.../export?format=tsv" | \
+	  perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
+	  cat ontology-preamble.ttl - &gt; ontology-unformatted.ttl
+	update --update=../bin/tsv2owl-domain.ru --data=ontology-unformatted.ttl --dump | \
+   perl -00e '@a=&lt;&gt;; print sort @a' &gt; ontology.ttl
+	# rm ontology-unformatted.ttl # keep for debugging
+</pre>
+</div>
+<p>
+Diff <code>otkg.ttl</code> and <code>otkg-domain-range.ttl</code> to see the difference.
+</p>
+</div>
+</div>
+</div>
 <div id="outline-container-soml2puml" class="outline-3">
 <h3 id="soml2puml"><span class="section-number-3">3.6.</span> soml2puml</h3>
 <div class="outline-text-3" id="text-soml2puml">

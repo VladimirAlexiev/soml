@@ -1,0 +1,1075 @@
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix dc:   <http://purl.org/dc/elements/1.1/> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix otkg: <https://kg.ontotext.com/resource/ontology/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix puml: <http://plantuml.com/ontology#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s:    <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xml:  <http://www.w3.org/XML/1998/namespace/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+otkg:   rdf:type         owl:Ontology ;
+        rdfs:label       "OTKG Ontology" ;
+        dct:created      "2023-01-25"^^xsd:date ;
+        dct:creator      <http://ontotext.com> ;
+        dct:updated      "2024-02-20"^^xsd:date ;
+        owl:versionInfo  "1.0" .
+
+otkg:EventParticipation
+        rdf:type          owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Event Participation" ;
+        rdfs:subClassOf   s:Event ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:recordedIn
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:performer
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:workFeatured
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:additionalType
+                          ] .
+
+otkg:ITProduct  rdf:type  owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "IT Product" .
+
+otkg:OntotextDemonstrator
+        rdf:type          owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Ontotext Demostrator" ;
+        rdfs:subClassOf   otkg:OntotextOffering .
+
+otkg:OntotextOffering
+        rdf:type          owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Ontotext Offering" ;
+        rdfs:subClassOf   otkg:ITProduct .
+
+otkg:OntotextService  rdf:type  owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Ontotext Service" ;
+        rdfs:subClassOf   otkg:OntotextOffering .
+
+otkg:OntotextSoftwareComponent
+        rdf:type          owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Ontotext Software Component" ;
+        rdfs:subClassOf   otkg:OntotextOffering .
+
+otkg:OntotextSoftwareProduct
+        rdf:type          owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Ontotext Software Product" ;
+        rdfs:subClassOf   otkg:OntotextOffering .
+
+otkg:OntotextSolution
+        rdf:type          owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Ontotext Solution" ;
+        rdfs:subClassOf   otkg:OntotextOffering .
+
+otkg:OpenSourceLibrary
+        rdf:type          owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Open Source Library" ;
+        rdfs:subClassOf   otkg:ITProduct .
+
+otkg:appliesToClass  rdf:type  owl:ObjectProperty ;
+        rdfs:comment      "to which subclass of CreativeWork this content type is mapped" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "applies to class" ;
+        s:domainIncludes  skos:Concept ;
+        s:rangeIncludes   owl:Thing .
+
+otkg:buyersJourney  rdf:type  owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "buyers journey" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   skos:Concept .
+
+otkg:category  rdf:type   owl:DatatypeProperty ;
+        rdfs:comment      "Category of Articles/BlogPostings in KnowledgeHub. Can be Informational, Business, Technology, Graph Q&A, Ontotext Interviews, In the Media" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "category" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   xsd:string .
+
+otkg:longDescription  rdf:type  owl:DatatypeProperty ;
+        rdfs:comment      "Long description" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "long description" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   xsd:string .
+
+otkg:orgRole  rdf:type    owl:ObjectProperty ;
+        rdfs:comment      "role of an organization in relation to Ontotext" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "organization role" ;
+        s:domainIncludes  s:Organization ;
+        s:rangeIncludes   skos:Concept .
+
+otkg:orgScope  rdf:type   owl:ObjectProperty ;
+        rdfs:comment      "geographic scope of an organization" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "organization scope" ;
+        s:domainIncludes  s:Organization ;
+        s:rangeIncludes   skos:Concept .
+
+otkg:orgType  rdf:type    owl:ObjectProperty ;
+        rdfs:comment      "business type of an organization" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "organization type" ;
+        s:domainIncludes  s:Organization ;
+        s:rangeIncludes   skos:Concept .
+
+otkg:textHtml  rdf:type   owl:DatatypeProperty ;
+        rdfs:comment      "raw HTML rendition of a CreativeWork coming from website" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "text html" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   xsd:string .
+
+s:AggregateRating  rdf:type  owl:Class , rdfs:Class ;
+        rdfs:comment      "The average rating based on multiple ratings or reviews." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Aggregate Rating" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:itemReviewed
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:ratingCount
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:ratingValue
+                          ] .
+
+s:Article  rdf:type       owl:Class , rdfs:Class ;
+        rdfs:comment      "An article" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Article" ;
+        rdfs:subClassOf   s:CreativeWork .
+
+s:BlogPosting  rdf:type   owl:Class , rdfs:Class ;
+        rdfs:comment      "A blog post." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "BlogPost" ;
+        rdfs:subClassOf   s:CreativeWork .
+
+s:Collection  rdf:type    owl:Class , rdfs:Class ;
+        rdfs:comment      "Official proceedings of an event such as conference or workshop" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Collection" ;
+        rdfs:subClassOf   s:CreativeWork ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:hasPart
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:isbn
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:recordedAt
+                          ] .
+
+s:Country  rdf:type       owl:Class , rdfs:Class ;
+        rdfs:comment      "A country" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Country" ;
+        rdfs:subClassOf   s:Thing .
+
+s:CreativeWork  rdf:type  owl:Class , rdfs:Class ;
+        rdfs:comment      "A specific type of CreativeWork that is used in an EventParticpation" , "abstract superclass" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Work Featured Common" , "Creative Work" ;
+        rdfs:subClassOf   s:CreativeWork , s:Thing ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:description
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:primaryImageOfPage
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:encodingFormat
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:text
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:headline
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      otkg:longDescription
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      otkg:textHtml
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:url
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:educationalLevel
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:size
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:additionalType
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:publisher
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:creativeWorkStatus
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:mainEntity
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:dateModified
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:datePublished
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:abstract
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:learningResourceType
+                          ] .
+
+s:Event  rdf:type         rdfs:Class , owl:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Event Common" , "Event" ;
+        rdfs:subClassOf   s:Event , s:Thing ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:eventAttendanceMode
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:organizer
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:isAccessibleForFree
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:additionalType
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:about
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:location
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:recordedIn
+                          ] .
+
+s:EventSeries  rdf:type   owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Event Series" ;
+        rdfs:subClassOf   s:Event .
+
+s:Grant  rdf:type         owl:Class , rdfs:Class ;
+        rdfs:comment      "research programme" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Grant" ;
+        rdfs:subClassOf   s:Thing .
+
+s:ImageObject  rdf:type   owl:Class , rdfs:Class ;
+        rdfs:comment      "Image from the website or as part of a reference project description, has name" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "image object" ;
+        rdfs:subClassOf   s:CreativeWork .
+
+s:NewsArticle  rdf:type   owl:Class , rdfs:Class ;
+        rdfs:comment      "Am article published on the Ontotext website" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "NewsArticle" ;
+        rdfs:subClassOf   s:Article .
+
+s:Organization  rdf:type  owl:Class , rdfs:Class ;
+        rdfs:comment      "abstract superclass" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Organization Common" , "Organization" ;
+        rdfs:subClassOf   s:Organization , s:Thing ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      otkg:orgScope
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      otkg:orgRole
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:sameAs
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:contactPoint
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:address
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:logo
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:foundingDate
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:founder
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      otkg:orgType
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:legalName
+                          ] .
+
+s:Person  rdf:type        owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Person" , "Person Common" ;
+        rdfs:subClassOf   s:Thing , s:Person ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:worksFor
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  0 ;
+                            owl:onProperty      s:jobTitle
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:minCardinality  0 ;
+                            owl:onProperty      s:sameAs
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:address
+                          ] .
+
+s:PostalAddress  rdf:type  owl:Class , rdfs:Class ;
+        rdfs:comment      "Global address" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Postal Address" ;
+        rdfs:subClassOf   s:Thing ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:addressCountry
+                          ] .
+s:PotentialActionStatus
+        rdf:type          owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Potential Action Status" ;
+        rdfs:subClassOf   s:Thing .
+
+s:PresentationDigitalDocument
+        rdf:type          owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Presentation Digital Object" ;
+        rdfs:subClassOf   s:CreativeWork .
+
+s:ResearchProject  rdf:type  owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Research Project" ;
+        rdfs:subClassOf   s:Organization ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:funding
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:endDate
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:duration
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:startDate
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:sameAs
+                          ] .
+
+s:ScholarlyArticle  rdf:type  owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Scholarly Article" ;
+        rdfs:subClassOf   s:CreativeWork .
+
+s:Thing  rdf:type         owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Thing" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:url
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:description
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:name
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:additionalType
+                          ] .
+
+s:VideoObject  rdf:type   owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Video Object" ;
+        rdfs:subClassOf   s:CreativeWork ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:contentUrl
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:recordedAt
+                          ] .
+
+s:VirtualLocation  rdf:type  owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Virtual Location" ;
+        rdfs:subClassOf   s:Thing .
+
+s:WatchAction  rdf:type   owl:Class , rdfs:Class ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Watch Action" ;
+        rdfs:subClassOf   s:Thing ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:object
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:provider
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:target
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:actionStatus
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:startTime
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:endTime
+                          ] .
+
+s:WebPage  rdf:type       owl:Class , rdfs:Class ;
+        rdfs:comment      "A web page." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Web Page" ;
+        rdfs:subClassOf   s:CreativeWork .
+
+s:about  rdf:type         owl:ObjectProperty ;
+        rdfs:comment      "The subject matter of CreativeWork. Less strict than mainEntity" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "about" ;
+        s:domainIncludes  s:Event , s:CreativeWork ;
+        s:rangeIncludes   skos:Concept ;
+        owl:inverseOf     s:subjectOf .
+
+s:abstract  rdf:type      owl:DatatypeProperty ;
+        rdfs:comment      "short description that summarizes a CreativeWork" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "short description" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   xsd:string .
+
+s:actionStatus  rdf:type  owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "action status" ;
+        s:domainIncludes  s:WatchAction ;
+        s:rangeIncludes   s:PotentialActionStatus .
+
+s:additionalType  rdf:type  owl:ObjectProperty ;
+        rdfs:comment      "More specific type, from a thesaurus" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "content type" , "additional type" , "additional Type" ;
+        s:domainIncludes  s:Thing , s:Event , s:CreativeWork , otkg:EventParticipation ;
+        s:rangeIncludes   skos:Concept .
+
+s:address  rdf:type       owl:ObjectProperty ;
+        rdfs:comment      "Global address of Person residency" , "Global address of Org headquarters" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "address" ;
+        s:domainIncludes  s:Person , s:Organization ;
+        s:rangeIncludes   s:PostalAddress .
+
+s:addressCountry  rdf:type  owl:ObjectProperty ;
+        rdfs:comment      "Country where the global address is located" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "address country" ;
+        s:domainIncludes  s:PostalAddress ;
+        s:rangeIncludes   s:Country .
+
+s:alternateName  rdf:type  owl:DatatypeProperty ;
+        rdfs:comment      "SEO variant of the title" , "Alias, SEO variant, or abbreviation" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "SEO title" , "alternate name" ;
+        s:domainIncludes  s:CreativeWork , s:Thing ;
+        s:rangeIncludes   xsd:string .
+
+s:audience  rdf:type      owl:ObjectProperty ;
+        rdfs:comment      "intended audience, i.e. a group for whom something was created" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "audience" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   skos:Concept .
+
+s:author  rdf:type        owl:ObjectProperty ;
+        rdfs:comment      "Author(s) of the creative work" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "author" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   s:Person .
+
+s:contactPoint  rdf:type  owl:ObjectProperty ;
+        rdfs:comment      "A contact point for a person or organization." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "contactPoint" ;
+        s:domainIncludes  s:Organization ;
+        s:rangeIncludes   owl:Thing .
+
+s:contentLocation  rdf:type  owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "content location" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   xsd:string .
+
+s:contentUrl  rdf:type    owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "content url" ;
+        s:domainIncludes  s:VideoObject ;
+        s:rangeIncludes   owl:Thing .
+
+s:creativeWorkStatus  rdf:type  owl:DatatypeProperty ;
+        rdfs:comment      "Status of a creative work in terms of its stage in a lifecycle. Example terms include - published, draft and private." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "creative work status" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   xsd:string .
+
+s:dateModified  rdf:type  owl:DatatypeProperty ;
+        rdfs:comment      "Last time the CreativeWork was modified (used only for BlogPosting)" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "date modified" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   xsd:dateTime .
+
+s:datePublished  rdf:type  owl:DatatypeProperty ;
+        rdfs:comment      "Date of first broadcast/publication" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "date published" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   xsd:dateTime .
+
+s:description  rdf:type   owl:DatatypeProperty ;
+        rdfs:comment      "Medium description" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "description" ;
+        s:domainIncludes  s:CreativeWork , s:Thing ;
+        s:rangeIncludes   xsd:string .
+
+s:duration  rdf:type      owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "duration" ;
+        s:domainIncludes  s:ResearchProject ;
+        s:rangeIncludes   xsd:duration .
+
+s:educationalLevel  rdf:type  owl:ObjectProperty ;
+        rdfs:comment      "The level in terms of progression through an educational or training context. Examples of educational levels include 'beginner', 'intermediate' or 'advanced', and formal sets of level indicators." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "educational level" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   skos:Concept .
+
+s:email  rdf:type         owl:DatatypeProperty ;
+        rdfs:comment      "Email address." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "email" ;
+        s:domainIncludes  s:Organization ;
+        s:rangeIncludes   xsd:string .
+
+s:encodingFormat  rdf:type  owl:DatatypeProperty ;
+        rdfs:comment      "Media type expressed using a MIME format" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "encoding format" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   xsd:string .
+
+s:endDate  rdf:type       owl:DatatypeProperty ;
+        rdfs:comment      "End date, date or dateTimeStamp. Date is used for conferences, Time stamp is used for a given time slot" , "End date, dateTime or dateTimeStamp of the event. Date is used for conferences, Time stamp is used for webinars." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "end date" ;
+        s:domainIncludes  s:ResearchProject , otkg:EventParticipation , s:Event ;
+        s:rangeIncludes   xsd:date , xsd:dateTimeStamp .
+
+s:endTime  rdf:type       owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "end time" ;
+        s:domainIncludes  s:WatchAction ;
+        s:rangeIncludes   xsd:dateTimeStamp .
+
+s:eventAttendanceMode
+        rdf:type          owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "eventAttendanceMode" ;
+        s:domainIncludes  s:Event ;
+        s:rangeIncludes   owl:Thing .
+
+s:founder  rdf:type       owl:ObjectProperty ;
+        rdfs:comment      "A person who founded this organization." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "founder" ;
+        s:domainIncludes  s:Organization ;
+        s:rangeIncludes   owl:Thing .
+
+s:foundingDate  rdf:type  owl:DatatypeProperty ;
+        rdfs:comment      "The date that this organization was founded." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "foundingDate" ;
+        s:domainIncludes  s:Organization ;
+        s:rangeIncludes   xsd:date .
+
+s:fundedItem  rdf:type    owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "funded item" ;
+        s:domainIncludes  s:Grant ;
+        s:rangeIncludes   s:ResearchProject ;
+        owl:inverseOf     s:funding .
+
+s:funding  rdf:type       owl:ObjectProperty ;
+        rdfs:comment      "research programme" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "funding" ;
+        s:domainIncludes  s:ResearchProject ;
+        s:rangeIncludes   s:Grant ;
+        owl:inverseOf     s:fundedItem .
+
+s:hasPart  rdf:type       owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "has part" ;
+        s:domainIncludes  s:Collection ;
+        s:rangeIncludes   s:Collection .
+
+s:headline  rdf:type      owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "headline" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   xsd:string .
+
+s:identifier  rdf:type    owl:DatatypeProperty ;
+        rdfs:comment      "any kind of identifier; we use short mnemonics eg \"ISWC\" for the International Semantic Web Conference (EventSeries)" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "identifier" ;
+        s:domainIncludes  s:Thing ;
+        s:rangeIncludes   xsd:string .
+
+s:image  rdf:type         owl:ObjectProperty ;
+        rdfs:comment      "URLs of the images linked to the CreativeWork." , "Image of the thing" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "image" ;
+        s:domainIncludes  s:CreativeWork , s:Thing ;
+        s:rangeIncludes   s:ImageObject .
+
+s:isAccessibleForFree
+        rdf:type          owl:DatatypeProperty ;
+        rdfs:comment      "A flag to signal that the event is accessible for free" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "is accessible for free" ;
+        s:domainIncludes  s:Event ;
+        s:rangeIncludes   xsd:boolean .
+
+s:isBasedOn  rdf:type     owl:ObjectProperty ;
+        rdfs:comment      "Resource from which this work is derived or from which it is a modification or adaptation." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "is based on" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   s:CreativeWork .
+
+s:isPartOf  rdf:type      owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "is part of" ;
+        s:domainIncludes  s:Collection ;
+        s:rangeIncludes   s:Collection ;
+        owl:inverseOf     s:hasPart .
+
+s:isbn  rdf:type          owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "isbn" ;
+        s:domainIncludes  s:Collection ;
+        s:rangeIncludes   xsd:string .
+
+s:itemReviewed  rdf:type  owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "item reviewed" ;
+        s:domainIncludes  s:AggregateRating ;
+        s:rangeIncludes   s:CreativeWork .
+
+s:jobTitle  rdf:type      owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "job title" ;
+        s:domainIncludes  s:Person ;
+        s:rangeIncludes   xsd:string .
+
+s:keywords  rdf:type      owl:DatatypeProperty ;
+        rdfs:comment      "Free-text keyword or tag that the CreativeWork is about. For taxonomy resources use about" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "keywords" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   xsd:string .
+
+s:learningResourceType
+        rdf:type          owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "learning resource type" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   xsd:string .
+
+s:legalName  rdf:type     owl:DatatypeProperty ;
+        rdfs:comment      "The official name of the organization, e.g. the registered company name." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "legalName" ;
+        s:domainIncludes  s:Organization ;
+        s:rangeIncludes   xsd:string .
+
+s:location  rdf:type      owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "location" ;
+        s:domainIncludes  s:Event ;
+        s:rangeIncludes   xsd:string .
+
+s:logo  rdf:type          owl:ObjectProperty ;
+        rdfs:comment      "logo" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "logo" ;
+        s:domainIncludes  s:Organization ;
+        s:rangeIncludes   owl:Thing .
+
+s:mainEntity  rdf:type    owl:ObjectProperty ;
+        rdfs:comment      "Primary entity described in the CreativeWork. For more lax cases use about or mentions" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "main entity" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   skos:Concept ;
+        owl:inverseOf     s:mainEntityOfPage .
+
+s:mainEntityOfPage  rdf:type  owl:ObjectProperty ;
+        rdfs:comment      "CreativeWork for which this thing is the main entity being described" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "main entity of page" ;
+        s:domainIncludes  skos:Concept ;
+        s:rangeIncludes   s:CreativeWork ;
+        owl:inverseOf     s:mainEntity .
+
+s:mentions  rdf:type      owl:ObjectProperty ;
+        rdfs:comment      "organization who has posted the CreativeWork" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "mentions" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   skos:Concept .
+
+s:name  rdf:type          owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "name" ;
+        s:domainIncludes  s:Thing ;
+        s:rangeIncludes   xsd:string .
+
+s:object  rdf:type        owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "object" ;
+        s:domainIncludes  s:WatchAction ;
+        s:rangeIncludes   s:VideoObject .
+
+s:organizer  rdf:type     owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "organizer" ;
+        s:domainIncludes  s:Event ;
+        s:rangeIncludes   s:Organization .
+
+s:performer  rdf:type     owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "performer" ;
+        s:domainIncludes  otkg:EventParticipation ;
+        s:rangeIncludes   s:Person .
+
+s:primaryImageOfPage  rdf:type  owl:ObjectProperty ;
+        rdfs:comment      "Main image of CreativeWork" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "primary image of page" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   s:ImageObject .
+
+s:provider  rdf:type      owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "provider" ;
+        s:domainIncludes  s:WatchAction ;
+        s:rangeIncludes   s:Organization .
+
+s:publisher  rdf:type     owl:ObjectProperty ;
+        rdfs:comment      "Organization who has posted the CreativeWork" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "publisher" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   s:Organization .
+
+s:ratingCount  rdf:type   owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "rating count" ;
+        s:domainIncludes  s:AggregateRating ;
+        s:rangeIncludes   xsd:integer .
+
+s:ratingValue  rdf:type   owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "rating value" ;
+        s:domainIncludes  s:AggregateRating ;
+        s:rangeIncludes   xsd:decimal .
+
+s:recordedAt  rdf:type    owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "recorded at" ;
+        s:domainIncludes  s:VideoObject , s:Collection ;
+        s:rangeIncludes   s:Event .
+
+s:recordedIn  rdf:type    owl:ObjectProperty ;
+        rdfs:comment      "Formal proceedings of a conference" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "recorded in" ;
+        s:domainIncludes  otkg:EventParticipation , s:Event ;
+        s:rangeIncludes   s:Collection .
+
+s:sameAs  rdf:type        owl:ObjectProperty ;
+        rdfs:comment      "URL that unambiguously indicates the thing's identity, e.g. the the item's Wikipedia page, Wikidata entry, Linkedin profile, Google Scholar profile, ORCID profile, etc" , "Wikidata item" , "URL that unambiguously indicates the thing's identity, e.g. the the item's Wikipedia page, Wikidata entry, Linkedin profile, YouTube profile, etc" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "same as" ;
+        s:domainIncludes  s:Person , s:Organization , s:ResearchProject ;
+        s:rangeIncludes   owl:Thing .
+
+s:size  rdf:type          owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "size" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   xsd:string .
+
+s:startDate  rdf:type     owl:DatatypeProperty ;
+        rdfs:comment      "Start date, dateTime or dateTimeStamp of the event. Date is used for conferences, Time stamp is used for webinars." , "Start date, date or dateTimeStamp. Date is used for conferences, Time stamp is used for a given time slot" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "start date" ;
+        s:domainIncludes  s:Event , s:ResearchProject , otkg:EventParticipation ;
+        s:rangeIncludes   xsd:date , xsd:dateTimeStamp .
+
+s:startTime  rdf:type     owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "start time" ;
+        s:domainIncludes  s:WatchAction ;
+        s:rangeIncludes   xsd:dateTimeStamp .
+
+s:subEvent  rdf:type      owl:ObjectProperty ;
+        rdfs:comment      "For conference instance the subEvent are either workshops (Event) or participations (EventParticipation)" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "sub event" ;
+        s:domainIncludes  s:Event ;
+        s:rangeIncludes   s:Event ;
+        owl:inverseOf     s:superEvent .
+
+s:subjectOf  rdf:type     owl:ObjectProperty ;
+        rdfs:comment      "CreativeWork about this Thing." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "subject of" ;
+        s:domainIncludes  s:Thing ;
+        s:rangeIncludes   s:CreativeWork ;
+        owl:inverseOf     s:about .
+
+s:superEvent  rdf:type    owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "super event" ;
+        s:domainIncludes  s:Event ;
+        s:rangeIncludes   s:Event ;
+        owl:inverseOf     s:subEvent .
+
+s:target  rdf:type        owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "target" ;
+        s:domainIncludes  s:WatchAction ;
+        s:rangeIncludes   owl:Thing .
+
+s:telephone  rdf:type     owl:DatatypeProperty ;
+        rdfs:comment      "The telephone number." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "telephone" ;
+        s:domainIncludes  s:Organization ;
+        s:rangeIncludes   xsd:string .
+
+s:text  rdf:type          owl:DatatypeProperty ;
+        rdfs:comment      "Full text of the CreativeWork." ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "text" ;
+        s:domainIncludes  s:CreativeWork ;
+        s:rangeIncludes   xsd:string .
+
+s:url   rdf:type          owl:ObjectProperty ;
+        rdfs:comment      "Resolvable URL where info about the thing can be obtained. If missing, the semantic URL (GraphQL 'id') is used" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "url" ;
+        s:domainIncludes  s:CreativeWork , s:Thing ;
+        s:rangeIncludes   owl:Thing .
+
+s:workFeatured  rdf:type  owl:ObjectProperty ;
+        rdfs:comment      "A featured CreativeWork in the EventParticpation" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "work featured" ;
+        s:domainIncludes  otkg:EventParticipation ;
+        s:rangeIncludes   s:CreativeWork .
+
+s:worksFor  rdf:type      owl:ObjectProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "works for" ;
+        s:domainIncludes  s:Person ;
+        s:rangeIncludes   s:Organization .
+
+skos:Concept  rdf:type    rdfs:Class , owl:Class ;
+        rdfs:comment      "role of an organization in relation to Ontotext" , "thesaurus entry" , "geographic scope of an organization" , "business types of an organization" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Educational Level" , "Org Scope" , "Audience " , "Event Participation Type" , "Org Type" , "Event Type" , "Org Role" , "Concept" , "Content Type" , "Buyers Journey" ;
+        rdfs:subClassOf   skos:Concept ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      otkg:appliesToClass
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      skos:prefLabel
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      skos:broader
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      skos:inScheme
+                          ] .
+
+skos:ConceptScheme  rdf:type  owl:Class , rdfs:Class ;
+        rdfs:comment      "thesaurus" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "Concept Scheme" ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      skos:prefLabel
+                          ] .
+
+skos:altLabel  rdf:type   owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "alternative label" ;
+        s:domainIncludes  skos:Concept ;
+        s:rangeIncludes   xsd:string .
+
+skos:broader  rdf:type    owl:ObjectProperty ;
+        rdfs:comment      "parent concept" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "broader" ;
+        s:domainIncludes  skos:Concept ;
+        s:rangeIncludes   skos:Concept ;
+        owl:inverseOf     s:narrower .
+
+skos:inScheme  rdf:type   owl:ObjectProperty ;
+        rdfs:comment      "thesaurus" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "in scheme" ;
+        s:domainIncludes  skos:Concept ;
+        s:rangeIncludes   skos:ConceptScheme .
+
+skos:narrower  rdf:type   owl:ObjectProperty ;
+        rdfs:comment      "child concepts" ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "narrower" ;
+        s:domainIncludes  skos:Concept ;
+        s:rangeIncludes   skos:Concept ;
+        owl:inverseOf     s:broader .
+
+skos:prefLabel  rdf:type  owl:DatatypeProperty ;
+        rdfs:isDefinedBy  otkg: ;
+        rdfs:label        "preferred label" ;
+        s:domainIncludes  skos:Concept , skos:ConceptScheme ;
+        s:rangeIncludes   xsd:string .
+

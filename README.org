@@ -4,7 +4,7 @@
 #+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2024-02-07>
+#+date: <2024-02-20>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
@@ -289,7 +289,7 @@ In addition to the above new classes, ONTO-CG adds:
 
 The full CG schema is included: [[./schemas/CG.yaml][CG.yaml]]. Below we show a couple of typical examples.
 
-** Example Class: 
+** Example Class
 :PROPERTIES:
 :CUSTOM_ID: example-class
 :END:
@@ -600,24 +600,18 @@ properties:
 :CUSTOM_ID: tsv2owl
 :END:
 This tool uses the same sheets that drive ~tsv2soml~ to generate an OWL ontology.
-You can run it with a Makefile like this (see [[./tsv2owl/Makefile][tsv2owl/Makefile]]):
-#+begin_src Makefile
-ontology.ttl ::
-	curl -Ls "https://docs.google.com/spreadsheets/d/.../export?format=tsv" | \
-	  perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
-	  cat ontology-preamble.ttl - > ontology-unformatted.ttl
-	riot --formatted=ttl ontology-unformatted.ttl | perl -00e '@a=<>; print sort @a' > ontology.ttl
-	# rm ontology-unformatted.ttl # keep for debugging
-#+end_src
-
 It works like this:
 - Generates term definitions from the sheet
-- Prepends the preamble
-- Formats the result with Jena ~riot~
+- Prepends a preamble
+- Formats the result with Jena ~riot~ or ~update~
 - Sorts the file by term (Turtle block: such "paragraphs" are separated by a double newline)
 
+*** Ontology Preamble
+:PROPERTIES:
+:CUSTOM_ID: ontology-preamble
+:END:
 Use an ontology preamble, eg like this ~otkg-preamble.ttl~.
-Include all "system" prefixes after the newline!
+Include all "system" prefixes that are shown after the newline (in particular, use ~s:~ instead of ~schema:~)!
 #+begin_src ttl
 @prefix otkg:   <https://kg.ontotext.com/resource/ontology/>.
 @prefix s:      <http://schema.org/> .
@@ -626,7 +620,7 @@ Include all "system" prefixes after the newline!
 @prefix owl:    <http://www.w3.org/2002/07/owl#> .
 @prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema: <http://schema.org/> .
+@prefix s:      <http://schema.org/> .
 @prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
 
 otkg: a owl:Ontology ;
@@ -636,6 +630,10 @@ otkg: a owl:Ontology ;
   owl:versionInfo "1.0" .
 #+end_src
 
+*** tsv2owl Options
+:PROPERTIES:
+:CUSTOM_ID: tsv2owl-options
+:END:
 It has these options. 
 - ~-v~: default namespace for classes and props that don't have a specific URL in the RDF column.
   - By default is the empty prefix ~:~ (you must define this prefix in the preamble).
@@ -667,8 +665,12 @@ dateOrTimeOrTimeStamp xsd:dateTimeStamp
 rdf:langString        xsd:string
 rdf:Literal           xsd:string
 #+end_src
-     
-It uses the following sheet columns:
+
+*** tsv2owl Columns and Features
+:PROPERTIES:
+:CUSTOM_ID: tsv2owl-columns-and-features
+:END:
+The tool uses the following sheet columns:
 - ~Class/prop~: class (if capitalized) or property belonging to the class above (if lowercase)
 - ~label~: emits ~rdfs:label~, by default same as the first column
 - ~Inherits/range~: superclass (if it's a class row) or property range
@@ -697,17 +699,19 @@ Features and limitations:
   Use ~riot --formatted ttl~ to collect them in "paragraphs"
   so you can check whether you have consistent definitions.
 - Emits ~a rdfs:Class, owl:Class~ for each class
-- Emits ~schema:domainIncludes~ for each prop to accommodate props used several times.
+- Emits ~s:domainIncludes~ for each prop to accommodate props used several times.
+  You have an option to convert this to ~rdfs:domain~ for props that have a single domain.
 - Emits type ~owl:ObjectProperty~ vs ~owl:DatatypeProperty~ for each prop, depending on range:
   - If ~iri~ then ~ObjectProperty~
+    (and with option ~-t~, add ~rdfs:range owl:Thing~)
   - If lowercase then ~DatatypeProperty~ (and prepend ~xsd:~ to the range)
   - Else (the range is a class) then ~ObjectProperty~
-- Map only the data ranges indicated above: currently doesn't support rdf:HTML, sysont:Markdown
+- Map only the data ranges indicated above: currently doesn't support ~rdf:HTML, sysont:Markdown~
 - Comment lines start with hash (~#~) in the first column
   - ~# HEADER~: if there is a space after the hash, the first cell is printed surrounded by newlines
   - ~#commented out~: if there is no space, the whole line is skipped
 
-*** RDF replacement
+*** RDF Replacement
 :PROPERTIES:
 :CUSTOM_ID: rdf-replacement
 :END:
@@ -788,6 +792,36 @@ Several sub-classes have an additional type discriminator designated by ~typePro
   There's neither RDF class ~s:OntotextPerson~ nor ~otkg:OntotextPerson~, and it doesn't add any extra prop.
   So we use ~replacement=none~ to omit it from RDF altogether.
 
+*** Running tsv2owl
+:PROPERTIES:
+:CUSTOM_ID: running-tsv2owl
+:END:
+You can run the tool with a ~Makefile~ like this (see [[./tsv2owl][tsv2owl]]), feeding from a Google Sheet:
+#+begin_src Makefile
+ontology.ttl ::
+	curl -Ls "https://docs.google.com/spreadsheets/d/.../export?format=tsv" | \
+	  perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
+	  cat ontology-preamble.ttl - > ontology-unformatted.ttl
+	riot --formatted=ttl ontology-unformatted.ttl | \
+   perl -00e '@a=<>; print sort @a' > ontology.ttl
+	# rm ontology-unformatted.ttl # keep for debugging
+#+end_src
+
+If you need to emit the more traditional domain/range characteristics,
+use the SPARQL update ~tsv2owl-domain-range.ru~ that does this:
+- If a prop has a single s:domainIncludes, convert it to rdfs:domain
+- If a prop has a single s:rangeIncludes, convert it to rdfs:range
+For this to happen, just replace ~riot~ with ~update~ (which is also part of Jena):
+#+begin_src Makefile
+ontology.ttl ::
+	curl -Ls "https://docs.google.com/spreadsheets/d/.../export?format=tsv" | \
+	  perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
+	  cat ontology-preamble.ttl - > ontology-unformatted.ttl
+	update --update=../bin/tsv2owl-domain.ru --data=ontology-unformatted.ttl --dump | \
+   perl -00e '@a=<>; print sort @a' > ontology.ttl
+	# rm ontology-unformatted.ttl # keep for debugging
+#+end_src
+Diff ~otkg.ttl~ and ~otkg-domain-range.ttl~ to see the difference.
 ** soml2puml
 :PROPERTIES:
 :CUSTOM_ID: soml2puml

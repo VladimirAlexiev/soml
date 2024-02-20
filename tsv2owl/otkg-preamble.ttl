@@ -1,23 +1,21 @@
 @base         <https://kg.ontotext.com/resource/>.
 @prefix otkg: <https://kg.ontotext.com/resource/ontology/>.
 
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix dc:   <http://purl.org/dc/elements/1.1/> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix puml: <http://plantuml.com/ontology#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix puml: <http://plantuml.com/ontology#> .
+@prefix s:    <http://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix void: <http://rdfs.org/ns/void#> .
 @prefix xml:  <http://www.w3.org/XML/1998/namespace/> .
-@prefix adms:  <http://www.w3.org/ns/adms#> .
-@prefix dc:     <http://purl.org/dc/elements/1.1/> .
-@prefix dct:    <http://purl.org/dc/terms/> .
-@prefix owl:    <http://www.w3.org/2002/07/owl#> .
-@prefix s: <http://schema.org/> .
-@prefix void:   <http://rdfs.org/ns/void#> .
-@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
-@prefix schema: <http://schema.org/> .
-
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
 otkg:             rdf:type owl:Ontology ;
-rdfs:label      "OTKG Ontology" ;
-dct:created     "2023-01-25"^^xsd:date ;
-dct:creator     <http://ontotext.com> ;
-owl:versionInfo "1.0" .
+  rdfs:label      "OTKG Ontology" ;
+  dct:created     "2023-01-25"^^xsd:date ;
+  dct:creator     <http://ontotext.com> ;
+  owl:versionInfo "1.0" .
