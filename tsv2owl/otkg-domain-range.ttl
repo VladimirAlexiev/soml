@@ -16,7 +16,7 @@ otkg:   rdf:type         owl:Ontology ;
         rdfs:label       "OTKG Ontology" ;
         dct:created      "2023-01-25"^^xsd:date ;
         dct:creator      <http://ontotext.com> ;
-        dct:updated      "2024-02-20"^^xsd:date ;
+        dct:updated      "2024-02-23"^^xsd:date ;
         owl:versionInfo  "1.0" .
 
 otkg:EventParticipation
@@ -26,19 +26,19 @@ otkg:EventParticipation
         rdfs:subClassOf   s:Event ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:recordedIn
+                            owl:onProperty      s:additionalType
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:minCardinality  1 ;
                             owl:onProperty      s:performer
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:minCardinality  1 ;
-                            owl:onProperty      s:workFeatured
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:recordedIn
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:onProperty      s:additionalType
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:workFeatured
                           ] .
 
 otkg:ITProduct  rdf:type  owl:Class , rdfs:Class ;
@@ -180,16 +180,16 @@ s:Collection  rdf:type    owl:Class , rdfs:Class ;
         rdfs:subClassOf   s:CreativeWork ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:isbn
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
                             owl:onProperty      s:hasPart
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
                             owl:minCardinality  1 ;
                             owl:onProperty      s:recordedAt
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:isbn
                           ] .
 
 s:Country  rdf:type       owl:Class , rdfs:Class ;
@@ -209,44 +209,11 @@ s:CreativeWork  rdf:type  owl:Class , rdfs:Class ;
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:headline
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:onProperty      otkg:longDescription
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:minCardinality  1 ;
-                            owl:onProperty      s:encodingFormat
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:onProperty      s:datePublished
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:onProperty      s:description
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:onProperty      s:primaryImageOfPage
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:onProperty      otkg:textHtml
+                            owl:onProperty      s:dateModified
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
                             owl:onProperty      s:publisher
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:onProperty      s:size
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:onProperty      s:dateModified
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
@@ -255,7 +222,28 @@ s:CreativeWork  rdf:type  owl:Class , rdfs:Class ;
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
+                            owl:onProperty      s:description
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:encodingFormat
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
                             owl:onProperty      s:learningResourceType
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:educationalLevel
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:text
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      otkg:textHtml
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
@@ -264,7 +252,15 @@ s:CreativeWork  rdf:type  owl:Class , rdfs:Class ;
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:educationalLevel
+                            owl:onProperty      s:headline
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:size
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:datePublished
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
@@ -272,11 +268,15 @@ s:CreativeWork  rdf:type  owl:Class , rdfs:Class ;
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:text
+                            owl:onProperty      otkg:longDescription
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
                             owl:onProperty      s:abstract
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:primaryImageOfPage
                           ] .
 
 s:Event  rdf:type         owl:Class , rdfs:Class ;
@@ -290,11 +290,11 @@ s:Event  rdf:type         owl:Class , rdfs:Class ;
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:recordedIn
+                            owl:onProperty      s:eventAttendanceMode
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:location
+                            owl:onProperty      s:isAccessibleForFree
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
@@ -306,11 +306,11 @@ s:Event  rdf:type         owl:Class , rdfs:Class ;
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:isAccessibleForFree
+                            owl:onProperty      s:recordedIn
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:eventAttendanceMode
+                            owl:onProperty      s:location
                           ] .
 
 s:EventSeries  rdf:type   owl:Class , rdfs:Class ;
@@ -343,10 +343,6 @@ s:Organization  rdf:type  owl:Class , rdfs:Class ;
         rdfs:subClassOf   s:Organization , s:Thing ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      otkg:orgScope
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
                             owl:onProperty      s:foundingDate
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
@@ -359,7 +355,16 @@ s:Organization  rdf:type  owl:Class , rdfs:Class ;
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:contactPoint
+                            owl:onProperty      otkg:orgScope
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:logo
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:legalName
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
@@ -371,26 +376,17 @@ s:Organization  rdf:type  owl:Class , rdfs:Class ;
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
+                            owl:onProperty      s:contactPoint
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
                             owl:onProperty      s:founder
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:onProperty      s:legalName
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:minCardinality  1 ;
-                            owl:onProperty      s:logo
                           ] .
 
 s:Person  rdf:type        owl:Class , rdfs:Class ;
         rdfs:isDefinedBy  otkg: ;
         rdfs:label        "Person Common" , "Person" ;
         rdfs:subClassOf   s:Person , s:Thing ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:onProperty      s:address
-                          ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
                             owl:minCardinality  0 ;
@@ -404,6 +400,10 @@ s:Person  rdf:type        owl:Class , rdfs:Class ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:minCardinality  0 ;
                             owl:onProperty      s:sameAs
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      s:address
                           ] .
 
 s:PostalAddress  rdf:type  owl:Class , rdfs:Class ;
@@ -436,7 +436,17 @@ s:ResearchProject  rdf:type  owl:Class , rdfs:Class ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
                             owl:minCardinality  1 ;
+                            owl:onProperty      s:endDate
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
                             owl:onProperty      s:sameAs
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:duration
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
@@ -447,16 +457,6 @@ s:ResearchProject  rdf:type  owl:Class , rdfs:Class ;
                             owl:maxCardinality  1 ;
                             owl:minCardinality  1 ;
                             owl:onProperty      s:startDate
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:minCardinality  1 ;
-                            owl:onProperty      s:duration
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:minCardinality  1 ;
-                            owl:onProperty      s:endDate
                           ] .
 
 s:ScholarlyArticle  rdf:type  owl:Class , rdfs:Class ;
@@ -477,12 +477,12 @@ s:Thing  rdf:type         owl:Class , rdfs:Class ;
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:description
+                            owl:minCardinality  1 ;
+                            owl:onProperty      s:name
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:minCardinality  1 ;
-                            owl:onProperty      s:name
+                            owl:onProperty      s:description
                           ] .
 
 s:VideoObject  rdf:type   owl:Class , rdfs:Class ;
@@ -510,11 +510,11 @@ s:WatchAction  rdf:type   owl:Class , rdfs:Class ;
         rdfs:subClassOf   s:Thing ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:object
+                            owl:onProperty      s:actionStatus
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:actionStatus
+                            owl:onProperty      s:startTime
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
@@ -526,11 +526,11 @@ s:WatchAction  rdf:type   owl:Class , rdfs:Class ;
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:startTime
+                            owl:onProperty      s:endTime
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      s:endTime
+                            owl:onProperty      s:object
                           ] .
 
 s:WebPage  rdf:type       owl:Class , rdfs:Class ;
@@ -1012,11 +1012,7 @@ skos:Concept  rdf:type    owl:Class , rdfs:Class ;
         rdfs:subClassOf   skos:Concept ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      skos:broader
-                          ] ;
-        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
-                            owl:maxCardinality  1 ;
-                            owl:onProperty      skos:inScheme
+                            owl:onProperty      otkg:appliesToClass
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
@@ -1025,7 +1021,11 @@ skos:Concept  rdf:type    owl:Class , rdfs:Class ;
                           ] ;
         rdfs:subClassOf   [ rdf:type            owl:Restriction ;
                             owl:maxCardinality  1 ;
-                            owl:onProperty      otkg:appliesToClass
+                            owl:onProperty      skos:broader
+                          ] ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            owl:onProperty      skos:inScheme
                           ] .
 
 skos:ConceptScheme  rdf:type  owl:Class , rdfs:Class ;

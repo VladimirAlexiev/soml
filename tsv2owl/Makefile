@@ -1,6 +1,6 @@
 .DELETE_ON_ERROR:
 
-all: otkg.ttl otkg-domain-range.ttl
+all: otkg.ttl otkg-allValuesFrom.ttl otkg-domain-range.ttl
 
 otkg-unformatted.ttl::
 	curl -Ls "https://docs.google.com/spreadsheets/d/11_PY93IT6HcNIXM8Mn0WzVux9z-X-OXWpHCWpnP9ED4/export?format=tsv" | \
@@ -8,6 +8,9 @@ otkg-unformatted.ttl::
 
 otkg.ttl: otkg-unformatted.ttl
 	riot.bat --formatted=ttl $^ | perl -00e '@a=<>; print sort @a' > $@
+
+otkg-allValuesFrom.ttl: otkg-unformatted.ttl
+	update.bat --update=../bin/tsv2owl-allValuesFrom.ru --data=$^ --dump | perl -00e '@a=<>; print sort @a' > $@
 
 otkg-domain-range.ttl: otkg-unformatted.ttl
 	update.bat --update=../bin/tsv2owl-domain-range.ru --data=$^ --dump | perl -00e '@a=<>; print sort @a' > $@

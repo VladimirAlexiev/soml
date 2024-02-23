@@ -4,7 +4,7 @@
 #+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2024-02-20>
+#+date: <2024-02-23>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
@@ -807,21 +807,48 @@ ontology.ttl ::
 	# rm ontology-unformatted.ttl # keep for debugging
 #+end_src
 
-If you need to emit the more traditional domain/range characteristics,
-use the SPARQL update ~tsv2owl-domain-range.ru~ that does this:
-- If a prop has a single s:domainIncludes, convert it to rdfs:domain
-- If a prop has a single s:rangeIncludes, convert it to rdfs:range
-For this to happen, just replace ~riot~ with ~update~ (which is also part of Jena):
+The tool attaches props to classes using two ways: ~s:domainIncludes~ and ~owl:Restriction~:
+#+begin_src turtle
+s:legalName  rdf:type     owl:DatatypeProperty ;
+        s:domainIncludes  s:Organization ;
+        s:rangeIncludes   xsd:string .
+s:Organization  rdf:type  owl:Class , rdfs:Class ;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction ;
+                            owl:maxCardinality  1 ;
+                            # owl:allValuesFrom xsd:string
+                            owl:onProperty      s:legalName
+                          ] .
+#+end_src
+Metaphactory also needs the commented-out statement (~allValuesFrom~ pointing to the property range).
+To add that, use the SPARQL update ~tsv2owl-allValuesFrom.ru~.
+Replace ~riot~ with ~update~ (which is also part of Jena):
 #+begin_src Makefile
 ontology.ttl ::
 	curl -Ls "https://docs.google.com/spreadsheets/d/.../export?format=tsv" | \
 	  perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
 	  cat ontology-preamble.ttl - > ontology-unformatted.ttl
-	update --update=../bin/tsv2owl-domain.ru --data=ontology-unformatted.ttl --dump | \
+	update --update=../bin/tsv2owl-allValuesFrom.ru --data=ontology-unformatted.ttl --dump | \
    perl -00e '@a=<>; print sort @a' > ontology.ttl
 	# rm ontology-unformatted.ttl # keep for debugging
 #+end_src
-Diff ~otkg.ttl~ and ~otkg-domain-range.ttl~ to see the difference.
+
+The tool emits ~s:domain/rangeIncludes~ (which are polymorphic, i.e. multi-valued).
+If you need to emit ~rdfs:domain/range~ (which are monomorphic, i.e. single-valued),
+use the SPARQL update ~tsv2owl-domain-range.ru~ that does this:
+- If a prop has a single ~s:domainIncludes~, convert it to ~rdfs:domain~
+- If a prop has a single ~s:rangeIncludes~, convert it to ~rdfs:range~
+#+begin_src Makefile
+ontology.ttl ::
+	curl -Ls "https://docs.google.com/spreadsheets/d/.../export?format=tsv" | \
+	  perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
+	  cat ontology-preamble.ttl - > ontology-unformatted.ttl
+	update --update=../bin/tsv2owl-domain-range.ru --data=ontology-unformatted.ttl --dump | \
+   perl -00e '@a=<>; print sort @a' > ontology.ttl
+	# rm ontology-unformatted.ttl # keep for debugging
+#+end_src
+
+You can diff ~otkg.ttl~ with ~otkg-allValuesFrom.ttl~ and  ~otkg-domain-range.ttl~ to see the difference.
+
 ** soml2puml
 :PROPERTIES:
 :CUSTOM_ID: soml2puml

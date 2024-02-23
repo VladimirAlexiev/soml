@@ -190,14 +190,14 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <style> #content {max-width: 120em; margin: auto} h1,h2,h3,h4,h5,h6,h7 {font-family: Arial} .author, .date, .creator {-webkit-margin-before: 0em; -webkit-margin-after: 0em} .abstract {margin: 1em; padding: 1em; border: 1px solid black} .abstract:before {content: 'Abstract: '; font-weight: bold} #preamble p {font-size: 110%%; margin-left: auto; margin-right: auto; text-align: center} th.org-left   {text-align:left} th.org-right  {text-align:right} th.org-center {text-align:center} th, td {line-height: 1em; border-width: 1px; border-style: solid solid; border-spacing: 2px 2px; padding: 2px 1px} .CANCELED {color: blue} .MAYBE {color: blue} .POSTPONED {color: blue} .SAME {color: blue} .APPLIED {color: orange} .FOLLOW {color: orange} .INPROGRESS {color: orange} .NEXT {color: orange} .IER {color: orange}.underline {text-decoration:underline} </style>
 </head>
 <body>
 <div id="preamble" class="status">
 <p class="author">Author: Vladimir Alexiev (<a href="mailto:vladimir.alexiev@ontotext.com">vladimir.alexiev@ontotext.com</a>)</p>
-<p class="date">Date: 2024-02-20</p>
+<p class="date">Date: 2024-02-23</p>
 </div>
 <div id="content" class="content">
 <h1 class="title">Semantic Objects Modeling Language</h1>
@@ -779,7 +779,7 @@ For example, the figure below shows the stock exchange listing (IPO) of Apple on
 </p>
 
 
-<div id="org4a48e9b" class="figure">
+<div id="orgacbf6d6" class="figure">
 <p><img src="./eg/model-exchange-listing.png" alt="model-exchange-listing.png" />
 </p>
 </div>
@@ -801,7 +801,7 @@ This version of the diagram uses <a href="#soml-map">soml-map</a> to map SOML na
 </p>
 
 
-<div id="orge1d91d3" class="figure">
+<div id="orgc75095c" class="figure">
 <p><img src="./eg/model-exchange-listing-mapped.png" alt="model-exchange-listing-mapped.png" />
 </p>
 </div>
@@ -843,7 +843,7 @@ Here's the beginning of the sheet:
 </p>
 
 
-<div id="org91577a9" class="figure">
+<div id="org1f7a5f5" class="figure">
 <p><img src="./eg/CG-sheet.png" alt="CG-sheet.png" />
 </p>
 </div>
@@ -854,7 +854,7 @@ as distinct business classes
 </p>
 
 
-<div id="orgbdbbec6" class="figure">
+<div id="orgc83386c" class="figure">
 <p><img src="./eg/CG-sheet2.png" alt="CG-sheet2.png" />
 </p>
 </div>
@@ -1664,32 +1664,63 @@ You can run the tool with a <code>Makefile</code> like this (see <a href="./tsv2
 </div>
 
 <p>
-If you need to emit the more traditional domain/range characteristics,
-use the SPARQL update <code>tsv2owl-domain-range.ru</code> that does this:
+The tool attaches props to classes using two ways: <code>s:domainIncludes</code> and <code>owl:Restriction</code>:
 </p>
-<ul class="org-ul">
-<li>If a prop has a single s:domainIncludes, convert it to rdfs:domain</li>
-<li>If a prop has a single s:rangeIncludes, convert it to rdfs:range</li>
-</ul>
+<div class="org-src-container">
+<pre class="src src-turtle"><span style="color: #228b22;">s:</span><span style="color: #008b8b;">legalName</span>  <span style="color: #228b22;">rdf:</span><span style="color: #008b8b;">type</span>     <span style="color: #228b22;">owl:</span><span style="color: #008b8b;">DatatypeProperty</span> ;
+        <span style="color: #228b22;">s:</span><span style="color: #008b8b;">domainIncludes</span>  <span style="color: #228b22;">s:</span><span style="color: #008b8b;">Organization</span> ;
+        <span style="color: #228b22;">s:</span><span style="color: #008b8b;">rangeIncludes</span>   <span style="color: #228b22;">xsd:</span><span style="color: #008b8b;">string</span> <span style="color: #228b22;">.</span>
+<span style="color: #228b22;">s:</span><span style="color: #008b8b;">Organization</span>  <span style="color: #228b22;">rdf:</span><span style="color: #008b8b;">type</span>  <span style="color: #228b22;">owl:</span><span style="color: #008b8b;">Class</span> , <span style="color: #228b22;">rdfs:</span><span style="color: #008b8b;">Class</span> ;
+        <span style="color: #228b22;">rdfs:</span><span style="color: #008b8b;">subClassOf</span>   [ <span style="color: #228b22;">rdf:</span><span style="color: #008b8b;">type</span>            <span style="color: #228b22;">owl:</span><span style="color: #008b8b;">Restriction</span> ;
+                            <span style="color: #228b22;">owl:</span><span style="color: #008b8b;">maxCardinality</span>  1 ;
+                            <span style="color: #b22222;"># owl:allValuesFrom xsd:string</span>
+                            <span style="color: #228b22;">owl:</span><span style="color: #008b8b;">onProperty</span>      <span style="color: #228b22;">s:</span>legalName
+                          ] .
+</pre>
+</div>
 <p>
-For this to happen, just replace <code>riot</code> with <code>update</code> (which is also part of Jena):
+Metaphactory also needs the commented-out statement (<code>allValuesFrom</code> pointing to the property range).
+To add that, use the SPARQL update <code>tsv2owl-allValuesFrom.ru</code>.
+Replace <code>riot</code> with <code>update</code> (which is also part of Jena):
 </p>
 <div class="org-src-container">
 <pre class="src src-Makefile">ontology.ttl ::
 	curl -Ls "https://docs.google.com/spreadsheets/d/.../export?format=tsv" | \
 	  perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
 	  cat ontology-preamble.ttl - &gt; ontology-unformatted.ttl
-	update --update=../bin/tsv2owl-domain.ru --data=ontology-unformatted.ttl --dump | \
+	update --update=../bin/tsv2owl-allValuesFrom.ru --data=ontology-unformatted.ttl --dump | \
    perl -00e '@a=&lt;&gt;; print sort @a' &gt; ontology.ttl
 	# rm ontology-unformatted.ttl # keep for debugging
 </pre>
 </div>
+
 <p>
-Diff <code>otkg.ttl</code> and <code>otkg-domain-range.ttl</code> to see the difference.
+The tool emits <code>s:domain/rangeIncludes</code> (which are polymorphic, i.e. multi-valued).
+If you need to emit <code>rdfs:domain/range</code> (which are monomorphic, i.e. single-valued),
+use the SPARQL update <code>tsv2owl-domain-range.ru</code> that does this:
+</p>
+<ul class="org-ul">
+<li>If a prop has a single <code>s:domainIncludes</code>, convert it to <code>rdfs:domain</code></li>
+<li>If a prop has a single <code>s:rangeIncludes</code>, convert it to <code>rdfs:range</code></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-Makefile">ontology.ttl ::
+	curl -Ls "https://docs.google.com/spreadsheets/d/.../export?format=tsv" | \
+	  perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
+	  cat ontology-preamble.ttl - &gt; ontology-unformatted.ttl
+	update --update=../bin/tsv2owl-domain-range.ru --data=ontology-unformatted.ttl --dump | \
+   perl -00e '@a=&lt;&gt;; print sort @a' &gt; ontology.ttl
+	# rm ontology-unformatted.ttl # keep for debugging
+</pre>
+</div>
+
+<p>
+You can diff <code>otkg.ttl</code> with <code>otkg-allValuesFrom.ttl</code> and  <code>otkg-domain-range.ttl</code> to see the difference.
 </p>
 </div>
 </div>
 </div>
+
 <div id="outline-container-soml2puml" class="outline-3">
 <h3 id="soml2puml"><span class="section-number-3">3.6.</span> soml2puml</h3>
 <div class="outline-text-3" id="text-soml2puml">
