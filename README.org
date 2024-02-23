@@ -21,32 +21,6 @@
 :END:
 
 :CONTENTS:
-- [[#intro][Intro]]
-  - [[#why-soml][Why SOML?]]
-  - [[#similar-schema-languages][Similar Schema Languages]]
-  - [[#what-is-soml][What is SOML]]
-- [[#complex-schema-company-graph][Complex Schema (Company Graph)]]
-  - [[#example-class][Example Class:]]
-  - [[#example-inverse-alias][Example Inverse Alias]]
-  - [[#example-diagram-exchange-listing-soml][Example Diagram: Exchange Listing SOML]]
-  - [[#example-diagram-exchange-listing-rdf][Example Diagram: Exchange Listing RDF]]
-- [[#soml-tooling][SOML Tooling]]
-  - [[#owl2soml][owl2soml]]
-  - [[#tsv2soml][tsv2soml]]
-    - [[#reusing-property-characteristics][Reusing Property Characteristics]]
-  - [[#soml-map][soml-map]]
-  - [[#soml-simplify][soml-simplify]]
-  - [[#tsv2owl][tsv2owl]]
-    - [[#rdf-replacement][RDF replacement]]
-  - [[#soml2puml][soml2puml]]
-- [[#tricky-points-and-deficiencies][Tricky Points and Deficiencies]]
-  - [[#graphql-type-vs-rdftype][GraphQL Type vs rdf:type]]
-  - [[#single-vs-multiple-value-props][Single vs Multiple-Value Props]]
-  - [[#inverse-aliases][Inverse Aliases]]
-  - [[#literals][Literals]]
-  - [[#extended-pattern-prefix--regex][Extended Pattern (Prefix + Regex)]]
-  - [[#iri-generation][IRI Generation]]
-  - [[#schema-inclusionmodularity][Schema Inclusion/Modularity]]
 :END:
 
 * Intro
