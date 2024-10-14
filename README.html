@@ -197,7 +197,7 @@
 <body>
 <div id="preamble" class="status">
 <p class="author">Author: Vladimir Alexiev (<a href="mailto:vladimir.alexiev@ontotext.com">vladimir.alexiev@ontotext.com</a>)</p>
-<p class="date">Date: 2024-02-23</p>
+<p class="date">Date: 2024-10-14</p>
 </div>
 <div id="content" class="content">
 <h1 class="title">Semantic Objects Modeling Language</h1>
@@ -205,57 +205,57 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#intro">1. Intro</a>
+<li><a href="#intro">Intro</a>
 <ul>
-<li><a href="#why-soml">1.1. Why SOML?</a></li>
-<li><a href="#similar-schema-languages">1.2. Similar Schema Languages</a></li>
-<li><a href="#what-is-soml">1.3. What is SOML</a></li>
+<li><a href="#why-soml">Why SOML?</a></li>
+<li><a href="#similar-schema-languages">Similar Schema Languages</a></li>
+<li><a href="#what-is-soml">What is SOML</a></li>
 </ul>
 </li>
-<li><a href="#complex-schema-company-graph">2. Complex Schema (Company Graph)</a>
+<li><a href="#complex-schema-company-graph">Complex Schema (Company Graph)</a>
 <ul>
-<li><a href="#example-class">2.1. Example Class</a></li>
-<li><a href="#example-inverse-alias">2.2. Example Inverse Alias</a></li>
-<li><a href="#example-diagram-exchange-listing-soml">2.3. Example Diagram: Exchange Listing SOML</a></li>
-<li><a href="#example-diagram-exchange-listing-rdf">2.4. Example Diagram: Exchange Listing RDF</a></li>
+<li><a href="#example-class">Example Class</a></li>
+<li><a href="#example-inverse-alias">Example Inverse Alias</a></li>
+<li><a href="#example-diagram-exchange-listing-soml">Example Diagram: Exchange Listing SOML</a></li>
+<li><a href="#example-diagram-exchange-listing-rdf">Example Diagram: Exchange Listing RDF</a></li>
 </ul>
 </li>
-<li><a href="#soml-tooling">3. SOML Tooling</a>
+<li><a href="#soml-tooling">SOML Tooling</a>
 <ul>
-<li><a href="#owl2soml">3.1. owl2soml</a></li>
-<li><a href="#tsv2soml">3.2. tsv2soml</a>
+<li><a href="#owl2soml">owl2soml</a></li>
+<li><a href="#tsv2soml">tsv2soml</a>
 <ul>
-<li><a href="#reusing-property-characteristics">3.2.1. Reusing Property Characteristics</a></li>
+<li><a href="#reusing-property-characteristics">Reusing Property Characteristics</a></li>
 </ul>
 </li>
-<li><a href="#soml-map">3.3. soml-map</a></li>
-<li><a href="#soml-simplify">3.4. soml-simplify</a>
+<li><a href="#soml-map">soml-map</a></li>
+<li><a href="#soml-simplify">soml-simplify</a>
 <ul>
-<li><a href="#example-source-soml-schema">3.4.1. Example Source (SOML schema)</a></li>
-<li><a href="#example-target-simplified">3.4.2. Example Target (Simplified)</a></li>
+<li><a href="#example-source-soml-schema">Example Source (SOML schema)</a></li>
+<li><a href="#example-target-simplified">Example Target (Simplified)</a></li>
 </ul>
 </li>
-<li><a href="#tsv2owl">3.5. tsv2owl</a>
+<li><a href="#tsv2owl">tsv2owl</a>
 <ul>
-<li><a href="#ontology-preamble">3.5.1. Ontology Preamble</a></li>
-<li><a href="#tsv2owl-options">3.5.2. tsv2owl Options</a></li>
-<li><a href="#tsv2owl-columns-and-features">3.5.3. tsv2owl Columns and Features</a></li>
-<li><a href="#rdf-replacement">3.5.4. RDF Replacement</a></li>
-<li><a href="#running-tsv2owl">3.5.5. Running tsv2owl</a></li>
+<li><a href="#ontology-preamble">Ontology Preamble</a></li>
+<li><a href="#tsv2owl-options">tsv2owl Options</a></li>
+<li><a href="#tsv2owl-columns-and-features">tsv2owl Columns and Features</a></li>
+<li><a href="#rdf-replacement">RDF Replacement</a></li>
+<li><a href="#running-tsv2owl">Running tsv2owl</a></li>
 </ul>
 </li>
-<li><a href="#soml2puml">3.6. soml2puml</a></li>
+<li><a href="#soml2puml">soml2puml</a></li>
 </ul>
 </li>
-<li><a href="#tricky-points-and-deficiencies">4. Tricky Points and Deficiencies</a>
+<li><a href="#tricky-points-and-deficiencies">Tricky Points and Deficiencies</a>
 <ul>
-<li><a href="#graphql-type-vs-rdf-type">4.1. GraphQL Type vs rdf:type</a></li>
-<li><a href="#single-vs-multiple-value-props">4.2. Single vs Multiple-Value Props</a></li>
-<li><a href="#inverse-aliases">4.3. Inverse Aliases</a></li>
-<li><a href="#literals">4.4. Literals</a></li>
-<li><a href="#extended-pattern-prefix-regex">4.5. Extended Pattern (Prefix + Regex)</a></li>
-<li><a href="#iri-generation">4.6. IRI Generation</a></li>
-<li><a href="#schema-inclusion-modularity">4.7. Schema Inclusion/Modularity</a></li>
+<li><a href="#graphql-type-vs-rdf-type">GraphQL Type vs rdf:type</a></li>
+<li><a href="#single-vs-multiple-value-props">Single vs Multiple-Value Props</a></li>
+<li><a href="#inverse-aliases">Inverse Aliases</a></li>
+<li><a href="#literals">Literals</a></li>
+<li><a href="#extended-pattern-prefix-regex">Extended Pattern (Prefix + Regex)</a></li>
+<li><a href="#iri-generation">IRI Generation</a></li>
+<li><a href="#schema-inclusion-modularity">Schema Inclusion/Modularity</a></li>
 </ul>
 </li>
 </ul>
@@ -266,7 +266,7 @@
 </p>
 
 <div id="outline-container-intro" class="outline-2">
-<h2 id="intro"><span class="section-number-2">1.</span> Intro</h2>
+<h2 id="intro">Intro</h2>
 <div class="outline-text-2" id="text-intro">
 <p>
 The Semantic Objects Modeling Language (SOML)
@@ -309,7 +309,7 @@ generating SOML (<code>tsv2soml</code>) and mapping RDF data (<code>soml-map</co
 </div>
 
 <div id="outline-container-why-soml" class="outline-3">
-<h3 id="why-soml"><span class="section-number-3">1.1.</span> Why SOML?</h3>
+<h3 id="why-soml">Why SOML?</h3>
 <div class="outline-text-3" id="text-why-soml">
 <p>
 We often are asked why we had to introduce yet another object modeling language?
@@ -356,7 +356,7 @@ we need to be able to generate a number of technical artefacts from the same bus
 </div>
 
 <div id="outline-container-similar-schema-languages" class="outline-3">
-<h3 id="similar-schema-languages"><span class="section-number-3">1.2.</span> Similar Schema Languages</h3>
+<h3 id="similar-schema-languages">Similar Schema Languages</h3>
 <div class="outline-text-3" id="text-similar-schema-languages">
 <p>
 A number of schema languages have appeared recently that are based on YAML,
@@ -395,7 +395,7 @@ While not publically available, it's described in presentations by <a href="http
 </div>
 
 <div id="outline-container-what-is-soml" class="outline-3">
-<h3 id="what-is-soml"><span class="section-number-3">1.3.</span> What is SOML</h3>
+<h3 id="what-is-soml">What is SOML</h3>
 <div class="outline-text-3" id="text-what-is-soml">
 <p>
 At present SOML is very simple, but will evolve to include more features.
@@ -458,7 +458,7 @@ some tricky points of SOML usage and GraphQL deficiencies, and some tooling.
 </div>
 
 <div id="outline-container-complex-schema-company-graph" class="outline-2">
-<h2 id="complex-schema-company-graph"><span class="section-number-2">2.</span> Complex Schema (Company Graph)</h2>
+<h2 id="complex-schema-company-graph">Complex Schema (Company Graph)</h2>
 <div class="outline-text-2" id="text-complex-schema-company-graph">
 <p>
 To introduce the proper context for this blog (working with complex SOML schemas),
@@ -667,7 +667,7 @@ The full CG schema is included: <a href="./schemas/CG.yaml">CG.yaml</a>. Below w
 </div>
 
 <div id="outline-container-example-class" class="outline-3">
-<h3 id="example-class"><span class="section-number-3">2.1.</span> Example Class</h3>
+<h3 id="example-class">Example Class</h3>
 <div class="outline-text-3" id="text-example-class">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #a0522d;">ExchangeListing</span>:
@@ -728,7 +728,7 @@ A more appropriate <code>descr</code> is given at the object level, overriding t
 </div>
 
 <div id="outline-container-example-inverse-alias" class="outline-3">
-<h3 id="example-inverse-alias"><span class="section-number-3">2.2.</span> Example Inverse Alias</h3>
+<h3 id="example-inverse-alias">Example Inverse Alias</h3>
 <div class="outline-text-3" id="text-example-inverse-alias">
 <p>
 A Position is an associative node between Person and Organization that adds more data (not shown):
@@ -762,7 +762,7 @@ To allow navigation in any direction (not just from Position out, but also in), 
 </div>
 
 <div id="outline-container-example-diagram-exchange-listing-soml" class="outline-3">
-<h3 id="example-diagram-exchange-listing-soml"><span class="section-number-3">2.3.</span> Example Diagram: Exchange Listing SOML</h3>
+<h3 id="example-diagram-exchange-listing-soml">Example Diagram: Exchange Listing SOML</h3>
 <div class="outline-text-3" id="text-example-diagram-exchange-listing-soml">
 <p>
 For example, the figure below shows the stock exchange listing (IPO) of Apple on the Tokyo exchange and NASDAQ, and the listing of Nasdaq Inc (the company) on NASDAQ (the stock exchange).
@@ -779,7 +779,7 @@ For example, the figure below shows the stock exchange listing (IPO) of Apple on
 </p>
 
 
-<div id="orgacbf6d6" class="figure">
+<div id="orgc7fc250" class="figure">
 <p><img src="./eg/model-exchange-listing.png" alt="model-exchange-listing.png" />
 </p>
 </div>
@@ -787,7 +787,7 @@ For example, the figure below shows the stock exchange listing (IPO) of Apple on
 </div>
 
 <div id="outline-container-example-diagram-exchange-listing-rdf" class="outline-3">
-<h3 id="example-diagram-exchange-listing-rdf"><span class="section-number-3">2.4.</span> Example Diagram: Exchange Listing RDF</h3>
+<h3 id="example-diagram-exchange-listing-rdf">Example Diagram: Exchange Listing RDF</h3>
 <div class="outline-text-3" id="text-example-diagram-exchange-listing-rdf">
 <p>
 This version of the diagram uses <a href="#soml-map">soml-map</a> to map SOML names to RDF names in specific namespaces.
@@ -801,7 +801,7 @@ This version of the diagram uses <a href="#soml-map">soml-map</a> to map SOML na
 </p>
 
 
-<div id="orgc75095c" class="figure">
+<div id="orgdc71676" class="figure">
 <p><img src="./eg/model-exchange-listing-mapped.png" alt="model-exchange-listing-mapped.png" />
 </p>
 </div>
@@ -810,12 +810,12 @@ This version of the diagram uses <a href="#soml-map">soml-map</a> to map SOML na
 </div>
 
 <div id="outline-container-soml-tooling" class="outline-2">
-<h2 id="soml-tooling"><span class="section-number-2">3.</span> SOML Tooling</h2>
+<h2 id="soml-tooling">SOML Tooling</h2>
 <div class="outline-text-2" id="text-soml-tooling">
 </div>
 
 <div id="outline-container-owl2soml" class="outline-3">
-<h3 id="owl2soml"><span class="section-number-3">3.1.</span> owl2soml</h3>
+<h3 id="owl2soml">owl2soml</h3>
 <div class="outline-text-3" id="text-owl2soml">
 <p>
 This tool (written in Perl) generates SOML schemas from ontologies (that use RDFS, OWL and/or schema.org constructs).
@@ -826,7 +826,7 @@ See its own README.
 </div>
 
 <div id="outline-container-tsv2soml" class="outline-3">
-<h3 id="tsv2soml"><span class="section-number-3">3.2.</span> tsv2soml</h3>
+<h3 id="tsv2soml">tsv2soml</h3>
 <div class="outline-text-3" id="text-tsv2soml">
 <p>
 Editing large schemas is often easier to do in a table, even when the schema language is simple.
@@ -843,7 +843,7 @@ Here's the beginning of the sheet:
 </p>
 
 
-<div id="org1f7a5f5" class="figure">
+<div id="orgc2b8524" class="figure">
 <p><img src="./eg/CG-sheet.png" alt="CG-sheet.png" />
 </p>
 </div>
@@ -854,7 +854,7 @@ as distinct business classes
 </p>
 
 
-<div id="orgc83386c" class="figure">
+<div id="org5fae081" class="figure">
 <p><img src="./eg/CG-sheet2.png" alt="CG-sheet2.png" />
 </p>
 </div>
@@ -890,7 +890,7 @@ Comment lines start with hash (<code>#</code>) in the first column
 </div>
 
 <div id="outline-container-reusing-property-characteristics" class="outline-4">
-<h4 id="reusing-property-characteristics"><span class="section-number-4">3.2.1.</span> Reusing Property Characteristics</h4>
+<h4 id="reusing-property-characteristics">Reusing Property Characteristics</h4>
 <div class="outline-text-4" id="text-reusing-property-characteristics">
 <ul class="org-ul">
 <li>The script counts how many times each prop is used in objects</li>
@@ -1012,7 +1012,7 @@ To fix this, you need to specify <code>min: 0</code> explicitly in the <code>Per
 </div>
 
 <div id="outline-container-soml-map" class="outline-3">
-<h3 id="soml-map"><span class="section-number-3">3.3.</span> soml-map</h3>
+<h3 id="soml-map">soml-map</h3>
 <div class="outline-text-3" id="text-soml-map">
 <p>
 <code>tsv2soml</code> writes out a file <code>soml-map.tsv</code> (see exmaple <a href="./schemas/soml-map.tsv">soml-map.tsv</a>) with columns "class, prop (optional), rdf"
@@ -1042,7 +1042,7 @@ perl soml-map.pl &lt; file.(tarql|ru|ttl) &gt; file-mapped.(tarql|ru|ttl)
 </div>
 
 <div id="outline-container-soml-simplify" class="outline-3">
-<h3 id="soml-simplify"><span class="section-number-3">3.4.</span> soml-simplify</h3>
+<h3 id="soml-simplify">soml-simplify</h3>
 <div class="outline-text-3" id="text-soml-simplify">
 <p>
 The purpose of this script is to simplify a SOML entity schema significantly,
@@ -1075,7 +1075,7 @@ A draft script was made by GPT-4 following the specfication below, then improved
 </div>
 
 <div id="outline-container-example-source-soml-schema" class="outline-4">
-<h4 id="example-source-soml-schema"><span class="section-number-4">3.4.1.</span> Example Source (SOML schema)</h4>
+<h4 id="example-source-soml-schema">Example Source (SOML schema)</h4>
 <div class="outline-text-4" id="text-example-source-soml-schema">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #a0522d;">objects</span>:
@@ -1117,7 +1117,7 @@ A draft script was made by GPT-4 following the specfication below, then improved
 </div>
 </div>
 <div id="outline-container-example-target-simplified" class="outline-4">
-<h4 id="example-target-simplified"><span class="section-number-4">3.4.2.</span> Example Target (Simplified)</h4>
+<h4 id="example-target-simplified">Example Target (Simplified)</h4>
 <div class="outline-text-4" id="text-example-target-simplified">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #a0522d;">AccumulatorReset</span>:
@@ -1133,7 +1133,7 @@ A draft script was made by GPT-4 following the specfication below, then improved
 </div>
 
 <div id="outline-container-tsv2owl" class="outline-3">
-<h3 id="tsv2owl"><span class="section-number-3">3.5.</span> tsv2owl</h3>
+<h3 id="tsv2owl">tsv2owl</h3>
 <div class="outline-text-3" id="text-tsv2owl">
 <p>
 This tool uses the same sheets that drive <code>tsv2soml</code> to generate an OWL ontology.
@@ -1148,7 +1148,7 @@ It works like this:
 </div>
 
 <div id="outline-container-ontology-preamble" class="outline-4">
-<h4 id="ontology-preamble"><span class="section-number-4">3.5.1.</span> Ontology Preamble</h4>
+<h4 id="ontology-preamble">Ontology Preamble</h4>
 <div class="outline-text-4" id="text-ontology-preamble">
 <p>
 Use an ontology preamble, eg like this <code>otkg-preamble.ttl</code>.
@@ -1176,7 +1176,7 @@ otkg: a owl:Ontology ;
 </div>
 
 <div id="outline-container-tsv2owl-options" class="outline-4">
-<h4 id="tsv2owl-options"><span class="section-number-4">3.5.2.</span> tsv2owl Options</h4>
+<h4 id="tsv2owl-options">tsv2owl Options</h4>
 <div class="outline-text-4" id="text-tsv2owl-options">
 <p>
 It has these options. 
@@ -1233,7 +1233,7 @@ rdf:Literal           xsd:string
 </div>
 
 <div id="outline-container-tsv2owl-columns-and-features" class="outline-4">
-<h4 id="tsv2owl-columns-and-features"><span class="section-number-4">3.5.3.</span> tsv2owl Columns and Features</h4>
+<h4 id="tsv2owl-columns-and-features">tsv2owl Columns and Features</h4>
 <div class="outline-text-4" id="text-tsv2owl-columns-and-features">
 <p>
 The tool uses the following sheet columns:
@@ -1297,7 +1297,7 @@ You have an option to convert this to <code>rdfs:domain</code> for props that ha
 </div>
 
 <div id="outline-container-rdf-replacement" class="outline-4">
-<h4 id="rdf-replacement"><span class="section-number-4">3.5.4.</span> RDF Replacement</h4>
+<h4 id="rdf-replacement">RDF Replacement</h4>
 <div class="outline-text-4" id="text-rdf-replacement">
 <p>
 The column <code>RDF</code> is used when you need to specify something different from <code>Class/name</code>.
@@ -1647,7 +1647,7 @@ So we use <code>replacement=none</code> to omit it from RDF altogether.</li>
 </div>
 
 <div id="outline-container-running-tsv2owl" class="outline-4">
-<h4 id="running-tsv2owl"><span class="section-number-4">3.5.5.</span> Running tsv2owl</h4>
+<h4 id="running-tsv2owl">Running tsv2owl</h4>
 <div class="outline-text-4" id="text-running-tsv2owl">
 <p>
 You can run the tool with a <code>Makefile</code> like this (see <a href="./tsv2owl">tsv2owl</a>), feeding from a Google Sheet:
@@ -1722,7 +1722,7 @@ You can diff <code>otkg.ttl</code> with <code>otkg-allValuesFrom.ttl</code> and 
 </div>
 
 <div id="outline-container-soml2puml" class="outline-3">
-<h3 id="soml2puml"><span class="section-number-3">3.6.</span> soml2puml</h3>
+<h3 id="soml2puml">soml2puml</h3>
 <div class="outline-text-3" id="text-soml2puml">
 <p>
 Generate nice PlantUML diagrams from SOML models.
@@ -1733,30 +1733,30 @@ See its own README.
 </div>
 
 <div id="outline-container-tricky-points-and-deficiencies" class="outline-2">
-<h2 id="tricky-points-and-deficiencies"><span class="section-number-2">4.</span> Tricky Points and Deficiencies</h2>
+<h2 id="tricky-points-and-deficiencies">Tricky Points and Deficiencies</h2>
 <div class="outline-text-2" id="text-tricky-points-and-deficiencies">
 </div>
 
 <div id="outline-container-graphql-type-vs-rdf-type" class="outline-3">
-<h3 id="graphql-type-vs-rdf-type"><span class="section-number-3">4.1.</span> GraphQL Type vs rdf:type</h3>
+<h3 id="graphql-type-vs-rdf-type">GraphQL Type vs rdf:type</h3>
 <div class="outline-text-3" id="text-graphql-type-vs-rdf-type">
 </div>
 </div>
 
 <div id="outline-container-single-vs-multiple-value-props" class="outline-3">
-<h3 id="single-vs-multiple-value-props"><span class="section-number-3">4.2.</span> Single vs Multiple-Value Props</h3>
+<h3 id="single-vs-multiple-value-props">Single vs Multiple-Value Props</h3>
 <div class="outline-text-3" id="text-single-vs-multiple-value-props">
 </div>
 </div>
 
 <div id="outline-container-inverse-aliases" class="outline-3">
-<h3 id="inverse-aliases"><span class="section-number-3">4.3.</span> Inverse Aliases</h3>
+<h3 id="inverse-aliases">Inverse Aliases</h3>
 <div class="outline-text-3" id="text-inverse-aliases">
 </div>
 </div>
 
 <div id="outline-container-literals" class="outline-3">
-<h3 id="literals"><span class="section-number-3">4.4.</span> Literals</h3>
+<h3 id="literals">Literals</h3>
 <div class="outline-text-3" id="text-literals">
 <p>
 (langString, union datatypes)
@@ -1765,19 +1765,19 @@ See its own README.
 </div>
 
 <div id="outline-container-extended-pattern-prefix-regex" class="outline-3">
-<h3 id="extended-pattern-prefix-regex"><span class="section-number-3">4.5.</span> Extended Pattern (Prefix + Regex)</h3>
+<h3 id="extended-pattern-prefix-regex">Extended Pattern (Prefix + Regex)</h3>
 <div class="outline-text-3" id="text-extended-pattern-prefix-regex">
 </div>
 </div>
 
 <div id="outline-container-iri-generation" class="outline-3">
-<h3 id="iri-generation"><span class="section-number-3">4.6.</span> IRI Generation</h3>
+<h3 id="iri-generation">IRI Generation</h3>
 <div class="outline-text-3" id="text-iri-generation">
 </div>
 </div>
 
 <div id="outline-container-schema-inclusion-modularity" class="outline-3">
-<h3 id="schema-inclusion-modularity"><span class="section-number-3">4.7.</span> Schema Inclusion/Modularity</h3>
+<h3 id="schema-inclusion-modularity">Schema Inclusion/Modularity</h3>
 <div class="outline-text-3" id="text-schema-inclusion-modularity">
 </div>
 </div>

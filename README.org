@@ -1,10 +1,10 @@
-#+startup: num
+#+startup: nonum
 #+options: ':nil *:t -:t ::t <:t H:5 \n:nil ^:{} anchor:t arch:headline author:t
 #+options: broken-links:nil c:nil creator:nil d:(not "LOGBOOK") date:t e:t email:nil f:t
-#+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: inline:t num:nil p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2024-02-23>
+#+date: <2024-10-14>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
