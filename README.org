@@ -646,13 +646,14 @@ It has these options.
   For example, for the Ontotext KG (OTKG), we use  ~-v s: -o otkg:~ i.e. schema.org (s:) as vocabulary namespace but otkg: as the ontology URL. Then eg:
     - ~keywords~ will be emitted as ~s:keywords~ because it doesn't have an RDF value
     - ~buyersJourney~ will be emitted as ~otkg:buyersJourney~ because that is its RDF value
-- ~-o:~: ontology URL (optional).
+- ~-o~: ontology URL (optional).
   - Should match the ~owl:Ontology~ that you use in the preamble
   - Can be a prefixed URL (eg ~otkg:~, in this case the URL has a slash at the end)
     or a full URL (eg <https://kg.ontotext.com/resource/ontology> without slash at the end)
   - For each term (class and prop), adds ~rdfs:isDefinedBy~ pointing to the ontology.
     This is a common practice and is used eg by MetaPhactory when collecting properties to generate forms.
   - Adds the current date as ~dct:modified~ of the ontology
+- ~-O~: add ~owl:Restriction~ to bind props to classes (else it uses only ~s:domainIncludes~ to props)
 - ~-t~: add ~rdfs:range owl:Thing~ to props with range ~iri~
     (this is needed for Metaphactory to be able to edit "free URLs").
   - Without this option, they are still mapped to ~owl:ObjectProperty~, but without any ~rdfs:range~.
@@ -705,8 +706,13 @@ Features and limitations:
   Use ~riot --formatted ttl~ to collect them in "paragraphs"
   so you can check whether you have consistent definitions.
 - Emits ~a rdfs:Class, owl:Class~ for each class
-- Emits ~s:domainIncludes~ for each prop to accommodate props used several times.
-  You have an option to convert this to ~rdfs:domain~ for props that have a single domain.
+- Emits ~s:domainIncludes~ for each prop to accommodate props listed under several classes.
+  - Use option ~-O~ to also add ~owl:Restriction~ to each class.
+    This binds the prop to the class, and shows the class-dependent cardinality of the prop
+  - Use the update ~tsv2owl-domain-range.ru~ to convert ~domainIncludes~ to ~rdfs:domain~ for props listed only once.
+- Emits ~s:rangeIncludes~ for each prop
+  - Use the update ~tsv2owl-domain-range.ru~ to convert ~rangeIncludes~ to ~rdfs:range~ for props that always point to the same class or datatype
+  - We strongly recommend that for all props, and indeed that is currently a restriction in SOML.
 - Emits type ~owl:ObjectProperty~ vs ~owl:DatatypeProperty~ for each prop, depending on range:
   - If ~iri~ then ~ObjectProperty~
     (and with option ~-t~, add ~rdfs:range owl:Thing~)

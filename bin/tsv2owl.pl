@@ -4,7 +4,7 @@
 use strict;
 use Getopt::Std;
 use Carp;                       # https://perldoc.perl.org/Carp
-our ($opt_v, $opt_o, $opt_t, $opt_l);   # vocab, ontology, emit owl:Thing for "iri", downgrade literals
+our ($opt_v, $opt_o, $opt_O, $opt_t, $opt_l); # vocab, ontology, owl:Restriction, owl:Thing for "iri", downgrade literals
 our %MAP_LITERAL =              # from SOML literal ranges to rdf/xsd
   qw(langString            rdf:langString
      stringOrLangString    rdf:langString
@@ -46,7 +46,7 @@ sub chars ($$$) {
   $max = "owl:maxCardinality $1" if          $chars =~ s{max: +(\d+),? ?}{};
   $max = "owl:maxCardinality 1"  if !$max && $chars !~ s{max: +inf,? ?}{}; # single-valued
   print "$rdf_class rdfs:subClassOf [a owl:Restriction; owl:onProperty $prop; $min; $max]."
-    if $min || $max;
+    if $opt_O; # was $min || $max;
   # print "$prop a owl:FunctionalProperty." # single-valued: only works if all prop uses conform
   $chars =~ s{inverseOf: (\w+),? ?}{$inv = rdf_name($1); "owl:inverseOf $inv; "}e;
   $chars =~ s{symmetric: true,? ?}{a owl:SymmetricProperty; };
