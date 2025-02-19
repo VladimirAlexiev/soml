@@ -4,7 +4,7 @@
 #+options: inline:t num:nil p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:nil title:t toc:5 todo:t |:t
 #+title: Semantic Objects Modeling Language
-#+date: <2024-10-14>
+#+date: <2024-10-15>
 #+author: Vladimir Alexiev
 #+email: vladimir.alexiev@ontotext.com
 #+language: en
@@ -643,9 +643,9 @@ otkg: a owl:Ontology ;
 It has these options. 
 - ~-v~: default namespace for classes and props that don't have a specific URL in the RDF column.
   - By default is the empty prefix ~:~ (you must define this prefix in the preamble).
-  For example, for the Ontotext KG (OTKG), we use  ~-v s: -o otkg:~ i.e. schema.org (s:) as vocabulary namespace but otkg: as the ontology URL. Then eg:
-    - ~keywords~ will be emitted as ~s:keywords~ because it doesn't have an RDF value
-    - ~buyersJourney~ will be emitted as ~otkg:buyersJourney~ because that is its RDF value
+  - For example, for the Ontotext KG (OTKG), we use  ~-v s: -o otkg:~ i.e. schema.org (~s:~) as vocabulary namespace but ~otkg:~ as the ontology URL. Then eg:
+      - ~keywords~ will be emitted as ~s:keywords~ because it doesn't have an RDF value
+      - ~buyersJourney~ will be emitted as ~otkg:buyersJourney~ because that is its RDF value
 - ~-o~: ontology URL (optional).
   - Should match the ~owl:Ontology~ that you use in the preamble
   - Can be a prefixed URL (eg ~otkg:~, in this case the URL has a slash at the end)
@@ -653,12 +653,13 @@ It has these options.
   - For each term (class and prop), adds ~rdfs:isDefinedBy~ pointing to the ontology.
     This is a common practice and is used eg by MetaPhactory when collecting properties to generate forms.
   - Adds the current date as ~dct:modified~ of the ontology
-- ~-O~: add ~owl:Restriction~ to bind props to classes (else it uses only ~s:domainIncludes~ to props)
+- ~-O~: add ~owl:Restriction~ to bind props to classes (else it uses only ~s:domainIncludes~ on props)
 - ~-t~: add ~rdfs:range owl:Thing~ to props with range ~iri~
     (this is needed for Metaphactory to be able to edit "free URLs").
-  - Without this option, they are still mapped to ~owl:ObjectProperty~, but without any ~rdfs:range~.
-- ~-l~: downgrade literal datatypes.
-  - Datatypes are mapped as follows:
+  - Without this option, they are still mapped to ~owl:ObjectProperty~, but without any ~rangeIncludes~.
+- ~-l~: downgrade literal datatypes. 
+
+Datatypes are mapped as follows:
 #+begin_src 
 langString            rdf:langString
 stringOrLangString    rdf:langString
@@ -667,7 +668,8 @@ dateOrYearOrMonth     xsd:date
 dateOrTimeOrTimeStamp xsd:dateTimeStamp
 <datatype>            xsd:<datatype>
 #+end_src
-  - With this option, the following downgrading (simplification) is also done:
+
+With the ~-l~ option, the following downgrading (simplification) is also done:
 #+begin_src 
 rdf:langString        xsd:string
 rdf:Literal           xsd:string
@@ -812,7 +814,7 @@ You can run the tool with a ~Makefile~ like this (see [[./tsv2owl][tsv2owl]]), f
 #+begin_src Makefile
 ontology.ttl ::
 	curl -Ls "https://docs.google.com/spreadsheets/d/.../export?format=tsv" | \
-	  perl -S tsv2owl.pl -vocab s: -ontology otkg: | \
+	  perl -Swill be emitted as  tsv2owl.pl -vocab s: -ontology otkg: | \
 	  cat ontology-preamble.ttl - > ontology-unformatted.ttl
 	riot --formatted=ttl ontology-unformatted.ttl | \
    perl -00e '@a=<>; print sort @a' > ontology.ttl

@@ -830,9 +830,24 @@ Subroutine spacepad redefined at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm 
         JSONLD::BEGIN() called at C:/Strawberry/perl/site/lib/Debug/ShowStuff.pm line 1635
         ...
 ```
-
+- On Straberry Perl (Windows), `cpanm Attean` got this error:
+```
+Building and testing Log-Any-1.717 ... FAIL
+! Installing Log::Any failed. See C:\Strawberry\cpan\work\1739889699.19828\build.log for details. Retry with --force to force install it.
+! Installing the dependencies failed: Module 'Log::Any::Test' is not installed, Module 'Log::Any' is not installed
+! Bailing out the installation for MooX-Log-Any-0.004004.
+```
+Only a few of the tests failed, so work around this by first running:
+```
+cpanm --force MooX::Log::Any
+```
 
 ## Change Log
+
+18-Feb-2025:
+- Tested it on another big ontology, see [DBpedia Ontology](https://github.com/VladimirAlexiev/soml/tree/master/owl2soml/eg#dbpedia-ontology)
+- Downgrade `dbd:` datatypes (`<http://dbpedia.org/datatype/>`) to `decimal` or `string`
+- Produced `dbo.yaml` (SOML schema) and `dbo-simplified.yaml` (simplified schema for LLM querying)
 
 13-Nov-2020:
 - lowercase the first letter of prop names

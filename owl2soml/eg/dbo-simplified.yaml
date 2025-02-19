@@ -1,0 +1,4006 @@
+Academic:
+  ISA: Person
+AcademicConference:
+  ISA: SocietalEvent
+AcademicJournal:
+  ISA: PeriodicalLiterature
+  academicDiscipline: '[iri]'
+  impactFactor: '[double]'
+  impactFactorAsOf: '[year]'
+  isPeerReviewed: '[boolean]'
+  jstor: '[string]'
+AcademicSubject:
+  ISA: TopicalConcept
+Activity:
+  equipment: '[iri]'
+  numberOfClubs: '[nonNegativeInteger]'
+  numberOfPeopleLicensed: '[nonNegativeInteger]'
+  numberOfPlayers: '[nonNegativeInteger]'
+  numberOfProfessionals: '[nonNegativeInteger]'
+Actor:
+  ISA: Artist
+  arielAward: '[Award]'
+  geminiAward: '[Award]'
+  goldenCalfAward: '[Award]'
+  goldenRaspberryAward: '[Award]'
+  iftaAward: '[Award]'
+  laurenceOlivierAward: '[Award]'
+  naacpImageAward: '[Award]'
+  nationalFilmAward: '[Award]'
+  screenActorsGuildAward: '[Award]'
+AdministrativeRegion:
+  ISA: Region
+  administrativeCenter: '[Place]'
+  congressionalDistrict: '[iri]'
+  landeshauptmann: '[Person]'
+  landtag: '[string]'
+  landtagMandate: '[string]'
+  numberOfCountries: '[positiveInteger]'
+  seatNumber: '[nonNegativeInteger]'
+AdultActor:
+  ISA: Actor
+  numberOfFilms: '[nonNegativeInteger]'
+Agent:
+  age: '[integer]'
+  artPatron: '[Artist]'
+  championships: '[nonNegativeInteger]'
+  denomination: '[iri]'
+  discipline: '[iri]'
+  generalCouncil: '[TermOfOffice]'
+  hometown: '[Settlement]'
+  ideology: '[Ideology]'
+  juniorSeason: '[iri]'
+  managerSeason: '[iri]'
+  nationalSelection: '[iri]'
+  owns: '[Thing]'
+  playerSeason: '[iri]'
+  regionalCouncil: '[TermOfOffice]'
+  roleInEvent: '[Event]'
+  season: '[iri]'
+Agglomeration:
+  ISA: PopulatedPlace
+Aircraft:
+  ISA: MeanOfTransportation
+  aircraftType: '[string]'
+  aircraftUser: '[Organisation]'
+  ceiling: '[positiveInteger]'
+  gun: '[string]'
+  numberBuilt: '[nonNegativeInteger]'
+  productionYears: '[date]'
+  programCost: '[double]'
+  unitCost: '[double]'
+  wingArea: '[double]'
+  wingspan: '[double]'
+Airline:
+  ISA: PublicTransitSystem
+  alliance: '[iri]'
+  hubAirport: '[Airport]'
+  iataAirlineCode: '[string]'
+  icaoAirlineCode: '[string]'
+  lounge: '[iri]'
+  targetAirport: '[Airport]'
+Airport:
+  ISA: Infrastructure
+  airportUsing: '[string]'
+  faaLocationIdentifier: '[string]'
+  icaoLocationIdentifier: '[string]'
+  locationIdentifier: '[string]'
+  runwayDesignation: '[string]'
+  runwayLength: '[double]'
+  runwaySurface: '[string]'
+  runwayWidth: '[double]'
+Album:
+  ISA: MusicalWork
+  albumRuntime: '[double]'
+  compiler: '[Person]'
+  longtype: '[string]'
+  musicFormat: '[string]'
+  review: '[iri]'
+  singleList: '[SingleList]'
+  totalDiscs: '[integer]'
+  totalTracks: '[integer]'
+AmateurBoxer:
+  ISA: Boxer
+Ambassador:
+  ISA: Politician
+AmericanFootballCoach:
+  ISA: Coach
+AmericanFootballLeague:
+  ISA: SportsLeague
+AmericanFootballPlayer:
+  ISA: GridironFootballPlayer
+AmericanFootballTeam:
+  ISA: SportsTeam
+AmericanLeader:
+  ISA: Person
+Amphibian:
+  ISA: Animal
+AmusementParkAttraction:
+  ISA: ArchitecturalStructure
+AnatomicalStructure:
+  artery: '[Artery]'
+  branchFrom: '[AnatomicalStructure]'
+  branchTo: '[AnatomicalStructure]'
+  dorlandsId: '[string]'
+  dorlandsPrefix: '[string]'
+  dorlandsSuffix: '[string]'
+  drainsFrom: '[AnatomicalStructure]'
+  drainsTo: '[AnatomicalStructure]'
+  grayPage: '[positiveInteger]'
+  graySubject: '[positiveInteger]'
+  lymph: '[Lymph]'
+  meshName: '[langString]'
+  meshNumber: '[string]'
+  nerve: '[Nerve]'
+  organSystem: '[AnatomicalStructure]'
+  precursor: '[Embryology]'
+  vein: '[Vein]'
+Animal:
+  ISA: Eukaryote
+  birthDate: date
+  birthPlace: '[Place]'
+  breeder: '[Person]'
+  dam: '[Animal]'
+  damsire: '[Animal]'
+  deathDate: date
+  deathPlace: '[Place]'
+  foalDate: date
+  grandsire: '[Animal]'
+  sire: '[Animal]'
+AnimangaCharacter:
+  ISA: ComicsCharacter
+Anime:
+  ISA: Cartoon
+Annotation:
+  ISA: WrittenWork
+Arachnid:
+  ISA: Animal
+Archaea:
+  ISA: Species
+Archbishop:
+  ISA: ChristianBishop
+Archeologist:
+  ISA: Person
+ArcherPlayer:
+  ISA: Athlete
+Archipelago:
+  ISA: NaturalPlace
+Architect:
+  ISA: Person
+  architecturalMovement: '[string]'
+  significantBuilding: '[Building]'
+  significantDesign: '[iri]'
+ArchitecturalStructure:
+  architect: '[Architect]'
+  architectualBureau: '[Company]'
+  architecturalStyle: '[iri]'
+  buildingEndYear: '[year]'
+  buildingStartYear: '[year]'
+  construction: '[iri]'
+  constructionMaterial: '[iri]'
+  currentlyUsedFor: '[string]'
+  demolitionDate: '[date]'
+  demolitionYear: '[year]'
+  features: '[Work]'
+  initiallyUsedFor: '[string]'
+  maintainedBy: '[iri]'
+  rebuildingDate: '[date]'
+  rebuildingYear: '[year]'
+  reopeningDate: '[date]'
+  reopeningYear: '[year]'
+  tenant: '[Organisation]'
+  visitorStatisticsAsOf: '[year]'
+  visitorsPerDay: '[nonNegativeInteger]'
+  visitorsPerYear: '[nonNegativeInteger]'
+  visitorsPercentageChange: '[double]'
+  visitorsTotal: '[nonNegativeInteger]'
+ArchitecturalStructure,_Monument:
+  dutchMIPCode: '[string]'
+Archive:
+  ISA: CollectionOfValuables
+Arena:
+  ISA: ArchitecturalStructure
+Aristocrat:
+  ISA: Person
+Arrondissement:
+  ISA: GovernmentalAdministrativeRegion
+Artery:
+  ISA: AnatomicalStructure
+  supplies: '[AnatomicalStructure]'
+Article:
+  ISA: WrittenWork
+ArtificialSatellite:
+  ISA: Satellite
+Artist:
+  ISA: Person
+  academyAward: '[Award]'
+  afiAward: '[Award]'
+  artistFunction: '[string]'
+  associatedAct: '[Artist]'
+  baftaAward: '[Award]'
+  cesarAward: '[Award]'
+  disciple: '[Artist]'
+  dutchRKDCode: '[string]'
+  emmyAward: '[Award]'
+  field: '[iri]'
+  filmFareAward: '[Award]'
+  gaudiAward: '[Award]'
+  goldenGlobeAward: '[Award]'
+  goyaAward: '[Award]'
+  grammyAward: '[Award]'
+  instrument: '[Instrument]'
+  mentor: '[Artist]'
+  movement: '[iri]'
+  polishFilmAward: '[Award]'
+  style: '[iri]'
+  tonyAward: '[Award]'
+  training: '[EducationalInstitution]'
+  voiceType: '[iri]'
+ArtistDiscography:
+  ISA: MusicalWork
+ArtisticGenre:
+  ISA: Genre
+Artwork:
+  ISA: Work
+  dutchArtworkCode: '[string]'
+  museum: '[Museum]'
+  painter: '[Person]'
+Asteroid:
+  ISA: CelestialBody
+Astronaut:
+  ISA: Person
+  astronaut/timeInSpace: '[decimal]'
+  selection: '[iri]'
+Athlete:
+  ISA: Person
+  asiaChampionship: '[string]'
+  athleticsDiscipline: '[Athletics]'
+  backhand: '[string]'
+  battingSide: '[string]'
+  bowlingSide: '[string]'
+  britishOpen: '[string]'
+  club: '[SportsTeam]'
+  coachClub: '[SportsTeam]'
+  coachSeason: '[string]'
+  collegeHof: '[string]'
+  currentLeague: '[SportsLeague]'
+  currentTeam: '[SportsTeam]'
+  debutTeam: '[SportsTeam]'
+  draftLeague: '[string]'
+  draftPosition: '[nonNegativeInteger]'
+  draftTeam: '[SportsTeam]'
+  espnId: '[integer]'
+  europeanChampionship: '[string]'
+  fedCup: '[string]'
+  fibahof: '[string]'
+  finalLostTeam: '[string]'
+  firstProMatch: '[string]'
+  formerTeam: '[SportsTeam]'
+  heightAgainst: '[string]'
+  heightAttack: '[string]'
+  heisman: '[string]'
+  hof: '[string]'
+  hopmanCup: '[string]'
+  horseRidingDiscipline: '[Sport]'
+  ithfDate: '[string]'
+  juniorTeam: '[SportsTeam]'
+  lastProMatch: '[string]'
+  laterality: '[string]'
+  managerClub: '[SportsTeam]'
+  mvp: '[string]'
+  nationalChampionship: '[string]'
+  nationalTeam: '[SportsTeam]'
+  ncaaSeason: '[string]'
+  ncaaTeam: '[SportsTeam]'
+  ncbhof: '[string]'
+  nflCode: '[string]'
+  nflSeason: '[string]'
+  nflTeam: '[SportsTeam]'
+  oldTeamCoached: '[SportsTeam]'
+  otherSportsExperience: '[Athletics]'
+  probowlPick: '[string]'
+  qatarClassic: '[string]'
+  selectionPoint: '[nonNegativeInteger]'
+  selectionYear: '[string]'
+  sportCountry: '[Country]'
+  sportSpecialty: '[Sport]'
+  stateOfOriginPoint: '[nonNegativeInteger]'
+  stateOfOriginTeam: '[SportsTeam]'
+  stateOfOriginYear: '[string]'
+  superbowlWin: '[string]'
+  supplementalDraftRound: '[string]'
+  teamCoached: '[SportsTeam]'
+  teamPoint: '[nonNegativeInteger]'
+  teamTitle: '[string]'
+  tournamentOfChampions: '[string]'
+  trainer: '[Person]'
+  worldChampionTitleYear: '[string]'
+  worldOpen: '[string]'
+  worldTeamCup: '[string]'
+  youthClub: '[SportsTeam]'
+Athlete,_CareerStation:
+  amateurTeam: '[SportsTeam]'
+  amateurYear: '[string]'
+  cyclistGenre: '[iri]'
+  leadTeam: '[SportsTeam]'
+  leadYear: '[string]'
+  proTeam: '[SportsTeam]'
+Athletics:
+  ISA: Sport
+AthleticsPlayer:
+  ISA: Athlete
+Atoll:
+  ISA: Island
+Attack:
+  ISA: SocietalEvent
+  perpetrator: '[Agent]'
+AustralianFootballLeague:
+  ISA: SportsLeague
+AustralianFootballTeam:
+  ISA: SportsTeam
+AustralianRulesFootballPlayer:
+  ISA: Athlete
+AutoRacingLeague:
+  ISA: SportsLeague
+Automobile:
+  ISA: MeanOfTransportation
+  automobile/fuelCapacity: '[decimal]'
+  automobile/wheelbase: '[decimal]'
+  automobilePlatform: '[Automobile]'
+  bodyStyle: '[iri]'
+  engine: '[AutomobileEngine]'
+  fuelCapacity: double
+  layout: '[iri]'
+  numberOfDoors: '[positiveInteger]'
+  transmission: '[string]'
+  wheelbase: double
+AutomobileEngine:
+  ISA: Engine
+  acceleration: double
+  automobileModel: '[string]'
+  blockAlloy: '[iri]'
+  co2Emission: double
+  compressionRatio: '[string]'
+  configuration: '[string]'
+  coolingSystem: '[iri]'
+  cylinderBore: '[double]'
+  displacement: double
+  endYearOfInsertion: '[year]'
+  fuelConsumption: string
+  fuelSystem: '[iri]'
+  headAlloy: '[iri]'
+  note: '[string]'
+  oilSystem: '[iri]'
+  pistonStroke: '[double]'
+  redline: double
+  startYearOfInsertion: '[year]'
+  torqueOutput: double
+  valvetrain: '[decimal]'
+BackScene:
+  ISA: MusicalArtist
+Bacteria:
+  ISA: Species
+BadmintonPlayer:
+  ISA: Athlete
+Band:
+  ISA: Group
+  bandMember: '[Person]'
+  formerBandMember: '[Person]'
+Bank:
+  ISA: Company
+Baronet:
+  ISA: BritishRoyalty
+BaseballLeague:
+  ISA: SportsLeague
+BaseballPlayer:
+  ISA: Athlete
+  statisticLabel: '[iri]'
+  statisticValue: '[double]'
+  statisticYear: '[date]'
+  throwingSide: '[string]'
+BaseballSeason:
+  ISA: SportsTeamSeason
+BaseballTeam:
+  ISA: SportsTeam
+BasketballLeague:
+  ISA: SportsLeague
+BasketballPlayer:
+  ISA: Athlete
+BasketballTeam:
+  ISA: SportsTeam
+Battery:
+  ISA: Device
+Bay:
+  ISA: BodyOfWater
+Beach:
+  ISA: NaturalPlace
+BeachVolleyballPlayer:
+  ISA: VolleyballPlayer
+BeautyQueen:
+  ISA: Person
+Beer:
+  ISA: Beverage
+BelgiumSettlement:
+  legalArrondissement: '[string]'
+Beverage:
+  ISA: Food
+  discontinued: '[date]'
+  percentageAlcohol: '[nonNegativeInteger]'
+Biathlete:
+  ISA: WinterSportPlayer
+BiologicalDatabase:
+  ISA: Database
+Biologist:
+  ISA: Scientist
+Biomolecule:
+  ecNumber: '[string]'
+  ensembl: '[string]'
+  entrezgene: '[string]'
+  hgncid: '[string]'
+  mgiid: '[string]'
+  omim: '[integer]'
+  refseqmrna: '[string]'
+  refseqprotein: '[string]'
+  symbol: '[string]'
+  uniprot: '[string]'
+Bird:
+  ISA: Animal
+Bishop:
+  creationChristianBishop: '[string]'
+Blazon:
+  blazonCaption: '[string]'
+BloodVessel:
+  ISA: AnatomicalStructure
+BoardGame:
+  ISA: Game
+BobsleighAthlete:
+  ISA: WinterSportPlayer
+BodyOfWater:
+  ISA: NaturalPlace
+  frozen: '[string]'
+  inflow: '[BodyOfWater]'
+  island: '[Island]'
+  outflow: '[River]'
+  shoreLength: '[double]'
+Bodybuilder:
+  ISA: Athlete
+Bone:
+  ISA: AnatomicalStructure
+Book:
+  ISA: WrittenWork
+BowlingLeague:
+  ISA: SportsLeague
+Boxer:
+  ISA: Athlete
+  amateurDefeat: '[nonNegativeInteger]'
+  amateurFight: '[nonNegativeInteger]'
+  amateurKo: '[nonNegativeInteger]'
+  amateurNoContest: '[nonNegativeInteger]'
+  amateurTie: '[nonNegativeInteger]'
+  amateurTitle: '[string]'
+  amateurVictory: '[nonNegativeInteger]'
+  boxerStyle: '[Sport]'
+  defeat: '[nonNegativeInteger]'
+  fight: '[nonNegativeInteger]'
+  ko: '[nonNegativeInteger]'
+  noContest: '[nonNegativeInteger]'
+  tie: '[nonNegativeInteger]'
+BoxingLeague:
+  ISA: SportsLeague
+Brain:
+  ISA: AnatomicalStructure
+  brainInfoNumber: '[string]'
+  brainInfoType: '[string]'
+  component: '[AnatomicalStructure]'
+  isPartOfAnatomicalStructure: '[AnatomicalStructure]'
+Brewery:
+  ISA: Company
+Bridge:
+  ISA: RouteOfTransportation
+  bridgeCarries: '[string]'
+  crosses: '[River]'
+  loadLimit: '[double]'
+  mainspan: '[double]'
+  numberOfPiersInWater: '[nonNegativeInteger]'
+  numberOfSpans: '[nonNegativeInteger]'
+  unitedStatesNationalBridgeId: '[string]'
+BritishRoyalty:
+  ISA: Royalty
+BroadcastNetwork:
+  ISA: Broadcaster
+Broadcaster:
+  ISA: Organisation
+  analogChannel: '[string]'
+  broadcastArea: '[PopulatedPlace]'
+  broadcastNetwork: '[BroadcastNetwork]'
+  broadcastRepeater: '[string]'
+  broadcastStationClass: '[string]'
+  broadcastTranslator: '[string]'
+  callsignMeaning: '[string]'
+  digitalChannel: '[string]'
+  digitalSubChannel: '[string]'
+  effectiveRadiatedPower: '[double]'
+  firstAirDate: '[date]'
+  formerBroadcastNetwork: '[BroadcastNetwork]'
+  formerCallsign: '[string]'
+  formerChannel: '[string]'
+  heightAboveAverageTerrain: '[double]'
+  lastAirDate: '[date]'
+  network: '[Broadcaster]'
+  otherChannel: '[string]'
+  pictureFormat: '[iri]'
+  programmeFormat: '[iri]'
+  shareDate: '[yearMonth]'
+  shareOfAudience: '[double]'
+  shareSource: '[string]'
+  sisterStation: '[Broadcaster]'
+  virtualChannel: '[string]'
+BrownDwarf:
+  ISA: Star
+Building:
+  ISA: ArchitecturalStructure
+  building/floorArea: '[decimal]'
+  buildingType: '[iri]'
+  elevatorCount: '[nonNegativeInteger]'
+  floorArea: '[double]'
+  floorCount: '[positiveInteger]'
+  numberOfRooms: '[nonNegativeInteger]'
+  seatingCapacity: '[nonNegativeInteger]'
+  security: '[string]'
+  space: '[nonNegativeInteger]'
+  structuralSystem: '[iri]'
+  towerHeight: '[positiveInteger]'
+  workArea: '[double]'
+BullFighter:
+  ISA: Athlete
+BusCompany:
+  ISA: PublicTransitSystem
+BusinessPerson:
+  ISA: Person
+Camera:
+  ISA: Device
+CanadianFootballLeague:
+  ISA: SportsLeague
+CanadianFootballPlayer:
+  ISA: GridironFootballPlayer
+CanadianFootballTeam:
+  ISA: SportsTeam
+Canal:
+  ISA: Stream
+  canal/maximumBoatBeam: '[decimal]'
+  canal/maximumBoatLength: '[decimal]'
+  canal/originalMaximumBoatBeam: '[decimal]'
+  canal/originalMaximumBoatLength: '[decimal]'
+  dateAct: '[date]'
+  dateClosed: '[date]'
+  dateCompleted: '[date]'
+  dateConstruction: '[date]'
+  dateExtended: '[date]'
+  dateUse: '[date]'
+  hasJunctionWith: '[Canal]'
+  maximumBoatBeam: '[double]'
+  maximumBoatLength: '[double]'
+  originalEndPoint: '[Place]'
+  originalMaximumBoatBeam: '[double]'
+  originalMaximumBoatLength: '[double]'
+  originalStartPoint: '[Place]'
+  principalEngineer: '[Person]'
+Canoeist:
+  ISA: Athlete
+Canton:
+  ISA: GovernmentalAdministrativeRegion
+Cape:
+  ISA: NaturalPlace
+Capital:
+  ISA: City
+CapitalOfRegion:
+  ISA: City
+CardGame:
+  ISA: Game
+Cardinal:
+  ISA: Cleric
+CardinalDirection:
+  ISA: TopicalConcept
+CareerStation:
+  ISA: TimePeriod
+  numberOfGoals: '[integer]'
+  numberOfMatches: '[integer]'
+Cartoon:
+  ISA: work
+  animator: '[Agent]'
+Case:
+  ISA: UnitOfWork
+  procedure: '[string]'
+Casino:
+  ISA: Building
+Castle:
+  ISA: Building
+Cat:
+  ISA: Mammal
+Caterer:
+  ISA: Company
+Cave:
+  ISA: NaturalPlace
+  numberOfEntrances: '[nonNegativeInteger]'
+CelestialBody:
+  ISA: Place
+  absoluteMagnitude: '[double]'
+  apoapsis: '[double]'
+  apofocus: '[string]'
+  constellation: '[iri]'
+  discovered: '[date]'
+  maxAbsoluteMagnitude: '[double]'
+  maxApparentMagnitude: '[double]'
+  messierName: '[string]'
+  ngcName: '[string]'
+  orbitalEccentricity: '[double]'
+  periapsis: '[double]'
+  perifocus: '[string]'
+  rightAscension: '[nonNegativeInteger]'
+  stellarClassification: '[skos_OrderedCollection]'
+  vonKlitzingConstant: '[double]'
+Cemetery:
+  ISA: Place
+  numberOfGraves: '[string]'
+Chancellor:
+  ISA: Politician
+ChartsPlacements:
+  tempPlace: '[string]'
+Cheese:
+  ISA: Food
+Chef:
+  ISA: Person
+ChemicalCompound:
+  ISA: ChemicalSubstance
+  inchi: '[string]'
+  inn: '[string]'
+  smiles: '[string]'
+ChemicalElement:
+  ISA: ChemicalSubstance
+  atomicNumber: '[nonNegativeInteger]'
+  elementBlock: '[string]'
+  elementGroup: '[nonNegativeInteger]'
+  elementPeriod: '[nonNegativeInteger]'
+  relativeAtomicMass: '[nonNegativeInteger]'
+ChemicalSubstance:
+  aggregation: '[string]'
+  boilingPoint: '[double]'
+  carcinogen: '[string]'
+  chEMBL: '[string]'
+  chemSpiderId: '[string]'
+  chemicalFormula: '[string]'
+  chemicalSubstance/boilingPoint: '[decimal]'
+  chemicalSubstance/density: '[decimal]'
+  chemicalSubstance/meltingPoint: '[decimal]'
+  flashPoint: '[integer]'
+  formula: '[string]'
+  kegg: '[string]'
+  lethalOnChickens: '[string]'
+  lethalOnMice: '[string]'
+  lethalOnRabbits: '[string]'
+  lethalOnRats: '[string]'
+  molarMass: '[double]'
+  molecularWeight: '[nonNegativeInteger]'
+  notSolubleIn: '[ChemicalSubstance]'
+  partitionCoefficient: '[double]'
+  pubchem: '[string]'
+  solubility: '[integer]'
+  solvent: '[ChemicalSubstance]'
+  solventWithBadSolubility: '[ChemicalSubstance]'
+  solventWithGoodSolubility: '[ChemicalSubstance]'
+  solventWithMediocreSolubility: '[ChemicalSubstance]'
+  unNumber: '[string]'
+  vaporPressure: '[decimal]'
+ChessPlayer:
+  ISA: Athlete
+  elo: '[nonNegativeInteger]'
+  eloRecord: '[nonNegativeInteger]'
+Chief:
+  ISA: Politician
+ChristianBishop:
+  ISA: Cleric
+ChristianDoctrine:
+  ISA: TheologicalConcept
+  believers: '[string]'
+  established: '[string]'
+  establishment: '[integer]'
+  primate: '[string]'
+  theology: '[string]'
+ChristianPatriarch:
+  ISA: Cleric
+Church:
+  ISA: ReligiousBuilding
+Cinema:
+  ISA: Venue
+City:
+  ISA: Settlement
+  crownDependency: '[string]'
+CityDistrict:
+  ISA: Settlement
+  codeDistrict: '[string]'
+ClassicalMusicArtist:
+  ISA: MusicalArtist
+ClassicalMusicComposition:
+  ISA: MusicalWork
+Cleric:
+  ISA: Person
+  abbeychurchBlessing: '[string]'
+  abbeychurchBlessingCharge: '[string]'
+  consecration: '[string]'
+  reigningPope: '[Pope]'
+ClericalAdministrativeRegion:
+  ISA: AdministrativeRegion
+  placeOfWorship: '[ReligiousBuilding]'
+ClericalOrder:
+  ISA: ReligiousOrganisation
+ClubMoss:
+  ISA: Plant
+Coach:
+  ISA: Person
+  defeatAsMgr: '[nonNegativeInteger]'
+CoalPit:
+  ISA: Mine
+CollectionOfValuables:
+  ISA: Work
+College:
+  ISA: EducationalInstitution
+  sisterCollege: '[College]'
+CollegeCoach:
+  ISA: Coach
+  bowlRecord: '[string]'
+  coachingRecord: '[string]'
+  currentRecord: '[string]'
+  overallRecord: '[string]'
+  tournamentRecord: '[string]'
+Colour:
+  cmykCoordinateBlack: '[integer]'
+  cmykCoordinateCyanic: '[integer]'
+  cmykCoordinateMagenta: '[integer]'
+  cmykCoordinateYellow: '[integer]'
+  hsvCoordinateHue: '[integer]'
+  hsvCoordinateSaturation: '[integer]'
+  hsvCoordinateValue: '[integer]'
+  rgbCoordinateBlue: '[nonNegativeInteger]'
+  rgbCoordinateGreen: '[nonNegativeInteger]'
+  rgbCoordinateRed: '[nonNegativeInteger]'
+  wavelength: '[double]'
+CombinationDrug:
+  ISA: Drug
+Comedian:
+  ISA: Artist
+  americanComedyAward: '[Award]'
+  britishComedyAwards: '[Award]'
+  olivierAward: '[Award]'
+  peabodyAward: '[Award]'
+ComedyGroup:
+  ISA: Group
+Comic:
+  ISA: WrittenWork
+ComicStrip:
+  ISA: Comic
+ComicsCharacter:
+  ISA: FictionalCharacter
+ComicsCreator:
+  ISA: Artist
+Community:
+  ISA: PopulatedPlace
+Company:
+  ISA: Organisation
+  assetUnderManagement: '[double]'
+  assets: '[double]'
+  codeStockExchange: '[string]'
+  equity: '[double]'
+  fate: '[langString]'
+  groundsForLiquidation: '[langString]'
+  industry: '[iri]'
+  internationally: '[boolean]'
+  marketCapitalisation: double
+  netIncome: double
+  operatingIncome: double
+  production: '[nonNegativeInteger]'
+  registration: '[string]'
+  stockExchange: '[string]'
+  subsidiary: '[Company]'
+  tradingName: '[string]'
+Competition:
+  ISA: Event
+ConcentrationCamp:
+  ISA: Place
+  gasChambers: '[string]'
+  liberationDate: '[string]'
+  numberOfDeaths: '[string]'
+Congressman:
+  ISA: Politician
+Conifer:
+  ISA: Plant
+Constellation:
+  ISA: CelestialBody
+  declination: '[nonNegativeInteger]'
+  neighbourConstellations: '[string]'
+  numberOfStars: '[nonNegativeInteger]'
+Contest:
+  ISA: Competition
+Continent:
+  ISA: PopulatedPlace
+  numberOfCity: '[nonNegativeInteger]'
+  numberOfDependency: '[nonNegativeInteger]'
+ControlledDesignationOfOriginWine:
+  ISA: Wine
+Convention:
+  ISA: SocietalEvent
+ConveyorSystem:
+  ISA: On-SiteTransportation
+  conveyorSystem/diameter: '[decimal]'
+  conveyorSystem/height: '[decimal]'
+  conveyorSystem/length: '[decimal]'
+  conveyorSystem/mass: '[decimal]'
+  conveyorSystem/weight: '[decimal]'
+  conveyorSystem/width: '[decimal]'
+Country:
+  ISA: PopulatedPlace
+  continent: '[Continent]'
+  europeanUnionEntranceDate: '[date]'
+  numberOfMinistries: '[nonNegativeInteger]'
+  numberOfMusicalArtistEntities: '[nonNegativeInteger]'
+  numberOfPersonEntities: '[nonNegativeInteger]'
+  numberOfSettlementsInCountry: '[nonNegativeInteger]'
+  topLevelDomain: '[TopLevelDomain]'
+  twinCountry: '[Country]'
+  wordBefore: '[string]'
+CountrySeat:
+  ISA: Place
+Crater:
+  ISA: NaturalPlace
+CricketGround:
+  ISA: SportFacility
+CricketLeague:
+  ISA: SportsLeague
+CricketTeam:
+  ISA: SportsTeam
+Cricketer:
+  ISA: Athlete
+  fc: '[nonNegativeInteger]'
+  fcRuns: '[nonNegativeInteger]'
+Criminal:
+  ISA: Person
+  apprehended: '[date]'
+  convictionPenalty: '[iri]'
+  criminalCharge: '[string]'
+  kindOfCriminal: '[string]'
+  kindOfCriminalAction: '[string]'
+  motive: '[string]'
+CrossCountrySkier:
+  ISA: WinterSportPlayer
+Crustacean:
+  ISA: Animal
+CultivatedVariety:
+  ISA: Plant
+Curler:
+  ISA: WinterSportPlayer
+CurlingLeague:
+  ISA: SportsLeague
+Currency:
+  usingCountry: '[Country]'
+Cycad:
+  ISA: Plant
+CyclingCompetition:
+  ISA: SportsEvent
+CyclingLeague:
+  ISA: SportsLeague
+CyclingRace:
+  ISA: Race
+CyclingTeam:
+  ISA: SportsTeam
+  uciCode: '[string]'
+Cyclist:
+  ISA: Athlete
+DBpedian:
+  ISA: Person
+DTMRacer:
+  ISA: RacingDriver
+Dam:
+  ISA: Infrastructure
+Dancer:
+  ISA: Artist
+DartsPlayer:
+  ISA: Athlete
+Database:
+  ISA: Work
+Deanery:
+  ISA: ClericalAdministrativeRegion
+Decoration:
+  ISA: Award
+Deity:
+  ISA: Agent
+Department:
+  ISA: GovernmentalAdministrativeRegion
+  numberOfArrondissement: '[nonNegativeInteger]'
+  numberOfCanton: '[nonNegativeInteger]'
+  numberOfDistrict: '[nonNegativeInteger]'
+  numberOfIntercommunality: '[nonNegativeInteger]'
+  numberOfSettlement: '[nonNegativeInteger]'
+  prefecture: '[PopulatedPlace]'
+  subprefecture: '[PopulatedPlace]'
+Deputy:
+  ISA: Politician
+Desert:
+  ISA: NaturalPlace
+DigitalCamera:
+  ISA: Camera
+Dike:
+  ISA: Infrastructure
+Diocese:
+  ISA: ClericalAdministrativeRegion
+Diocese,_Parish:
+  deanery: '[Deanery]'
+Disease:
+  aoCloassification: '[string]'
+  complications: '[string]'
+  differentialDiagnosis: '[iri]'
+  diseasesDB: '[string]'
+  diseasesDb: '[string]'
+  eMedicineSubject: '[langString]'
+  eMedicineTopic: '[langString]'
+  geneReviewsId: '[string]'
+  geneReviewsName: '[langString]'
+  gradName: '[string]'
+  gradNum: '[string]'
+  icd1: '[string]'
+  icd10: '[string]'
+  icd9: '[string]'
+  icdo: '[string]'
+  medicalCause: '[iri]'
+  medicalDiagnosis: '[iri]'
+  medicalSpecialty: '[MedicalSpecialty]'
+  medication: '[iri]'
+  meshId: '[string]'
+  nciId: '[string]'
+  nord: '[string]'
+  orpha: '[string]'
+  symptom: '[iri]'
+  treatment: '[iri]'
+  vaccination: '[Vaccine]'
+DisneyCharacter:
+  ISA: FictionalCharacter
+District:
+  ISA: GovernmentalAdministrativeRegion
+  numberOfVillages: '[nonNegativeInteger]'
+DistrictWaterBoard:
+  ISA: GovernmentalAdministrativeRegion
+Document:
+  ISA: Work
+  dateLastUpdated: '[date]'
+  documentNumber: '[string]'
+  galleryItem: '[File]'
+  hasAnnotation: '[Annotation]'
+  registryNumber: '[string]'
+DocumentType:
+  ISA: Type
+Dog:
+  ISA: Mammal
+Drama:
+  ISA: WrittenWork
+Drug:
+  ISA: ChemicalSubstance
+  bioavailability: '[double]'
+  chEBI: '[string]'
+  drug/boilingPoint: '[decimal]'
+  drug/meltingPoint: '[decimal]'
+  drugs_com: '[iri]'
+  iupacName: '[langString]'
+Earthquake:
+  ISA: NaturalEvent
+Economist:
+  ISA: Person
+EducationalInstitution:
+  ISA: Organisation
+  actingHeadteacher: '[Person]'
+  alumni: '[Person]'
+  assistantPrincipal: '[iri]'
+  brinCode: '[string]'
+  campusType: '[langString]'
+  closed: '[date]'
+  custodian: '[Person]'
+  dean: '[Person]'
+  educationSystem: '[iri]'
+  facultySize: '[nonNegativeInteger]'
+  head: '[Person]'
+  nationalRanking: '[positiveInteger]'
+  numberOfAcademicStaff: '[nonNegativeInteger]'
+  numberOfGraduateStudents: '[nonNegativeInteger]'
+  numberOfStudents: '[nonNegativeInteger]'
+  numberOfUndergraduateStudents: '[nonNegativeInteger]'
+  offeredClasses: '[string]'
+  officialSchoolColour: '[string]'
+  principal: '[Person]'
+  rector: '[Person]'
+Egyptologist:
+  ISA: Person
+Election:
+  ISA: SocietalEvent
+  popularVote: '[nonNegativeInteger]'
+ElectricalSubstation:
+  ISA: Infrastucture
+Embryology:
+  ISA: AnatomicalStructure
+Employer:
+  ISA: Agent
+EmployersOrganisation:
+  ISA: Organisation
+Engine:
+  ISA: Device
+  engine/acceleration: '[decimal]'
+  engine/co2Emission: '[decimal]'
+  engine/cylinderBore: '[decimal]'
+  engine/diameter: '[decimal]'
+  engine/displacement: '[decimal]'
+  engine/height: '[decimal]'
+  engine/length: '[decimal]'
+  engine/pistonStroke: '[decimal]'
+  engine/powerOutput: '[decimal]'
+  engine/topSpeed: '[decimal]'
+  engine/torqueOutput: '[decimal]'
+  engine/weight: '[decimal]'
+  engine/width: '[decimal]'
+  powerOutput: double
+Engineer:
+  ISA: Person
+Entomologist:
+  ISA: Scientist
+Enzyme:
+  ISA: Biomolecule
+Escalator:
+  ISA: On-SiteTransportation
+  escalator/diameter: '[decimal]'
+  escalator/height: '[decimal]'
+  escalator/length: '[decimal]'
+  escalator/mass: '[decimal]'
+  escalator/weight: '[decimal]'
+  escalator/width: '[decimal]'
+EthnicGroup:
+  populationPlace: '[PopulatedPlace]'
+  totalPopulation: '[nonNegativeInteger]'
+Eukaryote:
+  ISA: Species
+EurovisionSongContestEntry:
+  ISA: Song
+Event:
+  causedBy: '[iri]'
+  damage: '[Currency]'
+  endDate: '[date]'
+  endDateTime: '[dateTime]'
+  followingEvent: '[Event]'
+  nextEvent: '[Event]'
+  numberOfPeopleAttending: '[nonNegativeInteger]'
+  participant: '[string]'
+  previousEvent: '[Event]'
+  startDate: '[date]'
+  startDateTime: '[dateTime]'
+Factory:
+  ISA: Building
+Family:
+  ISA: Agent
+  familyMember: '[Person]'
+  headOfFamily: '[Person]'
+  lastFamilyMember: '[Person]'
+  primogenitor: '[Person]'
+Farmer:
+  ISA: Person
+Fashion:
+  ISA: TopicalConcept
+FashionDesigner:
+  ISA: Artist
+Fencer:
+  ISA: Athlete
+Fern:
+  ISA: Plant
+FictionalCharacter:
+  ISA: Agent
+  affiliate: '[string]'
+  colorChart: '[string]'
+  comic: '[Comic]'
+  drama: '[Drama]'
+  enemy: '[Species]'
+  entourage: '[Species]'
+  episode: '[string]'
+  eyes: '[string]'
+  feature: '[string]'
+  firstAppearance: '[string]'
+  free: '[string]'
+  freeLabel: '[string]'
+  hairs: '[string]'
+  lastAppearance: '[iri]'
+  novel: '[Novel]'
+  performer: '[Person]'
+  portrayer: '[iri]'
+  power: '[string]'
+  work: '[string]'
+FieldHockeyLeague:
+  ISA: SportsLeague
+FigureSkater:
+  ISA: WinterSportPlayer
+  choreographer: '[Person]'
+  currentPartner: '[Person]'
+  formerChoreographer: '[Person]'
+  formerCoach: '[Person]'
+  formerPartner: '[Person]'
+File:
+  ISA: Document
+  fileExtension: '[string]'
+  fileURL: '[File]'
+  hasKMLData: '[string]'
+Film:
+  ISA: Work
+  afdbId: '[string]'
+  allcinemaId: '[string]'
+  amgid: '[string]'
+  bgafdId: '[string]'
+  cinematography: '[Person]'
+  costumeDesigner: '[Person]'
+  deputyDirector: '[Person]'
+  director: '[Person]'
+  eTeatrId: '[string]'
+  editing: '[Person]'
+  egafdId: '[string]'
+  eurobabeIndexId: '[string]'
+  filmAudioType: '[string]'
+  filmColourType: '[string]'
+  filmRuntime: '[double]'
+  firstBroadcast: '[string]'
+  gross: '[double]'
+  iafdId: '[string]'
+  idAllocine: '[string]'
+  makeupArtist: '[Person]'
+  producedBy: '[Company]'
+  quebecerTitle: '[string]'
+  setDesigner: '[Person]'
+  specialEffects: '[Person]'
+  titleLanguage: '[string]'
+FilmFestival:
+  ISA: SocietalEvent
+  closingFilm: '[Film]'
+  film: '[Film]'
+  openingFilm: '[Film]'
+Fish:
+  ISA: Animal
+Flag:
+  flagCaption: '[string]'
+  flagSize: '[integer]'
+FloweringPlant:
+  ISA: Plant
+Food:
+  approximateCalories: '[double]'
+  carbohydrate: '[double]'
+  complexity: '[string]'
+  creatorOfDish: '[Person]'
+  fat: '[double]'
+  glycemicIndex: '[integer]'
+  ingredient: '[iri]'
+  ingredientName: '[string]'
+  maxTime: '[double]'
+  minTime: '[double]'
+  percentageFat: '[nonNegativeInteger]'
+  productShape: '[string]'
+  protein: '[double]'
+  servingSize: '[double]'
+  servingTemperature: '[string]'
+  taste: '[string]'
+  typeOfGrain: '[string]'
+  typeOfStorage: '[string]'
+  typeOfYeast: '[string]'
+FootballLeagueSeason:
+  ISA: SportsTeamSeason
+FootballMatch:
+  ISA: SportsEvent
+Forest:
+  ISA: NaturalPlace
+FormerMunicipality:
+  ISA: Municipality
+  municipalityAbsorbedBy: '[Municipality]'
+  presentMunicipality: '[Municipality]'
+  presentName: '[string]'
+FormulaOneRacer:
+  ISA: RacingDriver
+  carNumber: '[integer]'
+  careerPoints: '[integer]'
+  fastestLap: '[nonNegativeInteger]'
+  firstRace: '[GrandPrix]'
+  firstWin: '[GrandPrix]'
+  lastPosition: '[positiveInteger]'
+  lastRace: '[GrandPrix]'
+  lastSeason: '[date]'
+  lastWin: '[GrandPrix]'
+  podiums: '[nonNegativeInteger]'
+  poles: '[nonNegativeInteger]'
+  races: '[nonNegativeInteger]'
+FormulaOneRacing:
+  ISA: SportsLeague
+  circuitLength: '[double]'
+  circuitName: '[langString]'
+  numberOfLaps: '[nonNegativeInteger]'
+  raceLength: '[double]'
+FormulaOneTeam:
+  ISA: SportsTeam
+Fort:
+  ISA: MilitaryStructure
+Fungus:
+  ISA: Eukaryote
+GaelicGamesPlayer:
+  ISA: Athlete
+Galaxy:
+  ISA: CelestialBody
+  cluster: '[iri]'
+  definition: '[string]'
+  explorer: '[iri]'
+  galaxy/apoapsis: '[decimal]'
+  galaxy/averageSpeed: '[decimal]'
+  galaxy/density: '[decimal]'
+  galaxy/mass: '[decimal]'
+  galaxy/maximumTemperature: '[decimal]'
+  galaxy/meanRadius: '[decimal]'
+  galaxy/meanTemperature: '[decimal]'
+  galaxy/minimumTemperature: '[decimal]'
+  galaxy/orbitalPeriod: '[decimal]'
+  galaxy/periapsis: '[decimal]'
+  galaxy/surfaceArea: '[decimal]'
+  galaxy/temperature: '[decimal]'
+  galaxy/volume: '[decimal]'
+  notableFeatures: '[string]'
+Game:
+  ISA: Activity
+Garden:
+  ISA: Place
+GatedCommunity:
+  ISA: PopulatedPlace
+Gene:
+  ISA: Biomolecule
+  geneLocation: '[GeneLocation]'
+  orthologousGene: '[Gene]'
+GeneLocation:
+  geneLocationEnd: '[integer]'
+  geneLocationStart: '[integer]'
+  genomeDB: '[string]'
+  onChromosome: '[integer]'
+Genre:
+  ISA: TopicalConcept
+GeologicalPeriod:
+  ISA: TimePeriod
+GeopoliticalOrganisation:
+  ISA: Organisation
+  geopoliticalOrganisation/areaMetro: '[decimal]'
+  geopoliticalOrganisation/populationDensity: '[decimal]'
+GermanSettlement:
+  licenceLetter: '[string]'
+  numberOfNeighbourhood: '[nonNegativeInteger]'
+Ginkgo:
+  ISA: Plant
+GivenName:
+  ISA: Name
+  nameDay: '[date]'
+Glacier:
+  ISA: NaturalPlace
+Globularswarm:
+  ISA: Swarm
+  radius_ly: '[integer]'
+  v_hb: '[integer]'
+Gnetophytes:
+  ISA: Plant
+GolfCourse:
+  ISA: SportFacility
+  numberOfHoles: '[integer]'
+GolfLeague:
+  ISA: SportsLeague
+GolfPlayer:
+  ISA: Athlete
+  winsAtAlpg: '[iri]'
+  winsAtAsia: '[iri]'
+  winsAtAus: '[iri]'
+  winsAtChallenges: '[iri]'
+  winsAtChampionships: '[iri]'
+  winsAtJLPGA: '[iri]'
+  winsAtJapan: '[iri]'
+  winsAtKLPGA: '[iri]'
+  winsAtLAGT: '[iri]'
+  winsAtLET: '[iri]'
+  winsAtLPGA: '[iri]'
+  winsAtMajors: '[iri]'
+  winsAtNWIDE: '[iri]'
+  winsAtOtherTournaments: '[iri]'
+  winsAtPGA: '[iri]'
+  winsAtProTournaments: '[iri]'
+  winsAtSenEuro: '[iri]'
+  winsAtSun: '[iri]'
+  winsInEurope: '[iri]'
+GolfTournament:
+  ISA: Tournament
+GovernmentAgency:
+  ISA: Organisation
+GovernmentCabinet:
+  ISA: GovernmentAgency
+GovernmentType:
+  ISA: Type
+GovernmentalAdministrativeRegion:
+  ISA: AdministrativeRegion
+Governor:
+  ISA: Politician
+GrandPrix:
+  ISA: SportsEvent
+  course: '[double]'
+  distanceLaps: '[nonNegativeInteger]'
+  fastestDriver: '[Person]'
+  fastestDriverCountry: '[Country]'
+  fastestDriverTeam: '[SportsTeam]'
+  firstDriver: '[Person]'
+  firstDriverCountry: '[Country]'
+  firstDriverTeam: '[SportsTeam]'
+  grandPrix/course: '[decimal]'
+  grandPrix/distance: '[decimal]'
+  poleDriver: '[Person]'
+  poleDriverCountry: '[Country]'
+  poleDriverTeam: '[SportsTeam]'
+  secondDriver: '[Person]'
+  secondDriverCountry: '[Country]'
+  secondTeam: '[SportsTeam]'
+  thirdDriver: '[Person]'
+  thirdDriverCountry: '[Country]'
+  thirdTeam: '[SportsTeam]'
+Grape:
+  ISA: FloweringPlant
+  notableWine: '[iri]'
+  wineRegion: '[WineRegion]'
+GraveMonument:
+  ISA: Monument
+  inCemetery: '[Cemetery]'
+GreenAlga:
+  ISA: Plant
+GridironFootballPlayer:
+  ISA: Athlete
+  bbr: '[string]'
+  draftPick: '[string]'
+  draftRound: '[string]'
+  supplementalDraftYear: '[year]'
+  undraftedYear: '[year]'
+Group:
+  ISA: Organisation
+Guitar:
+  ISA: Instrument
+Guitarist:
+  ISA: Instrumentalist
+Gymnast:
+  ISA: Athlete
+HandballLeague:
+  ISA: SportsLeague
+HandballPlayer:
+  ISA: Athlete
+HandballTeam:
+  ISA: SportsTeam
+HighDiver:
+  ISA: Athlete
+Historian:
+  ISA: Writer
+HistoricBuilding:
+  ISA: Building
+  pastor: '[Person]'
+HistoricPlace:
+  ISA: Place
+  eventDescription: '[string]'
+  nrhpReferenceNumber: '[string]'
+  nrhpType: '[iri]'
+  numberOfVisitorsAsOf: '[year]'
+HistoricalAreaOfAuthority:
+  ISA: AdministrativeRegion
+HistoricalCountry:
+  ISA: Country
+HistoricalDistrict:
+  ISA: District
+HistoricalEvent:
+  ISA: SocietalEvent
+HistoricalPeriod:
+  ISA: TimePeriod
+HistoricalProvince:
+  ISA: Province
+HistoricalRegion:
+  ISA: Region
+HistoricalSettlement:
+  ISA: Settlement
+HockeyClub:
+  ISA: SportsClub
+HockeyTeam:
+  ISA: SportsTeam
+Holiday:
+  ISA: TimeInterval
+HollywoodCartoon:
+  ISA: Cartoon
+Hormone:
+  ISA: Biomolecule
+Horse:
+  ISA: Mammal
+  jockey: '[Jockey]'
+HorseRace:
+  ISA: Race
+HorseRider:
+  ISA: Athlete
+HorseTrainer:
+  ISA: Person
+Hospital:
+  ISA: building
+  bedCount: '[nonNegativeInteger]'
+HotSpring:
+  ISA: NaturalPlace
+Hotel:
+  ISA: Building
+  numberOfParkingSpaces: '[nonNegativeInteger]'
+  numberOfRestaurants: '[nonNegativeInteger]'
+  numberOfSuites: '[nonNegativeInteger]'
+  restaurant: '[Building]'
+  starRating: '[double]'
+HumanGene:
+  ISA: Gene
+HumanGeneLocation:
+  ISA: GeneLocation
+Humorist:
+  ISA: Artist
+HungarySettlement:
+  comitat: '[string]'
+  mayorTitle: '[langString]'
+  neighbourhood: '[string]'
+  signName: '[langString]'
+IceHockeyLeague:
+  ISA: SportsLeague
+IceHockeyPlayer:
+  ISA: WinterSportPlayer
+  hallOfFame: '[string]'
+  khlDraft: '[string]'
+  khlDraftTeam: '[HockeyTeam]'
+  khlDraftYear: '[string]'
+  lchfDraft: '[string]'
+  lchfDraftTeam: '[HockeyTeam]'
+  lchfDraftYear: '[string]'
+  prospectLeague: '[SportsLeague]'
+  prospectTeam: '[HockeyTeam]'
+  shoots: '[string]'
+  whaDraft: '[string]'
+  whaDraftTeam: '[HockeyTeam]'
+  whaDraftYear: '[date]'
+Ideology:
+  ISA: TopicalConcept
+Image:
+  ISA: Document
+InformationAppliance:
+  ISA: Device
+Infrastructure:
+  ISA: ArchitecturalStructure
+  caterer: '[Caterer]'
+  iataLocationIdentifier: '[string]'
+  infrastructure/length: '[decimal]'
+  numberOfTracks: '[nonNegativeInteger]'
+  passengersPerDay: '[nonNegativeInteger]'
+  passengersPerYear: '[nonNegativeInteger]'
+  previousInfrastructure: '[Infrastructure]'
+  road: '[Road]'
+  subsequentInfrastructure: '[Infrastructure]'
+Infrastucture:
+  ISA: ArchitecturalStructure
+InlineHockeyLeague:
+  ISA: SportsLeague
+Insect:
+  ISA: Animal
+Instrument:
+  ISA: Device
+  musicians: '[MusicalArtist]'
+  numberOfMusicalArtistInstrument: '[nonNegativeInteger]'
+Instrumentalist:
+  ISA: MusicalArtist
+Intercommunality:
+  ISA: PopulatedPlace
+  shape: '[Community]'
+InternationalFootballLeagueEvent:
+  ISA: SportsEvent
+InternationalOrganisation:
+  ISA: Organisation
+Island:
+  ISA: PopulatedPlace
+  archipelago: '[iri]'
+  building: '[Building]'
+  capitalCountry: '[Country]'
+  capitalDistrict: '[PopulatedPlace]'
+  capitalElevation: '[double]'
+  capitalMountain: '[Mountain]'
+  capitalPlace: '[PopulatedPlace]'
+  capitalPosition: '[wgs84pos_SpatialThing]'
+  capitalRegion: '[PopulatedPlace]'
+  discovery: '[string]'
+  eruption: '[string]'
+  government: '[iri]'
+  governmentCountry: '[Country]'
+  governmentElevation: '[double]'
+  governmentMountain: '[Mountain]'
+  governmentPlace: '[PopulatedPlace]'
+  governmentPosition: '[wgs84pos_SpatialThing]'
+  governmentRegion: '[PopulatedPlace]'
+  highestPointIsland: '[string]'
+  highestRegion: '[PopulatedPlace]'
+  highestState: '[PopulatedPlace]'
+  leftChild: '[Island]'
+  localization: '[string]'
+  lowestRegion: '[PopulatedPlace]'
+  lowestState: '[PopulatedPlace]'
+  mainIslands: '[string]'
+  majorIsland: '[Island]'
+  managementCountry: '[Country]'
+  managementRegion: '[PopulatedPlace]'
+  numberOfIslands: '[nonNegativeInteger]'
+  observatory: '[string]'
+  rightChild: '[Island]'
+  subdivisionName: '[Place]'
+  volcanicActivity: '[string]'
+  volcanicType: '[string]'
+  volcanoId: '[string]'
+JewishLeader:
+  ISA: Religious
+Jockey:
+  ISA: Athlete
+Journalist:
+  ISA: Person
+Judge:
+  ISA: Person
+LacrosseLeague:
+  ISA: SportsLeague
+LacrossePlayer:
+  ISA: Athlete
+Lake:
+  ISA: BodyOfWater
+  areaOfCatchment: '[double]'
+  lake/areaOfCatchment: '[decimal]'
+  lake/shoreLength: '[decimal]'
+  lake/volume: '[decimal]'
+Language:
+  alphabet: '[iri]'
+  dialect: '[iri]'
+  galicianSpeakersDate: '[year]'
+  galicianSpeakersPercentage: '[string]'
+  iso6391Code: '[string]'
+  iso6392Code: '[string]'
+  iso6393Code: '[string]'
+  languageCode: '[string]'
+  languageFamily: '[iri]'
+  numberOfSpeakers: '[nonNegativeInteger]'
+  silCode: '[iri]'
+  spokenIn: '[PopulatedPlace]'
+LatterDaySaint:
+  ISA: Religious
+LaunchPad:
+  ISA: Infrastructure
+  associatedRocket: '[Rocket]'
+  firstLaunchDate: '[date]'
+  firstLaunchRocket: '[Rocket]'
+  lastLaunchDate: '[date]'
+  lastLaunchRocket: '[Rocket]'
+  launches: '[nonNegativeInteger]'
+  maximumInclination: '[double]'
+  minimumInclination: '[double]'
+  numberOfPads: '[nonNegativeInteger]'
+Law:
+  ISA: WrittenWork
+  approvedByLowerParliament: '[date]'
+  approvedByUpperParliament: '[date]'
+LawFirm:
+  ISA: Company
+  numberOfLawyers: '[nonNegativeInteger]'
+  numberOfOffices: '[nonNegativeInteger]'
+Lawyer:
+  ISA: Person
+LebanonSettlement:
+  mukhtar: '[string]'
+LegalCase:
+  ISA: Case
+  attorneyGeneral: '[Person]'
+  codeBook: '[string]'
+  judge: '[Judge]'
+  legalArticle: '[string]'
+  ruling: '[string]'
+  solicitorGeneral: '[Person]'
+  systemOfLaw: '[SystemOfLaw]'
+Legislature:
+  ISA: Organisation
+  committeeInLegislature: '[iri]'
+  electionDateLeader: '[date]'
+  house: '[Legislature]'
+  lastElectionDate: '[date]'
+  legislativePeriodName: '[string]'
+  meetingBuilding: '[Building]'
+  meetingCity: '[Settlement]'
+  numberOfMembers: '[nonNegativeInteger]'
+  politicalPartyInLegislature: '[PoliticalParty]'
+  politicalPartyOfLeader: '[PoliticalParty]'
+Letter:
+  ISA: WrittenWork
+  unicode: '[string]'
+Library:
+  ISA: EducationalInstitution
+  isil: '[string]'
+  numberOfCollectionItems: '[integer]'
+LiechtensteinSettlement:
+  council: '[string]'
+  ward: '[string]'
+Lieutenant:
+  ISA: Politician
+LifeCycleEvent:
+  ISA: Event
+Ligament:
+  ISA: AnatomicalStructure
+LightNovel:
+  ISA: Novel
+Lighthouse:
+  ISA: Tower
+LineOfFashion:
+  ISA: Work
+Linguist:
+  ISA: Person
+Lipid:
+  ISA: Biomolecule
+LiteraryGenre:
+  ISA: Genre
+Locality:
+  ISA: PopulatedPlace
+Lock:
+  ISA: Infrastructure
+Locomotive:
+  ISA: MeanOfTransportation
+  boiler: '[iri]'
+  boilerPressure: '[iri]'
+  cylinderCount: '[nonNegativeInteger]'
+LunarCrater:
+  ISA: Crater
+  lunarCrater/diameter: '[decimal]'
+Lymph:
+  ISA: AnatomicalStructure
+Magazine:
+  ISA: PeriodicalLiterature
+  editorTitle: '[langString]'
+  previousEditor: '[Person]'
+Mammal:
+  ISA: Animal
+Man:
+  ISA: Person
+  brother: '[Person]'
+  father: '[Person]'
+  son: '[Person]'
+  uncle: '[Person]'
+Manga:
+  ISA: Comic
+Manhua:
+  ISA: Comic
+Manhwa:
+  ISA: Comic
+Manor:
+  ISA: HistoricalAreaOfAuthority
+MartialArtist:
+  ISA: Athlete
+MathematicalConcept:
+  ISA: TopicalConcept
+Mayor:
+  ISA: Politician
+  mayorMandate: '[string]'
+MeanOfTransportation:
+  assembly: '[iri]'
+  dischargeAverage: '[double]'
+  enginePower: '[positiveInteger]'
+  engineType: '[iri]'
+  introductionDate: '[date]'
+  meanOfTransportation/diameter: '[decimal]'
+  meanOfTransportation/height: '[decimal]'
+  meanOfTransportation/length: '[decimal]'
+  meanOfTransportation/mass: '[decimal]'
+  meanOfTransportation/weight: '[decimal]'
+  meanOfTransportation/width: '[decimal]'
+  modelEndDate: '[date]'
+  modelEndYear: '[year]'
+  modelLineVehicle: '[string]'
+  modelStartDate: '[date]'
+  modelStartYear: '[year]'
+  numberOfCrew: '[nonNegativeInteger]'
+  numberOfLaunches: '[nonNegativeInteger]'
+  numberOfSeats: '[nonNegativeInteger]'
+  powerType: '[iri]'
+  range: '[positiveInteger]'
+  rebuilder: '[iri]'
+  relatedMeanOfTransportation: '[MeanOfTransportation]'
+  version: '[iri]'
+Medician:
+  ISA: Scientist
+Meeting:
+  ISA: SocietalEvent
+MemberOfParliament:
+  ISA: Politician
+MemberResistanceMovement:
+  ISA: Person
+  codeIndex: '[string]'
+  codeListOfHonour: '[string]'
+  dutchNAIdentifier: '[string]'
+  participatingIn: '[SocietalEvent]'
+Memorial:
+  ISA: Monument
+  codeMemorial: '[string]'
+MetroStation:
+  ISA: Station
+MicroRegion:
+  ISA: GovernmentalAdministrativeRegion
+MilitaryAircraft:
+  ISA: Aircraft
+  numberOfBombs: '[nonNegativeInteger]'
+  numberOfRockets: '[nonNegativeInteger]'
+MilitaryConflict:
+  ISA: SocietalEvent
+  causalties: '[string]'
+  combatant: '[string]'
+  isPartOfMilitaryConflict: '[MilitaryConflict]'
+  opponents: '[iri]'
+  result: '[string]'
+  strength: '[string]'
+MilitaryConflict,_AdministrativeRegion:
+  territory: '[PopulatedPlace]'
+MilitaryConflict_,_Attack:
+  weapon: '[Weapon]'
+MilitaryConflict_,_NaturalEvent_,_Attack:
+  casualties: '[integer]'
+MilitaryPerson:
+  ISA: Person
+  army: '[string]'
+  command: '[string]'
+  militaryBranch: '[MilitaryUnit]'
+  militaryCommand: '[string]'
+  militaryFunction: '[string]'
+  militaryRank: '[iri]'
+  militaryUnit: '[MilitaryUnit]'
+  noteOnPlaceOfBurial: '[string]'
+  serviceEndDate: '[date]'
+  serviceEndYear: '[year]'
+  serviceNumber: '[string]'
+  serviceStartDate: '[date]'
+  serviceStartYear: '[year]'
+  war: '[string]'
+MilitaryService:
+  ISA: CareerStation
+MilitaryStructure:
+  ISA: ArchitecturalStructure
+MilitaryUnit:
+  ISA: Organisation
+  aircraftAttack: '[MeanOfTransportation]'
+  aircraftBomber: '[MeanOfTransportation]'
+  aircraftElectronic: '[MeanOfTransportation]'
+  aircraftFighter: '[MeanOfTransportation]'
+  aircraftHelicopter: '[MeanOfTransportation]'
+  aircraftHelicopterAttack: '[MeanOfTransportation]'
+  aircraftHelicopterCargo: '[MeanOfTransportation]'
+  aircraftHelicopterMultirole: '[MeanOfTransportation]'
+  aircraftHelicopterObservation: '[MeanOfTransportation]'
+  aircraftHelicopterTransport: '[MeanOfTransportation]'
+  aircraftHelicopterUtility: '[MeanOfTransportation]'
+  aircraftInterceptor: '[MeanOfTransportation]'
+  aircraftPatrol: '[MeanOfTransportation]'
+  aircraftRecon: '[MeanOfTransportation]'
+  aircraftTrainer: '[MeanOfTransportation]'
+  aircraftTransport: '[MeanOfTransportation]'
+  anniversary: '[date]'
+  battleHonours: '[string]'
+  commandStructure: '[MilitaryUnit]'
+  disbanded: '[date]'
+  flyingHours: '[double]'
+  fourthCommander: '[Person]'
+  garrison: '[PopulatedPlace]'
+  identificationSymbol: '[string]'
+  march: '[MusicalWork]'
+  notableCommander: '[Person]'
+  patron: '[Person]'
+  secondCommander: '[Person]'
+  thirdCommander: '[Person]'
+MilitaryVehicle:
+  ISA: MeanOfTransportation
+Mill:
+  ISA: ArchitecturalStructure
+  ableToGrind: '[string]'
+  grindingCapability: '[string]'
+  millSpan: '[double]'
+  millType: '[iri]'
+  millsCodeBE: '[string]'
+  millsCodeDutch: '[string]'
+  millsCodeNL: '[string]'
+  millsCodeNLVerdwenen: '[string]'
+  millsCodeNLWindmotoren: '[string]'
+Mine:
+  ISA: Place
+Mineral:
+  ISA: ChemicalSubstance
+Minister:
+  ISA: Politician
+MixedMartialArtsEvent:
+  ISA: SportsEvent
+MixedMartialArtsLeague:
+  ISA: SportsLeague
+MobilePhone:
+  ISA: Device
+Model:
+  ISA: Person
+Mollusca:
+  ISA: Animal
+Monarch:
+  ISA: Person
+  coemperor: '[Monarch]'
+  heir: '[Person]'
+  regentOf: '[Monarch]'
+Monastery:
+  ISA: ReligiousBuilding
+Monastry:
+  religiousOrder: '[ClericalOrder]'
+MonoclonalAntibody:
+  ISA: Drug
+Monument:
+  ISA: ArchitecturalStructure
+  dateUnveiled: '[date]'
+  groupCommemorated: '[string]'
+Mosque:
+  ISA: ReligiousBuilding
+Moss:
+  ISA: Plant
+MotocycleRacer:
+  ISA: MotorcycleRider
+MotorRace:
+  ISA: Race
+Motorcycle:
+  ISA: MeanOfTransportation
+MotorcycleRacingLeague:
+  ISA: SportsLeague
+MotorcycleRider:
+  ISA: MotorsportRacer
+MotorsportRacer:
+  ISA: Athlete
+MotorsportSeason:
+  ISA: SportsSeason
+Mountain:
+  ISA: NaturalPlace
+  alpsGroup: '[MountainRange]'
+  alpsMainPart: '[MountainRange]'
+  alpsMajorSector: '[MountainRange]'
+  alpsSection: '[MountainRange]'
+  alpsSoiusaCode: '[string]'
+  alpsSubgroup: '[MountainRange]'
+  alpsSubsection: '[MountainRange]'
+  alpsSupergroup: '[MountainRange]'
+  firstAscentPerson: '[Person]'
+  firstAscentYear: '[year]'
+  mountainRange: '[MountainRange]'
+  parentMountainPeak: '[Mountain]'
+Mountain,Volcano:
+  firstAscent: '[string]'
+MountainPass:
+  ISA: NaturalPlace
+MountainRange:
+  ISA: NaturalPlace
+  highest: '[Mountain]'
+MouseGene:
+  ISA: '%D9%86%D9%8E%D8%B3%D8%A8%DB%81'
+MouseGeneLocation:
+  ISA: GeneLocation
+MovieDirector:
+  ISA: Person
+MovieGenre:
+  ISA: Genre
+MovingImage:
+  ISA: Image
+MovingWalkway:
+  ISA: On-SiteTransportation
+  movingWalkway/diameter: '[decimal]'
+  movingWalkway/height: '[decimal]'
+  movingWalkway/length: '[decimal]'
+  movingWalkway/mass: '[decimal]'
+  movingWalkway/weight: '[decimal]'
+  movingWalkway/width: '[decimal]'
+MultiVolumePublication:
+  ISA: WrittenWork
+  umbrellaTitle: '[langString]'
+  volumes: '[WrittenWork]'
+Municipality:
+  ISA: GovernmentalAdministrativeRegion
+  amsterdamCode: '[string]'
+  departmentCode: '[string]'
+  hasAbsorbedMunicipality: '[FormerMunicipality]'
+  municipalityRenamedTo: '[string]'
+  municipalityType: '[string]'
+Murderer:
+  ISA: Criminal
+Muscle:
+  ISA: AnatomicalStructure
+  origo: '[AnatomicalStructure]'
+Museum:
+  ISA: Building
+  collection: '[string]'
+  curator: '[Person]'
+  museumType: '[iri]'
+MusicComposer:
+  ISA: Writer
+MusicDirector:
+  ISA: MusicalArtist
+MusicFestival:
+  ISA: SocietalEvent
+MusicGenre:
+  ISA: Genre
+  derivative: '[MusicGenre]'
+  musicFusionGenre: '[MusicGenre]'
+  musicSubgenre: '[MusicGenre]'
+  numberOfMusicalArtistStyle: '[nonNegativeInteger]'
+  stylisticOrigin: '[MusicGenre]'
+Musical:
+  ISA: MusicalWork
+  musicBy: '[Person]'
+MusicalArtist:
+  ISA: Artist
+  musicBand: '[Band]'
+  numberOfAlbums: '[nonNegativeInteger]'
+  numberOfLiveAlbums: '[nonNegativeInteger]'
+  numberOfStudioAlbums: '[nonNegativeInteger]'
+MusicalWork:
+  ISA: Work
+  artist: '[Agent]'
+  featuring: '[Agent]'
+  italicTitle: '[string]'
+  lyrics: '[Person]'
+  mainArtist: '[Agent]'
+  musicType: '[iri]'
+  musicalKey: '[string]'
+  outputHistory: '[string]'
+  recordDate: '[date]'
+  recordedIn: '[PopulatedPlace]'
+MythologicalFigure:
+  ISA: FictionalCharacter
+  mythology: '[iri]'
+NCAATeamSeason:
+  ISA: SportsTeamSeason
+NarutoCharacter:
+  ISA: FictionalCharacter
+NascarDriver:
+  ISA: RacingDriver
+NationalAnthem:
+  ISA: MusicalWork
+NationalCollegiateAthleticAssociationAthlete:
+  ISA: Athlete
+  formerHighschool: '[EducationalInstitution]'
+NationalFootballLeagueEvent:
+  ISA: SportsEvent
+NationalFootballLeagueSeason:
+  ISA: FootballLeagueSeason
+NationalSoccerClub:
+  ISA: SoccerClub
+NaturalEvent:
+  ISA: Event
+NaturalPlace:
+  ISA: Place
+NaturalRegion:
+  ISA: Region
+Nebula:
+  ISA: CelestialBody
+Nerve:
+  ISA: AnatomicalStructure
+  innervates: '[AnatomicalStructure]'
+NetballPlayer:
+  ISA: Athlete
+Newspaper:
+  ISA: PeriodicalLiterature
+  associateEditor: '[Person]'
+  managingEditor: '[Person]'
+  sisterNewspaper: '[Newspaper]'
+NobelPrize:
+  ISA: Award
+Noble:
+  ISA: Person
+NobleFamily:
+  ISA: Family
+  mainFamilyBranch: '[Family]'
+  otherFamilyBranch: '[Family]'
+  yearElevationIntoNobility: '[string]'
+Non-ProfitOrganisation:
+  ISA: Organisation
+NordicCombined:
+  ISA: WinterSportPlayer
+NorwaySettlement:
+  center: '[string]'
+  landskap: '[string]'
+  mostDownPoint: '[Place]'
+Novel:
+  ISA: book
+NuclearPowerStation:
+  ISA: PowerStation
+  numberOfReactors: '[nonNegativeInteger]'
+Ocean:
+  ISA: BodyOfWater
+OfficeHolder:
+  ISA: Person
+  otherParty: '[PoliticalParty]'
+OldTerritory:
+  ISA: Territory
+OlympicEvent:
+  ISA: Olympics
+OlympicResult:
+  ISA: SportCompetitionResult
+  flagBearer: '[Person]'
+  games: '[string]'
+  nationalOlympicCommittee: '[iri]'
+  numberOfCompetitors: '[nonNegativeInteger]'
+  numberOfOfficials: '[nonNegativeInteger]'
+  oldcode: '[string]'
+  otherAppearances: '[OlympicResult]'
+  rankInFinalMedalCount: '[positiveInteger]'
+  summerAppearances: '[OlympicResult]'
+  winterAppearances: '[OlympicResult]'
+Olympics:
+  ISA: SportsEvent
+  numberOfNewlyIntroducedSports: '[nonNegativeInteger]'
+  numberOfParticipatingAthletes: '[nonNegativeInteger]'
+  numberOfParticipatingFemaleAthletes: '[nonNegativeInteger]'
+  numberOfParticipatingMaleAthletes: '[nonNegativeInteger]'
+  numberOfParticipatingNations: '[nonNegativeInteger]'
+  officialOpenedBy: '[Person]'
+  olympicOathSwornBy: '[Person]'
+  olympicOathSwornByAthlete: '[Person]'
+  olympicOathSwornByJudge: '[Person]'
+  torchBearer: '[Person]'
+On-SiteTransportation:
+  ISA: MeanOfTransportation
+  on-SiteTransportation/diameter: '[decimal]'
+  on-SiteTransportation/height: '[decimal]'
+  on-SiteTransportation/length: '[decimal]'
+  on-SiteTransportation/mass: '[decimal]'
+  on-SiteTransportation/weight: '[decimal]'
+  on-SiteTransportation/width: '[decimal]'
+Openswarm:
+  ISA: Swarm
+  credit: '[string]'
+  dec: '[string]'
+  dist_ly: '[string]'
+  dist_pc: '[integer]'
+  names: '[langString]'
+  ra: '[string]'
+  size_v: '[integer]'
+Opera:
+  ISA: MusicalWork
+  libretto: '[string]'
+Organ:
+  ISA: Instrument
+Organisation:
+  ISA: Agent
+  administrator: '[Person]'
+  ceo: '[Person]'
+  chairperson: '[Person]'
+  chaplain: '[Person]'
+  childOrganisation: '[Organisation]'
+  endowment: '[double]'
+  formationDate: '[date]'
+  formationYear: '[year]'
+  foundationPlace: '[City]'
+  headquarter: '[PopulatedPlace]'
+  leaderFunction: '[PersonFunction]'
+  legalForm: '[iri]'
+  locationCity: '[City]'
+  mainOrgan: '[iri]'
+  membership: '[langString]'
+  mergedWith: '[Organisation]'
+  numberOfEmployees: '[nonNegativeInteger]'
+  numberOfLocations: '[nonNegativeInteger]'
+  numberOfStaff: '[nonNegativeInteger]'
+  numberOfVolunteers: '[nonNegativeInteger]'
+  organisationMember: '[OrganisationMember]'
+  parentOrganisation: '[Organisation]'
+  product: '[iri]'
+  ranking: '[positiveInteger]'
+  regionServed: '[Place]'
+  revenue: '[double]'
+  secretaryGeneral: '[Person]'
+  service: '[iri]'
+  staff: '[nonNegativeInteger]'
+  superintendent: '[Person]'
+  trustee: '[Person]'
+Organisation,_Parish:
+  membershipAsOf: '[date]'
+Organisation,_PopulatedPlace:
+  dissolutionDate: '[date]'
+  dissolutionYear: '[year]'
+OrganisationMember:
+  ISA: Person
+Organization:
+  revenueYear: '[year]'
+Outbreak:
+  ISA: Event
+  activeCases: '[integer]'
+  confirmedCases: '[integer]'
+  fatalityRate: '[integer]'
+  pandemicDeaths: '[integer]'
+  pendamicDeaths: '[integer]'
+  recoveryCases: '[integer]'
+  severeCases: '[integer]'
+  suspectedCases: '[integer]'
+  totalIliCases: '[integer]'
+OverseasDepartment:
+  ISA: Department
+PaintballLeague:
+  ISA: SportsLeague
+Painter:
+  ISA: Artist
+Painting:
+  ISA: Artwork
+  technique: '[string]'
+Parish:
+  ISA: ClericalAdministrativeRegion
+Park:
+  ISA: Place
+Parliament:
+  ISA: Organisation
+PenaltyShootOut:
+  ISA: Event
+  penaltiesTeamA: '[string]'
+  penaltiesTeamB: '[string]'
+  penaltyScore: '[integer]'
+PeriodOfArtisticStyle:
+  ISA: TimePeriod
+PeriodicalLiterature:
+  ISA: WrittenWork
+  finalPublicationDate: '[date]'
+  finalPublicationYear: '[year]'
+  firstPublicationYear: '[year]'
+  frequencyOfPublication: '[string]'
+  issn: '[string]'
+  openAccessContent: '[string]'
+  zdb: '[string]'
+Person:
+  ISA: Animal
+  achievement: '[iri]'
+  activeYears: '[string]'
+  activeYearsEndDateMgr: '[string]'
+  activeYearsEndYearMgr: '[year]'
+  activeYearsStartDateMgr: '[date]'
+  activeYearsStartYearMgr: '[year]'
+  activity: '[iri]'
+  affair: '[string]'
+  agency: '[iri]'
+  allegiance: '[string]'
+  almaMater: '[EducationalInstitution]'
+  announcedFrom: '[Place]'
+  approach: '[iri]'
+  arrestDate: '[date]'
+  artisticFunction: '[string]'
+  astrologicalSign: '[iri]'
+  awardName: '[string]'
+  badGuy: '[string]'
+  bestLap: '[string]'
+  bigPoolRecord: '[string]'
+  birthName: '[langString]'
+  birthSign: '[iri]'
+  birthYear: year
+  bloodGroup: '[string]'
+  bloodType: '[iri]'
+  board: '[iri]'
+  bodyDiscovered: '[Place]'
+  britishWins: '[skos_Concept]'
+  bustSize: '[double]'
+  bustWaistHipSize: '[string]'
+  careerStation: '[CareerStation]'
+  case: '[string]'
+  catch: '[string]'
+  causeOfDeath: '[string]'
+  child: '[Person]'
+  circumcised: '[string]'
+  citizenship: '[iri]'
+  clothSize: '[string]'
+  clothingSize: '[string]'
+  coalition: '[string]'
+  collaboration: '[Person]'
+  colleague: '[Person]'
+  college: '[EducationalInstitution]'
+  competitionTitle: '[SportsEvent]'
+  complexion: '[iri]'
+  contest: '[Contest]'
+  continentalTournament: '[Tournament]'
+  continentalTournamentBronze: '[nonNegativeInteger]'
+  continentalTournamentGold: '[nonNegativeInteger]'
+  continentalTournamentSilver: '[nonNegativeInteger]'
+  convictionDate: '[date]'
+  copilote: '[Person]'
+  cousurper: '[Person]'
+  created: '[Work]'
+  currentTeamManager: '[SportsTeam]'
+  danseCompetition: '[string]'
+  danseScore: '[string]'
+  dateOfBurial: '[date]'
+  deadInFightDate: '[string]'
+  deadInFightPlace: '[string]'
+  deathAge: '[nonNegativeInteger]'
+  deathCause: '[iri]'
+  deathYear: year
+  debutWork: '[Work]'
+  decoration: '[iri]'
+  derivedWord: '[string]'
+  detractor: '[Person]'
+  diploma: '[Diploma]'
+  dubber: '[Person]'
+  education: '[iri]'
+  educationPlace: '[Place]'
+  electionDate: '[date]'
+  employer: '[Organisation]'
+  endCareer: '[string]'
+  endReign: '[skos_Concept]'
+  escalafon: '[string]'
+  ethnicity: '[EthnicGroup]'
+  expedition: '[string]'
+  externalOrnament: '[string]'
+  eyeColor: '[string]'
+  eyeColour: '[string]'
+  feat: '[string]'
+  federation: '[Organisation]'
+  filmNumber: '[nonNegativeInteger]'
+  foot: '[string]'
+  freeDanseScore: '[string]'
+  freeProgCompetition: '[string]'
+  freeProgScore: '[string]'
+  freeScoreCompetition: '[string]'
+  friend: '[Person]'
+  fullCompetition: '[string]'
+  fullScore: '[string]'
+  grave: '[string]'
+  gymApparatus: '[iri]'
+  hairColor: '[string]'
+  hairColour: '[string]'
+  hand: '[iri]'
+  handedness: '[iri]'
+  handisport: '[string]'
+  hasNaturalBust: '[string]'
+  hipSize: '[double]'
+  homage: '[string]'
+  idNumber: '[nonNegativeInteger]'
+  iihfHof: '[string]'
+  imposedDanseCompetition: '[string]'
+  imposedDanseScore: '[string]'
+  individualisedPnd: '[nonNegativeInteger]'
+  juniorYearsEndYear: '[year]'
+  juniorYearsStartYear: '[year]'
+  jutsu: '[string]'
+  killedBy: '[string]'
+  lahHof: '[string]'
+  leadership: '[string]'
+  leagueManager: '[SportsLeague]'
+  linguisticsTradition: '[iri]'
+  littlePoolRecord: '[string]'
+  livingPlace: '[Place]'
+  mainDomain: '[iri]'
+  mastersWins: '[skos_Concept]'
+  matchPoint: '[string]'
+  measurements: '[string]'
+  media: '[iri]'
+  member: '[string]'
+  militaryService: '[MilitaryService]'
+  mood: '[string]'
+  mount: '[string]'
+  movie: '[Film]'
+  nationalTeamMatchPoint: '[string]'
+  nationalTeamYear: '[string]'
+  nationalTournament: '[Tournament]'
+  nationalTournamentBronze: '[nonNegativeInteger]'
+  nationalTournamentGold: '[nonNegativeInteger]'
+  nationalTournamentSilver: '[nonNegativeInteger]'
+  nationality: '[Country]'
+  networth: '[double]'
+  nndbId: '[string]'
+  nonProfessionalCareer: '[string]'
+  notableIdea: '[iri]'
+  noteOnRestingPlace: '[string]'
+  numberOfRun: '[nonNegativeInteger]'
+  olympicGames: '[Tournament]'
+  olympicGamesBronze: '[nonNegativeInteger]'
+  olympicGamesGold: '[nonNegativeInteger]'
+  olympicGamesSilver: '[nonNegativeInteger]'
+  olympicGamesWins: '[string]'
+  opponent: '[Person]'
+  orientation: '[string]'
+  originalDanseCompetition: '[string]'
+  originalDanseScore: '[string]'
+  otherActivity: '[string]'
+  otherFunction: '[iri]'
+  otherMedia: '[PeriodicalLiterature]'
+  otherOccupation: '[PersonFunction]'
+  parent: '[Person]'
+  parliamentaryGroup: '[string]'
+  particularSign: '[string]'
+  partner: '[Person]'
+  patent: '[iri]'
+  penisLength: '[string]'
+  person/height: '[decimal]'
+  person/weight: '[decimal]'
+  personFunction: '[PersonFunction]'
+  pgaWins: '[skos_Concept]'
+  philosophicalSchool: '[iri]'
+  piercing: '[string]'
+  placeOfBurial: '[Place]'
+  playerStatus: '[string]'
+  podium: '[nonNegativeInteger]'
+  polePosition: '[nonNegativeInteger]'
+  politicalFunction: '[string]'
+  profession: '[iri]'
+  project: '[Project]'
+  pseudonym: '[langString]'
+  publication: '[string]'
+  raceWins: '[nonNegativeInteger]'
+  radio: '[RadioStation]'
+  reign: '[string]'
+  reignName: '[string]'
+  relatedFunctions: '[List]'
+  relation: '[Person]'
+  relative: '[Person]'
+  residence: '[Place]'
+  restingDate: date
+  restingPlace: '[Place]'
+  restingPlacePosition: '[wgs84pos_SpatialThing]'
+  retirementDate: date
+  salary: '[double]'
+  scene: '[string]'
+  school: '[EducationalInstitution]'
+  seasonManager: '[string]'
+  second: '[nonNegativeInteger]'
+  seiyu: '[Person]'
+  sentence: '[string]'
+  sex: '[string]'
+  sexualOrientation: '[iri]'
+  shoeNumber: '[positiveInteger]'
+  shoeSize: '[string]'
+  shoot: '[string]'
+  shortProgCompetition: '[string]'
+  shortProgScore: '[string]'
+  sibling: '[Person]'
+  signature: '[string]'
+  significantProject: '[iri]'
+  skinColor: '[string]'
+  specialTrial: '[nonNegativeInteger]'
+  speciality: '[string]'
+  sportDiscipline: '[Sport]'
+  sportsFunction: '[string]'
+  spouse: '[Person]'
+  spouseName: '[string]'
+  startCareer: '[string]'
+  startReign: '[skos_Concept]'
+  startWct: '[string]'
+  startWqs: '[string]'
+  stateOfOrigin: '[Country]'
+  statusManager: '[string]'
+  student: '[Person]'
+  tattoo: '[string]'
+  teamManager: '[SportsTeam]'
+  temple: '[string]'
+  templeYear: '[string]'
+  tessitura: '[string]'
+  third: '[nonNegativeInteger]'
+  titleDate: '[date]'
+  tvShow: '[TelevisionShow]'
+  usopenWins: '[skos_Concept]'
+  usurper: '[Person]'
+  victory: '[nonNegativeInteger]'
+  victoryAsMgr: '[nonNegativeInteger]'
+  victoryPercentageAsMgr: '[double]'
+  waistSize: '[double]'
+  weddingParentsDate: '[date]'
+  world: '[skos_Concept]'
+  worldTournament: '[Tournament]'
+  worldTournamentBronze: '[nonNegativeInteger]'
+  worldTournamentGold: '[nonNegativeInteger]'
+  worldTournamentSilver: '[nonNegativeInteger]'
+PersonFunction:
+  functionEndDate: '[date]'
+  functionEndYear: '[year]'
+  functionStartDate: '[date]'
+  functionStartYear: '[year]'
+  numberOfPersonInOccupation: '[nonNegativeInteger]'
+  person: '[Person]'
+  personName: '[string]'
+PersonalEvent:
+  ISA: LifeCycleEvent
+Pharaoh:
+  ISA: Royalty
+Philosopher:
+  ISA: Person
+PhilosophicalConcept:
+  ISA: TopicalConcept
+Photographer:
+  ISA: Artist
+Pilot:
+  ISA: Person
+Place:
+  address: '[langString]'
+  altitude: '[Altitude]'
+  annualTemperature: '[double]'
+  areaCode: '[string]'
+  areaDate: '[date]'
+  areaLand: '[double]'
+  areaOfCatchmentQuote: '[string]'
+  areaQuote: '[string]'
+  areaRank: '[string]'
+  areaTotal: '[double]'
+  areaWater: '[double]'
+  artificialSnowArea: '[double]'
+  authorityMandate: '[string]'
+  averageDepth: '[double]'
+  averageDepthQuote: '[string]'
+  avifaunaPopulation: '[string]'
+  basinCountry: '[Place]'
+  biggestCity: '[PopulatedPlace]'
+  bioclimate: '[string]'
+  bird: '[Species]'
+  blackLongDistancePisteNumber: '[nonNegativeInteger]'
+  blackSkiPisteNumber: '[nonNegativeInteger]'
+  blueLongDistancePisteNumber: '[nonNegativeInteger]'
+  blueSkiPisteNumber: '[nonNegativeInteger]'
+  budgetYear: '[string]'
+  cableCar: '[nonNegativeInteger]'
+  cannonNumber: '[nonNegativeInteger]'
+  capitalCoordinates: '[string]'
+  cityLink: '[string]'
+  climate: '[iri]'
+  climbUpNumber: '[nonNegativeInteger]'
+  closeTo: '[Place]'
+  coastLength: '[double]'
+  codeMunicipalMonument: '[string]'
+  codeNationalMonument: '[string]'
+  codeProvincialMonument: '[string]'
+  countryCode: '[string]'
+  currencyCode: '[string]'
+  dateAgreement: '[date]'
+  daylightSavingTimeZone: '[iri]'
+  depth: '[double]'
+  depthQuote: '[string]'
+  depths: '[Depth]'
+  district: '[PopulatedPlace]'
+  eastPlace: '[Place]'
+  elevation: '[double]'
+  elevationQuote: '[string]'
+  endPoint: '[Place]'
+  endangeredSince: '[date]'
+  eventDate: '[date]'
+  fauna: '[string]'
+  flora: '[string]'
+  flower: '[Species]'
+  foresterDistrict: '[iri]'
+  frontierLength: '[double]'
+  geolocDual: '[string]'
+  geologicPeriod: '[string]'
+  governingBody: '[Organisation]'
+  greenLongDistancePisteNumber: '[nonNegativeInteger]'
+  greenSkiPisteNumber: '[nonNegativeInteger]'
+  gridReference: '[string]'
+  grossDomesticProductPerPeople: '[string]'
+  grossDomesticProductRank: '[string]'
+  hasInsidePlace: '[Place]'
+  hasOutsidePlace: '[Place]'
+  heritageRegister: '[iri]'
+  highestAltitude: '[Altitude]'
+  historicalMap: '[string]'
+  historicalName: '[langString]'
+  humanDevelopmentIndexRank: '[string]'
+  information: '[string]'
+  informationName: '[string]'
+  isRouteStop: '[RouteStop]'
+  iso31661Code: '[string]'
+  isoCode: '[string]'
+  kindOfCoordinate: '[string]'
+  kindOfRock: '[string]'
+  lake: '[BodyOfWater]'
+  land: '[Place]'
+  landArea: '[double]'
+  landPercentage: '[double]'
+  lawCountry: '[string]'
+  lengthQuote: '[string]'
+  limit: '[string]'
+  linkedSpace: '[string]'
+  locatedInArea: '[Place]'
+  longDistancePisteKilometre: '[double]'
+  longDistancePisteNumber: '[nonNegativeInteger]'
+  lowest: '[string]'
+  lowestAltitude: '[Altitude]'
+  lowestMountain: '[Mountain]'
+  lowestPlace: '[PopulatedPlace]'
+  lowestPosition: '[wgs84pos_SpatialThing]'
+  mainIsland: '[Place]'
+  map: '[iri]'
+  mapCaption: '[string]'
+  mapDescription: '[string]'
+  maximumArea: '[string]'
+  maximumAreaQuote: '[string]'
+  maximumDepth: '[double]'
+  maximumDepthQuote: '[string]'
+  maximumElevation: '[double]'
+  mayorArticle: '[string]'
+  mergerDate: '[date]'
+  minimumArea: '[string]'
+  minimumAreaQuote: '[string]'
+  minimumElevation: '[double]'
+  municipalityCode: '[string]'
+  namedByLanguage: '[Place]'
+  nationalTopographicSystemMapNumber: '[string]'
+  nearestCity: '[PopulatedPlace]'
+  neighbourRegion: '[string]'
+  nextEntity: '[Place]'
+  northEastPlace: '[Place]'
+  northPlace: '[Place]'
+  northWestPlace: '[Place]'
+  numberOfIsland: '[string]'
+  numberOfPersonBornInPlace: '[nonNegativeInteger]'
+  numberOfSoccerPlayersBornInPlace: '[nonNegativeInteger]'
+  nutsCode: '[string]'
+  output: '[double]'
+  parliamentType: '[string]'
+  perimeter: '[double]'
+  pisciculturalPopulation: '[string]'
+  plant: '[Plant]'
+  politicalLeader: '[PersonFunction]'
+  populationQuote: '[string]'
+  presidentGeneralCouncilMandate: '[string]'
+  presidentRegionalCouncilMandate: '[string]'
+  previousEntity: '[Place]'
+  protectionStatus: '[string]'
+  province: '[Province]'
+  provinceLink: '[Province]'
+  quote: '[string]'
+  rankAgreement: '[nonNegativeInteger]'
+  realm: '[Place]'
+  redLongDistancePisteNumber: '[nonNegativeInteger]'
+  redSkiPisteNumber: '[nonNegativeInteger]'
+  refcul: '[string]'
+  refgen: '[string]'
+  refgeo: '[string]'
+  refpol: '[string]'
+  regency: '[PopulatedPlace]'
+  regionLink: '[string]'
+  regionType: '[string]'
+  regionalPrefecture: '[string]'
+  relatedPlaces: '[List]'
+  relief: '[string]'
+  representative: '[nonNegativeInteger]'
+  retentionTime: '[string]'
+  river: '[River]'
+  route: '[string]'
+  scale: '[string]'
+  sea: '[Sea]'
+  settlement: '[PopulatedPlace]'
+  skiLift: '[nonNegativeInteger]'
+  skiPisteKilometre: '[double]'
+  skiPisteNumber: '[nonNegativeInteger]'
+  skiTow: '[nonNegativeInteger]'
+  snowParkNumber: '[nonNegativeInteger]'
+  southEastPlace: '[Place]'
+  southPlace: '[Place]'
+  southWestPlace: '[Place]'
+  sovereignCountry: '[PopulatedPlace]'
+  startPoint: '[Place]'
+  statusYear: '[string]'
+  subPrefecture: '[string]'
+  subdivisionLink: '[string]'
+  subregion: '[Place]'
+  subsystem: '[string]'
+  subsystemLink: '[string]'
+  supply: '[Place]'
+  timeZone: '[iri]'
+  tree: '[Species]'
+  typeCoordinate: '[string]'
+  unesco: '[PopulatedPlace]'
+  unloCode: '[string]'
+  utcOffset: '[string]'
+  vehicleCode: '[string]'
+  volumeQuote: '[string]'
+  water: '[string]'
+  waterArea: '[double]'
+  waterPercentage: '[double]'
+  westPlace: '[Place]'
+  wholeArea: '[Area]'
+  widthQuote: '[string]'
+  yearOfConstruction: '[year]'
+Planet:
+  ISA: CelestialBody
+  albedo: '[double]'
+  apparentMagnitude: '[double]'
+  detectionMethod: '[string]'
+  epoch: '[string]'
+  escapeVelocity: '[double]'
+  maximumTemperature: '[double]'
+  meanRadius: '[double]'
+  meanTemperature: '[double]'
+  minimumTemperature: '[double]'
+  orbitalPeriod: '[double]'
+  planet/apoapsis: '[decimal]'
+  planet/averageSpeed: '[decimal]'
+  planet/density: '[decimal]'
+  planet/mass: '[decimal]'
+  planet/maximumTemperature: '[decimal]'
+  planet/meanRadius: '[decimal]'
+  planet/meanTemperature: '[decimal]'
+  planet/minimumTemperature: '[decimal]'
+  planet/orbitalPeriod: '[decimal]'
+  planet/periapsis: '[decimal]'
+  planet/surfaceArea: '[decimal]'
+  planet/temperature: '[decimal]'
+  planet/volume: '[decimal]'
+  rotationPeriod: '[double]'
+  satellite: '[string]'
+  surfaceArea: '[double]'
+  surfaceGravity: '[double]'
+Plant:
+  ISA: Eukaryote
+  cultivatedVariety: '[CultivatedVariety]'
+  hybrid: '[Plant]'
+Play:
+  ISA: WrittenWork
+  characterInPlay: '[string]'
+  chorusCharacterInPlay: '[string]'
+  ibdbId: '[string]'
+  iobdbId: '[string]'
+  muteCharacterInPlay: '[string]'
+  premiereDate: '[date]'
+  premierePlace: '[iri]'
+  premiereYear: '[year]'
+  settingOfPlay: '[string]'
+  subjectOfPlay: '[string]'
+PlayWright:
+  ISA: Writer
+PlayboyPlaymate:
+  ISA: Person
+Poem:
+  ISA: WrittenWork
+Poet:
+  ISA: Writer
+PokerPlayer:
+  ISA: Athlete
+  bestWsopRank: '[nonNegativeInteger]'
+  bestYearWsop: '[year]'
+  eptFinalTable: '[nonNegativeInteger]'
+  eptItm: '[nonNegativeInteger]'
+  eptTitle: '[string]'
+  wptFinalTable: '[nonNegativeInteger]'
+  wptItm: '[nonNegativeInteger]'
+  wptTitle: '[string]'
+  wsopItm: '[nonNegativeInteger]'
+  wsopWinYear: '[year]'
+  wsopWristband: '[nonNegativeInteger]'
+PoliceOfficer:
+  ISA: Person
+PoliticalConcept:
+  ISA: TopicalConcept
+PoliticalFunction:
+  ISA: PersonFunction
+  politician: '[Politician]'
+PoliticalParty:
+  ISA: Organisation
+  europeanAffiliation: '[iri]'
+  europeanParliamentGroup: '[iri]'
+  internationalAffiliation: '[iri]'
+  nationalAffiliation: '[iri]'
+  numberOfMembersAsOf: '[date]'
+  numberOfSeatsInParliament: '[nonNegativeInteger]'
+  splitFromParty: '[PoliticalParty]'
+  spokesperson: '[Person]'
+  youthWing: '[iri]'
+Politician:
+  ISA: Person
+  prefect: '[Person]'
+PoliticianSpouse:
+  ISA: Person
+PoloLeague:
+  ISA: SportsLeague
+Polysaccharide:
+  ISA: Biomolecule
+Pope:
+  ISA: Cleric
+PopulatedPlace:
+  ISA: Place
+  administrativeHeadCity: '[City]'
+  agglomeration: '[Agglomeration]'
+  agglomerationArea: '[Area]'
+  agglomerationDemographics: '[Demographics]'
+  apskritis: '[string]'
+  areaRural: '[double]'
+  areaTotalRanking: '[positiveInteger]'
+  areaUrban: '[double]'
+  arrondissement: '[PopulatedPlace]'
+  barangays: '[string]'
+  borough: '[PopulatedPlace]'
+  capital: '[City]'
+  catholicPercentage: '[string]'
+  ccaState: '[string]'
+  censusYear: '[year]'
+  ceremonialCounty: '[PopulatedPlace]'
+  circle: '[string]'
+  citySince: '[string]'
+  cityType: '[string]'
+  colonialName: '[string]'
+  commissionerDate: '[string]'
+  communityIsoCode: '[string]'
+  councilArea: '[PopulatedPlace]'
+  countySeat: '[iri]'
+  delegateMayor: '[Person]'
+  delegation: '[string]'
+  deme: '[string]'
+  demographics: '[Demographics]'
+  demographicsAsOf: '[date]'
+  department: '[Department]'
+  departmentPosition: '[string]'
+  disappearanceDate: '[date]'
+  ekatteCode: '[string]'
+  emblem: '[string]'
+  ethnicGroup: '[EthnicGroup]'
+  fipsCode: '[string]'
+  firstMention: '[string]'
+  foundation: '[string]'
+  gdpPerCapita: '[double]'
+  giniCoefficient: '[double]'
+  giniCoefficientAsOf: '[date]'
+  giniCoefficientCategory: '[iri]'
+  giniCoefficientRanking: '[positiveInteger]'
+  gnisCode: '[string]'
+  gnl: '[string]'
+  governorate: '[string]'
+  grossDomesticProduct: '[double]'
+  grossDomesticProductAsOf: '[date]'
+  grossDomesticProductNominalPerCapita: '[GrossDomesticProductPerCapita]'
+  grossDomesticProductPurchasingPowerParityPerCapita: '[GrossDomesticProductPerCapita]'
+  historicalRegion: '[string]'
+  hraState: '[string]'
+  humanDevelopmentIndex: '[double]'
+  humanDevelopmentIndexAsOf: '[date]'
+  humanDevelopmentIndexRankingCategory: '[iri]'
+  illiteracy: '[double]'
+  income: '[string]'
+  infantMortality: '[double]'
+  internationalPhonePrefix: '[string]'
+  internationalPhonePrefixLabel: '[string]'
+  ist: '[string]'
+  istat: '[string]'
+  largestCity: '[PopulatedPlace]'
+  largestSettlement: '[PopulatedPlace]'
+  latestElection: '[date]'
+  leaderName: '[Person]'
+  leaderParty: '[iri]'
+  leaderTitle: '[langString]'
+  legislature: '[Legislature]'
+  licenceNumber: '[string]'
+  licenceNumberLabel: '[string]'
+  lieutenancy: '[string]'
+  lieutenancyArea: '[PopulatedPlace]'
+  lifeExpectancy: '[string]'
+  localPhonePrefix: '[nonNegativeInteger]'
+  localizationThumbnail: '[iri]'
+  localizationThumbnailCaption: '[string]'
+  metropolitanBorough: '[PopulatedPlace]'
+  nation: '[string]'
+  neighboringMunicipality: '[PopulatedPlace]'
+  nisCode: '[string]'
+  numberOfCantons: '[nonNegativeInteger]'
+  numberOfCapitalDeputies: '[nonNegativeInteger]'
+  numberOfCounties: '[nonNegativeInteger]'
+  numberOfFederalDeputies: '[nonNegativeInteger]'
+  numberOfMunicipalities: '[nonNegativeInteger]'
+  numberOfStateDeputies: '[nonNegativeInteger]'
+  officialLanguage: '[Language]'
+  okatoCode: '[string]'
+  oldDistrict: '[PopulatedPlace]'
+  oldName: '[string]'
+  oldProvince: '[PopulatedPlace]'
+  otherName: '[langString]'
+  outskirts: '[string]'
+  parish: '[PopulatedPlace]'
+  peopleName: '[langString]'
+  perCapitaIncome: '[double]'
+  perCapitaIncomeAsOf: '[date]'
+  perCapitaIncomeRank: '[string]'
+  percentageLiteracyMen: '[double]'
+  percentageLiteracyWomen: '[double]'
+  percentageLiterate: '[double]'
+  phonePrefix: '[nonNegativeInteger]'
+  pluviometry: '[string]'
+  policeName: '[string]'
+  politicGovernmentDepartment: '[iri]'
+  populatedPlace/area: '[decimal]'
+  populatedPlace/areaMetro: '[decimal]'
+  populatedPlace/areaTotal: '[decimal]'
+  populatedPlace/areaUrban: '[decimal]'
+  populatedPlace/populationDensity: '[decimal]'
+  populatedPlace/populationMetroDensity: '[decimal]'
+  populatedPlace/populationUrbanDensity: '[decimal]'
+  population: '[Population]'
+  populationAsOf: '[date]'
+  populationDensity: '[double]'
+  populationMetro: '[nonNegativeInteger]'
+  populationMetroDensity: '[double]'
+  populationPctChildren: '[nonNegativeInteger]'
+  populationPctMen: '[nonNegativeInteger]'
+  populationPctWomen: '[nonNegativeInteger]'
+  populationRural: '[nonNegativeInteger]'
+  populationRuralDensity: '[double]'
+  populationTotalRanking: '[positiveInteger]'
+  populationUrban: '[nonNegativeInteger]'
+  populationUrbanDensity: '[double]'
+  populationYear: '[string]'
+  previousDemographics: '[Demographics]'
+  previousName: '[string]'
+  previousPopulation: '[Population]'
+  previousPopulationTotal: '[nonNegativeInteger]'
+  principalArea: '[PopulatedPlace]'
+  protestantPercentage: '[string]'
+  provinceIsoCode: '[string]'
+  purchasingPowerParity: '[string]'
+  purchasingPowerParityRank: '[string]'
+  purchasingPowerParityYear: '[string]'
+  rankArea: '[nonNegativeInteger]'
+  rankPopulation: '[nonNegativeInteger]'
+  regionalLanguage: '[Language]'
+  saint: '[Saint]'
+  senior: '[string]'
+  seniunija: '[string]'
+  sharingOutPopulation: '[nonNegativeInteger]'
+  sharingOutPopulationYear: '[string]'
+  sheading: '[PopulatedPlace]'
+  simcCode: '[iri]'
+  termOfOffice: '[string]'
+  terytCode: '[iri]'
+  topic: '[string]'
+  touristicSite: '[Place]'
+  unitaryAuthority: '[PopulatedPlace]'
+  viceLeader: '[Person]'
+  viceLeaderParty: '[PoliticalParty]'
+  watercourse: '[string]'
+  zipCode: string
+Port:
+  ISA: Infrastructure
+PowerStation:
+  ISA: Infrastructure
+  averageAnnualGeneration: double
+  capacityFactor: '[double]'
+  fuelTypeName: '[langString]'
+  generationUnits: '[langString]'
+  installedCapacity: double
+  otherFuelType: '[iri]'
+  primaryFuelType: '[iri]'
+Prefecture:
+  ISA: GovernmentalAdministrativeRegion
+PrehistoricalPeriod:
+  ISA: TimePeriod
+Presenter:
+  ISA: Person
+President:
+  ISA: Politician
+Pretender:
+  ISA: Royalty
+Priest:
+  ISA: Cleric
+  ordination: '[date]'
+PrimeMinister:
+  ISA: Politician
+Prison:
+  ISA: Building
+Producer:
+  ISA: Person
+Profession:
+  ISA: PersonFunction
+Professor:
+  ISA: Scientist
+ProgrammingLanguage:
+  ISA: Language
+Project:
+  ISA: UnitOfWork
+  projectEndDate: '[date]'
+  projectKeyword: '[string]'
+  projectObjective: '[string]'
+  projectStartDate: '[date]'
+ProtectedArea:
+  ISA: Place
+  iucnCategory: '[string]'
+  numberOfHouses: '[string]'
+Protein:
+  ISA: Biomolecule
+  arm: '[string]'
+  band: '[string]'
+  chromosome: '[string]'
+  locusSupplementaryData: '[string]'
+  pdb: '[string]'
+  refseq: '[string]'
+ProtohistoricalPeriod:
+  ISA: TimePeriod
+Prov_Revision:
+  isMinorRevision: '[boolean]'
+  wikiPageLengthDelta: '[integer]'
+Province:
+  ISA: GovernmentalAdministrativeRegion
+Psychologist:
+  ISA: Person
+PublicTransitSystem:
+  ISA: Company
+  destination: '[PopulatedPlace]'
+  importantStation: '[Station]'
+  numberOfLines: '[nonNegativeInteger]'
+  numberOfVehicles: '[nonNegativeInteger]'
+  reportingMark: '[string]'
+  vehiclesInFleet: '[MeanOfTransportation]'
+Publisher:
+  ISA: Company
+Pyramid:
+  ISA: ArchitecturalStructure
+Quote:
+  ISA: WrittenWork
+Race:
+  ISA: SportsEvent
+  firstWinner: '[Person]'
+  mostWins: '[iri]'
+  raceResult: '[SportCompetitionResult]'
+  recentWinner: '[Person]'
+RaceTrack:
+  ISA: SportFacility
+  numberOfTurns: '[nonNegativeInteger]'
+Racecourse:
+  ISA: RaceTrack
+RacingDriver:
+  ISA: MotorsportRacer
+RadioControlledRacingLeague:
+  ISA: SportsLeague
+RadioHost:
+  ISA: Presenter
+RadioProgram:
+  ISA: Work
+RadioStation:
+  ISA: Broadcaster
+  airDate: '[date]'
+  facilityId: '[integer]'
+  radioStation: '[string]'
+RailwayLine:
+  ISA: RouteOfTransportation
+RailwayStation:
+  ISA: Station
+RailwayTunnel:
+  ISA: RouteOfTransportation
+  railwayLineUsingTunnel: '[iri]'
+RallyDriver:
+  ISA: RacingDriver
+Rebbe:
+  ISA: Religious
+Rebellion:
+  ISA: SocietalEvent
+RecordLabel:
+  ISA: Company
+  distributingCompany: '[Company]'
+  distributingLabel: '[RecordLabel]'
+RecordOffice:
+  ISA: Non-ProfitOrganisation
+Referee:
+  ISA: Person
+Reference:
+  ISA: Annotation
+  atPage: '[string]'
+  atRowNumber: '[string]'
+  connectsReferencedTo: '[iri]'
+  reference: '[string]'
+Regency:
+  ISA: GovernmentalAdministrativeRegion
+  numberOfDistricts: '[nonNegativeInteger]'
+Region:
+  ISA: PopulatedPlace
+  dutchCOROPCode: '[string]'
+Reign:
+  ISA: TimePeriod
+Religious:
+  ISA: Person
+ReligiousBuilding:
+  ISA: Building
+  bishopric: '[iri]'
+  cemetery: '[Cemetery]'
+  eparchy: '[iri]'
+  organ: '[Organ]'
+  relics: '[string]'
+ReligiousOrganisation:
+  ISA: Organisation
+Reptile:
+  ISA: Animal
+ResearchProject:
+  ISA: Project
+  fundedBy: '[Organisation,_Person]'
+  projectBudgetFunding: '[double]'
+  projectBudgetTotal: '[double]'
+  projectCoordinator: '[Organisation]'
+  projectParticipant: '[Organisation]'
+  projectReferenceID: '[string]'
+  projectType: '[string]'
+RestArea:
+  ISA: Infrastructure
+  fillingStation: '[FillingStation]'
+  parkingLotsCars: '[nonNegativeInteger]'
+  parkingLotsTrucks: '[nonNegativeInteger]'
+Restaurant:
+  ISA: Building
+  chef: '[Person]'
+  dressCode: '[string]'
+  headChef: '[Person]'
+  numberOfEtoilesMichelin: '[nonNegativeInteger]'
+  reservations: '[boolean]'
+Resume:
+  ISA: WrittenWork
+River:
+  ISA: Stream
+  leftTributary: '[River]'
+  mouthCountry: '[Country]'
+  mouthDistrict: '[PopulatedPlace]'
+  mouthMountain: '[Mountain]'
+  mouthPlace: '[PopulatedPlace]'
+  mouthPosition: '[wgs84pos_SpatialThing]'
+  mouthRegion: '[PopulatedPlace]'
+  mouthState: '[PopulatedPlace]'
+  rightTributary: '[River]'
+  riverBranch: '[River]'
+  riverBranchOf: '[River]'
+  riverMouth: '[BodyOfWater]'
+  sourceConfluence: '[iri]'
+  sourceConfluenceCountry: '[Country]'
+  sourceConfluenceMountain: '[Mountain]'
+  sourceConfluencePlace: '[Place]'
+  sourceConfluencePosition: '[wgs84pos_SpatialThing]'
+  sourceConfluenceRegion: '[Place]'
+  sourceConfluenceState: '[PopulatedPlace]'
+Road:
+  ISA: RouteOfTransportation
+  addressInRoad: '[iri]'
+  beltwayCity: '[City]'
+  highwaySystem: '[iri]'
+  ruralMunicipality: '[PopulatedPlace]'
+  spurOf: '[Road]'
+  spurType: '[iri]'
+RoadJunction:
+  ISA: RouteOfTransportation
+  meetingRoad: '[Road]'
+RoadTunnel:
+  ISA: RouteOfTransportation
+Robot:
+  ISA: Device
+Rocket:
+  ISA: MeanOfTransportation
+  comparable: '[Rocket]'
+  countryOrigin: '[Country]'
+  finalFlight: '[date]'
+  lowerEarthOrbitPayload: '[double]'
+  maidenFlight: '[date]'
+  rocket/lowerEarthOrbitPayload: '[decimal]'
+  rocket/mass: '[decimal]'
+  rocketFunction: '[iri]'
+  rocketStages: '[nonNegativeInteger]'
+  unknownOutcomes: '[nonNegativeInteger]'
+RocketEngine:
+  ISA: Engine
+RollerCoaster:
+  ISA: AmusementParkAttraction
+RomanEmperor:
+  ISA: Person
+RomaniaSettlement:
+  authorityTitle: '[string]'
+  prefectMandate: '[string]'
+RouteOfTransportation:
+  ISA: Infrastructure
+  lengthReference: '[string]'
+  lineLength: '[double]'
+  numberOfLanes: '[nonNegativeInteger]'
+  numberOfStations: '[nonNegativeInteger]'
+  railGauge: '[double]'
+  railwayRollingStock: '[iri]'
+  routeDirection: '[string]'
+  routeEnd: '[Station]'
+  routeEndDirection: '[string]'
+  routeEndLocation: '[Place]'
+  routeJunction: '[Station]'
+  routeNumber: '[string]'
+  routeStart: '[Station]'
+  routeStartDirection: '[string]'
+  routeStartLocation: '[Place]'
+  routeTypeAbbreviation: '[string]'
+  speedLimit: '[double]'
+  toll: '[double]'
+  trackLength: '[double]'
+  trackWidth: '[double]'
+  typeOfElectrification: '[iri]'
+  vehiclesPerDay: '[nonNegativeInteger]'
+  voltageOfElectrification: '[double]'
+RouteStop:
+  ISA: Station
+  routeActivity: '[iri]'
+  routeLine: '[iri]'
+  routeNext: '[RouteStop]'
+  routePrevious: '[RouteStop]'
+Rower:
+  ISA: Athlete
+Royalty:
+  ISA: Person
+  coronationDate: '[date]'
+RugbyClub:
+  ISA: SportsClub
+RugbyLeague:
+  ISA: SportsLeague
+RugbyPlayer:
+  ISA: Athlete
+Sailor:
+  ISA: Athlete
+Saint:
+  ISA: Cleric
+  beatifiedBy: '[Person]'
+  beatifiedDate: '[date]'
+  beatifiedPlace: '[PopulatedPlace]'
+  canonizedBy: '[Person]'
+  canonizedDate: '[date]'
+  canonizedPlace: '[PopulatedPlace]'
+  iconographicAttributes: '[langString]'
+  majorShrine: '[iri]'
+  suppreddedDate: '[date]'
+  veneratedIn: '[Organisation]'
+Sales:
+  ISA: Activity
+  endYearOfSales: '[year]'
+  model: '[string]'
+  numberSold: '[nonNegativeInteger]'
+  startYearOfSales: '[year]'
+  usSales: '[nonNegativeInteger]'
+SambaSchool:
+  ISA: Organisation
+Satellite:
+  ISA: CelestialBody
+School:
+  ISA: EducationalInstitution
+  actScore: '[iri]'
+  averageClassSize: '[double]'
+  barPassRate: '[double]'
+  campusSize: '[double]'
+  ceeb: '[string]'
+  classes: '[nonNegativeInteger]'
+  dfE: '[iri]'
+  executiveHeadteacher: '[Person]'
+  fees: '[double]'
+  grades: '[iri]'
+  headLabel: '[langString]'
+  headteacher: '[Person]'
+  lowerAge: '[nonNegativeInteger]'
+  nobelLaureates: '[Person]'
+  numberOfClassrooms: '[iri]'
+  oversight: '[string]'
+  ratio: '[string]'
+  religiousHeadLabel: '[iri]'
+  rivalSchool: '[School]'
+  satScore: '[iri]'
+  school/campusSize: '[decimal]'
+  schoolBoard: '[iri]'
+  schoolCode: '[string]'
+  schoolNumber: '[string]'
+  schoolPatron: '[Agent]'
+  sixthFormStudents: '[string]'
+  teachingStaff: '[iri]'
+  teamName: '[langString]'
+  testaverage: '[double]'
+  tuition: '[double]'
+  uRN: '[iri]'
+  upperAge: '[nonNegativeInteger]'
+  vicePrincipal: '[Person]'
+  vicePrincipalLabel: '[iri]'
+ScientificConcept:
+  ISA: TopicalConcept
+Scientist:
+  ISA: Person
+  academicAdvisor: '[Person]'
+  doctoralAdvisor: '[Person]'
+  doctoralStudent: '[Person]'
+  notableStudent: '[Person]'
+ScreenWriter:
+  ISA: Writer
+Sculptor:
+  ISA: Artist
+Sculpture:
+  ISA: Artwork
+Sea:
+  ISA: BodyOfWater
+Senator:
+  ISA: Politician
+SerialKiller:
+  ISA: Murderer
+Settlement:
+  ISA: PopulatedPlace
+  adjacentSettlement: '[Settlement]'
+  administrativeCollectivity: '[PopulatedPlace]'
+  administrativeDistrict: '[PopulatedPlace]'
+  agglomerationPopulation: '[Population]'
+  agglomerationPopulationYear: '[string]'
+  associationOfLocalGovernment: '[PopulatedPlace]'
+  bourgmestre: '[Person]'
+  canton: '[Settlement]'
+  coastLine: '[double]'
+  codeSettlement: '[string]'
+  collectivityMinority: '[iri]'
+  commune: '[Settlement]'
+  daira: '[Place]'
+  day: '[date]'
+  distanceToBelfast: '[double]'
+  distanceToCapital: '[double]'
+  distanceToCardiff: '[double]'
+  distanceToCharingCross: '[double]'
+  distanceToDouglas: '[double]'
+  distanceToDublin: '[double]'
+  distanceToEdinburgh: '[double]'
+  distanceToLondon: '[double]'
+  distanceToNearestCity: '[double]'
+  employersCelebration: '[string]'
+  federalState: '[PopulatedPlace]'
+  frazioni: '[PopulatedPlace]'
+  geolocDepartment: '[PopulatedPlace]'
+  highestPoint: '[Place]'
+  inseeCode: '[string]'
+  isCityState: '[string]'
+  isoCodeRegion: '[string]'
+  jointCommunity: '[PopulatedPlace]'
+  landRegistryCode: '[string]'
+  largestMetro: '[PopulatedPlace]'
+  locality: '[string]'
+  lowestPoint: '[Place]'
+  mergedSettlement: '[Settlement]'
+  minority: '[Group]'
+  officialName: '[langString]'
+  ofsCode: '[string]'
+  ons: '[nonNegativeInteger]'
+  otherInformation: '[string]'
+  otherLanguage: '[string]'
+  phonePrefixLabel: '[langString]'
+  politicalMajority: '[PoliticalParty]'
+  politicalSeats: '[nonNegativeInteger]'
+  populationTotalReference: '[iri]'
+  provCode: '[string]'
+  reffBourgmestre: '[Person]'
+  sameName: '[langString]'
+  settlementAttached: '[Place]'
+  summerTemperature: '[double]'
+  twinTown: '[Settlement]'
+  urbanArea: '[string]'
+  wilaya: '[Place]'
+  winterTemperature: '[double]'
+Ship:
+  ISA: MeanOfTransportation
+  acquirementDate: '[date]'
+  captureDate: '[date]'
+  christeningDate: '[date]'
+  commissioningDate: '[date]'
+  decommissioningDate: '[date]'
+  homeport: '[Place]'
+  layingDown: '[date]'
+  maidenVoyage: '[date]'
+  numberOfPassengers: '[nonNegativeInteger]'
+  orderDate: '[date]'
+  recommissioningDate: '[date]'
+  shipBeam: '[double]'
+  shipCrew: '[Person]'
+  shipDisplacement: '[double]'
+  shipDraft: '[double]'
+  shipLaunch: '[date]'
+ShoppingMall:
+  ISA: Building
+  numberOfStores: '[nonNegativeInteger]'
+Shrine:
+  ISA: ReligiousBuilding
+  enshrinedDeity: '[Deity]'
+  mainBuilding: '[string]'
+Singer:
+  ISA: MusicalArtist
+Single:
+  ISA: MusicalWork
+  aSide: '[string]'
+  bSide: '[string]'
+  certification: '[string]'
+  certificationDate: '[date]'
+  musicalArtist: '[MusicalArtist]'
+  musicalBand: '[Band]'
+SingleList:
+  ISA: List
+  singleOf: '[Work]'
+SiteOfSpecialScientificInterest:
+  ISA: Place
+  areaOfSearch: '[PopulatedPlace]'
+  interest: '[string]'
+  notifyDate: '[date]'
+Skater:
+  ISA: WinterSportPlayer
+SkiArea:
+  ISA: SportFacility
+  numberOfLifts: '[nonNegativeInteger]'
+  numberOfTrails: '[nonNegativeInteger]'
+SkiResort:
+  ISA: SkiArea
+  linkedTo: '[Place]'
+  massif: '[Place]'
+Ski_jumper:
+  ISA: WinterSportPlayer
+Skier:
+  ISA: WinterSportPlayer
+Skyscraper:
+  ISA: Building
+  cityRank: '[nonNegativeInteger]'
+  continentRank: '[nonNegativeInteger]'
+  contractor: '[Company]'
+  countryRank: '[nonNegativeInteger]'
+  highestBuildingInYear: '[date]'
+  roofHeight: '[nonNegativeInteger]'
+  topFloorHeight: '[nonNegativeInteger]'
+SnookerChamp:
+  ISA: SnookerPlayer
+SnookerPlayer:
+  ISA: Athlete
+  bestFinish: '[string]'
+  centuryBreaks: '[integer]'
+  currentRank: '[integer]'
+  highestBreak: '[integer]'
+  highestRank: '[integer]'
+  otherWins: '[nonNegativeInteger]'
+  rankingWins: '[nonNegativeInteger]'
+SnookerWorldRanking:
+  ISA: SportCompetitionResult
+SoapCharacter:
+  ISA: FictionalCharacter
+SoccerClub:
+  ISA: SportsClub
+  chairmanTitle: '[langString]'
+  clubsRecordGoalscorer: '[Person]'
+  dissolved: '[date]'
+  fansgroup: '[string]'
+  firstGame: '[string]'
+  ground: '[Place]'
+  largestWin: '[string]'
+  managerTitle: '[string]'
+  numberOfSoccerPlayerInCountryRepre: '[nonNegativeInteger]'
+  numberOfSoccerPlayersInTeam: '[nonNegativeInteger]'
+  worstDefeat: '[string]'
+SoccerClubSeason:
+  ISA: SportsTeamSeason
+SoccerLeague:
+  ISA: SportsLeague
+SoccerLeagueSeason:
+  ISA: SportsTeamSeason
+  soccerLeaguePromoted: '[SportsTeam]'
+  soccerLeagueRelegated: '[SportsTeam]'
+  soccerLeagueSeason: '[SoccerLeagueSeason]'
+  soccerLeagueWinner: '[SportsTeam]'
+SoccerManager:
+  ISA: SportsManager
+SoccerPlayer:
+  ISA: Athlete
+  appearancesInLeague: '[nonNegativeInteger]'
+  appearancesInNationalTeam: '[nonNegativeInteger]'
+  goalsInLeague: '[nonNegativeInteger]'
+  goalsInNationalTeam: '[nonNegativeInteger]'
+  managerYears: '[date]'
+  nationalYears: '[year]'
+  trainerClub: '[SportsTeam]'
+  trainerYears: '[year]'
+  years: '[year]'
+  youthYears: '[year]'
+SoccerTournament:
+  ISA: Tournament
+  soccerTournamentClosingSeason: '[SoccerTournament]'
+  soccerTournamentLastChampion: '[SoccerClub]'
+  soccerTournamentMostSteady: '[SoccerClub]'
+  soccerTournamentMostSuccesfull: '[SoccerClub]'
+  soccerTournamentOpeningSeason: '[SoccerTournament]'
+  soccerTournamentThisSeason: '[SoccerTournament]'
+  soccerTournamentTopScorer: '[SoccerPlayer]'
+SocietalEvent:
+  ISA: Event
+SoftballLeague:
+  ISA: SportsLeague
+Software:
+  ISA: Work
+  aspectRatio: '[iri]'
+  computingInput: '[iri]'
+  computingMedia: '[iri]'
+  computingPlatform: '[iri]'
+  frequentlyUpdated: '[string]'
+  latestPreviewDate: '[date]'
+  latestPreviewVersion: '[string]'
+  latestReleaseDate: date
+  latestReleaseVersion: '[string]'
+  operatingSystem: '[iri]'
+  programmingLanguage: '[iri]'
+  resolution: '[iri]'
+  software/fileSize: '[decimal]'
+SolarEclipse:
+  ISA: NaturalEvent
+Song:
+  ISA: MusicalWork
+  trackNumber: '[positiveInteger]'
+SongWriter:
+  ISA: Writer
+Sound:
+  ISA: Document
+SpaceMission:
+  ISA: SocietalEvent
+  booster: '[Rocket]'
+  cmpEvaDuration: '[double]'
+  commandModule: '[string]'
+  crewMember: '[Astronaut]'
+  crewSize: '[nonNegativeInteger]'
+  distanceTraveled: '[double]'
+  landingDate: '[date]'
+  landingSite: '[string]'
+  landingVehicle: '[SpaceMission]'
+  launchDate: '[date]'
+  launchPad: '[LaunchPad]'
+  launchSite: '[Building]'
+  launchVehicle: '[iri]'
+  lunarEvaTime: '[double]'
+  lunarLandingSite: '[string]'
+  lunarModule: '[string]'
+  lunarOrbitTime: '[double]'
+  lunarRover: '[MeanOfTransportation]'
+  lunarSampleMass: '[double]'
+  lunarSurfaceTime: '[double]'
+  missionDuration: '[double]'
+  nextMission: '[SpaceMission]'
+  numberOfOrbits: '[nonNegativeInteger]'
+  orbitalInclination: '[double]'
+  previousMission: '[SpaceMission]'
+  satcat: '[string]'
+  serviceModule: '[string]'
+  shuttle: '[SpaceShuttle]'
+  spaceMission/cmpEvaDuration: '[decimal]'
+  spaceMission/distanceTraveled: '[decimal]'
+  spaceMission/lunarEvaTime: '[decimal]'
+  spaceMission/lunarOrbitTime: '[decimal]'
+  spaceMission/lunarSampleMass: '[decimal]'
+  spaceMission/lunarSurfaceTime: '[decimal]'
+  spaceMission/mass: '[decimal]'
+  spaceMission/missionDuration: '[decimal]'
+  spaceMission/stationEvaDuration: '[decimal]'
+  spaceMission/stationVisitDuration: '[decimal]'
+  spacecraft: '[Spacecraft]'
+  spacestation: '[SpaceStation]'
+  spacewalkBegin: '[date]'
+  spacewalkEnd: '[date]'
+  stationEvaDuration: '[double]'
+  stationVisitDuration: '[double]'
+SpaceShuttle:
+  ISA: MeanOfTransportation
+  contractAward: '[date]'
+  crews: '[nonNegativeInteger]'
+  firstFlight: '[SpaceMission]'
+  firstFlightEndDate: '[date]'
+  firstFlightStartDate: '[date]'
+  issDockings: '[nonNegativeInteger]'
+  lastFlight: '[SpaceMission]'
+  lastFlightEndDate: '[date]'
+  lastFlightStartDate: '[date]'
+  mirDockings: '[nonNegativeInteger]'
+  missions: '[nonNegativeInteger]'
+  satellitesDeployed: '[nonNegativeInteger]'
+  spaceShuttle/distance: '[decimal]'
+  spaceShuttle/timeInSpace: '[decimal]'
+SpaceStation:
+  ISA: MeanOfTransportation
+  nssdcId: '[string]'
+  spaceStation/volume: '[decimal]'
+Spacecraft:
+  ISA: MeanOfTransportation
+  cargoFuel: '[double]'
+  cargoGas: '[double]'
+  cargoWater: '[double]'
+  crew: '[SpaceMission]'
+  decay: '[date]'
+  dockedTime: '[double]'
+  dryCargo: '[double]'
+  freeFlightTime: '[double]'
+  inclination: '[double]'
+  launch: '[date]'
+  regime: '[string]'
+  rocket: '[Rocket]'
+  spacecraft/apoapsis: '[decimal]'
+  spacecraft/cargoFuel: '[decimal]'
+  spacecraft/cargoGas: '[decimal]'
+  spacecraft/cargoWater: '[decimal]'
+  spacecraft/dockedTime: '[decimal]'
+  spacecraft/dryCargo: '[decimal]'
+  spacecraft/freeFlightTime: '[decimal]'
+  spacecraft/periapsis: '[decimal]'
+  spacecraft/totalCargo: '[decimal]'
+  spacecraft/totalMass: '[decimal]'
+  targetSpaceStation: '[SpaceStation]'
+  totalCargo: '[double]'
+  totalMass: '[double]'
+Species:
+  binomial: '[iri]'
+  binomialAuthority: '[iri]'
+  clade: '[iri]'
+  classis: '[iri]'
+  conservationStatus: '[string]'
+  conservationStatusSystem: '[string]'
+  domain: '[iri]'
+  extinctionYear: '[year]'
+  family: '[Species]'
+  fossil: '[Species]'
+  genus: '[iri]'
+  kingdom: '[iri]'
+  order: '[iri]'
+  parentheses: '[iri]'
+  phylum: '[iri]'
+  redListIdNL: '[integer]'
+  scientificName: '[string]'
+  species: '[Species]'
+  subClassis: '[iri]'
+  subFamily: '[Taxon]'
+  subGenus: '[iri]'
+  subOrder: '[iri]'
+  subTribus: '[Species]'
+  superFamily: '[Taxon]'
+  superOrder: '[iri]'
+  superTribus: '[Species]'
+  taxon: '[Taxon]'
+  tribus: '[Species]'
+  woRMS: '[iri]'
+SpeedSkater:
+  ISA: WinterSportPlayer
+SpeedwayLeague:
+  ISA: SportsLeague
+SpeedwayRider:
+  ISA: MotorcycleRider
+SpeedwayTeam:
+  ISA: SportsTeam
+Sport:
+  ISA: Activity
+  currentWorldChampion: '[Agent]'
+  firstOlympicEvent: '[OlympicEvent]'
+  footedness: '[Person]'
+SportCompetitionResult:
+  competition: '[Event]'
+  numberOfBronzeMedalsWon: '[nonNegativeInteger]'
+  numberOfGoldMedalsWon: '[nonNegativeInteger]'
+  numberOfSilverMedalsWon: '[nonNegativeInteger]'
+SportFacility:
+  ISA: ArchitecturalStructure
+SportsClub:
+  ISA: Organisation
+SportsEvent:
+  ISA: SocietalEvent
+  bronzeMedalist: '[Person]'
+  champion: '[Athlete]'
+  championInDouble: '[Athlete]'
+  championInDoubleFemale: '[Athlete]'
+  championInDoubleMale: '[Athlete]'
+  championInMixedDouble: '[Athlete]'
+  championInSingle: '[Athlete]'
+  championInSingleFemale: '[Athlete]'
+  championInSingleMale: '[Athlete]'
+  goldMedalist: '[Person]'
+  medalist: '[Person]'
+  mostSuccessfulPlayer: '[Athlete]'
+  raceTrack: '[RaceTrack]'
+  silverMedalist: '[Person]'
+SportsLeague:
+  ISA: Organisation
+  currentSeason: '[string]'
+  numberOfTeams: '[nonNegativeInteger]'
+SportsManager:
+  ISA: Person
+SportsTeam:
+  ISA: Organisation
+  currentMember: '[Person]'
+  currentTeamMember: '[TeamMember]'
+  generalManager: '[Person]'
+  manager: '[Person]'
+  playerInTeam: '[Person]'
+SportsTeamMember:
+  ISA: OrganisationMember
+  squadNumber: '[nonNegativeInteger]'
+SportsTeamSeason:
+  ISA: SportsSeason
+Spy:
+  ISA: Person
+Square:
+  ISA: ArchitecturalStructure
+SquashPlayer:
+  ISA: Athlete
+Stadium:
+  ISA: Venue
+Standard:
+  ISA: TopicalConcept
+Star:
+  ISA: CelestialBody
+State:
+  ISA: PopulatedPlace
+StatedResolution:
+  ISA: WrittenWork
+  abstentions: '[nonNegativeInteger]'
+  votesAgainst: '[nonNegativeInteger]'
+  votesFor: '[nonNegativeInteger]'
+Station:
+  ISA: Infrastructure
+  agencyStationCode: '[string]'
+  availableSmartCard: '[iri]'
+  bicycleInformation: '[string]'
+  canBaggageChecked: '[boolean]'
+  fareZone: '[string]'
+  isHandicappedAccessible: '[boolean]'
+  numberOfPlatformLevels: '[integer]'
+  otherServingLines: '[string]'
+  parkingInformation: '[string]'
+  passengersUsedSystem: '[string]'
+  railwayPlatforms: '[string]'
+  servingRailwayLine: '[iri]'
+  stationStructure: '[string]'
+  yearOfElectrification: '[year]'
+Statistic:
+  statistic: '[iri]'
+StillImage:
+  ISA: Image
+StormSurge:
+  ISA: NaturalEvent
+Stream:
+  ISA: BodyOfWater
+  discharge: '[double]'
+  sourceCountry: '[Country]'
+  stream/discharge: '[decimal]'
+  stream/dischargeAverage: '[decimal]'
+  stream/maximumDischarge: '[decimal]'
+  stream/minimumDischarge: '[decimal]'
+  stream/watershed: '[decimal]'
+  watershed: '[double]'
+Street:
+  ISA: PopulatedPlace
+SubMunicipality:
+  ISA: GovernmentalAdministrativeRegion
+  subMunicipalityType: '[string]'
+SumoWrestler:
+  ISA: Wrestler
+SupremeCourtOfTheUnitedStatesCase:
+  ISA: LegalCase
+  argueDate: '[date]'
+  decideDate: '[date]'
+Surfer:
+  ISA: Athlete
+Surname:
+  ISA: Name
+Swarm:
+  ISA: CelestialBody
+Swimmer:
+  ISA: Athlete
+  swimmingStyle: '[string]'
+SwitzerlandSettlement:
+  mayorFunction: '[string]'
+Synagogue:
+  ISA: ReligiousBuilding
+SystemOfLaw:
+  ISA: TopicalConcept
+TableTennisPlayer:
+  ISA: Athlete
+Tax:
+  ISA: TopicalConcept
+Taxon:
+  ISA: TopicalConcept
+TeamMember:
+  ISA: Athlete
+TeamSport:
+  ISA: Sport
+TelevisionDirector:
+  ISA: Person
+TelevisionEpisode:
+  ISA: Work
+  episodeNumber: '[nonNegativeInteger]'
+  guest: '[Person]'
+  photographer: '[Person]'
+  seasonNumber: '[nonNegativeInteger]'
+TelevisionHost:
+  ISA: Presenter
+TelevisionSeason:
+  ISA: Work
+TelevisionShow:
+  ISA: Work
+  coExecutiveProducer: '[Person]'
+  coProducer: '[Person]'
+  creativeDirector: '[Person]'
+  endingTheme: '[Work]'
+  numberOfEpisodes: '[nonNegativeInteger]'
+  numberOfSeasons: '[nonNegativeInteger]'
+  openingTheme: '[Work]'
+  presenter: '[Person]'
+  showJudge: '[Person]'
+  storyEditor: '[Person]'
+  tvComId: '[integer]'
+TelevisionStation:
+  ISA: Broadcaster
+  timeshiftChannel: '[string]'
+Temple:
+  ISA: ReligiousBuilding
+TennisLeague:
+  ISA: SportsLeague
+TennisPlayer:
+  ISA: Athlete
+  australiaOpenDouble: '[string]'
+  australiaOpenMixed: '[string]'
+  australiaOpenSingle: '[string]'
+  bestRankDouble: '[string]'
+  bestRankSingle: '[string]'
+  bronzeMedalDouble: '[string]'
+  bronzeMedalMixed: '[string]'
+  bronzeMedalSingle: '[string]'
+  careerPrizeMoney: '[double]'
+  finalLost: '[nonNegativeInteger]'
+  finalLostDouble: '[string]'
+  finalLostSingle: '[string]'
+  goldMedalDouble: '[string]'
+  goldMedalMixed: '[string]'
+  goldMedalSingle: '[string]'
+  plays: '[string]'
+  racketCatching: '[string]'
+  rankingsDoubles: '[nonNegativeInteger]'
+  rankingsSingles: '[nonNegativeInteger]'
+  rolandGarrosDouble: '[string]'
+  rolandGarrosMixed: '[string]'
+  rolandGarrosSingle: '[string]'
+  silverMedalDouble: '[string]'
+  silverMedalMixed: '[string]'
+  silverMedalSingle: '[string]'
+  titleDouble: '[string]'
+  titleSingle: '[string]'
+  usOpenDouble: '[string]'
+  usOpenMixed: '[string]'
+  usOpenSingle: '[string]'
+  wimbledonDouble: '[string]'
+  wimbledonMixed: '[string]'
+  wimbledonSingle: '[string]'
+TennisTournament:
+  ISA: Tournament
+Tenure:
+  ISA: TimePeriod
+TermOfOffice:
+  ISA: Organisation
+  presidentGeneralCouncil: '[Person]'
+  presidentRegionalCouncil: '[Person]'
+Territory:
+  ISA: PopulatedPlace
+Theatre:
+  ISA: Venue
+  currentProduction: '[iri]'
+TheatreDirector:
+  ISA: Person
+TheologicalConcept:
+  ISA: TopicalConcept
+TimePeriod:
+  end: '[date]'
+  start: '[date]'
+TopLevelDomain:
+  ISA: Identifier
+Tournament:
+  ISA: SportsEvent
+Tower:
+  ISA: ArchitecturalStructure
+Town:
+  ISA: Settlement
+TrackList:
+  ISA: List
+TradeUnion:
+  ISA: Organisation
+Train:
+  ISA: MeanOfTransportation
+  locomotive: '[Locomotive]'
+  wagon: '[TrainCarriage]'
+TrainCarriage:
+  ISA: MeanOfTransportation
+Tram:
+  ISA: MeanOfTransportation
+TramStation:
+  ISA: Station
+Treadmill:
+  ISA: Mill
+Treaty:
+  ISA: WrittenWork
+Tunnel:
+  ISA: ArchitecturalStructure
+Type:
+  ISA: TopicalConcept
+UndergroundJournal:
+  ISA: PeriodicalLiterature
+  dutchWinkelID: '[string]'
+University:
+  ISA: EducationalInstitution
+  athletics: '[iri]'
+  campus: '[iri]'
+  numberOfDoctoralStudents: '[nonNegativeInteger]'
+  numberOfPersonFromUniversity: '[nonNegativeInteger]'
+  numberOfPostgraduateStudents: '[nonNegativeInteger]'
+  officerInCharge: '[Person]'
+  other: '[integer]'
+  provost: '[Person]'
+VaccinationStatistics:
+  ISA: Drug
+Vaccine:
+  ISA: Drug
+Valley:
+  ISA: NaturalPlace
+Vein:
+  ISA: AnatomicalStructure
+Venue:
+  ISA: Building
+Vicar:
+  ISA: Cleric
+VicePresident:
+  ISA: Politician
+VicePrimeMinister:
+  ISA: Politician
+VideoGame:
+  ISA: Software
+  gameArtist: '[Person]'
+  gameEngine: '[iri]'
+VideogamesLeague:
+  ISA: SportsLeague
+Village:
+  ISA: Settlement
+Vodka:
+  ISA: Beverage
+VoiceActor:
+  ISA: Actor
+Volcano:
+  ISA: NaturalPlace
+  eruptionYear: '[year]'
+VolleyballCoach:
+  ISA: Coach
+VolleyballLeague:
+  ISA: SportsLeague
+VolleyballPlayer:
+  ISA: Athlete
+  block: '[string]'
+  spike: '[string]'
+WaterPoloPlayer:
+  ISA: Athlete
+WaterRide:
+  ISA: AmusementParkAttraction
+WaterTower:
+  ISA: Tower
+Watermill:
+  ISA: Mill
+WaterwayTunnel:
+  ISA: RouteOfTransportation
+  waterwayThroughTunnel: '[iri]'
+Weapon:
+  ISA: Device
+  usedInWar: '[MilitaryConflict]'
+  weapon/diameter: '[decimal]'
+  weapon/height: '[decimal]'
+  weapon/length: '[decimal]'
+  weapon/weight: '[decimal]'
+  weapon/width: '[decimal]'
+Website:
+  ISA: Work
+WikimediaTemplate:
+  ISA: Unknown
+  templateName: '[string]'
+WindMotor:
+  ISA: Mill
+Windmill:
+  ISA: Mill
+Wine:
+  ISA: Beverage
+WineRegion:
+  ISA: Place
+  growingGrape: '[Grape]'
+  isPartOfWineRegion: '[WineRegion]'
+  numberOfVineyards: '[nonNegativeInteger]'
+  numberOfWineries: '[nonNegativeInteger]'
+  varietals: '[iri]'
+  wineProduced: '[iri]'
+  wineYear: '[date]'
+Winery:
+  ISA: Company
+WinterSportPlayer:
+  ISA: Athlete
+Woman:
+  ISA: Person
+  aunt: '[Person]'
+  daughter: '[Person]'
+  mother: '[Person]'
+  sister: '[Person]'
+WomensTennisAssociationTournament:
+  ISA: Tournament
+Work:
+  alternativeTitle: '[langString]'
+  author: '[Person]'
+  basedOn: '[Work]'
+  chiefEditor: '[Person]'
+  cites: '[string]'
+  commissioner: '[string]'
+  completionDate: '[date]'
+  composer: '[Person]'
+  coverArtist: '[Person]'
+  dcc: '[string]'
+  fileSize: '[double]'
+  filename: '[string]'
+  license: '[iri]'
+  mainCharacter: '[Person]'
+  musicComposer: '[MusicalArtist]'
+  narrator: '[Person]'
+  nextTrackNumber: '[nonNegativeInteger]'
+  originalLanguage: '[Language]'
+  originalNotLatinTitle: '[langString]'
+  originalTitle: '[langString]'
+  otherWorks: '[WorkSequence]'
+  previousTrackNumber: '[nonNegativeInteger]'
+  previousWork: '[Work]'
+  previousWorkDate: '[year]'
+  producer: '[Agent]'
+  productionCompany: '[Company]'
+  publisher: '[Agent]'
+  releaseLocation: '[Place]'
+  runtime: '[double]'
+  starring: '[Actor]'
+  subjectTerm: '[string]'
+  subsequentWork: '[Work]'
+  subsequentWorkDate: '[year]'
+  translator: '[Person]'
+  work/runtime: '[decimal]'
+  writer: '[Person]'
+WorkSequence:
+  ISA: List
+WorldHeritageSite:
+  ISA: Place
+  id: '[string]'
+Wrestler:
+  ISA: Athlete
+  billed: '[PopulatedPlace]'
+  debut: '[date]'
+WrestlingEvent:
+  ISA: SportsEvent
+  brand: '[TelevisionShow]'
+  promotion: '[iri]'
+Writer:
+  ISA: Person
+  dbnlCodeDutch: '[string]'
+WrittenWork:
+  ISA: Work
+  circulation: '[nonNegativeInteger]'
+  coden: '[string]'
+  dutchPPNCode: '[string]'
+  filmVersion: '[Film]'
+  firstPublicationDate: '[date]'
+  firstPublisher: '[Agent]'
+  illustrator: '[Person]'
+  isbn: '[string]'
+  lastPublicationDate: '[date]'
+  lcc: '[string]'
+  lccn: '[string]'
+  literaryGenre: '[iri]'
+  magazine: '[Magazine]'
+  mediaType: '[iri]'
+  nonFictionSubject: '[iri]'
+  numberOfPages: '[positiveInteger]'
+  numberOfVolumes: '[nonNegativeInteger]'
+  oclc: '[string]'
+  prefaceBy: '[Person]'
+Year:
+  ISA: TimePeriod
+YearInSpaceflight:
+  ISA: TimePeriod
+  countryWithFirstAstronaut: '[Country]'
+  countryWithFirstSatellite: '[Country]'
+  countryWithFirstSatelliteLaunched: '[Country]'
+  countryWithFirstSpaceflight: '[Country]'
+  firstLaunch: '[date]'
+  lastLaunch: '[date]'
+  maidenFlightRocket: '[Rocket]'
+  orbitalFlights: '[nonNegativeInteger]'
+  retiredRocket: '[Rocket]'
+  suborbitalFlights: '[nonNegativeInteger]'
+  totalTravellers: '[nonNegativeInteger]'
+Youtuber:
+  ISA: Person
+Zoo:
+  ISA: ArchitecturalStructure
+company:
+  defunct: '[boolean]'
+prov_Entity:
+  avgRevSizePerMonth: '[iri]'
+  avgRevSizePerYear: '[iri]'
+  nbRevPerMonth: '[iri]'
+  nbRevPerYear: '[iri]'
+  nbUniqueContrib: '[integer]'
+skos_Concept:
+  mainArticleForCategory: '[iri]'

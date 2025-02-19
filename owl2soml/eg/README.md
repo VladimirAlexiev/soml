@@ -8,7 +8,9 @@
 - [Ontologies](#ontologies)
     - [SKOS](#skos)
     - [DCTerms](#dcterms)
-    - [Schema.org](#schema-org)
+    - [DBPedia Ontology](#dbpedia-ontology)
+        - [Which DBpedia Ontology](#which-dbpedia-ontology)
+    - [Schema.org](#schemaorg)
     - [Getty Vocabulary Program](#getty-vocabulary-program)
     - [FIBO](#fibo)
     - [Cocktails](#cocktails)
@@ -48,6 +50,210 @@ We tried an OWL DL rendition of DCT.
 perl ../owl2soml.pl -voc dcterms dct_owldl.ttl > dct_owldl.yaml
 ```
 
+## DBPedia Ontology
+(Added 2/18/2025)
+
+We produce [dbo.yaml](dbo.yaml) (a SOML schema), 
+and [dbo-simplified.yaml](dbo-simplified.yaml) (a pared-down version used for LLM query generation):
+
+```sh
+time perl ../../bin/owl2soml.pl dbo.ttl -voc dbo > dbo.yaml 2> dbo.log
+perl ../../bin/soml-simplify.pl dbo.yaml > dbo-simplified.yaml
+wc dbo.ttl dbo*.yaml | grep -v total | sort -rn
+  34270  124861 1314303 dbo.ttl
+  25072   61434  625751 dbo.yaml
+   4006    7234  102907 dbo-simplified.yaml
+```
+You can see the significant reduction in size compared to the Turtle ontology: 
+1.36x for SOML, and 8.5x for simplified.
+
+See next version for peculiarities and problems I had to fix.
+
+Remaining problems:
+- Prefixes are not defined in the simplified version. Use prefixes defined in the full version
+- Different naming of `prov` classes (which are misdefined as `dbo:prov:*` in the ontology)
+```yaml
+prov_Entity:
+  avgRevSizePerMonth: '[iri]'
+  avgRevSizePerYear: '[iri]'
+  nbRevPerMonth: '[iri]'
+  nbRevPerYear: '[iri]'
+  nbUniqueContrib: '[integer]'
+Prov_Revision:
+  isMinorRevision: '[boolean]'
+  wikiPageLengthDelta: '[integer]'
+```
+
+### Which DBpedia Ontology
+Where to get the `dbo` ontology?
+- http://dev.dbpedia.org/Download_DBpedia#ontology is the documentation for download, but isn't very helpful
+- https://databus.dbpedia.org/denis/ontology/dbo-snapshots gives 404
+- http://dbpedia.org/ontology/data/definitions.ttl : saved as `dbo-defs.ttl` with 10363 triples: nogood
+```
+curl -L -Haccept:text/turtle http://dbpedia.org/ontology/data/definitions.ttl > dbo-defs.ttl
+```
+- https://lov.linkeddata.es/dataset/lov/vocabs/dbpedia-owl/versions/2016-05-21.n3 :
+  saved as `dbo-lov-201605.ttl` with 30740 triples
+- https://archivo.dbpedia.org/list#list gives https://archivo.dbpedia.org/download?o=http%3A//dbpedia.org/ontology/&f=ttl ,
+reformatted with `owl write` and saved as `dbo-archivo-202502.ttl` with 34126 triples
+  - Got error "Not advised IRI: `<Prov:Revision>` Code: 11/LOWERCASE_PREFERRED in SCHEME: lowercase is preferred in this component"
+  - Also added prefixes
+```ttl
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dbo: <http://dbpedia.org/ontology/>.
+@prefix voaf: <http://purl.org/vocommons/voaf#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix cc:   <http://creativecommons.org/ns#>.
+@prefix dbd: <http://dbpedia.org/datatype/>.
+@prefix ov: <http://open.vocab.org/terms/>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix vann: <http://purl.org/vocab/vann/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix powder:  <http://www.w3.org/2007/05/powder-s#>.
+@prefix prov: <http://www.w3.org/ns/prov#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+```
+
+- https://databus.dbpedia.org/ontologies/dbpedia.org/ontology--DEV/2024.07.29-001000 gives https://databus.dbpedia.org/ontologies/dbpedia.org/ontology--DEV/2024.07.29-001000/ontology--DEV_type=parsed.ttl :
+  reformatted with `owl write` and saved as `dbo-databus-202407.ttl` with 34653 triples
+  - Added prefixes
+```ttl
+@prefix dbo:    <http://dbpedia.org/ontology/> .
+@prefix dbd:    <http://dbpedia.org/datatype/>.
+@prefix dbmo:   <http://mappings.dbpedia.org/index.php/OntologyClass:>.
+@prefix dbpo:   <http://mappings.dbpedia.org/index.php/OntologyProperty:>.
+@prefix bib:    <https://bib.schema.org/>.
+@prefix bibo:   <http://purl.org/ontology/bibo/>.
+@prefix dblp:   <https://dblp.org/rdf/schema-2020-07-01#>.
+@prefix gn:     <http://www.geonames.org/ontology#> .
+@prefix gnd:    <https://d-nb.info/standards/elementset/gnd#>.
+@prefix mo:     <http://purl.org/ontology/mo/>.
+@prefix nl-bag: <http://bag.basisregistraties.overheid.nl/def/bag#>.
+@prefix nl-ceo: <https://linkeddata.cultureelerfgoed.nl/vocab/def/ceo#>.
+@prefix nl-rkd: <http://data.rkd.nl/def#>.
+@prefix schema: <http://schema.org/> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+```
+
+We'll work with this version.
+This ontology has the following peculiarities:
+- Has numerous links to external ontologies including `subClassOf`, eg
+```ttl
+dbo:Agent a owl:Class ;
+  owl:equivalentClass dul:Agent ;
+  owl:equivalentClass wikidata:Q24229398 ;
+dbo:Band a owl:Class ;
+  rdfs:subClassOf dbo:Group ;
+  rdfs:subClassOf schema:MusicGroup ;
+  rdfs:subClassOf dul:SocialPerson .
+dbo:governmentPosition a owl:ObjectProperty, rdf:Property ;
+  rdfs:range wgs84pos:SpatialThing ;
+  rdfs:subPropertyOf dul:sameSettingAs .
+dbo:PenaltyShootOut a owl:Class ;
+  rdfs:subClassOf dul: .
+```
+- Because of that last defective link (empty local name) https://github.com/dbpedia/ontology-tracker/issues/39 ,
+  the script fails with an exception. 
+```
+Can't parse dul: into dul: ?!
+```
+- Also, those external classes and properties are not described in `dbo`: 
+  so I've removed all links 
+  `owl:equivalentClass owl:equivalentProperty rdfs:subClassOf rdfs:subPropertyOf` 
+  to external terms and saved as `dbo.ttl` (32829 triples)
+  - But I kept `rdfs:range` though in some cases they are non-sensical 
+    (eg `dbo:governmentPosition->wgs84pos:SpatialThing` as above)
+- Defines two classes in wrong namespace (https://github.com/dbpedia/ontology-tracker/issues/38) :
+```
+dbo:prov:Entity a owl:Class .
+dbo:prov:Revision a owl:Class .
+```
+- Two classes violate the naming convention:
+```
+dbo:company
+dbo:year
+```
+- Uses non-standard datatypes that are a mixture of 
+  units of measure (without any link to quantity kind or conversion factor), 
+  and some unclear things (perhaps strings):
+```
+@prefix dbd: <http://dbpedia.org/datatype/> .
+
+dbo:configuration a owl:DatatypeProperty, rdf:Property ;
+  rdfs:domain dbo:AutomobileEngine ;
+  rdfs:range dbd:engineConfiguration .
+dbd:engineConfiguration a rdfs:Datatype ;
+  rdfs:label "engineConfiguration"@en .
+
+<http://dbpedia.org/ontology/Astronaut/timeInSpace> a owl:DatatypeProperty ;
+  rdfs:range dbd:minute .
+dbd:minute a rdfs:Datatype ;
+  rdfs:label "minute"@en .
+```
+These are actually used in data, eg:
+```ttl
+dbr:Rover_KV6_engine
+  dbo:configuration
+    "V6"^^dbd:engineConfiguration.
+dbr:Pyotr_Dubrov
+  <http://dbpedia.org/ontology/Astronaut/timeInSpace>
+    "511425.0"^^dbd:minute.
+```
+But custom datatypes are not used in SOML, and the convertor returned errors like this:
+`Prop configuration is owl:DatatypeProperty or owl:AnnotationProperty but has range class dbd:engineConfiguration`
+So we replaced most of them with `decimal`, and only 2 with `string`: `dbd:fuelType, dbd:engineConfiguration`
+
+- Has multilingual labels in 36 langs (EN is the biggest: 5153 labels):
+```
+grep -o -P '@\w+' dbo.ttl|sort|uniq -c
+    108 @am
+     25 @ar
+      5 @be
+     14 @bg
+      4 @bn
+     29 @ca
+     19 @cs
+    147 @da
+   2197 @de
+   1367 @el
+   5153 @en
+    267 @es
+     16 @eu
+   1561 @fr
+    459 @ga
+     50 @gl
+     24 @hi
+      1 @hy
+      8 @in
+    258 @it
+    584 @ja
+    234 @ko
+      1 @kr
+      3 @lv
+      1 @mk
+   1479 @nl
+    139 @pl
+    248 @pt
+      1 @ro
+     50 @ru
+      1 @sk
+     26 @sl
+    267 @sr
+     27 @tr
+   1199 @ur
+     27 @zh
+```
+- 140 class-specific props, eg `<http://dbpedia.org/ontology/Weapon/length>`
+- 16 multivalued `domain` or `range` that leads to invalid class URLs 
+  (reported in 2016 as [dbpedia/ontology-tracker#14](https://github.com/dbpedia/ontology-tracker/issues/14) not yet fixed), eg
+```ttl
+rdfs:domain <http://dbpedia.org/ontology/MilitaryConflict,_AdministrativeRegion>
+rdfs:range  <http://dbpedia.org/ontology/Organisation,_Person>
+```
+- redeclares XSD datatypes
+```ttl
+xsd:nonNegativeInteger a rdfs:Datatype
+```
 
 ## Schema.org
 
