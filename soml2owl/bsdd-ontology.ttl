@@ -1,0 +1,1032 @@
+@prefix bsdd: <http://bsdd.buildingsmart.org/def#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema1: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Enumerations
+bsdd:ClassificationType a rdfs:Datatype ;
+    owl:equivalentClass [ a rdfs:Datatype ; owl:oneOf ( "CLASS" "COMPOSED_PROPERTY" "DOMAIN" "GROUP_OF_PROPERTIES" "REFERENCE_DOCUMENT" "ALTERNATIVE_USE" "MATERIAL" ) ] .
+
+bsdd:PropertyValueKind a rdfs:Datatype ;
+    owl:equivalentClass [ a rdfs:Datatype ; owl:oneOf ( "SINGLE" "RANGE" "LIST" "COMPLEX" "COMPLEX_LIST" ) ] .
+
+# Properties
+
+bsdd:value a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:PropertyValue ;
+    rdfs:range xsd:string .
+
+bsdd:childClassification a owl:ObjectProperty ;
+    schema1:domainIncludes bsdd:Classification ;
+    rdfs:range bsdd:Classification .
+
+bsdd:classificationType a owl:ObjectProperty ;
+    schema1:domainIncludes bsdd:Classification ;
+    rdfs:range bsdd:ClassificationType .
+
+bsdd:connectedPropertyCode a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:copyrightNotice a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Domain ;
+    rdfs:range xsd:string .
+
+bsdd:date a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ReferenceDocument ;
+    rdfs:range xsd:dateTime .
+
+bsdd:domain a owl:ObjectProperty ;
+    schema1:domainIncludes bsdd:Classification ;
+    rdfs:range bsdd:Domain .
+
+bsdd:dynamicParameterPropertyCode a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty ;
+    rdfs:range xsd:string .
+
+bsdd:dynamicParameterPropertyCodes a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:isRequired a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty ;
+    rdfs:range xsd:boolean .
+
+bsdd:isWritable a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty ;
+    rdfs:range xsd:boolean .
+
+bsdd:isocode a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Language ;
+    rdfs:range xsd:string .
+
+bsdd:languageCode a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Domain ;
+    rdfs:range xsd:string .
+
+bsdd:lastUpdatedUtc a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Domain ;
+    rdfs:range xsd:dateTime .
+
+bsdd:license a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Domain ;
+    rdfs:range xsd:string .
+
+bsdd:licenseUrl a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Domain ;
+    rdfs:range xsd:string .
+
+bsdd:moreInfoUrl a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Domain ;
+    rdfs:range xsd:string .
+
+bsdd:parentClassification a owl:ObjectProperty ;
+    schema1:domainIncludes bsdd:Classification ;
+    rdfs:range bsdd:Classification .
+
+bsdd:predefinedValue a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty ;
+    rdfs:range xsd:string .
+
+bsdd:property a owl:ObjectProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty ;
+    rdfs:range bsdd:Property .
+
+bsdd:propertySet a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty ;
+    rdfs:range xsd:string .
+
+bsdd:referenceCode a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Classification ;
+    rdfs:range xsd:string .
+
+bsdd:relatedIfcEntityName a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Classification ;
+    rdfs:range xsd:string .
+
+bsdd:releaseDate a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Domain ;
+    rdfs:range xsd:dateTime .
+
+bsdd:replacedObjectCodes a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:replacingObjectCodes a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:sortNumber a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:PropertyValue ;
+    rdfs:range xsd:integer .
+
+bsdd:subdivisionsOfUse a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:synonym a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Classification ;
+    rdfs:range xsd:string .
+
+bsdd:title a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ReferenceDocument ;
+    rdfs:range xsd:string .
+
+bsdd:version a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Domain ;
+    rdfs:range xsd:string .
+
+bsdd:allowedValue a owl:ObjectProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range bsdd:PropertyValue .
+
+bsdd:classification a owl:ObjectProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Domain ;
+    rdfs:range bsdd:Classification .
+
+bsdd:classificationProperty a owl:ObjectProperty ;
+    schema1:domainIncludes bsdd:Classification,
+        bsdd:Property ;
+    rdfs:range bsdd:ClassificationProperty .
+
+bsdd:dataType a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:dimension a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:dimensionAmountOfSubstance a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:integer .
+
+bsdd:dimensionElectricCurrent a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:integer .
+
+bsdd:dimensionLength a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:integer .
+
+bsdd:dimensionLuminousIntensity a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:integer .
+
+bsdd:dimensionMass a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:integer .
+
+bsdd:dimensionThermodynamicTemperature a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:integer .
+
+bsdd:dimensionTime a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:integer .
+
+bsdd:example a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:isDynamic a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:boolean .
+
+bsdd:maxExclusive a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:decimal .
+
+bsdd:maxInclusive a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:decimal .
+
+bsdd:methodOfMeasurement a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:minExclusive a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:decimal .
+
+bsdd:minInclusive a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:decimal .
+
+bsdd:pattern a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:physicalQuantity a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:propertyValueKind a owl:ObjectProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+        bsdd:Property ;
+    rdfs:range bsdd:PropertyValueKind .
+
+bsdd:related a owl:ObjectProperty ;
+    schema1:domainIncludes bsdd:ClassificationRelation,
+        bsdd:PropertyRelation ;
+    rdfs:range [ a owl:Restriction ; owl:unionOf ( bsdd:Classification 
+        bsdd:Property )].
+
+bsdd:relation a owl:ObjectProperty ;
+    schema1:domainIncludes bsdd:Classification,
+        bsdd:Property ;
+    rdfs:range [ a owl:Restriction ; owl:unionOf (bsdd:ClassificationRelation 
+        bsdd:PropertyRelation )].
+
+bsdd:relationType a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationRelation,
+                            bsdd:PropertyRelation ;
+    rdfs:range xsd:string .
+
+bsdd:replacedObjectCode a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Classification,
+                            bsdd:ClassificationProperty ;
+    rdfs:range xsd:string .
+
+bsdd:replacingObjectCode a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Classification,
+                            bsdd:ClassificationProperty ;
+    rdfs:range xsd:string .
+
+bsdd:subdivisionOfUse a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Classification,
+                             bsdd:ClassificationProperty ;
+    rdfs:range xsd:string .
+
+bsdd:symbol a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+                             bsdd:Unit ;
+    rdfs:range xsd:string .
+
+bsdd:textFormat a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:unit a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:activationDateUtc a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:dateTime .
+
+bsdd:countryOfOrigin a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:countryOfUse a owl:DatatypeProperty ;
+    schema1:domainIncludes bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:creatorLanguageCode a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:deActivationDateUtc a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:dateTime .
+
+bsdd:definition a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:deprecationExplanation a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:description a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:ClassificationProperty,
+                            bsdd:Property,
+                            bsdd:PropertyValue ;
+    rdfs:range xsd:string .
+
+bsdd:documentReference a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:revisionDateUtc a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:dateTime .
+
+bsdd:revisionNumber a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:integer .
+
+bsdd:uid a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:versionDateUtc a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:dateTime .
+
+bsdd:versionNumber a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:integer .
+
+bsdd:visualRepresentationUri a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Property ;
+    rdfs:range xsd:anyURI .
+
+bsdd:status a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Domain,
+                            bsdd:Property ;
+    rdfs:range xsd:string .
+
+bsdd:code a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Country,
+                            bsdd:Property,
+                            bsdd:PropertyValue,
+                            bsdd:Unit ;
+    rdfs:range xsd:string .
+
+bsdd:name a owl:DatatypeProperty ;
+    schema1:domainIncludes  bsdd:Classification,
+                            bsdd:ClassificationProperty,
+                            bsdd:Country,
+                            bsdd:Domain,
+                            bsdd:Language,
+                            bsdd:Property,
+                            bsdd:ReferenceDocument,
+                            bsdd:Unit ;
+    rdfs:range xsd:string .
+
+# Classes
+
+bsdd:Country a owl:Class ;
+    rdfs:comment "Country" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:code ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:code ] ,        
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:name ] ,
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:name ] .        
+
+bsdd:Language a owl:Class ;
+    rdfs:comment "Language" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:name ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:name ] ,        
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:isocode ] ,
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:isocode ] .        
+
+bsdd:ClassificationRelation a owl:Class ;
+    rdfs:comment "Attributes of a relation of a classification with another classification, can be from a different domain." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 2 ;
+            owl:minCardinality 2 ;
+            owl:onProperty bsdd:related ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom bsdd:Classification ;
+            owl:onProperty bsdd:related ] ,        
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:relationType ] ,
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:relationType ] .        
+
+bsdd:PropertyRelation a owl:Class ;
+    rdfs:comment "Attributes of a relation of a property with another property, can be from a different domain." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 2 ;
+            owl:minCardinality 2 ;
+            owl:onProperty bsdd:related ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom bsdd:Property ;
+            owl:onProperty bsdd:related ] ,                  
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:relationType ] ,
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:relationType ] .        
+
+bsdd:ReferenceDocument a owl:Class ;
+    rdfs:comment "ReferenceDocument" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:name ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:name ] ,       
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:title ] ,
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:title ] ,                 
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:date ] ,
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:dateTime ;
+            owl:onProperty bsdd:date ] .
+
+bsdd:Unit a owl:Class ;
+    rdfs:comment "Unit" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:code ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:code ] ,                 
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:name ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:name ] ,                 
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:symbol ] .                 
+
+bsdd:PropertyValue a owl:Class ;
+    rdfs:comment "Possible values of a Property or ClassificationProperty." ;
+    rdfs:subClassOf [a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty bsdd:sortNumber ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty bsdd:title ] ,                 
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:code ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:value ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:description ] .
+
+bsdd:Domain a owl:Class ;
+    rdfs:comment "Contains general information about the domain and the delivered data." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:licenseUrl ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;            
+            owl:onProperty bsdd:releaseDate ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:lastUpdatedUtc ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:dateTime ;            
+            owl:onProperty bsdd:lastUpdatedUtc ] ,
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:moreInfoUrl ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:license ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:name ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:version ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:version ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:languageCode ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:languageCode ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:copyrightNotice ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:status ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom bsdd:Classification ;
+            owl:onProperty bsdd:classification ] .
+
+bsdd:Classification a owl:Class ;
+    rdfs:comment "A classification can be any (abstract) object (e.g. “IfcWall”), abstract concept (e.g. “Costing”) or process (e.g. “Installation”). Classifications can be organized in a tree like structure. For example: “IfcCurtainWall” is a more specific classification of “IfcWall”. We use the term “parent” to identify this relation: the parent of “IfcCurtainWall” is “IfcWall”." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:documentReference ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;            
+            owl:onProperty bsdd:revisionDateUtc ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:name ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:name ],        
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty bsdd:parentClassification ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom bsdd:Classification ;
+            owl:onProperty bsdd:parentClassification ],                
+        [ a owl:Restriction ;
+            owl:allValuesFrom bsdd:ClassificationType ;
+            owl:onProperty bsdd:classificationType ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:synonym ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:relatedIfcEntityName ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:replacedObjectCode ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:referenceCode ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:definition ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:deprecationExplanation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:subdivisionOfUse ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty bsdd:visualRepresentationUri ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;
+            owl:onProperty bsdd:versionDateUtc ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:relation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:code ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:code ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:countryOfOrigin ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom bsdd:ClassificationProperty ;
+            owl:onProperty bsdd:classificationProperty ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:creatorLanguageCode ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom bsdd:Classification ;
+            owl:onProperty bsdd:childClassification ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:domain ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom bsdd:Domain ;
+            owl:onProperty bsdd:domain ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:replacingObjectCode ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ; 
+            owl:onProperty bsdd:deActivationDateUtc ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:countryOfUse ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty bsdd:revisionNumber ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:activationDateUtc ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:dateTime ;
+            owl:onProperty bsdd:activationDateUtc ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:status ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:status ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty bsdd:versionNumber ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:uid ] .
+
+bsdd:Property a owl:Class ;
+    rdfs:comment "Property" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;    
+            owl:onProperty bsdd:revisionDateUtc ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom bsdd:PropertyRelation ;
+            owl:onProperty bsdd:relation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:definition ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:physicalQuantity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty bsdd:versionNumber ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:allowedValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:connectedPropertyCode ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;        
+            owl:onProperty bsdd:dimension ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;        
+            owl:onProperty bsdd:dimensionThermodynamicTemperature ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;
+            owl:onProperty bsdd:deActivationDateUtc ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:name ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:replacingObjectCodes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty bsdd:maxExclusive ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:dimensionElectricCurrent ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:dataType ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:countryOfUse ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:activationDateUtc ],
+        [ a owl:Restriction ;        
+            owl:someValuesFrom xsd:dateTime ;
+            owl:onProperty bsdd:activationDateUtc ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;        
+            owl:onProperty bsdd:versionDateUtc ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:subdivisionsOfUse ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom bsdd:ClassificationProperty ;
+            owl:onProperty bsdd:classificationProperty ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty bsdd:revisionNumber ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:uid ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom bsdd:PropertyValueKind ;
+            owl:onProperty bsdd:propertyValueKind ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:status ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:status ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:code ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:code ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:dimensionAmountOfSubstance ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;        
+            owl:onProperty bsdd:countryOfOrigin ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:textFormat ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:dynamicParameterPropertyCodes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:dimensionLength ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:creatorLanguageCode ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:methodOfMeasurement ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:pattern ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:dimensionLuminousIntensity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty bsdd:maxInclusive ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty bsdd:dimensionTime ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:deprecationExplanation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:documentReference ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty bsdd:visualRepresentationUri ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:replacedObjectCodes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty bsdd:minExclusive ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty bsdd:dimensionMass ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:unit ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty bsdd:minInclusive ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:isDynamic ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:boolean ;
+            owl:onProperty bsdd:isDynamic ],        
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:example ] .
+
+bsdd:ClassificationProperty a owl:Class ;
+    rdfs:comment "Attributes of a property of a classification. A property can be part of many classifications but the restrictions for the property can differ per classification" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:propertySet ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty bsdd:minExclusive ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:predefinedValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:pattern ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:status ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:status ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom bsdd:PropertyValueKind ;
+            owl:onProperty bsdd:propertyValueKind ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty bsdd:dimensionThermodynamicTemperature ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:subdivisionOfUse ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;
+            owl:onProperty bsdd:versionDateUtc ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty bsdd:dimensionMass ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty bsdd:dimensionTime ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty bsdd:dimensionLength ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:replacedObjectCode ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:dimension ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:uid ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:unit ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;
+            owl:onProperty bsdd:revisionDateUtc ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:creatorLanguageCode ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:allowedValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:dataType ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:countryOfOrigin ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:symbol ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:classification ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom bsdd:Classification ;
+            owl:onProperty bsdd:classification ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:methodOfMeasurement ],
+        [ a owl:Restriction ;
+                    owl:allValuesFrom xsd:boolean ;
+            owl:onProperty bsdd:isWritable ],
+        [ a owl:Restriction ;
+                    owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:definition ],
+        [ a owl:Restriction ;
+                    owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:dimensionAmountOfSubstance ],
+        [ a owl:Restriction ;
+                    owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:deprecationExplanation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty bsdd:maxInclusive ],
+        [ a owl:Restriction ;
+                    owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:dimensionLuminousIntensity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:isDynamic ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:boolean ;
+            owl:onProperty bsdd:isDynamic ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;
+            owl:onProperty bsdd:deActivationDateUtc ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty bsdd:minInclusive ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:countryOfUse ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty bsdd:revisionNumber ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:property ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom bsdd:Property ;
+            owl:onProperty bsdd:property ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty bsdd:isRequired ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:documentReference ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty bsdd:maxExclusive ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:activationDateUtc ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:dateTime ;
+            owl:onProperty bsdd:activationDateUtc ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:dynamicParameterPropertyCode ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty bsdd:versionNumber ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:physicalQuantity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:replacingObjectCode ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:name ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;        
+            owl:onProperty bsdd:dimensionElectricCurrent ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:textFormat ],
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:textFormat ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty bsdd:example ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty bsdd:visualRepresentationUri ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty bsdd:code ] ,
+        [ a owl:Restriction ;
+            owl:someValuesFrom xsd:string ;
+            owl:onProperty bsdd:code ] .
+
